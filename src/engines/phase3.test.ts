@@ -13,9 +13,9 @@ import { runSequence } from "./fsm/simulator";
 import { addState, blankMachine, type FsmMachine } from "./fsm/stateMachine";
 import { synthesizeD } from "./fsm/synthesis";
 import { conditionMatches } from "./fsm/transition";
-import { chipMap, decodeAddress } from "./memory/addressDecoder";
-import { createMemory, readWord, writeWord } from "./memory/memoryArray";
-import { describeOrganization, expandByAddress, expandByWord, interleavedBank } from "./memory/organization";
+import { chipMap, decodeAddress, splitAddress } from "./memory/addressDecoder";
+import { createMemory, eraseEprom, readWord, writeWord } from "./memory/memoryArray";
+import { describeOrganization, expandByAddress, expandByWord, highOrderBank, interleavedBank } from "./memory/organization";
 
 const tiny: CacheConfig = {
   addressBits: 6,
@@ -159,8 +159,20 @@ describe("memory systems", () => {
     expect(expandByAddress([{ words: 1024, width: 8 }, { words: 1024, width: 8 }])).toMatchObject({ words: 2048, width: 8 });
     expect(decodeAddress(3, 4).active).toBe(3);
     expect(chipMap(16, 8192, 9000).chips.find((chip) => chip.selected)?.chip).toBe(1);
+    expect(splitAddress(9000, 16, 13)).toMatchObject({ select: 1, offset: 9000 - 8192 });
     expect(interleavedBank(4, 4).bank).toBe(0);
     expect(interleavedBank(5, 4).bank).toBe(1);
+    expect(highOrderBank(5, 4, 16).bank).toBe(1);
+  });
+
+  it("programs EPROM once, then UV erase allows another write", () => {
+    let memory = createMemory("eprom", 4, 8, 0xff);
+    const first = writeWord(memory, 1, 0xa5, true, true);
+    memory = first.memory;
+    expect(first.access.ok).toBe(true);
+    expect(writeWord(memory, 1, 0x11, true, true).access.rejected).toBe(true);
+    memory = eraseEprom(memory);
+    expect(writeWord(memory, 1, 0x11, true, true).access.ok).toBe(true);
   });
 });
 

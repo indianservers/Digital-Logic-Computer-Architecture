@@ -13,7 +13,7 @@ const RECORDS = "records";
 
 export interface SavedRecord {
   id: string;
-  kind: "fsm" | "memory" | "cache" | "cpu";
+  kind: "fsm" | "memory" | "cache" | "cpu" | "arch" | "builder" | "sandbox";
   name: string;
   data: string;
   updated: number;

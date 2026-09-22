@@ -54,3 +54,14 @@ export function interleavedBank(address: number, banks: number): { bank: number;
     explain: `Address ${address} goes to bank ${bank}. Low-order interleaving spreads successive addresses across banks.`,
   };
 }
+
+export function highOrderBank(address: number, banks: number, space: number): { bank: number; offset: number; explain: string } {
+  const count = Math.max(1, banks);
+  const bankSize = Math.max(1, Math.floor(space / count));
+  const bank = Math.min(count - 1, Math.floor(address / bankSize));
+  return {
+    bank,
+    offset: address - bank * bankSize,
+    explain: `Address ${address} stays in bank ${bank}. High-order interleaving keeps consecutive addresses in one bank.`,
+  };
+}

@@ -21,7 +21,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const hits = useMemo(() => searchStudios(query), [query]);
-  const studio = STUDIOS.find((item) => location.pathname.startsWith(item.path));
+  const architecture = location.pathname.startsWith("/architecture");
+  const links = architecture ? LINKS.filter((link) => link.to === "/") : LINKS;
+  const studio = STUDIOS.find((item) => item.path !== "/" && location.pathname.startsWith(item.path));
   const done = prefs.challenges.length;
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <span><strong>LogicLab</strong><span>Learn · Build · Think</span></span>
         </Link>
         <nav className="nav-group">
-          {LINKS.map((link) => (
+          {links.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.end} className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
               <Icon name={link.icon} size={16} /> {link.label}
             </NavLink>

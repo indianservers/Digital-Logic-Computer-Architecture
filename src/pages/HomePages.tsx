@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { STUDIOS } from "../data/curriculum";
+import { MASTER_CONCEPTS } from "../data/master";
 import { Card } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
 
@@ -11,18 +12,18 @@ export function HomePage() {
     <div>
       <div className="home-hero">
         <div>
-          <div className="tiny">PHASES 1–4 · LOGIC THROUGH PIPELINED EXECUTION</div>
+          <div className="tiny">PHASES 1–8 · BIT THROUGH CUSTOM CPU AND SANDBOX</div>
           <h1>Digital Logic & Computer Architecture</h1>
           <p className="muted">Learn by changing the system. Toggle bits, edit expressions, and watch the result update.</p>
         </div>
-        <Link to={prefs.lastPath.startsWith("/studios") ? prefs.lastPath : "/studios/number-systems"} className="btn-primary">Continue</Link>
+        <Link to={prefs.lastPath.startsWith("/studios") || prefs.lastPath.startsWith("/architecture") ? prefs.lastPath : "/studios/number-systems"} className="btn-primary">Continue</Link>
       </div>
       <div className="grid cards-3">
         {active.map((studio) => (
           <Link key={studio.id} to={studio.path} className="card studio-card">
             <div className="spread"><strong>{studio.title}</strong><span className="pill ok">Open</span></div>
             <p className="muted" style={{ margin: 0 }}>{studio.summary}</p>
-            <span className="tiny">{studio.topics.slice(0, 3).join(" · ")}</span>
+            <span className="tiny">{studio.topics.slice(0, 3).join(" · ")} · {MASTER_CONCEPTS.filter((item) => item.studio === studio.id || item.route.startsWith(studio.path)).length} concepts</span>
           </Link>
         ))}
       </div>
@@ -44,7 +45,7 @@ export function StudiosPage() {
 }
 
 export function LearnPage() {
-  const phases = [1, 2, 3, 4];
+  const phases = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <div className="grid cards-2">
       {phases.map((phase) => (

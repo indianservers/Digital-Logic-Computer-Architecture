@@ -56,13 +56,23 @@ export function writeWord(memory: MemoryArray, address: number, data: number, ch
   if (!chipEnable) return { memory, access: { ok: false, data: null, rejected: false, explain: "Chip enable is low, so the write is ignored." } };
   if (!writeEnable) return { memory, access: { ok: false, data: null, rejected: false, explain: "Write enable is low, so the stored word does not change." } };
   if (address < 0 || address >= memory.words) return { memory, access: { ok: false, data: null, rejected: false, explain: "That address is outside this chip." } };
-  if (memory.kind === "rom" || memory.kind === "eprom") {
-    return { memory, access: { ok: false, data: memory.cells[address] ?? 0, rejected: true, explain: `${memory.kind.toUpperCase()} rejects this write. The stored word stays unchanged.` } };
+  if (memory.kind === "rom") {
+    return { memory, access: { ok: false, data: memory.cells[address] ?? 0, rejected: true, explain: "ROM rejects this write. The stored word stays unchanged." } };
   }
-  if (memory.kind === "prom" && memory.programmed[address]) {
-    return { memory, access: { ok: false, data: memory.cells[address] ?? 0, rejected: true, explain: "PROM can be programmed once. This cell is already programmed." } };
+  if ((memory.kind === "prom" || memory.kind === "eprom") && memory.programmed[address]) {
+    return {
+      memory,
+      access: {
+        ok: false,
+        data: memory.cells[address] ?? 0,
+        rejected: true,
+        explain: memory.kind === "prom"
+          ? "PROM can be programmed once. This cell is already programmed."
+          : "EPROM is already programmed at this address. Ultraviolet erase clears the whole chip first.",
+      },
+    };
   }
-  if (!WRITABLE.has(memory.kind) && memory.kind !== "prom") {
+  if (!WRITABLE.has(memory.kind) && memory.kind !== "prom" && memory.kind !== "eprom") {
     return { memory, access: { ok: false, data: memory.cells[address] ?? 0, rejected: true, explain: "This memory kind rejects the write." } };
   }
   const stored = data & maskOf(memory.width);
