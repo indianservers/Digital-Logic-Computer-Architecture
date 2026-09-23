@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
 import { predictorName, runPipe, stepPipe, type PipeState, type Policy } from "../../engines/isa/pipeline";
 import { StudioFrame } from "../../layout/StudioFrame";
@@ -13,9 +13,13 @@ const PRESETS: Record<string, { source: string; note: string; data?: Record<numb
   Branch: { source: "ADDI R1, R0, 1\nBEQ R1, R0, END\nADDI R2, R0, 4\nEND:\nHALT\n", note: "Not-taken is the correct direction. Always-taken fetches the wrong path." },
 };
 
+const TABS = [
+  { id: "detect", label: "Hazards" },
+  { id: "predict", label: "Prediction" },
+];
+
 export function HazardStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "detect";
+  const [tab, setTab] = useStudioTab(TABS, "detect");
   const [preset, setPreset] = useState("RAW");
   const [policy, setPolicy] = useState<Policy>("not-taken");
   const [forwarding, setForwarding] = useState(true);
@@ -30,7 +34,7 @@ export function HazardStudio() {
   }
 
   return (
-    <StudioFrame icon="map" title="Pipeline Hazards" description="Hazards are detected from register reads and writes in the live pipeline. WAR and WAW do not arise in this in-order model." tabs={[{ id: "detect", label: "Hazards" }, { id: "predict", label: "Prediction" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["RAW means a later instruction reads a register an earlier one writes.", "Forwarding copies an ALU result from EX/MEM or MEM/WB.", "A wrong branch prediction flushes the instructions already fetched."]} takeaways={["This pipeline writes only in WB and reads in ID, so WAR and WAW do not occur.", "A load-use still inserts one stall when forwarding is on.", "The 2-bit counter moves one step toward the resolved direction."]}>
+    <StudioFrame icon="map" title="Pipeline Hazards" description="Hazards are detected from register reads and writes in the live pipeline. WAR and WAW do not arise in this in-order model." tabs={TABS} tab={tab} onTab={setTab} guide={["RAW means a later instruction reads a register an earlier one writes.", "Forwarding copies an ALU result from EX/MEM or MEM/WB.", "A wrong branch prediction flushes the instructions already fetched."]} takeaways={["This pipeline writes only in WB and reads in ID, so WAR and WAW do not occur.", "A load-use still inserts one stall when forwarding is on.", "The 2-bit counter moves one step toward the resolved direction."]}>
       {prefs.explain ? <ExplainBar what={pipe?.log.at(-1) ?? chosen?.note ?? ""} why="Stall, forward, and flush marks come from the detector, not from a canned timeline." notice="Separate instruction and data memories remove the structural conflict shown in the unified preset." /> : null}
       <Segmented options={Object.keys(PRESETS)} value={preset} onChange={(value) => { setPreset(value); if (value === "Structural") setUnified(true); }} />
       <div className="row">

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
 import { alu, shiftVector } from "../../engines/digital/arithmetic";
 import { fromUnsigned, toBinary, toUnsigned } from "../../engines/digital/vector";
 import { driveBus, type BusDriver } from "../../engines/cpu/buses";
@@ -22,17 +22,16 @@ const TABS = [
 
 const BLOCKS: Record<string, { purpose: string; inputs: string; outputs: string }> = {
   PC: { purpose: "Holds the address of the next instruction word.", inputs: "Increment or a loaded address", outputs: "Address toward MAR" },
-  IR: { purpose: "Captures the instruction word.", inputs: "Memory word when IRWrite is on", outputs: "The held word, decoded in a later phase" },
+  IR: { purpose: "Captures the instruction word.", inputs: "Memory word when IRWrite is on", outputs: "The held word; decode happens in the Fetch-Decode-Execute studio" },
   MAR: { purpose: "Drives the address bus.", inputs: "An address from the datapath", outputs: "Address bus" },
   MDR: { purpose: "Sits between memory and the CPU.", inputs: "Memory data or CPU data", outputs: "The other side, depending on direction" },
   Registers: { purpose: "Two read ports and one write port.", inputs: "Read addresses, write address, write data", outputs: "Read data A and B" },
-  ALU: { purpose: "The Phase 2 arithmetic logic unit.", inputs: "A and the selected B or immediate", outputs: "Result and Z, N, C, V" },
-  Control: { purpose: "Introduces the signals that steer the datapath.", inputs: "The instruction, later", outputs: "PCWrite, IRWrite, RegWrite, ALUSrc, MemRead, MemWrite" },
+  ALU: { purpose: "The arithmetic logic unit from the adder studio.", inputs: "A and the selected B or immediate", outputs: "Result and Z, N, C, V" },
+  Control: { purpose: "Introduces the signals that steer the datapath.", inputs: "The instruction word from IR", outputs: "PCWrite, IRWrite, RegWrite, ALUSrc, MemRead, MemWrite" },
 };
 
 export function CpuStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "overview";
+  const [tab, setTab] = useStudioTab(TABS, "overview");
   const [regs, setRegs] = useState<CpuRegisters>(() => createRegisters(16, 4));
   const [file, setFile] = useState<RegisterFile>(() => createRegisterFile(8, 16));
   const [selected, setSelected] = useState("PC");
@@ -42,7 +41,7 @@ export function CpuStudio() {
   const block = BLOCKS[selected] ?? BLOCKS.PC;
 
   return (
-    <StudioFrame icon="project" title="CPU Building Blocks" description="Inspect the pieces that a later instruction cycle will use. This lab does not fetch or execute a program." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["The program counter changes only when you increment, load, or assert PCWrite.", "One bus driver is valid. Two drivers make the bus X.", "ALU flags are the same Z, N, C, and V as the adder studio."]} takeaways={["ALUSrc picks register B or an immediate.", "MAR points at memory. MDR carries the word.", "Registers update on the clock edge you step."]}>
+    <StudioFrame icon="project" title="CPU Building Blocks" description="Inspect the pieces that a later instruction cycle will use. This lab does not fetch or execute a program." tabs={TABS} tab={tab} onTab={setTab} guide={["The program counter changes only when you increment, load, or assert PCWrite.", "One bus driver is valid. Two drivers make the bus X.", "ALU flags are the same Z, N, C, and V as the adder studio."]} takeaways={["ALUSrc picks register B or an immediate.", "MAR points at memory. MDR carries the word.", "Registers update on the clock edge you step."]}>
       {prefs.explain ? <ExplainBar what={note} why="Control signals choose the route. The ALU and register file are the same engines used in the earlier studios." notice="Nothing here decodes an instruction yet." /> : null}
       {tab === "overview" ? (
         <div className="grid cards-2">
@@ -88,13 +87,13 @@ function RegisterLab({ regs, setRegs, file, setFile, setNote }: {
     <div className="grid cards-2">
       <Card title="Program counter">
         <p>PC = 0x{regs.pc.toString(16)} · next increment 0x{(regs.pc + regs.pcStep).toString(16)}</p>
-        <label>Step<input className="text-input" type="number" value={regs.pcStep} onChange={(event) => setRegs({ ...regs, pcStep: Number(event.target.value) })} /></label>
+        <label>Step<input className="text-input" type="number" value={regs.pcStep} onChange={(event) => setRegs({ ...regs, pcStep: parseNumberInput(event.target.value, regs.pcStep) })} /></label>
         <div className="row">
           <Button onClick={() => { setRegs(stepProgramCounter(regs, "increment")); setNote("PC increments by the configured step."); }}>Increment</Button>
           <Button onClick={() => setRegs(stepProgramCounter(regs, "load", load))}>Load</Button>
           <Button onClick={() => setRegs(stepProgramCounter(regs, "reset"))}>Reset</Button>
         </div>
-        <input className="text-input" aria-label="PC load value" type="number" value={load} onChange={(event) => setLoad(Number(event.target.value))} />
+        <input className="text-input" aria-label="PC load value" type="number" value={load} onChange={(event) => setLoad(parseNumberInput(event.target.value, load))} />
       </Card>
       <Card title="IR, MAR, MDR">
         <Button onClick={() => setRegs(loadRegister(regs, "ir", 0b1011001010000011, true))}>Load IR</Button>
@@ -106,7 +105,7 @@ function RegisterLab({ regs, setRegs, file, setFile, setNote }: {
       <Card title="Register file">
         <Segmented options={["8×8", "8×16", "16×32"]} value={file.count === 16 ? "16×32" : file.width === 8 ? "8×8" : "8×16"} onChange={(value) => setFile(createRegisterFile(value === "16×32" ? 16 : 8, value === "8×8" ? 8 : value === "8×16" ? 16 : 32))} />
         {file.values.map((value, index) => (
-          <div key={index} className="spread"><span>R{index}</span><input aria-label={`R${index}`} type="number" value={value} onChange={(event) => setFile(writePort(file, index, Number(event.target.value), true))} /></div>
+          <div key={index} className="spread"><span>R{index}</span><input aria-label={`R${index}`} type="number" value={value} onChange={(event) => setFile(writePort(file, index, parseNumberInput(event.target.value, value), true))} /></div>
         ))}
       </Card>
       <Card title="Stack and flags">

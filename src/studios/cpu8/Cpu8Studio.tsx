@@ -8,7 +8,7 @@ import {
 } from "../../engines/cpu8/cpu8";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { RegisterView } from "../shared/RegisterView";
-import { Button, Card, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
 
 const SAMPLE = `LDI A, 5
 LDI B, 3
@@ -152,7 +152,7 @@ export function Cpu8Studio() {
                 {Object.entries(OP8).map(([name, value]) => <option key={name} value={value}>{name} ({value})</option>)}
               </select>
             </label>
-            <label className="field">Operand byte<input type="number" min={0} max={255} value={encImm} onChange={(event) => setEncImm(Number(event.target.value))} /></label>
+            <label className="field">Operand byte<input type="number" min={0} max={255} value={encImm} onChange={(event) => setEncImm(parseNumberInput(event.target.value, encImm))} /></label>
           </div>
           <div className="bit-fields">
             <div className="bit-field on"><span>{fields.opcodeBits}</span><small>Opcode</small></div>

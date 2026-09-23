@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Card, Segmented } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Card, Segmented, parseNumberInput } from "../../design-system/ui";
 import { bcdToSeven, binaryToGrayCircuit, cascadedMux, decoder, demux, encoder, excess3Circuit, mux, muxImplements, priorityEncoder, SEGMENT_NAMES } from "../../engines/digital/routing";
 import { fromUnsigned, toBinary, toUnsigned } from "../../engines/digital/vector";
 import { grayBits } from "../../engines/numbers/codes";
@@ -19,11 +19,10 @@ const TABS = [
 ];
 
 export function RoutingStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "mux";
+  const [tab, setTab] = useStudioTab(TABS, "mux");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="grid" title="MUX, DEMUX, Encoder & Decoder" description="Select a path, or turn a one-hot line into a binary code, and the diagram follows." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Choose a multiplexer size", "Toggle a data input and the select lines", "Watch only the chosen path stay bright", "Try an invalid BCD code on the display"]} takeaways={["A mux picks one input", "A demux copies one input onto one output", "A priority encoder ignores lower requests", "Codes 10–15 are not digits"]}>
+    <StudioFrame icon="grid" title="MUX, DEMUX, Encoder & Decoder" description="Select a path, or turn a one-hot line into a binary code, and the diagram follows." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Choose a multiplexer size", "Toggle a data input and the select lines", "Watch only the chosen path stay bright", "Try an invalid BCD code on the display"]} takeaways={["A mux picks one input", "A demux copies one input onto one output", "A priority encoder ignores lower requests", "Codes 10–15 are not digits"]}>
       <div key={resetKey}>
         {tab === "mux" ? <MuxLab /> : null}
         {tab === "cascade" ? <CascadeLab /> : null}
@@ -170,7 +169,7 @@ function CodeLab() {
         <p className="tiny">Check: {grayBits(bits).join("")}</p>
       </Card>
       <Card title="BCD plus 0011 = Excess-3">
-        <input aria-label="Decimal digit" className="text-input" type="number" min={0} max={9} value={digit} onChange={(event) => setDigit(Number(event.target.value))} />
+        <input aria-label="Decimal digit" className="text-input" type="number" min={0} max={9} value={digit} onChange={(event) => setDigit(Math.max(0, Math.min(9, parseNumberInput(event.target.value, digit))))} />
         {excess ? <p className="mono">{toBinary(excess.bcd)} + {toBinary(excess.plus3)} = {toBinary(excess.result)}</p> : <p>Digits 0–9 only.</p>}
         <p className="tiny">Value {fromUnsigned(digit, 4).join("")} is the BCD nibble.</p>
       </Card>

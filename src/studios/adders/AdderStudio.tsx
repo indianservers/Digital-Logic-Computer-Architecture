@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Card, ExplainBar, Segmented } from "../../design-system/ui";
 import { addSub, alu, carryLookahead, carrySelect, compareMagnitude, decrement, divideSteps, fullAdder, fullSubtractor, halfAdder, halfSubtractor, increment, multiplySteps, rippleAdd, shiftVector, type AluOp, type ShiftKind } from "../../engines/digital/arithmetic";
 import { toBinary, toUnsigned } from "../../engines/digital/vector";
@@ -18,11 +18,10 @@ const TABS = [
 ];
 
 export function AdderStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "half";
+  const [tab, setTab] = useStudioTab(TABS, "half");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="bolt" title="Adders, Subtractors & Arithmetic" description="Change a bit and watch the sum, carry, flags, or partial products move." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Toggle A and B on the half adder", "Widen the ripple adder and watch the carry walk", "Switch ADD to SUB and see B invert", "Step a binary multiply"]} takeaways={["Sum is XOR. Carry is AND.", "Ripple delay grows with width. Look-ahead does not wait for every stage.", "Carry and signed overflow are different flags."] }>
+    <StudioFrame icon="bolt" title="Adders, Subtractors & Arithmetic" description="Change a bit and watch the sum, carry, flags, or partial products move." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Toggle A and B on the half adder", "Widen the ripple adder and watch the carry walk", "Switch ADD to SUB and see B invert", "Step a binary multiply"]} takeaways={["Sum is XOR. Carry is AND.", "Ripple delay grows with width. Look-ahead does not wait for every stage.", "Carry and signed overflow are different flags."] }>
       <div key={resetKey}>
         {tab === "half" ? <HalfFull /> : null}
         {tab === "multi" ? <Multi /> : null}

@@ -1,12 +1,16 @@
 import { driveBus, type BusDriver } from "../cpu/buses";
 
 export function addressReach(width: number): { expression: string; count: number | null } {
-  if (width < 0 || width > 53) return { expression: `2^${width}`, count: null };
-  return { expression: `2^${width}`, count: 2 ** width };
+  const bits = Number.isFinite(width) ? width : 0;
+  if (bits < 0 || bits > 53) return { expression: `2^${bits}`, count: null };
+  return { expression: `2^${bits}`, count: 2 ** bits };
 }
 
 export function bandwidthBytes(widthBits: number, frequencyHz: number, efficiency: number): number {
-  return (widthBits / 8) * frequencyHz * Math.min(1, Math.max(0, efficiency));
+  const width = Number.isFinite(widthBits) ? widthBits : 0;
+  const freq = Number.isFinite(frequencyHz) ? frequencyHz : 0;
+  const eff = Number.isFinite(efficiency) ? efficiency : 0;
+  return (width / 8) * freq * Math.min(1, Math.max(0, eff));
 }
 
 export interface BusMaster {

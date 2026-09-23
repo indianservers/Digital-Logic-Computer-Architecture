@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Segmented } from "../../design-system/ui";
 import { hardwired, MICROPROGRAM, stepMicro } from "../../engines/isa/rtl";
 import { OP } from "../../engines/isa/spec";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
 
+const TABS = [
+  { id: "hardwired", label: "Hardwired" },
+  { id: "micro", label: "Microprogram" },
+  { id: "compare", label: "Horizontal / Vertical" },
+];
+
 export function ControlStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "hardwired";
+  const [tab, setTab] = useStudioTab(TABS, "hardwired");
   const [mnemonic, setMnemonic] = useState("ADD");
   const [addr, setAddr] = useState(0);
   const [opcode, setOpcode] = useState<number>(OP.ALU);
@@ -17,7 +22,7 @@ export function ControlStudio() {
   const word = MICROPROGRAM.find((item) => item.addr === addr) ?? MICROPROGRAM[0];
 
   return (
-    <StudioFrame icon="gate" title="Control Unit" description="Hardwired control decodes the opcode into signals. Microprogrammed control reads the next control word from a small control store." tabs={[{ id: "hardwired", label: "Hardwired" }, { id: "micro", label: "Microprogram" }, { id: "compare", label: "Horizontal / Vertical" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["ADD turns on RegWrite and leaves memory quiet.", "LOAD turns on MemRead, then RegWrite in a later microinstruction.", "Dispatch after fetch jumps to the opcode's routine."]} takeaways={["The signals are the same ones the multi-cycle CPU uses.", "A horizontal word exposes each control bit.", "A vertical word stores an encoded operation and needs a decoder."]}>
+    <StudioFrame icon="gate" title="Control Unit" description="Hardwired control decodes the opcode into signals. Microprogrammed control reads the next control word from a small control store." tabs={TABS} tab={tab} onTab={setTab} guide={["ADD turns on RegWrite and leaves memory quiet.", "LOAD turns on MemRead, then RegWrite in a later microinstruction.", "Dispatch after fetch jumps to the opcode's routine."]} takeaways={["The signals are the same ones the multi-cycle CPU uses.", "A horizontal word exposes each control bit.", "A vertical word stores an encoded operation and needs a decoder."]}>
       {prefs.explain ? <ExplainBar what={`${mnemonic}: RegWrite ${signals.RegWrite}, MemRead ${signals.MemRead}, MemWrite ${signals.MemWrite}.`} why={word ? `${word.name}: ${word.signals}` : "Control store"} notice="Neither style is universally smaller or faster. Width and decoding trade off." /> : null}
       {tab === "hardwired" ? (
         <Card title="Opcode to signals">

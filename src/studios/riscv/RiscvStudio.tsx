@@ -6,7 +6,7 @@ import {
 } from "../../engines/isaarch/riscv";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { BitFields, Datapath, IsaRegister } from "../shared/BitFields";
-import { Button, Card, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
 
 const DP = [
   { id: "pc", label: "PC" }, { id: "imem", label: "I-Mem" }, { id: "decode", label: "Decode" }, { id: "regs", label: "x0–x31" },
@@ -225,8 +225,8 @@ export function RiscvStudio() {
       {lab === "arith" ? (
         <Card title="ALU">
           <Segmented options={["add", "sub", "and", "or", "xor", "sll", "srl", "sra", "slt"]} value={aluOp} onChange={setAluOp} />
-          <label className="field">rs1<input type="number" value={rs1} onChange={(event) => setRs1(Number(event.target.value))} /></label>
-          <label className="field">rs2<input type="number" value={rs2} onChange={(event) => setRs2(Number(event.target.value))} /></label>
+          <label className="field">rs1<input type="number" value={rs1} onChange={(event) => setRs1(parseNumberInput(event.target.value, rs1))} /></label>
+          <label className="field">rs2<input type="number" value={rs2} onChange={(event) => setRs2(parseNumberInput(event.target.value, rs2))} /></label>
           <Metric label="result" value={String(aluResult >>> 0)} />
           <Button variant="primary" onClick={() => setRd(aluResult >>> 0)}>Write rd</Button>
           <p className="tiny">rd = {rd}. SLT is signed; logical shifts are unsigned.</p>

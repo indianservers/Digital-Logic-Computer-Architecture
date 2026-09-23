@@ -54,16 +54,19 @@ function signedOf(unsigned: number, width: number): number {
 }
 
 export function binaryArithmetic(a: number, b: number, width: number, op: ArithmeticOp): ArithmeticResult {
-  const m = mask(width);
-  const ua = ((a % (m + 1)) + (m + 1)) % (m + 1);
-  const ub = ((b % (m + 1)) + (m + 1)) % (m + 1);
-  const patternA = join(bits(ua, width));
-  const patternB = join(bits(ub, width));
+  const safeWidth = Number.isFinite(width) && width >= 1 ? Math.min(32, Math.max(1, Math.trunc(width))) : 8;
+  const safeA = Number.isFinite(a) ? a : 0;
+  const safeB = Number.isFinite(b) ? b : 0;
+  const m = mask(safeWidth);
+  const ua = ((safeA % (m + 1)) + (m + 1)) % (m + 1);
+  const ub = ((safeB % (m + 1)) + (m + 1)) % (m + 1);
+  const patternA = join(bits(ua, safeWidth));
+  const patternB = join(bits(ub, safeWidth));
 
-  if (op === "add") return finish(width, ua, ub, patternA, patternB, addSteps(ua, ub, width));
-  if (op === "sub") return finish(width, ua, ub, patternA, patternB, subSteps(ua, ub, width));
-  if (op === "mul") return finish(width, ua, ub, patternA, patternB, mulSteps(ua, ub, width));
-  return finish(width, ua, ub, patternA, patternB, divSteps(ua, ub, width));
+  if (op === "add") return finish(safeWidth, ua, ub, patternA, patternB, addSteps(ua, ub, safeWidth));
+  if (op === "sub") return finish(safeWidth, ua, ub, patternA, patternB, subSteps(ua, ub, safeWidth));
+  if (op === "mul") return finish(safeWidth, ua, ub, patternA, patternB, mulSteps(ua, ub, safeWidth));
+  return finish(safeWidth, ua, ub, patternA, patternB, divSteps(ua, ub, safeWidth));
 }
 
 function finish(

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Card } from "../../design-system/ui";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { evaluate, twoGateTemplate } from "../../engines/digital/circuit";
@@ -23,11 +24,10 @@ const STEPS = [
 ];
 
 export function CombinationalStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "canvas";
+  const [tab, setTab] = useStudioTab(TABS, "canvas");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="gate" title="Combinational Circuit Design" description="Drag parts, wire ports, and watch the signals change. The canvas is the circuit." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Drag a part onto the canvas", "Pull a wire from an output dot to an input dot", "Toggle an input and read the probe", "Save the circuit in this browser"]} takeaways={["Outputs depend only on the current inputs", "A wire carries the value of its source", "A combinational loop is marked instead of freezing the page"]}>
+    <StudioFrame icon="gate" title="Combinational Circuit Design" description="Drag parts, wire ports, and watch the signals change. The canvas is the circuit." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Drag a part onto the canvas", "Pull a wire from an output dot to an input dot", "Toggle an input and read the probe", "Save the circuit in this browser"]} takeaways={["Outputs depend only on the current inputs", "A wire carries the value of its source", "A combinational loop is marked instead of freezing the page"]}>
       <div key={resetKey}>
         {tab === "canvas" ? <CanvasLab /> : null}
         {tab === "process" ? (
@@ -35,7 +35,7 @@ export function CombinationalStudio() {
             {STEPS.map(([title, body], index) => (
               <Card key={title} title={`${index + 1}. ${title ?? ""}`}><p className="muted">{body}</p></Card>
             ))}
-            <Card title="Continue in Phase 1 tools">
+            <Card title="Continue in the truth-table and K-map studios">
               <div className="row">
                 <Link className="btn-primary" to="/studios/truth-tables">Truth table</Link>
                 <Link className="btn-ghost" to="/studios/kmap">K-map</Link>

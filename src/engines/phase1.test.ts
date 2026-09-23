@@ -44,6 +44,13 @@ describe("number systems", () => {
     expect(result.steps[0]?.rows.join("\n")).toContain("Carry");
   });
 
+  it("treats cleared numeric inputs as zero instead of NaN", () => {
+    const result = binaryArithmetic(Number.NaN, 5, 8, "add");
+    expect(result.unsigned).toBe(5);
+    expect(Number.isFinite(result.unsigned)).toBe(true);
+    expect(encodeSigned(Number.NaN, 8, "twos")).toBeNull();
+  });
+
   it("converts Gray code and checks parity", () => {
     expect(grayToBinary(binaryToGray(0b1010))).toBe(0b1010);
     for (let n = 0; n < 16; n += 1) {

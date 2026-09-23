@@ -119,11 +119,11 @@ function intent(mnemonic: string): Pick<Decoded, "category" | "format" | "regWri
     SLT: { category: "compare", format: "R", regWrite: true, memRead: false, memWrite: false, aluSrc: "reg", aluOp: "SLT", branch: false, jump: false, memToReg: false, explain: "SLT writes 1 when the signed value in rs1 is less than rs2." },
     LOAD: { category: "memory", format: "I", regWrite: true, memRead: true, memWrite: false, aluSrc: "imm", aluOp: "ADD", branch: false, jump: false, memToReg: true, explain: "LOAD uses rs1 plus the offset as the address and writes the word into rd." },
     STORE: { category: "memory", format: "S", regWrite: false, memRead: false, memWrite: true, aluSrc: "imm", aluOp: "ADD", branch: false, jump: false, memToReg: false, explain: "STORE writes rs2 to memory. It does not write a destination register." },
-    BEQ: { category: "branch", format: "B", regWrite: false, memRead: false, memWrite: false, aluSrc: "reg", aluOp: "SUB", branch: true, jump: false, memToReg: false, explain: "BEQ compares two registers. The target is PC plus a signed offset." },
+    BEQ: { category: "branch", format: "B", regWrite: false, memRead: false, memWrite: false, aluSrc: "reg", aluOp: "SUB", branch: true, jump: false, memToReg: false, explain: "BEQ compares two registers. The target is this instruction's address plus a signed offset." },
     BNE: { category: "branch", format: "B", regWrite: false, memRead: false, memWrite: false, aluSrc: "reg", aluOp: "SUB", branch: true, jump: false, memToReg: false, explain: "BNE branches when the two registers differ." },
-    J: { category: "jump", format: "J", regWrite: false, memRead: false, memWrite: false, aluSrc: "imm", aluOp: "NONE", branch: false, jump: true, memToReg: false, explain: "J sets the PC to PC plus a 12-bit signed offset." },
-    CALL: { category: "stack", format: "J", regWrite: true, memRead: false, memWrite: true, aluSrc: "imm", aluOp: "NONE", branch: false, jump: true, memToReg: false, explain: "CALL stores the return address at R7 and jumps. R7 is the stack pointer." },
-    RET: { category: "stack", format: "N", regWrite: true, memRead: true, memWrite: false, aluSrc: "reg", aluOp: "NONE", branch: false, jump: true, memToReg: false, explain: "RET loads the PC from the word at R7, then increments R7." },
+    J: { category: "jump", format: "J", regWrite: false, memRead: false, memWrite: false, aluSrc: "imm", aluOp: "NONE", branch: false, jump: true, memToReg: false, explain: "J sets the PC to this instruction's address plus a 12-bit signed offset." },
+    CALL: { category: "stack", format: "J", regWrite: true, memRead: false, memWrite: true, aluSrc: "imm", aluOp: "NONE", branch: false, jump: true, memToReg: false, explain: "CALL decrements R7, stores the return address at Mem[R7], then jumps. R7 is the stack pointer." },
+    RET: { category: "stack", format: "N", regWrite: true, memRead: true, memWrite: false, aluSrc: "reg", aluOp: "NONE", branch: false, jump: true, memToReg: false, explain: "RET loads the PC from Mem[R7], then increments R7." },
   };
   return table[mnemonic] ?? table.NOP!;
 }
@@ -251,5 +251,5 @@ export const ADDRESSING = [
   { id: "index", title: "Indexed", sample: "LOAD R1, 0(R2) with R2 = base + index", formula: "EA = base + index", note: "The sum is formed in a register, then used as the address." },
   { id: "base", title: "Base + displacement", sample: "LOAD R1, 20(R2)", formula: "EA = R2 + 20", note: "The ALU adds the base register and the immediate offset." },
   { id: "relative", title: "PC-relative", sample: "BEQ R1, R2, SKIP", formula: "target = PC + offset", note: "The offset is measured from the branch instruction itself." },
-  { id: "stack", title: "Stack", sample: "CALL SUBR / RET", formula: "Mem[R7] holds the return address", note: "R7 is the architectural stack pointer. CALL writes it. RET reads it." },
+  { id: "stack", title: "Stack", sample: "CALL SUBR / RET", formula: "Mem[R7] holds the return address", note: "R7 is the architectural stack pointer. CALL writes that memory word. RET reads it." },
 ] as const;

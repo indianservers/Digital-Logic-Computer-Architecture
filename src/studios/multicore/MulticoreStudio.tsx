@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
 import { directoryRead, directoryWrite, falseShareInvalidations, mesiStep, msiStep, readShared, type DirectoryEntry, type MesiState, type MsiState } from "../../engines/arch/coherence";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
 
+const TABS = [
+  { id: "shared", label: "Memory" },
+  { id: "mesi", label: "MESI" },
+  { id: "msi", label: "MSI" },
+  { id: "directory", label: "Directory" },
+  { id: "false", label: "False sharing" },
+];
+
 export function MulticoreStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "mesi";
+  const [tab, setTab] = useStudioTab(TABS, "mesi");
   const [mesi, setMesi] = useState<MesiState[]>(["I", "I", "I", "I"]);
   const [msi, setMsi] = useState<MsiState[]>(["I", "I"]);
   const [bus, setBus] = useState("idle");
@@ -28,7 +35,7 @@ export function MulticoreStudio() {
   }
 
   return (
-    <StudioFrame icon="table" title="Multicore & Coherence" description="Each core can hold a copy. A write must make the other copies invalid or shared before the new value is the one later reads see." tabs={[{ id: "shared", label: "Memory" }, { id: "mesi", label: "MESI" }, { id: "msi", label: "MSI" }, { id: "directory", label: "Directory" }, { id: "false", label: "False sharing" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["A private read of an invalid line becomes Exclusive when nobody else has it.", "A read of a Modified line forces a write-back and both copies become Shared.", "Writes to different bytes of one line still invalidate the other core."]} takeaways={["MSI has no Exclusive state, so a first read becomes Shared.", "The directory records the owner or the sharers.", "Separate lines do not create that invalidation."]}>
+    <StudioFrame icon="table" title="Multicore & Coherence" description="Each core can hold a copy. A write must make the other copies invalid or shared before the new value is the one later reads see." tabs={TABS} tab={tab} onTab={setTab} guide={["A private read of an invalid line becomes Exclusive when nobody else has it.", "A read of a Modified line forces a write-back and both copies become Shared.", "Writes to different bytes of one line still invalidate the other core."]} takeaways={["MSI has no Exclusive state, so a first read becomes Shared.", "The directory records the owner or the sharers.", "Separate lines do not create that invalidation."]}>
       {prefs.explain ? <ExplainBar what={`Core ${core} sees bus message ${bus}.`} why="Snooping means every cache watches that message and updates its own line state." notice="This is one line and four cores, not a full memory-consistency proof." /> : null}
       <div className="row">
         {[0, 1, 2, 3].map((index) => <Button key={index} onClick={() => setCore(index)}>Core {index}</Button>)}

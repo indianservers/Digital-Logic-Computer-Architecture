@@ -3,6 +3,18 @@ import { STUDIOS } from "../data/curriculum";
 import { MASTER_CONCEPTS } from "../data/master";
 import { Card } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
+import type { StudioInfo } from "../data/curriculum";
+
+function conceptCount(studio: StudioInfo): number {
+  const pathBase = studio.path.split("?")[0] ?? studio.path;
+  const hasTab = studio.path.includes("?");
+  return MASTER_CONCEPTS.filter((item) => {
+    if (item.studio === studio.id) return true;
+    if (hasTab) return item.route.startsWith(studio.path);
+    const routeBase = item.route.split("?")[0] ?? item.route;
+    return routeBase === pathBase || routeBase.startsWith(`${pathBase}/`);
+  }).length;
+}
 
 export function HomePage() {
   const active = STUDIOS.filter((studio) => studio.active);
@@ -23,7 +35,7 @@ export function HomePage() {
           <Link key={studio.id} to={studio.path} className="card studio-card">
             <div className="spread"><strong>{studio.title}</strong><span className="pill ok">Open</span></div>
             <p className="muted" style={{ margin: 0 }}>{studio.summary}</p>
-            <span className="tiny">{studio.topics.slice(0, 3).join(" · ")} · {MASTER_CONCEPTS.filter((item) => item.studio === studio.id || item.route.startsWith(studio.path)).length} concepts</span>
+            <span className="tiny">{studio.topics.slice(0, 3).join(" · ")}{conceptCount(studio) ? ` · ${conceptCount(studio)} concepts` : ""}</span>
           </Link>
         ))}
       </div>
@@ -66,6 +78,8 @@ export function LearnPage() {
     </div>
   );
 }
+
+export const PRACTICE_COUNT = 11;
 
 const CHALLENGES = [
   { id: "hex-7f", title: "Convert 7F to 8-bit binary", to: "/studios/number-systems?tab=convert" },
@@ -112,12 +126,18 @@ export function CheatPage() {
     ["Two's complement", "Invert every bit, then add 1"],
     ["Gray code", "g = n XOR (n >> 1)"],
     ["Even parity", "Parity bit makes the count of 1s even"],
+    ["Hamming(7,4)", "Parity bits sit at positions 1, 2, and 4 (1-based)"],
     ["De Morgan", "(AB)' = A' + B' and (A+B)' = A'B'"],
     ["K-map group", "Size must be a power of two, including wraparound"],
     ["IEEE-754 single", "1 sign, 8 exponent (bias 127), 23 fraction"],
+    ["IEEE-754 double", "1 sign, 11 exponent (bias 1023), 52 fraction"],
+    ["Setup / hold", "Setup is before the capturing edge; hold is after it"],
+    ["Load / store", "Arithmetic stays in registers; only loads and stores touch data memory"],
+    ["PC-relative (this CPU)", "Branch target is the branch's own PC plus a signed offset"],
+    ["MESI Exclusive", "A private read of an invalid line becomes Exclusive when no other copy exists"],
   ];
   return (
-    <Card title="Phase 1 reference">
+    <Card title="Quick reference">
       <table className="data">
         <tbody>
           {rows.map(([name, rule]) => <tr key={name}><td style={{ textAlign: "left", fontWeight: 700 }}>{name}</td><td style={{ textAlign: "left" }}>{rule}</td></tr>)}
@@ -152,7 +172,7 @@ export function UpcomingPage({ id }: { id: string }) {
   if (!studio) return <Card title="Unknown studio"><p>That lab is not on the map.</p></Card>;
   return (
     <Card title={studio.title}>
-      <p className="muted">Phase {studio.phase} reuses this shell, the signal language, and the logic engine. The lab itself is not part of Phase 1.</p>
+      <p className="muted">Phase {studio.phase} is on the map, but this studio is not built yet. The shell, signal language, and logic engines stay the same when it opens.</p>
       <p>{studio.summary}</p>
       <button className="btn-primary" onClick={() => toggleBookmark(studio.id)}>{prefs.bookmarks.includes(studio.id) ? "Bookmarked" : "Bookmark for later"}</button>
     </Card>

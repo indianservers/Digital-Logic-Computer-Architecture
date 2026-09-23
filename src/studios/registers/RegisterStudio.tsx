@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Segmented } from "../../design-system/ui";
 import { stepRegister, type RegOp } from "../../engines/digital/sequential";
 import { toHex, toUnsigned } from "../../engines/digital/vector";
@@ -20,11 +20,10 @@ const TABS = [
 ];
 
 export function RegisterStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "parallel";
+  const [tab, setTab] = useStudioTab(TABS, "parallel");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="project" title="Registers & Shift Registers" description="One clock edge moves every bit, or captures a whole word at once." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Load a word into the parallel register", "Shift 1011 through SISO", "Switch the universal register between hold, shift, and load", "Watch a single 1 circulate in the ring"]} takeaways={["A register is parallel flip-flops sharing a clock", "Serial modes move one bit per edge", "Johnson feeds back the inverted last bit"]}>
+    <StudioFrame icon="project" title="Registers & Shift Registers" description="One clock edge moves every bit, or captures a whole word at once." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Load a word into the parallel register", "Shift 1011 through SISO", "Switch the universal register between hold, shift, and load", "Watch a single 1 circulate in the ring"]} takeaways={["A register is parallel flip-flops sharing a clock", "Serial modes move one bit per edge", "Johnson feeds back the inverted last bit"]}>
       <div key={resetKey}><RegisterLab mode={tab} /></div>
     </StudioFrame>
   );

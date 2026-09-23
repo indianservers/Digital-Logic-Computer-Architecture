@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { gateCount, logicDepth, parseBoolean } from "../../engines/boolean/ast";
 import { cellMinterm, describeImplicant, headerBits, kmapLayout, rectsForImplicant, type CellValue } from "../../engines/kmap/map";
 import { defaultNames, maskToMinterms, quineMcCluskey, type Implicant } from "../../engines/kmap/quine";
@@ -18,8 +19,8 @@ const TABS = [
 const GROUP_COLORS = ["#2F6FED", "#12B76A", "#D97706", "#E11D48", "#7C3AED", "#0891B2"];
 
 export function KmapStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "map";
+  const [params] = useSearchParams();
+  const [tab, setTab] = useStudioTab(TABS, "map");
   const incoming = params.get("data");
   const { prefs } = usePrefs();
   const initial = useMemo(() => readIncoming(incoming), [incoming]);
@@ -35,7 +36,7 @@ export function KmapStudio() {
   const result = quineMcCluskey(mode === "sop" ? ones : zeros, donts, count, names);
   const expression = mode === "sop" ? result.expression : posExpression(result);
   return (
-    <StudioFrame icon="map" title="K-Map & Logic Simplification" description="Cycle cells through 0, 1, and X. Groups follow Gray-code adjacency, including wraparound." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => { setCells(seed(count)); setMode("sop"); }} guide={["Choose 2 to 6 variables", "Enter 1s and don't-cares", "Read each group's term", "Compare the circuit before and after"]} takeaways={["Adjacent cells differ by one variable", "Don't-cares may be used but need not be covered", "Essential primes are the only cover for some minterm"]}>
+    <StudioFrame icon="map" title="K-Map & Logic Simplification" description="Cycle cells through 0, 1, and X. Groups follow Gray-code adjacency, including wraparound." tabs={TABS} tab={tab} onTab={setTab} onReset={() => { setCells(seed(count)); setMode("sop"); }} guide={["Choose 2 to 6 variables", "Enter 1s and don't-cares", "Read each group's term", "Compare the circuit before and after"]} takeaways={["Adjacent cells differ by one variable", "Don't-cares may be used but need not be covered", "Essential primes are the only cover for some minterm"]}>
       {prefs.explain ? <ExplainBar what="Cell order is Gray code, so neighbors differ by one bit." why="A power-of-two group eliminates the variables that change inside it." notice="A dashed group wraps around the map edge." /> : null}
       <div className="row" style={{ marginBottom: 10 }}>
         <Segmented options={["2", "3", "4", "5", "6"]} value={String(count)} onChange={(v) => setCount(Number(v))} />

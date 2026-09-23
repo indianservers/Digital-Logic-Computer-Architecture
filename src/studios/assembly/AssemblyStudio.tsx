@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar } from "../../design-system/ui";
 import { assemble } from "../../engines/isa/assembler";
 import { loadProgram, stepStage, type CpuState } from "../../engines/isa/cpu";
@@ -21,8 +21,7 @@ const TABS = [
 ];
 
 export function AssemblyStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "run";
+  const [tab, setTab] = useStudioTab(TABS, "run");
   const [source, setSource] = useState(PROGRAM);
   const [cpu, setCpu] = useState<CpuState | null>(null);
   const [error, setError] = useState("");
@@ -49,7 +48,7 @@ export function AssemblyStudio() {
   }
 
   return (
-    <StudioFrame icon="table" title="Assembly Execution" description="Assemble LogicLab-16, then step one instruction at a time. Changed registers are listed after each instruction." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["Labels may be used before they are defined.", "R0 starts at 0. Write it only if the program means to.", "HALT leaves the PC on the halt instruction."]} takeaways={["The listing is the machine word beside the source.", "A bad register or a missing label names the source line.", "Instruction stepping hides the five internal cycles."]}>
+    <StudioFrame icon="table" title="Assembly Execution" description="Assemble LogicLab-16, then step one instruction at a time. Changed registers are listed after each instruction." tabs={TABS} tab={tab} onTab={setTab} guide={["Labels may be used before they are defined.", "R0 starts at 0. Write it only if the program means to.", "HALT leaves the PC on the halt instruction."]} takeaways={["The listing is the machine word beside the source.", "A bad register or a missing label names the source line.", "Instruction stepping hides the five internal cycles."]}>
       {prefs.explain && cpu ? <ExplainBar what={cpu.trace.at(-1) ?? "Load the program to begin."} why={cpu.diff.join(" · ") || "Nothing architectural changed on the last internal cycle."} notice="Use Fetch–Decode–Execute when you want each cycle." /> : null}
       <div className="builder">
         <Card title="Program">

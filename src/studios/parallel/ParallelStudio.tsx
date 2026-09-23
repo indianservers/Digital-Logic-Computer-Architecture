@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
 import { FLYNN, issueCycles, renameOps, smtIssue, speculate, stepRob, vectorAdd, type MiniOp, type RobEntry } from "../../engines/arch/parallel";
 import { StudioFrame } from "../../layout/StudioFrame";
@@ -11,9 +11,17 @@ const OPS: MiniOp[] = [
   { text: "AND R7, R1, R4", dest: "R7", sources: ["R1", "R4"] },
 ];
 
+const TABS = [
+  { id: "flynn", label: "Flynn" },
+  { id: "ilp", label: "ILP" },
+  { id: "rename", label: "Rename" },
+  { id: "rob", label: "ROB" },
+  { id: "simd", label: "SIMD" },
+  { id: "smt", label: "SMT" },
+];
+
 export function ParallelStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "flynn";
+  const [tab, setTab] = useStudioTab(TABS, "flynn");
   const [width, setWidth] = useState("2");
   const [rob, setRob] = useState<RobEntry[]>(OPS.map((op) => ({ text: op.text, status: "wait" })));
   const [predicted, setPredicted] = useState(false);
@@ -29,7 +37,7 @@ export function ParallelStudio() {
   const span = Math.max(...cycles) + 1;
 
   return (
-    <StudioFrame icon="gate" title="Parallel Processing" description="Issue width is a limit, not a guarantee. Dependencies, the reorder buffer, and a wrong branch still set the pace." tabs={[{ id: "flynn", label: "Flynn" }, { id: "ilp", label: "ILP" }, { id: "rename", label: "Rename" }, { id: "rob", label: "ROB" }, { id: "simd", label: "SIMD" }, { id: "smt", label: "SMT" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["Independent instructions can share a cycle up to the issue width.", "Renaming gives a later write of R1 a new physical register.", "The reorder buffer retires the oldest completed instruction first."]} takeaways={["A 4-wide machine does not retire four instructions every cycle.", "SIMD applies one operation to each lane.", "SMT shares one core's issue slots between threads."]}>
+    <StudioFrame icon="gate" title="Parallel Processing" description="Issue width is a limit, not a guarantee. Dependencies, the reorder buffer, and a wrong branch still set the pace." tabs={TABS} tab={tab} onTab={setTab} guide={["Independent instructions can share a cycle up to the issue width.", "Renaming gives a later write of R1 a new physical register.", "The reorder buffer retires the oldest completed instruction first."]} takeaways={["A 4-wide machine does not retire four instructions every cycle.", "SIMD applies one operation to each lane.", "SMT shares one core's issue slots between threads."]}>
       {prefs.explain ? <ExplainBar what={`Issue width ${width} finishes this bundle in ${span} cycles.`} why="AND waits for R1 and R4, so it cannot share cycle 0 with ADD." notice="Out-of-order completion is allowed. Architectural retirement stays in program order." /> : null}
       <Segmented options={["1", "2", "4"]} value={width} onChange={setWidth} />
       {tab === "flynn" ? (

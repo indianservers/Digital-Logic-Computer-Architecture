@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Metric, parseNumberInput } from "../../design-system/ui";
 import { addressSpace, MMIO, pollTransfer } from "../../engines/arch/io";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
@@ -12,9 +12,15 @@ const DEVICES = [
   { name: "Sensor", path: "status bit, then sample" },
 ];
 
+const TABS = [
+  { id: "devices", label: "Devices" },
+  { id: "mapped", label: "Memory-mapped" },
+  { id: "isolated", label: "Isolated" },
+  { id: "poll", label: "Programmed I/O" },
+];
+
 export function IoStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "devices";
+  const [tab, setTab] = useStudioTab(TABS, "devices");
   const [address, setAddress] = useState("FFFF0004");
   const [polls, setPolls] = useState(4);
   const [mode, setMode] = useState<"mapped" | "isolated">("mapped");
@@ -24,7 +30,7 @@ export function IoStudio() {
   const polled = pollTransfer(polls);
 
   return (
-    <StudioFrame icon="bolt" title="I/O Architecture" description="Devices sit behind a controller on the bus. The CPU either polls a status bit or waits for an interrupt." tabs={[{ id: "devices", label: "Devices" }, { id: "mapped", label: "Memory-mapped" }, { id: "isolated", label: "Isolated" }, { id: "poll", label: "Programmed I/O" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["Memory-mapped I/O uses ordinary loads and stores.", "Isolated I/O keeps a second address space.", "Each failed poll is a CPU cycle that did not run the main program."]} takeaways={["The keyboard status and data registers are two addresses.", "Polling wastes the polls that happen before the device is ready.", "Interrupt-driven transfer continues in the next studio."]}>
+    <StudioFrame icon="bolt" title="I/O Architecture" description="Devices sit behind a controller on the bus. The CPU either polls a status bit or waits for an interrupt." tabs={TABS} tab={tab} onTab={setTab} guide={["Memory-mapped I/O uses ordinary loads and stores.", "Isolated I/O keeps a second address space.", "Each failed poll is a CPU cycle that did not run the main program."]} takeaways={["The keyboard status and data registers are two addresses.", "Polling wastes the polls that happen before the device is ready.", "Interrupt-driven transfer is in the Interrupts & DMA studio."]}>
       {prefs.explain ? <ExplainBar what={space === "io" ? "This address names a device register." : "This address names memory."} why={mode === "mapped" ? `Status ${MMIO.status.toString(16)} and data ${MMIO.data.toString(16)} share the memory map.` : "Addresses at or above 0xFF00 are the isolated I/O space in this lab."} notice="The same numeric address can mean memory or a device, depending on the address space." /> : null}
       {tab === "devices" ? (
         <Card title="CPU — bus — controller — device">
@@ -40,7 +46,7 @@ export function IoStudio() {
       ) : null}
       {tab === "poll" ? (
         <Card title="CPU checks status until ready">
-          <input className="text-input" aria-label="Polls before ready" type="number" value={polls} onChange={(event) => setPolls(Number(event.target.value))} />
+          <input className="text-input" aria-label="Polls before ready" type="number" value={polls} onChange={(event) => setPolls(Math.max(0, parseNumberInput(event.target.value, polls)))} />
           <div className="grid cards-3">
             <Metric label="Polls" value={String(polled.polls)} />
             <Metric label="Wasted checks" value={String(polled.wasted)} />

@@ -158,7 +158,7 @@ export function stepStage(state: CpuState): CpuState {
       next.regs = writeReg(fileOf(next.regs), 7, sp);
       next.pc = (next.instPc + decoded.imm) & 0xff;
       next.diff.push(`R7: ${(next.regs[7] ?? 0) + 1 & 0xff} → ${sp}`);
-      next.trace.push(`CALL saves return ${next.dmem[sp]} at R7 and jumps.`);
+      next.trace.push(`CALL saves return ${next.dmem[sp]} at Mem[${sp}] and jumps.`);
     } else if (decoded.mnemonic === "RET") {
       const sp = next.regs[7] ?? 0;
       const target = next.dmem[sp & 0xff] ?? 0;

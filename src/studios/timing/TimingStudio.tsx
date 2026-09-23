@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Card, ExplainBar } from "../../design-system/ui";
 import { capture, clockSamples, delayedTransition, edges, frequencyMHz, holdViolated, metastableNote, periodNs, setupViolated } from "../../engines/digital/timing";
 import { StudioFrame } from "../../layout/StudioFrame";
@@ -16,11 +16,10 @@ const TABS = [
 ];
 
 export function TimingStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "clock";
+  const [tab, setTab] = useStudioTab(TABS, "clock");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="bolt" title="Digital Timing & Clocking" description="Frequency, duty, and the windows around a clock edge. Simulated time, not a wall-clock wait." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Set frequency and read the period", "Mark a rising edge", "Drag D into the setup window", "See X when the capture is uncertain"]} takeaways={["Period is the reciprocal of frequency", "Duty cycle is high time over period", "Setup is before the edge. Hold is after it.", "X here means uncertain, not a transistor waveform"]}>
+    <StudioFrame icon="bolt" title="Digital Timing & Clocking" description="Frequency, duty, and the windows around a clock edge. Simulated time, not a wall-clock wait." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Set frequency and read the period", "Mark a rising edge", "Drag D into the setup window", "See X when the capture is uncertain"]} takeaways={["Period is the reciprocal of frequency", "Duty cycle is high time over period", "Setup is before the edge. Hold is after it.", "X here means uncertain, not a transistor waveform"]}>
       <div key={resetKey}>{tab === "clock" || tab === "edge" ? <ClockLab edgesOnly={tab === "edge"} /> : null}{tab === "setup" ? <WindowLab kind="setup" /> : null}{tab === "hold" ? <WindowLab kind="hold" /> : null}{tab === "delay" ? <DelayLab /> : null}{tab === "meta" ? <MetaLab /> : null}</div>
     </StudioFrame>
   );

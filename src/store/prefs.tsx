@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 export interface Prefs {
   bitWidth: 4 | 8 | 16 | 32;
@@ -44,22 +44,37 @@ interface PrefsApi {
 const Ctx = createContext<PrefsApi | null>(null);
 
 export function PrefsProvider({ children }: { children: ReactNode }) {
-  const [prefs, setPrefs] = useState<Prefs>(DEFAULTS);
-  useEffect(() => setPrefs(load()), []);
+  const [prefs, setPrefs] = useState<Prefs>(() => load());
   useEffect(() => localStorage.setItem(KEY, JSON.stringify(prefs)), [prefs]);
-  const api = useMemo<PrefsApi>(() => ({
-    prefs,
-    update: (patch) => setPrefs((prev) => ({ ...prev, ...patch })),
-    earn: (id) => setPrefs((prev) => (prev.badges.includes(id) && prev.challenges.includes(id) ? prev : {
+  const update = useCallback((patch: Partial<Prefs>) => {
+    setPrefs((prev) => {
+      const next = { ...prev, ...patch };
+      return next.bitWidth === prev.bitWidth
+        && next.simSpeed === prev.simSpeed
+        && next.explain === prev.explain
+        && next.notes === prev.notes
+        && next.lastPath === prev.lastPath
+        && next.bookmarks === prev.bookmarks
+        && next.badges === prev.badges
+        && next.challenges === prev.challenges
+        ? prev
+        : next;
+    });
+  }, []);
+  const earn = useCallback((id: string) => {
+    setPrefs((prev) => (prev.badges.includes(id) && prev.challenges.includes(id) ? prev : {
       ...prev,
       badges: prev.badges.includes(id) ? prev.badges : [...prev.badges, id],
       challenges: prev.challenges.includes(id) ? prev.challenges : [...prev.challenges, id],
-    })),
-    toggleBookmark: (id) => setPrefs((prev) => ({
+    }));
+  }, []);
+  const toggleBookmark = useCallback((id: string) => {
+    setPrefs((prev) => ({
       ...prev,
       bookmarks: prev.bookmarks.includes(id) ? prev.bookmarks.filter((item) => item !== id) : [...prev.bookmarks, id],
-    })),
-  }), [prefs]);
+    }));
+  }, []);
+  const api = useMemo<PrefsApi>(() => ({ prefs, update, earn, toggleBookmark }), [prefs, update, earn, toggleBookmark]);
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }
 

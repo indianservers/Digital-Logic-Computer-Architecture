@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { STUDIOS, searchStudios } from "../data/curriculum";
+import { PRACTICE_COUNT } from "../pages/HomePages";
 import { Icon } from "../design-system/icons";
 import { usePrefs } from "../store/prefs";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 const LINKS = [
   { to: "/", label: "Home", icon: "home" as const, end: true },
@@ -14,6 +16,24 @@ const LINKS = [
   { to: "/notes", label: "Notes", icon: "people" as const, end: false },
 ];
 
+function pathOnly(path: string): string {
+  return path.split("?")[0] ?? path;
+}
+
+function crumbTitle(pathname: string, search: string): string {
+  const page = LINKS.find((link) => link.to === pathname);
+  if (page) return page.label;
+  const tab = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search).get("tab");
+  const matches = STUDIOS.filter((item) => {
+    const base = pathOnly(item.path);
+    return base !== "/" && pathname.startsWith(base);
+  }).sort((a, b) => pathOnly(b.path).length - pathOnly(a.path).length);
+  if (pathname === "/studios/isa" && tab === "modes") {
+    return STUDIOS.find((item) => item.id === "addressing")?.title ?? "Addressing Modes";
+  }
+  return matches[0]?.title ?? "Studios";
+}
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,14 +43,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const hits = useMemo(() => searchStudios(query), [query]);
   const architecture = location.pathname.startsWith("/architecture");
   const links = architecture ? LINKS.filter((link) => link.to === "/") : LINKS;
-  const studio = STUDIOS.find((item) => item.path !== "/" && location.pathname.startsWith(item.path));
+  const crumb = crumbTitle(location.pathname, location.search);
   const done = prefs.challenges.length;
 
   useEffect(() => {
-    update({ lastPath: location.pathname });
+    update({ lastPath: `${location.pathname}${location.search}` });
     setOpen(false);
     setQuery("");
-  }, [location.pathname]);
+  }, [location.pathname, location.search, update]);
 
   return (
     <div className="app-shell">
@@ -49,8 +69,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
         <div className="nav-label">MY LEARNING</div>
         <div className="card" style={{ padding: 10 }}>
-          <div className="spread tiny"><span>Progress</span><b>{Math.min(100, done * 8)}%</b></div>
-          <div className="progress-bar" style={{ marginTop: 6 }}><span style={{ width: `${Math.min(100, done * 8)}%` }} /></div>
+          <div className="spread tiny"><span>Progress</span><b>{Math.min(100, Math.round((done / PRACTICE_COUNT) * 100))}%</b></div>
+          <div className="progress-bar" style={{ marginTop: 6 }}><span style={{ width: `${Math.min(100, Math.round((done / PRACTICE_COUNT) * 100))}%` }} /></div>
           <div className="spread" style={{ marginTop: 8 }}><span className="tiny">Badges</span><b>{prefs.badges.length}</b></div>
         </div>
         <div className="sidebar-card">
@@ -67,7 +87,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="crumbs">
             <Link to="/">Digital Logic & Computer Architecture</Link>
             <span>›</span>
-            <span>{studio?.title ?? "Studios"}</span>
+            <span>{crumb}</span>
           </div>
           <div className="search">
             <Icon name="search" size={16} />
@@ -83,13 +103,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             ) : null}
           </div>
           <div className="top-meta">
-            <span className="pill progress">Studio progress {Math.min(prefs.challenges.length, 12)} / 12</span>
+            <span className="pill progress">Practice {Math.min(prefs.challenges.length, PRACTICE_COUNT)} / {PRACTICE_COUNT}</span>
             <span className="pill ok">Offline Ready</span>
             <button className="icon-btn" aria-label="Notifications are stored on this device" title="Saved locally"><Icon name="bell" size={16} /></button>
             <span className="avatar" aria-hidden="true">S</span>
           </div>
         </header>
-        <main className="page">{children}</main>
+        <main className="page"><ErrorBoundary>{children}</ErrorBoundary></main>
       </div>
     </div>
   );

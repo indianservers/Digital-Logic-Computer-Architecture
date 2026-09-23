@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Metric, Segmented, Toggle } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 import { decoder } from "../../engines/digital/routing";
 import { fromUnsigned, toBinary, toHex, toUnsigned } from "../../engines/digital/vector";
 import { chipMap, decodeAddress, splitAddress } from "../../engines/memory/addressDecoder";
@@ -84,8 +84,7 @@ const LESSONS: Record<string, { guide: string[]; takeaways: string[]; what: stri
 };
 
 export function MemoryStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "array";
+  const [tab, setTab] = useStudioTab(TABS, "array");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
   const lesson = LESSONS[tab] ?? LESSONS.array!;
@@ -96,7 +95,7 @@ export function MemoryStudio() {
       description="Address a word, split the bus, and watch the decoder pick one chip and one line."
       tabs={TABS}
       tab={tab}
-      onTab={(id) => setParams({ tab: id })}
+      onTab={setTab}
       onReset={() => setResetKey((n) => n + 1)}
       guide={lesson.guide}
       takeaways={lesson.takeaways}
@@ -179,12 +178,12 @@ function ArrayLab() {
           <span className="row"><span className="tiny">WE</span><Toggle on={we} onChange={setWe} label="Write enable" /></span>
         </div>
         <div className="row">
-          <label>Data word<input className="text-input" aria-label="Data word" type="number" min={0} max={255} value={data} onChange={(event) => setData(Number(event.target.value))} /></label>
+          <label>Data word<input className="text-input" aria-label="Data word" type="number" min={0} max={255} value={data} onChange={(event) => setData(parseNumberInput(event.target.value, data))} /></label>
           <Button variant="primary" onClick={() => setNote(readWord(memory, address, ce, oe).explain)}>Read</Button>
           <Button onClick={() => { const result = writeWord(memory, address, data, ce, we); setMemory(result.memory); setNote(result.access.explain); }}>Write</Button>
           <Button onClick={() => void saveRecord({ id: "memory-lab", kind: "memory", name: "Memory lab", data: JSON.stringify({ address, data, words: memory.words }), updated: Date.now() })}>Save</Button>
         </div>
-        <input aria-label="Address window" type="range" min={0} max={Math.max(0, memory.words - 16)} value={windowStart} onChange={(event) => setWindowStart(Number(event.target.value))} />
+        <input aria-label="Address window" type="range" min={0} max={Math.max(0, memory.words - 16)} value={windowStart} onChange={(event) => setWindowStart(parseNumberInput(event.target.value, windowStart))} />
         <div className="mem-grid">
           {memory.cells.slice(windowStart, windowStart + 16).map((cell, offset) => {
             const index = windowStart + offset;
@@ -357,8 +356,8 @@ function OrgLab() {
       <Theory title="n × m and a 2-D array">{org.label} needs {org.addressLines} address pins and {org.width} data pins. Internally the address is split: high bits pick a row (RAS), low bits pick a column (CAS).</Theory>
       <div className="grid cards-2">
         <Card title="Organization">
-          <label>Words<input className="text-input" aria-label="Words" type="number" min={1} max={65536} value={words} onChange={(event) => setWords(Number(event.target.value))} /></label>
-          <label>Width<input className="text-input" aria-label="Width" type="number" min={1} max={32} value={width} onChange={(event) => setWidth(Number(event.target.value))} /></label>
+          <label>Words<input className="text-input" aria-label="Words" type="number" min={1} max={65536} value={words} onChange={(event) => setWords(Math.max(1, parseNumberInput(event.target.value, words)))} /></label>
+          <label>Width<input className="text-input" aria-label="Width" type="number" min={1} max={32} value={width} onChange={(event) => setWidth(Math.max(1, parseNumberInput(event.target.value, width)))} /></label>
           <div className="row">
             <Metric label="Label" value={org.label} />
             <Metric label="Address lines" value={String(org.addressLines)} />
@@ -380,8 +379,8 @@ function OrgLab() {
           <p>Row {row} (RAS = {split.selectBits}) · column {col} (CAS = {split.offsetBits}). High address bits pick the row; low bits pick the column.</p>
         </Card>
         <Card title="Chip pins">
-          <label>Address pins<input className="text-input" aria-label="Address pins" type="number" min={1} max={16} value={addrPins} onChange={(event) => setAddrPins(Number(event.target.value))} /></label>
-          <label>Data pins<input className="text-input" aria-label="Data pins" type="number" min={1} max={32} value={dataPins} onChange={(event) => setDataPins(Number(event.target.value))} /></label>
+          <label>Address pins<input className="text-input" aria-label="Address pins" type="number" min={1} max={16} value={addrPins} onChange={(event) => setAddrPins(Math.max(1, parseNumberInput(event.target.value, addrPins)))} /></label>
+          <label>Data pins<input className="text-input" aria-label="Data pins" type="number" min={1} max={32} value={dataPins} onChange={(event) => setDataPins(Math.max(1, parseNumberInput(event.target.value, dataPins)))} /></label>
           <div className="row">
             <span className="row"><span className="tiny">CE</span><Toggle on={ce} onChange={setCe} label="CE" /></span>
             <span className="row"><span className="tiny">OE</span><Toggle on={oe} onChange={setOe} label="OE" /></span>
@@ -472,7 +471,7 @@ function DecoderLab() {
             <div className="bit-field off"><small>Offset</small><strong className="mono">{fields.offsetBits}</strong><span className="tiny">{fields.offset}</span></div>
             <div className="bit-field"><small>CPU address</small><strong>{cpuAddr}</strong><span className="tiny">{fields.binary}</span></div>
           </div>
-          <input aria-label="CPU address" type="range" min={0} max={65535} value={cpuAddr} onChange={(event) => setCpuAddr(Number(event.target.value))} />
+          <input aria-label="CPU address" type="range" min={0} max={65535} value={cpuAddr} onChange={(event) => setCpuAddr(parseNumberInput(event.target.value, cpuAddr))} />
           <p className="tiny">3-to-8 chip decoder from A15–A13</p>
           <div className="word-lines">
             {chipLines.map((bit, index) => (
@@ -533,7 +532,7 @@ function ExpandLab() {
           <Segmented options={["2 chips", "4 chips"]} value={`${addrChips} chips`} onChange={(value) => setAddrChips(value.startsWith("4") ? 4 : 2)} />
           <p className="expr">{depth.label}</p>
           <p>{addrChips} chips of 1K × 8. Extra {csBits} high bit{csBits === 1 ? "" : "s"} {csBits === 1 ? "becomes" : "become"} CS. Probe address {probe} → chip {cs}, offset {offset}.</p>
-          <input aria-label="Probe address" type="range" min={0} max={addrChips * 1024 - 1} value={probe} onChange={(event) => setProbe(Number(event.target.value))} />
+          <input aria-label="Probe address" type="range" min={0} max={addrChips * 1024 - 1} value={probe} onChange={(event) => setProbe(parseNumberInput(event.target.value, probe))} />
           <WordEditor
             bits={asBits(fromUnsigned(probe, 10 + csBits))}
             labels={asBits(fromUnsigned(probe, 10 + csBits)).map((_, index) => `A${9 + csBits - index}`)}

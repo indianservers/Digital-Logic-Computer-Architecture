@@ -5,7 +5,7 @@ import {
   nextPower, shortestPath, type ClockDomain, type FlowId, type Point, type PowerState, type SocClient,
 } from "../../engines/soc/soc";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
-import { Button, Card, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
 
 const GRID = 3;
 function cell(r: number, c: number): string {
@@ -115,7 +115,7 @@ export function SocStudio() {
         <Card title="System cache">
           <div className="row">
             <Segmented options={["CPU", "GPU", "NPU", "ISP"]} value={client} onChange={(value) => setClient(value as SocClient)} />
-            <label className="field">Address<input type="number" value={addr} onChange={(event) => setAddr(Number(event.target.value))} /></label>
+            <label className="field">Address<input type="number" value={addr} onChange={(event) => setAddr(parseNumberInput(event.target.value, addr))} /></label>
             <Button variant="primary" onClick={() => {
               const next = clientAccess(cache, client, addr);
               setCache(next.cache);

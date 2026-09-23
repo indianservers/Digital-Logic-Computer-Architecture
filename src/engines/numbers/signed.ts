@@ -25,6 +25,7 @@ export function signMagnitudeRange(width: number): { min: number; max: number } 
 }
 
 export function encodeSigned(value: number, width: number, code: SignedCode): Array<0 | 1> | null {
+  if (!Number.isFinite(value) || !Number.isFinite(width) || width < 1) return null;
   if (width < 2 && code !== "unsigned") return null;
   if (code === "unsigned") {
     if (value < 0 || value > 2 ** width - 1) return null;

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { BooleanParseError, evalBoolean, parseBoolean } from "../../engines/boolean/ast";
 import { assignments, generateTruthTable, minimizeOutputs, tableFromOutputs, truthTableToCanonicalPOS, truthTableToCanonicalSOP } from "../../engines/truth/table";
 import { Card, ExplainBar, Segmented } from "../../design-system/ui";
@@ -12,12 +13,11 @@ const TABS = [
 ];
 
 export function TruthStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "from-expr";
+  const [tab, setTab] = useStudioTab(TABS, "from-expr");
   const { prefs } = usePrefs();
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="table" title="Truth Tables" description="Generate every input row, or edit the outputs and read the canonical forms." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Enter Y = A·B + C", "Highlight the row that matches the switches", "Flip output cells", "Open the same outputs in the K-map"]} takeaways={["Rows are generated, not hardcoded", "A 1-row is a minterm", "A 0-row is a maxterm"]}>
+    <StudioFrame icon="table" title="Truth Tables" description="Generate every input row, or edit the outputs and read the canonical forms." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Enter Y = A·B + C", "Highlight the row that matches the switches", "Flip output cells", "Open the same outputs in the K-map"]} takeaways={["Rows are generated, not hardcoded", "A 1-row is a minterm", "A 0-row is a maxterm"]}>
       <div key={resetKey}>
         {prefs.explain ? <ExplainBar what="The highlighted row is the current switch setting." why="The expression is evaluated on every combination of its variables." notice="Editing an output cell changes the canonical SOP and POS." /> : null}
         {tab === "from-expr" ? <FromExpr /> : <FromTable />}

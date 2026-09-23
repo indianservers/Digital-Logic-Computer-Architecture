@@ -61,6 +61,7 @@ describe("io, interrupts, and dma", () => {
     expect(addressSpace("isolated", 0x20)).toBe("memory");
     expect(addressSpace("isolated", 0xff10)).toBe("io");
     expect(pollTransfer(3).wasted).toBe(3);
+    expect(pollTransfer(Number.NaN).wasted).toBe(0);
   });
 
   it("saves the PC, picks a priority, and classifies exceptions", () => {
@@ -94,7 +95,9 @@ describe("io, interrupts, and dma", () => {
 describe("bus architecture", () => {
   it("computes reach, bandwidth, grants, and handshake", () => {
     expect(addressReach(16).count).toBe(65536);
+    expect(addressReach(Number.NaN).count).toBe(1);
     expect(bandwidthBytes(32, 100, 1)).toBe(400);
+    expect(Number.isFinite(bandwidthBytes(Number.NaN, 100, 1))).toBe(true);
     const masters = [
       { name: "CPU", request: true, priority: 1 },
       { name: "DMA", request: true, priority: 0 },

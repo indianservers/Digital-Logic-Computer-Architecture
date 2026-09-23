@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Metric, parseNumberInput } from "../../design-system/ui";
 import { createCache } from "../../engines/cache/cache";
 import { LAB_LEVELS, L1_PRESET, L2_PRESET, spatialReuse, temporalReuse, walkTrace, type Latencies } from "../../engines/arch/hierarchy";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
 
 const START: Latencies = { register: 1, l1: 3, l2: 12, ram: 80, storage: 10000 };
+const TABS = [
+  { id: "pyramid", label: "Hierarchy" },
+  { id: "access", label: "Access" },
+  { id: "locality", label: "Locality" },
+  { id: "cache", label: "Cache" },
+];
 
 export function HierarchyStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "pyramid";
+  const [tab, setTab] = useStudioTab(TABS, "pyramid");
   const [latencies, setLatencies] = useState(START);
   const [traceText, setTrace] = useState("0 4 0 1 8");
   const [registers, setRegisters] = useState("0");
@@ -21,7 +26,7 @@ export function HierarchyStudio() {
   const last = walked.hops.at(-1);
 
   return (
-    <StudioFrame icon="book" title="Memory Hierarchy" description="A request checks registers, then the lab caches, then RAM, then storage. Latencies are teaching parameters for this experiment." tabs={[{ id: "pyramid", label: "Hierarchy" }, { id: "access", label: "Access" }, { id: "locality", label: "Locality" }, { id: "cache", label: "Cache" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["Repeated addresses become L1 hits after the first fill.", "Nearby addresses share a cache line.", "AMAT uses the Phase 3 cache statistics and the RAM penalty you set."]} takeaways={["A closer level is smaller and quicker in this lab, not a universal constant.", "Temporal reuse is the fraction of repeated addresses.", "Spatial reuse is the fraction of steps that stay inside one line."]}>
+    <StudioFrame icon="book" title="Memory Hierarchy" description="A request checks registers, then the lab caches, then RAM, then storage. Latencies are teaching parameters for this experiment." tabs={TABS} tab={tab} onTab={setTab} guide={["Repeated addresses become L1 hits after the first fill.", "Nearby addresses share a cache line.", "AMAT uses the Phase 3 cache statistics and the RAM penalty you set."]} takeaways={["A closer level is smaller and quicker in this lab, not a universal constant.", "Temporal reuse is the fraction of repeated addresses.", "Spatial reuse is the fraction of steps that stay inside one line."]}>
       {prefs.explain ? <ExplainBar what={last ? `Address ${last.address} was supplied by ${last.level} in ${last.cycles} cycles.` : "Enter a trace."} why="The first miss fills L1 and L2. The next use of that block can hit L1." notice="Storage is charged only when the address is outside the 256-word RAM." /> : null}
       {tab === "pyramid" ? (
         <div className="grid cards-2">
@@ -32,7 +37,7 @@ export function HierarchyStudio() {
                 <p>{level.capacity} · {level.bandwidth}</p>
                 <p className="tiny">{level.cost}</p>
                 <label className="tiny">Latency cycles
-                  <input className="text-input" aria-label={`${level.name} latency`} type="number" value={latencies[key]} onChange={(event) => setLatencies({ ...latencies, [key]: Number(event.target.value) })} />
+                  <input className="text-input" aria-label={`${level.name} latency`} type="number" value={latencies[key]} onChange={(event) => setLatencies({ ...latencies, [key]: parseNumberInput(event.target.value, latencies[key] ?? 1) })} />
                 </label>
               </Card>
             );

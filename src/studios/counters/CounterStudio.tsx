@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Segmented } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Segmented, parseNumberInput } from "../../design-system/ui";
 import { bcdToSeven } from "../../engines/digital/routing";
 import { counterWidth, designCounter, nextCount, rippleDelays, stepRegister, wordOf } from "../../engines/digital/sequential";
 import { fromUnsigned } from "../../engines/digital/vector";
@@ -19,11 +19,10 @@ const TABS = [
 ];
 
 export function CounterStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "ripple";
+  const [tab, setTab] = useStudioTab(TABS, "ripple");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="step" title="Counters" description="Step the clock and watch which flip-flops change, and when." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Step a ripple counter and see the delay stack", "Compare it with a common clock", "Set N and watch the unused states", "Ask the designer for D or JK equations"]} takeaways={["Ripple clocks each stage from the previous output", "Synchronous stages share one clock", "A decade counter returns to 0 after 9", "Johnson length is 2N for N flip-flops"]}>
+    <StudioFrame icon="step" title="Counters" description="Step the clock and watch which flip-flops change, and when." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Step a ripple counter and see the delay stack", "Compare it with a common clock", "Set N and watch the unused states", "Ask the designer for D or JK equations"]} takeaways={["Ripple clocks each stage from the previous output", "Synchronous stages share one clock", "A decade counter returns to 0 after 9", "Johnson length is 2N for N flip-flops"]}>
       <div key={resetKey}>
         {tab === "ring" ? <RingLab /> : tab === "design" ? <DesignLab /> : <CountLab kind={tab} />}
       </div>
@@ -72,7 +71,7 @@ function CountLab({ kind }: { kind: string }) {
           <Button onClick={() => { setValue(0); setPlaying(false); }}>Reset</Button>
           <SpeedPicker speed={speed} onChange={setSpeed} />
           {kind === "updown" ? <Segmented options={["up", "down"]} value={dir} onChange={(valueText) => setDir(valueText as "up" | "down")} /> : null}
-          {kind === "mod" ? <label className="tiny">N <input aria-label="Modulus" className="text-input" style={{ width: 80 }} type="number" min={2} max={16} value={modulus} onChange={(event) => setModulus(Number(event.target.value))} /></label> : null}
+          {kind === "mod" ? <label className="tiny">N <input aria-label="Modulus" className="text-input" style={{ width: 80 }} type="number" min={2} max={16} value={modulus} onChange={(event) => setModulus(Math.max(2, parseNumberInput(event.target.value, modulus)))} /></label> : null}
         </div>
         <div className="reg-row">
           {bits.map((bit, index) => <div key={index} className={bit ? "ff-cell on" : "ff-cell"} style={{ outline: highlight === width - 1 - index ? "2px solid #2F6FED" : undefined }}><small>Q{width - 1 - index}</small>{bit}</div>)}

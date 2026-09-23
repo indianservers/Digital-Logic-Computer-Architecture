@@ -1,16 +1,34 @@
 import type { ReactNode } from "react";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, Navigate, useParams } from "react-router-dom";
 import { archLab, archStudio } from "../data/architecture";
 import { Icon } from "../design-system/icons";
-import { Button } from "../design-system/ui";
+import { Button, Card } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
 
 export function ArchitectureFrame({ studioId, onReset, children }: { studioId: string; onReset?: () => void; children: ReactNode }) {
   const { labId } = useParams();
-  const studio = archStudio(studioId);
-  const lab = archLab(studioId, labId ?? "overview");
   const { prefs, update } = usePrefs();
-  if (!studio || !lab) return null;
+  const studio = archStudio(studioId);
+  const requested = labId ?? "overview";
+  if (!studio) {
+    return (
+      <Card title="Unknown studio">
+        <p>That architecture lab is not on the map.</p>
+        <Link to="/" className="btn-primary">Back to Path</Link>
+      </Card>
+    );
+  }
+  const known = studio.labs.some((item) => item.id === requested);
+  if (!known) return <Navigate to={studio.path} replace />;
+  const lab = archLab(studioId, requested);
+  if (!lab) {
+    return (
+      <Card title={studio.title}>
+        <p>That lab is missing from this studio.</p>
+        <Link to={studio.path} className="btn-primary">Studio Home</Link>
+      </Card>
+    );
+  }
   return (
     <div className="studio arch-studio">
       <nav className="arch-menu" aria-label={`${studio.title} labs`}>
@@ -67,7 +85,14 @@ export function ArchitectureFrame({ studioId, onReset, children }: { studioId: s
 
 export function ArchitectureLanding({ studioId }: { studioId: string }) {
   const studio = archStudio(studioId);
-  if (!studio) return null;
+  if (!studio) {
+    return (
+      <Card title="Unknown studio">
+        <p>That architecture lab is not on the map.</p>
+        <Link to="/" className="btn-primary">Back to Path</Link>
+      </Card>
+    );
+  }
   return (
     <div className="grid cards-3">
       {studio.labs.filter((item) => item.id !== "overview").map((lab) => (

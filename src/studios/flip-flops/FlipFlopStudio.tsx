@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Segmented } from "../../design-system/ui";
 import { CHARACTERISTIC, CONVERSIONS, dFlipFlop, dLatch, excitation, gatedSr, jkFlipFlop, masterSlaveJk, srFlipFlop, srNand, srNor, tFlipFlop, type Edge, type Level } from "../../engines/digital/sequential";
 import { StudioFrame } from "../../layout/StudioFrame";
@@ -25,11 +25,10 @@ const TABS = [
 ];
 
 export function FlipFlopStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "latches";
+  const [tab, setTab] = useStudioTab(TABS, "latches");
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="table" title="Latches & Flip-Flops" description="Level-sensitive storage, then the same idea sampled on a clock edge." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Set and reset the NOR latch", "Enable the D latch and see it go transparent", "Clock a D flip-flop on one edge only", "Make JK toggle"]} takeaways={["A latch follows while it is open", "A flip-flop samples on an edge", "NAND SR inputs are active low", "J = K = 1 toggles"]}>
+    <StudioFrame icon="table" title="Latches & Flip-Flops" description="Level-sensitive storage, then the same idea sampled on a clock edge." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Set and reset the NOR latch", "Enable the D latch and see it go transparent", "Clock a D flip-flop on one edge only", "Make JK toggle"]} takeaways={["A latch follows while it is open", "A flip-flop samples on an edge", "NAND SR inputs are active low", "J = K = 1 toggles"]}>
       <div key={resetKey}>
         {tab === "latches" ? <LatchLab /> : null}
         {tab === "dlatch" ? <DLatchLab /> : null}

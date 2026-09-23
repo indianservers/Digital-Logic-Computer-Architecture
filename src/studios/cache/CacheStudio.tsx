@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
 import { accessCache, accessHierarchy, createCache, createHierarchy, type CacheMachine } from "../../engines/cache/cache";
 import { decompose, type CacheConfig } from "../../engines/cache/mapping";
 import { hierarchicalAmat, hitRate, missRate } from "../../engines/cache/metrics";
@@ -22,8 +22,7 @@ const TABS = [
 ];
 
 export function CacheStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "sim";
+  const [tab, setTab] = useStudioTab(TABS, "sim");
   const [preset, setPreset] = useState("Tiny direct");
   const [config, setConfig] = useState<CacheConfig>(PRESETS["Tiny direct"] ?? PRESETS["2-way"] as CacheConfig);
   const [machine, setMachine] = useState<CacheMachine>(() => createCache(PRESETS["Tiny direct"] as CacheConfig));
@@ -57,13 +56,13 @@ export function CacheStudio() {
   }
 
   return (
-    <StudioFrame icon="bolt" title="Cache Memory" description="Step a trace through a cache whose mapping, replacement, and write policy you can change." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => applyPreset(preset)} guide={["The index picks a set. The tag must match a valid line.", "A first visit is a compulsory miss.", "A full set with a different tag is a conflict miss."]} takeaways={["Write-back remembers a dirty line until eviction.", "Write-through updates memory immediately.", "AMAT grows with each extra miss level."]}>
+    <StudioFrame icon="bolt" title="Cache Memory" description="Step a trace through a cache whose mapping, replacement, and write policy you can change." tabs={TABS} tab={tab} onTab={setTab} onReset={() => applyPreset(preset)} guide={["The index picks a set. The tag must match a valid line.", "A first visit is a compulsory miss.", "A full set with a different tag is a conflict miss."]} takeaways={["Write-back remembers a dirty line until eviction.", "Write-through updates memory immediately.", "AMAT grows with each extra miss level."]}>
       {prefs.explain ? <ExplainBar what={last} why={status === "HIT" ? "The requested block is already in the indexed set." : "The block has to be installed, and something may be evicted."} notice="Numbers come from this configuration, not from a canned example." /> : null}
       {tab === "sim" ? (
         <div className="builder">
           <Card title="Configuration">
             <Segmented options={Object.keys(PRESETS)} value={preset} onChange={applyPreset} />
-            <label className="tiny">Associativity<input className="text-input" type="number" value={config.associativity} onChange={(event) => setConfig({ ...config, associativity: Number(event.target.value) })} /></label>
+            <label className="tiny">Associativity<input className="text-input" type="number" value={config.associativity} onChange={(event) => setConfig({ ...config, associativity: Math.max(1, parseNumberInput(event.target.value, config.associativity)) })} /></label>
             <Segmented options={["lru", "fifo", "random"]} value={config.replacement} onChange={(value) => setConfig({ ...config, replacement: value as CacheConfig["replacement"] })} />
             <Segmented options={["through", "back"]} value={config.writePolicy} onChange={(value) => setConfig({ ...config, writePolicy: value as CacheConfig["writePolicy"] })} />
             <Segmented options={["allocate", "no-allocate"]} value={config.allocation} onChange={(value) => setConfig({ ...config, allocation: value as CacheConfig["allocation"] })} />

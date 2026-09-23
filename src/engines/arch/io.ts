@@ -16,7 +16,7 @@ export function addressSpace(mode: "mapped" | "isolated", address: number): "mem
 }
 
 export function pollTransfer(readyAfterPolls: number): { polls: number; wasted: number; transferred: boolean } {
-  const polls = Math.max(0, readyAfterPolls);
+  const polls = Math.max(0, Number.isFinite(readyAfterPolls) ? readyAfterPolls : 0);
   return { polls: polls + 1, wasted: polls, transferred: true };
 }
 

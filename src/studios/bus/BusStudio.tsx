@@ -1,15 +1,22 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Button, Card, ExplainBar, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
 import { activeControls, addressReach, asyncHandshake, bandwidthBytes, grantBus, syncEdge, transferValue, type BusMaster } from "../../engines/arch/busarch";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
 
 const WIDTHS = ["8", "16", "32", "64"];
+const TABS = [
+  { id: "address", label: "Address" },
+  { id: "data", label: "Data" },
+  { id: "control", label: "Control" },
+  { id: "timing", label: "Timing" },
+  { id: "arbitrate", label: "Arbitration" },
+  { id: "bandwidth", label: "Bandwidth" },
+];
 
 export function BusStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "address";
+  const [tab, setTab] = useStudioTab(TABS, "address");
   const [addressWidth, setAddressWidth] = useState(16);
   const [dataWidth, setDataWidth] = useState("32");
   const [frequency, setFrequency] = useState(100);
@@ -35,11 +42,11 @@ export function BusStudio() {
   const width = Number(dataWidth);
 
   return (
-    <StudioFrame icon="project" title="Bus Architecture" description="Address, data, and control are separate groups of wires. One arbiter grant, or a daisy-chain position, decides who may drive them." tabs={[{ id: "address", label: "Address" }, { id: "data", label: "Data" }, { id: "control", label: "Control" }, { id: "timing", label: "Timing" }, { id: "arbitrate", label: "Arbitration" }, { id: "bandwidth", label: "Bandwidth" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["Address width sets how many locations the bus can name.", "Data width and clock set the raw transfer rate.", "Two drivers without a grant produce X, the same contention result as the register bus."]} takeaways={["Bandwidth multiplies width, frequency, and efficiency.", "Daisy chain grants the earliest requesting device in the chain.", "Central arbitration grants the best priority. Distributed arbitration rotates."]}>
+    <StudioFrame icon="project" title="Bus Architecture" description="Address, data, and control are separate groups of wires. One arbiter grant, or a daisy-chain position, decides who may drive them." tabs={TABS} tab={tab} onTab={setTab} guide={["Address width sets how many locations the bus can name.", "Data width and clock set the raw transfer rate.", "Two drivers without a grant produce X, the same contention result as the register bus."]} takeaways={["Bandwidth is (data width in bytes) × frequency × efficiency.", "Daisy chain grants the earliest requesting device in the chain.", "Central arbitration grants the lowest priority number. Distributed arbitration rotates from the last grant."]}>
       {prefs.explain ? <ExplainBar what={grant ? `${grant.name} may drive the bus.` : "Nobody is requesting."} why={contended.explain} notice="Efficiency below 1 accounts for idle cycles and handshake overhead in this lab." /> : null}
       {tab === "address" ? (
         <Card title="Address bus">
-          <input className="text-input" aria-label="Address width" type="number" value={addressWidth} onChange={(event) => setAddressWidth(Number(event.target.value))} />
+          <input className="text-input" aria-label="Address width" type="number" value={addressWidth} onChange={(event) => setAddressWidth(parseNumberInput(event.target.value, addressWidth))} />
           <p>{addressWidth}-bit address bus names {reach.expression} locations{reach.count !== null ? ` (${reach.count})` : ""}.</p>
         </Card>
       ) : null}
@@ -76,8 +83,8 @@ export function BusStudio() {
       ) : null}
       {tab === "bandwidth" ? (
         <Card title="Width × frequency × efficiency">
-          <input className="text-input" aria-label="Frequency" type="number" value={frequency} onChange={(event) => setFrequency(Number(event.target.value))} />
-          <input className="text-input" aria-label="Efficiency" type="number" step="0.1" value={efficiency} onChange={(event) => setEfficiency(Number(event.target.value))} />
+          <input className="text-input" aria-label="Frequency" type="number" value={frequency} onChange={(event) => setFrequency(parseNumberInput(event.target.value, frequency))} />
+          <input className="text-input" aria-label="Efficiency" type="number" step="0.1" value={efficiency} onChange={(event) => setEfficiency(parseNumberInput(event.target.value, efficiency))} />
           <Metric label="Bytes per second" value={String(bandwidthBytes(width, frequency, efficiency))} />
         </Card>
       ) : null}

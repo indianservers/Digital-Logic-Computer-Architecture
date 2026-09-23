@@ -6,7 +6,7 @@ import {
   type NumericFormat, type Matrix,
 } from "../../engines/accel/accelerator";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
-import { Button, Card, Metric, Segmented, SimControls } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, SimControls, parseNumberInput } from "../../design-system/ui";
 
 function parseMatrix(text: string): Matrix {
   return text.trim().split(/\n/).map((row) => row.trim().split(/[,\s]+/).filter(Boolean).map(Number));
@@ -77,9 +77,9 @@ export function AcceleratorStudio() {
         <div className="grid cards-2">
           <Card title="MAC unit">
             <div className="row">
-              <label className="field">A<input type="number" value={a} onChange={(event) => setA(Number(event.target.value))} /></label>
-              <label className="field">B<input type="number" value={b} onChange={(event) => setB(Number(event.target.value))} /></label>
-              <label className="field">Accumulator<input type="number" value={acc} onChange={(event) => setAcc(Number(event.target.value))} /></label>
+              <label className="field">A<input type="number" value={a} onChange={(event) => setA(parseNumberInput(event.target.value, a))} /></label>
+              <label className="field">B<input type="number" value={b} onChange={(event) => setB(parseNumberInput(event.target.value, b))} /></label>
+              <label className="field">Accumulator<input type="number" value={acc} onChange={(event) => setAcc(parseNumberInput(event.target.value, acc))} /></label>
             </div>
             <p className="expr">{a} × {b} + {acc} = {mac(a, b, acc)}</p>
             <div className="row">

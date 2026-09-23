@@ -7,6 +7,7 @@ import "@fontsource/plus-jakarta-sans/500.css";
 import "@fontsource/plus-jakarta-sans/600.css";
 import "@fontsource/plus-jakarta-sans/700.css";
 import { App } from "./App";
+import { ErrorBoundary } from "./layout/ErrorBoundary";
 import { PrefsProvider } from "./store/prefs";
 import "./styles/global.css";
 
@@ -19,7 +20,9 @@ createRoot(root).render(
   <StrictMode>
     <PrefsProvider>
       <BrowserRouter>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </BrowserRouter>
     </PrefsProvider>
   </StrictMode>,

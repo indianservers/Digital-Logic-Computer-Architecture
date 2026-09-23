@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { GATE_EXPRESSIONS, evalGate, propagateDelay, resolveDrivers } from "../../simulation/digital/gates";
 import type { GateKind, LogicValue } from "../../types/logic";
 import { Card, ExplainBar, Segmented, SimControls, Toggle } from "../../design-system/ui";
@@ -18,12 +18,11 @@ const TABS = [
 const GATES: GateKind[] = ["BUF", "NOT", "AND", "OR", "NAND", "NOR", "XOR", "XNOR"];
 
 export function LogicGatesStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "build";
+  const [tab, setTab] = useStudioTab(TABS, "build");
   const { prefs } = usePrefs();
   const [resetKey, setResetKey] = useState(0);
   return (
-    <StudioFrame icon="gate" title="Logic Gates Studio" description="Toggle an input and the wire, symbol, and truth table change together." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Pick a gate and set its inputs", "Read the signal label, not only the color", "Compare a gate with its NAND-only form", "Step a delayed output on the timeline"]} takeaways={["0 and 1 are levels with names", "NAND and NOR are universal", "Z means the output has let go of the wire"]}>
+    <StudioFrame icon="gate" title="Logic Gates Studio" description="Toggle an input and the wire, symbol, and truth table change together." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Pick a gate and set its inputs", "Read the signal label, not only the color", "Compare a gate with its NAND-only form", "Step a delayed output on the timeline"]} takeaways={["0 and 1 are levels with names", "NAND and NOR are universal", "Z means the output has let go of the wire"]}>
       <div key={resetKey}>
         {prefs.explain ? <ExplainBar what="Input switches drive the gate engine." why="Each gate has a fixed rule. AND is 1 only when every input is 1." notice="High wires are thicker and labeled 1. Floating wires are dashed and labeled Z." /> : null}
         {tab === "build" ? <Explorer /> : null}

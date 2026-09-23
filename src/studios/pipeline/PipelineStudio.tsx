@@ -1,22 +1,26 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
 import { nonPipelinedCycles, runPipe, speedup, stepPipe, type PipeState } from "../../engines/isa/pipeline";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
 
 const PROGRAM = "ADDI R1, R0, 5\nADDI R2, R0, 3\nADD R3, R1, R2\nHALT\n";
+const TABS = [
+  { id: "pipe", label: "Pipeline" },
+  { id: "regs", label: "Pipeline Registers" },
+  { id: "metrics", label: "Throughput" },
+];
 
 export function PipelineStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "pipe";
+  const [tab, setTab] = useStudioTab(TABS, "pipe");
   const [forwarding, setForwarding] = useState("On");
   const [pipe, setPipe] = useState<PipeState | null>(null);
   const { prefs } = usePrefs();
   const ideal = pipe ? nonPipelinedCycles(Math.max(pipe.retired, 1)) : 0;
 
   return (
-    <StudioFrame icon="step" title="CPU Pipeline" description="Five stages hold different instructions on the same clock. Ideal overlap is not a guaranteed five-times speedup." tabs={[{ id: "pipe", label: "Pipeline" }, { id: "regs", label: "Pipeline Registers" }, { id: "metrics", label: "Throughput" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["IF fetches the word at the PC.", "ID reads the register file.", "EX runs the ALU. MEM touches data memory. WB writes a register."]} takeaways={["Latency of one instruction is still about five cycles.", "Throughput rises after the pipeline fills.", "Speedup uses this program's cycle counts."]}>
+    <StudioFrame icon="step" title="CPU Pipeline" description="Five stages hold different instructions on the same clock. Ideal overlap is not a guaranteed five-times speedup." tabs={TABS} tab={tab} onTab={setTab} guide={["IF fetches the word at the PC.", "ID reads the register file.", "EX runs the ALU. MEM touches data memory. WB writes a register."]} takeaways={["Latency of one instruction is still about five cycles.", "Throughput rises after the pipeline fills.", "Speedup uses this program's cycle counts."]}>
       {prefs.explain ? <ExplainBar what={pipe?.log.at(-1) ?? "Step a cycle to move every stage."} why="An instruction card shows the stage it occupies. ST means that stage is held." notice="Bubbles are labeled BUBBLE, not only drawn in a different color." /> : null}
       <div className="row">
         <Segmented options={["On", "Off"]} value={forwarding} onChange={(value) => { setForwarding(value); setPipe((current) => current ? { ...current, forwarding: value === "On" } : current); }} />

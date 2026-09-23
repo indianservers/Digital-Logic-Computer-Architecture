@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Card, ExplainBar, Metric, Segmented, Toggle } from "../../design-system/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
+import { Card, ExplainBar, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { binaryArithmetic, type ArithmeticOp } from "../../engines/numbers/arithmetic";
 import { adjacentGray, excess3FromDecimal, inspectCharacter, parityBit, parityCheck, toBcd } from "../../engines/numbers/codes";
@@ -23,8 +23,7 @@ const TABS = [
 ];
 
 export function NumberSystemsStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "convert";
+  const [tab, setTab] = useStudioTab(TABS, "convert");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
   return (
@@ -34,7 +33,7 @@ export function NumberSystemsStudio() {
       description="Change a digit, a bit, or a code and every related representation updates immediately."
       tabs={TABS}
       tab={tab}
-      onTab={(id) => setParams({ tab: id })}
+      onTab={setTab}
       onReset={() => setResetKey((n) => n + 1)}
       guide={["Enter any base and watch the others follow", "Toggle bits to see place value", "Compare signed encodings", "Break and repair a Hamming word"]}
       takeaways={["Position determines weight", "Two's complement makes one adder enough", "Parity detects a single flip", "IEEE-754 separates sign, exponent, and fraction"]}
@@ -54,15 +53,23 @@ export function NumberSystemsStudio() {
   );
 }
 
-function Bits({ bits, onToggle, weights }: { bits: Array<0 | 1>; onToggle?: (index: number) => void; weights?: number[] }) {
+function Bits({ bits, onToggle, weights, kind = "weight" }: { bits: Array<0 | 1>; onToggle?: (index: number) => void; weights?: number[]; kind?: "weight" | "position" | "data" }) {
   return (
     <div>
       <div className="bits">
-        {bits.map((bit, index) => (
-          <button key={index} className={bit ? "bit on" : "bit"} onClick={() => onToggle?.(index)} aria-label={`Bit weight ${weights?.[index] ?? index}, value ${bit}`}>
-            {bit}{weights ? <small>{weights[index]}</small> : null}
-          </button>
-        ))}
+        {bits.map((bit, index) => {
+          const caption = kind === "position" || kind === "data" ? index + 1 : weights?.[index];
+          const label = kind === "position"
+            ? `Position ${index + 1}, value ${bit}`
+            : kind === "data"
+              ? `Data bit ${index + 1}, value ${bit}`
+              : `Bit weight ${weights?.[index] ?? index}, value ${bit}`;
+          return (
+            <button key={index} className={bit ? "bit on" : "bit"} onClick={() => onToggle?.(index)} aria-label={label}>
+              {bit}{caption !== undefined ? <small>{caption}</small> : null}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -150,8 +157,8 @@ function MathLab() {
     <div className="grid cards-2">
       <Card title="Binary calculator" action={<Segmented options={["add", "sub", "mul", "div"]} value={op} onChange={(v) => setOp(v as ArithmeticOp)} />}>
         <div className="row">
-          <label className="field">A<input className="text-input" type="number" value={a} onChange={(e) => setA(Number(e.target.value))} /></label>
-          <label className="field">B<input className="text-input" type="number" value={b} onChange={(e) => setB(Number(e.target.value))} /></label>
+          <label className="field">A<input className="text-input" type="number" value={a} onChange={(e) => setA(parseNumberInput(e.target.value, a))} /></label>
+          <label className="field">B<input className="text-input" type="number" value={b} onChange={(e) => setB(parseNumberInput(e.target.value, b))} /></label>
           <Segmented options={["4", "8", "16", "32"]} value={String(prefs.bitWidth)} onChange={(v) => update({ bitWidth: Number(v) as 4 | 8 | 16 | 32 })} />
         </div>
         <pre className="mono">{result.steps[0]?.rows.join("\n")}</pre>
@@ -177,7 +184,7 @@ function SignedLab() {
     <div className="grid cards-2">
       <Card title="Signed encodings" action={<Segmented options={["unsigned", "sign-magnitude", "ones", "twos"]} value={code} onChange={(v) => setCode(v as SignedCode)} />}>
         <div className="row">
-          <input className="text-input" type="number" aria-label="Decimal value" value={value} onChange={(e) => setValue(Number(e.target.value))} />
+          <input className="text-input" type="number" aria-label="Decimal value" value={value} onChange={(e) => setValue(parseNumberInput(e.target.value, value))} />
           <Segmented options={["4", "8", "16"]} value={String(Math.min(width, 16))} onChange={(v) => update({ bitWidth: Number(v) as 4 | 8 | 16 })} />
         </div>
         <p className="tiny">Range {range.min} → {range.max}. The left bit is the sign when the code is signed.</p>
@@ -211,8 +218,8 @@ function FixedLab() {
     <Card title="Fixed-point word">
       <div className="row">
         <label className="field">Value<input className="text-input" value={text} onChange={(e) => setText(e.target.value)} /></label>
-        <label className="field">Integer bits<input className="text-input" type="number" min={1} max={16} value={intBits} onChange={(e) => setIntBits(Number(e.target.value))} /></label>
-        <label className="field">Fraction bits<input className="text-input" type="number" min={1} max={16} value={fracBits} onChange={(e) => setFracBits(Number(e.target.value))} /></label>
+        <label className="field">Integer bits<input className="text-input" type="number" min={1} max={16} value={intBits} onChange={(e) => setIntBits(Math.max(1, parseNumberInput(e.target.value, intBits)))} /></label>
+        <label className="field">Fraction bits<input className="text-input" type="number" min={1} max={16} value={fracBits} onChange={(e) => setFracBits(Math.max(1, parseNumberInput(e.target.value, fracBits)))} /></label>
         <span className="row">Signed <Toggle on={signed} label="Signed fixed point" onChange={setSigned} /></span>
       </div>
       <div className="mono" style={{ margin: "10px 0" }}>
@@ -324,10 +331,10 @@ function HammingLab() {
   return (
     <div className="grid cards-2">
       <Card title="Hamming(7,4)">
-        <div className="row"><span>Data</span><Bits bits={data} onToggle={(i) => sync(data.map((b, idx) => (idx === i ? (b ? 0 : 1) : b)) as Bit[])} /></div>
+        <div className="row"><span>Data</span><Bits bits={data} kind="data" onToggle={(i) => sync(data.map((b, idx) => (idx === i ? (b ? 0 : 1) : b)) as Bit[])} /></div>
         <button className="btn-primary" onClick={() => setWord(encodeHamming(data).bits)}>Encode</button>
         <p className="tiny">Positions 1, 2, and 4 are parity. Data occupies 3, 5, 6, 7.</p>
-        <Bits bits={word} onToggle={(i) => { setWord(flipBit(word, i)); earn("hamming"); }} />
+        <Bits bits={word} kind="position" onToggle={(i) => { setWord(flipBit(word, i)); earn("hamming"); }} />
         <p>{result.explanation}</p>
         {result.flippedIndex !== null ? <p>Corrected word {result.corrected.join("")}</p> : <p>Syndrome {result.syndrome}</p>}
       </Card>

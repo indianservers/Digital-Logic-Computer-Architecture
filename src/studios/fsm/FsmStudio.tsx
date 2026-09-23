@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
 import { encodeStates } from "../../engines/fsm/encoding";
 import { FSM_EXAMPLES } from "../../engines/fsm/examples";
@@ -22,8 +23,7 @@ const TABS = [
 ];
 
 export function FsmStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "diagram";
+  const [tab, setTab] = useStudioTab(TABS, "diagram");
   const [machine, setMachine] = useState<FsmMachine>(blankMachine);
   const [current, setCurrent] = useState(machine.initialId);
   const [selected, setSelected] = useState(machine.initialId);
@@ -79,7 +79,7 @@ export function FsmStudio() {
       description="Draw states, label transitions, and step an input stream through a Moore or Mealy machine."
       tabs={TABS}
       tab={tab}
-      onTab={(id) => setParams({ tab: id })}
+      onTab={setTab}
       onReset={() => { setMachine(blankMachine()); reset(); }}
       guide={["A Moore output belongs to the state.", "A Mealy output belongs to the transition.", "Minimization merges states with the same future behavior."]}
       takeaways={["Binary encoding uses fewer flip-flops.", "One-hot uses one flip-flop per state.", "D synthesis turns the next-state table into equations."]}

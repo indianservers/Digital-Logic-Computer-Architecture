@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
-import { Button, Card, Segmented } from "../../design-system/ui";
+import { Button, Card, Segmented, parseNumberInput } from "../../design-system/ui";
 import { Icon } from "../../design-system/icons";
 import { PALETTE, defaultIsa, emptyDesign, type CpuDesign, type IsaField, type IsaInstruction, type NodeKind } from "../../engines/builder/model";
 import { assemble, controlTable, formatWord, validateIsa } from "../../engines/builder/isa";
@@ -247,7 +247,7 @@ export function BuilderStudio() {
                     {WIDTHS.map((width) => <option key={width} value={width}>{width}-bit</option>)}
                   </select>
                 </label>
-                <label>Initial / value<input className="input" type="number" value={selectedNode.value} onChange={(event) => commit(applyPatch(design, selectedNode.id, { value: Number(event.target.value) }))} /></label>
+                <label>Initial / value<input className="input" type="number" value={selectedNode.value} onChange={(event) => commit(applyPatch(design, selectedNode.id, { value: parseNumberInput(event.target.value, selectedNode.value) }))} /></label>
                 <p className="tiny">{selectedNode.kind} · {selectedNode.width}-bit · {selectedNode.note || "No note"}</p>
                 <Button onClick={() => commit({ ...design, probes: design.probes.includes(selectedNode.id) ? design.probes.filter((id) => id !== selectedNode.id) : [...design.probes, selectedNode.id] })}>
                   {design.probes.includes(selectedNode.id) ? "Remove probe" : "Attach probe"}
@@ -334,8 +334,8 @@ export function BuilderStudio() {
         {fields.map((field, index) => (
           <div key={`${field.name}-${index}`} className="row" style={{ marginBottom: 6 }}>
             <input className="input" aria-label="Field name" value={field.name} onChange={(event) => onChange(fields.map((item, i) => i === index ? { ...item, name: event.target.value } : item))} />
-            <input className="input" aria-label="Start bit" type="number" value={field.lo} onChange={(event) => onChange(fields.map((item, i) => i === index ? { ...item, lo: Number(event.target.value) } : item))} />
-            <input className="input" aria-label="Width" type="number" value={field.width} onChange={(event) => onChange(fields.map((item, i) => i === index ? { ...item, width: Number(event.target.value) } : item))} />
+            <input className="input" aria-label="Start bit" type="number" value={field.lo} onChange={(event) => onChange(fields.map((item, i) => i === index ? { ...item, lo: parseNumberInput(event.target.value, field.lo) } : item))} />
+            <input className="input" aria-label="Width" type="number" value={field.width} onChange={(event) => onChange(fields.map((item, i) => i === index ? { ...item, width: Math.max(1, parseNumberInput(event.target.value, field.width)) } : item))} />
           </div>
         ))}
         <div className="isa-bits" aria-label="Instruction word">

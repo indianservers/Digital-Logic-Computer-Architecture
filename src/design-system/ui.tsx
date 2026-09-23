@@ -83,7 +83,7 @@ export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed }
       <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button>
       {onSpeed ? (
         <label className="row tiny">Speed
-          <input aria-label="Simulation speed" type="range" min={0.5} max={4} step={0.5} value={speed ?? 1} onChange={(event) => onSpeed(Number(event.target.value))} />
+          <input aria-label="Simulation speed" type="range" min={0.5} max={4} step={0.5} value={speed ?? 1} onChange={(event) => onSpeed(parseNumberInput(event.target.value, speed ?? 1))} />
         </label>
       ) : null}
     </div>
@@ -92,4 +92,10 @@ export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed }
 
 export function EmptyState({ title, body }: { title: string; body: string }) {
   return <div className="card"><h3>{title}</h3><p className="muted">{body}</p></div>;
+}
+
+export function parseNumberInput(raw: string, fallback: number): number {
+  if (raw.trim() === "") return fallback;
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : fallback;
 }

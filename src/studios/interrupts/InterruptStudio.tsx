@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
 import { classifyException, cpuCopy, createDma, handlerFor, highestPriority, interruptTimeline, stepDma, type DmaState, type IoDevice } from "../../engines/arch/io";
 import { StudioFrame } from "../../layout/StudioFrame";
@@ -13,10 +13,16 @@ const DEVICES: IoDevice[] = [
 ];
 
 const TABLE = [{ irq: 0, handler: 0x2000 }, { irq: 1, handler: 0x1000 }, { irq: 3, handler: 0x1000 }, { irq: 5, handler: 0x1400 }, { irq: 14, handler: 0x1800 }];
+const TABS = [
+  { id: "timeline", label: "Interrupt" },
+  { id: "priority", label: "Priority" },
+  { id: "vectors", label: "Vectors" },
+  { id: "exceptions", label: "Exceptions" },
+  { id: "dma", label: "DMA" },
+];
 
 export function InterruptStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "timeline";
+  const [tab, setTab] = useStudioTab(TABS, "timeline");
   const [devices, setDevices] = useState(DEVICES);
   const [kind, setKind] = useState<"div0" | "illegal" | "protect">("div0");
   const [dma, setDma] = useState<DmaState>(() => createDma([0, 0, 0, 0], [9, 8, 7], 0, 1, 3, "to-memory"));
@@ -27,7 +33,7 @@ export function InterruptStudio() {
   const fault = classifyException(kind);
 
   return (
-    <StudioFrame icon="step" title="Interrupts & DMA" description="A device request saves the PC, runs the vectored handler, and returns. DMA moves the block and interrupts once at the end." tabs={[{ id: "timeline", label: "Interrupt" }, { id: "priority", label: "Priority" }, { id: "vectors", label: "Vectors" }, { id: "exceptions", label: "Exceptions" }, { id: "dma", label: "DMA" }]} tab={tab} onTab={(id) => setParams({ tab: id })} guide={["The saved PC is the instruction that had not yet run.", "Lower priority number wins when several devices are pending.", "DMA setup and completion are CPU cycles. The bytes in between are not."]} takeaways={["Hardware interrupts, exceptions, and the handler address are separate ideas.", "Programmed copy of three words costs six CPU cycles here.", "DMA of the same three words costs the setup cycle plus the completion interrupt."]}>
+    <StudioFrame icon="step" title="Interrupts & DMA" description="A device request saves the PC, runs the vectored handler, and returns. DMA moves the block and interrupts once at the end." tabs={TABS} tab={tab} onTab={setTab} guide={["The saved PC is the instruction that had not yet run.", "Lower priority number wins when several devices are pending.", "DMA setup and completion are CPU cycles. The bytes in between are not."]} takeaways={["Hardware interrupts, exceptions, and the handler address are separate ideas.", "Programmed copy of three words costs six CPU cycles here.", "DMA of the same three words costs the setup cycle plus the completion interrupt."]}>
       {prefs.explain ? <ExplainBar what={winner ? `${winner.name} wins and vectors to ${winner.vector.toString(16)}.` : "No device is pending."} why={timeline.find((step) => step.phase === "save")?.note ?? "The timeline is idle."} notice="Exception recovery in this lab stops the instruction. It does not boot an operating system." /> : null}
       {tab === "timeline" ? (
         <Card title="User stream, then the handler">

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useStudioTab } from "../../layout/useStudioTab";
 import { BooleanParseError, type AstNode, evalBoolean, formatAst, parseBoolean } from "../../engines/boolean/ast";
 import { BOOLEAN_LAWS } from "../../engines/boolean/laws";
 import { algebraicSimplify } from "../../engines/boolean/simplify";
@@ -18,12 +19,11 @@ const TABS = [
 ];
 
 export function BooleanStudio() {
-  const [params, setParams] = useSearchParams();
-  const tab = params.get("tab") ?? "play";
+  const [tab, setTab] = useStudioTab(TABS, "play");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
   return (
-    <StudioFrame icon="bolt" title="Boolean Algebra" description="Type an expression, toggle its variables, and see the tree, table, and circuit agree." tabs={TABS} tab={tab} onTab={(id) => setParams({ tab: id })} onReset={() => setResetKey((n) => n + 1)} guide={["Enter A, B, and C with AND, OR, or NOT", "Toggle variables and read the live output", "Check a law on both sides", "Compare SOP with POS"]} takeaways={["Operators are parsed into a tree, never eval()", "Laws are identities you can falsify by toggling", "Canonical SOP lists every true row"]}>
+    <StudioFrame icon="bolt" title="Boolean Algebra" description="Type an expression, toggle its variables, and see the tree, table, and circuit agree." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Enter A, B, and C with AND, OR, or NOT", "Toggle variables and read the live output", "Check a law on both sides", "Compare SOP with POS"]} takeaways={["Operators are parsed into a tree, never eval()", "Laws are identities you can falsify by toggling", "Canonical SOP lists every true row"]}>
       <div key={resetKey}>
         {prefs.explain ? <ExplainBar what="The expression is tokenized into an AST." why="Each operator node computes from its children, so a toggle only changes the variables you touch." notice="A true row in the table is a minterm." /> : null}
         {tab === "play" ? <PlayLab /> : null}
