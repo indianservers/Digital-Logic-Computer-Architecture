@@ -5,6 +5,7 @@ import { accessCache, accessHierarchy, createCache, createHierarchy, type CacheM
 import { decompose, type CacheConfig } from "../../engines/cache/mapping";
 import { hierarchicalAmat, hitRate, missRate } from "../../engines/cache/metrics";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { CACHE_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 import { saveRecord } from "../../store/projects";
 
@@ -55,8 +56,9 @@ export function CacheStudio() {
     setCursor(cursor + 1);
   }
 
+  const lesson = lessonOf(CACHE_LESSONS, tab, "sim");
   return (
-    <StudioFrame icon="bolt" title="Cache Memory" description="Step a trace through a cache whose mapping, replacement, and write policy you can change." tabs={TABS} tab={tab} onTab={setTab} onReset={() => applyPreset(preset)} guide={["The index picks a set. The tag must match a valid line.", "A first visit is a compulsory miss.", "A full set with a different tag is a conflict miss."]} takeaways={["Write-back remembers a dirty line until eviction.", "Write-through updates memory immediately.", "AMAT grows with each extra miss level."]}>
+    <StudioFrame icon="bolt" title="Cache Memory" description="Step a trace through a cache whose mapping, replacement, and write policy you can change." tabs={TABS} tab={tab} onTab={setTab} onReset={() => applyPreset(preset)} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={last} why={status === "HIT" ? "The requested block is already in the indexed set." : "The block has to be installed, and something may be evicted."} notice="Numbers come from this configuration, not from a canned example." /> : null}
       {tab === "sim" ? (
         <div className="builder">

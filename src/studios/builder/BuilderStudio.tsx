@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
-import { Button, Card, Segmented, parseNumberInput } from "../../design-system/ui";
+import { Button, Card, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 import { Icon } from "../../design-system/icons";
 import { PALETTE, defaultIsa, emptyDesign, type CpuDesign, type IsaField, type IsaInstruction, type NodeKind } from "../../engines/builder/model";
 import { assemble, controlTable, formatWord, validateIsa } from "../../engines/builder/isa";
@@ -194,7 +194,7 @@ export function BuilderStudio() {
         <Button onClick={() => { setDesign(resetCpu(design)); setTrace(null); setHistory([]); setWave([]); setClock(0); setRunning(false); }}><Icon name="reset" size={14} /> Reset</Button>
         <Button onClick={doStepClock}><Icon name="step" size={14} /> Clock</Button>
         <Button onClick={doStepInstruction}><Icon name="step" size={14} /> Step</Button>
-        <Button variant="primary" onClick={() => setRunning((value) => !value)}>{running ? <><Icon name="pause" size={14} /> Pause</> : <><Icon name="play" size={14} /> Run</>}</Button>
+        <Toggle on={running} onChange={setRunning} label="Run" tone="ok" />
         <Segmented options={[...SPEEDS]} value={speed} onChange={(value) => setSpeed(value as typeof speed)} />
         <Button onClick={() => commit({ ...design, pan: { ...design.pan, k: Math.min(2, design.pan.k + 0.15) } })}>Zoom</Button>
         <Button onClick={() => commit({ ...design, pan: { x: 0, y: 0, k: 1 } })}>Fit view</Button>
@@ -467,13 +467,10 @@ export function BuilderStudio() {
             <Button onClick={() => commit({ ...design, breakpoints: [...design.breakpoints, { id: `bp${design.nextId}`, kind: "memwrite", enabled: true }] })}>Break on store</Button>
           </div>
           {design.breakpoints.map((point) => (
-            <label key={point.id} className="tiny" style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <input type="checkbox" checked={point.enabled} onChange={(event) => commit({ ...design, breakpoints: design.breakpoints.map((item) => item.id === point.id ? { ...item, enabled: event.target.checked } : item) })} />
-              {point.kind} {point.mnemonic ?? point.address ?? ""}
-            </label>
+            <Toggle key={point.id} on={point.enabled} onChange={(next) => commit({ ...design, breakpoints: design.breakpoints.map((item) => item.id === point.id ? { ...item, enabled: next } : item) })} label={`${point.kind} ${point.mnemonic ?? point.address ?? ""}`} tone="danger" />
           ))}
           <p className="tiny">History {history.length}/{HISTORY} · display {format}</p>
-          <Button onClick={() => setFormat(format === "hex" ? "bin" : "hex")}>{format}</Button>
+          <Toggle on={format === "bin"} onChange={(next) => setFormat(next ? "bin" : "hex")} label="Binary view" tone="primary" />
         </Card>
       ) : null}
       {lab === "templates" ? (

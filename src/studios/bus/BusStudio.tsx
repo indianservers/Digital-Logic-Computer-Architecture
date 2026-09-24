@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
+import { Card, ExplainBar, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 import { activeControls, addressReach, asyncHandshake, bandwidthBytes, grantBus, syncEdge, transferValue, type BusMaster } from "../../engines/arch/busarch";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { BUS_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const WIDTHS = ["8", "16", "32", "64"];
@@ -40,9 +41,10 @@ export function BusStudio() {
     { name: "DMA", enabled: true, value: 2 },
   ]);
   const width = Number(dataWidth);
+  const lesson = lessonOf(BUS_LESSONS, tab, "address");
 
   return (
-    <StudioFrame icon="project" title="Bus Architecture" description="Address, data, and control are separate groups of wires. One arbiter grant, or a daisy-chain position, decides who may drive them." tabs={TABS} tab={tab} onTab={setTab} guide={["Address width sets how many locations the bus can name.", "Data width and clock set the raw transfer rate.", "Two drivers without a grant produce X, the same contention result as the register bus."]} takeaways={["Bandwidth is (data width in bytes) × frequency × efficiency.", "Daisy chain grants the earliest requesting device in the chain.", "Central arbitration grants the lowest priority number. Distributed arbitration rotates from the last grant."]}>
+    <StudioFrame icon="project" title="Bus Architecture" description="Address, data, and control are separate groups of wires. One arbiter grant, or a daisy-chain position, decides who may drive them." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={grant ? `${grant.name} may drive the bus.` : "Nobody is requesting."} why={contended.explain} notice="Efficiency below 1 accounts for idle cycles and handshake overhead in this lab." /> : null}
       {tab === "address" ? (
         <Card title="Address bus">
@@ -59,24 +61,24 @@ export function BusStudio() {
       {tab === "control" ? (
         <Card title="Control wires">
           {Object.keys(controls).map((name) => (
-            <Button key={name} onClick={() => setControls({ ...controls, [name]: !controls[name as keyof typeof controls] })}>{name} {controls[name as keyof typeof controls] ? "1" : "0"}</Button>
+            <Toggle key={name} on={controls[name as keyof typeof controls]} onChange={(next) => setControls({ ...controls, [name]: next })} label={name} tone={name === "Write" || name === "Reset" ? "danger" : name === "Read" ? "ok" : "primary"} />
           ))}
           <p>Active: {activeControls(controls).join(", ") || "none"}</p>
         </Card>
       ) : null}
       {tab === "timing" ? (
         <Card title="Clocked or handshake">
-          <Button onClick={() => setClockHigh((value) => !value)}>{syncEdge(clockHigh).explain}</Button>
-          <Button onClick={() => setRequest((value) => !value)}>Request {request ? "1" : "0"}</Button>
-          <Button onClick={() => setAck((value) => !value)}>Acknowledge {ack ? "1" : "0"}</Button>
-          <p>{asyncHandshake(request, ack).explain}</p>
+          <Toggle on={clockHigh} onChange={setClockHigh} label="Clock high" tone="ok" />
+          <Toggle on={request} onChange={setRequest} label="Request" tone="primary" />
+          <Toggle on={ack} onChange={setAck} label="Acknowledge" tone="warn" />
+          <p>{syncEdge(clockHigh).explain} {asyncHandshake(request, ack).explain}</p>
         </Card>
       ) : null}
       {tab === "arbitrate" ? (
         <Card title={mode}>
           <Segmented options={["daisy", "central", "distributed"]} value={mode} onChange={(value) => setMode(value as typeof mode)} />
           {masters.map((master) => (
-            <Button key={master.name} onClick={() => setMasters(masters.map((item) => item.name === master.name ? { ...item, request: !item.request } : item))}>{master.name} {master.request ? "requests" : "idle"} · priority {master.priority}</Button>
+            <Toggle key={master.name} on={master.request} onChange={(next) => setMasters(masters.map((item) => item.name === master.name ? { ...item, request: next } : item))} label={`${master.name} · P${master.priority}`} tone={master.name === "CPU" ? "ok" : master.name === "DMA" ? "primary" : "warn"} />
           ))}
           <p>Grant: {grant?.name ?? "none"}. Unarbitrated dual drive: {String(contended.value)}. Filtered drive: {String(driven.value)}.</p>
         </Card>

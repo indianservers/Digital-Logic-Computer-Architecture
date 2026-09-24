@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Link, NavLink, Navigate, useParams } from "react-router-dom";
-import { archLab, archStudio } from "../data/architecture";
+import { archLab, archStudio, labTheory } from "../data/architecture";
 import { Icon } from "../design-system/icons";
-import { Button, Card } from "../design-system/ui";
+import { Button, Card, Theory, Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
 
 export function ArchitectureFrame({ studioId, onReset, children }: { studioId: string; onReset?: () => void; children: ReactNode }) {
@@ -57,10 +57,11 @@ export function ArchitectureFrame({ studioId, onReset, children }: { studioId: s
           <div className="row">
             <Link to={studio.path} className="btn-ghost"><Icon name="back" size={14} /> Studio Home</Link>
             <Link to="/" className="btn-ghost"><Icon name="home" size={14} /> Home</Link>
-            <Button onClick={() => update({ explain: !prefs.explain })}><Icon name="info" size={14} />{prefs.explain ? "Explain on" : "Explain"}</Button>
+            <Toggle on={prefs.explain} onChange={(next) => update({ explain: next })} label="Explain" tone="primary" />
             {onReset ? <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button> : null}
           </div>
         </div>
+        <Theory title={lab.title}>{labTheory(studio, lab)}</Theory>
         {children}
       </div>
       <aside className="guide">

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Segmented, parseNumberInput } from "../../design-system/ui";
+import { Button, Card, ExplainBar, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 import { bcdToSeven } from "../../engines/digital/routing";
 import { counterWidth, designCounter, nextCount, rippleDelays, stepRegister, wordOf } from "../../engines/digital/sequential";
 import { fromUnsigned } from "../../engines/digital/vector";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { COUNTER_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 import { SevenSeg, SpeedPicker, useTicker, Waveform } from "../shared/widgets";
 
@@ -21,8 +22,9 @@ const TABS = [
 export function CounterStudio() {
   const [tab, setTab] = useStudioTab(TABS, "ripple");
   const [resetKey, setResetKey] = useState(0);
+  const lesson = lessonOf(COUNTER_LESSONS, tab, "ripple");
   return (
-    <StudioFrame icon="step" title="Counters" description="Step the clock and watch which flip-flops change, and when." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Step a ripple counter and see the delay stack", "Compare it with a common clock", "Set N and watch the unused states", "Ask the designer for D or JK equations"]} takeaways={["Ripple clocks each stage from the previous output", "Synchronous stages share one clock", "A decade counter returns to 0 after 9", "Johnson length is 2N for N flip-flops"]}>
+    <StudioFrame icon="step" title="Counters" description="Step the clock and watch which flip-flops change, and when." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       <div key={resetKey}>
         {tab === "ring" ? <RingLab /> : tab === "design" ? <DesignLab /> : <CountLab kind={tab} />}
       </div>
@@ -66,7 +68,7 @@ function CountLab({ kind }: { kind: string }) {
     <div className="grid">
       <Card title={kind === "ripple" ? "Ripple counter" : kind === "sync" ? "Synchronous counter" : kind === "decade" ? "Decade counter" : "Counter"} action={<Segmented options={["2", "3", "4", "8"]} value={String(width)} onChange={(valueText) => { setWidth(Number(valueText)); setValue(0); }} />}>
         <div className="row">
-          <Button variant="primary" onClick={() => setPlaying((flag) => !flag)}>{playing ? "Pause" : "Play"}</Button>
+          <Toggle on={playing} onChange={setPlaying} label="Run" tone="ok" />
           <Button onClick={tick}>Step clock</Button>
           <Button onClick={() => { setValue(0); setPlaying(false); }}>Reset</Button>
           <SpeedPicker speed={speed} onChange={setSpeed} />
@@ -98,7 +100,7 @@ function RingLab() {
   useTicker(playing, speed, tick);
   return (
     <Card title="Ring and Johnson" action={<Segmented options={["ring", "johnson"]} value={kind} onChange={(value) => { setKind(value as "ring" | "johnson"); setQ(value === "ring" ? [1, 0, 0, 0] : [0, 0, 0, 0]); }} />}>
-      <div className="row"><Button variant="primary" onClick={() => setPlaying((flag) => !flag)}>{playing ? "Pause" : "Play"}</Button><Button onClick={tick}>Step</Button><SpeedPicker speed={speed} onChange={setSpeed} /></div>
+      <div className="row"><Toggle on={playing} onChange={setPlaying} label="Run" tone="ok" /><Button onClick={tick}>Step</Button><SpeedPicker speed={speed} onChange={setSpeed} /></div>
       <div className="reg-row">{q.map((bit, index) => <div key={index} className={bit ? "ff-cell on" : "ff-cell"}>{bit}</div>)}</div>
       <p className="muted">{kind === "ring" ? "One hot bit circulates: 1000 → 0100 → 0010 → 0001." : "Feedback is the inverted final bit. Four flip-flops visit eight states."}</p>
     </Card>

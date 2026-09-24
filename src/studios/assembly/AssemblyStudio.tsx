@@ -5,6 +5,7 @@ import { assemble } from "../../engines/isa/assembler";
 import { loadProgram, stepStage, type CpuState } from "../../engines/isa/cpu";
 import { formatInstruction } from "../../engines/isa/assembler";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { ASSEMBLY_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 import { saveRecord } from "../../store/projects";
 
@@ -47,8 +48,9 @@ export function AssemblyStudio() {
     setCpu(next);
   }
 
+  const lesson = lessonOf(ASSEMBLY_LESSONS, tab, "run");
   return (
-    <StudioFrame icon="table" title="Assembly Execution" description="Assemble LogicLab-16, then step one instruction at a time. Changed registers are listed after each instruction." tabs={TABS} tab={tab} onTab={setTab} guide={["Labels may be used before they are defined.", "R0 starts at 0. Write it only if the program means to.", "HALT leaves the PC on the halt instruction."]} takeaways={["The listing is the machine word beside the source.", "A bad register or a missing label names the source line.", "Instruction stepping hides the five internal cycles."]}>
+    <StudioFrame icon="table" title="Assembly Execution" description="Assemble LogicLab-16, then step one instruction at a time. Changed registers are listed after each instruction." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain && cpu ? <ExplainBar what={cpu.trace.at(-1) ?? "Load the program to begin."} why={cpu.diff.join(" · ") || "Nothing architectural changed on the last internal cycle."} notice="Use Fetch–Decode–Execute when you want each cycle." /> : null}
       <div className="builder">
         <Card title="Program">

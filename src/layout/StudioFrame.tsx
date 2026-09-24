@@ -2,11 +2,11 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { IconName } from "../design-system/icons";
 import { Icon } from "../design-system/icons";
-import { Button, Tabs } from "../design-system/ui";
+import { Button, Tabs, Theory, Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
 
 export function StudioFrame({
-  icon, title, description, tabs, tab, onTab, onReset, guide, takeaways, children,
+  icon, title, description, tabs, tab, onTab, onReset, guide, takeaways, theory, children,
 }: {
   icon: IconName;
   title: string;
@@ -17,6 +17,7 @@ export function StudioFrame({
   onReset?: () => void;
   guide: string[];
   takeaways: string[];
+  theory?: { title: string; body: string };
   children: ReactNode;
 }) {
   const { prefs, update } = usePrefs();
@@ -32,12 +33,13 @@ export function StudioFrame({
             </div>
           </div>
           <div className="row">
-            <Button onClick={() => update({ explain: !prefs.explain })}><Icon name="info" size={14} />{prefs.explain ? "Explain on" : "Explain"}</Button>
+            <Toggle on={prefs.explain} onChange={(next) => update({ explain: next })} label="Explain" tone="primary" />
             {onReset ? <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button> : null}
             <Link to="/" className="btn-ghost"><Icon name="back" size={14} />Back to Path</Link>
           </div>
         </div>
         <Tabs tabs={tabs} value={tab} onChange={onTab} />
+        {theory ? <Theory title={theory.title}>{theory.body}</Theory> : null}
         {children}
       </div>
       <aside className="guide">

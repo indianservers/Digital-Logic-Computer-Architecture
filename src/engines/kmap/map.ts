@@ -28,12 +28,16 @@ export function kmapLayout(variables: number): KMapLayout {
   return { variables: 6, maps: 4, rows: 4, cols: 4, rowBits: 2, colBits: 2 };
 }
 
+function planeBits(layout: KMapLayout): number {
+  return Math.max(0, layout.variables - layout.rowBits - layout.colBits);
+}
+
 export function cellMinterm(variables: number, map: number, row: number, col: number): number {
   const layout = kmapLayout(variables);
   const rowCode = grayCodes(layout.rowBits)[row] ?? 0;
   const colCode = grayCodes(layout.colBits)[col] ?? 0;
-  const inner = layout.rowBits + layout.colBits;
-  return ((map << inner) | (rowCode << layout.colBits) | colCode) >>> 0;
+  const planes = planeBits(layout);
+  return ((rowCode << (layout.colBits + planes)) | (colCode << planes) | map) >>> 0;
 }
 
 export function headerBits(bits: number): string[] {
@@ -55,9 +59,9 @@ export function rectsForImplicant(implicant: Implicant, variables: number, label
   const minterms = maskToMinterms(implicant.mask.padStart(variables, "0"));
   const byMap = new Map<number, Array<{ row: number; col: number }>>();
   for (const minterm of minterms) {
-    const innerBits = layout.rowBits + layout.colBits;
-    const map = minterm >> innerBits;
-    const inner = minterm & ((1 << innerBits) - 1);
+    const planes = planeBits(layout);
+    const map = planes === 0 ? 0 : minterm & ((1 << planes) - 1);
+    const inner = planes === 0 ? minterm : minterm >> planes;
     const rowValue = inner >> layout.colBits;
     const colValue = inner & ((1 << layout.colBits) - 1);
     const row = grayCodes(layout.rowBits).indexOf(rowValue);

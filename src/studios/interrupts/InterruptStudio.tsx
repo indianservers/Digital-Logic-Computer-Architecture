@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
+import { Button, Card, ExplainBar, Metric, Toggle } from "../../design-system/ui";
 import { classifyException, cpuCopy, createDma, handlerFor, highestPriority, interruptTimeline, stepDma, type DmaState, type IoDevice } from "../../engines/arch/io";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { INTERRUPT_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const DEVICES: IoDevice[] = [
@@ -31,9 +32,10 @@ export function InterruptStudio() {
   const timeline = interruptTimeline([0x10, 0x11, 0x12, 0x13], 2, winner ? [winner.vector] : []);
   const programmed = cpuCopy([0, 0, 0, 0], [9, 8, 7], 1, 3);
   const fault = classifyException(kind);
+  const lesson = lessonOf(INTERRUPT_LESSONS, tab, "timeline");
 
   return (
-    <StudioFrame icon="step" title="Interrupts & DMA" description="A device request saves the PC, runs the vectored handler, and returns. DMA moves the block and interrupts once at the end." tabs={TABS} tab={tab} onTab={setTab} guide={["The saved PC is the instruction that had not yet run.", "Lower priority number wins when several devices are pending.", "DMA setup and completion are CPU cycles. The bytes in between are not."]} takeaways={["Hardware interrupts, exceptions, and the handler address are separate ideas.", "Programmed copy of three words costs six CPU cycles here.", "DMA of the same three words costs the setup cycle plus the completion interrupt."]}>
+    <StudioFrame icon="step" title="Interrupts & DMA" description="A device request saves the PC, runs the vectored handler, and returns. DMA moves the block and interrupts once at the end." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={winner ? `${winner.name} wins and vectors to ${winner.vector.toString(16)}.` : "No device is pending."} why={timeline.find((step) => step.phase === "save")?.note ?? "The timeline is idle."} notice="Exception recovery in this lab stops the instruction. It does not boot an operating system." /> : null}
       {tab === "timeline" ? (
         <Card title="User stream, then the handler">
@@ -45,7 +47,7 @@ export function InterruptStudio() {
       {tab === "priority" ? (
         <Card title="Pending requests">
           {devices.map((device) => (
-            <Button key={device.name} onClick={() => setDevices(devices.map((item) => item.name === device.name ? { ...item, pending: !item.pending } : item))}>{device.name} {device.pending ? "pending" : "quiet"} · priority {device.priority}</Button>
+            <Toggle key={device.name} on={device.pending} onChange={(next) => setDevices(devices.map((item) => item.name === device.name ? { ...item, pending: next } : item))} label={`${device.name} · P${device.priority}`} tone={device.pending ? "danger" : "neutral"} />
           ))}
           <p>Selected: {winner?.name ?? "none"}</p>
         </Card>

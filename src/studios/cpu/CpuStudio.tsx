@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
+import { Button, Card, ExplainBar, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 import { alu, shiftVector } from "../../engines/digital/arithmetic";
 import { fromUnsigned, toBinary, toUnsigned } from "../../engines/digital/vector";
 import { driveBus, type BusDriver } from "../../engines/cpu/buses";
@@ -8,6 +8,7 @@ import { extendBits, idleControls, manualDatapath, type ControlSignals } from ".
 import { createRegisterFile, writePort, type RegisterFile } from "../../engines/cpu/registerFile";
 import { createRegisters, loadRegister, popStack, pushStack, stepProgramCounter, type CpuRegisters } from "../../engines/cpu/registers";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { CPU_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 import { saveRecord } from "../../store/projects";
 
@@ -39,9 +40,10 @@ export function CpuStudio() {
   const [controls, setControls] = useState<ControlSignals>(idleControls());
   const { prefs } = usePrefs();
   const block = BLOCKS[selected] ?? BLOCKS.PC;
+  const lesson = lessonOf(CPU_LESSONS, tab, "overview");
 
   return (
-    <StudioFrame icon="project" title="CPU Building Blocks" description="Inspect the pieces that a later instruction cycle will use. This lab does not fetch or execute a program." tabs={TABS} tab={tab} onTab={setTab} guide={["The program counter changes only when you increment, load, or assert PCWrite.", "One bus driver is valid. Two drivers make the bus X.", "ALU flags are the same Z, N, C, and V as the adder studio."]} takeaways={["ALUSrc picks register B or an immediate.", "MAR points at memory. MDR carries the word.", "Registers update on the clock edge you step."]}>
+    <StudioFrame icon="project" title="CPU Building Blocks" description="Inspect the pieces that a later instruction cycle will use. This lab does not fetch or execute a program." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={note} why="Control signals choose the route. The ALU and register file are the same engines used in the earlier studios." notice="Nothing here decodes an instruction yet." /> : null}
       {tab === "overview" ? (
         <div className="grid cards-2">
@@ -139,8 +141,8 @@ function DatapathLab({ regs, setRegs, file, setFile, controls, setControls, setN
   return (
     <Card title="Manual control">
       <div className="row">
-        {keys.map((key) => <Button key={key} onClick={() => setControls({ ...controls, [key]: !controls[key] })}>{key} {controls[key] ? "1" : "0"}</Button>)}
-        <Button onClick={() => setControls({ ...controls, aluSrc: controls.aluSrc === 0 ? 1 : 0 })}>ALUSrc {controls.aluSrc}</Button>
+        {keys.map((key) => <Toggle key={key} on={controls[key]} onChange={(next) => setControls({ ...controls, [key]: next })} label={key} tone={key.includes("Write") ? "ok" : "primary"} />)}
+        <Toggle on={controls.aluSrc === 1} onChange={(next) => setControls({ ...controls, aluSrc: next ? 1 : 0 })} label="ALUSrc" tone="warn" />
       </div>
       <Button variant="primary" onClick={() => {
         const next = manualDatapath({ registers: regs, file, readA: 0, readB: 1, writeAddress: 2, immediate: 1, op: "ADD", controls, memory: {} });
@@ -163,7 +165,7 @@ function BusLab({ regs }: { regs: CpuRegisters }) {
   return (
     <Card title="Shared bus">
       {drivers.map((driver, index) => (
-        <Button key={driver.name} onClick={() => setDrivers(drivers.map((item, itemIndex) => itemIndex === index ? { ...item, enabled: !item.enabled, value: driver.name === "PC" ? regs.pc : item.value } : item))}>{driver.name} {driver.enabled ? "enabled" : "off"}</Button>
+        <Toggle key={driver.name} on={driver.enabled} onChange={(next) => setDrivers(drivers.map((item, itemIndex) => itemIndex === index ? { ...item, enabled: next, value: driver.name === "PC" ? regs.pc : item.value } : item))} label={driver.name} tone={index === 0 ? "ok" : "neutral"} />
       ))}
       <p>Bus = {String(bus.value)}. {bus.explain}</p>
     </Card>
@@ -179,7 +181,7 @@ function ExtendLab() {
     <div className="grid cards-2">
       <Card title="Extension">
         <input className="text-input" aria-label="Bits to extend" value={bits} onChange={(event) => setBits(event.target.value.replace(/[^01]/g, "").slice(0, 16))} />
-        <Button onClick={() => setSigned((value) => !value)}>{signed ? "Sign extend" : "Zero extend"}</Button>
+        <Toggle on={signed} onChange={setSigned} label="Sign extend" tone="warn" />
         <p>{extendBits(bits || "0", 16, signed)}</p>
       </Card>
       <Card title="Shifter">

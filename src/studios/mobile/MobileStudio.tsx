@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { CAMERA_FLOW, MEMORY_CLIENTS, MOBILE_BLOCKS, MOBILE_WORKS, autoMobile, thermal, type MobileBlock } from "../../engines/isaarch/mobile";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { Datapath } from "../shared/BitFields";
-import { Button, Card, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, Toggle } from "../../design-system/ui";
 
 export function MobileStudio() {
   const lab = useParams().labId ?? "overview";
@@ -61,10 +61,10 @@ export function MobileStudio() {
 
       {lab === "scheduler" ? (
         <Card title="Educational auto-schedule">
-          <Button onClick={() => setLat((v) => !v)}>Latency {lat ? "sensitive" : "tolerant"}</Button>
-          <Button onClick={() => setBg((v) => !v)}>{bg ? "Background" : "Foreground"}</Button>
-          <Button onClick={() => setPar((v) => !v)}>Parallel {par ? "yes" : "no"}</Button>
-          <Button onClick={() => setAi((v) => !v)}>AI {ai ? "yes" : "no"}</Button>
+          <Toggle on={lat} onChange={setLat} label="Latency sensitive" tone="warn" />
+          <Toggle on={bg} onChange={setBg} label="Background" tone="neutral" />
+          <Toggle on={par} onChange={setPar} label="Parallel" tone="ok" />
+          <Toggle on={ai} onChange={setAi} label="AI work" tone="primary" />
           <label className="field">Compute {compute}<input type="range" min={1} max={10} value={compute} onChange={(e) => setCompute(Number(e.target.value))} /></label>
           <p>Selected block: <strong>{auto}</strong></p>
         </Card>

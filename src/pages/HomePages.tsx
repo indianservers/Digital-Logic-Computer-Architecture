@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { STUDIOS } from "../data/curriculum";
+import { CATEGORIES, STUDIOS } from "../data/curriculum";
 import { MASTER_CONCEPTS } from "../data/master";
-import { Card } from "../design-system/ui";
+import { StudioMark } from "../design-system/studioMarks";
+import { Card, Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
 import type { StudioInfo } from "../data/curriculum";
 
@@ -16,38 +17,63 @@ function conceptCount(studio: StudioInfo): number {
   }).length;
 }
 
-export function HomePage() {
-  const active = STUDIOS.filter((studio) => studio.active);
-  const locked = STUDIOS.filter((studio) => !studio.active);
-  const { prefs } = usePrefs();
+function StudioCard({ studio }: { studio: StudioInfo }) {
+  const count = conceptCount(studio);
   return (
-    <div>
-      <div className="home-hero">
-        <div>
-          <div className="tiny">PHASES 1–8 · BIT THROUGH CUSTOM CPU AND SANDBOX</div>
+    <Link to={studio.path} className={`card studio-card tone-${studio.category}${studio.active ? "" : " is-locked"}`}>
+      <div className="studio-card-head">
+        <StudioMark id={studio.id} />
+        {studio.active ? <span className="pill ok">Open</span> : <span className="lock">Upcoming · Phase {studio.phase}</span>}
+      </div>
+      <strong>{studio.title}</strong>
+      <p className="muted" style={{ margin: 0 }}>{studio.summary}</p>
+      <span className="tiny">{studio.topics.slice(0, 3).join(" · ")}{count ? ` · ${count} concepts` : ""}</span>
+    </Link>
+  );
+}
+
+export function HomePage() {
+  const { prefs } = usePrefs();
+  const resume = prefs.lastPath.startsWith("/studios") || prefs.lastPath.startsWith("/architecture") ? prefs.lastPath : "/studios/number-systems";
+  const openCount = STUDIOS.filter((studio) => studio.active).length;
+  return (
+    <div className="home">
+      <section className="home-hero-card">
+        <div className="home-hero-copy">
+          <div className="tiny">LEARN · BUILD · THINK</div>
           <h1>Digital Logic & Computer Architecture</h1>
-          <p className="muted">Learn by changing the system. Toggle bits, edit expressions, and watch the result update.</p>
+          <p className="muted">Learn by changing the system. Toggle bits, edit expressions, and watch the circuit, CPU, or cache update.</p>
+          <div className="row" style={{ marginTop: 12 }}>
+            <Link to={resume} className="btn-primary">Continue</Link>
+            <Link to="/learn" className="btn-ghost">Learning Path</Link>
+          </div>
+          <div className="home-stats">
+            <div><b>{openCount}</b><span>open studios</span></div>
+            <div><b>9</b><span>categories</span></div>
+            <div><b>392</b><span>concepts</span></div>
+          </div>
         </div>
-        <Link to={prefs.lastPath.startsWith("/studios") || prefs.lastPath.startsWith("/architecture") ? prefs.lastPath : "/studios/number-systems"} className="btn-primary">Continue</Link>
-      </div>
-      <div className="grid cards-3">
-        {active.map((studio) => (
-          <Link key={studio.id} to={studio.path} className="card studio-card">
-            <div className="spread"><strong>{studio.title}</strong><span className="pill ok">Open</span></div>
-            <p className="muted" style={{ margin: 0 }}>{studio.summary}</p>
-            <span className="tiny">{studio.topics.slice(0, 3).join(" · ")}{conceptCount(studio) ? ` · ${conceptCount(studio)} concepts` : ""}</span>
-          </Link>
-        ))}
-      </div>
-      <h2 style={{ margin: "18px 0 10px", fontSize: 16 }}>Upcoming studios</h2>
-      <div className="grid cards-4">
-        {locked.map((studio) => (
-          <Link key={studio.id} to={studio.path} className="card studio-card">
-            <div className="spread"><strong>{studio.title}</strong><span className="lock">Phase {studio.phase}</span></div>
-            <p className="muted" style={{ margin: 0 }}>{studio.summary}</p>
-          </Link>
-        ))}
-      </div>
+        <img className="home-hero-art" src="/icons/home-hero.png" width={640} height={360} alt="Colorful LogicLab workshop with gates, bits, a CPU, and a bus" />
+      </section>
+      {CATEGORIES.map((category) => {
+        const items = STUDIOS.filter((studio) => studio.category === category.id);
+        const open = items.filter((studio) => studio.active).length;
+        return (
+          <section key={category.id} className={`home-cat tone-${category.id}`}>
+            <header className="home-cat-head">
+              <img src={category.art} width={72} height={72} alt="" />
+              <div>
+                <h2>{category.title}</h2>
+                <p className="muted">{category.blurb}</p>
+              </div>
+              <span className="pill">{open} open{items.length > open ? ` · ${items.length - open} upcoming` : ""}</span>
+            </header>
+            <div className="grid cards-3">
+              {items.map((studio) => <StudioCard key={studio.id} studio={studio} />)}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
@@ -57,16 +83,20 @@ export function StudiosPage() {
 }
 
 export function LearnPage() {
-  const phases = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
-    <div className="grid cards-2">
-      {phases.map((phase) => (
-        <Card key={phase} title={`Phase ${phase} path`}>
-          <ol>
-            {STUDIOS.filter((studio) => studio.phase === phase && studio.active).map((studio, index) => (
-              <li key={studio.id} style={{ marginBottom: 8 }}>
-                <Link to={studio.path}><strong>{index + 1}. {studio.title}</strong></Link>
-                <div className="tiny">{studio.summary}</div>
+    <div className="home">
+      <p className="muted" style={{ marginTop: 0 }}>The path is the same map as Home, grouped by topic. ALU and GPU studios stay locked until they are built.</p>
+      {CATEGORIES.map((category) => (
+        <Card key={category.id} title={category.title} action={<img src={category.art} width={40} height={40} alt="" style={{ borderRadius: 10 }} />}>
+          <p className="muted" style={{ marginTop: 0 }}>{category.blurb}</p>
+          <ol className="learn-list">
+            {STUDIOS.filter((studio) => studio.category === category.id).map((studio, index) => (
+              <li key={studio.id}>
+                <StudioMark id={studio.id} size={32} />
+                <div>
+                  <Link to={studio.path}><strong>{index + 1}. {studio.title}</strong></Link>
+                  <div className="tiny">{studio.active ? studio.summary : `Upcoming · Phase ${studio.phase}. ${studio.summary}`}</div>
+                </div>
               </li>
             ))}
           </ol>
@@ -82,41 +112,59 @@ export function LearnPage() {
 export const PRACTICE_COUNT = 11;
 
 const CHALLENGES = [
-  { id: "hex-7f", title: "Convert 7F to 8-bit binary", to: "/studios/number-systems?tab=convert" },
-  { id: "twos", title: "Show −5 in two's complement", to: "/studios/number-systems?tab=signed" },
-  { id: "hamming", title: "Correct a Hamming(7,4) bit", to: "/studios/number-systems?tab=hamming" },
-  { id: "absorb", title: "Simplify A + AB", to: "/studios/boolean-algebra?tab=simplify" },
-  { id: "xor", title: "Find when XOR is high", to: "/studios/logic-gates?tab=build" },
-  { id: "kmap", title: "Group a wraparound pair", to: "/studios/kmap?tab=map" },
-  { id: "adder-2", title: "Add two bits and read the carry", to: "/studios/adders?tab=half" },
-  { id: "mux-d3", title: "Route I3 through a multiplexer", to: "/studios/routing?tab=mux" },
-  { id: "jk-toggle", title: "Configure the JK flip-flop to toggle", to: "/studios/flip-flops?tab=jk" },
-  { id: "siso", title: "Shift 1011 through a SISO register", to: "/studios/registers?tab=siso" },
-  { id: "mod6", title: "Design a MOD-6 counter", to: "/studios/counters?tab=design" },
+  { id: "hex-7f", title: "Convert 7F to 8-bit binary", to: "/studios/number-systems?tab=convert", studio: "numbers" },
+  { id: "twos", title: "Show −5 in two's complement", to: "/studios/number-systems?tab=signed", studio: "numbers" },
+  { id: "hamming", title: "Correct a Hamming(7,4) bit", to: "/studios/number-systems?tab=hamming", studio: "numbers" },
+  { id: "absorb", title: "Simplify A + AB", to: "/studios/boolean-algebra?tab=simplify", studio: "boolean" },
+  { id: "xor", title: "Find when XOR is high", to: "/studios/logic-gates?tab=build", studio: "gates" },
+  { id: "kmap", title: "Group a wraparound pair", to: "/studios/kmap?tab=map", studio: "kmap" },
+  { id: "adder-2", title: "Add two bits and read the carry", to: "/studios/adders?tab=half", studio: "adders" },
+  { id: "mux-d3", title: "Route I3 through a multiplexer", to: "/studios/routing?tab=mux", studio: "mux" },
+  { id: "jk-toggle", title: "Configure the JK flip-flop to toggle", to: "/studios/flip-flops?tab=jk", studio: "latches" },
+  { id: "siso", title: "Shift 1011 through a SISO register", to: "/studios/registers?tab=siso", studio: "registers" },
+  { id: "mod6", title: "Design a MOD-6 counter", to: "/studios/counters?tab=design", studio: "counters" },
 ];
 
 export function PracticePage() {
   const { prefs } = usePrefs();
   return (
     <div className="grid cards-2">
-      {CHALLENGES.map((item) => (
-        <Link key={item.id} to={item.to} className="card studio-card">
-          <strong>{item.title}</strong>
-          <span className="tiny">{prefs.challenges.includes(item.id) ? "Completed on this device" : "Open the lab"}</span>
-        </Link>
-      ))}
+      {CHALLENGES.map((item) => {
+        const studio = STUDIOS.find((entry) => entry.id === item.studio);
+        return (
+          <Link key={item.id} to={item.to} className={`card studio-card tone-${studio?.category ?? "foundations"}`}>
+            <div className="studio-card-head">
+              <StudioMark id={item.studio} />
+              <span className="tiny">{prefs.challenges.includes(item.id) ? "Completed on this device" : "Open the lab"}</span>
+            </div>
+            <strong>{item.title}</strong>
+          </Link>
+        );
+      })}
     </div>
   );
 }
 
 export function ProjectsPage() {
+  const projects = [
+    { to: "/studios/number-systems?tab=hamming", title: "Hamming encoder", summary: "Encode 4 data bits, flip one, and repair it.", studio: "numbers" },
+    { to: "/studios/kmap?tab=circuit", title: "Shrink a circuit", summary: "Compare gate count before and after grouping.", studio: "kmap" },
+    { to: "/studios/logic-gates?tab=universal", title: "NAND-only NOT, AND, OR", summary: "Match a basic gate with only NAND.", studio: "gates" },
+    { to: "/studios/combinational", title: "Wire a half adder", summary: "Drop parts on the canvas and probe sum and carry.", studio: "combo" },
+    { to: "/studios/counters?tab=mod", title: "MOD-6 counter", summary: "Count 0 through 5, then return to 0.", studio: "counters" },
+  ];
   return (
     <div className="grid cards-3">
-      <Link className="card studio-card" to="/studios/number-systems?tab=hamming"><strong>Hamming encoder</strong><span className="muted">Encode 4 data bits, flip one, and repair it.</span></Link>
-      <Link className="card studio-card" to="/studios/kmap?tab=circuit"><strong>Shrink a circuit</strong><span className="muted">Compare gate count before and after grouping.</span></Link>
-      <Link className="card studio-card" to="/studios/logic-gates?tab=universal"><strong>NAND-only NOT, AND, OR</strong><span className="muted">Match a basic gate with only NAND.</span></Link>
-      <Link className="card studio-card" to="/studios/combinational"><strong>Wire a half adder</strong><span className="muted">Drop parts on the canvas and probe sum and carry.</span></Link>
-      <Link className="card studio-card" to="/studios/counters?tab=mod"><strong>MOD-6 counter</strong><span className="muted">Count 0 through 5, then return to 0.</span></Link>
+      {projects.map((item) => {
+        const studio = STUDIOS.find((entry) => entry.id === item.studio);
+        return (
+          <Link key={item.to} className={`card studio-card tone-${studio?.category ?? "foundations"}`} to={item.to}>
+            <StudioMark id={item.studio} />
+            <strong>{item.title}</strong>
+            <span className="muted">{item.summary}</span>
+          </Link>
+        );
+      })}
     </div>
   );
 }
@@ -157,8 +205,11 @@ export function NotesPage() {
       <Card title="Bookmarks">
         {STUDIOS.filter((studio) => studio.active).map((studio) => (
           <div key={studio.id} className="spread" style={{ marginBottom: 8 }}>
-            <Link to={studio.path}>{studio.title}</Link>
-            <button className="btn-ghost" onClick={() => toggleBookmark(studio.id)}>{prefs.bookmarks.includes(studio.id) ? "Saved" : "Save"}</button>
+            <Link to={studio.path} className="row" style={{ textDecoration: "none", color: "inherit" }}>
+              <StudioMark id={studio.id} size={28} />
+              {studio.title}
+            </Link>
+            <Toggle on={prefs.bookmarks.includes(studio.id)} onChange={() => toggleBookmark(studio.id)} label="Saved" tone="ok" />
           </div>
         ))}
       </Card>
@@ -171,10 +222,10 @@ export function UpcomingPage({ id }: { id: string }) {
   const { prefs, toggleBookmark } = usePrefs();
   if (!studio) return <Card title="Unknown studio"><p>That lab is not on the map.</p></Card>;
   return (
-    <Card title={studio.title}>
+    <Card title={studio.title} action={<StudioMark id={studio.id} />}>
       <p className="muted">Phase {studio.phase} is on the map, but this studio is not built yet. The shell, signal language, and logic engines stay the same when it opens.</p>
       <p>{studio.summary}</p>
-      <button className="btn-primary" onClick={() => toggleBookmark(studio.id)}>{prefs.bookmarks.includes(studio.id) ? "Bookmarked" : "Bookmark for later"}</button>
+      <Toggle on={prefs.bookmarks.includes(studio.id)} onChange={() => toggleBookmark(studio.id)} label="Bookmark" tone="ok" />
     </Card>
   );
 }

@@ -15,12 +15,46 @@ const TABS = [
   { id: "meta", label: "Metastability" },
 ];
 
+const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { title: string; body: string } }> = {
+  clock: {
+    theory: { title: "Clock frequency and duty", body: "Period is 1 / frequency. Duty cycle is high time over period. This waveform is simulated time so you can mark edges; it is not a lab oscillator." },
+    guide: ["Set frequency and read the period.", "Change duty and see the high pulse width.", "Move the cursor along the samples.", "Open Edges to name rise versus fall."],
+    takeaways: ["Period is the reciprocal of frequency.", "Duty cycle is high time over period.", "Simulated nanoseconds, not a wall-clock wait."],
+  },
+  edge: {
+    theory: { title: "Clock edges", body: "A rising edge is 0→1. A falling edge is 1→0. Flip-flops in this curriculum sample on an edge you choose. The event is the transition, not the level that follows." },
+    guide: ["Mark a rising edge on the waveform.", "Compare rise and fall lists.", "Move phase and see edges slide.", "Remember: capture happens at the edge, not during the high pulse."],
+    takeaways: ["Rise is 0→1; fall is 1→0.", "Edge-triggered storage ignores the level between edges.", "Phase slides the whole pattern."],
+  },
+  setup: {
+    theory: { title: "Setup time", body: "Setup is how long D must be stable before the capturing edge. If D arrives too late, the sampled value is uncertain (X in this lab). Setup is a before-the-edge window." },
+    guide: ["Place D so it settles before the edge.", "Move D later until the capture is X.", "Read the setup window on the waveform.", "Compare with the hold tab: that window is after the edge."],
+    takeaways: ["Setup is before the capturing edge.", "A late D makes the capture uncertain.", "X here means uncertain, not a transistor waveform."],
+  },
+  hold: {
+    theory: { title: "Hold time", body: "Hold is how long D must remain stable after the capturing edge. Changing D too soon can corrupt the new state. Hold is an after-the-edge window." },
+    guide: ["Keep D stable past the edge.", "Pull D back too early and read X.", "Contrast with setup on the previous tab.", "Think of hold as 'don't let go yet'."],
+    takeaways: ["Hold is after the capturing edge.", "An early D change makes the capture uncertain.", "Setup and hold together are the aperture around the edge."],
+  },
+  delay: {
+    theory: { title: "Propagation through combinational logic", body: "The next flip-flop must not sample until the combinational path from the previous edge has settled. That path delay plus setup must fit in one period." },
+    guide: ["Change the delay and watch when Y becomes valid.", "See the next edge arrive before Y settles — a teaching setup fail.", "Relate period ≥ delay + setup.", "This is the same delay idea as the gate studio, now next to a clock."],
+    takeaways: ["Period must cover logic delay plus setup.", "A too-fast clock samples stale or uncertain data.", "Delay here is a teaching number, not a cell library."],
+  },
+  meta: {
+    theory: { title: "Metastability", body: "If D is changing inside the aperture, the flip-flop can sit between 0 and 1 for a while. This lab shows that as X and a note — it is not a SPICE tail. Synchronizers are extra stages to make that rare." },
+    guide: ["Aim D at the edge and read the metastable note.", "Move D clearly before or after to get a clean 0 or 1.", "Treat X as 'do not trust this sample'.", "Two stages (a synchronizer) are the usual teaching fix."],
+    takeaways: ["Sampling a moving D can be metastable.", "X means the value is not a legal 0 or 1 yet.", "This is a concept demo, not a MTBF calculator."],
+  },
+};
+
 export function TimingStudio() {
   const [tab, setTab] = useStudioTab(TABS, "clock");
   const [resetKey, setResetKey] = useState(0);
+  const lesson = LESSONS[tab] ?? LESSONS.clock!;
   return (
-    <StudioFrame icon="bolt" title="Digital Timing & Clocking" description="Frequency, duty, and the windows around a clock edge. Simulated time, not a wall-clock wait." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Set frequency and read the period", "Mark a rising edge", "Drag D into the setup window", "See X when the capture is uncertain"]} takeaways={["Period is the reciprocal of frequency", "Duty cycle is high time over period", "Setup is before the edge. Hold is after it.", "X here means uncertain, not a transistor waveform"]}>
-      <div key={resetKey}>{tab === "clock" || tab === "edge" ? <ClockLab edgesOnly={tab === "edge"} /> : null}{tab === "setup" ? <WindowLab kind="setup" /> : null}{tab === "hold" ? <WindowLab kind="hold" /> : null}{tab === "delay" ? <DelayLab /> : null}{tab === "meta" ? <MetaLab /> : null}</div>
+    <StudioFrame icon="bolt" title="Digital Timing & Clocking" description="Frequency, duty, and the windows around a clock edge. Simulated time, not a wall-clock wait." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
+      <div key={`${tab}-${resetKey}`}>{tab === "clock" || tab === "edge" ? <ClockLab edgesOnly={tab === "edge"} /> : null}{tab === "setup" ? <WindowLab kind="setup" /> : null}{tab === "hold" ? <WindowLab kind="hold" /> : null}{tab === "delay" ? <DelayLab /> : null}{tab === "meta" ? <MetaLab /> : null}</div>
     </StudioFrame>
   );
 }

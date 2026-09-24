@@ -1,224 +1,410 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
-import { encodeStates } from "../../engines/fsm/encoding";
+import { Link, useSearchParams } from "react-router-dom";
+import { Button, Segmented, Toggle } from "../../design-system/ui";
+import { Icon } from "../../design-system/icons";
+import { encodeStates, type EncodingKind } from "../../engines/fsm/encoding";
 import { FSM_EXAMPLES } from "../../engines/fsm/examples";
 import { minimizeMachine } from "../../engines/fsm/minimization";
-import { parseStream, runSequence, stepMachine } from "../../engines/fsm/simulator";
-import { addState, addTransition, blankMachine, moveState, removeState, removeTransition, renameState, setInitial, setOutput, stateById, symbolsOf, updateTransition, type FsmMachine } from "../../engines/fsm/stateMachine";
+import { outputOf, parseStream, runSequence, stepMachine } from "../../engines/fsm/simulator";
+import { addState, addTransition, moveState, removeState, removeTransition, renameState, setInitial, setOutput, stateById, type FsmMachine } from "../../engines/fsm/stateMachine";
 import { synthesizeD } from "../../engines/fsm/synthesis";
 import { chosenTransition, conditionMatches } from "../../engines/fsm/transition";
-import { StudioFrame } from "../../layout/StudioFrame";
-import { usePrefs } from "../../store/prefs";
-import { saveRecord } from "../../store/projects";
 
-const TABS = [
+type Page = "studio" | "diagram" | "table" | "minimize" | "sequence" | "examples";
+
+const PAGES: Array<{ id: Page; label: string }> = [
+  { id: "studio", label: "FSM Studio" },
   { id: "diagram", label: "State Diagram" },
   { id: "table", label: "State Table" },
-  { id: "encoding", label: "Encoding" },
-  { id: "minimize", label: "Minimization" },
-  { id: "examples", label: "Examples" },
-  { id: "circuit", label: "Synthesis" },
+  { id: "minimize", label: "State Minimization" },
+  { id: "sequence", label: "Sequence Simulation" },
+  { id: "examples", label: "More examples" },
 ];
 
+const LEGACY: Record<string, Page> = {
+  encoding: "studio",
+  circuit: "studio",
+  diagram: "diagram",
+};
+
+const CONCEPTS = [
+  "What is a finite state machine?",
+  "Moore vs. Mealy machines",
+  "State diagrams and state tables",
+  "State minimization",
+  "State encoding techniques",
+];
+
+const LABS = [
+  { title: "Traffic Light Controller", to: "/studios/fsm?tab=examples" },
+  { title: "Vending Machine", to: "/studios/fsm?tab=examples" },
+  { title: "Sequence Detector", to: "/studios/fsm?tab=examples" },
+  { title: "Elevator Controller", to: "/studios/fsm?tab=examples" },
+  { title: "FSM with Moore vs. Mealy", to: "/studios/fsm?tab=studio" },
+];
+
+function demoMachine(): FsmMachine {
+  return {
+    name: "Sequence sketch",
+    kind: "moore",
+    inputs: ["x"],
+    states: [
+      { id: "s0", name: "S0", x: 90, y: 92, output: "0" },
+      { id: "s1", name: "S1", x: 210, y: 92, output: "0" },
+      { id: "s2", name: "S2", x: 330, y: 92, output: "0" },
+      { id: "s3", name: "S3", x: 450, y: 92, output: "1" },
+    ],
+    transitions: [
+      { id: "a", from: "s0", to: "s0", when: "0", output: "0" },
+      { id: "b", from: "s0", to: "s1", when: "1", output: "0" },
+      { id: "c", from: "s1", to: "s2", when: "0", output: "0" },
+      { id: "d", from: "s1", to: "s2", when: "1", output: "0" },
+      { id: "e", from: "s2", to: "s2", when: "0", output: "0" },
+      { id: "f", from: "s2", to: "s3", when: "1", output: "1" },
+      { id: "g", from: "s3", to: "s0", when: "0", output: "0" },
+      { id: "h", from: "s3", to: "s3", when: "1", output: "1" },
+    ],
+    initialId: "s0",
+  };
+}
+
 export function FsmStudio() {
-  const [tab, setTab] = useStudioTab(TABS, "diagram");
-  const [machine, setMachine] = useState<FsmMachine>(blankMachine);
-  const [current, setCurrent] = useState(machine.initialId);
-  const [selected, setSelected] = useState(machine.initialId);
-  const [stream, setStream] = useState("1 0 1 1 0 1");
+  const [params, setParams] = useSearchParams();
+  const raw = params.get("tab") ?? "studio";
+  const page: Page = PAGES.some((item) => item.id === raw) ? raw as Page : LEGACY[raw] ?? "studio";
+  const [machine, setMachine] = useState<FsmMachine>(demoMachine);
+  const [selected, setSelected] = useState("s0");
+  const [current, setCurrent] = useState("s0");
+  const [stream, setStream] = useState("1 0 1 1 0 0 1");
   const [index, setIndex] = useState(0);
-  const [last, setLast] = useState("Reset to the initial state.");
   const [playing, setPlaying] = useState(false);
-  const { prefs } = usePrefs();
-  const symbols = useMemo(() => columnSymbols(machine), [machine]);
+  const [speed, setSpeed] = useState(500);
+  const [showSeq, setShowSeq] = useState(true);
+  const [highlight, setHighlight] = useState(true);
+  const [alphabet, setAlphabet] = useState("0, 1");
+  const [notes, setNotes] = useState<Record<string, string>>({ s0: "Start state" });
+  const [zoom, setZoom] = useState(1);
+  const [encoding, setEncoding] = useState<EncodingKind>("binary");
+  const [hint, setHint] = useState("");
+
+  const symbols = alphabet.split(",").map((item) => item.trim()).filter(Boolean);
   const active = stateById(machine, current);
+  const picked = stateById(machine, selected) ?? active;
+  const values = parseStream(stream);
+  const nextSymbol = values[index] ?? symbols[1] ?? "1";
+  const preview = stepMachine(machine, current, nextSymbol);
+  const history = useMemo(() => runSequence(machine, values.slice(0, index), machine.initialId), [machine, values, index]);
+  const encoded = useMemo(() => encodeStates(machine, encoding), [machine, encoding]);
 
   useEffect(() => {
     if (!playing) return undefined;
     const timer = window.setInterval(() => {
-      const values = parseStream(stream);
       setIndex((cursor) => {
-        const symbol = values[cursor];
+        const symbol = parseStream(stream)[cursor];
         if (!symbol) {
           setPlaying(false);
           return cursor;
         }
-        setCurrent((state) => {
-          const step = stepMachine(machine, state, symbol);
-          setLast(step.explain);
-          return step.toId;
-        });
+        setCurrent((state) => stepMachine(machine, state, symbol).toId);
         return cursor + 1;
       });
-    }, 700);
+    }, speed);
     return () => window.clearInterval(timer);
-  }, [playing, stream, machine]);
+  }, [playing, stream, machine, speed]);
+
+  function go(next: Page) {
+    const query = new URLSearchParams(params);
+    query.set("tab", next);
+    setParams(query);
+  }
+
+  function load(next: FsmMachine) {
+    setMachine(next);
+    setSelected(next.initialId);
+    setCurrent(next.initialId);
+    setIndex(0);
+    setPlaying(false);
+  }
 
   function reset() {
     setPlaying(false);
     setCurrent(machine.initialId);
     setIndex(0);
-    setLast("Reset to the initial state. Moore output follows the current state; Mealy output waits for an input.");
   }
 
   function step() {
-    const symbol = parseStream(stream)[index];
+    const symbol = values[index];
     if (!symbol) return;
-    const moved = stepMachine(machine, current, symbol);
-    setCurrent(moved.toId);
-    setLast(moved.explain);
+    setCurrent(stepMachine(machine, current, symbol).toId);
     setIndex(index + 1);
   }
 
+  const visited = [machine.initialId, ...history.map((step) => step.toId)];
+  const output = outputOf(machine, current, machine.kind === "mealy" ? nextSymbol : null);
+
   return (
-    <StudioFrame
-      icon="map"
-      title="Finite State Machines"
-      description="Draw states, label transitions, and step an input stream through a Moore or Mealy machine."
-      tabs={TABS}
-      tab={tab}
-      onTab={setTab}
-      onReset={() => { setMachine(blankMachine()); reset(); }}
-      guide={["A Moore output belongs to the state.", "A Mealy output belongs to the transition.", "Minimization merges states with the same future behavior."]}
-      takeaways={["Binary encoding uses fewer flip-flops.", "One-hot uses one flip-flop per state.", "D synthesis turns the next-state table into equations."]}
-    >
-      {prefs.explain ? <ExplainBar what={last} why={machine.kind === "moore" ? "The output is a function of the state you are in after the clock." : "The output is a function of the state and the input that caused the transition."} notice="The highlighted edge is the transition that matched." /> : null}
-      {tab === "diagram" ? (
-        <div className="builder">
-          <Card title="Machine">
-            <Segmented options={["Moore", "Mealy"]} value={machine.kind === "moore" ? "Moore" : "Mealy"} onChange={(value) => setMachine({ ...machine, kind: value === "Moore" ? "moore" : "mealy" })} />
-            <div className="row" style={{ marginTop: 8 }}>
-              <Button onClick={() => setMachine(addState(machine))}>Add state</Button>
-              <Button onClick={() => { setMachine(removeState(machine, selected)); }}>Delete</Button>
-              <Button onClick={() => setMachine(setInitial(machine, selected))}>Initial</Button>
+    <div className="fsmx">
+      <header className="fsmx-head">
+        <div className="lgx-title">
+          <span className="lgx-mark"><Icon name="map" size={22} /></span>
+          <div>
+            <h1>Finite State Machines <span className="fsmx-badge">17 concepts</span></h1>
+            <p>Design, simulate, and analyze finite state machines. Build intuition with interactive visualizations and real-world examples.</p>
+          </div>
+        </div>
+        <button className="lgx-check" type="button" onClick={() => go("studio")}>Start Learning</button>
+      </header>
+      <div className="fsmx-stats">
+        <span><b>6</b> Interactive Labs</span>
+        <span><b>17</b> Concepts</span>
+        <span><b>8</b> Practice Problems</span>
+        <span><b>12</b> Real-World Examples</span>
+      </div>
+      <div className="lgx-tabs" role="tablist">
+        {PAGES.map((item) => (
+          <button key={item.id} role="tab" aria-selected={page === item.id} className={page === item.id ? "on" : ""} onClick={() => go(item.id)}>{item.label}</button>
+        ))}
+      </div>
+
+      {page === "table" ? <TablePage machine={machine} symbols={symbols} current={current} onChange={setMachine} /> : null}
+      {page === "minimize" ? <MinPage machine={machine} onUse={load} /> : null}
+      {page === "examples" ? <ExamplesPage onUse={(next) => { load(next); go("studio"); }} /> : null}
+      {page === "studio" || page === "diagram" || page === "sequence" ? (
+        <div className="fsmx-grid">
+          <section className="lgx-card fsmx-diagram">
+            <div className="lgx-card-bar">
+              <h3>State Diagram</h3>
+              <div className="row">
+                <Segmented options={["Moore", "Mealy"]} value={machine.kind === "moore" ? "Moore" : "Mealy"} onChange={(value) => setMachine({ ...machine, kind: value === "Moore" ? "moore" : "mealy" })} />
+                <button type="button" className="fsmx-icon" aria-label="Zoom out" onClick={() => setZoom((value) => Math.max(0.7, value - 0.1))}>−</button>
+                <button type="button" className="fsmx-icon" aria-label="Zoom in" onClick={() => setZoom((value) => Math.min(1.6, value + 0.1))}>+</button>
+                <button type="button" className="fsmx-icon" onClick={() => load(demoMachine())}>Clear</button>
+              </div>
             </div>
-            <label className="tiny">Name<input className="text-input" value={stateById(machine, selected)?.name ?? ""} onChange={(event) => setMachine(renameState(machine, selected, event.target.value))} /></label>
-            <label className="tiny">Moore output<input className="text-input" value={stateById(machine, selected)?.output ?? ""} onChange={(event) => setMachine(setOutput(machine, selected, event.target.value))} /></label>
-            <Button onClick={() => void saveRecord({ id: `fsm-${machine.name}`, kind: "fsm", name: machine.name, data: JSON.stringify(machine), updated: Date.now() })}>Save FSM</Button>
-          </Card>
-          <Card title={machine.name}>
-            <Diagram machine={machine} current={current} selected={selected} onSelect={setSelected} onMove={(id, x, y) => setMachine(moveState(machine, id, x, y))} />
-          </Card>
-          <Card title="Step">
-            <label className="tiny">Input stream<input className="text-input" aria-label="Input stream" value={stream} onChange={(event) => { setStream(event.target.value); setIndex(0); }} /></label>
+            <p className="tiny">Build and simulate your finite state machine. Click a state or transition to edit.</p>
+            <Diagram machine={machine} current={highlight ? current : ""} selected={selected} zoom={zoom} onSelect={setSelected} onMove={(id, x, y) => setMachine(moveState(machine, id, x, y))} />
+          </section>
+
+          <section className="lgx-card">
+            <h3>State Editor</h3>
+            <p className="tiny">Select a state to edit its properties.</p>
+            <label>State Name<input aria-label="State name" value={picked?.name ?? ""} onChange={(event) => picked && setMachine(renameState(machine, picked.id, event.target.value))} /></label>
+            <label>Output ({machine.kind === "moore" ? "Moore" : "Mealy"})<input aria-label="State output" value={picked?.output ?? ""} onChange={(event) => picked && setMachine(setOutput(machine, picked.id, event.target.value))} /></label>
+            <label>Description<textarea aria-label="State description" rows={2} value={picked ? notes[picked.id] ?? "" : ""} onChange={(event) => picked && setNotes({ ...notes, [picked.id]: event.target.value })} /></label>
+            <div className="spread">
+              <span>Set as Start State</span>
+              <Toggle on={picked?.id === machine.initialId} onChange={() => picked && setMachine(setInitial(machine, picked.id))} label="Start state" showLabel={false} />
+            </div>
             <div className="row">
-              <Button variant="primary" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Play"}</Button>
+              <Button onClick={() => picked && setMachine(removeState(machine, picked.id))}><Icon name="reset" size={14} /> Delete State</Button>
+              <Button variant="primary" onClick={() => {
+                const next = addState(machine, `${picked?.name ?? "S"} copy`);
+                const added = next.states[next.states.length - 1];
+                if (added && picked) setMachine(setOutput(next, added.id, picked.output));
+                if (added) setSelected(added.id);
+              }}>Duplicate</Button>
+            </div>
+          </section>
+
+          <section className="lgx-card">
+            <h3>Input Alphabet</h3>
+            <p className="tiny">Define the input symbols for the FSM.</p>
+            <label>Inputs (comma separated)<input aria-label="Input alphabet" value={alphabet} onChange={(event) => setAlphabet(event.target.value)} /></label>
+            <div className="fsmx-quick">
+              {["0, 1", "0, 1, X"].map((item) => <button key={item} type="button" className={alphabet === item ? "on" : ""} onClick={() => setAlphabet(item)}>{item === "0, 1, X" ? "0 1 X" : item.replace(", ", "")}</button>)}
+              <button type="button" onClick={() => setAlphabet("0, 1")}>Custom</button>
+            </div>
+            <h3>Output Display</h3>
+            <p className="tiny">View the output for the current state ({machine.kind === "moore" ? "Moore" : "transition (Mealy)"}).</p>
+            <div className="fsmx-readout"><span>Output</span><b>{output}</b></div>
+          </section>
+
+          <section className="lgx-card">
+            <h3>Simulation Controls</h3>
+            <p className="tiny">Run, step through, or reset the simulation.</p>
+            <div className="row">
+              <button className="lgx-play" type="button" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Run"}</button>
               <Button onClick={step}>Step</Button>
               <Button onClick={reset}>Reset</Button>
             </div>
-            <Metric label="Current" value={active?.name ?? "—"} />
-            <Metric label="Output" value={active && machine.kind === "moore" ? active.output : "—"} />
-            <p className="tiny">Next symbol: {parseStream(stream)[index] ?? "end"}</p>
-          </Card>
+            <label className="lgx-slider">Simulation Speed
+              <input aria-label="Simulation speed" type="range" min={150} max={1000} step={50} value={speed} onChange={(event) => setSpeed(Number(event.target.value))} />
+              <span>{speed} ms</span>
+            </label>
+            <Toggle on={showSeq} onChange={setShowSeq} label="Show input sequence" />
+            <Toggle on={highlight} onChange={setHighlight} label="Highlight active state" />
+          </section>
+
+          <section className="lgx-card">
+            <h3>Input Sequence</h3>
+            <p className="tiny">Provide an input string to simulate the FSM.</p>
+            {showSeq ? <input aria-label="Input sequence" value={stream} onChange={(event) => { setStream(event.target.value); setIndex(0); setCurrent(machine.initialId); }} /> : null}
+            <div className="fsmx-quick">
+              {["1010", "1100", "0010"].map((item) => <button key={item} type="button" onClick={() => { setStream(item.split("").join(" ")); reset(); }}>{item}</button>)}
+              <button type="button" onClick={() => setStream("1 0 1 1 0 0 1")}>Custom</button>
+              <button className="lgx-play" type="button" onClick={step}>Play</button>
+            </div>
+          </section>
+
+          <section className="lgx-card">
+            <h3>Transition Table</h3>
+            <p className="tiny">State transitions and outputs.</p>
+            <table className="lgx-table">
+              <thead><tr><th>Present State</th>{symbols.map((symbol) => <th key={symbol}>Input {symbol}</th>)}<th>Output</th></tr></thead>
+              <tbody>
+                {machine.states.map((state) => (
+                  <tr key={state.id} className={state.id === current ? "on" : ""}>
+                    <td>{state.name}</td>
+                    {symbols.map((symbol) => <td key={symbol}>{stateById(machine, chosenTransition(machine, state.id, symbol)?.to ?? "")?.name ?? "—"}</td>)}
+                    <td>{state.output}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section className="lgx-card">
+            <h3>Current State</h3>
+            <p className="tiny">Live simulation status.</p>
+            <div className="fsmx-readout"><span>Current State</span><b>{active?.name ?? "—"}</b></div>
+            <div className="fsmx-readout"><span>Next State (for input = {nextSymbol})</span><b>{preview.toName}</b></div>
+            <div className="fsmx-readout"><span>Output</span><b>{output}</b></div>
+          </section>
+
+          <section className="lgx-card fsmx-wide">
+            <h3>State Sequence (Simulation Timeline)</h3>
+            <p className="tiny">Visualize the states visited during simulation.</p>
+            <div className="fsmx-time">
+              {visited.map((id, stepIndex) => {
+                const state = stateById(machine, id);
+                return (
+                  <div key={`${id}-${stepIndex}`} className={id === current && stepIndex === visited.length - 1 ? "on" : ""}>
+                    <b>{state?.name ?? id}</b>
+                    <small>{state?.output ?? ""}</small>
+                    <span>{stepIndex}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="lgx-card">
+            <h3>State Encoding</h3>
+            <p className="tiny">Choose an encoding scheme for implementation.</p>
+            <label>Encoding Scheme
+              <select aria-label="Encoding scheme" value={encoding} onChange={(event) => setEncoding(event.target.value as EncodingKind)}>
+                <option value="binary">Binary (Auto)</option>
+                <option value="one-hot">One-hot</option>
+              </select>
+            </label>
+            <p className="tiny">Number of Bits {encoded.flipFlops}</p>
+            <div className="fsmx-codes">
+              {encoded.states.map((state) => <span key={state.id}><b>{state.name}</b> {state.code}</span>)}
+            </div>
+          </section>
         </div>
       ) : null}
-      {tab === "table" ? <StateTable machine={machine} symbols={symbols} onChange={setMachine} /> : null}
-      {tab === "encoding" ? <EncodingView machine={machine} /> : null}
-      {tab === "minimize" ? <MinimizeView machine={machine} onUse={setMachine} /> : null}
-      {tab === "examples" ? <ExamplesView onUse={(next) => { setMachine(next); setCurrent(next.initialId); setSelected(next.initialId); setIndex(0); }} /> : null}
-      {tab === "circuit" ? <SynthesisView machine={machine} /> : null}
-      {tab === "diagram" ? <TransitionEditor machine={machine} onChange={setMachine} /> : null}
-    </StudioFrame>
+
+      <div className="fsmx-foot">
+        <section className="lgx-card">
+          <h3>Key Concepts ({CONCEPTS.length})</h3>
+          <ol>{CONCEPTS.map((item, index) => <li key={item}>{index + 1}. {item}</li>)}</ol>
+        </section>
+        <section className="lgx-card">
+          <h3>Interactive Labs ({LABS.length})</h3>
+          <ul>{LABS.map((item) => <li key={item.title}><Link to={item.to}>{item.title}</Link></li>)}</ul>
+        </section>
+        <section className="lgx-card">
+          <h3>Real-World Applications</h3>
+          <ul>
+            <li>Traffic Lights — control traffic flow with a finite state machine</li>
+            <li>Vending Machines — handle product selection and dispensing</li>
+            <li>Elevator Systems — manage floor requests and door control</li>
+            <li>Input Pattern Detection — detect sequences in digital systems</li>
+          </ul>
+        </section>
+        <section className="lgx-card">
+          <div className="spread"><h3>Practice Challenge</h3><button className="lgx-hint" type="button" onClick={() => { load(FSM_EXAMPLES.find((item) => item.id === "light")?.build() ?? demoMachine()); go("studio"); }}>Try it</button></div>
+          <p>Design a traffic light controller with four states: North-South Green, Yellow, and East-West Green. Simulate it and verify the timing sequence.</p>
+          <button className="lgx-check" type="button" onClick={() => setHint(hint ? "" : "Load the traffic example, then Step. Each 1 advances NS Green → NS Yellow → EW Green → EW Yellow.")}>{hint ? "Hide hint" : "View hint"}</button>
+          {hint ? <p className="tiny">{hint}</p> : null}
+        </section>
+      </div>
+    </div>
   );
 }
 
-function columnSymbols(machine: FsmMachine): string[] {
-  const binary = symbolsOf(machine);
-  const used = [...new Set(machine.transitions.map((edge) => edge.when))];
-  if (used.every((item) => binary.includes(item))) return binary;
-  return used.length > 0 ? used : binary;
-}
-
-function Diagram({ machine, current, selected, onSelect, onMove }: {
+function Diagram({ machine, current, selected, zoom, onSelect, onMove }: {
   machine: FsmMachine;
   current: string;
   selected: string;
+  zoom: number;
   onSelect: (id: string) => void;
   onMove: (id: string, x: number, y: number) => void;
 }) {
   const [drag, setDrag] = useState<{ id: string; dx: number; dy: number } | null>(null);
+  const [edge, setEdge] = useState<string | null>(null);
   return (
-    <svg className="canvas" viewBox="0 0 640 320" role="img" aria-label="State diagram"
+    <svg className="fsmx-svg" viewBox="0 0 560 210" role="img" aria-label="State diagram" style={{ transform: `scale(${zoom})` }}
       onPointerMove={(event) => {
         if (!drag) return;
         const rect = event.currentTarget.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width) * 640 - drag.dx;
-        const y = ((event.clientY - rect.top) / rect.height) * 320 - drag.dy;
-        onMove(drag.id, Math.max(36, Math.min(600, x)), Math.max(36, Math.min(280, y)));
+        const x = ((event.clientX - rect.left) / rect.width) * 560 - drag.dx;
+        const y = ((event.clientY - rect.top) / rect.height) * 210 - drag.dy;
+        onMove(drag.id, Math.max(40, Math.min(520, x)), Math.max(40, Math.min(170, y)));
       }}
       onPointerUp={() => setDrag(null)}
     >
-      {machine.transitions.map((edge) => {
-        const from = stateById(machine, edge.from);
-        const to = stateById(machine, edge.to);
+      <defs><marker id="fsm-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6" fill="#60a5fa" /></marker></defs>
+      {stateById(machine, machine.initialId) ? <path d={`M 16 ${stateById(machine, machine.initialId)?.y ?? 90} H ${(stateById(machine, machine.initialId)?.x ?? 90) - 28}`} stroke="#60a5fa" markerEnd="url(#fsm-arrow)" fill="none" /> : null}
+      <text x="8" y={(stateById(machine, machine.initialId)?.y ?? 90) - 8} fontSize="11" fill="#64748b">Start</text>
+      {machine.transitions.map((item) => {
+        const from = stateById(machine, item.from);
+        const to = stateById(machine, item.to);
         if (!from || !to) return null;
         const loop = from.id === to.id;
-        const x2 = loop ? from.x + 28 : to.x;
-        const y2 = loop ? from.y - 36 : to.y;
-        const active = current === from.id;
+        const midX = (from.x + to.x) / 2;
+        const midY = (from.y + to.y) / 2 - (from.y === to.y ? 16 : 0);
+        const path = loop
+          ? `M ${from.x - 8} ${from.y - 22} C ${from.x - 36} ${from.y - 70}, ${from.x + 36} ${from.y - 70}, ${from.x + 12} ${from.y - 22}`
+          : `M ${from.x + 26} ${from.y} Q ${midX} ${midY - 10} ${to.x - 26} ${to.y}`;
         return (
-          <g key={edge.id}>
-            <path d={loop ? `M ${from.x - 10} ${from.y - 24} C ${from.x - 40} ${from.y - 80}, ${from.x + 40} ${from.y - 80}, ${from.x + 16} ${from.y - 24}` : `M ${from.x} ${from.y} L ${x2} ${y2}`} fill="none" stroke={active ? "#2F6FED" : "#8AA0BD"} strokeWidth={active ? 3 : 1.5} markerEnd="url(#arrow)" />
-            <text x={(from.x + x2) / 2} y={(from.y + y2) / 2 - 6} textAnchor="middle" fontSize="11" fontWeight="700">{edge.when}{machine.kind === "mealy" ? ` / ${edge.output}` : ""}</text>
+          <g key={item.id} onClick={() => { setEdge(item.id); onSelect(from.id); }}>
+            <path d={path} fill="none" stroke={edge === item.id || current === from.id ? "#2563eb" : "#93c5fd"} strokeWidth={edge === item.id ? 2.5 : 1.6} markerEnd="url(#fsm-arrow)" />
+            <text x={loop ? from.x : midX} y={loop ? from.y - 62 : midY - 8} textAnchor="middle" fontSize="12" fontWeight="700" fill="#2563eb">{item.when}{machine.kind === "mealy" ? `/${item.output}` : ""}</text>
           </g>
         );
       })}
       {machine.states.map((state) => (
         <g key={state.id} onPointerDown={(event) => {
-          const rect = (event.currentTarget.ownerSVGElement as SVGSVGElement).getBoundingClientRect();
-          const x = ((event.clientX - rect.left) / rect.width) * 640;
-          const y = ((event.clientY - rect.top) / rect.height) * 320;
+          const svg = event.currentTarget.ownerSVGElement;
+          if (!svg) return;
+          const rect = svg.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 560;
+          const y = ((event.clientY - rect.top) / rect.height) * 210;
           setDrag({ id: state.id, dx: x - state.x, dy: y - state.y });
           onSelect(state.id);
         }}>
-          {state.id === current ? <circle cx={state.x} cy={state.y} r="38" fill="none" stroke="#2F6FED" strokeWidth="3" strokeDasharray="4 3" /> : null}
-          <rect x={state.x - 32} y={state.y - 24} width="64" height="48" rx="14" fill={state.id === selected ? "#E8F0FE" : "white"} stroke={state.id === machine.initialId ? "#2F6FED" : "#C5D2E4"} strokeWidth={state.id === machine.initialId ? 3 : 1.5} />
+          <circle cx={state.x} cy={state.y} r="26" fill={state.id === current ? "#eff6ff" : "white"} stroke={state.id === selected || state.id === machine.initialId ? "#2563eb" : "#93c5fd"} strokeWidth={state.id === selected ? 3 : 1.6} />
+          {state.id === machine.initialId ? <circle cx={state.x} cy={state.y} r="30" fill="none" stroke="#2563eb" /> : null}
           <text x={state.x} y={state.y - 2} textAnchor="middle" fontSize="13" fontWeight="800">{state.name}</text>
-          <text x={state.x} y={state.y + 14} textAnchor="middle" fontSize="10" fill="#5C6F89">{machine.kind === "moore" ? state.output : "Mealy"}</text>
+          <text x={state.x} y={state.y + 14} textAnchor="middle" fontSize="11" fill="#64748b">{machine.kind === "moore" ? state.output : "·"}</text>
         </g>
       ))}
-      <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#8AA0BD" /></marker></defs>
     </svg>
   );
 }
 
-function TransitionEditor({ machine, onChange }: { machine: FsmMachine; onChange: (machine: FsmMachine) => void }) {
-  const [from, setFrom] = useState(machine.initialId);
-  const [to, setTo] = useState(machine.states[1]?.id ?? machine.initialId);
-  const [when, setWhen] = useState("1");
-  const [output, setOut] = useState("0");
+function TablePage({ machine, symbols, current, onChange }: { machine: FsmMachine; symbols: string[]; current: string; onChange: (machine: FsmMachine) => void }) {
   return (
-    <Card title="Transitions">
-      <div className="row">
-        <select aria-label="From state" value={from} onChange={(event) => setFrom(event.target.value)}>{machine.states.map((state) => <option key={state.id} value={state.id}>{state.name}</option>)}</select>
-        <input className="text-input" aria-label="Condition" value={when} onChange={(event) => setWhen(event.target.value)} style={{ maxWidth: 120 }} />
-        <select aria-label="To state" value={to} onChange={(event) => setTo(event.target.value)}>{machine.states.map((state) => <option key={state.id} value={state.id}>{state.name}</option>)}</select>
-        <input className="text-input" aria-label="Mealy output" value={output} onChange={(event) => setOut(event.target.value)} style={{ maxWidth: 80 }} />
-        <Button variant="primary" onClick={() => onChange(addTransition(machine, from, to, when, output))}>Add</Button>
-      </div>
-      {machine.transitions.map((edge) => (
-        <div key={edge.id} className="spread" style={{ marginTop: 6 }}>
-          <span>{stateById(machine, edge.from)?.name} — {edge.when} → {stateById(machine, edge.to)?.name}{machine.kind === "mealy" ? ` / ${edge.output}` : ""}</span>
-          <span>
-            <input aria-label={`Edit ${edge.id}`} value={edge.when} onChange={(event) => onChange(updateTransition(machine, edge.id, { when: event.target.value }))} style={{ width: 80 }} />
-            <Button onClick={() => onChange(removeTransition(machine, edge.id))}>Delete</Button>
-          </span>
-        </div>
-      ))}
-    </Card>
-  );
-}
-
-function StateTable({ machine, symbols, onChange }: { machine: FsmMachine; symbols: string[]; onChange: (machine: FsmMachine) => void }) {
-  return (
-    <Card title="Derived state table">
-      <table className="data">
-        <thead><tr><th>Current</th>{symbols.map((symbol) => <th key={symbol}>Input {symbol}</th>)}<th>Output</th></tr></thead>
+    <section className="lgx-card">
+      <h3>State Table</h3>
+      <p className="tiny">Edit the next state for each input. The diagram uses the same transitions.</p>
+      <table className="lgx-table">
+        <thead><tr><th>Present</th>{symbols.map((symbol) => <th key={symbol}>Input {symbol}</th>)}<th>Output</th></tr></thead>
         <tbody>
           {machine.states.map((state) => (
-            <tr key={state.id}>
+            <tr key={state.id} className={state.id === current ? "on" : ""}>
               <td>{state.name}</td>
               {symbols.map((symbol) => {
                 const edge = chosenTransition(machine, state.id, symbol);
@@ -236,7 +422,7 @@ function StateTable({ machine, symbols, onChange }: { machine: FsmMachine; symbo
           ))}
         </tbody>
       </table>
-    </Card>
+    </section>
   );
 }
 
@@ -249,65 +435,41 @@ function retarget(machine: FsmMachine, from: string, symbol: string, to: string)
   return addTransition(next, from, to, symbol, "0");
 }
 
-function EncodingView({ machine }: { machine: FsmMachine }) {
-  const [kind, setKind] = useState("Binary");
-  const encoded = encodeStates(machine, kind === "One-hot" ? "one-hot" : "binary");
-  return (
-    <div className="grid cards-2">
-      <Card title="Assignment">
-        <Segmented options={["Binary", "One-hot"]} value={kind} onChange={setKind} />
-        {encoded.states.map((state) => <div key={state.id} className="spread"><strong>{state.name}</strong><code>{state.code}</code></div>)}
-        <Metric label="Flip-flops" value={String(encoded.flipFlops)} />
-      </Card>
-      <Card title="Trade-off"><p>{encoded.note}</p></Card>
-    </div>
-  );
-}
-
-function MinimizeView({ machine, onUse }: { machine: FsmMachine; onUse: (machine: FsmMachine) => void }) {
+function MinPage({ machine, onUse }: { machine: FsmMachine; onUse: (machine: FsmMachine) => void }) {
   const result = useMemo(() => minimizeMachine(machine), [machine]);
   return (
-    <Card title="Partition refinement">
+    <section className="lgx-card">
+      <h3>State Minimization</h3>
       <p>{result.reason}</p>
       {result.steps.map((step) => (
         <p key={step.label}><strong>{step.label}:</strong> {step.blocks.map((block) => `{${block.map((id) => stateById(machine, id)?.name ?? id).join(", ")}}`).join("  ")}</p>
       ))}
       {result.machine ? <Button variant="primary" onClick={() => onUse(result.machine as FsmMachine)}>Use minimized machine</Button> : null}
-    </Card>
+    </section>
   );
 }
 
-function ExamplesView({ onUse }: { onUse: (machine: FsmMachine) => void }) {
+function ExamplesPage({ onUse }: { onUse: (machine: FsmMachine) => void }) {
   return (
     <div className="grid cards-3">
-      {FSM_EXAMPLES.map((example) => {
-        const built = example.build();
-        const demo = example.id === "vend" ? ["5", "5", "5"] : example.id === "light" ? ["1", "1", "1", "1"] : example.id === "lift" ? ["1", "1", "1", "1"] : ["1", "0", "1", "1"];
-        const steps = runSequence(built, demo);
-        return (
-          <Card key={example.id} title={example.label}>
-            <p className="tiny">{steps.map((step) => `${step.toName}:${step.output}`).join(" → ")}</p>
-            <Button onClick={() => onUse(built)}>Load</Button>
-          </Card>
-        );
-      })}
+      {FSM_EXAMPLES.map((example) => (
+        <section key={example.id} className="lgx-card">
+          <h3>{example.label}</h3>
+          <Button variant="primary" onClick={() => onUse(example.build())}>Load into studio</Button>
+        </section>
+      ))}
+      <SynthesisNote />
     </div>
   );
 }
 
-function SynthesisView({ machine }: { machine: FsmMachine }) {
-  const circuit = useMemo(() => synthesizeD({ ...machine, kind: machine.kind }), [machine]);
-  const equation = circuit.equations[0]?.expression ?? "";
+function SynthesisNote() {
+  const circuit = useMemo(() => synthesizeD(demoMachine()), []);
   return (
-    <Card title="D flip-flop synthesis">
-      <p>{circuit.reason}</p>
-      {circuit.encoding.map((line) => <div key={line}>{line}</div>)}
-      <table className="data">
-        <thead><tr><th>Present</th><th>Input</th><th>Next</th><th>Output</th></tr></thead>
-        <tbody>{circuit.rows.map((row, index) => <tr key={`${row.present}-${row.input}-${index}`}><td>{row.present}</td><td>{row.input}</td><td>{row.next}</td><td>{row.output}</td></tr>)}</tbody>
-      </table>
-      {circuit.equations.map((row) => <p key={row.signal}><strong>{row.signal}</strong> = {row.expression}</p>)}
-      {circuit.ok ? <Link to={`/studios/boolean-algebra?tab=play&expr=${encodeURIComponent(equation)}`}>Open the next-state equation</Link> : null}
-    </Card>
+    <section className="lgx-card">
+      <h3>D synthesis of the sketch</h3>
+      <p className="tiny">{circuit.reason}</p>
+      {circuit.equations.slice(0, 2).map((row) => <p key={row.signal}><strong>{row.signal}</strong> = {row.expression}</p>)}
+    </section>
   );
 }

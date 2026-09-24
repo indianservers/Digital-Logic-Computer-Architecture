@@ -3,6 +3,7 @@ import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, parseNumberInput } from "../../design-system/ui";
 import { installPage, splitAddress, translate, translateTwoLevel, type PageEntry, type TlbEntry } from "../../engines/arch/vm";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { VM_LESSONS, lessonOf } from "../../data/studioLessons";
 import { saveRecord } from "../../store/projects";
 import { usePrefs } from "../../store/prefs";
 
@@ -38,8 +39,9 @@ export function VmStudio() {
     setNote(stepped.result.explain);
   }
 
+  const lesson = lessonOf(VM_LESSONS, tab, "translate");
   return (
-    <StudioFrame icon="map" title="Virtual Memory" description="A virtual address is a page number plus an offset. The TLB and page table supply the frame. This lab is not an operating system." tabs={TABS} tab={tab} onTab={setTab} guide={["VPN selects the page. The offset is copied into the physical address.", "A TLB miss still hits if the page table entry is valid.", "A write to a read-only page is a protection fault, not a page fault."]} takeaways={["Page size in this lab is 2 to the power of the offset bits you choose.", "A fault means the page is not resident.", "Installing a page updates the table so the next translation can succeed."]}>
+    <StudioFrame icon="map" title="Virtual Memory" description="A virtual address is a page number plus an offset. The TLB and page table supply the frame. This lab is not an operating system." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={note} why={`VPN ${parts.vpn} · offset ${parts.offset}.`} notice="Widths here are lab settings. They are not a claim about a particular processor." /> : null}
       <div className="row">
         <input className="text-input" aria-label="Virtual address hex" value={virtualAddress} onChange={(event) => setVirtual(event.target.value)} />

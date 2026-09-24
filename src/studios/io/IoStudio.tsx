@@ -3,6 +3,7 @@ import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, parseNumberInput } from "../../design-system/ui";
 import { addressSpace, MMIO, pollTransfer } from "../../engines/arch/io";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { IO_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const DEVICES = [
@@ -28,9 +29,10 @@ export function IoStudio() {
   const numeric = Number.parseInt(address, 16);
   const space = Number.isFinite(numeric) ? addressSpace(mode, numeric) : "memory";
   const polled = pollTransfer(polls);
+  const lesson = lessonOf(IO_LESSONS, tab, "devices");
 
   return (
-    <StudioFrame icon="bolt" title="I/O Architecture" description="Devices sit behind a controller on the bus. The CPU either polls a status bit or waits for an interrupt." tabs={TABS} tab={tab} onTab={setTab} guide={["Memory-mapped I/O uses ordinary loads and stores.", "Isolated I/O keeps a second address space.", "Each failed poll is a CPU cycle that did not run the main program."]} takeaways={["The keyboard status and data registers are two addresses.", "Polling wastes the polls that happen before the device is ready.", "Interrupt-driven transfer is in the Interrupts & DMA studio."]}>
+    <StudioFrame icon="bolt" title="I/O Architecture" description="Devices sit behind a controller on the bus. The CPU either polls a status bit or waits for an interrupt." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={space === "io" ? "This address names a device register." : "This address names memory."} why={mode === "mapped" ? `Status ${MMIO.status.toString(16)} and data ${MMIO.data.toString(16)} share the memory map.` : "Addresses at or above 0xFF00 are the isolated I/O space in this lab."} notice="The same numeric address can mean memory or a device, depending on the address space." /> : null}
       {tab === "devices" ? (
         <Card title="CPU — bus — controller — device">

@@ -6,7 +6,7 @@ import {
 } from "../../engines/isaarch/riscv";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { BitFields, Datapath, IsaRegister } from "../shared/BitFields";
-import { Button, Card, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 
 const DP = [
   { id: "pc", label: "PC" }, { id: "imem", label: "I-Mem" }, { id: "decode", label: "Decode" }, { id: "regs", label: "x0–x31" },
@@ -131,8 +131,7 @@ export function RiscvStudio() {
         <div className="row">
           <Button onClick={() => loadSrc(source)}>Assemble</Button>
           <Button onClick={() => loadSrc(source)}>Load</Button>
-          <Button variant="primary" onClick={() => setPlaying(true)}>Run</Button>
-          <Button onClick={() => setPlaying(false)}>Pause</Button>
+          <Toggle on={playing} onChange={setPlaying} label="Run" tone="ok" />
           <Button onClick={() => setCpu((prev) => stepRv(prev))}>Step instruction</Button>
           <Button onClick={() => setCpu((prev) => stepRv(prev))}>Step cycle</Button>
           <Button onClick={() => loadSrc(source)}>Reset</Button>
@@ -290,7 +289,7 @@ export function RiscvStudio() {
 
       {lab === "pipeline" || lab === "hazards" ? (
         <Card title={lab === "hazards" ? "Load-use RAW" : "IF ID EX MEM WB"}>
-          {lab === "hazards" ? <Button onClick={() => setForward((value) => !value)}>Forwarding {forward ? "on" : "off"}</Button> : null}
+          {lab === "hazards" ? <Toggle on={forward} onChange={setForward} label="Forwarding" tone="ok" /> : null}
           <table className="data">
             <thead><tr><th>Instr</th>{Array.from({ length: 8 }, (_, i) => <th key={i}>C{i}</th>)}</tr></thead>
             <tbody>

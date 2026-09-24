@@ -1,13 +1,62 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
+import type { MdSwitch } from "@material/web/switch/switch.js";
 import type { LogicValue } from "../types/logic";
 import { Icon } from "./icons";
 
-export function Button({ variant = "ghost", children, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "ghost" }) {
-  return <button className={variant === "primary" ? "btn-primary" : "btn-ghost"} {...props}>{children}</button>;
+export type SwitchTone = "primary" | "ok" | "danger" | "warn" | "neutral";
+
+type AppButtonProps = {
+  variant?: "primary" | "ghost" | "tonal" | "text";
+  children?: ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  "aria-label"?: string;
+  title?: string;
+};
+
+export function Button({ variant = "ghost", children, className, disabled, onClick, type, ...props }: AppButtonProps) {
+  const extra = { className, disabled: disabled || undefined, onClick, type, ...props };
+  if (variant === "primary") return <md-filled-button {...extra}>{children}</md-filled-button>;
+  if (variant === "tonal") return <md-filled-button className={`tonal ${className ?? ""}`} disabled={disabled || undefined} onClick={onClick} type={type} {...props}>{children}</md-filled-button>;
+  if (variant === "text") return <md-text-button {...extra}>{children}</md-text-button>;
+  return <md-outlined-button {...extra}>{children}</md-outlined-button>;
 }
 
-export function IconButton({ label, children, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { label: string }) {
-  return <button className="icon-btn" aria-label={label} title={label} {...props}>{children}</button>;
+export function IconButton({ label, children, disabled, onClick, className }: { label: string; children?: ReactNode; disabled?: boolean; onClick?: () => void; className?: string }) {
+  return <md-icon-button aria-label={label} title={label} disabled={disabled || undefined} onClick={onClick} className={className}>{children}</md-icon-button>;
+}
+
+export function Toggle({
+  on, onChange, label, tone = "primary", showLabel = true,
+}: {
+  on: boolean;
+  onChange: (next: boolean) => void;
+  label: string;
+  tone?: SwitchTone;
+  showLabel?: boolean;
+}) {
+  const ref = useRef<MdSwitch>(null);
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+  useEffect(() => {
+    const node = ref.current;
+    if (node) node.selected = on;
+  }, [on]);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const handle = () => onChangeRef.current(Boolean(node.selected));
+    node.addEventListener("change", handle);
+    return () => node.removeEventListener("change", handle);
+  }, []);
+  return (
+    <label className={`switch-field tone-${tone}`}>
+      {showLabel ? <span className="switch-copy">{label}</span> : null}
+      <md-switch ref={ref} className={`tone-${tone}`} aria-label={label} />
+    </label>
+  );
 }
 
 export function Card({ title, action, children }: { title?: string; action?: ReactNode; children: ReactNode }) {
@@ -16,6 +65,15 @@ export function Card({ title, action, children }: { title?: string; action?: Rea
       {title ? <div className="spread"><h3>{title}</h3>{action}</div> : null}
       {children}
     </section>
+  );
+}
+
+export function Theory({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="callout" style={{ marginBottom: 12 }}>
+      <strong>{title}</strong>
+      <p className="muted" style={{ margin: 0 }}>{children}</p>
+    </div>
   );
 }
 
@@ -39,10 +97,6 @@ export function Segmented({ options, value, onChange }: { options: string[]; val
       ))}
     </div>
   );
-}
-
-export function Toggle({ on, onChange, label }: { on: boolean; onChange: (next: boolean) => void; label: string }) {
-  return <button className={on ? "toggle on" : "toggle"} role="switch" aria-checked={on} aria-label={label} onClick={() => onChange(!on)}><i /></button>;
 }
 
 export function Metric({ label, value }: { label: string; value: string }) {
@@ -78,7 +132,7 @@ export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed }
 }) {
   return (
     <div className="row">
-      <Button variant="primary" onClick={onPlay}><Icon name={playing ? "pause" : "play"} size={14} />{playing ? "Pause" : "Play"}</Button>
+      <Toggle on={playing} onChange={(next) => { if (next !== playing) onPlay(); }} label="Run" tone="ok" />
       <Button onClick={onStep}><Icon name="step" size={14} />Step</Button>
       <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button>
       {onSpeed ? (

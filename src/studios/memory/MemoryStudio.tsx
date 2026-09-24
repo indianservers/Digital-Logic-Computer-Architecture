@@ -1,6 +1,8 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
+import { MemoryFundamentals } from "./MemoryFundamentals";
+import { Button, Card, ExplainBar, Metric, Segmented, Toggle, Theory, parseNumberInput } from "../../design-system/ui";
 import { decoder } from "../../engines/digital/routing";
 import { fromUnsigned, toBinary, toHex, toUnsigned } from "../../engines/digital/vector";
 import { chipMap, decodeAddress, splitAddress } from "../../engines/memory/addressDecoder";
@@ -83,7 +85,16 @@ const LESSONS: Record<string, { guide: string[]; takeaways: string[]; what: stri
   },
 };
 
+const FUNDAMENTALS = new Set(["array", "sram", "dram", "rom", "eeprom", "flash", "addressing", "organization"]);
+
 export function MemoryStudio() {
+  const [params] = useSearchParams();
+  const raw = params.get("tab") ?? "array";
+  if (FUNDAMENTALS.has(raw)) return <MemoryFundamentals />;
+  return <LegacyMemory />;
+}
+
+function LegacyMemory() {
   const [tab, setTab] = useStudioTab(TABS, "array");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
@@ -112,15 +123,6 @@ export function MemoryStudio() {
         {tab === "timing" ? <TimingLab /> : null}
       </div>
     </StudioFrame>
-  );
-}
-
-function Theory({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="callout" style={{ marginBottom: 12 }}>
-      <strong>{title}</strong>
-      <p className="muted" style={{ margin: 0 }}>{children}</p>
-    </div>
   );
 }
 
@@ -173,9 +175,9 @@ function ArrayLab() {
         <p className="tiny">Address bits A{org.addressLines - 1}…A0</p>
         <WordEditor bits={bits} labels={bits.map((_, index) => `A${org.addressLines - 1 - index}`)} onChange={(next) => setAddress(toUnsigned(next) ?? 0)} />
         <div className="row">
-          <span className="row"><span className="tiny">CE</span><Toggle on={ce} onChange={setCe} label="Chip enable" /></span>
-          <span className="row"><span className="tiny">OE</span><Toggle on={oe} onChange={setOe} label="Output enable" /></span>
-          <span className="row"><span className="tiny">WE</span><Toggle on={we} onChange={setWe} label="Write enable" /></span>
+          <span className="row"><Toggle on={ce} onChange={setCe} label="CE" tone="ok" /></span>
+          <span className="row"><Toggle on={oe} onChange={setOe} label="OE" tone="primary" /></span>
+          <span className="row"><Toggle on={we} onChange={setWe} label="WE" tone="warn" /></span>
         </div>
         <div className="row">
           <label>Data word<input className="text-input" aria-label="Data word" type="number" min={0} max={255} value={data} onChange={(event) => setData(parseNumberInput(event.target.value, data))} /></label>
@@ -382,9 +384,9 @@ function OrgLab() {
           <label>Address pins<input className="text-input" aria-label="Address pins" type="number" min={1} max={16} value={addrPins} onChange={(event) => setAddrPins(Math.max(1, parseNumberInput(event.target.value, addrPins)))} /></label>
           <label>Data pins<input className="text-input" aria-label="Data pins" type="number" min={1} max={32} value={dataPins} onChange={(event) => setDataPins(Math.max(1, parseNumberInput(event.target.value, dataPins)))} /></label>
           <div className="row">
-            <span className="row"><span className="tiny">CE</span><Toggle on={ce} onChange={setCe} label="CE" /></span>
-            <span className="row"><span className="tiny">OE</span><Toggle on={oe} onChange={setOe} label="OE" /></span>
-            <span className="row"><span className="tiny">WE</span><Toggle on={we} onChange={setWe} label="WE" /></span>
+            <span className="row"><Toggle on={ce} onChange={setCe} label="CE" tone="ok" /></span>
+            <span className="row"><Toggle on={oe} onChange={setOe} label="OE" tone="primary" /></span>
+            <span className="row"><Toggle on={we} onChange={setWe} label="WE" tone="warn" /></span>
           </div>
           <svg className="diagram" viewBox="0 0 280 160" role="img" aria-label="Memory chip">
             <rect x="90" y="24" width="120" height="112" rx="12" fill="white" stroke="#2F6FED" />
@@ -425,7 +427,7 @@ function DecoderLab() {
           <p className="tiny">{width}-to-{2 ** width}. Toggle select bits. Enable is the decoder’s CE.</p>
           <WordEditor bits={bits} labels={bits.map((_, index) => `A${width - 1 - index}`)} onChange={setSelect} />
           <div className="row">
-            <span className="row"><span className="tiny">Enable</span><Toggle on={enable} onChange={setEnable} label="Decoder enable" /></span>
+            <span className="row"><Toggle on={enable} onChange={setEnable} label="Enable" tone="ok" /></span>
             <Metric label="Active line" value={enable && active >= 0 ? `Y${active}` : "none"} />
             <Metric label="Select" value={`${toUnsigned(bits) ?? 0} · ${toBinary(bits)}`} />
           </div>
@@ -657,9 +659,9 @@ function TimingLab() {
         <Card title="Live CE / OE / WE">
           <p className="tiny">Cell 0 is {memory.cells[0]?.toString(16).padStart(2, "0")}.</p>
           <div className="row">
-            <span className="row"><span className="tiny">CE</span><Toggle on={ce} onChange={setCe} label="CE" /></span>
-            <span className="row"><span className="tiny">OE</span><Toggle on={oe} onChange={setOe} label="OE" /></span>
-            <span className="row"><span className="tiny">WE</span><Toggle on={we} onChange={setWe} label="WE" /></span>
+            <span className="row"><Toggle on={ce} onChange={setCe} label="CE" tone="ok" /></span>
+            <span className="row"><Toggle on={oe} onChange={setOe} label="OE" tone="primary" /></span>
+            <span className="row"><Toggle on={we} onChange={setWe} label="WE" tone="warn" /></span>
           </div>
           <div className="row">
             <Button variant="primary" onClick={runRead}>Read cell 0</Button>

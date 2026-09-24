@@ -5,7 +5,7 @@ import {
   nextPower, shortestPath, type ClockDomain, type FlowId, type Point, type PowerState, type SocClient,
 } from "../../engines/soc/soc";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
-import { Button, Card, Metric, Segmented, parseNumberInput } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
 
 const GRID = 3;
 function cell(r: number, c: number): string {
@@ -97,7 +97,7 @@ export function SocStudio() {
                 if (Number.isFinite(r) && Number.isFinite(c)) setDst({ r: Math.max(0, Math.min(2, r ?? 0)), c: Math.max(0, Math.min(2, c ?? 0)) });
               }} />
             </label>
-            <Button onClick={() => setExtra((value) => !value)}>{extra ? "One packet" : "Second packet"}</Button>
+            <Toggle on={extra} onChange={setExtra} label="Second packet" tone="primary" />
           </div>
           <div className="pe-grid" style={{ gridTemplateColumns: `repeat(${GRID}, 72px)` }}>
             {Array.from({ length: GRID * GRID }, (_, index) => {

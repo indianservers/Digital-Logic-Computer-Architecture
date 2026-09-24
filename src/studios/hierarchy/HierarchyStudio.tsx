@@ -4,6 +4,7 @@ import { Button, Card, ExplainBar, Metric, parseNumberInput } from "../../design
 import { createCache } from "../../engines/cache/cache";
 import { LAB_LEVELS, L1_PRESET, L2_PRESET, spatialReuse, temporalReuse, walkTrace, type Latencies } from "../../engines/arch/hierarchy";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { HIERARCHY_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const START: Latencies = { register: 1, l1: 3, l2: 12, ram: 80, storage: 10000 };
@@ -24,9 +25,10 @@ export function HierarchyStudio() {
   const resident = registers.split(/[\s,]+/).filter(Boolean).map(Number).filter((value) => Number.isFinite(value));
   const walked = walkTrace(trace, resident, 256, latencies, createCache(L1_PRESET), createCache(L2_PRESET));
   const last = walked.hops.at(-1);
+  const lesson = lessonOf(HIERARCHY_LESSONS, tab, "pyramid");
 
   return (
-    <StudioFrame icon="book" title="Memory Hierarchy" description="A request checks registers, then the lab caches, then RAM, then storage. Latencies are teaching parameters for this experiment." tabs={TABS} tab={tab} onTab={setTab} guide={["Repeated addresses become L1 hits after the first fill.", "Nearby addresses share a cache line.", "AMAT uses the Phase 3 cache statistics and the RAM penalty you set."]} takeaways={["A closer level is smaller and quicker in this lab, not a universal constant.", "Temporal reuse is the fraction of repeated addresses.", "Spatial reuse is the fraction of steps that stay inside one line."]}>
+    <StudioFrame icon="book" title="Memory Hierarchy" description="A request checks registers, then the lab caches, then RAM, then storage. Latencies are teaching parameters for this experiment." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={last ? `Address ${last.address} was supplied by ${last.level} in ${last.cycles} cycles.` : "Enter a trace."} why="The first miss fills L1 and L2. The next use of that block can hit L1." notice="Storage is charged only when the address is outside the 256-word RAM." /> : null}
       {tab === "pyramid" ? (
         <div className="grid cards-2">

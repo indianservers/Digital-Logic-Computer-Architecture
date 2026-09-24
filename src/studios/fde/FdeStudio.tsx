@@ -3,6 +3,7 @@ import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
 import { loadProgram, signalsFor, stepStage, type CpuState } from "../../engines/isa/cpu";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { FDE_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const PROGRAM = "ADDI R1, R0, 5\nADDI R2, R0, 3\nADD R3, R1, R2\nHALT\n";
@@ -19,9 +20,10 @@ export function FdeStudio() {
   const { prefs } = usePrefs();
   const signals = signalsFor(cpu?.decoded ?? null, cpu?.stage === "done" ? "WB" : cpu?.stage ?? "IF");
   const cpi = cpu && cpu.retired > 0 ? (cpu.cycles / cpu.retired).toFixed(2) : "—";
+  const lesson = lessonOf(FDE_LESSONS, tab, "cycle");
 
   return (
-    <StudioFrame icon="bolt" title="Fetch–Decode–Execute" description="Step the same CPU one cycle at a time. Fetch reads instruction memory, then decode, execute, memory, and write-back take their turns." tabs={TABS} tab={tab} onTab={setTab} guide={["Each instruction uses five cycles in this multi-cycle model.", "STORE lights MemWrite and leaves RegWrite off.", "The PC increases during fetch, before execute."]} takeaways={["CPI here is cycles divided by retired instructions.", "A branch may replace the PC during the memory cycle.", "Write-back is skipped when the instruction has no destination."]}>
+    <StudioFrame icon="bolt" title="Fetch–Decode–Execute" description="Step the same CPU one cycle at a time. Fetch reads instruction memory, then decode, execute, memory, and write-back take their turns." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={cpu?.trace.at(-1) ?? "Load the add program, then step a cycle."} why={cpu?.decoded?.explain ?? "The control signals come from the decoded opcode and the current stage."} notice={`CPI for this run is ${cpi}. That number belongs to this simulator, not to every CPU.`} /> : null}
       <div className="row">
         <Button variant="primary" onClick={() => { const next = loadProgram(PROGRAM); if (!("error" in next)) setCpu(next); }}>Load ADD</Button>

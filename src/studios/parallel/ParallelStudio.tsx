@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, ExplainBar, Metric, Segmented, Toggle } from "../../design-system/ui";
 import { FLYNN, issueCycles, renameOps, smtIssue, speculate, stepRob, vectorAdd, type MiniOp, type RobEntry } from "../../engines/arch/parallel";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { PARALLEL_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const OPS: MiniOp[] = [
@@ -35,9 +36,10 @@ export function ParallelStudio() {
   const threads = smtIssue(Number(width), 4, 4);
   const speculation = speculate(predicted, false, 2);
   const span = Math.max(...cycles) + 1;
+  const lesson = lessonOf(PARALLEL_LESSONS, tab, "flynn");
 
   return (
-    <StudioFrame icon="gate" title="Parallel Processing" description="Issue width is a limit, not a guarantee. Dependencies, the reorder buffer, and a wrong branch still set the pace." tabs={TABS} tab={tab} onTab={setTab} guide={["Independent instructions can share a cycle up to the issue width.", "Renaming gives a later write of R1 a new physical register.", "The reorder buffer retires the oldest completed instruction first."]} takeaways={["A 4-wide machine does not retire four instructions every cycle.", "SIMD applies one operation to each lane.", "SMT shares one core's issue slots between threads."]}>
+    <StudioFrame icon="gate" title="Parallel Processing" description="Issue width is a limit, not a guarantee. Dependencies, the reorder buffer, and a wrong branch still set the pace." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={`Issue width ${width} finishes this bundle in ${span} cycles.`} why="AND waits for R1 and R4, so it cannot share cycle 0 with ADD." notice="Out-of-order completion is allowed. Architectural retirement stays in program order." /> : null}
       <Segmented options={["1", "2", "4"]} value={width} onChange={setWidth} />
       {tab === "flynn" ? (
@@ -74,7 +76,7 @@ export function ParallelStudio() {
         <Card title="Two threads, shared issue">
           <p>Four instructions on each thread use {threads.cycles} cycles and issue {threads.issued}.</p>
           <Metric label="Utilization" value={threads.utilization.toFixed(2)} />
-          <Button onClick={() => setPredicted((value) => !value)}>Prediction {predicted ? "taken" : "not taken"}</Button>
+          <Toggle on={predicted} onChange={setPredicted} label="Predict taken" tone="warn" />
           <p>{speculation.correct ? "The predicted path commits." : `Flush ${speculation.flushed} wrong-path instructions.`}</p>
         </Card>
       ) : null}

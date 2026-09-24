@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { STUDIOS, searchStudios } from "../data/curriculum";
 import { PRACTICE_COUNT } from "../pages/HomePages";
 import { Icon } from "../design-system/icons";
+import { Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
 import { ErrorBoundary } from "./ErrorBoundary";
 
@@ -31,6 +32,7 @@ function crumbTitle(pathname: string, search: string): string {
   if (pathname === "/studios/isa" && tab === "modes") {
     return STUDIOS.find((item) => item.id === "addressing")?.title ?? "Addressing Modes";
   }
+  if (pathname.startsWith("/studios/truth-tables") || pathname.startsWith("/studios/combinational")) return "Studios";
   return matches[0]?.title ?? "Studios";
 }
 
@@ -42,6 +44,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const hits = useMemo(() => searchStudios(query), [query]);
   const architecture = location.pathname.startsWith("/architecture");
+  const gates = location.pathname.startsWith("/studios/logic-gates");
+  const truth = location.pathname.startsWith("/studios/truth-tables");
+  const combo = location.pathname.startsWith("/studios/combinational");
+  const studioChrome = gates || truth || combo;
   const links = architecture ? LINKS.filter((link) => link.to === "/") : LINKS;
   const crumb = crumbTitle(location.pathname, location.search);
   const done = prefs.challenges.length;
@@ -91,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="search">
             <Icon name="search" size={16} />
-            <input aria-label="Search topics" placeholder="Search topics, e.g. two's complement" value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
+            <input aria-label="Search topics" placeholder={gates ? "Search topics, e.g. \"K-map for 3 variables\"..." : truth ? "Search topics, e.g. \"Karnaugh map\"..." : combo ? "Search topics, e.g. \"multiplexer\" or \"Boolean algebra\"..." : "Search topics, e.g. two's complement"} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
               if (event.key === "Enter" && hits[0]) navigate(hits[0].path);
             }} />
             {query && hits.length > 0 ? (
@@ -103,8 +109,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             ) : null}
           </div>
           <div className="top-meta">
-            <span className="pill progress">Practice {Math.min(prefs.challenges.length, PRACTICE_COUNT)} / {PRACTICE_COUNT}</span>
-            <span className="pill ok">Offline Ready</span>
+            {studioChrome ? (
+              <span className="pill progress">Studio Progress {Math.min(prefs.challenges.length, 12)} / 12</span>
+            ) : (
+              <span className="pill progress">Practice {Math.min(prefs.challenges.length, PRACTICE_COUNT)} / {PRACTICE_COUNT}</span>
+            )}
+            {studioChrome ? null : <Toggle on={prefs.explain} onChange={(next) => update({ explain: next })} label="Explain" tone="primary" />}
+            <span className="pill ok">{gates ? "Online Ready" : "Offline Ready"}</span>
             <button className="icon-btn" aria-label="Notifications are stored on this device" title="Saved locally"><Icon name="bell" size={16} /></button>
             <span className="avatar" aria-hidden="true">S</span>
           </div>

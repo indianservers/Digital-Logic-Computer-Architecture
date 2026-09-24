@@ -4,6 +4,7 @@ import { Button, Card, ExplainBar, Segmented } from "../../design-system/ui";
 import { hardwired, MICROPROGRAM, stepMicro } from "../../engines/isa/rtl";
 import { OP } from "../../engines/isa/spec";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { CONTROL_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const TABS = [
@@ -20,9 +21,10 @@ export function ControlStudio() {
   const { prefs } = usePrefs();
   const signals = hardwired(mnemonic);
   const word = MICROPROGRAM.find((item) => item.addr === addr) ?? MICROPROGRAM[0];
+  const lesson = lessonOf(CONTROL_LESSONS, tab, "hardwired");
 
   return (
-    <StudioFrame icon="gate" title="Control Unit" description="Hardwired control decodes the opcode into signals. Microprogrammed control reads the next control word from a small control store." tabs={TABS} tab={tab} onTab={setTab} guide={["ADD turns on RegWrite and leaves memory quiet.", "LOAD turns on MemRead, then RegWrite in a later microinstruction.", "Dispatch after fetch jumps to the opcode's routine."]} takeaways={["The signals are the same ones the multi-cycle CPU uses.", "A horizontal word exposes each control bit.", "A vertical word stores an encoded operation and needs a decoder."]}>
+    <StudioFrame icon="gate" title="Control Unit" description="Hardwired control decodes the opcode into signals. Microprogrammed control reads the next control word from a small control store." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={`${mnemonic}: RegWrite ${signals.RegWrite}, MemRead ${signals.MemRead}, MemWrite ${signals.MemWrite}.`} why={word ? `${word.name}: ${word.signals}` : "Control store"} notice="Neither style is universally smaller or faster. Width and decoding trade off." /> : null}
       {tab === "hardwired" ? (
         <Card title="Opcode to signals">

@@ -16,6 +16,41 @@ const TABS = [
   { id: "circuit", label: "Circuit Compare" },
 ];
 
+const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { title: string; body: string }; what: string; why: string; notice: string }> = {
+  map: {
+    theory: { title: "Karnaugh maps", body: "A K-map lays minterms in Gray-code order so adjacent cells differ by one variable. A group of 1, 2, 4, or 8 (power of two), including wraparound, drops the variables that change inside the group. Don't-cares may join a group but need not be covered." },
+    guide: ["Choose 2 to 6 variables.", "Cycle cells through 0, 1, and X.", "Read each group's product term.", "Include a wraparound pair if the 1s sit on opposite edges."],
+    takeaways: ["Adjacent cells differ by one variable.", "Group size must be a power of two.", "Don't-cares may be used but need not be covered."],
+    what: "Cell order is Gray code, so neighbors differ by one bit.",
+    why: "A power-of-two group eliminates the variables that change inside it.",
+    notice: "A dashed group wraps around the map edge.",
+  },
+  primes: {
+    theory: { title: "Prime implicants", body: "A prime implicant is a largest legal group that is not contained in a larger one. An essential prime is the only prime that covers some minterm — it must appear in every minimal cover. The remaining primes are chosen to cover leftovers at least cost." },
+    guide: ["Fill 1s, then open this tab.", "Read which primes are essential.", "See leftover minterms that still need a prime.", "Compare the selected cover with the map groups."],
+    takeaways: ["Essential primes are the only cover for some minterm.", "A prime is maximal: growing it would include a 0.", "Cost here is how many gates the cover implies."],
+    what: "The engine lists primes from the same map you edited.",
+    why: "Picking non-essential primes is how two students get two equally short SOPs.",
+    notice: "This is the covering step, not a different Boolean algebra.",
+  },
+  qm: {
+    theory: { title: "Quine–McCluskey", body: "Quine–McCluskey is tabular minimization: combine minterms that differ by one bit, repeat, then cover the 1s with primes. It does the same job as a K-map without drawing cells, so it scales past six variables in textbooks (this lab stays small and visible)." },
+    guide: ["Read the combination table from the current 1s and X's.", "Follow which pairs merge by one bit.", "See the prime chart and the chosen cover.", "Compare the expression with the map tab."],
+    takeaways: ["Merging two terms that differ by one bit drops that variable.", "The prime chart is a covering problem.", "QM and the K-map agree on this function."],
+    what: "Each merge is a larger implicant.",
+    why: "The algorithm is mechanical so it does not rely on seeing adjacency.",
+    notice: "Don't-cares may be used in merges and need not be covered at the end.",
+  },
+  circuit: {
+    theory: { title: "Before and after grouping", body: "Canonical SOP is one AND per minterm, then an OR. After grouping, fewer, wider ANDs feed a smaller OR. Gate count and depth drop when implicants cover several 1s. The two circuits must match on every input." },
+    guide: ["Compare gate count before and after.", "Toggle inputs and confirm both circuits agree.", "Return to the map if a group looks wrong.", "Note that don't-cares can shrink the after circuit."],
+    takeaways: ["Fewer terms usually means fewer gates.", "Depth follows the longest AND-OR path.", "Equivalence is the truth table, not the drawing."],
+    what: "Both networks implement the same output column.",
+    why: "Simplification is worth it only if the function is unchanged.",
+    notice: "Counts are teaching gates, not a synthesizer report.",
+  },
+};
+
 const GROUP_COLORS = ["#2F6FED", "#12B76A", "#D97706", "#E11D48", "#7C3AED", "#0891B2"];
 
 export function KmapStudio() {
@@ -35,9 +70,10 @@ export function KmapStudio() {
   const donts = sized.flatMap((cell, index) => (cell === "X" ? [index] : []));
   const result = quineMcCluskey(mode === "sop" ? ones : zeros, donts, count, names);
   const expression = mode === "sop" ? result.expression : posExpression(result);
+  const lesson = LESSONS[tab] ?? LESSONS.map!;
   return (
-    <StudioFrame icon="map" title="K-Map & Logic Simplification" description="Cycle cells through 0, 1, and X. Groups follow Gray-code adjacency, including wraparound." tabs={TABS} tab={tab} onTab={setTab} onReset={() => { setCells(seed(count)); setMode("sop"); }} guide={["Choose 2 to 6 variables", "Enter 1s and don't-cares", "Read each group's term", "Compare the circuit before and after"]} takeaways={["Adjacent cells differ by one variable", "Don't-cares may be used but need not be covered", "Essential primes are the only cover for some minterm"]}>
-      {prefs.explain ? <ExplainBar what="Cell order is Gray code, so neighbors differ by one bit." why="A power-of-two group eliminates the variables that change inside it." notice="A dashed group wraps around the map edge." /> : null}
+    <StudioFrame icon="map" title="K-Map & Logic Simplification" description="Cycle cells through 0, 1, and X. Groups follow Gray-code adjacency, including wraparound." tabs={TABS} tab={tab} onTab={setTab} onReset={() => { setCells(seed(count)); setMode("sop"); }} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
+      {prefs.explain ? <ExplainBar what={lesson.what} why={lesson.why} notice={lesson.notice} /> : null}
       <div className="row" style={{ marginBottom: 10 }}>
         <Segmented options={["2", "3", "4", "5", "6"]} value={String(count)} onChange={(v) => setCount(Number(v))} />
         <Segmented options={["sop", "pos"]} value={mode} onChange={(v) => setMode(v as "sop" | "pos")} />

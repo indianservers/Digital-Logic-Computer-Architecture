@@ -22,10 +22,78 @@ const TABS = [
   { id: "hamming", label: "Hamming Code" },
 ];
 
+const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { title: string; body: string }; what: string; why: string; notice: string }> = {
+  convert: {
+    theory: { title: "Place value", body: "A digit in base b is worth digit × b^k, where k is its distance from the point. The same integer is 42 in decimal, 101010 in binary, and 2A in hex — three writings of one value." },
+    guide: ["Type a number in any base; the others follow.", "Toggle bits to add or remove each power of two.", "Change the bit width to see which values still fit.", "Watch the place-value chips light for each 1."],
+    takeaways: ["Position determines weight: b^k for the k-th digit.", "Hex groups four bits; one hex digit is a nibble.", "A width of n bits holds 0 through 2ⁿ − 1 unsigned."],
+    what: "Each bit is a weight. Turning a bit on adds that power of two.",
+    why: "Conversion is the same integer written beside different place values, not a new quantity.",
+    notice: "Blue is 1 and contributes its weight. Gray is 0 and contributes nothing.",
+  },
+  math: {
+    theory: { title: "Binary add, subtract, multiply, divide", body: "Column arithmetic in base 2 uses the same carry and borrow rules as decimal. Addition produces a carry when a column sums to 2 or more. Multiplication is shifted copies of the multiplicand, one per 1 in the multiplier." },
+    guide: ["Pick ADD, SUB, MUL, or DIV and two operands.", "Read the column carries or the partial products.", "Widen the word if the result does not fit.", "Compare the unsigned result with the binary layout."],
+    takeaways: ["A carry is a 2 that becomes a 1 in the next column.", "Unsigned subtract borrows when the top bit is smaller.", "Multiply is add-and-shift; divide is subtract-and-shift."],
+    what: "The engine applies the same column algorithm a person uses on paper.",
+    why: "Hardware adders are those columns wired so every bit is computed together.",
+    notice: "Overflow here means the unsigned result does not fit in the chosen width.",
+  },
+  signed: {
+    theory: { title: "Signed encodings", body: "The same bit pattern can mean different integers. Sign-magnitude uses the MSB as a sign. Two's complement makes −x by invert-then-add-1, so one adder handles add and subtract. Range is not symmetric: n-bit two's complement runs from −2ⁿ⁻¹ to 2ⁿ⁻¹ − 1." },
+    guide: ["Enter a value and compare unsigned, sign-magnitude, and two's complement.", "Negate a two's-complement word with invert-then-add-1.", "Watch which encodings can represent the same number.", "Read the legal range for the current width."],
+    takeaways: ["Two's complement needs one adder for add and subtract.", "Sign-magnitude has two zeros.", "Overflow is wrapping outside the signed range, not 'a negative appeared'."],
+    what: "Encoding is a contract: which patterns mean negative, and how negation is computed.",
+    why: "Hardware prefers two's complement because subtraction is addition of the negated operand.",
+    notice: "This lab shows teaching widths, not a specific CPU's flags.",
+  },
+  fixed: {
+    theory: { title: "Fixed-point binary", body: "A binary point splits the word into integer bits and fraction bits. The weight of the k-th fraction bit is 2⁻ᵏ. Precision is the smallest step, 2^(−fraction bits). Signed fixed-point uses two's complement on the whole word." },
+    guide: ["Set integer bits, fraction bits, and a decimal value.", "Read the bit string with the point marked.", "Toggle signed to see the negative range.", "Compare precision with the step between representable values."],
+    takeaways: ["Precision is 2 to the power of minus the fraction width.", "The point does not occupy a stored bit; it is an interpretation.", "Values that are not multiples of that step round to a representable word."],
+    what: "Fixed-point is an integer whose place values include negative powers of two.",
+    why: "DSP and graphics often want a known step size without a floating-point unit.",
+    notice: "Rounding here is toward the nearest representable teaching value.",
+  },
+  ieee: {
+    theory: { title: "IEEE-754", body: "A binary floating-point word is sign, biased exponent, and fraction. Single precision is 1 + 8 + 23 with bias 127. Double is 1 + 11 + 52 with bias 1023. The stored exponent is the true power plus the bias, so negatives become unsigned." },
+    guide: ["Type a decimal, or pick a preset such as 1, 0, or NaN.", "Toggle bits in S, E, or F and watch the decoded value.", "Switch 32-bit and 64-bit to see field widths change.", "Compare a normal number with zero, infinity, and NaN."],
+    takeaways: ["Value ≈ (−1)^S × 2^(E − bias) × (1.fraction) for normals.", "All-zero exponent is subnormal or zero. All-one exponent is inf or NaN.", "The fraction is the bits after the binary point of the significand."],
+    what: "IEEE-754 splits the word so range lives in the exponent and precision in the fraction.",
+    why: "A bias lets hardware compare exponents as unsigned magnitudes.",
+    notice: "This decoder follows IEEE-754 binary32/binary64, not a vendor rounding mode table.",
+  },
+  codes: {
+    theory: { title: "BCD, Excess-3, Gray, and ASCII", body: "BCD stores each decimal digit as a 4-bit nibble (0–9). Excess-3 is that nibble plus 3. Gray code changes one bit between adjacent values, including the wrap from 15 to 0. ASCII is a 7-bit character code; the low byte of 'A' is 65." },
+    guide: ["Enter decimal digits and read BCD and Excess-3 nibbles.", "Step the Gray wheel; neighbors differ by one bit.", "Type a character and read decimal, hex, and UTF-8 bits.", "Watch the wrap from 15 back to 0 on the Gray wheel."],
+    takeaways: ["Gray adjacency is why K-map cells sit in Gray order.", "BCD is not a binary integer of the whole number — it is digit by digit.", "ASCII 0x41 is 'A'; the high bit of a byte may be unused."],
+    what: "These are different maps from bits to meaning: digits, unit-distance codes, or glyphs.",
+    why: "Hardware that talks to people or to a K-map needs the code that matches the interface.",
+    notice: "The Gray wheel is 4-bit. ASCII here is the classic 7-bit set inside a byte.",
+  },
+  parity: {
+    theory: { title: "Parity bits", body: "Even parity adds a bit so the total number of 1s is even. Odd parity makes that count odd. A single flipped data bit changes the count, so the receiver's check fails. Parity detects one flip; it does not name which bit, and two flips can cancel." },
+    guide: ["Choose even or odd parity and a data word.", "Read the computed parity bit and the sent frame.", "Flip a transmitted bit and watch the check fail.", "Flip a second bit and see that even parity can look valid again."],
+    takeaways: ["Even parity: the extra bit makes the 1-count even.", "A mismatch means an odd number of flips in the frame.", "Parity detects; Hamming (next tab) can also correct one bit."],
+    what: "The parity bit is a one-bit checksum over the data bits.",
+    why: "Links add a cheap check that something changed, not a full error-correcting code.",
+    notice: "This lab uses even or odd over the visible bits, not CRC polynomials.",
+  },
+  hamming: {
+    theory: { title: "Hamming(7,4)", body: "Positions 1, 2, and 4 are parity; data sits in 3, 5, 6, and 7 (1-based). Each parity bit covers positions whose index has that bit set. The syndrome is the sum of the failing parity positions and names the flipped bit, or 0 if the word is clean." },
+    guide: ["Set four data bits and encode.", "Read positions 1–7: parity at 1, 2, 4.", "Flip one encoded bit and watch the syndrome name it.", "Compare each parity group's cover list with the failing check."],
+    takeaways: ["Parity bits occupy power-of-two positions.", "The syndrome is the 1-based index of a single error.", "Two flips can produce a misleading syndrome; this code corrects one error."],
+    what: "Each parity check is a vote over a subset of positions. Together they write a binary index.",
+    why: "If you can name the bad position, you can invert that bit and restore the word.",
+    notice: "Labels are Hamming positions 1–7, matching the engine — not bit weights 0–6.",
+  },
+};
+
 export function NumberSystemsStudio() {
   const [tab, setTab] = useStudioTab(TABS, "convert");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
+  const lesson = LESSONS[tab] ?? LESSONS.convert!;
   return (
     <StudioFrame
       icon="book"
@@ -35,11 +103,12 @@ export function NumberSystemsStudio() {
       tab={tab}
       onTab={setTab}
       onReset={() => setResetKey((n) => n + 1)}
-      guide={["Enter any base and watch the others follow", "Toggle bits to see place value", "Compare signed encodings", "Break and repair a Hamming word"]}
-      takeaways={["Position determines weight", "Two's complement makes one adder enough", "Parity detects a single flip", "IEEE-754 separates sign, exponent, and fraction"]}
+      guide={lesson.guide}
+      takeaways={lesson.takeaways}
+      theory={lesson.theory}
     >
-      <div key={resetKey}>
-        {prefs.explain ? <ExplainBar what="The active lab is driven by the number engines, not by a stored picture." why="The same bit pattern can mean different integers under different codes." notice="A blue bit is 1 and contributes its weight. A gray bit is 0 and contributes nothing." /> : null}
+      <div key={`${tab}-${resetKey}`}>
+        {prefs.explain ? <ExplainBar what={lesson.what} why={lesson.why} notice={lesson.notice} /> : null}
         {tab === "convert" ? <ConvertLab /> : null}
         {tab === "math" ? <MathLab /> : null}
         {tab === "signed" ? <SignedLab /> : null}
@@ -65,8 +134,9 @@ function Bits({ bits, onToggle, weights, kind = "weight" }: { bits: Array<0 | 1>
               ? `Data bit ${index + 1}, value ${bit}`
               : `Bit weight ${weights?.[index] ?? index}, value ${bit}`;
           return (
-            <button key={index} className={bit ? "bit on" : "bit"} onClick={() => onToggle?.(index)} aria-label={label}>
-              {bit}{caption !== undefined ? <small>{caption}</small> : null}
+            <button key={index} className={bit ? "bit-switch on" : "bit-switch"} onClick={() => onToggle?.(index)} aria-label={label}>
+              <span className="bit-thumb">{bit}</span>
+              {caption !== undefined ? <small>{caption}</small> : null}
             </button>
           );
         })}
@@ -220,7 +290,7 @@ function FixedLab() {
         <label className="field">Value<input className="text-input" value={text} onChange={(e) => setText(e.target.value)} /></label>
         <label className="field">Integer bits<input className="text-input" type="number" min={1} max={16} value={intBits} onChange={(e) => setIntBits(Math.max(1, parseNumberInput(e.target.value, intBits)))} /></label>
         <label className="field">Fraction bits<input className="text-input" type="number" min={1} max={16} value={fracBits} onChange={(e) => setFracBits(Math.max(1, parseNumberInput(e.target.value, fracBits)))} /></label>
-        <span className="row">Signed <Toggle on={signed} label="Signed fixed point" onChange={setSigned} /></span>
+        <span className="row"><Toggle on={signed} label="Signed" onChange={setSigned} tone="warn" /></span>
       </div>
       <div className="mono" style={{ margin: "10px 0" }}>
         {live.bits.map((bit, index) => <span key={index}>{bit}{index + 1 === live.pointAfter ? " · " : " "}</span>)}
@@ -314,7 +384,7 @@ function ParityLab() {
         setBits(next);
         setSent([...next, parityBit(next, odd)]);
       }} /></div>
-      <div className="row">Odd parity <Toggle on={odd} label="Odd parity" onChange={(next) => { setOdd(next); setSent([...bits, parityBit(bits, next)]); }} /></div>
+      <div className="row"><Toggle on={odd} label="Odd parity" onChange={(next) => { setOdd(next); setSent([...bits, parityBit(bits, next)]); }} tone="primary" /></div>
       <p>Parity bit {parity}. Frame {sent.join("")}</p>
       <div className="row"><span>Flip a transmitted bit</span><Bits bits={sent} onToggle={(i) => setSent(flipBit(sent, i))} /></div>
       <p>{check.ok ? "Receiver parity matches." : `Mismatch. Expected parity ${check.expected}, received ${check.actual}.`}</p>

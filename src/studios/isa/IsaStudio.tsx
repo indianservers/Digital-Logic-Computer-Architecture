@@ -4,6 +4,7 @@ import { Card, Segmented } from "../../design-system/ui";
 import { formatInstruction } from "../../engines/isa/assembler";
 import { ADDRESSING, binaryWord, bits, CATEGORIES, decode, encodeI, encodeR, fieldValue, fieldsOf, OP, type Decoded, type FieldSlice } from "../../engines/isa/spec";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { ISA_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 import { ExplainBar } from "../../design-system/ui";
 
@@ -37,8 +38,9 @@ export function IsaStudio() {
   const { prefs } = usePrefs();
   const fields = fieldsOf(decoded);
   const active = fields.find((field) => field.name === hover) ?? fields[0];
+  const lesson = lessonOf(ISA_LESSONS, tab, "anatomy");
   return (
-    <StudioFrame icon="book" title="Instruction Set Architecture" description="LogicLab-16 is a 16-bit load/store ISA. The same definition drives the assembler, the decoder, and the datapath." tabs={TABS} tab={tab} onTab={setTab} guide={["The ISA is the contract between the program and the CPU.", "Every instruction in this lab is one 16-bit word.", "Arithmetic reads registers. Only LOAD and STORE touch data memory."]} takeaways={["Opcode, registers, and immediates occupy fixed fields.", "A PC-relative branch adds its offset to its own address.", "R7 is the stack pointer for CALL and RET."]}>
+    <StudioFrame icon="book" title="Instruction Set Architecture" description="LogicLab-16 is a 16-bit load/store ISA. The same definition drives the assembler, the decoder, and the datapath." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain && active ? <ExplainBar what={active.meaning} why={decoded.explain} notice="Hover a field to see which bits it owns." /> : null}
       {tab === "basics" ? (
         <Card title="The contract">

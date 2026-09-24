@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { DESKTOP_BLOCKS, DDR_PATH, PCIE_DEVICES, WORKLOADS, boost, cacheHop, desktopCache, packagePower, threadsShare } from "../../engines/isaarch/desktop";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { Datapath } from "../shared/BitFields";
-import { Button, Card, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, Toggle } from "../../design-system/ui";
 
 export function DesktopStudio() {
   const lab = useParams().labId ?? "overview";
@@ -50,7 +50,7 @@ export function DesktopStudio() {
 
       {lab === "threads" ? (
         <Card title="Hardware threads">
-          <Button onClick={() => setSmt((v) => !v)}>{smt ? "2 threads / core" : "1 thread / core"}</Button>
+          <Toggle on={smt} onChange={setSmt} label="SMT" tone="ok" />
           <p>{threads.note}</p>
           <Metric label="Threads" value={String(threads.threads)} />
         </Card>

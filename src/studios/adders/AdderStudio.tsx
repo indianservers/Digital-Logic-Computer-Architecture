@@ -17,12 +17,51 @@ const TABS = [
   { id: "mul", label: "Multiply / Divide" },
 ];
 
+const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { title: string; body: string } }> = {
+  half: {
+    theory: { title: "Half and full adders", body: "A half adder is Sum = A XOR B and Carry = A AND B. A full adder also takes Cin: Sum = A XOR B XOR Cin, Cout is 1 when at least two of A, B, Cin are 1. Two half adders plus an OR make a full adder." },
+    guide: ["Toggle A and B on the half adder.", "Turn Cin on and read the full-adder sum and Cout.", "Switch the full-adder view between gates and half-adders.", "Check all eight full-adder rows by toggling."],
+    takeaways: ["Sum is XOR. Carry is AND for a half adder.", "Cout is the majority of A, B, and Cin.", "Carry and signed overflow are different flags on a wider adder."],
+  },
+  multi: {
+    theory: { title: "Ripple and look-ahead", body: "A ripple adder chains Cout of bit i into Cin of bit i+1, so delay grows with width. Carry look-ahead computes group generate/propagate so carries do not wait for every XOR. Carry-select duplicates slices and muxes on the incoming carry." },
+    guide: ["Widen the word and watch the carry walk on ripple.", "Switch to look-ahead and compare when Cout appears.", "Try carry-select on the same operands.", "Read unsigned sum versus the binary layout."],
+    takeaways: ["Ripple delay grows with width.", "Look-ahead does not wait for every stage.", "The numeric sum is the same; the carry path is the lesson."],
+  },
+  sub: {
+    theory: { title: "Subtract by adding", body: "A − B is A + two's complement of B. Invert B and add 1 via Cin = 1 on an adder. A half/full subtractor uses Difference = A XOR B XOR Bin and a borrow-out when A is smaller than B plus Bin." },
+    guide: ["Switch ADD to SUB and see B invert.", "Compare increment and decrement.", "Read borrow versus carry on the subtractor.", "Watch flags after a wrap."],
+    takeaways: ["Subtract is add of inverted B plus 1.", "Borrow means the unsigned difference needed a wrap.", "Increment is add 1; decrement is subtract 1."],
+  },
+  cmp: {
+    theory: { title: "Magnitude compare", body: "A comparator reports A>B, A=B, or A<B. Unsigned compare walks from the MSB. Signed compare uses two's complement: the sign bits participate, so 1000 is less than 0111 in 4-bit two's complement (−8 < 7)." },
+    guide: ["Set two words and read >, =, <.", "Flip the MSB and see unsigned versus signed disagree.", "Equal words light only A=B.", "Use the same ALU flags mentally: Z for equal, N and V for signed less."],
+    takeaways: ["Unsigned and signed compare are different readings of the same bits.", "Equality is bitwise match.", "MSB-first is how a magnitude comparator is built."],
+  },
+  shift: {
+    theory: { title: "Shifters", body: "Logical left shift inserts 0s on the right. Logical right inserts 0s on the left. Arithmetic right copies the sign bit. A rotate wraps bits around the ends. Shift amount is a count, not a second data word's full value unless masked." },
+    guide: ["Pick a shift kind and an amount.", "Watch bits walk and what fills the hole.", "Try arithmetic right on a negative two's-complement word.", "Rotate and confirm nothing is lost."],
+    takeaways: ["Logical right fills 0; arithmetic right fills the sign.", "Left shift by k multiplies unsigned values by 2^k if it fits.", "Rotate preserves all bits."],
+  },
+  alu: {
+    theory: { title: "ALU operations and flags", body: "An ALU muxes add, subtract, AND, OR, XOR, and shifts onto one result bus. Flags: Z (result is 0), N (MSB is 1), C (unsigned carry/borrow), V (two's-complement overflow). The opcode selects the operation; the flags describe the result." },
+    guide: ["Choose an ALU op and two operands.", "Read Z, N, C, V after each result.", "Force overflow with two large signed addends.", "AND/OR/XOR leave C and V as this lab defines for logic."],
+    takeaways: ["One datapath, many ops, selected by opcode.", "C is unsigned carry; V is signed overflow.", "Z is 1 only when every result bit is 0."],
+  },
+  mul: {
+    theory: { title: "Shift-add multiply and divide", body: "Binary multiply adds a shifted copy of the multiplicand for each 1 in the multiplier. Divide restores or subtracts and shifts the remainder. Partial products in this lab are teaching steps, not a Wallace tree." },
+    guide: ["Step a multiply and read each partial product.", "Try divide and watch the remainder.", "Widen if the product does not fit.", "Compare the final product with A × B in decimal."],
+    takeaways: ["Multiply is add-and-shift.", "A 0 in the multiplier skips that partial product.", "Divide is subtract-and-shift with a remainder."],
+  },
+};
+
 export function AdderStudio() {
   const [tab, setTab] = useStudioTab(TABS, "half");
   const [resetKey, setResetKey] = useState(0);
+  const lesson = LESSONS[tab] ?? LESSONS.half!;
   return (
-    <StudioFrame icon="bolt" title="Adders, Subtractors & Arithmetic" description="Change a bit and watch the sum, carry, flags, or partial products move." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Toggle A and B on the half adder", "Widen the ripple adder and watch the carry walk", "Switch ADD to SUB and see B invert", "Step a binary multiply"]} takeaways={["Sum is XOR. Carry is AND.", "Ripple delay grows with width. Look-ahead does not wait for every stage.", "Carry and signed overflow are different flags."] }>
-      <div key={resetKey}>
+    <StudioFrame icon="bolt" title="Adders, Subtractors & Arithmetic" description="Change a bit and watch the sum, carry, flags, or partial products move." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
+      <div key={`${tab}-${resetKey}`}>
         {tab === "half" ? <HalfFull /> : null}
         {tab === "multi" ? <Multi /> : null}
         {tab === "sub" ? <SubLab /> : null}

@@ -5,8 +5,8 @@ import { SEGMENT_NAMES } from "../../engines/digital/routing";
 
 export function BitSwitch({ on, label, onChange }: { on: boolean; label: string; onChange: (next: boolean) => void }) {
   return (
-    <button className={on ? "bit on" : "bit"} aria-label={label} aria-pressed={on} onClick={() => onChange(!on)}>
-      {on ? 1 : 0}
+    <button className={on ? "bit-switch on" : "bit-switch"} aria-label={label} aria-pressed={on} onClick={() => onChange(!on)}>
+      <span className="bit-thumb">{on ? 1 : 0}</span>
       <small>{label}</small>
     </button>
   );
@@ -40,7 +40,7 @@ export function ValueReadout({ bits }: { bits: LogicVector }) {
 }
 
 export function Waveform({ traces, cursor, onCursor, onTrace }: {
-  traces: Array<{ id: string; name: string; values: LogicBit[]; active?: boolean }>;
+  traces: Array<{ id: string; name: string; values: LogicBit[]; active?: boolean; color?: string }>;
   cursor?: number | null;
   onCursor?: (index: number) => void;
   onTrace?: (id: string) => void;
@@ -61,8 +61,8 @@ export function Waveform({ traces, cursor, onCursor, onTrace }: {
         });
         return (
           <g key={trace.id} onClick={() => onTrace?.(trace.id)} style={{ cursor: onTrace ? "pointer" : "default" }}>
-            <text x="0" y={y + 18} fontSize="11" fontWeight={trace.active ? 800 : 600} fill={trace.active ? "#2F6FED" : "#667085"}>{trace.name}</text>
-            <path d={d} fill="none" stroke={trace.active ? "#2F6FED" : "#34507a"} strokeWidth={trace.values.some((value) => value === "Z") ? 1.5 : 2} strokeDasharray={trace.values.includes("Z") ? "4 3" : undefined} />
+            <text x="0" y={y + 18} fontSize="11" fontWeight={trace.active ? 800 : 600} fill={trace.color ?? (trace.active ? "#2F6FED" : "#667085")}>{trace.name}</text>
+            <path d={d} fill="none" stroke={trace.color ?? (trace.active ? "#2F6FED" : "#34507a")} strokeWidth={trace.values.some((value) => value === "Z") ? 1.5 : 2} strokeDasharray={trace.values.includes("Z") ? "4 3" : undefined} />
             {trace.values.map((value, index) => value === "X" ? <text key={index} x={48 + index * step + 2} y={y + 18} fontSize="10" fill="#d92d20">X</text> : null)}
           </g>
         );

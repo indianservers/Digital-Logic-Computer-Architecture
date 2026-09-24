@@ -6,7 +6,7 @@ import {
   type NumericFormat, type Matrix,
 } from "../../engines/accel/accelerator";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
-import { Button, Card, Metric, Segmented, SimControls, parseNumberInput } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, SimControls, Toggle, parseNumberInput } from "../../design-system/ui";
 
 function parseMatrix(text: string): Matrix {
   return text.trim().split(/\n/).map((row) => row.trim().split(/[,\s]+/).filter(Boolean).map(Number));
@@ -230,7 +230,7 @@ export function AcceleratorStudio() {
       ) : null}
 
       {lab === "infer" ? (
-        <Card title={train ? "Training" : "Inference"} action={<Button onClick={() => setTrain((value) => !value)}>{train ? "Show inference" : "Show training"}</Button>}>
+        <Card title={train ? "Training" : "Inference"} action={<Toggle on={train} onChange={setTrain} label="Training" tone="warn" />}>
           <div className="tree">
             {(train ? ["Forward pass", "Loss", "Backward pass", "Gradients", "Weight update"] : ["Weights already learned", "Forward pass", "Output writeback"]).map((item) => <div key={item} className="tree-node">{item}</div>)}
           </div>

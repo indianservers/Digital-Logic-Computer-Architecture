@@ -21,7 +21,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,svg,woff2,woff}"],
+        globPatterns: ["**/*.{js,css,html,svg,png,woff2,woff}"],
         navigateFallback: "index.html",
       },
     }),
@@ -29,5 +29,14 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["src/**/*.test.ts"],
+  },
+  optimizeDeps: {
+    include: [
+      "@material/web/switch/switch.js",
+      "@material/web/button/filled-button.js",
+      "@material/web/button/outlined-button.js",
+      "@material/web/button/text-button.js",
+      "@material/web/iconbutton/icon-button.js",
+    ],
   },
 });

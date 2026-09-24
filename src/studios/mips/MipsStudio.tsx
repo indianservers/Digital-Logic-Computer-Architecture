@@ -5,7 +5,7 @@ import {
 } from "../../engines/isaarch/mips";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { BitFields, Datapath, IsaRegister } from "../shared/BitFields";
-import { Button, Card, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, Metric, Segmented, Toggle } from "../../design-system/ui";
 
 const DP = [
   { id: "pc", label: "PC" }, { id: "imem", label: "I-Mem" }, { id: "decode", label: "Decode" }, { id: "regfile", label: "RegFile" },
@@ -125,8 +125,7 @@ export function MipsStudio() {
       {lab === "branch" ? (
         <Card title="BEQ / J">
           <div className="row">
-            <Button onClick={() => setTaken(true)}>BEQ taken</Button>
-            <Button onClick={() => setTaken(false)}>BEQ not taken</Button>
+            <Toggle on={taken} onChange={setTaken} label="BEQ taken" tone="ok" />
             <Button onClick={() => setPc(jmp)}>Jump 0x10</Button>
           </div>
           <Metric label="PC" value={String(pc)} />

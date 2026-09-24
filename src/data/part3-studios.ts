@@ -1,7 +1,7 @@
 import type { ArchStudioDef, ConceptMap } from "./architecture";
 
-function lab(id: string, title: string, guide: string[], takeaways: string[]) {
-  return { id, title, guide, takeaways };
+function lab(id: string, title: string, guide: string[], takeaways: string[], theory?: string) {
+  return { id, title, guide, takeaways, theory };
 }
 
 export const PART3_STUDIOS: ArchStudioDef[] = [

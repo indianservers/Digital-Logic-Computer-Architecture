@@ -21,9 +21,12 @@ type Tok =
   | { kind: "rp" };
 
 export class BooleanParseError extends Error {
-  constructor(message: string) {
-    super(message);
+  readonly index?: number;
+
+  constructor(message: string, index?: number) {
+    super(index === undefined ? message : `${message} (position ${index + 1})`);
     this.name = "BooleanParseError";
+    this.index = index;
   }
 }
 
@@ -46,7 +49,13 @@ function tokenize(input: string): Tok[] {
       i += 1;
       continue;
     }
-    if ("&|!~^+*'·⊕¬".includes(ch)) {
+    if (ch === "&" || ch === "|") {
+      if (input[i + 1] === ch) i += 1;
+      tokens.push({ kind: "op", value: ch });
+      i += 1;
+      continue;
+    }
+    if ("!~^+*'·⊕¬".includes(ch)) {
       tokens.push({ kind: "op", value: ch });
       i += 1;
       continue;
@@ -70,7 +79,7 @@ function tokenize(input: string): Tok[] {
       i = j;
       continue;
     }
-    throw new BooleanParseError(`Unexpected character '${ch}'`);
+    throw new BooleanParseError(`Unexpected character '${ch}'`, i);
   }
   return tokens;
 }

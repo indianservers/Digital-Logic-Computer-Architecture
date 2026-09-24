@@ -18,12 +18,56 @@ const TABS = [
   { id: "code", label: "Code converter" },
 ];
 
+const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { title: string; body: string } }> = {
+  mux: {
+    theory: { title: "Multiplexer", body: "A mux copies one of 2ⁿ data inputs to Y, chosen by n select bits. Only the selected path should look active. A mux is the hardware of 'if select then this else that'." },
+    guide: ["Choose a multiplexer size.", "Toggle a data input and the select lines.", "Watch only the chosen path stay bright.", "Change select and see Y follow a different input."],
+    takeaways: ["A mux picks one input.", "Select is a binary index into the data inputs.", "Unselected inputs do not appear on Y."],
+  },
+  cascade: {
+    theory: { title: "Cascaded muxes", body: "A wide mux can be built from smaller ones: a 4:1 is two 2:1 muxes plus a 2:1 that picks between them. The MSB of select often chooses which half." },
+    guide: ["Set the inner muxes and the outer select.", "Trace which data input reaches Y.", "Compare with a single 4:1 on the mux tab.", "Toggle one inner input that is not selected — Y should stay."],
+    takeaways: ["Cascading preserves the mux function.", "Select bits are split across stages.", "The outer mux sees already-chosen halves."],
+  },
+  demux: {
+    theory: { title: "Demultiplexer", body: "A demux copies one input onto one of 2ⁿ outputs, chosen by select. Other outputs stay 0 (or Z in some parts). It is the inverse routing of a mux." },
+    guide: ["Set the data input and select.", "See which output carries the data.", "Turn data off — the selected output goes 0.", "Raise the size and count the select bits."],
+    takeaways: ["A demux copies one input onto one output.", "Select names the destination, not a source.", "Idle outputs stay 0 in this lab."],
+  },
+  enc: {
+    theory: { title: "Encoder", body: "A binary encoder turns a one-hot input into a binary index. If I3 is the only 1, Y is 11₂. Invalid patterns (two 1s, or none) are not a legal one-hot code." },
+    guide: ["Light a single input and read the binary code.", "Try two inputs at once and read the lab's result.", "Compare with the priority encoder tab.", "Match the output width to log2 of the input count."],
+    takeaways: ["One-hot in, binary out.", "n outputs can name 2ⁿ inputs.", "Two 1s is not a valid ordinary encoder input."],
+  },
+  priority: {
+    theory: { title: "Priority encoder", body: "When several requests are high, a priority encoder reports the highest-index (or highest-priority) request and ignores the rest. A valid bit tells you at least one request is present." },
+    guide: ["Raise several request bits.", "Read which index wins.", "Lower the winner and see the next request take over.", "Clear all requests and read the valid flag."],
+    takeaways: ["A priority encoder ignores lower requests.", "Valid is 0 when nobody is requesting.", "Priority is a policy: here the highest index wins."],
+  },
+  dec: {
+    theory: { title: "Decoder", body: "An n-to-2ⁿ decoder is one-hot: exactly one Y line is 1 for each binary input (when enabled). Memory word lines and chip-select maps use this block. Enable low blanks every output." },
+    guide: ["Toggle the select bits and watch one Y go high.", "Turn enable off — every output drops.", "Count outputs: 3 select bits means 8 lines.", "Open Memory → Decoder to see the same idea on a chip map."],
+    takeaways: ["Binary in, one-hot out.", "Enable blanks all outputs.", "Decoders name a word line or a chip."],
+  },
+  seg: {
+    theory: { title: "Seven-segment codes", body: "A 7-segment display has segments a–g. BCD 0–9 light a digit pattern. Codes 10–15 are not decimal digits; this lab shows they are not valid digits rather than inventing hex glyphs unless the converter says so." },
+    guide: ["Set a nibble and read the digit.", "Try codes 10–15.", "Match each lit segment to a–g.", "Compare with a truth table in your notes: Y = f(D3..D0)."],
+    takeaways: ["Segments a–g are seven independent outputs.", "Codes 10–15 are not digits here.", "BCD is 0–9 in four bits."],
+  },
+  code: {
+    theory: { title: "Code converters", body: "A converter is combinational logic from one encoding to another: binary to Gray, BCD to Excess-3, and so on. Each output bit is a Boolean function of the inputs — the same idea as a truth table, drawn as a small network." },
+    guide: ["Pick a conversion and toggle the input bits.", "Read Gray versus binary adjacency.", "Check Excess-3 = BCD nibble plus 0011.", "Compare with the Number Systems codes tab."],
+    takeaways: ["Gray neighbors differ by one bit.", "Excess-3 is BCD plus 3.", "A converter is just combinational logic."],
+  },
+};
+
 export function RoutingStudio() {
   const [tab, setTab] = useStudioTab(TABS, "mux");
   const [resetKey, setResetKey] = useState(0);
+  const lesson = LESSONS[tab] ?? LESSONS.mux!;
   return (
-    <StudioFrame icon="grid" title="MUX, DEMUX, Encoder & Decoder" description="Select a path, or turn a one-hot line into a binary code, and the diagram follows." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={["Choose a multiplexer size", "Toggle a data input and the select lines", "Watch only the chosen path stay bright", "Try an invalid BCD code on the display"]} takeaways={["A mux picks one input", "A demux copies one input onto one output", "A priority encoder ignores lower requests", "Codes 10–15 are not digits"]}>
-      <div key={resetKey}>
+    <StudioFrame icon="grid" title="MUX, DEMUX, Encoder & Decoder" description="Select a path, or turn a one-hot line into a binary code, and the diagram follows." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
+      <div key={`${tab}-${resetKey}`}>
         {tab === "mux" ? <MuxLab /> : null}
         {tab === "cascade" ? <CascadeLab /> : null}
         {tab === "demux" ? <DemuxLab /> : null}

@@ -3,6 +3,7 @@ import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
 import { directoryRead, directoryWrite, falseShareInvalidations, mesiStep, msiStep, readShared, type DirectoryEntry, type MesiState, type MsiState } from "../../engines/arch/coherence";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { MULTICORE_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const TABS = [
@@ -34,8 +35,9 @@ export function MulticoreStudio() {
     setInvalidations((count) => count + stepped.invalidations);
   }
 
+  const lesson = lessonOf(MULTICORE_LESSONS, tab, "mesi");
   return (
-    <StudioFrame icon="table" title="Multicore & Coherence" description="Each core can hold a copy. A write must make the other copies invalid or shared before the new value is the one later reads see." tabs={TABS} tab={tab} onTab={setTab} guide={["A private read of an invalid line becomes Exclusive when nobody else has it.", "A read of a Modified line forces a write-back and both copies become Shared.", "Writes to different bytes of one line still invalidate the other core."]} takeaways={["MSI has no Exclusive state, so a first read becomes Shared.", "The directory records the owner or the sharers.", "Separate lines do not create that invalidation."]}>
+    <StudioFrame icon="table" title="Multicore & Coherence" description="Each core can hold a copy. A write must make the other copies invalid or shared before the new value is the one later reads see." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={`Core ${core} sees bus message ${bus}.`} why="Snooping means every cache watches that message and updates its own line state." notice="This is one line and four cores, not a full memory-consistency proof." /> : null}
       <div className="row">
         {[0, 1, 2, 3].map((index) => <Button key={index} onClick={() => setCore(index)}>Core {index}</Button>)}

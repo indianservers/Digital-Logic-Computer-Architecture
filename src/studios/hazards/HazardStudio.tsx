@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Metric, Segmented } from "../../design-system/ui";
+import { Button, Card, ExplainBar, Metric, Segmented, Toggle } from "../../design-system/ui";
 import { predictorName, runPipe, stepPipe, type PipeState, type Policy } from "../../engines/isa/pipeline";
 import { StudioFrame } from "../../layout/StudioFrame";
+import { HAZARD_LESSONS, lessonOf } from "../../data/studioLessons";
 import { usePrefs } from "../../store/prefs";
 
 const PRESETS: Record<string, { source: string; note: string; data?: Record<number, number> }> = {
@@ -33,13 +34,14 @@ export function HazardStudio() {
     setPipe(runPipe(chosen.source, { forwarding, unified, policy, data: chosen.data }, limit));
   }
 
+  const lesson = lessonOf(HAZARD_LESSONS, tab, "detect");
   return (
-    <StudioFrame icon="map" title="Pipeline Hazards" description="Hazards are detected from register reads and writes in the live pipeline. WAR and WAW do not arise in this in-order model." tabs={TABS} tab={tab} onTab={setTab} guide={["RAW means a later instruction reads a register an earlier one writes.", "Forwarding copies an ALU result from EX/MEM or MEM/WB.", "A wrong branch prediction flushes the instructions already fetched."]} takeaways={["This pipeline writes only in WB and reads in ID, so WAR and WAW do not occur.", "A load-use still inserts one stall when forwarding is on.", "The 2-bit counter moves one step toward the resolved direction."]}>
+    <StudioFrame icon="map" title="Pipeline Hazards" description="Hazards are detected from register reads and writes in the live pipeline. WAR and WAW do not arise in this in-order model." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
       {prefs.explain ? <ExplainBar what={pipe?.log.at(-1) ?? chosen?.note ?? ""} why="Stall, forward, and flush marks come from the detector, not from a canned timeline." notice="Separate instruction and data memories remove the structural conflict shown in the unified preset." /> : null}
       <Segmented options={Object.keys(PRESETS)} value={preset} onChange={(value) => { setPreset(value); if (value === "Structural") setUnified(true); }} />
       <div className="row">
-        <Button onClick={() => { setForwarding((value) => !value); setPipe((current) => current ? { ...current, forwarding: !forwarding } : current); }}>{forwarding ? "Forwarding on" : "Forwarding off"}</Button>
-        <Button onClick={() => { setUnified((value) => !value); setPipe((current) => current ? { ...current, unified: !unified } : current); }}>{unified ? "Unified memory" : "Split memory"}</Button>
+        <Toggle on={forwarding} onChange={(value) => { setForwarding(value); setPipe((current) => current ? { ...current, forwarding: value } : current); }} label="Forwarding" tone="ok" />
+        <Toggle on={unified} onChange={(value) => { setUnified(value); setPipe((current) => current ? { ...current, unified: value } : current); }} label="Unified memory" tone="warn" />
         <Button variant="primary" onClick={() => load(0)}>Load</Button>
         <Button onClick={() => pipe && setPipe(stepPipe(pipe))}>Step</Button>
         <Button onClick={() => load(400)}>Run</Button>
