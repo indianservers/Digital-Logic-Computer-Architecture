@@ -39,7 +39,7 @@ function crumbTitle(pathname: string, search: string): string {
 export function AppShell({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { prefs, update } = usePrefs();
+  const { prefs, update, noteVisit } = usePrefs();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const hits = useMemo(() => searchStudios(query), [query]);
@@ -53,10 +53,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const done = prefs.challenges.length;
 
   useEffect(() => {
-    update({ lastPath: `${location.pathname}${location.search}` });
+    noteVisit(`${location.pathname}${location.search}`);
     setOpen(false);
     setQuery("");
-  }, [location.pathname, location.search, update]);
+  }, [location.pathname, location.search, noteVisit]);
 
   return (
     <div className="app-shell">
@@ -97,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="search">
             <Icon name="search" size={16} />
-            <input aria-label="Search topics" placeholder={gates ? "Search topics, e.g. \"K-map for 3 variables\"..." : truth ? "Search topics, e.g. \"Karnaugh map\"..." : combo ? "Search topics, e.g. \"multiplexer\" or \"Boolean algebra\"..." : "Search topics, e.g. two's complement"} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
+            <input aria-label="Search topics" placeholder={gates ? "Search topics, e.g. \"K-map for 3 variables\"..." : truth ? "Search topics, e.g. \"Karnaugh map\"..." : combo ? "Search topics, e.g. \"multiplexer\" or \"Boolean algebra\"..." : location.pathname.startsWith("/architecture/compare") ? "Search topics, e.g. RISC-V registers, ARM encoding..." : location.pathname.startsWith("/architecture/mobile") ? "Search topics, e.g. GPU, NPU, thermal, camera..." : location.pathname.startsWith("/architecture/desktop") ? "Search topics, e.g. cache, DDR, PCIe, boost..." : "Search topics, e.g. two's complement"} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
               if (event.key === "Enter" && hits[0]) navigate(hits[0].path);
             }} />
             {query && hits.length > 0 ? (

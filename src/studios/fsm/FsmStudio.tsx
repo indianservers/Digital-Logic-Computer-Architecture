@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Button, Segmented, Toggle } from "../../design-system/ui";
 import { Icon } from "../../design-system/icons";
 import { encodeStates, type EncodingKind } from "../../engines/fsm/encoding";
@@ -10,7 +10,7 @@ import { addState, addTransition, moveState, removeState, removeTransition, rena
 import { synthesizeD } from "../../engines/fsm/synthesis";
 import { chosenTransition, conditionMatches } from "../../engines/fsm/transition";
 
-type Page = "studio" | "diagram" | "table" | "minimize" | "sequence" | "examples";
+type Page = "studio" | "diagram" | "table" | "minimize" | "sequence" | "examples" | "encoding" | "circuit";
 
 const PAGES: Array<{ id: Page; label: string }> = [
   { id: "studio", label: "FSM Studio" },
@@ -22,9 +22,8 @@ const PAGES: Array<{ id: Page; label: string }> = [
 ];
 
 const LEGACY: Record<string, Page> = {
-  encoding: "studio",
-  circuit: "studio",
-  diagram: "diagram",
+  encoding: "encoding",
+  circuit: "circuit",
 };
 
 const CONCEPTS = [
@@ -36,11 +35,11 @@ const CONCEPTS = [
 ];
 
 const LABS = [
-  { title: "Traffic Light Controller", to: "/studios/fsm?tab=examples" },
-  { title: "Vending Machine", to: "/studios/fsm?tab=examples" },
-  { title: "Sequence Detector", to: "/studios/fsm?tab=examples" },
-  { title: "Elevator Controller", to: "/studios/fsm?tab=examples" },
-  { title: "FSM with Moore vs. Mealy", to: "/studios/fsm?tab=studio" },
+  { title: "Traffic Light Controller", id: "light" },
+  { title: "Vending Machine", id: "vend" },
+  { title: "Sequence Detector", id: "overlap" },
+  { title: "Elevator Controller", id: "lift" },
+  { title: "FSM with Moore vs. Mealy", id: "studio" },
 ];
 
 function demoMachine(): FsmMachine {
@@ -126,6 +125,17 @@ export function FsmStudio() {
     setPlaying(false);
   }
 
+  function openLab(id: string) {
+    if (id === "studio") {
+      load(demoMachine());
+      go("studio");
+      return;
+    }
+    const found = FSM_EXAMPLES.find((item) => item.id === id);
+    if (found) load(found.build());
+    go("sequence");
+  }
+
   function reset() {
     setPlaying(false);
     setCurrent(machine.initialId);
@@ -168,8 +178,12 @@ export function FsmStudio() {
 
       {page === "table" ? <TablePage machine={machine} symbols={symbols} current={current} onChange={setMachine} /> : null}
       {page === "minimize" ? <MinPage machine={machine} onUse={load} /> : null}
-      {page === "examples" ? <ExamplesPage onUse={(next) => { load(next); go("studio"); }} /> : null}
-      {page === "studio" || page === "diagram" || page === "sequence" ? (
+      {page === "examples" ? <ExamplesPage onUse={(next) => { load(next); go("diagram"); }} onSimulate={(next) => { load(next); go("sequence"); }} /> : null}
+      {page === "diagram" ? <DiagramPage machine={machine} current={current} selected={selected} zoom={zoom} notes={notes} onZoom={setZoom} onSelect={setSelected} onMachine={setMachine} onNotes={setNotes} onReset={() => load(demoMachine())} /> : null}
+      {page === "sequence" ? <SequencePage machine={machine} current={current} stream={stream} index={index} playing={playing} speed={speed} visited={visited} nextSymbol={nextSymbol} nextName={preview.toName} output={output} onStream={(value) => { setStream(value); setIndex(0); setCurrent(machine.initialId); }} onPlaying={setPlaying} onSpeed={setSpeed} onStep={step} onReset={reset} /> : null}
+      {page === "encoding" ? <EncodingPage machine={machine} kind={encoding} onKind={setEncoding} /> : null}
+      {page === "circuit" ? <CircuitPage machine={machine} /> : null}
+      {page === "studio" ? (
         <div className="fsmx-grid">
           <section className="lgx-card fsmx-diagram">
             <div className="lgx-card-bar">
@@ -312,7 +326,7 @@ export function FsmStudio() {
         </section>
         <section className="lgx-card">
           <h3>Interactive Labs ({LABS.length})</h3>
-          <ul>{LABS.map((item) => <li key={item.title}><Link to={item.to}>{item.title}</Link></li>)}</ul>
+          <ul>{LABS.map((item) => <li key={item.title}><button type="button" onClick={() => openLab(item.id)}>{item.title}</button></li>)}</ul>
         </section>
         <section className="lgx-card">
           <h3>Real-World Applications</h3>
@@ -331,6 +345,141 @@ export function FsmStudio() {
         </section>
       </div>
     </div>
+  );
+}
+
+function DiagramPage({ machine, current, selected, zoom, notes, onZoom, onSelect, onMachine, onNotes, onReset }: {
+  machine: FsmMachine;
+  current: string;
+  selected: string;
+  zoom: number;
+  notes: Record<string, string>;
+  onZoom: (value: number) => void;
+  onSelect: (id: string) => void;
+  onMachine: (machine: FsmMachine) => void;
+  onNotes: (notes: Record<string, string>) => void;
+  onReset: () => void;
+}) {
+  const picked = stateById(machine, selected) ?? stateById(machine, machine.initialId);
+  return (
+    <div className="fsmx-grid">
+      <section className="lgx-card fsmx-diagram">
+        <div className="lgx-card-bar">
+          <h3>State Diagram</h3>
+          <div className="row">
+            <Segmented options={["Moore", "Mealy"]} value={machine.kind === "moore" ? "Moore" : "Mealy"} onChange={(value) => onMachine({ ...machine, kind: value === "Moore" ? "moore" : "mealy" })} />
+            <button type="button" className="fsmx-icon" aria-label="Zoom out" onClick={() => onZoom(Math.max(0.7, zoom - 0.1))}>−</button>
+            <button type="button" className="fsmx-icon" aria-label="Zoom in" onClick={() => onZoom(Math.min(1.6, zoom + 0.1))}>+</button>
+            <button type="button" className="fsmx-icon" onClick={onReset}>Reset sketch</button>
+          </div>
+        </div>
+        <p className="tiny">Drag a state to move it. Click a state to edit its name and output. Mealy labels show input/output on the arrow.</p>
+        <Diagram machine={machine} current={current} selected={selected} zoom={zoom} onSelect={onSelect} onMove={(id, x, y) => onMachine(moveState(machine, id, x, y))} />
+      </section>
+      <section className="lgx-card">
+        <h3>Edit {picked?.name ?? "state"}</h3>
+        <label>State name<input aria-label="Diagram state name" value={picked?.name ?? ""} onChange={(event) => picked && onMachine(renameState(machine, picked.id, event.target.value))} /></label>
+        <label>Output<input aria-label="Diagram state output" value={picked?.output ?? ""} onChange={(event) => picked && onMachine(setOutput(machine, picked.id, event.target.value))} /></label>
+        <label>Note<textarea aria-label="Diagram state note" rows={2} value={picked ? notes[picked.id] ?? "" : ""} onChange={(event) => picked && onNotes({ ...notes, [picked.id]: event.target.value })} /></label>
+        <div className="row">
+          <Button variant="primary" onClick={() => {
+            const next = addState(machine, `S${machine.states.length}`);
+            const added = next.states[next.states.length - 1];
+            onMachine(next);
+            if (added) onSelect(added.id);
+          }}>Add state</Button>
+          <Button onClick={() => picked && picked.id !== machine.initialId && onMachine(removeState(machine, picked.id))}>Delete</Button>
+          <Button onClick={() => picked && onMachine(setInitial(machine, picked.id))}>Make start</Button>
+        </div>
+        <p className="tiny">{machine.states.length} states · {machine.transitions.length} transitions · start {stateById(machine, machine.initialId)?.name}</p>
+      </section>
+    </div>
+  );
+}
+
+function SequencePage({ machine, current, stream, index, playing, speed, visited, nextSymbol, nextName, output, onStream, onPlaying, onSpeed, onStep, onReset }: {
+  machine: FsmMachine;
+  current: string;
+  stream: string;
+  index: number;
+  playing: boolean;
+  speed: number;
+  visited: string[];
+  nextSymbol: string;
+  nextName: string;
+  output: string;
+  onStream: (value: string) => void;
+  onPlaying: (value: boolean) => void;
+  onSpeed: (value: number) => void;
+  onStep: () => void;
+  onReset: () => void;
+}) {
+  const active = stateById(machine, current);
+  const symbols = parseStream(stream);
+  return (
+    <div className="fsmx-grid">
+      <section className="lgx-card">
+        <h3>Sequence simulation</h3>
+        <p className="tiny">Feed symbols one at a time. The timeline shows every state this input has visited.</p>
+        <label>Input sequence<input aria-label="Sequence input" value={stream} onChange={(event) => onStream(event.target.value)} /></label>
+        <div className="fsmx-quick">
+          {["1 0 1", "1 1 0 0", "0 0 1 0"].map((item) => <button key={item} type="button" onClick={() => onStream(item)}>{item}</button>)}
+        </div>
+        <div className="row">
+          <button className="lgx-play" type="button" onClick={() => onPlaying(!playing)}>{playing ? "Pause" : "Run"}</button>
+          <Button onClick={onStep}>Step</Button>
+          <Button onClick={onReset}>Reset</Button>
+        </div>
+        <label className="lgx-slider">Speed
+          <input aria-label="Sequence speed" type="range" min={150} max={1000} step={50} value={speed} onChange={(event) => onSpeed(Number(event.target.value))} />
+          <span>{speed} ms</span>
+        </label>
+        <p>Symbol {Math.min(index + 1, symbols.length)} of {symbols.length}: <b>{symbols[index] ?? "end"}</b></p>
+      </section>
+      <section className="lgx-card">
+        <h3>Live state</h3>
+        <div className="fsmx-readout"><span>Now</span><b>{active?.name ?? "—"}</b></div>
+        <div className="fsmx-readout"><span>Next on {nextSymbol}</span><b>{nextName}</b></div>
+        <div className="fsmx-readout"><span>Output</span><b>{output}</b></div>
+      </section>
+      <section className="lgx-card fsmx-wide">
+        <h3>Timeline</h3>
+        <div className="fsmx-time">
+          {visited.map((id, stepIndex) => (
+            <div key={`${id}-${stepIndex}`} className={stepIndex === visited.length - 1 ? "on" : ""}>
+              <b>{stateById(machine, id)?.name ?? id}</b>
+              <small>{stepIndex === 0 ? "start" : symbols[stepIndex - 1]}</small>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function EncodingPage({ machine, kind, onKind }: { machine: FsmMachine; kind: EncodingKind; onKind: (kind: EncodingKind) => void }) {
+  const encoded = encodeStates(machine, kind);
+  return (
+    <section className="lgx-card">
+      <h3>State encoding</h3>
+      <p>{encoded.note}</p>
+      <Segmented options={["binary", "one-hot"]} value={kind === "one-hot" ? "one-hot" : "binary"} onChange={(value) => onKind(value === "one-hot" ? "one-hot" : "binary")} />
+      <p className="tiny">{encoded.flipFlops} flip-flops for {machine.states.length} states.</p>
+      <div className="fsmx-codes">
+        {encoded.states.map((state) => <span key={state.id}><b>{state.name}</b> {state.code}</span>)}
+      </div>
+    </section>
+  );
+}
+
+function CircuitPage({ machine }: { machine: FsmMachine }) {
+  const circuit = useMemo(() => synthesizeD(machine), [machine]);
+  return (
+    <section className="lgx-card">
+      <h3>D flip-flop circuit</h3>
+      <p>{circuit.reason}</p>
+      {circuit.equations.map((row) => <p key={row.signal} className="mono"><strong>{row.signal}</strong> = {row.expression}</p>)}
+    </section>
   );
 }
 
@@ -440,7 +589,7 @@ function MinPage({ machine, onUse }: { machine: FsmMachine; onUse: (machine: Fsm
   return (
     <section className="lgx-card">
       <h3>State Minimization</h3>
-      <p>{result.reason}</p>
+      <p>{result.reason} {result.merged ? `${result.merged} state${result.merged === 1 ? "" : "s"} can merge.` : "No states merge."}</p>
       {result.steps.map((step) => (
         <p key={step.label}><strong>{step.label}:</strong> {step.blocks.map((block) => `{${block.map((id) => stateById(machine, id)?.name ?? id).join(", ")}}`).join("  ")}</p>
       ))}
@@ -449,27 +598,23 @@ function MinPage({ machine, onUse }: { machine: FsmMachine; onUse: (machine: Fsm
   );
 }
 
-function ExamplesPage({ onUse }: { onUse: (machine: FsmMachine) => void }) {
+function ExamplesPage({ onUse, onSimulate }: { onUse: (machine: FsmMachine) => void; onSimulate: (machine: FsmMachine) => void }) {
   return (
     <div className="grid cards-3">
-      {FSM_EXAMPLES.map((example) => (
-        <section key={example.id} className="lgx-card">
-          <h3>{example.label}</h3>
-          <Button variant="primary" onClick={() => onUse(example.build())}>Load into studio</Button>
-        </section>
-      ))}
-      <SynthesisNote />
+      {FSM_EXAMPLES.map((example) => {
+        const built = example.build();
+        const start = stateById(built, built.initialId)?.name ?? built.initialId;
+        return (
+          <section key={example.id} className="lgx-card">
+            <h3>{example.label}</h3>
+            <p className="tiny">{built.kind === "moore" ? "Moore" : "Mealy"} · {built.states.length} states · start {start} · inputs {built.inputs.join(", ")}</p>
+            <div className="row">
+              <Button onClick={() => onUse(built)}>Open diagram</Button>
+              <Button variant="primary" onClick={() => onSimulate(built)}>Simulate</Button>
+            </div>
+          </section>
+        );
+      })}
     </div>
-  );
-}
-
-function SynthesisNote() {
-  const circuit = useMemo(() => synthesizeD(demoMachine()), []);
-  return (
-    <section className="lgx-card">
-      <h3>D synthesis of the sketch</h3>
-      <p className="tiny">{circuit.reason}</p>
-      {circuit.equations.slice(0, 2).map((row) => <p key={row.signal}><strong>{row.signal}</strong> = {row.expression}</p>)}
-    </section>
   );
 }

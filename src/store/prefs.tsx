@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { matchStudio } from "../data/curriculum";
 
 export interface Prefs {
   bitWidth: 4 | 8 | 16 | 32;
@@ -9,6 +10,7 @@ export interface Prefs {
   badges: string[];
   challenges: string[];
   lastPath: string;
+  visited: string[];
 }
 
 const KEY = "logiclab.prefs.v1";
@@ -22,6 +24,7 @@ const DEFAULTS: Prefs = {
   badges: [],
   challenges: [],
   lastPath: "/",
+  visited: [],
 };
 
 function load(): Prefs {
@@ -39,6 +42,7 @@ interface PrefsApi {
   update: (patch: Partial<Prefs>) => void;
   earn: (id: string) => void;
   toggleBookmark: (id: string) => void;
+  noteVisit: (path: string) => void;
 }
 
 const Ctx = createContext<PrefsApi | null>(null);
@@ -57,6 +61,7 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
         && next.bookmarks === prev.bookmarks
         && next.badges === prev.badges
         && next.challenges === prev.challenges
+        && next.visited === prev.visited
         ? prev
         : next;
     });
@@ -74,7 +79,15 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
       bookmarks: prev.bookmarks.includes(id) ? prev.bookmarks.filter((item) => item !== id) : [...prev.bookmarks, id],
     }));
   }, []);
-  const api = useMemo<PrefsApi>(() => ({ prefs, update, earn, toggleBookmark }), [prefs, update, earn, toggleBookmark]);
+  const noteVisit = useCallback((path: string) => {
+    setPrefs((prev) => {
+      const studio = matchStudio(path);
+      const visited = studio?.active && !prev.visited.includes(studio.id) ? [...prev.visited, studio.id] : prev.visited;
+      if (prev.lastPath === path && visited === prev.visited) return prev;
+      return { ...prev, lastPath: path, visited };
+    });
+  }, []);
+  const api = useMemo<PrefsApi>(() => ({ prefs, update, earn, toggleBookmark, noteVisit }), [prefs, update, earn, toggleBookmark, noteVisit]);
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }
 

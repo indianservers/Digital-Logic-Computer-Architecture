@@ -4,7 +4,8 @@ import { installPage, splitTwoLevel, translate, translateTwoLevel, type PageEntr
 import { addressSpace, classifyException, cpuCopy, createDma, handlerFor, highestPriority, interruptTimeline, MMIO, pollTransfer, stepDma, type IoDevice } from "./arch/io";
 import { addressReach, asyncHandshake, bandwidthBytes, grantBus, syncEdge, transferValue } from "./arch/busarch";
 import { FLYNN, independent, issueCycles, renameOps, smtIssue, speculate, stepRob, vectorAdd, type MiniOp } from "./arch/parallel";
-import { directoryRead, directoryWrite, falseShareInvalidations, invalidateCached, mesiStep, msiStep, readShared, warmCache } from "./arch/coherence";
+import { directoryRead, directoryWrite, falseShareInvalidations, invalidateCached, mesiStep, moesiStep, msiStep, readShared, warmCache } from "./arch/coherence";
+import { LOOP_TRACE, SCHEDULE_OPS, SCORE_OPS, branchScore, listSchedule, roofline, runRob, runScoreboard, staticCycles } from "./arch/aca";
 import { accessCache } from "./cache/cache";
 import { validGeometry } from "./cache/mapping";
 
@@ -165,5 +166,40 @@ describe("coherence", () => {
     expect(again.result.hit).toBe(true);
     const cold = accessCache(invalidateCached(warm, 0), 0, "read");
     expect(cold.result.hit).toBe(false);
+  });
+
+  it("keeps a dirty shared line Owned in MOESI", () => {
+    const exclusive = moesiStep(["I", "I"], 0, "read");
+    const modified = moesiStep(exclusive.states, 0, "write");
+    const shared = moesiStep(modified.states, 1, "read");
+    expect(shared.states).toEqual(["O", "S"]);
+  });
+});
+
+describe("advanced computer architecture", () => {
+  it("hides a load latency by scheduling an independent instruction", () => {
+    const program = staticCycles(SCHEDULE_OPS);
+    const scheduled = staticCycles(listSchedule(SCHEDULE_OPS));
+    expect(scheduled.stalls).toBeLessThan(program.stalls);
+  });
+
+  it("removes WAW stalls when the scoreboard renames", () => {
+    expect(runScoreboard(SCORE_OPS, false).waw).toBeGreaterThan(0);
+    expect(runScoreboard(SCORE_OPS, true).waw).toBe(0);
+  });
+
+  it("commits the reorder buffer in program order", () => {
+    const rob = runRob(SCORE_OPS);
+    expect(rob.commitOrder[0]).toBe(SCORE_OPS[0]?.text);
+    expect(rob.execOrder[0]).not.toBe(rob.commitOrder[0]);
+  });
+
+  it("lets a correlating predictor beat a two-bit counter on a loop exit", () => {
+    expect(branchScore(LOOP_TRACE, "correlating").correct).toBeGreaterThan(branchScore(LOOP_TRACE, "two").correct);
+  });
+
+  it("places a low-intensity kernel under the ridge", () => {
+    expect(roofline(8, 64, 64, 16).bound).toBe("memory");
+    expect(roofline(128, 2, 64, 16).bound).toBe("compute");
   });
 });

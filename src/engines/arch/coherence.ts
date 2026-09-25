@@ -3,6 +3,7 @@ import { decompose, type CacheConfig } from "../cache/mapping";
 
 export type MesiState = "M" | "E" | "S" | "I";
 export type MsiState = "M" | "S" | "I";
+export type MoesiState = "M" | "O" | "E" | "S" | "I";
 
 export interface CoherenceStep<T extends string> {
   states: T[];
@@ -44,6 +45,47 @@ export function mesiStep(states: MesiState[], core: number, op: "read" | "write"
     bus = "silent upgrade";
   } else if (mine !== "M") {
     bus = mine === "I" ? "BusRdX" : "Invalidate";
+    next.forEach((state, index) => {
+      if (index !== core && state !== "I") {
+        next[index] = "I";
+        invalidations += 1;
+      }
+    });
+    next[core] = "M";
+  }
+  return { states: next, bus, invalidations };
+}
+
+export function moesiStep(states: MoesiState[], core: number, op: "read" | "write"): CoherenceStep<MoesiState> {
+  const next = copy(states);
+  const mine = next[core] ?? "I";
+  let bus = "hit";
+  let invalidations = 0;
+  const other = (state: MoesiState) => next.some((item, index) => index !== core && item === state);
+  if (op === "read") {
+    if (mine === "I") {
+      if (other("M") || other("O")) {
+        bus = "BusRd + owner supplies";
+        next.forEach((state, index) => {
+          if (index !== core && state === "M") next[index] = "O";
+        });
+        next[core] = "S";
+      } else if (other("S") || other("E")) {
+        bus = "BusRd";
+        next.forEach((state, index) => {
+          if (index !== core && state === "E") next[index] = "S";
+        });
+        next[core] = "S";
+      } else {
+        bus = "BusRd";
+        next[core] = "E";
+      }
+    }
+  } else if (mine === "E" || mine === "M") {
+    next[core] = "M";
+    bus = mine === "E" ? "silent upgrade" : "hit";
+  } else {
+    bus = mine === "O" ? "BusUpgr + WriteBack" : "BusRdX";
     next.forEach((state, index) => {
       if (index !== core && state !== "I") {
         next[index] = "I";

@@ -12,9 +12,11 @@ import { HierarchyStudio } from "./studios/hierarchy/HierarchyStudio";
 import { InterruptStudio } from "./studios/interrupts/InterruptStudio";
 import { IoStudio } from "./studios/io/IoStudio";
 import { MulticoreStudio } from "./studios/multicore/MulticoreStudio";
+import { AcaStudio } from "./studios/aca/AcaStudio";
 import { ParallelStudio } from "./studios/parallel/ParallelStudio";
 import { IsaStudio } from "./studios/isa/IsaStudio";
 import { PipelineStudio } from "./studios/pipeline/PipelineStudio";
+import { AluStudio } from "./studios/alu/AluStudio";
 import { RtlStudio } from "./studios/rtl/RtlStudio";
 import { BooleanStudio } from "./studios/boolean-algebra/BooleanStudio";
 import { CombinationalStudio } from "./studios/combinational/CombinationalStudio";
@@ -94,6 +96,9 @@ export function App() {
         <Route path="/studios/bus" element={<BusStudio />} />
         <Route path="/studios/parallel" element={<ParallelStudio />} />
         <Route path="/studios/multicore" element={<MulticoreStudio />} />
+        <Route path="/studios/aca" element={<Navigate to="/studios/advanced-computer-architecture" replace />} />
+        <Route path="/studios/advanced-computer-architecture" element={<AcaStudio />} />
+        <Route path="/studios/advanced-computer-architecture/:labId" element={<AcaStudio />} />
         <Route path="/architecture/accelerator" element={<Suspend><AcceleratorStudio /></Suspend>} />
         <Route path="/architecture/accelerator/:labId" element={<Suspend><AcceleratorStudio /></Suspend>} />
         <Route path="/architecture/hetero" element={<Suspend><HeteroStudio /></Suspend>} />
@@ -126,6 +131,8 @@ export function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/cheat-sheet" element={<CheatPage />} />
         <Route path="/notes" element={<NotesPage />} />
+        <Route path="/studios/alu" element={<AluStudio />} />
+        <Route path="/upcoming/alu" element={<AluStudio />} />
         <Route path="/upcoming/:id" element={<UpcomingRoute />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

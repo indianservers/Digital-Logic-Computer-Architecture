@@ -1,11 +1,10 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { CATEGORIES, STUDIOS } from "../data/curriculum";
+import { CATEGORIES, matchStudio, STUDIOS, type StudioInfo } from "../data/curriculum";
 import { MASTER_CONCEPTS } from "../data/master";
 import { StudioMark } from "../design-system/studioMarks";
 import { Card, Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
-import type { StudioInfo } from "../data/curriculum";
-
 function conceptCount(studio: StudioInfo): number {
   const pathBase = studio.path.split("?")[0] ?? studio.path;
   const hasTab = studio.path.includes("?");
@@ -17,75 +16,186 @@ function conceptCount(studio: StudioInfo): number {
   }).length;
 }
 
-function StudioCard({ studio }: { studio: StudioInfo }) {
-  const count = conceptCount(studio);
-  return (
-    <Link to={studio.path} className={`card studio-card tone-${studio.category}${studio.active ? "" : " is-locked"}`}>
-      <div className="studio-card-head">
-        <StudioMark id={studio.id} />
-        {studio.active ? <span className="pill ok">Open</span> : <span className="lock">Upcoming · Phase {studio.phase}</span>}
-      </div>
-      <strong>{studio.title}</strong>
-      <p className="muted" style={{ margin: 0 }}>{studio.summary}</p>
-      <span className="tiny">{studio.topics.slice(0, 3).join(" · ")}{count ? ` · ${count} concepts` : ""}</span>
-    </Link>
-  );
+function minutesFor(count: number): number {
+  return Math.min(40, 15 + Math.ceil(count / 2) * 5);
 }
 
-export function HomePage() {
+function destinationLabel(path: string, studio: StudioInfo): string {
+  const tab = new URLSearchParams(path.split("?")[1] ?? "").get("tab");
+  return tab ? `${studio.title} · ${tab}` : studio.title;
+}
+
+function StudioCard({ studio, visited, next, preview }: { studio: StudioInfo; visited: boolean; next: boolean; preview: boolean }) {
+  const count = conceptCount(studio);
+  const minutes = minutesFor(count);
+  const body = (
+    <>
+      <div className="studio-card-head">
+        <StudioMark id={studio.id} />
+        {studio.active ? <span className="pill ok">{visited ? "Visited" : "Open"}</span> : <span className="lock">Phase {studio.phase}</span>}
+      </div>
+      <strong>{studio.title}</strong>
+      <p className="studio-action">{studio.summary.split(".")[0]}</p>
+      <span className="tiny">Phase {studio.phase} · about {minutes} min{count ? ` · ${count} concepts` : ""}</span>
+      {preview ? <span className="studio-preview">Opens {destinationLabel(studio.path, studio)}. {studio.summary}</span> : null}
+    </>
+  );
+  const className = `card studio-card tone-${studio.category}${studio.active ? "" : " is-locked"}${next ? " is-next" : ""}`;
+  if (!studio.active) return <div className={className} aria-disabled="true">{body}</div>;
+  return <Link to={studio.path} className={className}>{body}</Link>;
+}
+
+const CHIP: Record<string, string> = {
+  foundations: "Foundations",
+  combinational: "Combinational",
+  sequential: "Sequential",
+  memory: "Memory",
+  processor: "Processor",
+  systems: "Systems",
+  architecture: "Architecture",
+  isa: "ISA",
+  build: "Build",
+};
+
+function Catalog({ home }: { home: boolean }) {
   const { prefs } = usePrefs();
-  const resume = prefs.lastPath.startsWith("/studios") || prefs.lastPath.startsWith("/architecture") ? prefs.lastPath : "/studios/number-systems";
-  const openCount = STUDIOS.filter((studio) => studio.active).length;
+  const [filter, setFilter] = useState<"all" | "open" | "upcoming">("all");
+  const [query, setQuery] = useState("");
+  const [closed, setClosed] = useState<string[]>([]);
+  const openStudios = STUDIOS.filter((studio) => studio.active);
+  const upcoming = STUDIOS.filter((studio) => !studio.active);
+  const resume = matchStudio(prefs.lastPath);
+  const resumeStudio = resume?.active ? resume : openStudios[0];
+  const resumePath = resume?.active ? prefs.lastPath : resumeStudio?.path ?? "/studios/number-systems";
+  const firstVisit = prefs.visited.length === 0;
+  const nextStudio = openStudios.find((studio) => !prefs.visited.includes(studio.id)) ?? openStudios[0];
+  const challenge = CHALLENGES.find((item) => !prefs.challenges.includes(item.id)) ?? CHALLENGES[0];
+  const done = Math.min(prefs.challenges.length, PRACTICE_COUNT);
+  const progress = Math.min(100, Math.round((done / PRACTICE_COUNT) * 100));
+  const saved = STUDIOS.filter((studio) => prefs.bookmarks.includes(studio.id));
+  const path = openStudios.slice(0, 5);
+  const needle = query.trim().toLowerCase();
+  const matches = useMemo(() => (studio: StudioInfo) => {
+    if (!needle) return true;
+    return studio.title.toLowerCase().includes(needle) || studio.summary.toLowerCase().includes(needle) || studio.topics.some((topic) => topic.includes(needle));
+  }, [needle]);
+
   return (
     <div className="home">
-      <section className="home-hero-card">
-        <div className="home-hero-copy">
-          <div className="tiny">LEARN · BUILD · THINK</div>
-          <h1>Digital Logic & Computer Architecture</h1>
-          <p className="muted">Learn by changing the system. Toggle bits, edit expressions, and watch the circuit, CPU, or cache update.</p>
-          <div className="row" style={{ marginTop: 12 }}>
-            <Link to={resume} className="btn-primary">Continue</Link>
-            <Link to="/learn" className="btn-ghost">Learning Path</Link>
+      {home && resumeStudio ? (
+        <section className="home-hero-card">
+          <div className="home-hero-copy">
+            <div className="tiny">LEARN · BUILD · THINK</div>
+            <h1>Digital Logic & Computer Architecture</h1>
+            <p className="muted">Change an input and the lab’s engine updates the picture. Progress and notes stay in this browser, which is what Offline Ready means.</p>
+            <div className="row" style={{ marginTop: 12 }}>
+              {firstVisit ? <Link to="/studios/number-systems" className="btn-primary">Start here · Number Systems</Link> : (
+                <Link to={resumePath} className="btn-primary" title={`Opens ${destinationLabel(resumePath, resumeStudio)}`}>Continue · {resumeStudio.title}</Link>
+              )}
+              <Link to="/learn" className="btn-ghost">Learning Path</Link>
+            </div>
+            <p className="tiny home-dest">{firstVisit ? "First lab opens the number converter." : `Opens ${destinationLabel(resumePath, resumeStudio)}.`}</p>
+            <div className="home-next">
+              {nextStudio ? <Link to={nextStudio.path}>Next lab · {nextStudio.title}</Link> : null}
+              {challenge ? <Link to={challenge.to}>Try · {challenge.title}</Link> : null}
+            </div>
+            <div className="home-progress">
+              <div className="spread tiny"><span>Practice {done} of {PRACTICE_COUNT}</span><b>{progress}%</b></div>
+              <div className="progress-bar"><span style={{ width: `${progress}%` }} /></div>
+              <span className="tiny">{prefs.badges.length} badges</span>
+            </div>
+            <div className="home-stats">
+              <Link to="/studios"><b>{openStudios.length}</b><span>open studios</span></Link>
+              <a href="#cat-foundations"><b>{CATEGORIES.length}</b><span>categories</span></a>
+              <Link to="/cheat-sheet"><b>{MASTER_CONCEPTS.length}</b><span>concepts</span></Link>
+            </div>
           </div>
-          <div className="home-stats">
-            <div><b>{openCount}</b><span>open studios</span></div>
-            <div><b>9</b><span>categories</span></div>
-            <div><b>392</b><span>concepts</span></div>
+          <img className="home-hero-art" src="/icons/home-hero.png" width={640} height={280} alt="Colorful LogicLab workshop with gates, bits, a CPU, and a bus" />
+        </section>
+      ) : (
+        <header className="home-catalog-head">
+          <h1>Studios</h1>
+          <p className="muted">Every open lab, grouped by topic. Upcoming labs stay on the map at the bottom.</p>
+        </header>
+      )}
+      {home && saved.length > 0 ? (
+        <section className="home-saved">
+          <h2>Saved</h2>
+          <div className="home-saved-row">
+            {saved.map((studio) => <Link key={studio.id} to={studio.path}><StudioMark id={studio.id} size={28} />{studio.title}</Link>)}
           </div>
+        </section>
+      ) : null}
+      {home ? (
+        <section className="home-path">
+          <h2>Start with these five</h2>
+          <ol>
+            {path.map((studio, index) => (
+              <li key={studio.id}><Link to={studio.path}><b>{index + 1}</b>{studio.title}</Link></li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
+      <div className="home-tools">
+        <input aria-label="Filter studios" className="home-search" placeholder="Search topics, e.g. two's complement" value={query} onChange={(event) => setQuery(event.target.value)} />
+        <div className="home-filters" role="group" aria-label="Studio status">
+          {(["all", "open", "upcoming"] as const).map((item) => (
+            <button key={item} type="button" className={filter === item ? "on" : ""} onClick={() => setFilter(item)}>{item === "all" ? "All" : item === "open" ? "Open" : "Upcoming"}</button>
+          ))}
         </div>
-        <img className="home-hero-art" src="/icons/home-hero.png" width={640} height={360} alt="Colorful LogicLab workshop with gates, bits, a CPU, and a bus" />
-      </section>
-      {CATEGORIES.map((category) => {
-        const items = STUDIOS.filter((studio) => studio.category === category.id);
-        const open = items.filter((studio) => studio.active).length;
+      </div>
+      <nav className="home-jumps" aria-label="Categories">
+        {CATEGORIES.map((category) => <a key={category.id} href={`#cat-${category.id}`}>{CHIP[category.id]}</a>)}
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Top</button>
+      </nav>
+      {filter !== "upcoming" ? CATEGORIES.map((category) => {
+        const items = STUDIOS.filter((studio) => studio.category === category.id && studio.active && matches(studio));
+        if (items.length === 0) return null;
+        const folded = closed.includes(category.id);
+        const nextId = items.find((studio) => !prefs.visited.includes(studio.id))?.id;
         return (
-          <section key={category.id} className={`home-cat tone-${category.id}`}>
+          <section key={category.id} id={`cat-${category.id}`} className={`home-cat tone-${category.id}`}>
             <header className="home-cat-head">
               <img src={category.art} width={72} height={72} alt="" />
               <div>
                 <h2>{category.title}</h2>
                 <p className="muted">{category.blurb}</p>
               </div>
-              <span className="pill">{open} open{items.length > open ? ` · ${items.length - open} upcoming` : ""}</span>
+              <button type="button" className="pill" aria-expanded={!folded} onClick={() => setClosed((current) => folded ? current.filter((id) => id !== category.id) : [...current, category.id])}>{items.length} open</button>
             </header>
-            <div className="grid cards-3">
-              {items.map((studio) => <StudioCard key={studio.id} studio={studio} />)}
-            </div>
+            {folded ? null : (
+              <div className="grid cards-3">
+                {items.map((studio) => <StudioCard key={studio.id} studio={studio} visited={prefs.visited.includes(studio.id)} next={studio.id === nextId} preview />)}
+              </div>
+            )}
           </section>
         );
-      })}
+      }) : null}
+      {filter !== "open" ? (
+        <section className="home-upcoming" id="upcoming">
+          <h2>On the map</h2>
+          <p className="muted">These labs are listed so the path stays complete. They do not open yet.</p>
+          <div className="grid cards-3">
+            {upcoming.filter(matches).map((studio) => <StudioCard key={studio.id} studio={studio} visited={false} next={false} preview={false} />)}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
 
+export function HomePage() {
+  return <Catalog home />;
+}
+
 export function StudiosPage() {
-  return <HomePage />;
+  return <Catalog home={false} />;
 }
 
 export function LearnPage() {
   return (
     <div className="home">
-      <p className="muted" style={{ marginTop: 0 }}>The path is the same map as Home, grouped by topic. ALU and GPU studios stay locked until they are built.</p>
+      <p className="muted" style={{ marginTop: 0 }}>The path follows the same topics as Home. GPU stays on the map until that studio is built.</p>
       {CATEGORIES.map((category) => (
         <Card key={category.id} title={category.title} action={<img src={category.art} width={40} height={40} alt="" style={{ borderRadius: 10 }} />}>
           <p className="muted" style={{ marginTop: 0 }}>{category.blurb}</p>

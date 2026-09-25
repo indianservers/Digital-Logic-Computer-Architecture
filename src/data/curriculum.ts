@@ -1,3 +1,5 @@
+import { ACA_LABS, acaRoute } from "./acaLabs";
+
 export type StudioCategory =
   | "foundations"
   | "combinational"
@@ -47,7 +49,7 @@ export const STUDIOS: StudioInfo[] = [
   { id: "combo", title: "Combinational Circuits", phase: 2, path: "/studios/combinational", summary: "Drag gates, wire them, and probe the signals.", topics: ["combinational", "circuit", "wire"], active: true, category: "combinational" },
   { id: "adders", title: "Adders & Arithmetic", phase: 2, path: "/studios/adders", summary: "Half adders, look-ahead, the ALU, and binary multiply.", topics: ["adder", "carry", "alu", "shifter"], active: true, category: "combinational" },
   { id: "mux", title: "MUX, DEMUX & Codecs", phase: 2, path: "/studios/routing", summary: "Multiplexers, encoders, decoders, and seven-segment codes.", topics: ["mux", "decoder", "encoder", "seven segment"], active: true, category: "combinational" },
-  { id: "alu", title: "ALU", phase: 3, path: "/upcoming/alu", summary: "Arithmetic logic unit operations and flags.", topics: ["alu", "opcode"], active: false, category: "combinational" },
+  { id: "alu", title: "ALU", phase: 3, path: "/studios/alu", summary: "Arithmetic logic unit operations and flags.", topics: ["alu", "opcode"], active: true, category: "combinational" },
   { id: "timing", title: "Digital Timing", phase: 2, path: "/studios/timing", summary: "Clocks, edges, setup, hold, and uncertain capture.", topics: ["clock", "setup", "hold", "metastability"], active: true, category: "sequential" },
   { id: "latches", title: "Latches & Flip-Flops", phase: 2, path: "/studios/flip-flops", summary: "SR, D, JK, T, and master-slave storage.", topics: ["flip-flop", "latch", "jk", "edge"], active: true, category: "sequential" },
   { id: "registers", title: "Registers", phase: 2, path: "/studios/registers", summary: "Parallel load and every shift-register mode.", topics: ["register", "shift", "siso", "johnson"], active: true, category: "sequential" },
@@ -71,6 +73,7 @@ export const STUDIOS: StudioInfo[] = [
   { id: "bus", title: "Bus Architecture", phase: 5, path: "/studios/bus", summary: "Address, data, control, arbitration, and bandwidth.", topics: ["bus", "arbitration", "bandwidth"], active: true, category: "systems" },
   { id: "parallel", title: "Parallel Processing", phase: 5, path: "/studios/parallel", summary: "Issue width, renaming, the reorder buffer, SIMD, and SMT.", topics: ["superscalar", "ilp", "simd"], active: true, category: "systems" },
   { id: "multicore", title: "Multicore & Coherence", phase: 5, path: "/studios/multicore", summary: "Shared memory, MSI, MESI, and false sharing.", topics: ["mesi", "msi", "false sharing"], active: true, category: "systems" },
+  { id: "aca", title: "Advanced Computer Architecture", phase: 5, path: "/studios/advanced-computer-architecture", summary: "Explore out-of-order execution, branch prediction, cache coherence, memory systems, multicore architecture, and CPU performance through interactive virtual laboratories.", topics: ["scoreboard", "tomasulo", "roofline", "moesi", "correlating", "reorder buffer", "prefetch", "amdahl"], active: true, category: "systems" },
   { id: "accelerator", title: "AI Accelerator / TPU / NPU", phase: 6, path: "/architecture/accelerator", summary: "MAC units, systolic arrays, quantization, and neural execution.", topics: ["mac", "systolic", "tpu", "npu"], active: true, category: "architecture" },
   { id: "hetero", title: "Heterogeneous Computing", phase: 6, path: "/architecture/hetero", summary: "CPU, GPU, NPU, and DSP roles, routing, and offload.", topics: ["offload", "scheduler", "unified memory"], active: true, category: "architecture" },
   { id: "soc", title: "SoC Architecture Explorer", phase: 6, path: "/architecture/soc", summary: "Floorplan, NoC, system cache, and power domains.", topics: ["soc", "noc", "isp"], active: true, category: "architecture" },
@@ -81,17 +84,78 @@ export const STUDIOS: StudioInfo[] = [
   { id: "riscv-lab", title: "RISC-V Processor Lab", phase: 7, path: "/architecture/riscv", summary: "Bit-accurate RV32I assembler, immediates, datapath, and hazards.", topics: ["risc-v", "rv32i", "assembler"], active: true, category: "isa" },
   { id: "arm", title: "ARM Architecture Explorer", phase: 7, path: "/architecture/arm", summary: "AArch64-oriented teaching view of registers, load/store, calls, and EL0–EL3.", topics: ["arm", "aarch64", "neon"], active: true, category: "isa" },
   { id: "x86", title: "x86 Architecture Explorer", phase: 7, path: "/architecture/x86", summary: "Variable-length encodings, addressing, micro-ops, and an OOO backend sketch.", topics: ["x86", "micro-op", "addressing"], active: true, category: "isa" },
-  { id: "compare-isa", title: "ISA Comparison Explorer", phase: 7, path: "/architecture/compare", summary: "Neutral RISC-V, ARM, and x86 comparison. No ranking.", topics: ["isa", "encoding", "comparison"], active: true, category: "isa" },
+  { id: "compare-isa", title: "ISA Comparison Explorer", phase: 7, path: "/architecture/compare", summary: "Neutral RISC-V, ARM, and x86 comparison. No ranking.", topics: ["isa", "encoding", "comparison", "risc-v", "arm", "x86"], active: true, category: "isa" },
   { id: "mobile", title: "Modern Mobile SoC Explorer", phase: 7, path: "/architecture/mobile", summary: "Generic P/E cores, GPU, NPU, ISP, thermal, and modem concept.", topics: ["soc", "npu", "thermal"], active: true, category: "isa" },
   { id: "desktop", title: "Modern Desktop CPU Explorer", phase: 7, path: "/architecture/desktop", summary: "Generic package, caches, DDR, PCIe, boost, and package power.", topics: ["desktop", "boost", "pcie"], active: true, category: "isa" },
   { id: "builder", title: "Build Your Own CPU", phase: 8, path: "/architecture/builder", summary: "Construct a processor from registers, ALU, memory, and a custom ISA.", topics: ["cpu builder", "isa", "assembler", "datapath"], active: true, category: "build" },
   { id: "sandbox", title: "Computer Architecture Sandbox", phase: 8, path: "/architecture/sandbox", summary: "Combine gates, datapaths, caches, CPUs, and coherence in one workspace.", topics: ["sandbox", "circuit", "multicore"], active: true, category: "build" },
 ];
 
+export function matchStudio(path: string): StudioInfo | undefined {
+  const exact = STUDIOS.find((studio) => studio.path === path);
+  if (exact) return exact;
+  const base = path.split("?")[0] ?? path;
+  return STUDIOS.find((studio) => (studio.path.split("?")[0] ?? studio.path) === base);
+}
+
+const DESKTOP_LABS: StudioInfo[] = [
+  { id: "dsk-package", title: "CPU Package", phase: 7, path: "/architecture/desktop/package", summary: "Heat spreader, die, and blocks.", topics: ["package", "die", "ihs"], active: true, category: "isa" },
+  { id: "dsk-cores", title: "Core Microarchitecture", phase: 7, path: "/architecture/desktop/cores", summary: "P-core and E-core teaching model.", topics: ["p-core", "e-core", "core"], active: true, category: "isa" },
+  { id: "dsk-cache", title: "Cache Hierarchy", phase: 7, path: "/architecture/desktop/cache", summary: "L1, L2, L3, and a hit-rate simulation.", topics: ["cache", "l1", "l2", "l3"], active: true, category: "isa" },
+  { id: "dsk-ddr", title: "Memory / DDR", phase: 7, path: "/architecture/desktop/memory", summary: "Channels and peak bandwidth.", topics: ["ddr", "memory", "channel", "bandwidth"], active: true, category: "isa" },
+  { id: "dsk-pcie", title: "PCIe & I/O", phase: 7, path: "/architecture/desktop/pcie", summary: "Lane allocation and generation.", topics: ["pcie", "gpu", "nvme", "lanes"], active: true, category: "isa" },
+  { id: "dsk-boost", title: "Boost & Power", phase: 7, path: "/architecture/desktop/boost-power", summary: "Simplified educational boost model.", topics: ["boost", "turbo", "power", "frequency"], active: true, category: "isa" },
+  { id: "dsk-thermal", title: "Thermal Management", phase: 7, path: "/architecture/desktop/thermal", summary: "Cooler, fan, and throttling.", topics: ["thermal", "cooling", "throttling", "heatsink"], active: true, category: "isa" },
+  { id: "dsk-work", title: "System Workloads", phase: 7, path: "/architecture/desktop/workloads", summary: "Gaming, compile, and content demand.", topics: ["gaming", "workload", "compilation"], active: true, category: "isa" },
+  { id: "dsk-quiz", title: "Desktop CPU Practice", phase: 7, path: "/architecture/desktop/practice", summary: "Sixteen questions on the desktop CPU studio.", topics: ["quiz", "practice"], active: true, category: "isa" },
+];
+
+const MOBILE_LABS: StudioInfo[] = [
+  { id: "mob-overview", title: "SoC Overview", phase: 7, path: "/architecture/mobile/overview", summary: "Clickable mobile SoC block diagram.", topics: ["soc", "floorplan", "interconnect"], active: true, category: "isa" },
+  { id: "mob-cpu", title: "CPU: P/E Cores", phase: 7, path: "/architecture/mobile/cpu-cores", summary: "Performance and efficiency core scheduler.", topics: ["p-core", "e-core", "cpu", "scheduler"], active: true, category: "isa" },
+  { id: "mob-gpu", title: "GPU Architecture", phase: 7, path: "/architecture/mobile/gpu", summary: "Mobile GPU pipeline and a small scene.", topics: ["gpu", "shader", "tile"], active: true, category: "isa" },
+  { id: "mob-npu", title: "NPU & AI Engine", phase: 7, path: "/architecture/mobile/npu", summary: "On-device tensor pipeline and a local image demo.", topics: ["npu", "ai", "tensor", "mac"], active: true, category: "isa" },
+  { id: "mob-isp", title: "ISP & Camera Pipeline", phase: 7, path: "/architecture/mobile/isp", summary: "Sensor to display image stages.", topics: ["camera", "isp", "hdr", "raw"], active: true, category: "isa" },
+  { id: "mob-mem", title: "Memory & Interconnect", phase: 7, path: "/architecture/mobile/memory", summary: "Cache hierarchy and NoC clients.", topics: ["memory", "lpddr", "noc", "cache"], active: true, category: "isa" },
+  { id: "mob-radio", title: "Modem & Connectivity", phase: 7, path: "/architecture/mobile/connectivity", summary: "Illustrative 5G, LTE, and Wi-Fi simulation.", topics: ["modem", "5g", "wifi", "baseband"], active: true, category: "isa" },
+  { id: "mob-power", title: "Power, Thermal & DVFS", phase: 7, path: "/architecture/mobile/power-thermal", summary: "Frequency, power, and a simplified thermal model.", topics: ["thermal", "dvfs", "power", "throttling"], active: true, category: "isa" },
+  { id: "mob-int", title: "System Integration", phase: 7, path: "/architecture/mobile/integration", summary: "Full-chip workload scenarios.", topics: ["workload", "integration", "camera", "game"], active: true, category: "isa" },
+];
+
+const COMPARE_LABS: StudioInfo[] = [
+  { id: "cmp-overview", title: "ISA Comparison Overview", phase: 7, path: "/architecture/compare/overview", summary: "Design philosophy, instruction style, and typical use.", topics: ["overview", "design philosophy", "comparison dimensions"], active: true, category: "isa" },
+  { id: "cmp-registers", title: "Register Models", phase: 7, path: "/architecture/compare/register-models", summary: "x0–x31, X0–X30, and RAX aliases.", topics: ["register", "alias", "abi", "x0", "rax"], active: true, category: "isa" },
+  { id: "cmp-encoding", title: "Instruction Encoding", phase: 7, path: "/architecture/compare/instruction-encoding", summary: "RISC-V, AArch64, and x86 field layouts.", topics: ["encoding", "opcode", "modr/m", "sib", "funct7"], active: true, category: "isa" },
+  { id: "cmp-length", title: "Instruction Length", phase: 7, path: "/architecture/compare/instruction-length", summary: "Fixed 32-bit streams and a variable x86 fetch window.", topics: ["instruction length", "fetch window", "variable length"], active: true, category: "isa" },
+  { id: "cmp-memory", title: "Memory Access", phase: 7, path: "/architecture/compare/memory-access", summary: "Load/store versus a memory operand.", topics: ["memory", "load", "store", "load/store"], active: true, category: "isa" },
+  { id: "cmp-addressing", title: "Addressing", phase: 7, path: "/architecture/compare/addressing", summary: "Base, index, scale, and displacement.", topics: ["addressing", "effective address", "scale", "displacement"], active: true, category: "isa" },
+  { id: "cmp-task", title: "Same Task Comparison", phase: 7, path: "/architecture/compare/same-task", summary: "Sum an array in three ISAs.", topics: ["same task", "array sum"], active: true, category: "isa" },
+  { id: "cmp-decode", title: "Decode Complexity Concept", phase: 7, path: "/architecture/compare/decode-complexity", summary: "Simplified front-end comparison, including x86 decode.", topics: ["decode", "x86 decode", "micro-op", "boundary", "µop"], active: true, category: "isa" },
+  { id: "cmp-eco", title: "Ecosystem Roles", phase: 7, path: "/architecture/compare/ecosystem-roles", summary: "Illustrative domains for RISC-V, ARM, and x86.", topics: ["ecosystem", "mobile", "embedded", "server", "iot"], active: true, category: "isa" },
+];
+
 export function searchStudios(query: string): StudioInfo[] {
   const q = query.trim().toLowerCase();
   if (!q) return [];
-  return STUDIOS.filter((studio) =>
-    studio.title.toLowerCase().includes(q) || studio.topics.some((topic) => topic.includes(q)) || studio.summary.toLowerCase().includes(q) || studio.category.includes(q),
-  ).slice(0, 8);
+  const rank = (item: StudioInfo) => {
+    const title = item.title.toLowerCase();
+    const blob = `${item.summary} ${item.topics.join(" ")} ${item.category}`.toLowerCase();
+    if (title.includes(q)) return 0;
+    if (blob.includes(q)) return 1;
+    return 2;
+  };
+  const acaSearch: StudioInfo[] = ACA_LABS.map((lab) => ({
+    id: `aca-${lab.id}`,
+    title: lab.title,
+    phase: 5,
+    path: acaRoute(lab.slug),
+    summary: lab.description,
+    topics: [lab.slug, lab.category],
+    active: true,
+    category: "systems",
+  }));
+  return [...COMPARE_LABS, ...MOBILE_LABS, ...DESKTOP_LABS, ...acaSearch, ...STUDIOS]
+    .filter((item) => rank(item) < 2)
+    .sort((a, b) => rank(a) - rank(b) || (a.id.startsWith("cmp") ? -1 : 1))
+    .slice(0, 8);
 }

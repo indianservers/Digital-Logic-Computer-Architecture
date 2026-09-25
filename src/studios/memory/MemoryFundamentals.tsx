@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
-import { createMemory, readWord, writeWord, type MemoryArray, type MemoryKind } from "../../engines/memory/memoryArray";
+import { decoder } from "../../engines/digital/routing";
+import { createMemory, decayDram, readWord, refreshDram, writeWord, type MemoryArray, type MemoryKind } from "../../engines/memory/memoryArray";
+import { splitAddress } from "../../engines/memory/addressDecoder";
+import { chipFromPins, describeOrganization } from "../../engines/memory/organization";
 import { readCycle, writeCycle } from "../../engines/memory/timing";
 
 type Chip = "array" | "sram" | "dram" | "rom" | "eeprom" | "flash" | "addressing" | "organization";
@@ -123,9 +126,7 @@ export function MemoryFundamentals() {
         ))}
       </div>
 
-      {chip === "addressing" ? <AddressingNote address={address} bits={bits} /> : null}
-      {chip === "organization" ? <OrgNote /> : null}
-
+      {chip === "array" ? (
       <div className="memx-grid">
         <section className="lgx-card memx-array">
           <div className="lgx-card-bar">
@@ -229,6 +230,14 @@ export function MemoryFundamentals() {
           </svg>
         </section>
       </div>
+      ) : null}
+      {chip === "sram" ? <SramPanel /> : null}
+      {chip === "dram" ? <DramPanel /> : null}
+      {chip === "rom" ? <StorePanel kind="rom" /> : null}
+      {chip === "eeprom" ? <StorePanel kind="eeprom" /> : null}
+      {chip === "flash" ? <StorePanel kind="flash" /> : null}
+      {chip === "addressing" ? <AddressingPanel /> : null}
+      {chip === "organization" ? <OrganizationPanel /> : null}
 
       <div className="fsmx-foot">
         <section className="lgx-card">
@@ -269,10 +278,124 @@ export function MemoryFundamentals() {
   );
 }
 
-function AddressingNote({ address, bits }: { address: number; bits: string[] }) {
-  return <p className="callout">Address {hexByte(address)} is {bits.join("")}. The decoder raises exactly one of 64 word lines.</p>;
+function SramPanel() {
+  const [bit, setBit] = useState<0 | 1>(1);
+  return (
+    <section className="lgx-card">
+      <h3>6T SRAM cell</h3>
+      <p>Two cross-coupled inverters hold the bit. There is no capacitor and no refresh. Click Q to flip the loop.</p>
+      <div className="sram-loop">
+        <button type="button" className={bit ? "ff-cell on" : "ff-cell"} aria-label="SRAM Q" onClick={() => setBit(bit ? 0 : 1)}>Q {bit}<small>stored</small></button>
+        <span>⇄</span>
+        <div className={bit ? "ff-cell" : "ff-cell on"}>Q̅ {bit ? 0 : 1}<small>complement</small></div>
+      </div>
+      <p>Stored bit is {bit}. A later read returns the same value until you flip Q again.</p>
+    </section>
+  );
 }
 
-function OrgNote() {
-  return <p className="callout">This chip is 64 × 8: 6 address pins and 8 data pins. Capacity is 2^6 × 8 = 512 bits.</p>;
+function DramPanel() {
+  const [memory, setMemory] = useState<MemoryArray>(() => createMemory("dram", 8, 1, 1));
+  const [index, setIndex] = useState(0);
+  const charge = memory.charge[index] ?? 0;
+  const stored = memory.cells[index] ?? 0;
+  return (
+    <section className="lgx-card">
+      <h3>1T1C DRAM cell</h3>
+      <p>Each bit is charge on a capacitor. Leakage drops that charge, so the row must be refreshed.</p>
+      <div className="mem-grid">
+        {memory.cells.map((cell, slot) => (
+          <button key={slot} type="button" className={slot === index ? "mem-cell on" : "mem-cell"} onClick={() => setIndex(slot)}>
+            C{slot}<strong>{cell}</strong><span className="tiny">{memory.charge[slot] ?? 0}%</span>
+          </button>
+        ))}
+      </div>
+      <div className={charge < 40 ? "charge low" : "charge"} style={{ width: `${charge}%` }} />
+      <div className="row">
+        <button type="button" className="memx-write" onClick={() => setMemory(writeWord(memory, index, 1, true, true).memory)}>Store 1</button>
+        <button type="button" className="fsmx-icon" onClick={() => setMemory(writeWord(memory, index, 0, true, true).memory)}>Store 0</button>
+        <button type="button" className="fsmx-icon" onClick={() => setMemory(decayDram(memory))}>Decay</button>
+        <button type="button" className="memx-read" onClick={() => setMemory(refreshDram(memory))}>Refresh</button>
+      </div>
+      <p>{charge < 40 ? `Cell ${index} is at ${charge}%. A read of ${stored} would be unreliable until refresh.` : `Cell ${index} holds ${stored} at ${charge}% charge.`}</p>
+    </section>
+  );
+}
+
+function StorePanel({ kind }: { kind: "rom" | "eeprom" | "flash" }) {
+  const [memory, setMemory] = useState<MemoryArray>(() => createMemory(kind, 8, 8, kind === "rom" ? 0x3c : 0xff));
+  const [note, setNote] = useState(kind === "rom" ? "Mask ROM is factory data. A write is rejected." : `${kind.toUpperCase()} is ready.`);
+  const [block, setBlock] = useState(0);
+  function program(value: number) {
+    const result = writeWord(memory, 0, value, true, true);
+    setMemory(result.memory);
+    setNote(result.access.explain);
+  }
+  function eraseBlock() {
+    const cells = memory.cells.slice();
+    for (let index = block * 4; index < block * 4 + 4; index += 1) cells[index] = 0xff;
+    setMemory({ ...memory, cells });
+    setNote(`Flash block ${block} (cells ${block * 4}–${block * 4 + 3}) erased to 0xFF.`);
+  }
+  const title = kind === "rom" ? "Mask ROM" : kind === "eeprom" ? "EEPROM byte" : "Flash block";
+  return (
+    <section className="lgx-card">
+      <h3>{title}</h3>
+      <p>{kind === "rom" ? "The factory pattern stays. Write does not change cell 0." : kind === "eeprom" ? "A byte can be rewritten in place. Cell 0 accepts another program." : "Erase clears a 4-byte block, then a program can store a new byte."}</p>
+      <p className="expr">{(memory.cells[0] ?? 0).toString(16).toUpperCase().padStart(2, "0")}</p>
+      <div className="row">
+        <button type="button" className="memx-write" onClick={() => program(0x5a)}>Write 0x5A</button>
+        <button type="button" className="fsmx-icon" onClick={() => program(0xa5)}>Write 0xA5</button>
+        {kind === "flash" ? <button type="button" className="memx-read" onClick={eraseBlock}>Erase block {block}</button> : null}
+        {kind === "flash" ? <button type="button" className="fsmx-icon" onClick={() => setBlock((value) => (value + 1) % 2)}>Next block</button> : null}
+      </div>
+      <p>{note}</p>
+      <div className="memx-cells">
+        {memory.cells.map((cell, index) => <span key={index} className="mem-cell">{hexByte(cell)}</span>)}
+      </div>
+    </section>
+  );
+}
+
+function AddressingPanel() {
+  const [bits, setBits] = useState<Array<0 | 1>>([0, 1, 0]);
+  const [enable, setEnable] = useState(true);
+  const lines = decoder(bits, enable ? 1 : 0);
+  const active = lines.findIndex((bit) => bit === 1);
+  return (
+    <section className="lgx-card">
+      <h3>Address decoder</h3>
+      <p>Three select bits become one of eight word lines. Enable is the chip’s CE. With enable low, every line stays 0.</p>
+      <div className="row">
+        {bits.map((bit, index) => (
+          <button key={index} type="button" className={bit ? "ff-cell on" : "ff-cell"} aria-label={`A${2 - index}`} onClick={() => setBits(bits.map((value, slot) => slot === index ? (value ? 0 : 1) : value))}>A{2 - index} {bit}</button>
+        ))}
+        <button type="button" className={enable ? "memx-read" : "fsmx-icon"} onClick={() => setEnable((value) => !value)}>{enable ? "Enable on" : "Enable off"}</button>
+      </div>
+      <div className="word-lines">
+        {lines.map((bit, index) => <div key={index} className={bit === 1 ? "word-line on" : "word-line"}>Y{index}<strong>{bit}</strong></div>)}
+      </div>
+      <p>{enable && active >= 0 ? `Word line Y${active} is the only line high.` : "The decoder is idle. No word line is selected."}</p>
+    </section>
+  );
+}
+
+function OrganizationPanel() {
+  const [words, setWords] = useState(64);
+  const [width, setWidth] = useState(8);
+  const org = describeOrganization(words, width);
+  const chip = chipFromPins(org.addressLines, width);
+  const split = splitAddress(5, Math.min(6, org.addressLines), Math.ceil(Math.min(6, org.addressLines) / 2));
+  return (
+    <section className="lgx-card">
+      <h3>Memory organization</h3>
+      <p>An n × m chip has n address pins and m data pins. The address splits into a row and a column.</p>
+      <div className="row">
+        <label>Words<input aria-label="Word count" type="number" min={2} max={65536} value={words} onChange={(event) => setWords(Math.max(2, Number(event.target.value) || 2))} /></label>
+        <label>Width<input aria-label="Data width" type="number" min={1} max={32} value={width} onChange={(event) => setWidth(Math.max(1, Number(event.target.value) || 1))} /></label>
+      </div>
+      <p>{chip.label} · {org.label} · {org.addressLines} address lines · {org.capacityBits} bits.</p>
+      <p>Example address 5 splits into row {split.selectBits || "0"} and column {split.offsetBits || "0"}.</p>
+    </section>
+  );
 }

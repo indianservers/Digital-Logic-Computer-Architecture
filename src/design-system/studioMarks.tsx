@@ -64,6 +64,8 @@ function glyph(id: string) {
       return <><rect x="4" y="14" width="24" height="4" rx="2" fill="#fff" /><rect x="6" y="6" width="6" height="6" rx="1.5" fill="#ccfbf1" /><rect x="13" y="22" width="6" height="6" rx="1.5" fill="#ccfbf1" /><rect x="20" y="6" width="6" height="6" rx="1.5" fill="#ccfbf1" /></>;
     case "parallel":
       return <><path d="M8 8v16M16 8v16M24 8v16" stroke="#fff" strokeWidth="3" strokeLinecap="round" /><path d="M8 12h8M16 20h8" stroke="#99f6e4" strokeWidth="2" /></>;
+    case "aca":
+      return <><rect x="6" y="6" width="20" height="20" rx="3" fill="#fff" /><rect x="9" y="9" width="6" height="6" fill="#0f766e" /><rect x="17" y="9" width="6" height="5" fill="#5eead4" /><rect x="9" y="17" width="14" height="6" fill="#99f6e4" /></>;
     case "multicore":
       return <><rect x="5" y="5" width="10" height="10" rx="2" fill="#fff" /><rect x="17" y="5" width="10" height="10" rx="2" fill="#fff" opacity="0.75" /><rect x="5" y="17" width="10" height="10" rx="2" fill="#fff" opacity="0.75" /><rect x="17" y="17" width="10" height="10" rx="2" fill="#fff" /></>;
     case "accelerator":

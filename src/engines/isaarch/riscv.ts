@@ -194,7 +194,8 @@ export function decode(word: number): RvDecoded {
   } else if (opcode === OP.BRANCH) {
     format = "B";
     imm = immB(clean);
-    mnemonic = funct3 === 0 ? "beq" : funct3 === 1 ? "bne" : "unknown";
+    const branches: Record<number, string> = { 0: "beq", 1: "bne", 4: "blt", 5: "bge", 6: "bltu", 7: "bgeu" };
+    mnemonic = branches[funct3] ?? "unknown";
   } else if (opcode === OP.JAL) {
     format = "J";
     imm = immJ(clean);
@@ -329,6 +330,13 @@ function encodeLine(text: string, line: number, pc: number, labels: Record<strin
     }
     return encodeI(imm, 0, 0, rd, OP.MISC);
   }
+  if (mnemonic === "mv") {
+    if (!need(2)) return null;
+    const rd = reg(args[0] ?? "");
+    const rs = reg(args[1] ?? "");
+    if (rd === null || rs === null) return null;
+    return encodeI(0, rs, 0, rd, OP.MISC);
+  }
   const rType: Record<string, { f3: number; f7: number }> = {
     add: { f3: 0, f7: 0 }, sub: { f3: 0, f7: 32 }, and: { f3: 7, f7: 0 }, or: { f3: 6, f7: 0 }, xor: { f3: 4, f7: 0 },
     sll: { f3: 1, f7: 0 }, srl: { f3: 5, f7: 0 }, sra: { f3: 5, f7: 32 }, slt: { f3: 2, f7: 0 }, sltu: { f3: 3, f7: 0 },
@@ -389,7 +397,8 @@ function encodeLine(text: string, line: number, pc: number, labels: Record<strin
     if (mnemonic === "sw") return encodeS(imm, dest, base, 2);
     return encodeI(imm, base, 0, dest, OP.JALR);
   }
-  if (mnemonic === "beq" || mnemonic === "bne") {
+  const branchFunct: Record<string, number> = { beq: 0, bne: 1, blt: 4, bge: 5, bltu: 6, bgeu: 7 };
+  if (mnemonic in branchFunct) {
     if (!need(3)) return null;
     const rs1 = reg(args[0] ?? ""); const rs2 = reg(args[1] ?? "");
     const offset = resolve(args[2] ?? "", line, pc, labels, errors, true);
@@ -398,7 +407,7 @@ function encodeLine(text: string, line: number, pc: number, labels: Record<strin
       errors.push({ line, message: "Branch offset does not fit in B-immediate." });
       return null;
     }
-    return encodeB(offset, rs2, rs1, mnemonic === "beq" ? 0 : 1);
+    return encodeB(offset, rs2, rs1, branchFunct[mnemonic] ?? 0);
   }
   if (mnemonic === "jal") {
     if (args.length === 1) {
@@ -552,6 +561,14 @@ export function stepRv(state: RvState): RvState {
     if (rs1 === rs2) target = pc + decoded.imm;
   } else if (m === "bne") {
     if (rs1 !== rs2) target = pc + decoded.imm;
+  } else if (m === "blt") {
+    if (signed(rs1) < signed(rs2)) target = pc + decoded.imm;
+  } else if (m === "bge") {
+    if (signed(rs1) >= signed(rs2)) target = pc + decoded.imm;
+  } else if (m === "bltu") {
+    if (u32(rs1) < u32(rs2)) target = pc + decoded.imm;
+  } else if (m === "bgeu") {
+    if (u32(rs1) >= u32(rs2)) target = pc + decoded.imm;
   } else if (m === "jal") {
     wb = pc + 4;
     target = pc + decoded.imm;
@@ -599,7 +616,7 @@ export function datapathNodes(decoded: RvDecoded | null): string[] {
   if (decoded.format === "I" || decoded.format === "S" || decoded.format === "B" || decoded.format === "U" || decoded.format === "J") nodes.push("immgen");
   nodes.push("alu");
   if (decoded.mnemonic === "lw" || decoded.mnemonic === "sw") nodes.push("dmem");
-  if (decoded.mnemonic === "beq" || decoded.mnemonic === "bne") nodes.push("branch");
+  if (decoded.format === "B") nodes.push("branch");
   if (decoded.mnemonic === "jal" || decoded.mnemonic === "jalr") nodes.push("jump");
   if (decoded.rd !== 0 && decoded.mnemonic !== "sw" && decoded.mnemonic !== "beq" && decoded.mnemonic !== "bne") nodes.push("wb");
   nodes.push("pcnext");

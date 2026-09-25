@@ -1,0 +1,47 @@
+ARM Architecture Explorer — Mockup Reference Map
+
+Base studio:
+http://127.0.0.1:5173/architecture/arm
+
+Mockup folder after extraction:
+C:\Indian Servers\Digital Logic Architecture\UI Target\ARM
+
+01_ARM_Studio_Overview.png
+  Page: ARM Architecture Explorer — Overview
+  Suggested route: /architecture/arm
+
+02_ARM_Registers_Modes.png
+  Page: Registers & Modes
+  Suggested route: /architecture/arm/registers
+
+03_ARM_Instruction_Set_Encoding.png
+  Page: Instruction Set & Encoding
+  Suggested route: /architecture/arm/instruction-set
+
+04_ARM_AArch64_Assembler.png
+  Page: AArch64 Assembler
+  Suggested route: /architecture/arm/assembler
+
+05_ARM_AArch64_Datapath.png
+  Page: AArch64 Datapath
+  Suggested route: /architecture/arm/datapath
+
+06_ARM_Pipeline_Hazards.png
+  Page: Pipeline & Hazards
+  Suggested route: /architecture/arm/pipeline
+
+07_ARM_Memory_Load_Store.png
+  Page: Memory & Load/Store
+  Suggested route: /architecture/arm/memory
+
+08_ARM_Exceptions_Interrupts.png
+  Page: Exceptions & Interrupts
+  Suggested route: /architecture/arm/exceptions
+
+09_ARM_Cores_SoC.png
+  Page: Cores & SoC
+  Suggested route: /architecture/arm/soc
+
+10_ARM_Practice_Quiz.png
+  Page: Practice & Quiz
+  Suggested route: /architecture/arm/practice

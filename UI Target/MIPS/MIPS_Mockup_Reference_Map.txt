@@ -1,0 +1,44 @@
+MIPS Architecture Explorer — Mockup Reference Map
+Base studio: http://127.0.0.1:5173/architecture/mips
+
+Use the exact file names below in Codex prompts:
+
+01_MIPS_Studio_Overview.png
+  Page: Studio Overview
+  Suggested route: /architecture/mips
+
+02_MIPS_Instruction_Formats.png
+  Page: Instruction Formats
+  Suggested route: /architecture/mips/instruction-formats
+
+03_MIPS_Register_File.png
+  Page: Register File
+  Suggested route: /architecture/mips/register-file
+
+04_MIPS_Assembler.png
+  Page: Assembler
+  Suggested route: /architecture/mips/assembler
+
+05_MIPS_Single_Cycle_Datapath.png
+  Page: Single-Cycle Datapath
+  Suggested route: /architecture/mips/datapath
+
+06_MIPS_5_Stage_Pipeline.png
+  Page: 5-Stage Pipeline
+  Suggested route: /architecture/mips/pipeline
+
+07_MIPS_Hazards_Forwarding.png
+  Page: Hazards & Forwarding
+  Suggested route: /architecture/mips/hazards
+
+08_MIPS_Memory_IO.png
+  Page: Memory & I/O
+  Suggested route: /architecture/mips/memory-io
+
+09_MIPS_System_Calls.png
+  Page: System Calls
+  Suggested route: /architecture/mips/system-calls
+
+10_MIPS_Practice_Quiz.png
+  Page: Practice & Quiz
+  Suggested route: /architecture/mips/practice

@@ -46,3 +46,62 @@ export const ECOSYSTEM = [
   { isa: "ARM", role: "Broad use in mobile, embedded, and server contexts via licensed microarchitectures." },
   { isa: "x86", role: "Broad desktop and server legacy, with a large existing software ecosystem." },
 ];
+
+export interface SumSim {
+  values: number[];
+  base: number;
+  ptr: number;
+  sum: number;
+  count: number;
+  temp: number;
+  step: number;
+  index: number;
+}
+
+export const SUM_STEPS = [
+  { n: 1, title: "Initialize the result", detail: "The sum register starts at zero before any element is read." },
+  { n: 2, title: "Initialize the count", detail: "The counter register is the number of 32-bit elements." },
+  { n: 3, title: "Establish the array pointer", detail: "The pointer register holds the address of the first element." },
+  { n: 4, title: "Load the current array element", detail: "Each ISA loads a 32-bit value from the pointer into a temporary register." },
+  { n: 5, title: "Add the item into the sum", detail: "The temporary is added to the running sum." },
+  { n: 6, title: "Advance the pointer", detail: "The pointer moves forward by 4 bytes, one 32-bit integer." },
+  { n: 7, title: "Decrement the count", detail: "One element has been consumed." },
+  { n: 8, title: "Branch if elements remain", detail: "A non-zero count returns to the load. Zero falls through." },
+  { n: 9, title: "Finish", detail: "The sum register holds the total of the array." },
+];
+
+export function blankSum(values: number[], base = 0x1000): SumSim {
+  return { values: values.slice(), base, ptr: base, sum: 0, count: values.length, temp: 0, step: 0, index: 0 };
+}
+
+export function stepSum(state: SumSim): SumSim {
+  if (state.step === 9 || state.values.length === 0) return state.step === 9 ? state : { ...state, step: 9, sum: 0, count: 0 };
+  let step = state.step + 1;
+  if (state.step === 8) step = state.count > 0 ? 4 : 9;
+  const next: SumSim = { ...state, values: state.values.slice(), step };
+  if (step === 1) {
+    next.sum = 0;
+    next.count = state.values.length;
+    next.ptr = state.base;
+    next.temp = 0;
+    next.index = 0;
+  } else if (step === 2) next.count = state.values.length;
+  else if (step === 3) {
+    next.ptr = state.base;
+    next.index = 0;
+  } else if (step === 4) next.temp = state.values[next.index] ?? 0;
+  else if (step === 5) next.sum = state.sum + next.temp;
+  else if (step === 6) next.ptr = state.ptr + 4;
+  else if (step === 7) next.count = state.count - 1;
+  else if (step === 8 && next.count > 0) next.index = state.index + 1;
+  return next;
+}
+
+export function runSum(values: number[]): number {
+  let state = blankSum(values);
+  for (let i = 0; i < values.length * 8 + 6; i += 1) {
+    state = stepSum(state);
+    if (state.step === 9) break;
+  }
+  return state.sum;
+}
