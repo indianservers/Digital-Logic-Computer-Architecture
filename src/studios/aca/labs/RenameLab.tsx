@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { findDeps, parsePipe, type PipeOp } from "../../../engines/aca/hazards";
 import { RENAME_EXAMPLE, runRename } from "../../../engines/aca/rename";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { RenameTravel } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 const POOL = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10", "P11", "P12", "P13", "P14", "P15"];
 
@@ -41,8 +43,15 @@ export function RenameLab() {
   const ipc = (ops.length / Math.max(1, cycles)).toFixed(2);
   const baseIpc = (ops.length / Math.max(1, result.baselineCycles)).toFixed(2);
   const row = result.rows[selected];
+  const { id: guideFocus } = useGuideFocus();
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const hint = !enabled
+    ? "Renaming is off. False Dependences still lists the WAR and WAW names. Turn Enable Register Renaming on to give those writes different physical registers."
+    : result.renameStalls > 0
+      ? "Rename stalled: no free physical register is left. Raise Physical registers, or Step until retirement returns one to the free list."
+      : "Compare a WAW pair in Instruction Mapping. Their physical destinations should differ. A RAW still uses the producer’s physical register.";
   return (
-    <LabChrome lab="register-renaming" kicker="Labs > Lab 4" title="Lab 4 — Scoreboarding with Register Renaming" subtitle="Compare false dependencies before renaming and see how a rename map and physical registers improve parallelism." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="register-renaming" hint={hint} kicker="Labs > Lab 4" title="Lab 4 — Scoreboarding with Register Renaming" subtitle="Compare false dependencies before renaming and see how a rename map and physical registers improve parallelism." badge="RISC-V (5-Stage Pipeline)">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>WAR and WAW are name conflicts, not true value dependencies. A new physical register for every write removes them. A later read of the old name still waits on the physical register that produced it.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shown >= cycles ? "Completed" : `Running · cycle ${shown}`}</p><p>Adjust the sequence, toggle renaming, and press Play.</p></article>
@@ -68,7 +77,7 @@ export function RenameLab() {
           ))}
           <p>Counts before renaming: WAW {result.waw}, WAR {result.war}, RAW {result.raw}.</p>
         </section>
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("map") ?? ""}`}>
           <h2>Rename Map</h2>
           {showMap ? (
             <table>
@@ -79,8 +88,9 @@ export function RenameLab() {
         </section>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={mark("free")}>
           <h2>Physical Register File / Free List</h2>
+          <RenameTravel allocated={row?.physDest && row.physDest !== "stall" ? row.physDest : ""} free={result.free.length} stalled={result.renameStalls > 0} speed={play.speed} cycle={play.cycle + selected} />
           <p className="vl-legend"><i className="used" /> In use <i className="free" /> Free <i className="recent" /> Recently allocated</p>
           <div className="vl-pregs">{POOL.map((name) => <span key={name} className={result.recent.includes(name) ? "recent" : result.free.includes(name) ? "free" : "used"}>{name}</span>)}</div>
           <p>Free list: {result.free.join(", ") || "empty"}. A physical register returns here only when it is no longer the current mapping and no instruction in this program still reads it.</p>

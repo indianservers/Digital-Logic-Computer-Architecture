@@ -16,6 +16,28 @@ export interface GuideCheck {
   why: string;
 }
 
+export interface GuideExperiment {
+  title: string;
+  steps: string[];
+}
+
+export interface GuideLink {
+  id: string;
+  label: string;
+}
+
+export interface LabWalkthrough {
+  howToUse: string[];
+  observe: string[];
+  experiments: GuideExperiment[];
+  expected: string[];
+  why: string[];
+  challenge: string;
+  check: string[];
+  links: GuideLink[];
+  checklist: [string, string, string, string];
+}
+
 export interface LabGuideContent {
   id: string;
   labNumber: number;
@@ -40,4 +62,5 @@ export interface LabGuideContent {
   viva: GuideViva[];
   selfCheck: GuideCheck[];
   summary: string;
+  walkthrough?: LabWalkthrough;
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DRAM_DEFAULTS, DRAM_PRESETS, DRAM_TIMING, compareSchedulers, decodeAddress, runDram } from "./dram";
-import { LITMUS_TESTS, enumerate, initialState, insertFence, legalActions, outcomeCount, applyAction } from "./consistency";
+import { LITMUS_TESTS, enumerate, initialState, insertFence, legalActions, outcomeCount, applyAction, parseLitmus } from "./consistency";
 import { SYNC_DEFAULTS, compareCounters, compareLocks, runSync } from "./sync";
 
 function preset<T extends { id: string }>(list: readonly T[], id: string): T {
@@ -122,6 +122,13 @@ describe("lab 26 memory consistency", () => {
       expect(next.buffers[0]?.length).toBe(1);
       expect(next.memory.X).toBe(0);
     }
+  });
+
+  it("enumerates a student litmus under SC and TSO", () => {
+    const built = parseLitmus("init X=0 Y=0\n0: X = 1\n0: r1 = Y\n1: Y = 1\n1: r2 = X");
+    expect(built.error).toBe("");
+    expect(outcomeCount(enumerate(built.litmus, "sc"), { r1: 0, r2: 0 })).toBe(0);
+    expect(outcomeCount(enumerate(built.litmus, "tso"), { r1: 0, r2: 0 })).toBeGreaterThan(0);
   });
 });
 

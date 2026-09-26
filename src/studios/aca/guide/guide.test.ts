@@ -6,7 +6,7 @@ const GENERIC = /to understand the concept/i;
 
 describe("ACA lab guides", () => {
   it("covers every lab id exactly once", () => {
-    expect(LAB_GUIDE_LIST).toHaveLength(31);
+    expect(LAB_GUIDE_LIST).toHaveLength(ACA_LABS.length);
     expect(Object.keys(LAB_GUIDES).sort()).toEqual(ACA_LABS.map((lab) => lab.id).sort());
     const numbers = LAB_GUIDE_LIST.map((guide) => guide.labNumber).sort((a, b) => a - b);
     expect(numbers).toEqual(ACA_LABS.map((_, index) => index + 1));
@@ -39,6 +39,19 @@ describe("ACA lab guides", () => {
       expect(guide.viva.length, guide.id).toBeLessThanOrEqual(10);
       expect(guide.selfCheck.length, guide.id).toBeGreaterThanOrEqual(3);
       expect(guide.summary.length, guide.id).toBeGreaterThan(20);
+      const walk = guide.walkthrough;
+      expect(walk, guide.id).toBeDefined();
+      if (!walk) return;
+      expect(walk.howToUse.length, guide.id).toBeGreaterThanOrEqual(2);
+      expect(walk.observe.length, guide.id).toBeGreaterThanOrEqual(3);
+      expect(walk.experiments.length, guide.id).toBeGreaterThanOrEqual(3);
+      expect(walk.experiments.length, guide.id).toBeLessThanOrEqual(5);
+      expect(walk.expected.length, guide.id).toBeGreaterThanOrEqual(2);
+      expect(walk.why.length, guide.id).toBeGreaterThanOrEqual(1);
+      expect(walk.challenge.length, guide.id).toBeGreaterThan(20);
+      expect(walk.check.length, guide.id).toBeGreaterThanOrEqual(2);
+      expect(walk.links.length, guide.id).toBeGreaterThanOrEqual(2);
+      expect(walk.checklist).toHaveLength(4);
       for (const formula of guide.formulas) {
         expect(formula.expression.length, `${guide.id} ${formula.name}`).toBeGreaterThan(3);
       }

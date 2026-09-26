@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { SCORE_EXAMPLE, parseScore, runScoreboard, type ScoreOp } from "../../../engines/aca/scoreboard";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { ScoreboardFlow } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 const PRESETS: Array<{ id: string; label: string; ops: ScoreOp[] }> = [
   { id: "classic", label: "Load / multiply chain", ops: SCORE_EXAMPLE },
@@ -18,6 +20,7 @@ export function ScoreboardLab() {
   const tuned = useMemo(() => ops.map((op) => op.fu === "Multiplier" ? { ...op, latency: mulLatency } : op), [ops, mulLatency]);
   const shots = useMemo(() => runScoreboard(tuned, 80, aluSlots), [tuned, aluSlots]);
   const play = usePlayback(Math.max(0, shots.length - 1));
+  const { id: guideFocus } = useGuideFocus();
   const shot = shots[Math.min(play.cycle, shots.length - 1)] ?? shots[0];
   const last = shots.at(-1);
   const busyCycles = shots.filter((item) => item.units.some((unit) => unit.busy)).length;
@@ -26,9 +29,12 @@ export function ScoreboardLab() {
     return Math.round((used / Math.max(1, shots.length - 1)) * 100);
   };
   if (!shot || !last) return null;
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const hazard = shot.events.find((event) => event.hazard);
+  const hint = hazard ? `${hazard.hazard}: ${hazard.text}` : "Step and read Instruction Status, Functional Unit Status, and Register Result Status together.";
   const completed = shot.rows.filter((row) => row.state === "Completed").length;
   return (
-    <LabChrome lab="scoreboard" kicker="Labs > Lab 2" title="Lab 2 — Dynamic Scheduling with Scoreboard" subtitle="Issue when a functional unit is free and the destination is not pending. Read operands on RAW. Delay the write when an earlier instruction still has to read that register." badge="RISC-V (Scoreboard)">
+    <LabChrome lab="scoreboard" hint={hint} kicker="Labs > Lab 2" title="Lab 2 — Dynamic Scheduling with Scoreboard" subtitle="Issue when a functional unit is free and the destination is not pending. Read operands on RAW. Delay the write when an earlier instruction still has to read that register." badge="RISC-V (Scoreboard)">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>The scoreboard issues out of lockstep with execution, but it does not rename registers. A second write of the same register waits. A write also waits for an earlier unread use.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.done ? "Completed" : `Cycle ${shot.cycle}`}</p></article>
@@ -49,7 +55,7 @@ export function ScoreboardLab() {
             <tbody>{ops.map((op, index) => <tr key={`${op.text}-${index}`}><td>{index + 1}</td><td><input aria-label={`Instruction ${index + 1}`} value={op.text} onChange={(event) => { const next = ops.slice(); next[index] = parseScore(event.target.value, op.comment); setOps(next); play.reset(); }} /></td><td>{op.comment}</td></tr>)}</tbody>
           </table>
         </section>
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("status") ?? ""}`}>
           <header><h2>Instruction Status (Scoreboard)</h2></header>
           <table>
             <thead><tr><th>#</th><th>Instruction</th><th>Issue</th><th>Read</th><th>Execute</th><th>Write</th><th>Status</th></tr></thead>
@@ -67,10 +73,17 @@ export function ScoreboardLab() {
               ))}
             </tbody>
           </table>
+          <ScoreboardFlow
+            state={shot.rows.find((row) => row.state !== "Completed")?.state ?? "Completed"}
+            unit={shot.units.find((unit) => unit.busy)?.name ?? "Units"}
+            speed={play.speed}
+            cycle={play.cycle}
+            blocked={shot.units.some((unit) => unit.qj || unit.qk) ? "A source tag is still false, so operand read waits on the producer." : "Sources that are ready can be read. A later write waits while an earlier reader still needs the old value."}
+          />
         </section>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={mark("units")}>
           <h2>Functional Unit Status</h2>
           <table>
             <thead><tr><th>Unit</th><th>Busy</th><th>Op</th><th>Fi</th><th>Fj</th><th>Fk</th><th>Qj</th><th>Qk</th><th>Rem</th></tr></thead>
@@ -81,7 +94,7 @@ export function ScoreboardLab() {
             </tbody>
           </table>
         </article>
-        <article>
+        <article className={mark("regs")}>
           <h2>Register Result Status</h2>
           <table>
             <tbody>

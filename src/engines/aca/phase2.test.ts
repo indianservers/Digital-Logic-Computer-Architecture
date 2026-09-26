@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { RENAME_EXAMPLE, runRename } from "./rename";
-import { OOO_EXAMPLE, runOoo } from "./ooo";
+import { OOO_EXAMPLE, parseOooProgram, runOoo } from "./ooo";
 import { accuracy, runTrace, stepOne, stepTwo } from "./predictor";
 
 describe("lab 4 renaming", () => {
@@ -63,6 +63,16 @@ describe("lab 5 reorder buffer", () => {
     const wide = runOoo(OOO_EXAMPLE, null, 16).at(-1)?.cycle ?? 0;
     const narrow = runOoo(OOO_EXAMPLE, null, 2).at(-1)?.cycle ?? 0;
     expect(narrow).toBeGreaterThan(wide);
+  });
+
+  it("parses a student program and changes retirement when commit width changes", () => {
+    const parsed = parseOooProgram("ADD x1, x2, x3\nSUB x4, x5, x6\nADD x7, x8, x9");
+    expect(parsed.errors).toEqual([]);
+    expect(parsed.ops).toHaveLength(3);
+    const narrow = runOoo(parsed.ops, null, 16, { commitWidth: 1 }).at(-1)?.cycle ?? 0;
+    const wide = runOoo(parsed.ops, null, 16, { commitWidth: 3 }).at(-1)?.cycle ?? 0;
+    expect(wide).toBeLessThanOrEqual(narrow);
+    expect(runOoo(parsed.ops, 1, 16).at(-1)?.flushed).toBeGreaterThan(0);
   });
 });
 

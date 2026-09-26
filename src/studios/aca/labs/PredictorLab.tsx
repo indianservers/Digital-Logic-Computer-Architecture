@@ -1,13 +1,8 @@
 import { useMemo, useState } from "react";
 import { PREDICT_PRESETS, accuracy, parseTrace, runTrace, twoName, type Bit, type Two } from "../../../engines/aca/predictor";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
-
-const FSM = [
-  { state: 0 as Two, label: "00 Strongly Not Taken", taken: false },
-  { state: 1 as Two, label: "01 Weakly Not Taken", taken: false },
-  { state: 2 as Two, label: "10 Weakly Taken", taken: true },
-  { state: 3 as Two, label: "11 Strongly Taken", taken: true },
-];
+import { PredictorMachine, SmoothNumber } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 export function PredictorLab() {
   const [text, setText] = useState("T T T T N\nT T T T N\nT T T T N\nT T T T N");
@@ -25,8 +20,17 @@ export function PredictorLab() {
   const finalTwo = accuracy(rows, "two");
   const twoState = current?.twoAfter ?? two0;
   const bitState = current?.bitAfter ?? bit0;
+  const { id: guideFocus } = useGuideFocus();
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const hint = current && current.bitCorrect && !current.twoCorrect
+    ? "This branch is a case where the 1-bit predictor was right and the 2-bit predictor was not."
+    : current && !current.bitCorrect && current.twoCorrect
+      ? "The 1-bit predictor missed this branch. The 2-bit counter did not."
+      : current && !current.bitCorrect
+        ? "Both predictors missed this outcome. Step one more branch to see which state flipped."
+        : "Step one outcome and compare the state before the prediction with the state after.";
   return (
-    <LabChrome lab="branch-predictor" kicker="Labs > Lab 6" title="Lab 6 — 1-Bit & 2-Bit Branch Predictor" subtitle="Experiment with branch traces and compare predictor state behavior and accuracy." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="branch-predictor" hint={hint} kicker="Labs > Lab 6" title="Lab 6 — 1-Bit & 2-Bit Branch Predictor" subtitle="Experiment with branch traces and compare predictor state behavior and accuracy." badge="RISC-V (5-Stage Pipeline)">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>A 1-bit predictor copies the last outcome, so one loop exit flips the next prediction. A 2-bit counter needs two misses in a row to change its guess.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : play.cycle >= rows.length ? "Completed" : `Branch ${play.cycle} / ${rows.length}`}</p></article>
@@ -45,14 +49,14 @@ export function PredictorLab() {
           <label>1-bit initial <select aria-label="1-bit initial state" value={bit0} onChange={(event) => { setBit0(Number(event.target.value) as Bit); play.reset(); }}><option value={1}>Taken</option><option value={0}>Not taken</option></select></label>
           <label>2-bit initial <select aria-label="2-bit initial state" value={two0} onChange={(event) => { setTwo0(Number(event.target.value) as Two); play.reset(); }}><option value={3}>Strongly taken</option><option value={2}>Weakly taken</option><option value={1}>Weakly not taken</option><option value={0}>Strongly not taken</option></select></label>
         </section>
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("predictors") ?? ""}`}>
           <h2>1-Bit Predictor</h2>
           <p>A single bit records the last outcome.</p>
           <p className={bitState ? "vl-ok" : "vl-bad"}><b>Current state: Predict {bitState ? "Taken (T)" : "Not Taken (N)"}</b></p>
           <p>Next state becomes the actual outcome of this branch.</p>
           <h2>2-Bit Predictor</h2>
           <div className="vl-fsm">
-            {FSM.map((item) => <span key={item.state} className={`${item.taken ? "taken" : ""} ${twoState === item.state ? "on" : ""}`}>{item.label}</span>)}
+          <PredictorMachine current={twoState} speed={play.speed} cycle={play.cycle} bitLabel={bitState ? "Taken" : "Not taken"} />
           </div>
           <p>Taken moves 00→01→10→11 and stays at 11. Not-taken moves 11→10→01→00 and stays at 00. Prediction is taken only in 10 and 11. Current: {twoName(twoState)}.</p>
         </section>
@@ -64,7 +68,7 @@ export function PredictorLab() {
         </section>
       </div>
       <div className="vl-split">
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("history") ?? ""}`}>
           <h2>Prediction History</h2>
           <div className="vl-scroll">
             <table>
@@ -94,7 +98,7 @@ export function PredictorLab() {
           </div>
           <div className="vl-metrics">
             <div><span>1-bit so far</span><strong>{bitScore.percent}%</strong><span>{bitScore.correct} / {bitScore.total || 0}</span></div>
-            <div><span>2-bit so far</span><strong>{twoScore.percent}%</strong><span>{twoScore.correct} / {twoScore.total || 0}</span></div>
+            <div><span>2-bit so far</span><strong><SmoothNumber value={twoScore.percent} speed={play.speed} /></strong><span>{twoScore.correct} / {twoScore.total || 0}</span></div>
           </div>
           <p>Full trace, same initial states: 1-bit {finalBit.correct}/{finalBit.total} ({finalBit.percent}%), 2-bit {finalTwo.correct}/{finalTwo.total} ({finalTwo.percent}%).</p>
         </section>

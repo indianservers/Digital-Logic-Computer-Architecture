@@ -85,7 +85,7 @@ export const LABS_25: LabGuideContent[] = [
     expectedBehavior: ["SC forbids store-buffering both-zero.", "TSO allows it until fences drain the buffers.", "Weak message passing can show the flag early.", "Release/acquire forbids flag without data."],
     resultInterpretation: ["If an outcome appears, the model permits it. If it is missing, the model forbids it.", "A fence that never issues is waiting for that core’s buffer."],
     misconceptions: ["Coherence and consistency are different questions.", "TSO does not reorder a core’s own stores.", "The table is not 10,000 random runs."],
-    variations: ["Add only one core’s fence on store buffering and see whether both-zero remains.", "Run Load buffering under SC and under weak ordering."],
+    variations: ["Replace the litmus text with a new two-thread test and compare the allowed counts under SC and TSO.", "Turn on Manual interleaving and pick the next legal core action yourself.", "Insert fence on a thread and confirm the forbidden outcome disappears."],
     learningOutcomes: ["Classify an outcome as allowed or forbidden", "Explain a store buffer", "Place the fences that restore SC for this test"],
     viva: [
       { question: "Why can TSO produce both loads reading 0?", answer: "Each load bypasses its own core’s buffered store to the other address." },

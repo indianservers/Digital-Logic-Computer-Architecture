@@ -18,12 +18,14 @@ export interface SpecConfig {
   mode: PredictorMode;
   initial: Two;
   fetchAhead: number;
+  resolveAfter?: number;
 }
 
 interface Flight {
   index: number;
   mask: number[];
   stage: number;
+  hold: number;
 }
 
 export interface SpecStep {
@@ -71,6 +73,41 @@ function learn(mode: PredictorMode, state: Two, bit: 0 | 1, taken: boolean): { s
   if (mode === "two") return { state: stepTwo(state, taken).next, bit };
   if (mode === "one") return { state, bit: taken ? 1 : 0 };
   return { state, bit };
+}
+
+export function parseSpec(line: string): SpecOp | null {
+  const clean = line.replace(/,/g, " ").replace(/\s+/g, " ").trim();
+  if (!clean || clean.startsWith("#")) return null;
+  const parts = clean.split(" ");
+  const op = (parts[0] ?? "").toUpperCase();
+  const regs = parts.filter((part) => /^[xr]\d+$/i.test(part)).map((part) => part.replace(/^r/i, "x"));
+  const target = Number(parts.find((part) => /^\d+$/.test(part)) ?? "");
+  if (op === "BEQ" || op === "BNE") {
+    return { text: clean, comment: "", dest: null, srcs: regs.slice(0, 2), kind: "branch", imm: 0, target: Number.isFinite(target) ? Math.max(0, target - 1) : null, loadValue: 0 };
+  }
+  if (op === "LD" || op === "LW" || op === "LOAD") {
+    return { text: clean, comment: "", dest: regs[0] ?? "x1", srcs: regs.slice(1, 2), kind: "load", imm: 0, target: null, loadValue: 1 };
+  }
+  if (op === "SD" || op === "SW" || op === "STORE") {
+    return { text: clean, comment: "", dest: null, srcs: regs, kind: "store", imm: 0, target: null, loadValue: 0 };
+  }
+  if (op === "ADD" || op === "SUB" || op === "AND" || op === "OR") {
+    return { text: clean, comment: "", dest: regs[0] ?? null, srcs: regs.slice(1), kind: "alu", imm: 0, target: null, loadValue: 0 };
+  }
+  return null;
+}
+
+export function parseSpecProgram(text: string): { ops: SpecOp[]; errors: string[] } {
+  const ops: SpecOp[] = [];
+  const errors: string[] = [];
+  text.split("\n").forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const op = parseSpec(trimmed);
+    if (!op) errors.push(`Line ${index + 1}: use ADD, LOAD, STORE, BEQ, or BNE`);
+    else ops.push(op);
+  });
+  return { ops, errors };
 }
 
 export function branchTaken(op: SpecOp, regs: Map<string, number>): boolean {
@@ -221,7 +258,7 @@ function runOnce(ops: SpecOp[], config: SpecConfig, oracle: boolean): Omit<SpecR
         event = `Misprediction at I${item.index + 1}. Flush ${flushed}. Redirect to I${pc + 1}`;
       }
     });
-    const graduating = flight.filter((item) => item.stage === 4);
+    const graduating = flight.filter((item) => item.stage === 4 && item.mask.length === 0);
     graduating.forEach((item) => {
       const op = ops[item.index];
       if (!op || squashed[item.index]) return;
@@ -233,12 +270,22 @@ function runOnce(ops: SpecOp[], config: SpecConfig, oracle: boolean): Omit<SpecR
       committed[item.index] = true;
     });
     for (let cursor = flight.length - 1; cursor >= 0; cursor -= 1) {
-      if (flight[cursor]?.stage === 4) flight.splice(cursor, 1);
+      const item = flight[cursor];
+      if (item?.stage === 4 && item.mask.length === 0) flight.splice(cursor, 1);
     }
     flight.forEach((item) => {
       if (squashed[item.index]) return;
-      item.stage += 1;
       const op = ops[item.index];
+      if (op?.kind === "branch" && item.stage === 3 && item.hold > 0) {
+        item.hold -= 1;
+        stamp(item.index, cycle, "BR");
+        return;
+      }
+      if (item.stage === 4 && item.mask.length > 0) {
+        stamp(item.index, cycle, "WB");
+        return;
+      }
+      item.stage += 1;
       if (item.stage === 1) stamp(item.index, cycle, "ID");
       else if (item.stage === 2) stamp(item.index, cycle, op?.kind === "branch" ? "BR" : "EX");
       else if (item.stage === 3) stamp(item.index, cycle, "MEM");
@@ -256,7 +303,7 @@ function runOnce(ops: SpecOp[], config: SpecConfig, oracle: boolean): Omit<SpecR
       if (op) {
         const mask = blocking.slice();
         if (mask.length) speculativeFetched += 1;
-        flight.push({ index: pc, mask, stage: 0 });
+        flight.push({ index: pc, mask, stage: 0, hold: op.kind === "branch" ? (config.resolveAfter ?? 0) : 0 });
         stamp(pc, cycle, "IF");
         if (recoverFrom != null && mask.length === 0) {
           recoveryCycles += Math.max(1, cycle - recoverFrom);

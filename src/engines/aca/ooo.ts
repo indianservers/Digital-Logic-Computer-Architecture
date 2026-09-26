@@ -53,13 +53,62 @@ interface Live {
   phys: string;
 }
 
-export function runOoo(ops: OooOp[], faultAt: number | null = null, robSize = 16): OooShot[] {
+export interface OooMachine {
+  issueWidth?: number;
+  commitWidth?: number;
+  alu?: number;
+  mul?: number;
+  mem?: number;
+}
+
+const OOO_OPS: Record<string, { fu: OooOp["fu"]; latency: number; hasDest: boolean }> = {
+  ADD: { fu: "alu", latency: 1, hasDest: true },
+  SUB: { fu: "alu", latency: 1, hasDest: true },
+  AND: { fu: "alu", latency: 1, hasDest: true },
+  OR: { fu: "alu", latency: 1, hasDest: true },
+  ADDI: { fu: "alu", latency: 1, hasDest: true },
+  MUL: { fu: "mul", latency: 3, hasDest: true },
+  DIV: { fu: "mul", latency: 8, hasDest: true },
+  LD: { fu: "mem", latency: 3, hasDest: true },
+  LW: { fu: "mem", latency: 3, hasDest: true },
+  LOAD: { fu: "mem", latency: 3, hasDest: true },
+  SD: { fu: "mem", latency: 3, hasDest: false },
+  SW: { fu: "mem", latency: 3, hasDest: false },
+  STORE: { fu: "mem", latency: 3, hasDest: false },
+};
+
+export function parseOoo(line: string): OooOp | null {
+  const clean = line.replace(/,/g, " ").replace(/\s+/g, " ").trim();
+  if (!clean || clean.startsWith("#")) return null;
+  const [raw, ...rest] = clean.split(" ");
+  const spec = OOO_OPS[(raw ?? "").toUpperCase()];
+  if (!spec) return null;
+  const regs = rest.filter((part) => /^[xr]\d+$/i.test(part)).map((part) => part.replace(/^r/i, "x"));
+  return { text: clean, dest: spec.hasDest ? (regs[0] ?? null) : null, srcs: spec.hasDest ? regs.slice(1) : regs, latency: spec.latency, fu: spec.fu };
+}
+
+export function parseOooProgram(text: string): { ops: OooOp[]; errors: string[] } {
+  const ops: OooOp[] = [];
+  const errors: string[] = [];
+  text.split("\n").forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const op = parseOoo(trimmed);
+    if (!op) errors.push(`Line ${index + 1}: use ADD, SUB, MUL, DIV, LOAD, or STORE`);
+    else ops.push(op);
+  });
+  return { ops, errors };
+}
+
+export function runOoo(ops: OooOp[], faultAt: number | null = null, robSize = 16, machine: OooMachine = {}): OooShot[] {
   const live: Live[] = ops.map((op, index) => ({ dispatch: null, exStart: null, exEnd: null, wb: null, commit: null, flushed: false, remain: op.latency, phys: `p${index + 1}` }));
   const produced = new Map<string, number>();
   const shots: OooShot[] = [];
   const cells: Array<Array<string | null>> = ops.map(() => []);
   let flushed = 0;
-  const limits = { alu: 2, mul: 1, mem: 1 };
+  const limits = { alu: machine.alu ?? 2, mul: machine.mul ?? 1, mem: machine.mem ?? 1 };
+  const issueWidth = machine.issueWidth ?? 2;
+  const commitWidth = machine.commitWidth ?? 1;
   for (let cycle = 1; cycle <= 80; cycle += 1) {
     const head = live.findIndex((item) => item.commit == null && !item.flushed);
     if (head >= 0 && live[head]?.wb != null && faultAt === head) {
@@ -72,7 +121,12 @@ export function runOoo(ops: OooOp[], faultAt: number | null = null, robSize = 16
       if (!op || item.flushed || item.wb != null || item.exStart == null) return;
       busy[op.fu] += 1;
     });
-    if (head >= 0 && live[head]?.wb != null && !live[head]?.flushed && faultAt !== head) live[head].commit = cycle;
+    for (let retired = 0; retired < commitWidth; retired += 1) {
+      const nextHead = live.findIndex((item) => item.commit == null && !item.flushed);
+      if (nextHead < 0 || live[nextHead]?.wb == null || live[nextHead]?.flushed || faultAt === nextHead) break;
+      const retiring = live[nextHead];
+      if (retiring) retiring.commit = cycle;
+    }
     live.forEach((item, index) => {
       const op = ops[index];
       if (!op || item.flushed || item.exStart == null || item.wb != null) return;
@@ -99,7 +153,7 @@ export function runOoo(ops: OooOp[], faultAt: number | null = null, robSize = 16
     });
     let dispatched = 0;
     live.forEach((item, index) => {
-      if (item.dispatch != null || item.flushed || dispatched >= 2) return;
+      if (item.dispatch != null || item.flushed || dispatched >= issueWidth) return;
       const occupied = live.filter((row) => row.dispatch != null && row.commit == null && !row.flushed).length;
       if (occupied >= robSize) return;
       if (faultAt != null && live[faultAt]?.flushed) return;

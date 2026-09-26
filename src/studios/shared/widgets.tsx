@@ -3,13 +3,23 @@ import type { LogicBit, LogicVector } from "../../types/logic";
 import { toHex, toSigned, toUnsigned } from "../../engines/digital/vector";
 import { SEGMENT_NAMES } from "../../engines/digital/routing";
 
-export function BitSwitch({ on, label, onChange }: { on: boolean; label: string; onChange: (next: boolean) => void }) {
+export function BitSwitch({ on, label, onChange, ariaLabel }: { on: boolean; label: string; onChange: (next: boolean) => void; ariaLabel?: string }) {
   return (
-    <button className={on ? "bit-switch on" : "bit-switch"} aria-label={label} aria-pressed={on} onClick={() => onChange(!on)}>
-      <span className="bit-thumb">{on ? 1 : 0}</span>
-      <small>{label}</small>
+    <button type="button" className={on ? "bit-switch on" : "bit-switch"} aria-pressed={on} aria-label={ariaLabel ?? `${label} is ${on ? 1 : 0}`} onClick={() => onChange(!on)}>
+      {label ? <span className="bit-switch-label">{label}</span> : null}
+      <span className="bit-toggle" aria-hidden="true">
+        <span className="bit-opt">0</span>
+        <span className="bit-knob">{on ? 1 : 0}</span>
+        <span className="bit-opt">1</span>
+      </span>
     </button>
   );
+}
+
+export function BitMark({ value }: { value: 0 | 1 | boolean | "X" | "Z" }) {
+  if (value === "X" || value === "Z") return <span className={value === "Z" ? "bit-mark z" : "bit-mark bad"}>{value}</span>;
+  const on = value === true || value === 1;
+  return <span className={on ? "bit-mark on" : "bit-mark"}>{on ? 1 : 0}</span>;
 }
 
 export function WordEditor({ bits, onChange, labels }: { bits: Array<0 | 1>; onChange: (next: Array<0 | 1>) => void; labels?: string[] }) {

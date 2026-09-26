@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { TOMA_PRESETS, TOMA_SHAPE, parseTomasulo, snapshotTomasulo, runTomasulo, type TomaShape } from "../../../engines/aca/tomasulo";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { CdbBroadcast } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 export function TomasuloLab() {
   const [presetId, setPresetId] = useState(TOMA_PRESETS[0]?.id ?? "mixed");
@@ -15,14 +17,23 @@ export function TomasuloLab() {
   }), [lines, mulLatency]);
   const full = useMemo(() => runTomasulo(ops, { F2: 8 }, shape), [ops, shape]);
   const play = usePlayback(full.cycles);
+  const { id: guideFocus } = useGuideFocus();
   const view = useMemo(() => snapshotTomasulo(ops, play.cycle, { F2: 8 }, shape), [ops, play.cycle, shape]);
   const [showTags, setShowTags] = useState(true);
   const [showCdb, setShowCdb] = useState(true);
   const group = (kind: "add" | "mul" | "div" | "load" | "store") => view.stations.filter((station) => station.kind === kind);
   const serial = ops.reduce((sum, op) => sum + op.latency, 0);
   if (!preset) return null;
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const liveBus = view.cdb.find((event) => event.cycle === play.cycle);
+  const tagged = view.stations.some((station) => station.qj || station.qk);
+  const hint = liveBus
+    ? `The CDB is broadcasting ${liveBus.tag}. Watch a matching Qj or Qk become a value.`
+    : tagged
+      ? "A reservation station is holding a producer tag in Qj or Qk. Step until that tag is on the CDB."
+      : "Step through issue and see whether the station captures Vj/Vk or a tag.";
   return (
-    <LabChrome lab="tomasulo" kicker="Labs > Lab 3" title="Lab 3 — Tomasulo Algorithm Simulator" subtitle="Reservation stations hold a value or a tag. The common data bus broadcasts one result per cycle. A later write renames the register, so only a true RAW dependence waits." badge="RISC-V FP · Tomasulo">
+    <LabChrome lab="tomasulo" hint={hint} kicker="Labs > Lab 3" title="Lab 3 — Tomasulo Algorithm Simulator" subtitle="Reservation stations hold a value or a tag. The common data bus broadcasts one result per cycle. A later write renames the register, so only a true RAW dependence waits." badge="RISC-V FP · Tomasulo">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Issue captures Vj/Vk when the register is ready, otherwise Qj/Qk. Latencies: add/sub 2, multiply 6, divide 12, load 2. One CDB, so two finished stations never broadcast together.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : play.cycle >= full.cycles ? "Completed" : `Cycle ${play.cycle}`}</p></article>
@@ -37,7 +48,7 @@ export function TomasuloLab() {
             <tbody>{ops.map((op, index) => <tr key={`${op.text}-${index}`} className={(view.issue[index] ?? 99) <= play.cycle ? "on" : ""}><td>{index + 1}</td><td>{op.text}</td><td>{op.comment}</td></tr>)}</tbody>
           </table>
         </section>
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("stations") ?? ""}`}>
           <header><h2>Reservation Stations</h2></header>
           <div className="vl-stations">
             {[{ title: "Add / Sub", kind: "add" as const }, { title: "Mul / Div", kind: "mul" as const }, { title: "Load / Store", kind: "load" as const }].map((block) => (
@@ -62,8 +73,16 @@ export function TomasuloLab() {
             <tbody>{view.regs.map((reg) => <tr key={reg.name}><td>{reg.name}</td><td>{reg.value}</td><td>{showTags ? reg.qi : "-"}</td></tr>)}</tbody>
           </table>
         </article>
-        <article>
+        <article className={mark("cdb")}>
           <h2>Common Data Bus</h2>
+          <CdbBroadcast
+            tag={view.cdb.find((event) => event.cycle === play.cycle)?.tag ?? ""}
+            value={view.cdb.find((event) => event.cycle === play.cycle)?.value ?? ""}
+            dest={view.cdb.find((event) => event.cycle === play.cycle)?.dest ?? ""}
+            live={showCdb && view.cdb.some((event) => event.cycle === play.cycle)}
+            speed={play.speed}
+            cycle={play.cycle}
+          />
           <table>
             <thead><tr><th>Cycle</th><th>Tag</th><th>Value</th><th>Dest</th></tr></thead>
             <tbody>{(showCdb ? view.cdb : []).map((event) => <tr key={`${event.tag}-${event.cycle}`}><td>{event.cycle}</td><td>{event.tag}</td><td>{event.value}</td><td>{event.dest}</td></tr>)}</tbody>

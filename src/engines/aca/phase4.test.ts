@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { IQ_PRESETS, issueEdges, runIssue } from "./issueQueue";
-import { SPEC_PRESETS, runSpeculation, sequentialRegs } from "./speculate";
+import { SPEC_PRESETS, parseSpecProgram, runSpeculation, sequentialRegs } from "./speculate";
 import { SUPER_PRESETS, runSuper, type SuperOp, type SuperWidths } from "./superscalar";
 
 function pick<T>(list: readonly T[], index: number): T {
@@ -72,6 +72,16 @@ describe("lab 10 speculative execution", () => {
     const first = runSpeculation(wrong.ops, wrong.config);
     const second = runSpeculation(wrong.ops, wrong.config);
     expect(JSON.stringify(first.steps)).toBe(JSON.stringify(second.steps));
+  });
+
+  it("delays branch resolution when the student asks for extra cycles", () => {
+    const parsed = parseSpecProgram("ADD x1, x2, x3\nBEQ x1, x1, 4\nADD x4, x5, x6\nOR x7, x8, x9");
+    expect(parsed.errors).toEqual([]);
+    const fast = runSpeculation(parsed.ops, { mode: "alwaysN", initial: 0, fetchAhead: 4, resolveAfter: 0 });
+    const slow = runSpeculation(parsed.ops, { mode: "alwaysN", initial: 0, fetchAhead: 4, resolveAfter: 4 });
+    expect(slow.mispredictions).toBeGreaterThan(0);
+    expect(slow.cycles).toBeGreaterThan(fast.cycles);
+    expect(slow.squashed).toBeGreaterThan(0);
   });
 });
 

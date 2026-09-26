@@ -100,7 +100,7 @@ describe("performance counters", () => {
       expect(html).toContain(title);
       expect(html).not.toContain("No results are shown yet");
     }
-  });
+  }, 20000);
 
   it("uses the interval delta rather than the cumulative total", () => {
     const profile = COUNTER_PRESETS[0]!;

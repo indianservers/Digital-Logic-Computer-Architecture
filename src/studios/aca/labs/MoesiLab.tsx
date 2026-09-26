@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { MOESI_PRESETS, STATE_TEXT, compareProtocols, runCoherence, type Access, type LineState } from "../../../engines/aca/coherenceLab";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { CoherenceBus } from "../animation/phase2Views";
+import { useGuideFocus } from "../guide/focus";
 
 const CORE_COLOR = ["#dbeafe", "#dcfce7", "#ffedd5", "#f3e8ff"];
 const STATES: LineState[] = ["M", "O", "E", "S", "I"];
@@ -22,9 +24,16 @@ export function MoesiLab() {
   const result = useMemo(() => runCoherence("moesi", 4, accesses, seed), [accesses, seed]);
   const compared = useMemo(() => compareProtocols(4, accesses, seed), [accesses, seed]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const focus = shot.lines.find((item) => item.address === lineAddress) ?? shot.lines[0];
+  const owned = focus?.copies.some((copy) => copy.state === "O") ?? false;
+  const hint = focus?.stale && owned
+    ? "One cache is Owned. Memory is stale. The owner supplies the line."
+    : focus?.stale
+      ? "Memory is stale. The owner cache holds the newest value."
+      : "Write from one core, then read from another. Watch whether memory stays stale.";
   const transfer = [...shot.log].reverse().find((item) => item.source.startsWith("Core") && item.bus === "BusRd");
   const baseline = compared.mesi.final.writebacks;
   const reduction = baseline === 0 ? 0 : Math.max(0, Math.round(((baseline - shot.writebacks) / baseline) * 100));
@@ -34,14 +43,14 @@ export function MoesiLab() {
     play.setCycle(accesses.length + 1);
   };
   return (
-    <LabChrome lab="moesi" kicker="Labs > Lab 18" title="Lab 18 — MOESI Coherence Simulator" subtitle="Experiment with the Modified, Owned, Exclusive, Shared, and Invalid states and observe cache-to-cache transfers." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="moesi" kicker="Labs > Lab 18" title="Lab 18 — MOESI Coherence Simulator" subtitle="Experiment with the Modified, Owned, Exclusive, Shared, and Invalid states and observe cache-to-cache transfers." badge="RISC-V (5-Stage Pipeline)" hint={hint}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Understand the Owned state. A dirty line can be shared, and the owner supplies the newest data, so memory does not have to be written on every remote read.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>4 cores. Cache block size 64 bytes. Write-back memory. An Owned line may sit beside Shared copies. Only one owner is allowed.</p></article>
         <article><h2>Owned state</h2><p>Coherence here is about who supplies the block. The owner is authoritative while memory can still hold the old word.</p></article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "memory" ? "aca-guide-on" : undefined}>
           <h2>System Configuration</h2>
           <div className="vl-cores">
             {CORE_COLOR.map((color, core) => {
@@ -57,6 +66,7 @@ export function MoesiLab() {
           </div>
           <p>Interconnect / coherence bus, directory-less snooping.</p>
           <p>Main memory {focus ? `0x${focus.address.toString(16)} = 0x${focus.memory.toString(16)}` : "—"} {focus?.stale ? "· stale, owner is authoritative" : "· matches the caches or is unused"}.</p>
+          <CoherenceBus bus={transfer && transfer.cycle === shot.cycle ? transfer.bus : (shot.log.at(-1)?.cycle === shot.cycle ? shot.log.at(-1)?.bus ?? "" : "")} from={shot.log.at(-1)?.cycle === shot.cycle ? shot.log.at(-1)?.from ?? "" : ""} to={shot.log.at(-1)?.cycle === shot.cycle ? shot.log.at(-1)?.to ?? "" : ""} detail={shot.log.at(-1)?.cycle === shot.cycle ? shot.log.at(-1)?.detail ?? "" : ""} stale={Boolean(focus?.stale)} live={shot.log.some((item) => item.cycle === shot.cycle)} speed={play.speed} cycle={play.cycle} />
         </article>
         <article>
           <h2>MOESI State Legend</h2>
@@ -95,7 +105,7 @@ export function MoesiLab() {
         </article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "owner" ? "aca-guide-on" : undefined}>
           <h2>Cache Line States</h2>
           <table>
             <thead><tr><th>Address</th><th>Core 0</th><th>Core 1</th><th>Core 2</th><th>Core 3</th><th>Memory</th></tr></thead>
@@ -133,7 +143,7 @@ export function MoesiLab() {
           <Toggle on={arrows} label="Show Cache-to-Cache Arrows" onChange={setArrows} />
           <Toggle on={highlight} label="Highlight MOESI Transitions" onChange={setHighlight} />
           <Toggle on={auto} label="Auto Execute Next" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

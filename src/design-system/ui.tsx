@@ -105,8 +105,8 @@ export function Metric({ label, value }: { label: string; value: string }) {
 
 export function Signal({ value }: { value: LogicValue | 0 | 1 }) {
   const text = value === "Z" ? "Z" : value === "X" ? "X" : String(value);
-  const cls = value === 1 ? "bit on" : value === "Z" ? "bit z" : value === "X" ? "bit bad" : "bit";
-  return <span className={cls} aria-label={`signal ${text}`} style={{ width: 28, height: 28, display: "inline-grid", placeItems: "center" }}>{text}</span>;
+  const cls = value === 1 ? "bit-mark on" : value === "Z" ? "bit z" : value === "X" ? "bit bad" : "bit-mark";
+  return <span className={cls} aria-label={`signal ${text}`}>{text}</span>;
 }
 
 export function ExplainBar({ what, why, notice }: { what: string; why: string; notice: string }) {

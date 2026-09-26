@@ -366,6 +366,39 @@ function mem(pc: number, text: string, comment: string, kind: LsqOp["kind"], bas
   return { pc, text, comment, kind, dest: extra.dest ?? null, dataReg: extra.dataReg ?? null, immData: extra.immData ?? null, base, offset, latency: extra.latency ?? 0 };
 }
 
+export function parseLsqProgram(text: string): { ops: LsqOp[]; regs: Record<string, number>; memory: Record<number, number>; errors: string[] } {
+  const ops: LsqOp[] = [];
+  const errors: string[] = [];
+  const regs: Record<string, number> = { ...MEM_REGS };
+  const memory: Record<number, number> = {};
+  text.split("\n").forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const clean = trimmed.replace(/[\[\],]/g, " ").replace(/\s+/g, " ");
+    const parts = clean.split(" ");
+    const op = (parts[0] ?? "").toUpperCase();
+    const hex = parts.map((part) => part.replace(/^0x/i, "")).find((part) => /^[0-9a-f]+$/i.test(part) && /[a-f]/i.test(part) || /^[0-9a-f]{3,}$/i.test(part));
+    const address = hex ? Number.parseInt(hex, 16) : null;
+    const regsIn = parts.filter((part) => /^[xr]\d+$/i.test(part)).map((part) => part.replace(/^r/i, "x"));
+    const immediate = parts.map((part) => Number(part)).find((value) => Number.isFinite(value) && value < 0x100);
+    if ((op === "LOAD" || op === "LD" || op === "LW") && regsIn[0]) {
+      const base = address != null ? "x0" : (regsIn[1] ?? "x1");
+      ops.push(mem(0x1000 + index * 4, trimmed, "student load", "load", base, address ?? 0, { dest: regsIn[0] }));
+      if (address != null) memory[address] = memory[address] ?? 0;
+      return;
+    }
+    if ((op === "STORE" || op === "SD" || op === "SW")) {
+      const base = address != null ? "x0" : (regsIn[0] ?? "x1");
+      const data = immediate ?? 1;
+      ops.push(mem(0x1000 + index * 4, trimmed, "student store", "store", base, address ?? 0, { immData: data, dataReg: address == null ? (regsIn[1] ?? null) : null }));
+      return;
+    }
+    errors.push(`Line ${index + 1}: use LOAD x1, 0x100 or STORE 0x100, 42 or STORE x2, 7`);
+  });
+  regs.x0 = 0;
+  return { ops, regs, memory, errors };
+}
+
 export const MEM_REGS: Record<string, number> = { x1: 0x1000, x2: 0x1000, x3: 0x1004, x5: 0x10, x6: 0x20, x8: 0x2000, x10: 0x1000, x11: 0x3000, x12: 0x2000 };
 export const MEM_IMAGE: Record<number, number> = { 0x1000: 0x11, 0x1004: 0x22, 0x2000: 0x2000, 0x2008: 0x44, 0x3000: 0x55 };
 

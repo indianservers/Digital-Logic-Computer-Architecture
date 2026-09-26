@@ -21,4 +21,12 @@ export const colors = {
   successSoft: "#ECFDF3",
   danger: "#F04438",
   dangerSoft: "#FEF3F2",
+  header: "#EEF3F9",
+  row: "#FFFFFF",
+  rowAlt: "#F6F9FC",
+  hover: "#EEF4FF",
+  selected: "#E5EFFF",
+  active: "#DBEAFE",
+  borderSubtle: "#EEF2F7",
+  borderStrong: "#C5D4E8",
 } as const;

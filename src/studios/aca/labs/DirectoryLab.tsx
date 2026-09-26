@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { DIR_LINES, DIR_PRESETS, runDirectory, scalingSeries, validHolders, type DirRequest, type DirState } from "../../../engines/aca/directory";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { DirectoryFlow } from "../animation/phase2Views";
+import { useGuideFocus } from "../guide/focus";
 
 const CORE_COLOR = ["#f3e8ff", "#dbeafe", "#dcfce7", "#fef9c3", "#ffe4e6", "#e0f2fe", "#fef3c7", "#ede9fe"];
 const STATE_NAME: Record<DirState, string> = { U: "Uncached", S: "Shared", M: "Modified" };
@@ -24,6 +26,7 @@ export function DirectoryLab() {
   const block = Number.isNaN(parsed) ? 0x1000 : parsed;
   const result = useMemo(() => runDirectory(cores, requests.filter((item) => item.core < cores), seed), [cores, requests, seed]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const line = shot.lines.find((item) => item.address === selected) ?? shot.lines[0];
@@ -32,13 +35,16 @@ export function DirectoryLab() {
   const targeted = shot.invalidated.length || holders.length;
   const bars = scalingSeries(targeted);
   const peak = Math.max(...bars.map((bar) => bar.snoop), 1);
+  const hint = shot.invalidations > 0
+    ? `Invalidations so far: ${shot.invalidations}. They go to the recorded sharers. Messages avoided versus a broadcast: ${shot.avoided}.`
+    : "Read from more than one core and watch the sharer list grow before you write.";
   const issue = () => {
     setRequests((current) => [...current, { core: actor, op: operation, address: block, value: operation === "write" ? written : undefined }]);
     setSelected(block);
     play.setCycle(requests.length + 1);
   };
   return (
-    <LabChrome lab="directory-coherence" kicker="Labs > Lab 19" title="Lab 19 — Directory-Based Cache Coherence" subtitle="Study scalable coherence using a centralized directory, sharer lists, invalidations, and ownership transfer." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="directory-coherence" kicker="Labs > Lab 19" title="Lab 19 — Directory-Based Cache Coherence" subtitle="Study scalable coherence using a centralized directory, sharer lists, invalidations, and ownership transfer." badge="RISC-V (5-Stage Pipeline)" hint={hint}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Understand how a centralized directory maintains sharer lists, handles read and write requests, issues invalidations only to known sharers, and transfers ownership.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>A single reader is Shared in this model. There is no Exclusive state. A Modified line is dirty until a remote read writes it back.</p></article>
@@ -61,9 +67,10 @@ export function DirectoryLab() {
             })}
           </div>
           <p className="node">Directory node · {line ? `${STATE_NAME[line.state]} · owner ${line.owner === null ? "none" : `Core ${line.owner}`} · sharers ${sharerText}` : "empty"}</p>
+          <DirectoryFlow kind={shot.step[0]?.kind ?? ""} source={shot.step[0]?.source ?? ""} destination={shot.step[0]?.destination ?? ""} sharers={line?.sharers.length ?? 0} owner={line?.owner === null || line?.owner === undefined ? "none" : `Core ${line.owner}`} speed={play.speed} cycle={play.cycle} />
           <p>Multiple cores communicate through a centralized directory. {cores > 4 ? `${cores} cores are in the directory table.` : "Four cores are drawn here."}</p>
         </article>
-        <article>
+        <article className={guideFocus === "directory" ? "aca-guide-on" : undefined}>
           <h2>Directory State</h2>
           <table>
             <thead><tr><th>Block</th><th>Owner</th><th>Sharers</th><th>State</th><th>Memory</th></tr></thead>
@@ -114,7 +121,7 @@ export function DirectoryLab() {
         </article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "messages" ? "aca-guide-on" : undefined}>
           <h2>Message Flow</h2>
           {messagesOn ? (
             <div className="vl-lane">
@@ -172,7 +179,7 @@ export function DirectoryLab() {
           <Toggle on={animate} label="Animate Invalidation Flow" onChange={setAnimate} />
           <Toggle on={highlight} label="Highlight Directory Updates" onChange={setHighlight} />
           <Toggle on={auto} label="Auto Advance Requests" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

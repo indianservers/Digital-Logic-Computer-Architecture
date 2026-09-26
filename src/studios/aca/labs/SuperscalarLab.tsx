@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { SUPER_PRESETS, runSuper, type SuperWidths } from "../../../engines/aca/superscalar";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { WidthFlow } from "../animation/phase2Views";
+import { useGuideFocus } from "../guide/focus";
 
 const SCALAR: SuperWidths = { fetch: 1, decode: 1, dispatch: 1, execute: 1, retire: 1 };
 
@@ -30,15 +32,29 @@ export function SuperscalarLab() {
     play.setPlaying(false);
     play.setCycle(0);
   }, [autoReset, play, wide.cycles]);
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   if (!preset) return null;
   const shown = Math.min(play.cycle + 1, wide.cycles);
   const retiredNow = wide.retireAt.filter((cycle) => cycle != null && cycle <= shown).length;
   const speedup = wide.cycles === 0 ? 0 : scalar.cycles / wide.cycles;
   const maxIpc = Math.max(1, ...wide.ipcHistory, ...scalar.ipcHistory);
+  const widthOrder = [
+    ["Fetch", widths.fetch],
+    ["Decode", widths.decode],
+    ["Dispatch", widths.dispatch],
+    ["Execute", widths.execute],
+    ["Retire", widths.retire],
+  ] as const;
+  const narrowest = Math.min(...widthOrder.map((item) => item[1]));
+  const limited = widthOrder.filter((item) => item[1] === narrowest);
+  const bottleneck = limited.length === widthOrder.length ? "balanced" : limited[limited.length - 1]?.[0] ?? "Fetch";
+  const hint = bottleneck === "balanced"
+    ? "No stage is narrower than the others. IPC still depends on the dependences in this instruction stream."
+    : `Watch ${bottleneck} — it is currently limiting throughput.`;
   const setWidth = (key: keyof SuperWidths, value: number) => setWidths((current) => ({ ...current, [key]: value }));
   const apply = (next: SuperWidths) => { setWidths(next); play.reset(); };
   return (
-    <LabChrome lab="superscalar" kicker="Labs > Lab 11" title="Lab 11 — Superscalar Pipeline Explorer" subtitle="Experiment with fetch, decode, dispatch, execution, and retirement width to see how superscalar processors increase IPC." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="superscalar" kicker="Labs > Lab 11" title="Lab 11 — Superscalar Pipeline Explorer" subtitle="Experiment with fetch, decode, dispatch, execution, and retirement width to see how superscalar processors increase IPC." badge="RISC-V (5-Stage Pipeline)" hint={hint}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Understand how a superscalar processor moves multiple instructions per cycle, and why dependencies and the narrowest stage limit the instructions that actually retire.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : `Cycle ${shown}. Retired ${retiredNow} of ${preset.ops.length}.`}</p><p>This model issues in order and retires in order. Width is a cap, not a guaranteed IPC.</p></article>
@@ -48,7 +64,7 @@ export function SuperscalarLab() {
           <p>Superscalar IPC {wide.ipc.toFixed(2)} in {wide.cycles} cycles. Relative time {(wide.cycles / Math.max(1, scalar.cycles)).toFixed(2)}x.</p>
         </article>
       </div>
-      <section className="vl-panel">
+      <section className={guideFocus === "widths" ? "vl-panel aca-guide-on" : "vl-panel"}>
         <header>
           <h2>Pipeline Width Configuration</h2>
           <div className="vl-chips">
@@ -90,7 +106,7 @@ export function SuperscalarLab() {
           </table>
           <p>I{selected + 1} uses lane {wide.lanes[selected] ?? 0}. It retires at cycle {wide.retireAt[selected] ?? "—"}. A younger instruction cannot retire ahead of it.</p>
         </section>
-        <section className="vl-panel">
+        <section className={guideFocus === "pipeline" ? "vl-panel aca-guide-on" : "vl-panel"}>
           <header><h2>Superscalar Pipeline Visualization</h2><b>Cycle {shown} / {wide.cycles}</b></header>
           {lanesOn ? (
             <div className="vl-scroll">
@@ -113,6 +129,24 @@ export function SuperscalarLab() {
             </div>
           ) : <p>Lane view is hidden.</p>}
           <p className="vl-legend"><i className="st IF" /> IF <i className="st ID" /> ID <i className="st DIS" /> DIS <i className="st EX" /> EX <i className="st MEM" /> MEM <i className="st WB" /> WB</p>
+          <WidthFlow
+            stages={([
+              ["Fetch", "fetch", "fetch", "IF"],
+              ["Decode", "decode", "decode", "ID"],
+              ["Dispatch", "dispatch", "dispatch", "DIS"],
+              ["Execute", "execute", "execute", "EX"],
+              ["Retire", "commit", "retire", "WB"],
+            ] as const).map(([label, icon, key, code]) => ({
+              label,
+              icon,
+              width: widths[key],
+              active: preset.ops.filter((_, index) => wide.cells[index]?.[Math.max(0, shown - 1)] === code).length,
+            }))}
+            bottleneck={bottleneck}
+            note={widths.fetch > Math.min(widths.decode, widths.dispatch, widths.execute, widths.retire) ? `Fetch width is ${widths.fetch}. A later stage is narrower, so the extra fetched instructions cannot all retire in the same cycle.` : `Cycle ${shown} places an instruction only in a lane the engine actually used.`}
+            speed={play.speed}
+            cycle={play.cycle}
+          />
         </section>
       </div>
       <div className="vl-split">
@@ -130,7 +164,7 @@ export function SuperscalarLab() {
           <Toggle on={lanesOn} label="Highlight Active Lanes" onChange={setLanesOn} />
           <Toggle on={ids} label="Show Instruction IDs" onChange={setIds} />
           <Toggle on={autoReset} label="Auto Reset on Completion" onChange={setAutoReset} />
-          <Transport playing={play.playing} speed={play.speed} onSpeed={play.setSpeed} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(wide.cycles - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} />
+          <Transport playing={play.playing} speed={play.speed} onSpeed={play.setSpeed} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(wide.cycles - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} />
         </section>
       </div>
       <div className="vl-metrics">

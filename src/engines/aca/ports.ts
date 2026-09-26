@@ -12,6 +12,7 @@ export interface PortConfig {
   policy: SchedPolicy;
   issueWidth: number;
   scheduling: boolean;
+  ports?: PortDef[];
 }
 
 export interface PortDef {
@@ -110,8 +111,8 @@ function producer(ops: PortOp[], index: number, reg: string) {
   return null;
 }
 
-export function compatiblePorts(kind: PortClass) {
-  return PORTS.filter((port) => port.classes.includes(kind)).map((port) => port.id);
+export function compatiblePorts(kind: PortClass, ports: PortDef[] = PORTS) {
+  return ports.filter((port) => port.classes.includes(kind)).map((port) => port.id);
 }
 
 function readyAt(lives: Live[], ops: PortOp[], index: number) {
@@ -127,11 +128,13 @@ function readyAt(lives: Live[], ops: PortOp[], index: number) {
 
 export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortResult {
   const cfg = { ...DEFAULTS, ...config };
+  const table = cfg.ports && cfg.ports.length > 0 ? cfg.ports : PORTS;
+  const fit = (kind: PortClass) => compatiblePorts(kind, table);
   const width = cfg.scheduling ? cfg.issueWidth : 1;
   const policy: SchedPolicy = cfg.scheduling ? cfg.policy : "oldest";
   const lives: Live[] = ops.map((_, index) => ({ index, issue: null, complete: null, port: null, reason: "Waiting for a free compatible port" }));
-  const blocked = PORTS.map(() => 0);
-  const busy = PORTS.map(() => 0);
+  const blocked = table.map(() => 0);
+  const busy = table.map(() => 0);
   const heat: number[][] = [];
   const completed: number[] = [0];
   const shots: PortShot[] = [];
@@ -148,7 +151,7 @@ export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortR
       index,
       text: op.text,
       kind: op.kind,
-      compatible: compatiblePorts(op.kind),
+      compatible: fit(op.kind),
       port: live?.port ?? null,
       state,
       reason: live?.reason ?? "",
@@ -161,9 +164,9 @@ export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortR
     const waiting = lives.filter((live) => live.issue == null && readyAt(lives, ops, live.index) > cycle);
     depStalls += waiting.length;
     const used = new Set<number>();
-    const freeFor = (kind: PortClass) => compatiblePorts(kind).filter((port) => !used.has(port) && (blocked[port] ?? 0) <= cycle);
+    const freeFor = (kind: PortClass) => fit(kind).filter((port) => !used.has(port) && (blocked[port] ?? 0) <= cycle);
     const ordered = policy === "flexible"
-      ? ready.slice().sort((left, right) => compatiblePorts(ops[left.index]?.kind ?? "int-alu").length - compatiblePorts(ops[right.index]?.kind ?? "int-alu").length || left.index - right.index)
+      ? ready.slice().sort((left, right) => fit(ops[left.index]?.kind ?? "int-alu").length - fit(ops[right.index]?.kind ?? "int-alu").length || left.index - right.index)
       : ready.slice().sort((left, right) => left.index - right.index);
     let issued = 0;
     let event = "Ports idle";
@@ -175,10 +178,10 @@ export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortR
       if (!choices.length) {
         if (policy === "oldest") break;
         portStalls += 1;
-        live.reason = `No free ${compatiblePorts(op.kind).map((port) => `P${port}`).join("/")} this cycle`;
+        live.reason = fit(op.kind).length ? `No free ${fit(op.kind).map((port) => `P${port}`).join("/")} this cycle` : "No compatible execution port";
         continue;
       }
-      const users = (port: number) => ordered.filter((other) => other.issue == null && other.index !== live.index && compatiblePorts(ops[other.index]?.kind ?? "int-alu").includes(port)).length;
+      const users = (port: number) => ordered.filter((other) => other.issue == null && other.index !== live.index && fit(ops[other.index]?.kind ?? "int-alu").includes(port)).length;
       const leastPort = choices.slice().sort((left, right) => users(left) - users(right) || left - right)[0];
       const port = policy === "least" ? leastPort : policy === "first" ? choices[choices.length - 1] : choices[0];
       if (port == null) continue;
@@ -195,9 +198,9 @@ export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortR
     ordered.forEach((live) => {
       if (live.issue == null) portStalls += policy === "oldest" ? 1 : 0;
     });
-    const levels = PORTS.map((port) => {
+    const levels = table.map((port) => {
       const occupied = used.has(port.id) || (blocked[port.id] ?? 0) > cycle;
-      const waiters = ordered.filter((live) => live.issue == null && compatiblePorts(ops[live.index]?.kind ?? "int-alu").includes(port.id)).length;
+      const waiters = ordered.filter((live) => live.issue == null && fit(ops[live.index]?.kind ?? "int-alu").includes(port.id)).length;
       if (!occupied) return 0;
       if (waiters === 0) return 1;
       return waiters === 1 ? 2 : 3;
@@ -209,7 +212,7 @@ export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortR
     if (lives.every((live) => live.complete != null && (live.complete ?? 0) <= cycle)) break;
   }
   const cycles = Math.max(1, shots.length - 1);
-  const utilization = busy.reduce((sum, value) => sum + value, 0) / (cycles * PORTS.length);
+  const utilization = busy.reduce((sum, value) => sum + value, 0) / (cycles * table.length);
   const idle = busy.map((value) => Math.max(0, cycles - value));
   const bottleneck = analyze(depStalls, portStalls, busy, ops);
   return {
@@ -220,7 +223,7 @@ export function runPorts(ops: PortOp[], config: Partial<PortConfig> = {}): PortR
     busy,
     idle,
     bottleneck,
-    assignments: lives.filter((live) => live.port != null).map((live) => ({ index: live.index, port: live.port ?? 0, compatible: compatiblePorts(ops[live.index]?.kind ?? "int-alu") })),
+    assignments: lives.filter((live) => live.port != null).map((live) => ({ index: live.index, port: live.port ?? 0, compatible: fit(ops[live.index]?.kind ?? "int-alu") })),
   };
 }
 
@@ -233,6 +236,31 @@ function analyze(depStalls: number, portStalls: number, busy: number[], ops: Por
   if (kinds.has("load") && (busy[3] ?? 0) === peak && peak > 0) return "P3 load/store unit";
   if (portStalls === 0 && depStalls === 0) return "No structural stall";
   return `P${hot} ${PORTS[hot]?.units ?? "port"}`;
+}
+
+export function parsePort(line: string): PortOp | null {
+  const clean = line.replace(/,/g, " ").replace(/\s+/g, " ").trim();
+  if (!clean || clean.startsWith("#")) return null;
+  const [raw, ...rest] = clean.split(" ");
+  const op = (raw ?? "").toUpperCase();
+  const regs = rest.filter((part) => /^[xr]\d+$/i.test(part)).map((part) => part.replace(/^r/i, "x"));
+  const kind: PortClass | null = op === "MUL" ? "int-mul" : op === "DIV" ? "int-div" : op === "FADD" ? "fp-add" : op === "FMUL" ? "fp-mul" : op === "LD" || op === "LOAD" ? "load" : op === "SD" || op === "ST" || op === "STORE" ? "store" : op === "BEQ" || op === "BNE" ? "branch" : op === "ADD" || op === "SUB" || op === "AND" || op === "OR" ? "int-alu" : null;
+  if (!kind) return null;
+  const hasDest = kind !== "store" && kind !== "branch";
+  return { text: clean, kind, dest: hasDest ? (regs[0] ?? null) : null, srcs: hasDest ? regs.slice(1) : regs };
+}
+
+export function parsePortProgram(text: string): { ops: PortOp[]; errors: string[] } {
+  const ops: PortOp[] = [];
+  const errors: string[] = [];
+  text.split("\n").forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const parsed = parsePort(trimmed);
+    if (!parsed) errors.push(`Line ${index + 1}: use ADD, MUL, DIV, LOAD, STORE, or BEQ`);
+    else ops.push(parsed);
+  });
+  return { ops, errors };
 }
 
 function op(text: string, kind: PortClass, dest: string | null, srcs: string[]): PortOp {

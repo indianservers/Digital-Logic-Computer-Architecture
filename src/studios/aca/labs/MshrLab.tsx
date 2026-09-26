@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { MSHR_DEFAULTS, MSHR_PRESETS, compareBlocking, runMshr, type MemAccess, type MshrConfig } from "../../../engines/aca/mshr";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { MshrPath } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 export function MshrLab() {
   const initial = MSHR_PRESETS[1];
@@ -27,15 +29,28 @@ export function MshrLab() {
   const result = useMemo(() => runMshr(accesses, config, warm), [accesses, config, warm]);
   const compared = useMemo(() => compareBlocking(accesses, { ...config, hitUnderMiss: true, missUnderMiss: true }, warm), [accesses, config, warm]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const occupancy = shot.entries.filter((entry) => entry.busy).length;
+  const hint = /full|exhaust/i.test(shot.event)
+    ? "The MSHRs are full. The next new block stalls until one returns."
+    : /merge/i.test(shot.event)
+      ? "These loads share one MSHR. One fill wakes every consumer of that block."
+      : occupancy > 1
+        ? `${occupancy} misses are outstanding.`
+        : shot.blocked
+          ? "A miss is active and the cache is blocked."
+          : "Step until an MSHR row is busy.";
+  const reading = `Outstanding ${occupancy}. Merged ${shot.merged}. Exhaustion ${shot.exhausted}. Peak MLP ${shot.peakOutstanding}.`;
   return (
-    <LabChrome lab="mshr" kicker="Labs > Lab 23" title="Lab 23 — Non-Blocking Cache & MSHR Lab" subtitle="Explore how non-blocking caches use MSHRs to tolerate multiple outstanding misses and improve performance." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="mshr" kicker="Labs > Lab 23" title="Lab 23 — Non-Blocking Cache & MSHR Lab" subtitle="Explore how non-blocking caches use MSHRs to tolerate multiple outstanding misses and improve performance." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>See a blocking cache wait out one miss, then a non-blocking cache serve a hit or a second miss while that fill is still in flight. Memory-level parallelism here is outstanding misses, not instruction-level parallelism.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>{shot.blocked ? "A miss is active and the cache is blocked." : occupancy ? `${occupancy} miss${occupancy === 1 ? "" : "es"} outstanding.` : "No miss is outstanding."}</p></article>
-        <article><h2>MSHRs</h2><p>A second load of a block already in an MSHR joins that entry. It does not start another memory request. A new block needs a free MSHR.</p></article>
+        <article><h2>MSHRs</h2><p>A second load of a block already in an MSHR joins that entry. It does not start another memory request. A new block needs a free MSHR.</p>
+          <MshrPath mode={/full/i.test(shot.event) ? "full" : /merged/i.test(shot.event) ? "merge" : /^Miss/.test(shot.event) ? "miss" : /complete|fill|return/i.test(shot.event) ? "fill" : "idle"} occupancy={occupancy} merged={shot.merged} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -93,7 +108,7 @@ export function MshrLab() {
           </label>
         </article>
         {showMshr ? (
-          <article>
+          <article className={guideFocus === "mshr" ? "aca-guide-on" : undefined}>
             <h2>MSHR Table ({shot.entries.length} entries)</h2>
             <table>
               <thead><tr><th>Idx</th><th>Block</th><th>State</th><th>Wait</th><th>Requester</th></tr></thead>
@@ -113,7 +128,7 @@ export function MshrLab() {
             <p>MSHR usage {occupancy} / {shot.entries.length} ({shot.entries.length ? Math.round((occupancy / shot.entries.length) * 100) : 0}%).</p>
           </article>
         ) : null}
-        <article>
+        <article className={guideFocus === "outstanding" ? "aca-guide-on" : undefined}>
           <h2>Outstanding Misses</h2>
           <table>
             <thead><tr><th>#</th><th>Block</th><th>Arrival</th><th>Age</th><th>State</th></tr></thead>
@@ -178,7 +193,7 @@ export function MshrLab() {
           <Toggle on={showQueue} label="Show Memory Accesses" onChange={setShowQueue} />
           <Toggle on={highlight} label="Highlight Hits" onChange={setHighlight} />
           <Toggle on={auto} label="Auto Advance" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

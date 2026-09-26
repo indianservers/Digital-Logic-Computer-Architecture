@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { CORE_COUNTS, SCALE_DEFAULTS, SCALE_PRESETS, scaleAt, scaleSeries, theoreticalLimit, type ScaleInput } from "../../../engines/aca/scaling";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { ScaleSplit } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 function num(value: number, digits = 2) {
   if (!Number.isFinite(value)) return "unbounded";
@@ -14,6 +16,7 @@ export function AmdahlLab() {
   const [showWork, setShowWork] = useState(true);
   const [auto, setAuto] = useState(false);
   const play = usePlayback(CORE_COUNTS.length - 1);
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const cores = auto ? (CORE_COUNTS[play.cycle] ?? input.cores) : input.cores;
   const active = useMemo(() => ({ ...input, cores }), [input, cores]);
   const point = useMemo(() => scaleAt(active, cores), [active, cores]);
@@ -36,12 +39,22 @@ export function AmdahlLab() {
   }).join(", ");
   const shownCores = Math.min(cores, 16);
   const patch = (next: Partial<ScaleInput>) => { setInput((current) => ({ ...current, ...next })); setPreset("custom"); };
+  const hint = input.includeComm && point.communication > point.serial
+    ? "Communication is a large share of the time. Extra cores do not remove it."
+    : input.serial >= 0.1
+      ? `Serial work sets a ceiling near ${num(limit)}×. This run is at ${num(point.speedup)}× on ${cores} cores.`
+      : `Speedup ${num(point.speedup)}× at ${cores} cores. Efficiency is speedup divided by cores.`;
+  const reading = `${cores} cores. Speedup ${num(point.speedup)}×. Efficiency ${num(point.speedup / Math.max(cores, 1))}.`;
   return (
-    <LabChrome lab="amdahl" kicker="Labs > Lab 28" title="Lab 28 — Multicore Scaling & Amdahl's Law" subtitle="See why extra cores stop helping once serial work, communication, and synchronization dominate." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="amdahl" kicker="Labs > Lab 28" title="Lab 28 — Multicore Scaling & Amdahl's Law" subtitle="See why extra cores stop helping once serial work, communication, and synchronization dominate." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Strong scaling keeps the total problem fixed. Weak scaling keeps the work per core fixed. Speedup(N) = 1 / (f + (1−f)/N) when overhead is off. The extra terms below are a lab model, not a hardware law.</p></article>
         <article><h2>Experiment Status</h2><p>{input.mode === "strong" ? "Strong scaling: fixed total workload." : "Weak scaling: fixed workload per core, so the total problem grows with N."}</p><p>{auto ? `Sweeping core counts. Now ${cores} ${cores === 1 ? "core" : "cores"}.` : `${cores} ${cores === 1 ? "core" : "cores"} selected.`}</p></article>
-        <article><h2>Limit</h2><p>As N grows and overhead is ignored, the pure Amdahl limit is {num(limit)}×. Ideal linear speedup is N. This configuration does not reach it.</p></article>
+        <article><h2>Limit</h2><p>As N grows and overhead is ignored, the pure Amdahl limit is {num(limit)}×. Ideal linear speedup is N. This configuration does not reach it.</p>
+          <div className={guideFocus === "split" ? "aca-guide-on" : undefined}>
+          <ScaleSplit cores={shownCores} serial={point.serial} parallel={point.parallel} overhead={point.communication + point.synchronization} speedup={point.speedup} speed={play.speed} cycle={play.cycle} />
+          </div>
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -93,7 +106,7 @@ export function AmdahlLab() {
           <Toggle on={auto} label="Sweep core counts" onChange={setAuto} />
         </article>
         <article>
-          <h2>Speedup</h2>
+          <h2 className={guideFocus === "curve" ? "aca-guide-on" : undefined}>Speedup</h2>
           <p>S(N) = 1 / (f + (1−f)/N + Ccomm + Csync). For this lab model, Ccomm is the communication slider and Csync is the barrier cost times the barrier count. Both terms are 0 at one core, so speedup starts at 1. They are relative overheads, not a hardware law.</p>
           <svg viewBox="0 0 320 180" role="img" aria-label="Speedup versus cores">
             <line x1="28" y1="10" x2="28" y2="150" stroke="#cbd5e1" />
@@ -148,7 +161,7 @@ export function AmdahlLab() {
         <div><strong>{num(point.parallel, 3)}</strong><span>Parallel work per core</span></div>
         <div><strong>{num(point.amdahl)}×</strong><span>Pure Amdahl, overhead off</span></div>
       </div>
-      <Transport playing={play.playing} onPlay={() => { setAuto(true); play.setPlaying((value) => !value); }} onStep={() => { setAuto(true); play.setCycle((value) => Math.min(CORE_COUNTS.length - 1, value + 1)); }} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setAuto(false); setInput((current) => ({ ...current, cores: 16 })); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
+      <Transport playing={play.playing} onPlay={() => { setAuto(true); play.setPlaying((value) => !value); }} onStep={() => { setAuto(true); play.setCycle((value) => Math.min(CORE_COUNTS.length - 1, value + 1)); }} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); setAuto(false); setInput((current) => ({ ...current, cores: 16 })); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
     </LabChrome>
   );
 }

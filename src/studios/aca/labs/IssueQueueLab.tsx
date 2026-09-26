@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { IQ_PRESETS, runIssue, type IqConfig, type IqOp, type IqShot } from "../../../engines/aca/issueQueue";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { WakeupPulse } from "../animation/phase2Views";
+import { useGuideFocus } from "../guide/focus";
 
 const POLICIES = ["Oldest Ready First"];
 
@@ -36,6 +38,7 @@ export function IssueQueueLab() {
   }), [preset, windowSize, issueWidth, units]);
   const result = useMemo(() => runIssue(preset?.ops ?? [], config), [preset, config]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   if (!preset) return null;
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)] ?? result.shots[0];
   const previous = result.shots[Math.min(play.cycle, result.shots.length - 1) - 1];
@@ -45,15 +48,24 @@ export function IssueQueueLab() {
   const producer = completed[0];
   const queue = shot.entries.filter((entry) => entry.state === "waiting" || entry.state === "ready" || entry.state === "issued" || entry.state === "selected");
   const utilization = result.occupancy / Math.max(1, config.window);
+  const notReady = queue.filter((entry) => entry.waiting.length > 0).length;
+  const readyHeld = queue.filter((entry) => entry.waiting.length === 0 && !entry.selected).length;
+  const hint = notReady > 0 && readyHeld > 0
+    ? `${notReady} instructions are not ready. ${readyHeld} are ready and still waiting for an issue slot or a functional unit.`
+    : notReady > 0
+      ? "A consumer stays not-ready until its producer completes."
+      : readyHeld > 0
+        ? "These instructions are ready but were not selected. Issue width or the functional units are the limit."
+        : "Step until several instructions are in the window, then compare Ready and Selected.";
   return (
-    <LabChrome lab="issue-queue" kicker="Labs > Lab 12" title="Lab 12 — Instruction Window & Issue Queue" subtitle="Explore how an out-of-order processor tracks ready instructions and selects them for issue." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="issue-queue" kicker="Labs > Lab 12" title="Lab 12 — Instruction Window & Issue Queue" subtitle="Explore how an out-of-order processor tracks ready instructions and selects them for issue." badge="RISC-V (5-Stage Pipeline)" hint={hint}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Understand how the instruction window tracks operand readiness and uses wakeup and select to issue ready instructions out of program order.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>Selection policy: {POLICIES[0]}. An instruction issues only when every source is ready and a functional unit is free.</p></article>
         <article><h2>Window</h2><p>{shot.occupancy} occupied, {Math.max(0, config.window - shot.occupancy)} free, {shot.readyCount} ready, {shot.waitingCount} waiting.</p></article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "queue" ? "aca-guide-on" : undefined}>
           <header>
             <h2>Instruction Window</h2>
             <select aria-label="Load example" value={preset.id} onChange={(event) => { setPresetId(event.target.value); play.reset(); }}>
@@ -95,10 +107,17 @@ export function IssueQueueLab() {
             })}
           </svg>
         </article>
-        <article>
+        <article className={guideFocus === "select" ? "aca-guide-on" : undefined}>
           <h2>Wakeup and Select</h2>
           <p><b>1. Wakeup.</b> {producer ? `${producer.text} produced ${preset.ops[producer.index]?.dest ?? "a result"}.` : "No result is broadcast this cycle."}</p>
           <p>{shot.woken.length ? `Matching source became ready for ${shot.woken.map((index) => `I${index + 1}`).join(", ")}.` : "No matching source wakes up."}</p>
+          <WakeupPulse
+            woken={shot.woken.map((index) => `I${index + 1}`)}
+            selected={shot.entries.filter((entry) => entry.selected).map((entry) => `I${entry.index + 1}`)}
+            readyWaiting={shot.entries.filter((entry) => entry.ready && !entry.selected && (entry.state === "ready" || entry.state === "waiting")).length}
+            speed={play.speed}
+            cycle={play.cycle}
+          />
           <p><b>2. Select.</b> {POLICIES[0]}. Up to {config.issueWidth} instructions, and only one per free unit.</p>
           <p>Issued this cycle: {shot.issuedNow.length ? shot.issuedNow.map((index) => `I${index + 1}`).join(", ") : "none"}.</p>
           <h2>Ready Queue</h2>
@@ -154,7 +173,7 @@ export function IssueQueueLab() {
           <Toggle on={readiness} label="Show Operand Readiness" onChange={setReadiness} />
           <Toggle on={selectedOn} label="Highlight Selected Instructions" onChange={setSelectedOn} />
           <Toggle on={arrows} label="Show Dependency Arrows" onChange={setArrows} />
-          <Transport playing={play.playing} speed={play.speed} onSpeed={play.setSpeed} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} />
+          <Transport playing={play.playing} speed={play.speed} onSpeed={play.setSpeed} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} />
         </section>
       </div>
       <div className="vl-metrics">

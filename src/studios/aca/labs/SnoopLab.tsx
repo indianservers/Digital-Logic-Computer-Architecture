@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { FABRIC_PRESETS, compareFabric, type FabricRequest } from "../../../engines/aca/snoopCompare";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { FabricPair } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const COLORS = ["#dbeafe", "#dcfce7", "#fef3c7", "#f3e8ff", "#ffe4e6", "#e0f2fe", "#fef9c7", "#ede9fe"];
 
@@ -22,6 +24,7 @@ export function SnoopLab() {
   const [written, setWritten] = useState(1);
   const result = useMemo(() => compareFabric(cores, requests.filter((item) => item.core < cores), seed), [cores, requests, seed]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const peak = Math.max(...result.scale.map((point) => Math.max(point.snoopLatency, point.directoryLatency)), 1);
@@ -30,17 +33,23 @@ export function SnoopLab() {
   const wide = result.scale[result.scale.length - 1];
   const snoopGrowth = narrow && wide && narrow.snoopMessages ? wide.snoopMessages / narrow.snoopMessages : 1;
   const directoryGrowth = narrow && wide && narrow.directoryMessages ? wide.directoryMessages / narrow.directoryMessages : 1;
+  const hint = play.cycle === 0
+    ? "Both columns use this request list. Step once and compare who is named."
+    : `Snoop messages ${shot.snoopMessages}. Directory messages ${shot.directoryMessages}. Broadcasts ${shot.broadcasts}.`;
+  const reading = hint;
   const issue = () => {
     const parsed = Number(address);
     setRequests((current) => [...current, { core: actor, op: operation, address: Number.isNaN(parsed) ? 0x1000 : parsed, value: operation === "write" ? written : undefined }]);
     play.setCycle(requests.length + 1);
   };
   return (
-    <LabChrome lab="snooping-vs-directory" kicker="Labs > Lab 22" title="Lab 22 — Snooping vs Directory Coherence" subtitle="Compare snooping-based and directory-based cache coherence, and understand why directory scales to larger systems." badge="RISC-V (Multi-Core)">
+    <LabChrome lab="snooping-vs-directory" kicker="Labs > Lab 22" title="Lab 22 — Snooping vs Directory Coherence" subtitle="Compare snooping-based and directory-based cache coherence, and understand why directory scales to larger systems." badge="RISC-V (Multi-Core)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Compare snooping and directory-based coherence on one trace. Both use the same MSI-style transitions, so the architectural values match. The difference is who is contacted.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>Latency numbers are lab assumptions: a bus probe costs {1} unit per other cache, and a directory lookup is a fixed hop plus a slow growth with core count. They are not a chip's cycle time.</p></article>
-        <article><h2>Scale</h2><p>A design that is quiet at 4 cores can flood a 32-core bus. Directory traffic follows the sharer count, and the lookup can make it slower on a small machine.</p></article>
+        <article><h2>Scale</h2><p>A design that is quiet at 4 cores can flood a 32-core bus. Directory traffic follows the sharer count, and the lookup can make it slower on a small machine.</p>
+          <FabricPair snoop={shot.step.find((item) => item.model === "snoop")?.event ?? ""} directory={shot.step.find((item) => item.model === "directory")?.event ?? ""} broadcasts={shot.broadcasts} lookups={shot.lookups} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         {showSnoop ? (
@@ -86,7 +95,7 @@ export function SnoopLab() {
         </article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "flow" ? "aca-guide-on" : undefined}>
           <h2>Protocol Message Flow</h2>
           {messagesOn ? (
             <div className="vl-dual">
@@ -161,10 +170,10 @@ export function SnoopLab() {
           <Toggle on={animate} label="Animate Requests" onChange={setAnimate} />
           <Toggle on={highlight} label="Highlight Active Core" onChange={setHighlight} />
           <Toggle on={auto} label="Auto Advance Requests" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
       </div>
-      <article className="vl-panel">
+      <article className={guideFocus === "counts" ? "vl-panel aca-guide-on" : "vl-panel"}>
         <h2>Results & Insights</h2>
         <div className="vl-metrics">
           <div><strong>{shot.snoopMessages}</strong><span>Snoop messages</span></div>

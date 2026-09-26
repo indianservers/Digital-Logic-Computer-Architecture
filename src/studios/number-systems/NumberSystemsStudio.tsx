@@ -9,6 +9,7 @@ import { analyzeFixedPoint, fixedFromValue } from "../../engines/numbers/fixed";
 import { decodeFloatBits, FLOAT_PRESETS, floatBitsToNumber, numberToFloatBits, presetBits, toggleFloatBit } from "../../engines/numbers/ieee754";
 import { coverage, encodeHamming, flipBit, syndromeOf, type Bit } from "../../engines/numbers/hamming";
 import { decodeSigned, encodeSigned, signMagnitudeRange, twosNegationSteps, twosRange, unsignedRange, type SignedCode } from "../../engines/numbers/signed";
+import { BitSwitch } from "../shared/widgets";
 import { usePrefs } from "../../store/prefs";
 
 const TABS = [
@@ -134,10 +135,7 @@ function Bits({ bits, onToggle, weights, kind = "weight" }: { bits: Array<0 | 1>
               ? `Data bit ${index + 1}, value ${bit}`
               : `Bit weight ${weights?.[index] ?? index}, value ${bit}`;
           return (
-            <button key={index} className={bit ? "bit-switch on" : "bit-switch"} onClick={() => onToggle?.(index)} aria-label={label}>
-              <span className="bit-thumb">{bit}</span>
-              {caption !== undefined ? <small>{caption}</small> : null}
-            </button>
+            <BitSwitch key={index} on={bit === 1} label={caption !== undefined ? String(caption) : ""} onChange={() => onToggle?.(index)} ariaLabel={label} />
           );
         })}
       </div>
@@ -323,7 +321,7 @@ function IeeeLab() {
         <div className="bits" style={{ marginTop: 10 }}>
           {bits.split("").map((bit, index) => {
             const region = index < expStart ? "S" : index < fracStart ? "E" : "F";
-            return <button key={index} className={bit === "1" ? "bit on" : "bit"} onClick={() => setBits(toggleFloatBit(bits, index))} aria-label={`${region} bit ${index}`}>{bit}<small>{region}</small></button>;
+            return <BitSwitch key={index} on={bit === "1"} label={region} onChange={() => setBits(toggleFloatBit(bits, index))} ariaLabel={`${region} bit ${index} is ${bit}`} />;
           })}
         </div>
       </Card>

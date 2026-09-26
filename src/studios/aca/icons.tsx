@@ -2,7 +2,7 @@ const svg = { width: 28, height: 28, viewBox: "0 0 32 32", fill: "none", stroke:
 
 export function AcaIcon({ name, label }: { name: string; label?: string }) {
   return (
-    <svg {...svg} role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : true}>
+    <svg {...svg} className="aca-icon" role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : true}>
       {paths(name)}
     </svg>
   );
@@ -26,6 +26,14 @@ function paths(name: string) {
       return <><rect x="5" y="5" width="9" height="9" rx="1.5" /><rect x="18" y="5" width="9" height="9" rx="1.5" /><rect x="5" y="18" width="9" height="9" rx="1.5" /><rect x="18" y="18" width="9" height="9" rx="1.5" /></>;
     case "performance":
       return <><path d="M6 22a10 10 0 1 1 20 0" /><path d="M16 22l6-6" /></>;
+    case "arithmetic":
+      return <><path d="M6 8h8M6 14h8M6 20h8" /><path d="M16 8l6 6-6 6" /><rect x="22" y="11" width="6" height="6" rx="1" /></>;
+    case "wallace-tree":
+      return <><rect x="4" y="6" width="6" height="4" /><rect x="12" y="6" width="6" height="4" /><rect x="20" y="6" width="6" height="4" /><rect x="8" y="14" width="6" height="4" /><rect x="16" y="14" width="6" height="4" /><rect x="12" y="22" width="8" height="4" /><path d="M7 10l4 4M15 10v4M23 10l-4 4M11 18l4 4M19 18l-4 4" /></>;
+    case "array-multiplier":
+      return <><circle cx="8" cy="8" r="2.5" /><circle cx="16" cy="8" r="2.5" /><circle cx="24" cy="8" r="2.5" /><rect x="6" y="14" width="6" height="5" rx="1" /><rect x="14" y="14" width="6" height="5" rx="1" /><rect x="22" y="14" width="6" height="5" rx="1" /><path d="M9 13v1M17 13v1M25 13v1M12 16h2M20 16h2" /><path d="M8 22h16" /></>;
+    case "booth-multiplier":
+      return <><rect x="4" y="8" width="10" height="6" rx="1" /><rect x="16" y="8" width="8" height="6" rx="1" /><rect x="26" y="8" width="3" height="6" rx="1" /><path d="M8 18v4h16" /><path d="M20 20l4 2-4 2" /></>;
     case "data-hazards":
       return <><path d="M6 10h8l4 6H8zM18 10h8l-4 6h-4z" /><path d="M12 20h8" /></>;
     case "scoreboard":

@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { BTB_PRESETS, BTB_SEED, btbGeometry, lookupEntry, runBtb, type BtbPolicy } from "../../../engines/aca/btb";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { BtbLookup } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 const hex = (value: number) => `0x${value.toString(16).toUpperCase().padStart(4, "0")}`;
 
@@ -25,15 +27,22 @@ export function BtbLab() {
   const queryEntry = query.way >= 0 ? sets[query.index]?.[query.way] : undefined;
   const lookups = shot?.lookups ?? 0;
   const hits = shot?.hits ?? 0;
+  const { id: guideFocus } = useGuideFocus();
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const hint = shot == null
+    ? "Step the trace, or type a Branch PC. Index selects the set. Tag says whether this PC owns an entry."
+    : shot.hit
+      ? "This lookup hit. The stored target is where fetch goes if the branch is taken. The BTB did not decide the direction."
+      : "This lookup missed. No valid tag matched. Fetch continues at PC+4 until an entry is installed.";
   return (
-    <LabChrome lab="branch-target-buffer" kicker="Labs > Lab 8" title="Lab 8 — Branch Target Buffer Explorer" subtitle="Investigate how processors predict branch destinations before the branch executes." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="branch-target-buffer" hint={hint} kicker="Labs > Lab 8" title="Lab 8 — Branch Target Buffer Explorer" subtitle="Investigate how processors predict branch destinations before the branch executes." badge="RISC-V (5-Stage Pipeline)">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>A direction predictor answers taken or not taken. The BTB answers a different question: if this branch is predicted taken, where should fetch continue? A hit supplies a target. It does not decide the direction.</p></article>
         <article><h2>Experiment Status</h2><p>{shot ? (play.cycle >= shots.length ? "Completed" : `Lookup ${shot.cycle} / ${shots.length}`) : "Ready to run"}</p></article>
         <article><h2>Fetch</h2><p>On a hit that is actually taken, the next PC is the stored target. On a miss, or when the branch is not taken, fetch continues at PC + 4. A return is not installed here; real CPUs usually use a return-address stack for that.</p></article>
       </div>
       <div className="vl-cards three">
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("sets") ?? ""}`}>
           <header><h2>BTB Structure</h2><span>{config.entries} entries, {ways}-way, {geometry.sets} sets</span></header>
           <div className="vl-scroll">
             <table>
@@ -49,7 +58,7 @@ export function BtbLab() {
           </div>
           <p>Index uses PC[{2 + geometry.indexBits}:{3}], tag uses the bits above that. PC[2:0] is the ignored alignment field.</p>
         </section>
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("lookup") ?? ""}`}>
           <h2>Lookup</h2>
           <label>Branch PC <input aria-label="Lookup PC" value={lookupText} onChange={(event) => setLookupText(event.target.value)} /></label>
           <p>Index {query.index} · tag {hex(query.tag)}</p>
@@ -79,6 +88,7 @@ export function BtbLab() {
         </section>
         <section className="vl-panel">
           <h2>Fetch-to-Branch Flow</h2>
+          <BtbLookup hit={Boolean(shot?.hit)} target={shot?.predictedTarget != null ? hex(shot.predictedTarget) : "PC+4"} index={shot?.index ?? query.index} speed={play.speed} cycle={play.cycle} />
           <div className="vl-flow">
             <span className="fetch">1. Fetch<br />{shot ? hex(shot.pc) : "PC"}</span>
             <span className="decode">2. BTB lookup<br />set {shot?.index ?? query.index}</span>

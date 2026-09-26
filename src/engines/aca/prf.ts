@@ -9,6 +9,7 @@ export interface PrfOp {
 
 export interface PrfConfig {
   recoverAt: number | null;
+  physCount?: number;
 }
 
 interface Row {
@@ -64,6 +65,30 @@ export const PHYS_COUNT = 16;
 const ABI = ["zero", "ra", "sp", "gp", "tp", "t0", "t1", "t2"];
 
 export const INITIAL_VALUES = [0, 0, 0x7ffffff0, 0x10000000, 0, 0xa, 0x14, 0];
+
+export function parsePrf(line: string): PrfOp | null {
+  const clean = line.replace(/,/g, " ").replace(/\s+/g, " ").trim();
+  if (!clean || clean.startsWith("#")) return null;
+  const [raw, ...rest] = clean.split(" ");
+  const op = (raw ?? "").toUpperCase();
+  const regs = rest.filter((part) => /^[xr]\d+$/i.test(part)).map((part) => part.replace(/^r/i, "x"));
+  if (op === "LD" || op === "LW" || op === "LOAD") return { text: clean, dest: regs[0] ?? "x1", srcs: regs.slice(1, 2), latency: 2, kind: "load", imm: 1 };
+  if (["ADD", "SUB", "MUL", "AND", "OR", "ADDI"].includes(op)) return { text: clean, dest: regs[0] ?? null, srcs: regs.slice(1), latency: op === "MUL" ? 3 : 1, kind: "alu", imm: op === "ADDI" ? 1 : 0 };
+  return null;
+}
+
+export function parsePrfProgram(text: string): { ops: PrfOp[]; errors: string[] } {
+  const ops: PrfOp[] = [];
+  const errors: string[] = [];
+  text.split("\n").forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const op = parsePrf(trimmed);
+    if (!op) errors.push(`Line ${index + 1}: use ADD, SUB, MUL, or LOAD`);
+    else ops.push(op);
+  });
+  return { ops, errors };
+}
 
 export function abiName(reg: string) {
   const index = Number(reg.slice(1));
@@ -128,17 +153,18 @@ export function sequentialRegs(ops: PrfOp[]) {
 }
 
 export function runPrf(ops: PrfOp[], config: PrfConfig = { recoverAt: null }): PrfResult {
+  const count = Math.max(ARCH.length + 1, config.physCount ?? PHYS_COUNT);
   const rat = [0, 1, 2, 3, 4, 5, 6, 7];
   const commit = rat.slice();
-  const values = Array.from({ length: PHYS_COUNT }, () => 0);
-  const ready = Array.from({ length: PHYS_COUNT }, () => true);
-  const busy = Array.from({ length: PHYS_COUNT }, () => false);
+  const values = Array.from({ length: count }, () => 0);
+  const ready = Array.from({ length: count }, () => true);
+  const busy = Array.from({ length: count }, () => false);
   ARCH.forEach((_, index) => {
     const phys = rat[index] ?? 0;
     values[phys] = INITIAL_VALUES[index] ?? 0;
     busy[phys] = true;
   });
-  const free = Array.from({ length: PHYS_COUNT }, (_, index) => index).filter((index) => index !== 0 && !busy[index]);
+  const free = Array.from({ length: count }, (_, index) => index).filter((index) => index !== 0 && !busy[index]);
   const rows: Row[] = ops.map((op, index) => ({
     index, text: op.text, srcPhys: [], oldPhys: null, newPhys: null, renameCycle: null, readyCycle: null, commitCycle: null, execStart: null,
   }));
@@ -245,7 +271,7 @@ export function runPrf(ops: PrfOp[], config: PrfConfig = { recoverAt: null }): P
       if (needsDest && free.length === 0) {
         renameStalls += 1;
         phase = "rename";
-        event = "Free list empty. Rename stalls.";
+        event = "Rename stalled: no free physical registers are available. Retirement must reclaim a physical register before allocation can continue.";
       } else {
         next.srcPhys = sources;
         if (needsDest && op.dest) {

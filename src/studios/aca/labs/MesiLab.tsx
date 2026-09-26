@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { LINE_ADDRESSES, MSI_PRESETS, runCoherence, type Access, type LineState, type Protocol } from "../../../engines/aca/coherenceLab";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { CoherenceBus } from "../animation/phase2Views";
+import { useGuideFocus } from "../guide/focus";
 
 const CORE_COLOR = ["#dbeafe", "#dcfce7", "#ffedd5", "#f3e8ff"];
 const NODES: Record<Protocol, LineState[]> = { msi: ["M", "S", "I"], mesi: ["M", "E", "S", "I"], moesi: ["M", "O", "E", "S", "I"] };
@@ -20,19 +22,25 @@ export function MesiLab() {
   const [auto, setAuto] = useState(true);
   const result = useMemo(() => runCoherence(protocol, cores, accesses.filter((item) => item.core < cores), seed), [protocol, cores, accesses, seed]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const addresses = [...new Set([...LINE_ADDRESSES, ...shot.lines.map((item) => item.address)])].sort((left, right) => left - right);
   const selected = shot.lines.find((item) => item.address === line) ?? shot.lines[0];
   const present = new Set((selected?.copies ?? []).map((copy) => copy.state));
   const last = shot.log.at(-1);
+  const hint = last && last.cycle === shot.cycle && last.bus === "Silent"
+    ? "No invalidation was required because no other cache had a copy."
+    : last && last.cycle === shot.cycle && last.bus === "BusUpgr"
+      ? "A sharer is upgrading. Other copies of this line are invalidated."
+      : "Select MSI or MESI, then step a read and a write on the same line.";
   const add = () => {
     const next = { core: actor, op: operation, address: line, value: operation === "write" ? written : undefined };
     setAccesses((current) => [...current, next]);
     play.setCycle(accesses.length + 1);
   };
   return (
-    <LabChrome lab="mesi" kicker="Labs > Lab 17" title="Lab 17 — MSI & MESI Coherence Simulator" subtitle="Learn cache coherence through read miss, write miss, upgrade, and line-state transitions across multiple cores." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="mesi" kicker="Labs > Lab 17" title="Lab 17 — MSI & MESI Coherence Simulator" subtitle="Learn cache coherence through read miss, write miss, upgrade, and line-state transitions across multiple cores." badge="RISC-V (5-Stage Pipeline)" hint={hint}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Understand how MSI and MESI keep one cache line coherent: read misses, write misses, upgrades, invalidations, and the Exclusive state that lets a write stay off the bus.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>{protocol === "msi" ? "MSI fills a cold line as Shared." : "MESI fills a cold line as Exclusive, so the first write is silent."} A Modified line is written back when another core reads it.</p></article>
@@ -77,6 +85,7 @@ export function MesiLab() {
             })}
           </div>
           <p>Coherence interconnect (bus). {traffic ? (last ? `${last.bus}: ${last.detail}` : "No bus transaction yet.") : "Traffic hidden."}</p>
+          <CoherenceBus bus={last && last.cycle === shot.cycle ? last.bus : ""} from={last && last.cycle === shot.cycle ? `${last.from}` : ""} to={last && last.cycle === shot.cycle ? last.to : ""} detail={last?.detail ?? ""} stale={Boolean(selected?.stale)} live={Boolean(traffic && last && last.cycle === shot.cycle)} speed={play.speed} cycle={play.cycle} />
           <p>Shared memory {selected ? `0x${selected.address.toString(16)} = 0x${selected.memory.toString(16)}` : "empty"}{selected?.stale ? " (stale until the next writeback)" : ""}.</p>
         </article>
         <article>
@@ -95,7 +104,7 @@ export function MesiLab() {
         </article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "lines" ? "aca-guide-on" : undefined}>
           <h2>Cache Line States (Live View)</h2>
           <div className="vl-scroll">
             <table>
@@ -134,7 +143,7 @@ export function MesiLab() {
           <button type="button" onClick={add}>Execute Operation</button>
           <button type="button" onClick={() => { setAccesses([]); setSeed({}); play.reset(); }}>Reset System</button>
         </article>
-        <article>
+        <article className={guideFocus === "bus" ? "aca-guide-on" : undefined}>
           <h2>Multicore Event Log</h2>
           <table>
             <thead><tr><th>#</th><th>Cycle</th><th>Core</th><th>Event</th></tr></thead>
@@ -152,7 +161,7 @@ export function MesiLab() {
           <Toggle on={traffic} label="Show Coherence Traffic" onChange={setTraffic} />
           <Toggle on={highlight} label="Highlight Cache Line" onChange={setHighlight} />
           <Toggle on={auto} label="Auto Advance Cycle" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

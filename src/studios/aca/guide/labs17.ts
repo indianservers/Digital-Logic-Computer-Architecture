@@ -35,7 +35,7 @@ export const LABS_17: LabGuideContent[] = [
     expectedBehavior: ["MESI cold read of a quiet line is Exclusive.", "MSI cold read is Shared.", "A shared write invalidates other holders in both protocols."],
     resultInterpretation: ["If a private write in MESI adds no bus message, Exclusive made the upgrade silent.", "If MSI shows a bus transaction for that write, that is the cost of not having Exclusive."],
     misconceptions: ["Exclusive is not Modified. Memory may still be current in Exclusive.", "Shared does not allow a silent write.", "Coherence of one line is not a memory-consistency model."],
-    variations: ["Repeat one preset at 2 cores and 4 cores and count invalidations.", "Add a second line with Execute Operation so two addresses do not share a state."],
+    variations: ["Run a private read followed by a local write in MESI, then the same trace in MSI, and compare bus traffic.", "Repeat one preset at 2 cores and 4 cores and count invalidations.", "Add a second line with Execute Operation so two addresses do not share a state."],
     learningOutcomes: ["Draw the MESI silent upgrade", "State the MSI equivalent", "Read a bus trace against cache states"],
     viva: [
       { question: "Why does MESI add Exclusive?", answer: "So a privately read line can be written later without an upgrade transaction." },
@@ -84,7 +84,7 @@ export const LABS_17: LabGuideContent[] = [
     expectedBehavior: ["Remote read of Modified yields Owned plus Shared.", "Memory can stay stale in that state.", "A new writer invalidates the previous owner."],
     resultInterpretation: ["If memory matches the cache immediately on that remote read, the model wrote back. In this lab’s MOESI, the M to O transition leaves memory stale.", "If a second reader gets the new value, the owner supplied it."],
     misconceptions: ["Owned is not Exclusive. Other caches may be Shared.", "Owned is not a clean state.", "Coherence still does not define store-buffer reorderings. That is consistency."],
-    variations: ["Evict an Owned line and record whether memory updates.", "Write from the owner instead of from a sharer and compare the bus actions."],
+    variations: ["Step the remote-read case until one cache is Owned and memory is marked stale.", "Evict an Owned line and record whether memory updates.", "Write from the owner instead of from a sharer and compare the bus actions."],
     learningOutcomes: ["Place M, O, E, S, and I on a timeline", "Explain a stale memory value", "Predict the next owner after a write"],
     viva: [
       { question: "How does O differ from M?", answer: "Both are dirty. M is exclusive. O has sharers." },
@@ -134,7 +134,7 @@ export const LABS_17: LabGuideContent[] = [
     expectedBehavior: ["Cold read does not broadcast to every core.", "A writer invalidates only the vector.", "Remote read of Modified updates memory. Remote write of Modified transfers ownership."],
     resultInterpretation: ["If an 8-core machine invalidates two sharers, the directory saved six probes compared with a broadcast.", "If memory is stale after an ownership transfer, the new owner holds the only current copy."],
     misconceptions: ["The directory is not a cache of the data line’s payload only. It is the sharing metadata.", "This lab’s directory does not implement Exclusive.", "Fewer messages does not mean lower latency on a tiny machine. The lookup has a cost, compared in the snooping lab."],
-    variations: ["Repeat the writer preset at 4 and 8 cores with the same sharers.", "Issue a write with an empty sharer list and count invalidations."],
+    variations: ["Increase the number of sharers and count the targeted invalidations. Cores outside the list stay quiet.", "Repeat the writer preset at 4 and 8 cores with the same sharers.", "Issue a write with an empty sharer list and count invalidations."],
     learningOutcomes: ["Update a sharer vector by hand", "Distinguish GetS from GetM", "Explain targeted invalidation"],
     viva: [
       { question: "Who is invalidated on a write?", answer: "Only the sharers the directory has recorded." },
@@ -183,7 +183,7 @@ export const LABS_17: LabGuideContent[] = [
     expectedBehavior: ["Separate lines stay quiet.", "Same-line counters ping-pong.", "Padding restores the quiet case.", "True sharing still invalidates."],
     resultInterpretation: ["If padding cuts transfers to the separate-line case, the loss was false sharing.", "If traffic remains on the true-sharing preset, the threads really share a variable."],
     misconceptions: ["False sharing is not a race on the same variable.", "Padding does not fix true sharing.", "A larger line can create false sharing that a smaller line avoided."],
-    variations: ["Set line size to 32 and 128 on the packed structure.", "Run the array-of-counters preset and count distinct lines."],
+    variations: ["Turn padding on and confirm the two variables move onto different lines, then rerun the same increments.", "Set line size to 32 and 128 on the packed structure.", "Run the array-of-counters preset and count distinct lines."],
     learningOutcomes: ["Classify a pair of addresses as the same line or not", "Explain a ping-pong", "Choose padding only for false sharing"],
     viva: [
       { question: "Why do different variables invalidate each other?", answer: "They occupy one cache line, and coherence writes operate on the line." },

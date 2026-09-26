@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { MACHINE_DEFAULTS, ROOF_PRESETS, analyzeWorkload, applyOptimizations, ridgePoint, type Machine, type Workload } from "../../../engines/aca/roofline";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { RoofPoint } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 function num(value: number, digits = 2) {
   if (!Number.isFinite(value)) return "unbounded";
@@ -41,6 +43,7 @@ export function RooflineLab() {
   const tuned = useMemo(() => applyOptimizations(base, { blocking, locality }), [base, blocking, locality]);
   const result = useMemo(() => analyzeWorkload(tuned, machine), [tuned, machine]);
   const ridge = ridgePoint(machine);
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const library = ROOF_PRESETS.filter((item) => item.id !== "custom").map((item) => analyzeWorkload(item, machine));
   const roofLine = [0.01, ridge, 1000].filter((ai) => Number.isFinite(ai) && ai > 0);
   const load = (id: string) => {
@@ -55,12 +58,20 @@ export function RooflineLab() {
     }
     play.reset();
   };
+  const hint = result.bound === "memory"
+    ? "The workload is memory-bound. Raising peak compute does not move it onto the flat roof."
+    : result.bound === "compute"
+      ? "The workload is past the ridge. The compute roof is the limit."
+      : "Read arithmetic intensity against the ridge point.";
+  const reading = `${tuned.name}: ${result.bound}. Intensity ${num(result.ai)}. Ridge ${num(ridge)}.`;
   return (
-    <LabChrome lab="roofline" kicker="Labs > Lab 29" title="Lab 29 — Roofline Analysis" subtitle="Decide whether a workload is limited by compute throughput or by memory bandwidth." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="roofline" kicker="Labs > Lab 29" title="Lab 29 — Roofline Analysis" subtitle="Decide whether a workload is limited by compute throughput or by memory bandwidth." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Attainable performance is the minimum of peak compute and arithmetic intensity times bandwidth. With decimal SI units, 1 FLOP/byte times 1 GB/s is 1 GFLOP/s.</p></article>
         <article><h2>Experiment Status</h2><p>{tuned.name} is {result.bound === "memory" ? "memory-bound" : result.bound === "compute" ? "compute-bound" : result.bound === "transition" ? "near the ridge" : "idle"} under these roofs.</p></article>
-        <article><h2>Ridge</h2><p>The roofs meet at {num(ridge)} FLOP/byte. Raising bandwidth moves that point left. Raising peak compute moves it right and lifts the horizontal roof.</p></article>
+        <article className={guideFocus === "ridge" ? "aca-guide-on" : undefined}><h2>Ridge</h2><p>The roofs meet at {num(ridge)} FLOP/byte. Raising bandwidth moves that point left. Raising peak compute moves it right and lifts the horizontal roof.</p>
+          <RoofPoint bound={result.bound} intensity={result.ai} attained={result.attained} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -89,7 +100,7 @@ export function RooflineLab() {
           <Toggle on={locality} label="Extra reuse (20% fewer bytes)" onChange={setLocality} />
         </article>
         <article>
-          <h2>Roofline</h2>
+          <h2 className={guideFocus === "chart" ? "aca-guide-on" : undefined}>Roofline</h2>
           <svg viewBox="0 0 340 190" role="img" aria-label="Roofline chart">
             <line x1={X0} y1={Y0} x2={X0} y2={Y0 + H} stroke="#cbd5e1" />
             <line x1={X0} y1={Y0 + H} x2={X0 + W} y2={Y0 + H} stroke="#cbd5e1" />
@@ -136,7 +147,7 @@ export function RooflineLab() {
         <div><strong>{result.observed === null ? "—" : num(result.headroom, 1)}</strong><span>Headroom (GFLOP/s)</span></div>
         <div><strong>{result.bound}</strong><span>Bound type</span></div>
       </div>
-      <Transport playing={play.playing} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(ROOF_PRESETS.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { play.reset(); load("gemm"); }} speed={play.speed} onSpeed={play.setSpeed} />
+      <Transport playing={play.playing} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(ROOF_PRESETS.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); load("gemm"); }} speed={play.speed} onSpeed={play.setSpeed} />
     </LabChrome>
   );
 }

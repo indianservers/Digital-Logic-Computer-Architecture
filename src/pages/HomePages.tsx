@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { CATEGORIES, matchStudio, STUDIOS, type StudioInfo } from "../data/curriculum";
+import { Link, useNavigate } from "react-router-dom";
+import { CATEGORIES, matchStudio, searchStudios, studioMatchesQuery, STUDIOS, type StudioInfo } from "../data/curriculum";
 import { MASTER_CONCEPTS } from "../data/master";
 import { StudioMark } from "../design-system/studioMarks";
 import { Card, Toggle } from "../design-system/ui";
@@ -74,11 +74,10 @@ function Catalog({ home }: { home: boolean }) {
   const progress = Math.min(100, Math.round((done / PRACTICE_COUNT) * 100));
   const saved = STUDIOS.filter((studio) => prefs.bookmarks.includes(studio.id));
   const path = openStudios.slice(0, 5);
-  const needle = query.trim().toLowerCase();
-  const matches = useMemo(() => (studio: StudioInfo) => {
-    if (!needle) return true;
-    return studio.title.toLowerCase().includes(needle) || studio.summary.toLowerCase().includes(needle) || studio.topics.some((topic) => topic.includes(needle));
-  }, [needle]);
+  const navigate = useNavigate();
+  const [activeHit, setActiveHit] = useState(0);
+  const hits = useMemo(() => searchStudios(query), [query]);
+  const matches = useMemo(() => (studio: StudioInfo) => studioMatchesQuery(studio, query), [query]);
 
   return (
     <div className="home">
@@ -137,7 +136,36 @@ function Catalog({ home }: { home: boolean }) {
         </section>
       ) : null}
       <div className="home-tools">
-        <input aria-label="Filter studios" className="home-search" placeholder="Search topics, e.g. two's complement" value={query} onChange={(event) => setQuery(event.target.value)} />
+        <div className="home-search-wrap">
+          <input
+            aria-label="Search labs"
+            aria-autocomplete="list"
+            aria-expanded={hits.length > 0}
+            aria-controls="home-search-list"
+            className="home-search"
+            placeholder="Search labs, e.g. Karnaugh, CLA, Booth, Wallace"
+            value={query}
+            onChange={(event) => { setQuery(event.target.value); setActiveHit(0); }}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowDown") { event.preventDefault(); setActiveHit((index) => Math.min(hits.length - 1, index + 1)); }
+              if (event.key === "ArrowUp") { event.preventDefault(); setActiveHit((index) => Math.max(0, index - 1)); }
+              const chosen = hits[activeHit] ?? hits[0];
+              if (event.key === "Enter" && chosen?.active) navigate(chosen.path);
+              if (event.key === "Escape") setQuery("");
+            }}
+          />
+          {query.trim() && hits.length > 0 ? (
+            <div id="home-search-list" className="search-pop home-search-pop" role="listbox">
+              {hits.map((hit, index) => (
+                <button key={hit.id} type="button" role="option" aria-selected={index === activeHit} className={index === activeHit ? "on" : ""} disabled={!hit.active} onMouseEnter={() => setActiveHit(index)} onClick={() => { if (hit.active) navigate(hit.path); }}>
+                  {hit.title}
+                  <div className="tiny">{hit.active ? hit.summary : `Phase ${hit.phase} · upcoming`}</div>
+                </button>
+              ))}
+            </div>
+          ) : null}
+          {query.trim().length >= 2 && hits.length === 0 ? <p className="tiny home-search-empty">No lab matches that name.</p> : null}
+        </div>
         <div className="home-filters" role="group" aria-label="Studio status">
           {(["all", "open", "upcoming"] as const).map((item) => (
             <button key={item} type="button" className={filter === item ? "on" : ""} onClick={() => setFilter(item)}>{item === "all" ? "All" : item === "open" ? "Open" : "Upcoming"}</button>

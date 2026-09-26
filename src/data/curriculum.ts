@@ -134,28 +134,144 @@ const COMPARE_LABS: StudioInfo[] = [
   { id: "cmp-eco", title: "Ecosystem Roles", phase: 7, path: "/architecture/compare/ecosystem-roles", summary: "Illustrative domains for RISC-V, ARM, and x86.", topics: ["ecosystem", "mobile", "embedded", "server", "iot"], active: true, category: "isa" },
 ];
 
-export function searchStudios(query: string): StudioInfo[] {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
-  const rank = (item: StudioInfo) => {
-    const title = item.title.toLowerCase();
-    const blob = `${item.summary} ${item.topics.join(" ")} ${item.category}`.toLowerCase();
-    if (title.includes(q)) return 0;
-    if (blob.includes(q)) return 1;
-    return 2;
-  };
+const PAGES: StudioInfo[] = [
+  { id: "page-learn", title: "Learning Path", phase: 1, path: "/learn", summary: "The topic path from foundations through architecture.", topics: ["curriculum", "path"], active: true, category: "foundations" },
+  { id: "page-practice", title: "Practice", phase: 1, path: "/practice", summary: "Short challenges across the open labs.", topics: ["quiz", "exercise"], active: true, category: "foundations" },
+  { id: "page-projects", title: "Projects", phase: 1, path: "/projects", summary: "Saved work that stays in this browser.", topics: ["project", "save"], active: true, category: "build" },
+  { id: "page-sheet", title: "Cheat Sheet", phase: 1, path: "/cheat-sheet", summary: "Compact reference for the concepts in the labs.", topics: ["reference", "formula"], active: true, category: "foundations" },
+  { id: "page-notes", title: "Notes", phase: 1, path: "/notes", summary: "Notes written in this browser.", topics: ["notes"], active: true, category: "foundations" },
+  { id: "page-studios", title: "All Studios", phase: 1, path: "/studios", summary: "The full studio catalog.", topics: ["catalog", "labs"], active: true, category: "foundations" },
+];
+
+/** Alternate names a student might type. Keys are studio or `aca-${lab.id}` ids. */
+const ALIASES: Record<string, string[]> = {
+  numbers: ["binary", "hexadecimal", "hex", "octal", "decimal", "base conversion", "twos complement", "2s complement", "signed magnitude", "ones complement", "floating point", "ieee 754", "gray code", "bcd", "hamming"],
+  boolean: ["de morgan", "demorgan", "boolean laws", "sop", "pos", "sum of products", "product of sums", "minterm", "maxterm"],
+  gates: ["and gate", "or gate", "not gate", "nand", "nor", "xor", "xnor", "inverter", "buffer", "logic gate"],
+  truth: ["truth table", "canonical"],
+  kmap: ["karnaugh", "karnaugh map", "k map", "quine mccluskey", "quine-mccluskey", "qm", "prime implicant", "dont care"],
+  combo: ["circuit canvas", "logic canvas", "schematic", "gate wiring"],
+  adders: ["half adder", "full adder", "ripple carry", "ripple carry adder", "rca", "carry lookahead", "carry look ahead", "cla", "subtractor", "shift and add"],
+  mux: ["multiplexer", "demultiplexer", "demux", "encoder", "decoder", "seven segment", "7 segment"],
+  alu: ["arithmetic logic unit", "flags", "zero flag"],
+  timing: ["setup time", "hold time", "clock", "metastability"],
+  latches: ["flip flop", "flip-flop", "sr latch", "sr", "d flip flop", "jk", "jk flip flop", "t flip flop", "master slave"],
+  registers: ["shift register", "siso", "sipo", "piso", "pipo", "johnson counter"],
+  counters: ["ripple counter", "synchronous counter", "mod n", "decade counter", "ring counter"],
+  fsm: ["finite state machine", "state machine", "moore", "mealy", "state diagram"],
+  memory: ["ram", "rom", "sram", "dram", "memory array"],
+  cache: ["direct mapped", "fully associative", "set associative", "lru", "fifo", "write back", "write through"],
+  hierarchy: ["memory hierarchy", "amat", "locality"],
+  vm: ["virtual memory", "tlb", "page table", "page fault"],
+  "cpu-blocks": ["program counter", "pc", "instruction register", "mar", "mdr"],
+  datapath: ["register transfer", "rtl", "datapath"],
+  isa: ["instruction set", "opcode", "addressing modes"],
+  addressing: ["addressing mode", "immediate", "indirect", "indexed"],
+  assembly: ["assembler", "assembly language"],
+  fde: ["fetch decode execute", "instruction cycle"],
+  control: ["control unit", "hardwired", "microprogram", "microprogrammed"],
+  pipeline: ["five stage", "instruction pipeline", "speedup"],
+  hazards: ["data hazard", "control hazard", "forwarding", "stall", "branch prediction"],
+  io: ["input output", "memory mapped io", "polling"],
+  interrupts: ["interrupt", "dma", "exception", "vector"],
+  bus: ["system bus", "arbitration", "bandwidth"],
+  parallel: ["superscalar", "simd", "smt", "ilp"],
+  multicore: ["coherence", "false sharing", "shared memory"],
+  aca: ["virtual labs", "vlabs", "vl lab", "advanced computer architecture", "aca"],
+  accelerator: ["tpu", "npu", "systolic", "mac array"],
+  hetero: ["heterogeneous", "cpu gpu npu"],
+  soc: ["system on chip", "noc", "network on chip"],
+  cpu8: ["8 bit cpu", "eight bit"],
+  cpu16: ["16 bit cpu", "logiclab 16"],
+  gpu: ["graphics", "gpu studio"],
+  mips: ["mips32"],
+  "riscv-lab": ["risc v", "riscv", "rv32i"],
+  arm: ["aarch64", "arm64"],
+  x86: ["x86 64", "x64", "intel"],
+  "compare-isa": ["isa comparison", "risc vs cisc"],
+  mobile: ["mobile soc", "phone chip"],
+  desktop: ["desktop cpu", "ddr", "pcie"],
+  builder: ["build a cpu", "custom isa"],
+  sandbox: ["architecture sandbox"],
+  "aca-data-hazards": ["raw", "war", "waw", "forwarding", "lab 1"],
+  "aca-scoreboard": ["scoreboard", "cdc 6600", "lab 2"],
+  "aca-tomasulo": ["tomasulo", "reservation station", "lab 3"],
+  "aca-register-renaming": ["register renaming", "rat", "lab 4"],
+  "aca-reorder-buffer": ["reorder buffer", "rob", "out of order", "lab 5"],
+  "aca-branch-predictor": ["bimodal", "2 bit predictor", "saturating counter", "lab 6"],
+  "aca-correlating-predictor": ["gshare", "correlating predictor", "lab 7"],
+  "aca-branch-target-buffer": ["btb", "branch target buffer", "lab 8"],
+  "aca-tournament-predictor": ["tournament predictor", "hybrid predictor", "lab 9"],
+  "aca-speculative-execution": ["speculation", "misprediction", "lab 10"],
+  "aca-superscalar": ["superscalar", "lab 11"],
+  "aca-issue-queue": ["issue queue", "instruction window", "lab 12"],
+  "aca-physical-register-file": ["prf", "physical register", "rename map", "lab 13"],
+  "aca-load-store-queue": ["lsq", "load store queue", "lab 14"],
+  "aca-memory-disambiguation": ["memory disambiguation", "lab 15"],
+  "aca-execution-ports": ["execution port", "functional unit", "lab 16"],
+  "aca-mesi": ["mesi", "msi", "lab 17"],
+  "aca-moesi": ["moesi", "lab 18"],
+  "aca-directory-coherence": ["directory coherence", "lab 19"],
+  "aca-false-sharing": ["false sharing", "lab 20"],
+  "aca-coherence-traffic": ["coherence traffic", "lab 21"],
+  "aca-snooping-vs-directory": ["snooping", "directory protocol", "lab 22"],
+  "aca-mshr": ["mshr", "non blocking cache", "hit under miss", "lab 23"],
+  "aca-prefetching": ["prefetcher", "stride prefetch", "lab 24"],
+  "aca-dram-controller": ["dram", "row buffer", "fr fcfs", "lab 25"],
+  "aca-memory-consistency": ["memory consistency", "tso", "sequential consistency", "lab 26"],
+  "aca-atomic-operations": ["cas", "compare and swap", "ll sc", "ticket lock", "lab 27"],
+  "aca-amdahl": ["amdahl", "speedup", "lab 28"],
+  "aca-roofline": ["roofline", "arithmetic intensity", "lab 29"],
+  "aca-cpi-ipc": ["cpi", "ipc", "lab 30"],
+  "aca-performance-counters": ["performance counter", "lab 31"],
+  "aca-wallace-tree": ["wallace", "wallace tree", "wallace tree adder", "3:2 compressor", "lab 32"],
+  "aca-array-multiplier": ["array multiplier", "combinational multiplier", "and array", "partial product", "lab 33"],
+  "aca-booth-multiplier": ["booth", "booths", "booths multiplier", "booth multiplier", "signed multiply", "arithmetic right shift", "lab 34"],
+};
+
+function searchText(value: string): string {
+  return value.toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9:+]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function searchCatalog(): StudioInfo[] {
   const acaSearch: StudioInfo[] = ACA_LABS.map((lab) => ({
     id: `aca-${lab.id}`,
     title: lab.title,
     phase: 5,
     path: acaRoute(lab.slug),
     summary: lab.description,
-    topics: [lab.slug, lab.category],
+    topics: [lab.slug, lab.category, "virtual lab"],
     active: true,
-    category: "systems",
+    category: "systems" as const,
   }));
-  return [...COMPARE_LABS, ...MOBILE_LABS, ...DESKTOP_LABS, ...acaSearch, ...STUDIOS]
-    .filter((item) => rank(item) < 2)
-    .sort((a, b) => rank(a) - rank(b) || (a.id.startsWith("cmp") ? -1 : 1))
-    .slice(0, 8);
+  return [...PAGES, ...COMPARE_LABS, ...MOBILE_LABS, ...DESKTOP_LABS, ...acaSearch, ...STUDIOS];
+}
+
+function searchRank(item: StudioInfo, query: string): number {
+  const title = searchText(item.title);
+  const aliases = (ALIASES[item.id] ?? []).map(searchText);
+  const blob = searchText(`${item.title} ${item.summary} ${item.topics.join(" ")} ${item.category} ${aliases.join(" ")}`);
+  const words = query.split(" ").filter((word) => word.length > 0);
+  if (title === query || aliases.includes(query)) return 0;
+  if (query.length >= 3 && (title.includes(query) || aliases.some((alias) => alias.includes(query)))) return 1;
+  if (words.length > 1 && words.every((word) => blob.includes(word))) return 2;
+  if (words.length === 1 && words[0] && words[0].length >= 3 && blob.split(" ").includes(words[0])) return 2;
+  return 3;
+}
+
+export function searchStudios(query: string): StudioInfo[] {
+  const q = searchText(query);
+  if (q.length < 2) return [];
+  return searchCatalog()
+    .map((item) => ({ item, rank: searchRank(item, q) }))
+    .filter((entry) => entry.rank < 3)
+    .sort((a, b) => a.rank - b.rank || a.item.title.localeCompare(b.item.title))
+    .slice(0, 10)
+    .map((entry) => entry.item);
+}
+
+export function studioMatchesQuery(studio: StudioInfo, query: string): boolean {
+  const q = searchText(query);
+  if (!q) return true;
+  return searchRank(studio, q) < 3;
 }

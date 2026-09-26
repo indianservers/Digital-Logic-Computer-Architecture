@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { DISAMBIG_PRESETS, MEM_IMAGE, MEM_REGS, comparePolicies, runLsq, type LsqOp, type MemPolicy } from "../../../engines/aca/lsq";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { PolicyPath } from "../animation/phase2Views";
+import { useGuideFocus } from "../guide/focus";
 
 const POLICIES: Array<{ id: MemPolicy; label: string }> = [
   { id: "storeSet", label: "Store Set Predictor" },
@@ -50,11 +52,21 @@ export function DisambigLab() {
   const result = useMemo(() => runLsq(ops, MEM_REGS, MEM_IMAGE, { policy: effective, forwarding: forwardOn, checks: true, threshold }), [ops, effective, forwardOn, threshold]);
   const compared = useMemo(() => comparePolicies(ops, MEM_REGS, MEM_IMAGE, threshold), [ops, threshold]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, Math.max(0, result.shots.length - 1))];
   if (!shot) return null;
   const replayRows = shot.log.filter((item) => showReplay || (item.event !== "Replay" && item.event !== "Violation")).slice(-6);
   const decided = result.correct + result.wrong;
   const accuracy = decided ? Math.round((result.correct / decided) * 100) : 0;
+  const previous = result.shots[Math.min(play.cycle, result.shots.length - 1) - 1];
+  const replayed = shot.replays > (previous?.replays ?? 0);
+  const hint = replayed
+    ? "A bypassed load matched an older store. That load is replaying."
+    : effective === "conservative" && shot.waits > 0
+      ? "Conservative mode is waiting on an older store whose address is still unknown."
+      : effective === "bypass" && shot.bypasses > 0
+        ? "Always Bypass let a load pass an unresolved older store."
+        : "Compare waits and replays after you Reset and change the predictor.";
   const move = (index: number, delta: number) => {
     const next = index + delta;
     if (next < 0 || next >= ops.length) return;
@@ -66,7 +78,7 @@ export function DisambigLab() {
     play.reset();
   };
   return (
-    <LabChrome lab="memory-disambiguation" kicker="Labs > Lab 15" title="Lab 15 — Memory Disambiguation" subtitle="Test how processors predict load-store dependencies and when speculative loads must be replayed." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="memory-disambiguation" kicker="Labs > Lab 15" title="Lab 15 — Memory Disambiguation" subtitle="Test how processors predict load-store dependencies and when speculative loads must be replayed." badge="RISC-V (5-Stage Pipeline)" hint={hint}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Understand how memory disambiguation predicts load-store dependencies, explore unknown addresses and load bypassing, and see when speculative loads must be replayed.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>Effective policy: {POLICIES.find((item) => item.id === effective)?.label}. A younger load waits only when the policy says an older unknown store might conflict.</p></article>
@@ -99,13 +111,13 @@ export function DisambigLab() {
               {ops.map((op, index) => (
                 <tr key={`${op.pc}-${index}`}>
                   <td>{index + 1}</td><td>{op.text}</td><td>{op.comment}</td>
-                  <td><button type="button" onClick={() => move(index, -1)}>Up</button> <button type="button" onClick={() => move(index, 1)}>Down</button></td>
+                  <td><button type="button" className="vl-up" onClick={() => move(index, -1)}>Up</button> <button type="button" className="vl-down" onClick={() => move(index, 1)}>Down</button></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </article>
-        <article>
+        <article className={guideFocus === "policy" ? "aca-guide-on" : undefined}>
           <h2>Dependency Predictor</h2>
           <label>Predictor Type
             <select aria-label="Predictor type" value={policy} onChange={(event) => { setPolicy(event.target.value as MemPolicy); play.reset(); }}>
@@ -139,10 +151,11 @@ export function DisambigLab() {
             </table>
           ) : null}
           <p>Loads that bypassed: {shot.bypasses}. Loads that waited: {shot.waits}. {showStalls ? `Stall events so far: ${shot.stalls}.` : ""}</p>
+          <PolicyPath action={shot.decisions.at(-1)?.action ?? ""} replay={shot.replays > (result.shots[play.cycle - 1]?.replays ?? 0)} waits={shot.waits} bypasses={shot.bypasses} speed={play.speed} cycle={play.cycle} />
         </article>
       </div>
       <div className="vl-cards three">
-        <article>
+        <article className={guideFocus === "replay" ? "aca-guide-on" : undefined}>
           <h2>Replay Log</h2>
           <table>
             <thead><tr><th>Cycle</th><th>Event</th><th>Instruction</th><th>Reason</th></tr></thead>
@@ -185,7 +198,7 @@ export function DisambigLab() {
             playing={play.playing}
             onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }}
             onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))}
-            onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset}
+            onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }}
             speed={play.speed}
             onSpeed={play.setSpeed}
           />

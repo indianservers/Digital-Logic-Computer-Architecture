@@ -35,7 +35,7 @@ export const LABS_13: LabGuideContent[] = [
     expectedBehavior: ["WAR and WAW presets allocate a new destination.", "The RAW chain links source to that destination.", "Exhaustion blocks rename. Commit frees the old register."],
     resultInterpretation: ["If the free list grows at commit and not at execute, reclamation follows the commit map.", "If a RAW still waits, renaming did not create the value early."],
     misconceptions: ["Physical registers are not programmer-visible.", "Writeback does not by itself free the old mapping.", "Running out of physical registers is a structural stall, not a RAW."],
-    variations: ["Compare free-list size on the mixed preset with and without stepping all the way to commit.", "Use Highlight Dependencies on the RAW chain only."],
+    variations: ["Shrink Physical registers to 8 on a stream that overwrites x1 until rename stalls.", "Raise the file until the stall disappears. That size is the smallest file for this sequence.", "Type ADD, MUL, and SUB that all write x1 and watch the RAT change physical names."],
     learningOutcomes: ["Update a speculative map by hand", "State when a physical register returns to the free list", "Recognize exhaustion"],
     viva: [
       { question: "When is the old destination freed?", answer: "When the instruction that overwrote it commits." },
@@ -69,7 +69,7 @@ export const LABS_13: LabGuideContent[] = [
       { term: "Violation", meaning: "A load observed memory before an older store to the same address." },
       { term: "Replay", meaning: "The violating load is executed again after the store is known." },
     ],
-    assumptions: ["Enable Store-to-Load Forwarding, Check for Matching Addresses, and the ordering toggles change the run. Partial-match forwarding is a display and policy option as labeled.", "Play, Step, and Reset use the same trace."],
+    assumptions: ["Enable Store-to-Load Forwarding, Check for Matching Addresses, and the ordering toggles change the run. The partial-match toggle is visible, but byte and half forwarding is not applied. Addresses here are full words.", "Play, Step, and Reset use the same trace."],
     setup: ["Pick the instruction in the selector to focus one queue entry.", "Auto Advance Cycle steps playback."],
     procedure: [
       "Load Independent load. Step and confirm it does not wait on a store.",
@@ -85,7 +85,7 @@ export const LABS_13: LabGuideContent[] = [
     expectedBehavior: ["The two-store preset forwards the younger value.", "Unknown older store delays the later load.", "The violation preset replays the conflicting load."],
     resultInterpretation: ["If the load data equals the younger store, age was applied correctly.", "If disabling violation detection hides the replay, the load was allowed to keep a speculative result. Turn detection back on to see the correction."],
     misconceptions: ["Forwarding is not cache bypass of a different address.", "The younger store wins only if it is older than the load.", "A replay is a correction, not a second program instruction."],
-    variations: ["Disable forwarding on the forwarding preset and see the load miss the queue data.", "Run Non-conflicting out-of-order load and confirm there is no replay."],
+    variations: ["Enter STORE [0x100], 42 then LOAD R1, [0x100] and Step until the store forwards.", "Set ordering to speculative load bypass, delay the load address, and build a later same-address store so the load replays.", "Set both queues to 1 and watch dispatch stall when the queue is full."],
     learningOutcomes: ["Choose the correct forwarding store", "Explain an unknown-address wait", "Point to a replay on the violation preset"],
     viva: [
       { question: "Which store forwards?", answer: "The youngest store older than the load that matches the address." },
@@ -183,7 +183,7 @@ export const LABS_13: LabGuideContent[] = [
     expectedBehavior: ["Independent adds spread across ALU ports.", "Multiple multiplies queue behind the multiply-capable port.", "A dependence chain leaves ports idle."],
     resultInterpretation: ["If a policy change moves an add but does not reduce stalls, both policies had a legal port and the bottleneck was elsewhere.", "If the divide blocks a following multiply on the same port, that is structural, not a RAW."],
     misconceptions: ["A free port of the wrong class does not help.", "Latency and throughput are different. A pipelined multiplier can have long latency and start every cycle.", "More ports do not help a dependence chain."],
-    variations: ["Run Flexible versus constrained under two policies.", "Compare Load-heavy with Port contention and name the scarce class."],
+    variations: ["Disable every ALU except port 0 and compare IPC with the restored map.", "Move multiply onto a second port and watch the bottleneck change.", "Switch scheduling policy on the same mix and compare port utilization."],
     learningOutcomes: ["Assign an operation to a legal port", "Distinguish structural contention from a dependence", "Read a stall as a port conflict"],
     viva: [
       { question: "Why can an add and a load issue together?", answer: "They use different port classes, so both can find a free port." },

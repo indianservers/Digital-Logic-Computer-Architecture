@@ -278,3 +278,74 @@ export const LITMUS_TESTS: Litmus[] = [
 export function outcomeCount(result: ConsResult, values: Record<string, number>) {
   return result.outcomes.find((row) => Object.entries(values).every(([name, value]) => row.values[name] === value))?.count ?? 0;
 }
+
+export function parseLitmus(text: string): { litmus: Litmus; error: string } {
+  const threads: MemOp[][] = [[], [], [], []];
+  const memory: Record<string, number> = {};
+  const observe = new Set<string>();
+  const errors: string[] = [];
+  text.split("\n").forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const init = trimmed.match(/^init\s+(.+)$/i);
+    if (init) {
+      init[1]?.split(/\s+/).forEach((pair) => {
+        const [name, value] = pair.split("=");
+        if (name && value != null && !Number.isNaN(Number(value))) memory[name] = Number(value);
+      });
+      return;
+    }
+    const match = trimmed.match(/^(\d+)\s*:\s*(.+)$/);
+    if (!match) {
+      errors.push(`Line ${index + 1}: expected 0: X = 1`);
+      return;
+    }
+    const thread = Number(match[1]);
+    const body = (match[2] ?? "").trim();
+    if (thread < 0 || thread > 3) {
+      errors.push(`Line ${index + 1}: thread must be 0 to 3`);
+      return;
+    }
+    const program = threads[thread];
+    if (!program) return;
+    if (/^fence$/i.test(body)) {
+      program.push({ kind: "fence", addr: "" });
+      return;
+    }
+    const release = body.match(/^release\s+([A-Za-z]\w*)\s*=\s*(-?\d+)$/i);
+    if (release?.[1]) {
+      program.push({ kind: "release", addr: release[1], value: Number(release[2]) });
+      memory[release[1]] = memory[release[1]] ?? 0;
+      return;
+    }
+    const acquire = body.match(/^acquire\s+([A-Za-z]\w*)\s+([A-Za-z]\w*)$/i) ?? body.match(/^([A-Za-z]\w*)\s*=\s*acquire\s+([A-Za-z]\w*)$/i);
+    if (acquire?.[1] && acquire[2]) {
+      const reg = acquire[1].startsWith("r") ? acquire[1] : acquire[2];
+      const addr = acquire[1].startsWith("r") ? acquire[2] : acquire[1];
+      program.push({ kind: "acquire", addr, reg });
+      observe.add(reg);
+      memory[addr] = memory[addr] ?? 0;
+      return;
+    }
+    const store = body.match(/^([A-Za-z]\w*)\s*=\s*(-?\d+)$/);
+    if (store?.[1]) {
+      program.push({ kind: "store", addr: store[1], value: Number(store[2]) });
+      memory[store[1]] = memory[store[1]] ?? 0;
+      return;
+    }
+    const loadMatch = /^([A-Za-z]\w*)\s*=\s*([A-Za-z]\w*)$/.exec(body);
+    if (loadMatch?.[1] && loadMatch[2]) {
+      program.push({ kind: "load", addr: loadMatch[2], reg: loadMatch[1] });
+      observe.add(loadMatch[1]);
+      memory[loadMatch[2]] = memory[loadMatch[2]] ?? 0;
+      return;
+    }
+    errors.push(`Line ${index + 1}: use X = 1, r1 = Y, fence, release, or acquire`);
+  });
+  const used = threads.filter((thread) => thread.length > 0);
+  if (used.length < 2) errors.push("Write at least two threads, for example 0: and 1:");
+  return {
+    litmus: { id: "custom", label: "Student litmus", threads: used.length ? used : [[], []], memory, observe: [...observe] },
+    error: errors[0] ?? "",
+  };
+}

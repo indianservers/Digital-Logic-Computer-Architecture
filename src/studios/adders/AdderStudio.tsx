@@ -5,7 +5,7 @@ import { addSub, alu, carryLookahead, carrySelect, compareMagnitude, decrement, 
 import { toBinary, toUnsigned } from "../../engines/digital/vector";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
-import { BitSwitch, ValueReadout, WordEditor } from "../shared/widgets";
+import { BitMark, BitSwitch, ValueReadout, WordEditor } from "../shared/widgets";
 
 const TABS = [
   { id: "half", label: "Half & Full" },
@@ -85,9 +85,10 @@ function HalfFull() {
   return (
     <div className="grid cards-2">
       <Card title="Half adder">
+        <p className="tiny">Gray 0 is off. Blue 1 is on. Click a switch to flip that input.</p>
         <div className="row"><BitSwitch label="A" on={a} onChange={setA} /><BitSwitch label="B" on={b} onChange={setB} /></div>
-        <p className="mono">SUM = A XOR B → {half.sum}</p>
-        <p className="mono">CARRY = A AND B → {half.carry}</p>
+        <p className="mono">SUM = A XOR B → <BitMark value={half.sum} /></p>
+        <p className="mono">CARRY = A AND B → <BitMark value={half.carry} /></p>
         <svg viewBox="0 0 280 90" className="diagram" aria-label="Half adder gates">
           <text x="8" y="28" fontSize="12">A</text>
           <text x="8" y="68" fontSize="12">B</text>
@@ -97,14 +98,14 @@ function HalfFull() {
           <text x="105" y="48" textAnchor="middle" fontSize="12">XOR / AND</text>
           <path className={half.sum === 1 ? "wire high" : "wire low"} d="M140 32 H200" />
           <path className={half.carry === 1 ? "wire high" : "wire low"} d="M140 64 H200" />
-          <text x="208" y="36" fontSize="12">Sum {half.sum}</text>
-          <text x="208" y="68" fontSize="12">Carry {half.carry}</text>
+          <text x="208" y="36" fontSize="12" fill={half.sum === 1 ? "#1d4ed8" : "#667085"}>Sum {half.sum}</text>
+          <text x="208" y="68" fontSize="12" fill={half.carry === 1 ? "#1d4ed8" : "#667085"}>Carry {half.carry}</text>
         </svg>
       </Card>
       <Card title="Full adder" action={<Segmented options={["gates", "half-adders"]} value={view} onChange={setView} />}>
         <div className="row"><BitSwitch label="Cin" on={cin} onChange={setCin} /></div>
-        <p className="mono">SUM = A XOR B XOR Cin → {full.sum}</p>
-        <p className="mono">Cout = AB + ACin + BCin → {full.cout}</p>
+        <p className="mono">SUM = A XOR B XOR Cin → <BitMark value={full.sum} /></p>
+        <p className="mono">Cout = AB + ACin + BCin → <BitMark value={full.cout} /></p>
         <p className="muted">{view === "gates" ? "One XOR tree makes the sum. Majority of the three inputs makes the carry." : "Two half adders: the first adds A and B, the second adds that sum to Cin. The two carries OR together."}</p>
         {prefs.explain ? <ExplainBar what={`Sum is ${full.sum} and carry out is ${full.cout}.`} why="The sum flips for every input that is 1. The carry is 1 when at least two inputs are 1." notice="All four half-adder rows, and all eight full-adder rows, are produced by these same equations." /> : null}
       </Card>
@@ -142,7 +143,7 @@ function Multi() {
                 {aa.map((_, index) => {
                   const bit = width - 1 - index;
                   const active = style === "parallel" || step === bit || step === width;
-                  return <tr key={bit} className={active ? "active" : ""}><td>{bit}</td><td>{aa[index]}</td><td>{bb[index]}</td><td>{ripple.carries[bit] ?? 0}</td><td>{ripple.sum[index]}</td><td>{ripple.carries[bit + 1] ?? ripple.cout}</td></tr>;
+                  return <tr key={bit} className={active ? "active" : ""}><td>{bit}</td><td><BitMark value={aa[index] ?? 0} /></td><td><BitMark value={bb[index] ?? 0} /></td><td><BitMark value={ripple.carries[bit] ?? 0} /></td><td><BitMark value={ripple.sum[index] ?? 0} /></td><td><BitMark value={ripple.carries[bit + 1] ?? ripple.cout} /></td></tr>;
                 })}
               </tbody>
             </table>
@@ -151,7 +152,7 @@ function Multi() {
         ) : null}
         {style === "cla" ? (
           <table className="data"><thead><tr><th>Bit</th><th>G</th><th>P</th><th>Cin</th><th>Sum</th></tr></thead>
-            <tbody>{cla.stages.map((stage) => <tr key={stage.bit}><td>{stage.bit}</td><td>{stage.g}</td><td>{stage.p}</td><td>{stage.cin}</td><td>{stage.sum}</td></tr>)}</tbody>
+            <tbody>{cla.stages.map((stage) => <tr key={stage.bit}><td>{stage.bit}</td><td><BitMark value={stage.g} /></td><td><BitMark value={stage.p} /></td><td><BitMark value={stage.cin} /></td><td><BitMark value={stage.sum} /></td></tr>)}</tbody>
           </table>
         ) : null}
         {style === "select" ? (
@@ -180,8 +181,8 @@ function SubLab() {
     <div className="grid cards-2">
       <Card title="Half and full subtractor">
         <div className="row"><BitSwitch label="A" on={a} onChange={setA} /><BitSwitch label="B" on={b} onChange={setB} /><BitSwitch label="Bin" on={bin} onChange={setBin} /></div>
-        <p className="mono">Diff = A XOR B → {half.diff} · Borrow = A'B → {half.borrow}</p>
-        <p className="mono">Full diff {full.diff} · Borrow out {full.bout}</p>
+        <p className="mono">Diff = A XOR B → <BitMark value={half.diff} /> · Borrow = A'B → <BitMark value={half.borrow} /></p>
+        <p className="mono">Full diff <BitMark value={full.diff} /> · Borrow out <BitMark value={full.bout} /></p>
       </Card>
       <Card title="Adder / subtractor" action={<Segmented options={["ADD", "SUB"]} value={mode === 0 ? "ADD" : "SUB"} onChange={(value) => setMode(value === "SUB" ? 1 : 0)} />}>
         <WordEditor bits={wordA} onChange={setWordA} />
@@ -203,7 +204,11 @@ function CmpLab() {
     <Card title="Magnitude comparator">
       <WordEditor bits={a} onChange={setA} />
       <WordEditor bits={b} onChange={setB} />
-      <div className="row"><span className={result.eq ? "bit on" : "bit"}>A=B</span><span className={result.gt ? "bit on" : "bit"}>A&gt;B</span><span className={result.lt ? "bit on" : "bit"}>A&lt;B</span></div>
+      <div className="row">
+        <span className="bit-flag">A=B <BitMark value={result.eq} /></span>
+        <span className="bit-flag">A&gt;B <BitMark value={result.gt} /></span>
+        <span className="bit-flag">A&lt;B <BitMark value={result.lt} /></span>
+      </div>
       <ol>{result.steps.map((step) => <li key={step.bit}>Bit {step.bit}: {step.a} vs {step.b}. {step.decision}</li>)}</ol>
     </Card>
   );
@@ -259,7 +264,7 @@ function AluLab() {
 }
 
 function Flag({ name, on, tip }: { name: string; on: boolean; tip: string }) {
-  return <button className={on ? "bit on" : "bit"} title={tip} aria-label={`${name} ${on ? "set" : "clear"}. ${tip}`}>{name}</button>;
+  return <span className="bit-flag" title={tip}>{name} <BitMark value={on} /></span>;
 }
 
 function MulLab() {

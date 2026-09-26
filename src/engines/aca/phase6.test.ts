@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { MSI_PRESETS, MOESI_PRESETS, compareProtocols, invariants, runCoherence } from "./coherenceLab";
-import { PORT_PRESETS, compatiblePorts, runPorts } from "./ports";
+import { PORT_PRESETS, PORTS, compatiblePorts, parsePortProgram, runPorts } from "./ports";
 
 function preset<T extends { id: string }>(list: readonly T[], id: string): T {
   const found = list.find((item) => item.id === id);
@@ -57,6 +57,15 @@ describe("lab 16 execution ports", () => {
     expect(divided.shots[1]?.rows[2]?.port).toBe(0);
     expect(divided.utilization).toBeGreaterThan(0);
     expect(JSON.stringify(pipelined.assignments)).toBe(JSON.stringify(runPorts(muls, { policy: "first" }).assignments));
+  });
+
+  it("slows an ALU mix when only one port can execute it", () => {
+    const parsed = parsePortProgram("ADD x1, x2, x3\nADD x4, x5, x6\nADD x7, x8, x9\nADD x10, x11, x12");
+    expect(parsed.errors).toEqual([]);
+    const one = PORTS.map((port) => ({ ...port, classes: port.id === 0 ? (["int-alu"] as Array<"int-alu">) : [] }));
+    const restricted = runPorts(parsed.ops, { policy: "least", issueWidth: 2, ports: one.map((port) => ({ ...port, classes: [...port.classes] })) });
+    const open = runPorts(parsed.ops, { policy: "least", issueWidth: 2 });
+    expect(restricted.cycles).toBeGreaterThan(open.cycles);
   });
 });
 

@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { SYNC_PRESETS, compareCounters, compareLocks, runSync, waitByWidth, type SyncConfig, type SyncKind } from "../../../engines/aca/sync";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { LockContest } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const KINDS: Array<{ id: SyncKind; label: string; blurb: string }> = [
   { id: "tas", label: "Test-and-set", blurb: "TAS writes 1 and returns the old value in one step. A spinlock repeats it until the old value is 0." },
@@ -39,16 +41,27 @@ export function SyncLab() {
     ticket: waitByWidth("ticket", [2, 4, 8], { threads: 4, cs, think: 0, rounds: 2 }),
   }), [cs]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const blurb = KINDS.find((item) => item.id === kind)?.blurb ?? "";
+  const hint = kind === "ticket"
+    ? `Serving ticket ${shot.serving}. Next ticket ${shot.nextTicket}.`
+    : kind === "tas" && shot.fails > 0
+      ? "A thread that just released can win the next test-and-set."
+      : kind === "llsc" && shot.fails > 0
+        ? "The reservation was cleared, so the store-conditional failed."
+        : "Step and read success or failure on the active thread.";
+  const reading = `Lock ${shot.lock}. Counter ${shot.counter}. Acquires ${shot.acquires}. Failures ${shot.fails}.`;
   const waitPeak = Math.max(...sweep.tas.map((point) => point.avgWait), ...sweep.ticket.map((point) => point.avgWait), 1);
   return (
-    <LabChrome lab="atomic-operations" kicker="Labs > Lab 27" title="Lab 27 — Atomic Operations & Synchronization" subtitle="Explore hardware synchronization primitives and software locks, and study their behavior under contention." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="atomic-operations" kicker="Labs > Lab 27" title="Lab 27 — Atomic Operations & Synchronization" subtitle="Explore hardware synchronization primitives and software locks, and study their behavior under contention." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>An atomic read-modify-write is one event. Another thread cannot sit between the read and the write. A lock built from that rule admits one thread to the critical section.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>{blurb}</p></article>
-        <article><h2>Contention</h2><p>{think === 0 ? "Think time is zero, so a thread that leaves the critical section tries again immediately." : `Think time is ${think} ${think === 1 ? "cycle" : "cycles"} between acquisitions.`} Fairness here is the standard deviation of per-thread wait. Lower means the waits are closer together.</p></article>
+        <article><h2>Contention</h2><p>{think === 0 ? "Think time is zero, so a thread that leaves the critical section tries again immediately." : `Think time is ${think} ${think === 1 ? "cycle" : "cycles"} between acquisitions.`} Fairness here is the standard deviation of per-thread wait. Lower means the waits are closer together.</p>
+          <LockContest kind={kind} owner={shot.owner} acquires={shot.acquires} fails={shot.fails} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -83,7 +96,7 @@ export function SyncLab() {
         </article>
         {showThreads ? (
           <article>
-            <h2>Thread Activity</h2>
+            <h2 className={guideFocus === "threads" ? "aca-guide-on" : undefined}>Thread Activity</h2>
             <table>
               <thead><tr><th>Thread</th><th>State</th><th>Ticket</th><th>Acquires</th><th>Fails</th><th>Wait</th></tr></thead>
               <tbody>
@@ -98,7 +111,7 @@ export function SyncLab() {
         ) : null}
         {showLock ? (
           <article>
-            <h2>Lock State</h2>
+            <h2 className={guideFocus === "lock" ? "aca-guide-on" : undefined}>Lock State</h2>
             <p>{shot.owner === null ? "Unlocked" : `Locked by T${shot.owner}`}</p>
             <p>Lock value {shot.lock}. Counter {shot.counter}. Next ticket {shot.nextTicket}. Serving {shot.serving}.</p>
             <p>Waiting {shot.queue.length ? shot.queue.map((id) => `T${id}`).join(", ") : "none"}.</p>
@@ -157,7 +170,7 @@ export function SyncLab() {
           <Toggle on={showThreads} label="Show Thread Activity" onChange={setShowThreads} />
           <Toggle on={highlight} label="Highlight Critical Section" onChange={setHighlight} />
           <Toggle on={auto} label="Auto Advance" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

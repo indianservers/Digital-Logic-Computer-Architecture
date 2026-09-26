@@ -21,19 +21,44 @@ function pathOnly(path: string): string {
   return path.split("?")[0] ?? path;
 }
 
-function crumbTitle(pathname: string, search: string): string {
+function readableSlug(slug: string): string {
+  return slug.split("-").filter(Boolean).map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
+}
+
+function crumbTrail(pathname: string, search: string): Array<{ label: string; to?: string }> {
+  if (pathname === "/") return [{ label: "Home" }];
+  const trail: Array<{ label: string; to?: string }> = [{ label: "Home", to: "/" }];
   const page = LINKS.find((link) => link.to === pathname);
-  if (page) return page.label;
+  if (page) {
+    trail.push({ label: page.label });
+    return trail;
+  }
   const tab = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search).get("tab");
   const matches = STUDIOS.filter((item) => {
     const base = pathOnly(item.path);
-    return base !== "/" && pathname.startsWith(base);
+    return base !== "/" && (pathname === base || pathname.startsWith(`${base}/`));
   }).sort((a, b) => pathOnly(b.path).length - pathOnly(a.path).length);
-  if (pathname === "/studios/isa" && tab === "modes") {
-    return STUDIOS.find((item) => item.id === "addressing")?.title ?? "Addressing Modes";
+  const studio = matches[0];
+  if (!studio) {
+    trail.push({ label: "Studios", to: "/studios" });
+    return trail;
   }
-  if (pathname.startsWith("/studios/truth-tables") || pathname.startsWith("/studios/combinational")) return "Studios";
-  return matches[0]?.title ?? "Studios";
+  trail.push({ label: "Studios", to: "/studios" });
+  const base = pathOnly(studio.path);
+  const rest = pathname.slice(base.length).split("/").filter(Boolean);
+  if (pathname === "/studios/isa" && tab === "modes") {
+    trail.push({ label: studio.title, to: base });
+    trail.push({ label: STUDIOS.find((item) => item.id === "addressing")?.title ?? "Addressing Modes" });
+    return trail;
+  }
+  if (rest.length === 0) {
+    trail.push({ label: studio.title });
+    return trail;
+  }
+  trail.push({ label: studio.title, to: base });
+  const last = rest[rest.length - 1] ?? studio.title;
+  trail.push({ label: readableSlug(last) });
+  return trail;
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -43,13 +68,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const hits = useMemo(() => searchStudios(query), [query]);
-  const architecture = location.pathname.startsWith("/architecture");
+  const aca = location.pathname.startsWith("/studios/advanced-computer-architecture");
   const gates = location.pathname.startsWith("/studios/logic-gates");
   const truth = location.pathname.startsWith("/studios/truth-tables");
   const combo = location.pathname.startsWith("/studios/combinational");
   const studioChrome = gates || truth || combo;
-  const links = architecture ? LINKS.filter((link) => link.to === "/") : LINKS;
-  const crumb = crumbTitle(location.pathname, location.search);
+  const home = location.pathname === "/";
+  const crumbs = crumbTrail(location.pathname, location.search);
   const done = prefs.challenges.length;
 
   useEffect(() => {
@@ -58,16 +83,24 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     setQuery("");
   }, [location.pathname, location.search, noteVisit]);
 
+  if (aca) {
+    return (
+      <div className="app-shell aca-bleed">
+        <main className="page"><ErrorBoundary>{children}</ErrorBoundary></main>
+      </div>
+    );
+  }
+
   return (
-    <div className="app-shell">
-      {open ? <button className="drawer-backdrop" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
-      <aside className={open ? "sidebar open" : "sidebar"}>
+    <div className={home ? "app-shell" : "app-shell no-app-menu"}>
+      {home && open ? <button className="drawer-backdrop" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
+      {home ? <aside className={open ? "sidebar open" : "sidebar"}>
         <Link to="/" className="brand">
           <span className="brand-mark"><Icon name="bolt" size={18} /></span>
           <span><strong>LogicLab</strong><span>Learn · Build · Think</span></span>
         </Link>
         <nav className="nav-group">
-          {links.map((link) => (
+          {LINKS.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.end} className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
               <Icon name={link.icon} size={16} /> {link.label}
             </NavLink>
@@ -86,24 +119,27 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <path d="M0 40 L20 22 L36 34 L58 12 L80 30 L120 8 V48 H0 Z" fill="white" />
           </svg>
         </div>
-      </aside>
+      </aside> : null}
       <div className="workspace">
         <header className="topbar">
-          <button className="icon-btn menu-btn" aria-label="Open navigation" onClick={() => setOpen(true)}><Icon name="grid" /></button>
-          <div className="crumbs">
-            <Link to="/">Digital Logic & Computer Architecture</Link>
-            <span>›</span>
-            <span>{crumb}</span>
-          </div>
+          {home ? <button className="icon-btn menu-btn" aria-label="Open navigation" onClick={() => setOpen(true)}><Icon name="grid" /></button> : null}
+          <nav className="crumbs" aria-label="Breadcrumb">
+            {crumbs.map((item, index) => (
+              <span key={`${item.label}-${index}`} className="crumbs-part">
+                {index > 0 ? <span aria-hidden="true">›</span> : null}
+                {item.to ? <Link to={item.to}>{item.label}</Link> : <span className="current">{item.label}</span>}
+              </span>
+            ))}
+          </nav>
           <div className="search">
             <Icon name="search" size={16} />
             <input aria-label="Search topics" placeholder={gates ? "Search topics, e.g. \"K-map for 3 variables\"..." : truth ? "Search topics, e.g. \"Karnaugh map\"..." : combo ? "Search topics, e.g. \"multiplexer\" or \"Boolean algebra\"..." : location.pathname.startsWith("/architecture/compare") ? "Search topics, e.g. RISC-V registers, ARM encoding..." : location.pathname.startsWith("/architecture/mobile") ? "Search topics, e.g. GPU, NPU, thermal, camera..." : location.pathname.startsWith("/architecture/desktop") ? "Search topics, e.g. cache, DDR, PCIe, boost..." : "Search topics, e.g. two's complement"} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
-              if (event.key === "Enter" && hits[0]) navigate(hits[0].path);
+              if (event.key === "Enter" && hits[0]?.active) navigate(hits[0].path);
             }} />
             {query && hits.length > 0 ? (
               <div className="search-pop">
                 {hits.map((hit) => (
-                  <button key={hit.id} onClick={() => navigate(hit.path)}>{hit.title}<div className="tiny">{hit.active ? `Phase ${hit.phase}` : `Phase ${hit.phase} · upcoming`}</div></button>
+                  <button key={hit.id} type="button" disabled={!hit.active} onClick={() => { if (hit.active) navigate(hit.path); }}>{hit.title}<div className="tiny">{hit.active ? `Phase ${hit.phase}` : `Phase ${hit.phase} · upcoming`}</div></button>
                 ))}
               </div>
             ) : null}

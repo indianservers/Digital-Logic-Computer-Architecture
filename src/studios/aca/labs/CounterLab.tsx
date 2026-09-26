@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { COUNTER_PRESETS, derive, evidence, interval, perCore, sampleAt, toCsv, totalsFor, type CounterProfile, type DerivedCounters } from "../../../engines/aca/counters";
 import { LabChrome, Transport, usePlayback } from "./HazardLab";
+import { CounterDerive } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const SAMPLES = 8;
 
@@ -24,6 +26,7 @@ export function CounterLab() {
   const current = useMemo(() => sampleAt(profile, fraction), [profile, fraction]);
   const previous = useMemo(() => sampleAt(profile, Math.max(0, play.cycle) / SAMPLES), [profile, play.cycle]);
   const slice = useMemo(() => interval(previous.totals, current.totals), [previous, current]);
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const full = useMemo(() => derive(totalsFor(profile)), [profile]);
   const cores = useMemo(() => perCore(profile), [profile]);
   const report = useMemo(() => evidence(profile), [profile]);
@@ -55,11 +58,17 @@ export function CounterLab() {
     link.click();
     URL.revokeObjectURL(url);
   };
+  const hint = slice.derived.stallShare.memory > 0.25
+    ? "Memory stalls are a large share of cycles. IPC does not name that share."
+    : `IPC ${num(slice.derived.ipc, 3)}. L1 MPKI ${num(slice.derived.l1Mpki, 2)}.`;
+  const reading = `${profile.label}: IPC ${num(slice.derived.ipc, 3)}, L1 MPKI ${num(slice.derived.l1Mpki, 2)}, bandwidth ${num(slice.derived.bandwidth, 2)} GB/s.`;
   return (
-    <LabChrome lab="performance-counters" kicker="Labs > Lab 31" title="Lab 31 — CPU Performance Counter Laboratory" subtitle="Collect a coherent counter sample, derive rates from the interval, and read the evidence." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="performance-counters" kicker="Labs > Lab 31" title="Lab 31 — CPU Performance Counter Laboratory" subtitle="Collect a coherent counter sample, derive rates from the interval, and read the evidence." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Interval IPC uses the change in instructions and the change in cycles since the previous sample. Stall shares in this lab are exclusive slices of the cycle count. They are a model, not overlapping hardware events.</p></article>
-        <article><h2>Sample</h2><p>Sample {play.cycle + 1} of {SAMPLES}. Elapsed time is cycles divided by {num(profile.frequencyHz / 1e9, 1)} GHz.</p></article>
+        <article><h2>Sample</h2><p>Sample {play.cycle + 1} of {SAMPLES}. Elapsed time is cycles divided by {num(profile.frequencyHz / 1e9, 1)} GHz.</p>
+          <CounterDerive ipc={slice.derived.ipc} mpki={slice.derived.l1Mpki} bandwidth={slice.derived.bandwidth} memoryShare={slice.derived.stallShare.memory} speed={play.speed} cycle={play.cycle} />
+        </article>
         <article><h2>Evidence</h2>{report.notes.map((note) => <p key={note}>{note}</p>)}</article>
       </div>
       <div className="vl-cards three">
@@ -100,7 +109,7 @@ export function CounterLab() {
           <p className="tiny">Blue front-end, purple back-end, red memory. Shares are of the stall cycles, which themselves are exclusive portions of total cycles.</p>
         </article>
         <article>
-          <h2>Derived, this interval</h2>
+          <h2 className={guideFocus === "derived" ? "aca-guide-on" : undefined}>Derived, this interval</h2>
           <div className="vl-metrics">
             <div><strong>{num(slice.derived.ipc, 3)}</strong><span>IPC</span></div>
             <div><strong>{num(slice.derived.cpi, 3)}</strong><span>CPI</span></div>
@@ -114,7 +123,7 @@ export function CounterLab() {
         </article>
       </div>
       <section className="vl-panel">
-        <header><h2>Counters</h2></header>
+        <header className={guideFocus === "raw" ? "aca-guide-on" : undefined}><h2>Counters</h2></header>
         <table>
           <thead><tr><th>Counter</th><th>Cumulative</th><th>Delta since previous sample</th></tr></thead>
           <tbody>
@@ -163,7 +172,7 @@ export function CounterLab() {
           <p className="tiny">The table is a profile comparison. It does not rank a winner.</p>
         </section>
       ) : null}
-      <Transport playing={play.playing} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(SAMPLES - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+      <Transport playing={play.playing} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(SAMPLES - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
     </LabChrome>
   );
 }

@@ -7,6 +7,7 @@ import { algebraicSimplify } from "../../engines/boolean/simplify";
 import { quineMcCluskey } from "../../engines/kmap/quine";
 import { assignments, canonicalFromExpression, generateTruthTable, minimizeOutputs } from "../../engines/truth/table";
 import { Card, ExplainBar } from "../../design-system/ui";
+import { BitMark, BitSwitch } from "../shared/widgets";
 import { StudioFrame } from "../../layout/StudioFrame";
 import { usePrefs } from "../../store/prefs";
 
@@ -140,9 +141,9 @@ function PlayLab() {
           {expr.parsed.ok ? <p className="expr">{formatAst(expr.parsed.ast)}</p> : <p>{expr.parsed.message}</p>}
           <div className="row">
             {variables.map((name) => (
-              <button key={name} className={(assign[name] ?? 0) ? "bit on" : "bit"} onClick={() => setAssign((prev) => ({ ...prev, [name]: prev[name] === 1 ? 0 : 1 }))} aria-label={`${name} is ${assign[name] ?? 0}. Toggle`}>{name}={assign[name] ?? 0}</button>
+              <BitSwitch key={name} label={name} on={(assign[name] ?? 0) === 1} onChange={(next) => setAssign((prev) => ({ ...prev, [name]: next ? 1 : 0 }))} />
             ))}
-            <strong className={output === 1 ? "bool-y on" : "bool-y"}>Y = {output ?? "—"}</strong>
+            <strong className={output === 1 ? "bool-y on" : "bool-y"}>Y = {output === null ? "—" : <BitMark value={output} />}</strong>
           </div>
         </Card>
       </div>
@@ -472,7 +473,7 @@ function LawsLab() {
     <div className="grid">
       <Card title="Toggle the variables">
         <div className="row">
-          {["A", "B", "C"].map((name) => <button key={name} className={bits[name] ? "bit on" : "bit"} onClick={() => setBits((p) => ({ ...p, [name]: p[name] === 1 ? 0 : 1 }))}>{name}={bits[name]}</button>)}
+          {["A", "B", "C"].map((name) => <BitSwitch key={name} label={name} on={bits[name] === 1} onChange={(next) => setBits((p) => ({ ...p, [name]: next ? 1 : 0 }))} />)}
         </div>
       </Card>
       <div className="grid cards-2">

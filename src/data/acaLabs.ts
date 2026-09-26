@@ -1,4 +1,4 @@
-export type AcaCategoryId = "ilp" | "branch" | "ooo" | "coherence" | "memory" | "multicore" | "performance";
+export type AcaCategoryId = "ilp" | "branch" | "ooo" | "coherence" | "memory" | "multicore" | "performance" | "arithmetic";
 
 export interface AcaCategory {
   id: AcaCategoryId;
@@ -25,6 +25,7 @@ export const ACA_CATEGORIES: AcaCategory[] = [
   { id: "memory", title: "Advanced Memory Systems", menu: "Memory Systems", description: "Non-blocking caches, prefetchers, and the DRAM controller." },
   { id: "multicore", title: "Multicore & Synchronization", menu: "Multicore", description: "Consistency, atomics, and parallel speedup." },
   { id: "performance", title: "Performance Analysis", menu: "Performance", description: "Roofline, CPI and IPC, and performance counters." },
+  { id: "arithmetic", title: "Multi-operand Arithmetic", menu: "Arithmetic", description: "Wallace reduction, combinational array multipliers, and Booth signed multiplication." },
 ];
 
 export const ACA_LABS: AcaLab[] = [
@@ -59,6 +60,9 @@ export const ACA_LABS: AcaLab[] = [
   { id: "roofline", title: "Roofline Analysis", slug: "roofline", category: "performance", description: "Explore arithmetic intensity, memory bandwidth, peak compute performance, and bottlenecks." },
   { id: "cpi-ipc", title: "CPI / IPC Bottleneck Analyzer", slug: "cpi-ipc", category: "performance", description: "Analyze execution bottlenecks caused by branches, dependencies, cache misses, and memory latency." },
   { id: "performance-counters", title: "CPU Performance Counter Laboratory", slug: "performance-counters", category: "performance", description: "Explore cycles, instructions, IPC, cache misses, branches, TLB activity, stalls, and memory traffic." },
+  { id: "wallace-tree", title: "Wallace Tree Adder", slug: "wallace-tree-adder", category: "arithmetic", description: "Reduce multiple binary operands using a Wallace tree of 3:2 compressors and a final carry-propagate adder." },
+  { id: "array-multiplier", title: "Combinational Multipliers", slug: "combinational-multipliers", category: "arithmetic", description: "Build and explore combinational array multipliers using AND gates and adder cells." },
+  { id: "booth-multiplier", title: "Booth's Multiplier", slug: "booths-multiplier", category: "arithmetic", description: "Multiply signed two's-complement numbers with Booth's bit-pair rule and an arithmetic right shift." },
 ];
 
 export function acaRoute(slug: string): string {

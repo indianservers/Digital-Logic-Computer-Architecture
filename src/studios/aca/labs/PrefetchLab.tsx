@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { PREFETCH_DEFAULTS, PREFETCH_PRESETS, comparePrefetchers, type PrefetcherKind } from "../../../engines/aca/prefetch";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { PrefetchMark } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const KINDS: Array<{ id: PrefetcherKind; label: string }> = [
   { id: "next", label: "Next-line" },
@@ -29,15 +31,24 @@ export function PrefetchLab() {
   const compared = useMemo(() => comparePrefetchers(addresses, options), [addresses, options]);
   const result = compared.results[kind];
   const play = usePlayback(Math.max(0, result.events.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const visible = result.events.slice(0, play.cycle === 0 ? 0 : play.cycle + 1);
   const current = play.cycle === 0 ? null : result.events[Math.min(play.cycle, result.events.length - 1)];
   const bar = (value: number) => `${Math.max(4, Math.min(100, value * 100))}%`;
+  const hint = result.pollution > 0
+    ? "A prefetch displaced a line. Read Pollution events and wasted bytes."
+    : result.useful > 0
+      ? "A demand used a line the prefetcher had already installed."
+      : "Late stays 0 because miss latency is 0. Read Useful and wasted bytes.";
+  const reading = `Useful ${result.useful}. Late ${result.late}. Pollution ${result.pollution}. Wasted bytes ${result.wastedBytes}.`;
   return (
-    <LabChrome lab="prefetching" kicker="Labs > Lab 24" title="Lab 24 — Hardware Prefetcher Laboratory" subtitle="Explore hardware prefetching mechanisms and study the trade-offs between timeliness, accuracy, coverage, and cache pollution." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="prefetching" kicker="Labs > Lab 24" title="Lab 24 — Hardware Prefetcher Laboratory" subtitle="Explore hardware prefetching mechanisms and study the trade-offs between timeliness, accuracy, coverage, and cache pollution." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Accuracy is useful prefetches divided by prefetches issued. Coverage is demand misses removed versus a no-prefetch run of the same trace. A line that arrives after the demand is late, not an early hit.</p></article>
         <article><h2>Experiment Status</h2><p>{current ? current.detail : "Ready to run"}</p><p>This view uses miss latency 0, so a prefetch of the next block is installed before the following demand. A late count stays 0 until memory latency is longer than the gap between those accesses.</p></article>
-        <article><h2>Trade-off</h2><p>A higher degree can cover more misses and also pull in lines the program never uses. Filtering refuses a prefetch that would evict a demand line.</p></article>
+        <article><h2>Trade-off</h2><p>A higher degree can cover more misses and also pull in lines the program never uses. Filtering refuses a prefetch that would evict a demand line.</p>
+          <PrefetchMark result={current?.result ?? ""} detail={current?.detail ?? ""} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -87,7 +98,7 @@ export function PrefetchLab() {
       <div className="vl-cards three">
         {showCache ? (
           <article>
-            <h2>4. Cache Line Activity</h2>
+            <h2 className={guideFocus === "stream" ? "aca-guide-on" : undefined}>4. Cache Line Activity</h2>
             <div className="vl-bytes" aria-label="Demand and prefetch events">
               {visible.slice(-24).map((item, index) => (
                 <span key={`${item.cycle}-${index}`} style={{ flex: 1, background: item.result === "useful" || item.result === "hit" ? "#86efac" : item.kind === "prefetch" ? "#93c5fd" : item.result === "late" ? "#fde68a" : "#fecaca" }} title={item.detail}>{item.kind === "prefetch" ? "P" : "D"}</span>
@@ -123,10 +134,10 @@ export function PrefetchLab() {
           <Toggle on={highlight} label="Highlight Prefetch Hits" onChange={setHighlight} />
           <Toggle on={showPollution} label="Show Pollution Events" onChange={setShowPollution} />
           <Toggle on={auto} label="Auto Advance" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.events.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.events.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.events.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.events.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
-          <h2>Results & Insights</h2>
+          <h2 className={guideFocus === "counts" ? "aca-guide-on" : undefined}>Results & Insights</h2>
           <div className="vl-metrics">
             <div><strong>{result.demandAccesses}</strong><span>Demand accesses</span></div>
             <div><strong>{result.issued}</strong><span>Prefetches issued</span></div>

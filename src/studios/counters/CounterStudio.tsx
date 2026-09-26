@@ -253,8 +253,8 @@ function Simulator({ mode, onMode }: { mode: Exclude<Mode, "design">; onMode: (m
           </div>
           <div className="ctrx-dir">
             <span>Count Direction</span>
-            <button type="button" className={dir === "up" ? "on" : ""} onClick={() => { setDirection("up"); if (mode === "down") onMode("up"); }}>↑ Up</button>
-            <button type="button" className={dir === "down" ? "on" : ""} onClick={() => { setDirection("down"); if (mode === "up") onMode("down"); }}>↓ Down</button>
+            <button type="button" className={dir === "up" ? "vl-up on" : "vl-up"} onClick={() => { setDirection("up"); if (mode === "down") onMode("up"); }}>↑ Up</button>
+            <button type="button" className={dir === "down" ? "vl-down on" : "vl-down"} onClick={() => { setDirection("down"); if (mode === "up") onMode("down"); }}>↓ Down</button>
           </div>
         </div>
       </div>

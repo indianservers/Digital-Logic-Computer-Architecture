@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { DISAMBIG_PRESETS, LSQ_PRESETS, MEM_IMAGE, MEM_REGS, comparePolicies, runLsq } from "./lsq";
-import { PRF_PRESETS, runPrf, type PrfOp } from "./prf";
+import { DISAMBIG_PRESETS, LSQ_PRESETS, MEM_IMAGE, MEM_REGS, comparePolicies, parseLsqProgram, runLsq } from "./lsq";
+import { PRF_PRESETS, parsePrfProgram, runPrf, type PrfOp } from "./prf";
 
 function pick<T>(list: readonly T[], index: number): T {
   const item = list[index];
@@ -46,12 +46,21 @@ describe("lab 13 physical register file", () => {
   it("stalls rename when the free list is empty and restores the commit map", () => {
     const stalled = runPrf(pick(PRF_PRESETS, 4).ops);
     expect(stalled.renameStalls).toBeGreaterThan(0);
-    expect(stalled.shots.some((shot) => shot.event.includes("Free list empty"))).toBe(true);
+    expect(stalled.shots.some((shot) => shot.event.includes("no free physical registers"))).toBe(true);
     const recovered = runPrf(pick(PRF_PRESETS, 5).ops, pick(PRF_PRESETS, 5).config);
     const shot = recovered.shots.find((item) => item.recovered);
     expect(shot?.commitMap.map((entry) => entry.phys)).toEqual([0, 1, 2, 3, 4, 5, 6, 7]);
     expect(recovered.finalRegs).toEqual(recovered.sequential);
     expect(JSON.stringify(runPrf(pick(PRF_PRESETS, 0).ops).rows)).toBe(JSON.stringify(runPrf(pick(PRF_PRESETS, 0).ops).rows));
+  });
+
+  it("stalls a student overwrite stream when the physical file is small", () => {
+    const parsed = parsePrfProgram("ADD x1, x2, x3\nMUL x1, x4, x5\nSUB x1, x6, x7\nADD x1, x2, x3\nMUL x1, x4, x5");
+    expect(parsed.errors).toEqual([]);
+    const small = runPrf(parsed.ops, { recoverAt: null, physCount: 8 });
+    const wide = runPrf(parsed.ops, { recoverAt: null, physCount: 32 });
+    expect(small.renameStalls).toBeGreaterThan(0);
+    expect(wide.renameStalls).toBe(0);
   });
 });
 
@@ -95,6 +104,14 @@ describe("lab 14 load-store queue", () => {
       expect(shot.stores.map((entry) => entry.age)).toEqual(shot.stores.map((entry) => entry.age).slice().sort((a, b) => a - b));
     });
     expect(JSON.stringify(run.loadValues)).toBe(JSON.stringify(runLsq(pick(LSQ_PRESETS, 3).ops, MEM_REGS, MEM_IMAGE, { lqSize: 1, sqSize: 1 }).loadValues));
+  });
+
+  it("forwards a student store and load that name the same address", () => {
+    const parsed = parseLsqProgram("STORE [0x100], 42\nLOAD R1, [0x100]\nLOAD R2, [0x200]");
+    expect(parsed.errors).toEqual([]);
+    const run = runLsq(parsed.ops, parsed.regs, { ...MEM_IMAGE, ...parsed.memory });
+    expect(run.forwarded).toBeGreaterThan(0);
+    expect(runLsq(parsed.ops, parsed.regs, { ...MEM_IMAGE, ...parsed.memory }, { lqSize: 1, sqSize: 1 }).stalls).toBeGreaterThanOrEqual(0);
   });
 });
 

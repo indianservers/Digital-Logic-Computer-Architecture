@@ -3,6 +3,8 @@ import { TOUR_PRESETS, chooserName, prefer, runTournament, type Chooser } from "
 import { twoName } from "../../../engines/aca/predictor";
 import { tally, type BranchEvent } from "../../../engines/aca/correlate";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { ChooserFlow } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 const hex = (value: number) => `0x${value.toString(16).toUpperCase()}`;
 
@@ -49,15 +51,22 @@ export function TournamentLab() {
   const localRows = step?.locals ?? [];
   const globalRows = (step?.globalPht ?? []).map((state, index) => ({ index, state })).filter((row) => step != null && Math.abs(row.index - step.gshareIndex) <= 2);
   const bimodalRows = (step?.bimodalPht ?? []).map((state, index) => ({ index, state })).filter((row) => step != null && Math.abs(row.index - step.bimodalIndex) <= 2);
+  const { id: guideFocus } = useGuideFocus();
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const hint = step?.disagree
+    ? "Local and global disagree on this branch. The chooser can move after the outcome. It does not move when they agree."
+    : step
+      ? "Local and global agree, so the chooser stays put. Load Phase change or Globally correlated to see a move."
+      : "Step a branch and compare the local prediction, the global prediction, and the chooser.";
   return (
-    <LabChrome lab="tournament-predictor" kicker="Labs > Lab 9" title="Lab 9 — Tournament & Hybrid Predictor" subtitle="Compare local and global predictors and let a chooser select between them before the outcome is known." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="tournament-predictor" hint={hint} kicker="Labs > Lab 9" title="Lab 9 — Tournament & Hybrid Predictor" subtitle="Compare local and global predictors and let a chooser select between them before the outcome is known." badge="RISC-V (5-Stage Pipeline)">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>The chooser picks local or global before the branch resolves. It moves only when one of those two was right and the other was wrong. It is not a taken/not-taken counter. Bimodal is the history-free baseline and is not one of the chooser’s options.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : play.cycle >= result.steps.length ? "Completed" : `Branch ${play.cycle} / ${result.steps.length}`}</p></article>
         <article><h2>Hybrid</h2><p>Different traces favor different components. The accuracy table names whoever is ahead on the branches seen so far. It is not a fixed winner.</p></article>
       </div>
       <div className="vl-cards three">
-        {showLocal ? <section className="vl-panel">
+        {showLocal ? <section className={`vl-panel ${mark("local") ?? ""}`}>
           <header><h2>Local Predictor</h2>
             <label>History bits <select aria-label="Local history bits" value={localBits} onChange={(event) => { setLocalBits(Number(event.target.value)); play.reset(); }}>{[2, 3, 4].map((bits) => <option key={bits} value={bits}>{bits}</option>)}</select></label>
           </header>
@@ -93,8 +102,9 @@ export function TournamentLab() {
         </section>
       </div>
       <div className="vl-cards three">
-        {showChooser ? <section className="vl-panel">
+        {showChooser ? <section className={`vl-panel ${mark("chooser") ?? ""}`}>
           <h2>Chooser</h2>
+          <ChooserFlow local={step ? (step.localPred ? "T" : "N") : "—"} global={step ? (step.globalPred ? "T" : "N") : "—"} choice={step?.selected ?? ""} disagree={Boolean(step?.disagree)} speed={play.speed} cycle={play.cycle} />
           <div className="vl-flow">
             <span className={step?.selected === "local" ? "commit" : ""}>Local<br />{step ? (step.localPred ? "T" : "N") : "—"}</span>
             <span className={step?.selected === "global" ? "commit" : ""}>Global<br />{step ? (step.globalPred ? "T" : "N") : "—"}</span>

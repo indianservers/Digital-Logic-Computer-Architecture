@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
-import { LITMUS_TESTS, applyAction, enumerate, initialState, insertFence, legalActions, type ConsState, type Litmus, type MemoryModel } from "../../../engines/aca/consistency";
+import { LITMUS_TESTS, applyAction, enumerate, initialState, insertFence, legalActions, parseLitmus, type ConsState, type Litmus, type MemoryModel } from "../../../engines/aca/consistency";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { OrderMove } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const MODELS: Array<{ id: MemoryModel; label: string; note: string }> = [
   { id: "sc", label: "Sequential consistency", note: "One total order. Each core keeps program order, and a store is visible as soon as it executes." },
@@ -37,12 +39,20 @@ export function ConsistencyLab() {
   const [showValues, setShowValues] = useState(true);
   const [animate, setAnimate] = useState(true);
   const [auto, setAuto] = useState(true);
+  const [source, setSource] = useState("init X=0 Y=0\n0: X = 1\n0: r1 = Y\n1: Y = 1\n1: r2 = X");
+  const [custom, setCustom] = useState(false);
+  const [manual, setManual] = useState(false);
+  const [manualState, setManualState] = useState<ConsState | null>(null);
+  const built = useMemo(() => parseLitmus(source), [source]);
   const litmus = useMemo(() => {
+    if (custom && !built.error && built.litmus.threads.length >= 2) return built.litmus;
     const base = LITMUS_TESTS.find((item) => item.id === testId) ?? LITMUS_TESTS[0];
     if (!base) throw new Error("missing litmus");
     return withFences(base, afterStore0, afterLoad0, afterStore1, afterLoad1);
-  }, [testId, afterStore0, afterLoad0, afterStore1, afterLoad1]);
+  }, [custom, built, testId, afterStore0, afterLoad0, afterStore1, afterLoad1]);
   const result = useMemo(() => enumerate(litmus, model), [litmus, model]);
+  const compared = useMemo(() => ({ sc: enumerate(litmus, "sc"), tso: enumerate(litmus, "tso") }), [litmus]);
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const path = useMemo(() => {
     const states = [initialState(litmus)];
     let guard = 0;
@@ -57,16 +67,27 @@ export function ConsistencyLab() {
     return states;
   }, [litmus, model]);
   const play = usePlayback(Math.max(0, path.length - 1));
-  const state = path[Math.min(play.cycle, path.length - 1)] ?? path[0];
+  const stepped = path[Math.min(play.cycle, path.length - 1)] ?? path[0];
+  const state = manual ? (manualState ?? initialState(litmus)) : stepped;
   if (!state) return null;
   const explanation = MODELS.find((item) => item.id === model)?.note ?? "";
   const seen = result.outcomes.filter((row) => row.allowed).length;
+  const scAllowed = compared.sc.outcomes.filter((row) => row.allowed).length;
+  const tsoAllowed = compared.tso.outcomes.filter((row) => row.allowed).length;
+  const hint = model === "tso" && tsoAllowed > scAllowed
+    ? "Total store order allows an outcome sequential consistency forbids."
+    : model === "sc"
+      ? "Sequential consistency keeps one order. Compare the Allowed count with Total store order."
+      : "Count Allowed, then switch the model or add a fence and count again.";
+  const reading = `${model}: ${seen} allowed, ${result.forbidden} forbidden. SC ${scAllowed}. TSO ${tsoAllowed}.`;
   return (
-    <LabChrome lab="memory-consistency" kicker="Labs > Lab 26" title="Lab 26 — Memory Consistency Model Explorer" subtitle="Experiment with sequential consistency, TSO, weak ordering, acquire/release, and memory fences using litmus tests." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="memory-consistency" kicker="Labs > Lab 26" title="Lab 26 — Memory Consistency Model Explorer" subtitle="Experiment with sequential consistency, TSO, weak ordering, acquire/release, and memory fences using litmus tests." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>Coherence is about one address. Consistency is about which orders of operations on different addresses a program is allowed to observe. The same instructions can have different legal outcomes.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : finished(state) ? "This execution has drained" : "Stepping one legal action"}</p><p>The outcome table counts finished executions from the enumerator. It is not a sample of 10,000 random runs.</p></article>
-        <article><h2>Same program</h2><p>{explanation}</p></article>
+        <article><h2>Same program</h2><p>{explanation}</p>
+          <OrderMove model={model} buffered={state.buffers.reduce((sum, buffer) => sum + buffer.length, 0)} fences={state.fences} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -77,8 +98,13 @@ export function ConsistencyLab() {
         </article>
         <article>
           <h2>Litmus Test</h2>
-          <label>Test
-            <select aria-label="Litmus test" value={testId} onChange={(event) => { setTestId(event.target.value); play.reset(); }}>
+          <label>Litmus program
+            <textarea aria-label="Litmus test builder" rows={6} value={custom ? source : source} onChange={(event) => { setCustom(true); setSource(event.target.value); setManualState(null); play.reset(); }} spellCheck={false} />
+          </label>
+          {custom && built.error ? <p className="vl-bad">{built.error}</p> : null}
+          <button type="button" onClick={() => { setCustom(false); setManualState(null); play.reset(); }}>Use built-in test</button>
+          <label>Built-in test
+            <select aria-label="Litmus test" value={testId} onChange={(event) => { setTestId(event.target.value); setCustom(false); setManualState(null); play.reset(); }}>
               {LITMUS_TESTS.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
             </select>
           </label>
@@ -113,7 +139,7 @@ export function ConsistencyLab() {
         </article>
         {showBuffers ? (
           <article>
-            <h2>Store Buffers</h2>
+            <h2 className={guideFocus === "buffers" ? "aca-guide-on" : undefined}>Store Buffers</h2>
             <div className="vl-dual">
               {state.buffers.map((buffer, index) => (
                 <div key={index}>
@@ -127,7 +153,7 @@ export function ConsistencyLab() {
           </article>
         ) : null}
         <article>
-          <h2>Observed Outcomes</h2>
+          <h2 className={guideFocus === "outcomes" ? "aca-guide-on" : undefined}>Observed Outcomes</h2>
           <table>
             <thead><tr>{litmus.observe.map((name) => <th key={name}>{name}</th>)}<th>Executions</th><th>Status</th></tr></thead>
             <tbody>
@@ -141,6 +167,7 @@ export function ConsistencyLab() {
             </tbody>
           </table>
           <p>{result.terminals} finished executions. {seen} allowed outcome{seen === 1 ? "" : "s"}. {result.forbidden} forbidden. Explored states {result.explored}.</p>
+          <p>Same program under SC: {compared.sc.outcomes.filter((row) => row.allowed).length} allowed. Under TSO: {compared.tso.outcomes.filter((row) => row.allowed).length} allowed.</p>
         </article>
       </div>
       <div className="vl-cards three">
@@ -155,7 +182,13 @@ export function ConsistencyLab() {
           <Toggle on={showValues} label="Show Memory Values" onChange={setShowValues} />
           <Toggle on={animate} label="Animate Execution" onChange={setAnimate} />
           <Toggle on={auto} label="Auto Advance" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(path.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(path.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Toggle on={manual} label="Manual interleaving" onChange={(next) => { setManual(next); setManualState(initialState(litmus)); play.reset(); }} />
+          {manual ? legalActions(state, litmus, model).map((action, index) => (
+            <button key={`${action.type}-${index}`} type="button" onClick={() => setManualState(applyAction(state, litmus, action, model))}>
+              {action.type === "exec" ? `Core ${action.thread} instruction ${action.index + 1}` : `Drain core ${action.thread} buffer`}
+            </button>
+          )) : null}
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(path.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(path.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

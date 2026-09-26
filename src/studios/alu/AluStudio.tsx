@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon, type IconName } from "../../design-system/icons";
 import { Toggle } from "../../design-system/ui";
+import { BitSwitch } from "../shared/widgets";
 
 type Page = "alu" | "datapath" | "control" | "opcodes" | "details";
 type Op = "ADD" | "SUB" | "AND" | "OR" | "XOR" | "SLT" | "SLL" | "SRL";
@@ -329,7 +330,7 @@ function Control({ code, op, cin, onBit, onCin }: { code: string; op: string; ci
           <p className="tiny">Opcode (Op[2:0])</p>
           <div className="alux-bits">
             {code.split("").map((bit, index) => (
-              <button key={index} type="button" className={bit === "1" ? "on" : ""} onClick={() => onBit(index)}>{bit}</button>
+              <BitSwitch key={index} label={String(code.length - 1 - index)} on={bit === "1"} onChange={() => onBit(index)} ariaLabel={`Opcode bit ${code.length - 1 - index} is ${bit}`} />
             ))}
           </div>
         </div>
@@ -339,8 +340,7 @@ function Control({ code, op, cin, onBit, onCin }: { code: string; op: string; ci
         </div>
       </div>
       <div className="alux-cin">
-        <span>Carry In (Cin)</span>
-        <Toggle on={cin} onChange={onCin} label="Carry In" showLabel={false} />
+        <BitSwitch label="Cin" on={cin} onChange={onCin} />
       </div>
     </section>
   );

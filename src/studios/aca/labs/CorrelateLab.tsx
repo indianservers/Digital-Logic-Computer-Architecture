@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { CORR_PRESETS, bitList, runCorrelate, tally, type BranchEvent } from "../../../engines/aca/correlate";
 import { twoName, type Two } from "../../../engines/aca/predictor";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { GshareFlow } from "../animation/motionViews";
+import { useGuideFocus } from "../guide/focus";
 
 const hex = (value: number) => `0x${value.toString(16).toUpperCase()}`;
 
@@ -42,15 +44,22 @@ export function CorrelateLab() {
     setEvents(events.map((item, itemIndex) => itemIndex === index ? { ...item, ...patch } : item));
     play.reset();
   };
+  const { id: guideFocus } = useGuideFocus();
+  const mark = (id: string) => guideFocus === id ? "aca-guide-on" : undefined;
+  const hint = step?.aliasPc != null
+    ? "Two branches are training the same PHT entry. That is aliasing, not a new kind of branch."
+    : step
+      ? "Read the GHR, then the PC XOR GHR index, then the counter that index selected."
+      : "Load a trace and Step. The first branch updates the GHR for the next index.";
   return (
-    <LabChrome lab="correlating-predictor" kicker="Labs > Lab 7" title="Lab 7 — Correlating Branch Predictor" subtitle="Use global and local branch history to study correlation-based prediction." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="correlating-predictor" hint={hint} kicker="Labs > Lab 7" title="Lab 7 — Correlating Branch Predictor" subtitle="Use global and local branch history to study correlation-based prediction." badge="RISC-V (5-Stage Pipeline)">
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>A bimodal counter sees only this branch’s PC. A local history remembers this branch’s own recent outcomes. GShare indexes the pattern table with PC XOR the global history, so one branch’s outcome can change the next branch’s prediction.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : play.cycle >= result.steps.length ? "Completed" : `Branch ${play.cycle} / ${result.steps.length}`}</p></article>
         <article><h2>Correlation</h2><p>Branches are not independent. The low bit of the history is the most recent outcome: 1 is taken, 0 is not taken.</p></article>
       </div>
       <div className="vl-cards three">
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("ghr") ?? ""}`}>
           <header><h2>Global History Register</h2>
             <label>History bits <select aria-label="Global history bits" value={ghrBits} onChange={(event) => { setGhrBits(Number(event.target.value)); play.reset(); }}>{[2, 3, 4, 6, 8].map((bits) => <option key={bits} value={bits}>{bits}</option>)}</select></label>
           </header>
@@ -67,7 +76,7 @@ export function CorrelateLab() {
           </table>
           <p>Each PC keeps its own history. That is not the global register.</p>
         </section>
-        <section className="vl-panel">
+        <section className={`vl-panel ${mark("pht") ?? ""}`}>
           <header><h2>Pattern History Table</h2>
             <label>Entries <select aria-label="Pattern table entries" value={1 << phtBits} onChange={(event) => { setPhtBits(Math.round(Math.log2(Number(event.target.value)))); play.reset(); }}>{[8, 16, 32, 64].map((count) => <option key={count} value={count}>{count}</option>)}</select></label>
           </header>
@@ -92,6 +101,7 @@ export function CorrelateLab() {
               </div>
               <p>Index = (PC XOR global history) masked to {1 << phtBits} entries. Counter before this branch was {counterText(step.gshareBefore)}. After the update it is {counterText(step.gshareAfter)}.</p>
               {step.aliasPc != null ? <p>Aliasing: {hex(step.aliasPc)} previously used PHT entry {step.gshareIndex}. These branches interfere.</p> : <p>No earlier branch has used this GShare index.</p>}
+              <GshareFlow history={bitList(step.ghrBitsUsed, phtBits).join("")} index={step.gshareIndex} aliased={step.aliasPc != null} speed={play.speed} cycle={play.cycle} />
             </>
           ) : <p>Press Step. The index is formed before the history shifts.</p>}
         </section>

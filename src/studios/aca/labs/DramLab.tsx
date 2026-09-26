@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { DRAM_DEFAULTS, DRAM_PRESETS, DRAM_TIMING, compareSchedulers, runDram, type DramAccess, type DramConfig, type DramTiming } from "../../../engines/aca/dram";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
+import { DramStep } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const BANK_COLORS = ["#dbeafe", "#dcfce7", "#fef3c7", "#f3e8ff", "#ffe4e6", "#e0f2fe", "#fef9c7", "#ede9fe"];
 
@@ -32,19 +34,31 @@ export function DramLab() {
   const result = useMemo(() => runDram(accesses, config), [accesses, config]);
   const compared = useMemo(() => compareSchedulers(accesses, config), [accesses, config]);
   const play = usePlayback(Math.max(0, result.shots.length - 1));
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const shot = result.shots[Math.min(play.cycle, result.shots.length - 1)];
   if (!shot) return null;
   const focus = shot.rows[selected] ?? shot.rows[0];
+  const active = shot.rows.find((row) => row.state === "PRE" || row.state === "ACT" || row.state === "RD" || row.state === "WR") ?? focus;
+  const hint = active?.kind === "hit"
+    ? "This request is a row hit, so activation is unnecessary."
+    : active?.kind === "conflict"
+      ? "The open row is different. This bank precharges, then activates."
+      : active?.kind === "closed"
+        ? "This bank was closed. It activates before the column command."
+        : "Step and read Hit, Conflict, or Closed on the selected request.";
+  const reading = `FCFS average ${compared.fcfs.final.avgLatency.toFixed(1)} cycles. FR-FCFS average ${compared.ready.final.avgLatency.toFixed(1)} cycles.`;
   const issued = result.rows.length || 1;
   const hitRate = result.final.hits / issued;
   const sequence = focus?.kind === "conflict" ? ["PRE", "ACT", focus.op === "write" ? "WR" : "RD"] : focus?.kind === "closed" ? ["ACT", focus.op === "write" ? "WR" : "RD"] : [focus?.op === "write" ? "WR" : "RD"];
   const peak = Math.max(...result.active, 1);
   return (
-    <LabChrome lab="dram-controller" kicker="Labs > Lab 25" title="Lab 25 — DRAM Bank & Memory Controller Simulator" subtitle="Explore DRAM organization, row buffer behavior, and memory-controller scheduling." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="dram-controller" kicker="Labs > Lab 25" title="Lab 25 — DRAM Bank & Memory Controller Simulator" subtitle="Explore DRAM organization, row buffer behavior, and memory-controller scheduling." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>A row hit reads the open row. A closed bank needs an activate. A different open row needs a precharge first. Those are three different cases. FR-FCFS prefers a ready hit, then the older request.</p></article>
         <article><h2>Experiment Status</h2><p>{play.cycle === 0 ? "Ready to run" : shot.event}</p><p>tRCD, tCL, tRP, and tRAS are this lab's timing assumptions, not a DRAM datasheet.</p></article>
-        <article><h2>Scheduling</h2><p>FCFS on this trace averages {compared.fcfs.final.avgLatency.toFixed(1)} cycles. FR-FCFS averages {compared.ready.final.avgLatency.toFixed(1)}. A lower average is not a win on every goal: an age cap exists so a hit stream cannot hold an old conflict forever.</p></article>
+        <article><h2>Scheduling</h2><p>FCFS on this trace averages {compared.fcfs.final.avgLatency.toFixed(1)} cycles. FR-FCFS averages {compared.ready.final.avgLatency.toFixed(1)}. A lower average is not a win on every goal: an age cap exists so a hit stream cannot hold an old conflict forever.</p>
+          <DramStep command={shot.banks.find((bank) => bank.command)?.command ?? ""} kind={shot.rows.find((row) => row.state === "PRE" || row.state === "ACT" || row.state === "RD" || row.state === "WR")?.kind ?? ""} policy={policy} queue={shot.queue} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -85,7 +99,7 @@ export function DramLab() {
           </div>
         </article>
         <article>
-          <h2>Request Queue</h2>
+          <h2 className={guideFocus === "queue" ? "aca-guide-on" : undefined}>Request Queue</h2>
           <label>Trace
             <select aria-label="Load trace" value={presetId} onChange={(event) => {
               const next = DRAM_PRESETS.find((item) => item.id === event.target.value);
@@ -144,7 +158,7 @@ export function DramLab() {
           <label>tRP <input aria-label="tRP" type="number" min={1} max={20} value={timing.tRP} onChange={(event) => { setTiming({ ...timing, tRP: Math.max(1, Number(event.target.value) || 1) }); play.reset(); }} /></label>
         </article>
         <article>
-          <h2>Bank Activity</h2>
+          <h2 className={guideFocus === "commands" ? "aca-guide-on" : undefined}>Bank Activity</h2>
           <div className="vl-bytes" aria-label="Commands issued this cycle">
             {(result.commands[Math.max(0, play.cycle - 1)] ?? []).slice(0, 8).map((command, index) => (
               <span key={index} style={{ flex: 1, background: commandColor(command) }}>{command || "idle"}</span>
@@ -178,7 +192,7 @@ export function DramLab() {
           <Toggle on={showBuffer} label="Show Row Buffer" onChange={setShowBuffer} />
           <Toggle on={highlightHits} label="Highlight Row Hits" onChange={setHighlightHits} />
           <Toggle on={auto} label="Auto Advance Requests" onChange={setAuto} />
-          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={play.reset} speed={play.speed} onSpeed={play.setSpeed} />
+          <Transport playing={play.playing} onPlay={() => { if (!auto) { play.setCycle((value) => Math.min(result.shots.length - 1, value + 1)); return; } play.setPlaying((value) => !value); }} onStep={() => play.setCycle((value) => Math.min(result.shots.length - 1, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); }} speed={play.speed} onSpeed={play.setSpeed} />
         </article>
         <article>
           <h2>Results & Insights</h2>

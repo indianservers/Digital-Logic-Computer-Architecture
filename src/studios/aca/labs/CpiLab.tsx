@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { CPI_PRESETS, CPI_RATES, analyzeCpi, applyWhatIf, cyclesFromRates, speedup, type StallRates, type WhatIf } from "../../../engines/aca/cpi";
 import { LabChrome, Transport, usePlayback } from "./HazardLab";
+import { CpiStack } from "../animation/phase3Views";
+import { useGuideFocus } from "../guide/focus";
 
 const LABELS: Record<string, string> = {
   useful: "Useful",
@@ -43,13 +45,18 @@ export function CpiLab() {
   const peak = Math.max(...curve, 0.01);
   const stack = (["useful", "frontend", "branch", "execution", "cache", "memory"] as const).map((id) => ({ id, cycles: after.cycles[id] }));
   const largest = LABELS[after.largest] ?? after.largest;
+  const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
+  const hint = `${largest} is the largest stall bucket. IPC is ${num(after.ipc, 3)}.`;
+  const reading = `CPI ${num(after.cpi, 3)}. IPC ${num(after.ipc, 3)}. Largest stall: ${largest}.`;
   const patch = (next: Partial<StallRates>) => { setRates((current) => ({ ...current, ...next })); setPreset("custom"); };
   return (
-    <LabChrome lab="cpi-ipc" kicker="Labs > Lab 30" title="Lab 30 — CPI / IPC Bottleneck Analyzer" subtitle="See how exclusive stall buckets change cycles per instruction and instructions per cycle." badge="RISC-V (5-Stage Pipeline)">
+    <LabChrome lab="cpi-ipc" kicker="Labs > Lab 30" title="Lab 30 — CPI / IPC Bottleneck Analyzer" subtitle="See how exclusive stall buckets change cycles per instruction and instructions per cycle." badge="RISC-V (5-Stage Pipeline)" hint={hint} reading={reading}>
       <div className="vl-cards three">
         <article><h2>Learning Objective</h2><p>CPI is cycles divided by retired instructions. IPC is the reciprocal for the same interval. A superscalar machine can retire more than one instruction per cycle, so CPI can be below 1. These buckets do not overlap.</p></article>
         <article><h2>Experiment Status</h2><p>{largest} stalls are the largest measured stall component in this workload. That names the biggest bucket, not a deeper hardware cause.</p></article>
-        <article><h2>What-if</h2><p>Cutting a bucket changes only that bucket. Speedup is the original cycle count divided by the new one. The cuts are not added together as percentages.</p></article>
+        <article><h2>What-if</h2><p>Cutting a bucket changes only that bucket. Speedup is the original cycle count divided by the new one. The cuts are not added together as percentages.</p>
+          <CpiStack parts={stack} highlight={after.largest} cpi={after.cpi} ipc={after.ipc} speed={play.speed} cycle={play.cycle} />
+        </article>
       </div>
       <div className="vl-cards three">
         <article>
@@ -91,7 +98,7 @@ export function CpiLab() {
           <p className="tiny">Branch stall cycles = instructions × branch frequency × misprediction rate × penalty. Cache stall cycles = instructions × L1 miss rate × L1 penalty. An L1 hit is not also charged as memory.</p>
         </article>
         <article>
-          <h2>CPI stack</h2>
+          <h2 className={guideFocus === "stack" ? "aca-guide-on" : undefined}>CPI stack</h2>
           <div className="vl-bytes" style={{ display: "flex", height: 28, borderRadius: 8, overflow: "hidden" }}>
             {stack.map((part) => <i key={part.id} style={{ display: "block", width: `${(part.cycles / after.totalCycles) * 100}%`, background: COLORS[part.id] }} title={LABELS[part.id]} />)}
           </div>
@@ -114,7 +121,7 @@ export function CpiLab() {
             <input aria-label="Branch stall reduction" type="range" min={0} max={100} value={branchCut} onChange={(event) => setBranchCut(Number(event.target.value))} />
             <span>{branchCut}%</span>
           </label>
-          <div className="vl-metrics">
+          <div className={guideFocus === "ipc" ? "vl-metrics aca-guide-on" : "vl-metrics"}>
             <div><strong>{num(before.ipc, 3)}</strong><span>IPC before</span></div>
             <div><strong>{num(after.ipc, 3)}</strong><span>IPC after</span></div>
             <div><strong>{num(before.cpi, 3)}</strong><span>CPI before</span></div>
@@ -135,7 +142,7 @@ export function CpiLab() {
         <div><strong>{num(after.cycles.cache, 0)}</strong><span>Cache stall cycles</span></div>
         <div><strong>{num(after.cycles.memory, 0)}</strong><span>Memory stall cycles</span></div>
       </div>
-      <Transport playing={play.playing} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(10, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { play.reset(); setMemoryCut(0); setBranchCut(0); }} speed={play.speed} onSpeed={play.setSpeed} />
+      <Transport playing={play.playing} onPlay={() => play.setPlaying((value) => !value)} onStep={() => play.setCycle((value) => Math.min(10, value + 1))} onBack={() => play.setCycle((value) => Math.max(0, value - 1))} onReset={() => { setGuideFocus(""); play.reset(); setMemoryCut(0); setBranchCut(0); }} speed={play.speed} onSpeed={play.setSpeed} />
     </LabChrome>
   );
 }

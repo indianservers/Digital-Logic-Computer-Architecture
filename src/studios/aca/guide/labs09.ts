@@ -83,7 +83,7 @@ export const LABS_09: LabGuideContent[] = [
     expectedBehavior: ["A matching prediction keeps the speculative instructions.", "A mismatch flushes them and redirects fetch.", "Prediction off avoids the squash and also avoids the overlap."],
     resultInterpretation: ["If the checkpoint matches the registers after recovery, wrong-path writes did not stick.", "A longer timeline with prediction off can still be the correct comparison for overlap, not for the architectural result."],
     misconceptions: ["Speculative instructions are not committed.", "Always Taken is not a real tournament predictor.", "Nested branches need more than one checkpoint."],
-    variations: ["Compare Always Taken and Always Not Taken on Single misprediction.", "Enable Auto Reset on Completion and watch the run return to the start."],
+    variations: ["Type a branch program and set Resolve branch after N cycles to 4 so several wrong-path instructions enter before the squash.", "Switch speculation off and compare wasted instructions with speculation on.", "Change the predictor to Always Taken, then Always Not Taken, on the same program."],
     learningOutcomes: ["Trace a misprediction to a squash", "Explain what the checkpoint restores", "Choose a predictor and predict whether this preset squashes"],
     viva: [
       { question: "What is fetched on a not-taken prediction?", answer: "The fall-through instructions." },
@@ -133,7 +133,7 @@ export const LABS_09: LabGuideContent[] = [
     expectedBehavior: ["Independent instructions scale toward the width.", "A dependence chain does not fill four lanes.", "A front-end width of 1 caps the machine even if execute is 4."],
     resultInterpretation: ["If Quad Issue does not raise IPC, the limit is the program or a narrower stage, not the execute button.", "Utilization below 100% with a dependence chain is expected."],
     misconceptions: ["Width 4 does not mean IPC 4.", "IPC greater than 1 does not violate CPI = cycles / instructions. CPI is then below 1.", "In-order issue cannot pass a stalled producer."],
-    variations: ["Set fetch to 1 and retire to 4 on Independent instructions.", "Compare Long-latency operation at width 1 and width 4."],
+    variations: ["Set Fetch to 4 and Retire to 2 on Independent instructions, then name the bottleneck stage.", "Set fetch to 1 and retire to 4 on Independent instructions.", "Compare Long-latency operation at width 1 and width 4."],
     learningOutcomes: ["Compute IPC from the explorer", "Identify a front-end versus back-end limit", "State that width is a cap"],
     viva: [
       { question: "Can IPC exceed 1?", answer: "Yes, when more than one instruction retires per cycle on average." },
@@ -183,7 +183,7 @@ export const LABS_09: LabGuideContent[] = [
     expectedBehavior: ["A RAW chain wakes one consumer after the producer.", "Independent instructions fill the issue width until units run out.", "A window of 4 on Small window blocks dispatch."],
     resultInterpretation: ["If widening the window does not raise issue rate, the limit is dependences or units.", "If adding an ALU removes stalls on Competing ALU instructions, the stall was structural."],
     misconceptions: ["Oldest ready is not oldest in program order if the oldest is still waiting.", "Issue is not commit.", "A larger window cannot create operand values."],
-    variations: ["Hold the mixed graph and sweep issue width from 1 to 4.", "Compare 1 ALU and 2 ALU on Competing ALU instructions."],
+    variations: ["Raise issue width to 4 while the unit mix stays at one ALU. The issue rate should not scale past the free units.", "Hold the mixed graph and sweep issue width from 1 to 4.", "Compare 1 ALU and 2 ALU on Competing ALU instructions."],
     learningOutcomes: ["List the ready set after a wakeup", "Apply the issue-width cap", "Separate a full window from a data wait"],
     viva: [
       { question: "What makes an instruction ready?", answer: "Every source operand is ready and it is still in the window." },

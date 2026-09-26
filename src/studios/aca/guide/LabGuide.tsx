@@ -1,5 +1,7 @@
 import { useEffect, useId, useState } from "react";
 import { LAB_GUIDES } from "./index";
+import { useGuideFocus } from "./focus";
+import type { LabWalkthrough } from "./types";
 
 export function LabGuideButton({ labId }: { labId: string }) {
   const guide = LAB_GUIDES[labId];
@@ -143,5 +145,148 @@ function Notes({ labId }: { labId: string }) {
         window.localStorage.setItem(storageKey, event.target.value);
       }} />
     </section>
+  );
+}
+
+export function QuickGuide({ labId, hint, reading }: { labId: string; hint?: string; reading?: string }) {
+  const walk = LAB_GUIDES[labId]?.walkthrough;
+  const { id, setId } = useGuideFocus();
+  const storageKey = `aca-guide-progress:${labId}`;
+  const runKey = `aca-guide-runs:${labId}`;
+  const [done, setDone] = useState<boolean[]>([false, false, false, false]);
+  const [runs, setRuns] = useState<{ a: string; b: string }>({ a: "", b: "" });
+  useEffect(() => {
+    const saved = window.localStorage.getItem(storageKey);
+    if (!saved) {
+      setDone([false, false, false, false]);
+      return;
+    }
+    try {
+      const parsed: unknown = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length === 4) setDone(parsed.map((item) => item === true));
+    } catch {
+      setDone([false, false, false, false]);
+    }
+  }, [storageKey]);
+  useEffect(() => {
+    const saved = window.sessionStorage.getItem(runKey);
+    if (!saved) {
+      setRuns({ a: "", b: "" });
+      return;
+    }
+    try {
+      const parsed: unknown = JSON.parse(saved);
+      if (parsed && typeof parsed === "object" && "a" in parsed && "b" in parsed) {
+        const row = parsed as { a: unknown; b: unknown };
+        setRuns({ a: typeof row.a === "string" ? row.a : "", b: typeof row.b === "string" ? row.b : "" });
+      }
+    } catch {
+      setRuns({ a: "", b: "" });
+    }
+  }, [runKey]);
+  if (!walk) return null;
+  const snapshot = reading || hint || "Step the lab, then record.";
+  const record = (slot: "a" | "b") => {
+    const next = { ...runs, [slot]: snapshot };
+    setRuns(next);
+    window.sessionStorage.setItem(runKey, JSON.stringify(next));
+  };
+  const addNote = () => {
+    const line = reading || hint;
+    if (!line) return;
+    const key = `aca-lab-notes:${labId}`;
+    const previous = window.localStorage.getItem(key) ?? "";
+    const text = previous ? `${previous}\n${line}` : line;
+    window.localStorage.setItem(key, text);
+    window.dispatchEvent(new CustomEvent("aca-notes", { detail: { labId, text } }));
+  };
+  const toggle = (index: number) => {
+    const next = done.map((item, itemIndex) => itemIndex === index ? !item : item);
+    setDone(next);
+    window.localStorage.setItem(storageKey, JSON.stringify(next));
+  };
+  return (
+    <details className="aca-quick">
+      <summary>Quick Guide {done.filter(Boolean).length}/4{hint ? <span className="aca-hint">{hint}</span> : null}</summary>
+      <div className="aca-quick-body">
+        {hint ? <p className="aca-hint">{hint}</p> : null}
+        <details open>
+          <summary>Start here</summary>
+          <ol>{walk.howToUse.map((item) => <li key={item}>{item}</li>)}</ol>
+        </details>
+        <details>
+          <summary>Watch these</summary>
+          <ul>{walk.observe.map((item) => <li key={item}>{item}</li>)}</ul>
+          <div className="aca-quick-links">
+            {walk.links.map((link) => (
+              <button key={link.id} type="button" className={id === link.id ? "on" : ""} aria-pressed={id === link.id} onClick={() => setId(id === link.id ? "" : link.id)}>{link.label}</button>
+            ))}
+          </div>
+        </details>
+        <details>
+          <summary>Try this</summary>
+          {walk.experiments.map((item, index) => (
+            <div key={item.title}>
+              <b>{index + 1}. {item.title}</b>
+              <ol>{item.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+            </div>
+          ))}
+        </details>
+        <details>
+          <summary>What should happen</summary>
+          <ul>{walk.expected.map((item) => <li key={item}>{item}</li>)}</ul>
+          <h3>Why it happens</h3>
+          {walk.why.map((item) => <p key={item}>{item}</p>)}
+        </details>
+        <details>
+          <summary>Challenge</summary>
+          <p>{walk.challenge}</p>
+          <h3>Check yourself</h3>
+          <ol>{walk.check.map((item) => <li key={item}>{item}</li>)}</ol>
+        </details>
+        <div className="aca-quick-runs">
+          <button type="button" onClick={() => record("a")}>Record run A</button>
+          <button type="button" onClick={() => record("b")}>Record run B</button>
+          <button type="button" onClick={addNote}>Add observation to notes</button>
+          {runs.a ? <p>Run A: {runs.a}</p> : null}
+          {runs.b ? <p>Run B: {runs.b}</p> : null}
+        </div>
+        <fieldset>
+          <legend>Progress on this device</legend>
+          {walk.checklist.map((item, index) => (
+            <label key={item}>
+              <input type="checkbox" checked={done[index] ?? false} onChange={() => toggle(index)} />
+              {item}
+            </label>
+          ))}
+        </fieldset>
+      </div>
+    </details>
+  );
+}
+
+export function WalkthroughDoc({ walk }: { walk: LabWalkthrough }) {
+  return (
+    <>
+      <h2>How to use this lab</h2>
+      <ol>{walk.howToUse.map((item) => <li key={item}>{item}</li>)}</ol>
+      <h2>Watch these</h2>
+      <ul>{walk.observe.map((item) => <li key={item}>{item}</li>)}</ul>
+      <h2>Try this</h2>
+      {walk.experiments.map((item, index) => (
+        <div key={item.title}>
+          <h3>{index + 1}. {item.title}</h3>
+          <ol>{item.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+        </div>
+      ))}
+      <h2>What should happen</h2>
+      <ul>{walk.expected.map((item) => <li key={item}>{item}</li>)}</ul>
+      <h2>Why it happens</h2>
+      {walk.why.map((item) => <p key={item}>{item}</p>)}
+      <h2>Challenge</h2>
+      <p>{walk.challenge}</p>
+      <h2>Check yourself</h2>
+      <ol>{walk.check.map((item) => <li key={item}>{item}</li>)}</ol>
+    </>
   );
 }

@@ -1,8 +1,9 @@
 import { useState, type ReactNode } from "react";
 import { alignNodes, disconnectNode, patchNode, patchWire, sizedBox, wiresDropped, type AlignMode } from "./engine";
 import { componentTruth, getComponent, nodeSize } from "./registry";
-import type { Bit, CircuitNode, CircuitWire, ParamSpec } from "./types";
+import type { CircuitNode, CircuitWire, ParamSpec } from "./types";
 import type { CircuitSession } from "./useCircuit";
+import { BitMark, BitSwitch } from "../../studios/shared/widgets";
 
 export function PropertiesPane({
   circuit,
@@ -170,7 +171,7 @@ function ParamField({ param, node, onChange }: { param: ParamSpec; node: Circuit
   const value = node.params[param.id] ?? param.default;
   if (param.kind === "number" && param.min === 0 && param.max === 1) {
     return (
-      <label className="cwb-check"><input type="checkbox" checked={value === 1} onChange={(event) => onChange(event.target.checked ? 1 : 0)} /> {param.label}</label>
+      <BitSwitch label={param.label} on={value === 1} onChange={(next) => onChange(next ? 1 : 0)} />
     );
   }
   return (
@@ -191,7 +192,12 @@ function LiveBits({ circuit, node, ports }: { circuit: CircuitSession; node: Cir
     <ul className="cwb-bits">
       {ports.map((port) => {
         const bit = circuit.shown.signals[`${node.id}.${port.id}`] ?? "X";
-        return <li key={port.id}><i className={bitClass(bit)} /> {port.name} = {bit}</li>;
+        return (
+          <li key={port.id}>
+            {bit === 0 || bit === 1 ? <BitMark value={bit} /> : <span className={bit === "Z" ? "bit z" : "bit bad"}>{bit}</span>}
+            {" "}{port.name}
+          </li>
+        );
       })}
     </ul>
   );
@@ -303,10 +309,4 @@ function lastTime(circuit: CircuitSession, id: string): number {
     if (circuit.sim.frames[index]?.nodeId === id) return circuit.sim.frames[index]?.time ?? 0;
   }
   return 0;
-}
-
-function bitClass(bit: Bit): string {
-  if (bit === 1) return "high";
-  if (bit === 0) return "low";
-  return "x";
 }
