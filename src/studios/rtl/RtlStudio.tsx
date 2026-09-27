@@ -1,56 +1,101 @@
-import { useState } from "react";
-import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Toggle } from "../../design-system/ui";
-import { driveBus } from "../../engines/cpu/buses";
-import { evalRtl } from "../../engines/isa/rtl";
-import { StudioFrame } from "../../layout/StudioFrame";
-import { RTL_LESSONS, lessonOf } from "../../data/studioLessons";
+import { Link, useSearchParams } from "react-router-dom";
+import { Icon } from "../../design-system/icons";
 import { usePrefs } from "../../store/prefs";
+import { BusPanel } from "./bus";
+import { TransferPanel } from "./transfer";
+import { Mark } from "./ui";
+import { WordPanel } from "./word";
 
 const TABS = [
   { id: "transfer", label: "Transfer" },
   { id: "bus", label: "Bus" },
   { id: "word", label: "Control Word" },
-];
+] as const;
+
+const ALIAS: Record<string, string> = { "control-word": "word" };
+
+const PAGE: Record<string, { guide: string[]; takeaways: string[]; quote: string; by: string; next: string; nextTab: string; nextLabel: string }> = {
+  transfer: {
+    guide: ["Set register values.", "Choose an operation.", "Step and observe the transfer.", "Check which registers changed."],
+    takeaways: ["RTL describes data movement.", "Only one bus driver is active at a time.", "The write happens on the step edge.", "Registers can be sources or destinations."],
+    quote: "Everything in a computer happens by moving data.",
+    by: "David Patterson",
+    next: "See how the shared bus works.",
+    nextTab: "bus",
+    nextLabel: "Bus operations",
+  },
+  bus: {
+    guide: ["Select a source register.", "See it drive the bus.", "Optionally load a destination register.", "Try a second driver and resolve the conflict."],
+    takeaways: ["A shared bus has a single driver.", "Bus conflicts must be avoided.", "Any register can place its value on the bus.", "The bus carries data, not the operation."],
+    quote: "Good architecture is invisible when it works.",
+    by: "Gordon Bell",
+    next: "See how control signals drive operations.",
+    nextTab: "word",
+    nextLabel: "Control word",
+  },
+  word: {
+    guide: ["Select an operation.", "See the control word bits.", "Select a signal and read what it enables.", "Generate the word and watch the write edge."],
+    takeaways: ["A control word drives the datapath.", "Each field selects a specific function.", "The ALU operation is encoded.", "Register write happens on the clock edge."],
+    quote: "Simplicity is the ultimate sophistication.",
+    by: "Leonardo da Vinci",
+    next: "Apply what you learned on a transfer.",
+    nextTab: "transfer",
+    nextLabel: "Back to Transfer",
+  },
+};
 
 export function RtlStudio() {
-  const [tab, setTab] = useStudioTab(TABS, "transfer");
-  const [line, setLine] = useState("R3 <- R1 + R2");
-  const [regs, setRegs] = useState([0, 5, 3, 0, 0, 0, 0, 0]);
-  const [note, setNote] = useState("Load values, then step the transfer.");
-  const [pcOn, setPc] = useState(true);
-  const [irOn, setIr] = useState(false);
+  const [params, setParams] = useSearchParams();
+  const raw = params.get("tab");
+  const aliased = raw ? ALIAS[raw] ?? raw : "transfer";
+  const tab = TABS.some((item) => item.id === aliased) ? aliased : "transfer";
+  const page = PAGE[tab] ?? PAGE.transfer;
   const { prefs } = usePrefs();
-  const bus = driveBus([{ name: "R1", enabled: pcOn, value: regs[1] ?? 0 }, { name: "R2", enabled: irOn, value: regs[2] ?? 0 }]);
-  const lesson = lessonOf(RTL_LESSONS, tab, "transfer");
+  if (!page) return null;
+
+  function setTab(id: string) {
+    const next = new URLSearchParams(params);
+    next.set("tab", id);
+    setParams(next);
+  }
 
   return (
-    <StudioFrame icon="project" title="Register Transfer" description="Move a value from registers through the ALU and back. A shared bus accepts one driver." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
-      {prefs.explain ? <ExplainBar what={note} why={bus.explain} notice="This playground is not a hardware description language." /> : null}
-      {tab === "transfer" ? (
-        <Card title="RTL">
-          <input className="text-input" aria-label="RTL expression" value={line} onChange={(event) => setLine(event.target.value)} />
-          <Button variant="primary" onClick={() => {
-            const next = evalRtl(regs, line);
-            setRegs(next.regs);
-            setNote(next.explain);
-          }}>Step</Button>
-          <div className="reg-row">{regs.map((value, index) => <div key={index} className="ff-cell">R{index}<small>{value}</small></div>)}</div>
-        </Card>
-      ) : null}
-      {tab === "bus" ? (
-        <Card title="Shared bus">
-          <Toggle on={pcOn} onChange={setPc} label="R1 drive" tone="ok" />
-          <Toggle on={irOn} onChange={setIr} label="R2 drive" tone="danger" />
-          <p>Bus = {String(bus.value)}. {bus.contention ? "BUS CONTENTION" : bus.explain}</p>
-        </Card>
-      ) : null}
-      {tab === "word" ? (
-        <Card title="One control word">
-          <p className="mono">SRC_A | SRC_B | ALU_OP | DEST | REG_WRITE | MEM</p>
-          <p>The expression {line} sets the ALU operation and the destination. Memory stays off unless the instruction is LOAD, STORE, CALL, or RET.</p>
-        </Card>
-      ) : null}
-    </StudioFrame>
+    <div className="rtx">
+      <header className="rtx-head">
+        <div>
+          <h1><Mark kind="file" /> Register Transfer</h1>
+          <p>Move a value from registers through the ALU and back. A shared bus accepts one driver.</p>
+        </div>
+        <Link className="rtx-back" to="/"><Icon name="back" size={14} /> Back to Path</Link>
+      </header>
+      <div className="rtx-tabs" role="tablist" aria-label="Register transfer">
+        {TABS.map((item) => (
+          <button key={item.id} type="button" role="tab" aria-selected={tab === item.id} className={tab === item.id ? "on" : ""} onClick={() => setTab(item.id)}>{item.label}</button>
+        ))}
+      </div>
+      <div className="rtx-grid">
+        <div className="rtx-main">
+          <div hidden={tab !== "transfer"} inert={tab !== "transfer" ? true : undefined}><TransferPanel explain={prefs.explain} /></div>
+          <div hidden={tab !== "bus"} inert={tab !== "bus" ? true : undefined}><BusPanel explain={prefs.explain} /></div>
+          <div hidden={tab !== "word"} inert={tab !== "word" ? true : undefined}><WordPanel explain={prefs.explain} /></div>
+        </div>
+        <aside className="rtx-side">
+          <section>
+            <h2><Mark kind="book" /> Studio Guide</h2>
+            <ol>{page.guide.map((item, index) => <li key={item}><span>{index + 1}</span>{item}</li>)}</ol>
+          </section>
+          <section className="takes">
+            <h2><Mark kind="bulb" /> Key Takeaways</h2>
+            <ul>{page.takeaways.map((item) => <li key={item}>{item}</li>)}</ul>
+          </section>
+          <blockquote><p>“{page.quote}”</p><cite>— {page.by}</cite></blockquote>
+          <section className="next">
+            <h2>Next up</h2>
+            <p>{page.next}</p>
+            <button type="button" onClick={() => setTab(page.nextTab)}>{page.nextLabel} →</button>
+          </section>
+        </aside>
+      </div>
+    </div>
   );
 }

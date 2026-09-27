@@ -232,39 +232,39 @@ export const CPU_LESSONS: Record<string, TabLesson> = {
 
 export const ISA_LESSONS: Record<string, TabLesson> = {
   basics: {
-    theory: { title: "The ISA contract", body: "The instruction set is the contract between software and this CPU: width, registers, and legal operand forms. LogicLab-16 is a 16-bit load/store ISA. RISC-V, ARM, and x86 studios are other contracts, not later phases of this one." },
-    guide: ["Read the contract sentence.", "Open Anatomy to see fields.", "Compare with RISC-V / ARM / x86 when you want other ISAs.", "Assembly and FDE obey this same spec."],
-    takeaways: ["The ISA is the contract, not the wiring.", "This CPU is 16-bit with eight registers.", "Only LOAD and STORE touch data memory."],
+    theory: { title: "The ISA contract", body: "The instruction set is the contract between software and the CPU: which instructions exist, which registers exist, and what each instruction means. RISC-V, ARM, and x86 are different contracts. Several chips can implement one of them." },
+    guide: ["Read the core concept.", "Try an instruction and edit the register values.", "Compare RISC-V, ARM, and x86.", "Continue to Anatomy."],
+    takeaways: ["The ISA is the contract between software and the CPU.", "It defines instructions, registers, and legal operations.", "Different CPUs can implement the same ISA.", "RISC-V, ARM, and x86 are different ISA families."],
   },
   anatomy: {
-    theory: { title: "Instruction anatomy", body: "Opcode, register numbers, and immediates occupy fixed bit fields in one 16-bit word. Hover a field to see which bits it owns. The decoder is the same table the CPU uses." },
-    guide: ["Pick ADD, LOAD, or BEQ.", "Hover a field and read its meaning.", "Click a field to bump its bits.", "Match the binary word to the labels."],
-    takeaways: ["Opcode, registers, and immediates occupy fixed fields.", "One word is one instruction in this ISA.", "The decoder does not guess unknown opcodes."],
+    theory: { title: "Instruction anatomy", body: "A 16-bit instruction is opcode, destination, source, and a second source or immediate. Hover a field to see the same bits in the strip, the inspector, and the decoder table." },
+    guide: ["Read how a 16-bit instruction is divided into fields.", "Select a field and read its bit range.", "Change the instruction and watch the encoding.", "Continue to Formats."],
+    takeaways: ["An instruction is divided into fields.", "Each bit range has a specific meaning.", "The opcode selects the operation.", "The same 16-bit layout encodes many instructions."],
   },
   formats: {
-    theory: { title: "Formats R, I, S, B, J", body: "R-type names three registers. I-type adds an immediate. S-type is store (two registers + offset, no rd). B-type is a compare and a PC-relative offset. J-type is a longer offset. Field widths are part of the contract." },
-    guide: ["Switch among ADD, ADDI, STORE, BEQ, J.", "See which fields appear.", "STORE has no destination register.", "Immediates that do not fit are assembler errors later."],
-    takeaways: ["Format is which fields exist.", "STORE does not write a register.", "B and J offsets are PC-relative from this instruction's address."],
+    theory: { title: "RISC-V formats", body: "R, I, S, and B layouts share 32 bits and place the opcode in the low 7 bits. Changing rd, rs1, rs2, or the immediate recomputes the binary and the hex word." },
+    guide: ["Read why several formats exist.", "Select R, I, S, or B.", "Change a register or the immediate and read the hex.", "Continue to RISC / CISC."],
+    takeaways: ["Instructions use different formats.", "Each format allocates bits for what that operation needs.", "R, I, S, and B are the layouts in this lab.", "The opcode and field positions identify the instruction."],
   },
   style: {
-    theory: { title: "RISC and CISC", body: "This lab is RISC-like: fixed 16-bit length, arithmetic in registers. CISC often allows variable length and memory operands inside arithmetic. Neither style is universally better; they ask different things of the decoder." },
-    guide: ["Read the RISC card for this CPU.", "Read the CISC contrast.", "Do not rank them as 'better'.", "x86 studio shows variable length; RISC-V shows another RISC."],
-    takeaways: ["Fixed length simplifies fetch.", "Memory operands in ALU ops are a CISC-style choice.", "Style is a contract family, not a score."],
+    theory: { title: "RISC and CISC", body: "RISC encodings are regular and fixed-width. x86 is variable-length and can name a memory operand inside arithmetic. Modern x86 cores may crack those instructions into micro-ops. Neither family is universally faster." },
+    guide: ["Read the comparison without ranking one family as always faster.", "Run an example and watch both listings.", "Compare instruction count with memory operations.", "Continue to Load / Store."],
+    takeaways: ["RISC encodings are regular. CISC encodings are often variable-length.", "A shorter listing is not a faster machine.", "Modern x86 cores may translate instructions into micro-ops.", "Both families run real high-performance software."],
   },
   load: {
-    theory: { title: "Load/store", body: "ALU operations read registers and write a register. LOAD adds a base and offset, then reads data memory into rd. STORE writes a register to memory and does not write rd. Data memory stays idle for ADD." },
-    guide: ["Compare ADD with LOAD on the cards.", "STORE writes memory, not a destination.", "Effective address is base + offset.", "Only these two ops use the data array."],
-    takeaways: ["Arithmetic stays in registers.", "LOAD writes a register from memory.", "STORE writes memory and skips rd."],
+    theory: { title: "Load and store", body: "Only load and store touch data memory. LOAD copies a word into a register. STORE copies a register into memory. The address is a base plus an offset, or a direct address in the demo." },
+    guide: ["Run the demo and watch R1 and Mem[104].", "Edit a register or a memory cell.", "Switch to LW or SW and read the effective address.", "Continue to Addressing."],
+    takeaways: ["Load copies memory into a register.", "Store copies a register into memory.", "ALU operations do not touch data memory.", "The address is usually a base register plus an offset."],
   },
   modes: {
-    theory: { title: "Addressing modes", body: "Immediate, register, base+offset, PC-relative, and stack (Mem[R7]) are how operands are located. In this CPU, PC-relative means this instruction's address plus the signed offset — not MIPS PC+4." },
-    guide: ["Read each mode's formula.", "PC-relative uses the branch's own PC.", "Stack: CALL writes Mem[R7] after decrementing R7.", "LOAD 20(R2) is base + displacement."],
-    takeaways: ["A PC-relative branch adds its offset to its own address.", "R7 is the stack pointer for CALL and RET.", "Effective address is computed, then memory is used only for load/store/stack."],
+    theory: { title: "Addressing modes", body: "Immediate and register modes do not access memory. Direct names the address in the instruction. Indirect reads a pointer first. Base+offset adds a constant. Indexed adds a second register. The effective address is the memory location; Mem[EA] is the operand." },
+    guide: ["Open each of the six modes from the ISA Addressing tab.", "Change a register, an immediate, or a memory cell and run.", "Try a negative offset. The effective address moves, the operand does not become the address.", "Continue to Categories."],
+    takeaways: ["An addressing mode says where the operand is.", "The effective address is the memory location that will be used.", "Immediate and register modes do not access memory.", "Base+offset uses a constant. Indexed uses a register that can change."],
   },
   catalog: {
-    theory: { title: "Instruction categories", body: "Arithmetic, logical, shift, memory, branch, jump, stack, and system (NOP/HALT) share the same 16-bit word. The category tells you which datapath pieces light up, not a different encoding family." },
-    guide: ["Browse the category list.", "Match examples to formats.", "HALT stops fetch; NOP does not write.", "CALL/RET are the stack pair."],
-    takeaways: ["Category is datapath use, not a second ISA.", "NOP changes nothing but the PC.", "HALT stops further fetches."],
+    theory: { title: "Instruction categories", body: "Arithmetic, logic, data transfer, control flow, compare, and shift cover most programs. The job is shared across ISAs. The mnemonic is not." },
+    guide: ["Select each category.", "Switch the ISA family and notice the mnemonics change.", "Run the small example.", "Open Practice when you want questions."],
+    takeaways: ["Instructions are grouped by what they do.", "The same jobs exist in RISC-V, ARM, and x86.", "The spellings are not identical.", "A program mixes several categories."],
   },
 };
 
@@ -331,22 +331,47 @@ export const RTL_LESSONS: Record<string, TabLesson> = {
     takeaways: ["Two enabled drivers make the bus X.", "Contention is invalid data, not a third numeric value.", "Z means undriven."],
   },
   word: {
-    theory: { title: "Control word", body: "The control word is the bundle of mux selects, ALU op, and write enables that make one transfer. Microprogramming stores those words; hardwired control computes them." },
-    guide: ["Read the bits that match your transfer.", "Change ALU op and see the word change.", "RegWrite is the commit bit.", "The control studio stores similar words."],
-    takeaways: ["The control word is the bundle of those choices.", "Each field steers one mux or enable.", "A different transfer is a different word."],
+    theory: { title: "Control word", body: "SA, SB, and DA are 3-bit register selects. ALU is 3 bits (000 add, 001 sub, 010 and, 011 or, 100 xor, 101 pass). MB is 0 when the result comes from the ALU. RW is 1 when the destination captures that result on the clock edge." },
+    guide: ["Select an operation.", "Read SA, SB, DA, ALU, MB, and RW.", "Select a signal and see which path it enables.", "Generate the word and watch the write edge."],
+    takeaways: ["A control word drives the datapath.", "Each field selects a specific function.", "The ALU operation is encoded.", "Register write happens on the clock edge."],
   },
 };
 
 export const ASSEMBLY_LESSONS: Record<string, TabLesson> = {
+  overview: {
+    theory: { title: "One machine, six views", body: "Overview, Fetch, Decode, Execute, Memory, and Trace all read the same LogicLab-16 CPU. A step retires one 16-bit instruction. The PC advances by one word." },
+    guide: ["Run the add sample and read R3 and Mem[8].", "Step once and watch only R1 change.", "Open another tab. The PC is the same machine."],
+    takeaways: ["The stages share one register file and one data memory.", "LOAD and STORE are the instructions that touch data memory.", "HALT stops fetch and leaves the PC on the halt word."],
+  },
   run: {
-    theory: { title: "Assemble and step", body: "The assembler turns LogicLab-16 text into 16-bit words using the same spec as the ISA studio. Instruction stepping hides the five internal cycles; Fetch–Decode–Execute shows them." },
-    guide: ["Labels may be used before they are defined.", "R0 starts at 0. Write it only if the program means to.", "HALT leaves the PC on the halt instruction.", "Open FDE when you want each cycle."],
-    takeaways: ["The listing is the machine word beside the source.", "A bad register or a missing label names the source line.", "Instruction stepping hides the five internal cycles."],
+    theory: { title: "One machine, six views", body: "The assembly studio steps LogicLab-16. Fetch, decode, execute, memory, and write-back are stages of the same CPU." },
+    guide: ["Run the sample.", "Step one instruction.", "Open Fetch to see the PC."],
+    takeaways: ["The listing and the CPU stay in step.", "A syntax error names the source line.", "Reset reloads the source."],
+  },
+  fetch: {
+    theory: { title: "Fetch", body: "The PC selects one instruction word. That word is copied into the IR, then the PC increases by 1." },
+    guide: ["Step Fetch.", "Read the highlighted instruction-memory row.", "Step again and watch the PC."],
+    takeaways: ["Instruction memory and data memory are separate.", "The IR holds the fetched 16-bit word.", "The PC is a word address."],
+  },
+  decode: {
+    theory: { title: "Decode", body: "A 16-bit word splits into an opcode and register or immediate fields. The decoder turns those fields into control signals." },
+    guide: ["Click each field.", "Compare an ADD with a LOAD.", "Read which signals are on."],
+    takeaways: ["Opcode bits 15–12 choose the operation.", "Register fields are 3 bits, R0 through R7.", "STORE does not turn on register write."],
+  },
+  execute: {
+    theory: { title: "Execute", body: "The ALU computes a 16-bit result. N, Z, C, and V come from that result. BEQ and BNE compare two registers." },
+    guide: ["Step until ADD.", "Read the flags.", "Turn on experiment mode to preview another operation without writing it."],
+    takeaways: ["Addition wraps at 16 bits and can set carry.", "Signed overflow is not the same as unsigned carry.", "A branch target is the branch word plus a signed offset."],
   },
   memory: {
-    theory: { title: "Program memory", body: "Assembled words sit in instruction memory at successive addresses. Data memory is a separate array that LOAD/STORE use. HALT is a word in I-mem, not a hole." },
-    guide: ["Assemble, then read the listing addresses.", "STORE writes data memory, not the listing.", "PC indexes instruction memory.", "A syntax error means nothing was loaded."],
-    takeaways: ["Instruction memory holds the program words.", "Data memory is separate in this CPU.", "The listing is the loaded image when assemble succeeds."],
+    theory: { title: "Memory", body: "The effective address is the base register plus a signed 6-bit offset, kept in the 256-word data memory. LOAD writes a register. STORE writes memory." },
+    guide: ["Set a base and an offset and read the EA.", "Load, then store a different register.", "Confirm the other value did not change."],
+    takeaways: ["EA and Mem[EA] are different numbers.", "A store does not write the destination register.", "The same data memory is visible on Overview and Trace."],
+  },
+  trace: {
+    theory: { title: "Trace", body: "Each retired instruction appends one row: the PC, the text, and the registers or memory that changed. A breakpoint pauses before that word executes." },
+    guide: ["Run the loop.", "Set a breakpoint on the store.", "Change R1 and step."],
+    takeaways: ["The trace is recorded from the CPU, not filled in ahead of time.", "Run stops before the breakpointed instruction.", "Step executes that instruction anyway."],
   },
 };
 

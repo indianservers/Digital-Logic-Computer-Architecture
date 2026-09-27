@@ -46,9 +46,21 @@ function crumbTrail(pathname: string, search: string): Array<{ label: string; to
   trail.push({ label: "Studios", to: "/studios" });
   const base = pathOnly(studio.path);
   const rest = pathname.slice(base.length).split("/").filter(Boolean);
-  if (pathname === "/studios/isa" && tab === "modes") {
+  if (pathname === "/studios/isa") {
+    const isaTab: Record<string, string> = {
+      basics: "ISA Basics", anatomy: "Anatomy", formats: "Formats", style: "RISC / CISC", "risc-cisc": "RISC / CISC",
+      load: "Load / Store", "load-store": "Load / Store", modes: "Addressing Modes", addressing: "Addressing Modes", catalog: "Categories", categories: "Categories",
+    };
     trail.push({ label: studio.title, to: base });
-    trail.push({ label: STUDIOS.find((item) => item.id === "addressing")?.title ?? "Addressing Modes" });
+    trail.push({ label: isaTab[tab ?? "basics"] ?? "ISA Basics" });
+    return trail;
+  }
+  if (pathname === "/studios/assembly") {
+    const asmTab: Record<string, string> = {
+      overview: "Overview", run: "Overview", fetch: "Fetch", decode: "Decode", execute: "Execute", memory: "Memory", trace: "Trace",
+    };
+    trail.push({ label: studio.title, to: base });
+    trail.push({ label: asmTab[tab ?? "overview"] ?? "Overview" });
     return trail;
   }
   if (base === "/studios/cache") {
