@@ -51,6 +51,16 @@ function crumbTrail(pathname: string, search: string): Array<{ label: string; to
     trail.push({ label: STUDIOS.find((item) => item.id === "addressing")?.title ?? "Addressing Modes" });
     return trail;
   }
+  if (base === "/studios/cache") {
+    trail.push({ label: "Memory systems", to: "/studios/memory" });
+    trail.push({ label: "Cache Memory" });
+    return trail;
+  }
+  if (base === "/studios/vm") {
+    trail.push({ label: "Memory systems", to: "/studios/memory" });
+    trail.push({ label: "Virtual Memory" });
+    return trail;
+  }
   if (rest.length === 0) {
     trail.push({ label: studio.title });
     return trail;

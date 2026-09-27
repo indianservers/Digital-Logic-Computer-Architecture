@@ -177,56 +177,56 @@ export const FSM_LESSONS: Record<string, TabLesson> = {
 export const CACHE_LESSONS: Record<string, TabLesson> = {
   sim: {
     theory: { title: "Cache mapping", body: "An address splits into tag, index, and offset. Index picks a set. A hit needs a valid line whose tag matches. Direct-mapped has one line per set; set-associative has several, so replacement may run." },
-    guide: ["The index picks a set. The tag must match a valid line.", "Step the trace and read HIT versus MISS.", "A first visit is a compulsory miss.", "A full set with a different tag is a conflict miss."],
-    takeaways: ["Tag / index / offset come from this configuration.", "Compulsory misses are cold starts.", "Conflict misses happen when too many lines want the same set."],
+    guide: ["Set the cache configuration (size, block size, associativity, policies).", "Enter a trace of memory accesses (one per line, e.g. 0x00001000 R).", "Step through or run the simulation.", "Observe the address breakdown, cache table, memory, and event log.", "Try different policies and compare the results."],
+    takeaways: ["A cache stores recently used blocks from main memory.", "The address is split into tag, index, and offset.", "Locality makes caches effective.", "Replacement and write policies change which line stays and when memory is written.", "Misses are costly. AMAT is hit time plus miss rate times miss penalty."],
   },
   locality: {
     theory: { title: "Locality", body: "Temporal locality: reuse the same address soon. Spatial locality: nearby addresses share a block. Caches work because programs are not random; this lab measures reuse in the trace you typed." },
-    guide: ["Repeat an address and watch it become a hit.", "Step through consecutive addresses in one block.", "Compare a random-looking trace with a looping one.", "Block size is the spatial grain."],
-    takeaways: ["Temporal reuse is the same line again.", "Spatial reuse is another word in the same block.", "The trace, not a slogan, produces the hit rate."],
+    guide: ["Choose a trace pattern (sequential, repeated, strided, or random).", "Set the working set size, block size, cache size, and stride.", "Run the simulation and watch the memory map and access timeline.", "Compare how patterns change hit rate, miss class, and reuse distance.", "Change one parameter and see whether locality improves."],
+    takeaways: ["Temporal locality reuses the same address soon.", "Spatial locality reuses nearby bytes in the same block.", "Sequential patterns hit after the first fetch of a block.", "A repeated loop hits after the working set is warm.", "Random patterns show little reuse and a low hit rate."],
   },
   policy: {
     theory: { title: "Write and replacement policy", body: "Write-through updates memory immediately. Write-back dirties the line and writes memory on eviction. LRU, FIFO, and random choose which line leaves a full set. Allocate-on-write versus no-allocate is a separate choice." },
-    guide: ["Switch write-through and write-back.", "Fill a set and watch LRU versus FIFO evict.", "Write with no-allocate and see whether the line is installed.", "Dirty write-back traffic appears on eviction."],
-    takeaways: ["Write-back remembers a dirty line until eviction.", "Write-through updates memory immediately.", "Replacement only matters when the set is full."],
+    guide: ["Configure policy A and policy B.", "Load the same trace for both.", "Step them together.", "Read the victim decision and any dirty write-back.", "Compare the measured metrics. There is no declared winner."],
+    takeaways: ["Both policies see the same addresses.", "LRU evicts the least recently used line.", "FIFO evicts the oldest installed line.", "Write-back writes memory when a dirty line leaves.", "Write-through writes memory on the store itself."],
   },
   levels: {
     theory: { title: "Cache hierarchy and AMAT", body: "A miss at L1 tries L2, then RAM. AMAT = hitTime + missRate × missPenalty, nested per level. Numbers here are teaching cycles, not a chip datasheet." },
-    guide: ["Step a miss through L1 then L2 then RAM.", "Read AMAT as you change sizes.", "A hit at L1 never pays RAM.", "Compare with the Memory Hierarchy studio."],
-    takeaways: ["AMAT grows with each extra miss level.", "Closer levels are smaller and quicker in this lab.", "The formula is recursive: a miss penalty is the next AMAT."],
+    guide: ["Set the hierarchy depth.", "Set hit rates and inspect each level’s latency.", "Run a request and follow the path.", "Read the level that satisfied the request.", "Lower the L1 hit rate and watch AMAT rise."],
+    takeaways: ["A hit stops at that level. A miss continues.", "Latencies here are teaching defaults, not a datasheet.", "AMAT nests each miss penalty as the next level’s access time.", "Lower hit rates send more requests deeper.", "Storage is far slower than DRAM on this scale."],
   },
 };
 
 export const CPU_LESSONS: Record<string, TabLesson> = {
   overview: {
     theory: { title: "CPU blocks", body: "PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch-decode-execute loop will use. This studio does not run a program; it lets you inspect each box." },
-    guide: ["Click a block. The inspector names what it holds.", "Follow PC → IR → MAR → MDR on the sketch.", "Open Registers to step PC and the file.", "Decode happens in the FDE studio, not here."],
-    takeaways: ["MAR points at memory. MDR carries the word.", "The IR holds the fetched instruction word.", "Nothing here decodes an opcode yet."],
+    guide: ["Click a block. The inspector names what it holds.", "Follow the arrows between PC, IR, MAR, and MDR.", "Open Registers to change a value the later tabs will see.", "Decode happens in the Fetch-Decode-Execute studio, not here."],
+    takeaways: ["The PC holds the next instruction address.", "MAR points at memory. MDR carries the word.", "The IR holds the instruction word. Nothing here decodes an opcode yet."],
   },
   registers: {
     theory: { title: "PC, IR, and the file", body: "The program counter is the instruction address. The IR holds the word after a fetch. The register file is a small RAM with two read ports and one write port, written on a clock enable." },
-    guide: ["Increment or load the PC.", "Write a register through the file ports.", "Push and pop the teaching stack if shown.", "Watch which bits change on the edge you step."],
-    takeaways: ["Registers update on the clock edge you step.", "PC changes only when you increment, load, or assert PCWrite.", "R0–R7 here are a teaching file, not x86."],
+    guide: ["Select a register in the file.", "Inspect the hex, decimal, and binary value.", "Edit it or load a preset, then Apply.", "Open Datapath and use the same R1 and R2."],
+    takeaways: ["General-purpose registers hold operands and results.", "PC, IR, SP, and FLAGS have dedicated roles.", "A register is a bit pattern. Hex and decimal are views of the same bits."],
   },
   datapath: {
     theory: { title: "Manual datapath", body: "Control signals choose muxes: ALUSrc picks register B or an immediate; RegWrite commits the result. You assert signals by hand so you can see the route before a control unit exists." },
-    guide: ["Turn ALUSrc to pick an immediate.", "Assert RegWrite and step.", "Read the ALU flags.", "Leave two routes off so nothing false-writes."],
-    takeaways: ["ALUSrc picks register B or an immediate.", "Control signals choose the route.", "The ALU is the same engine as the adder studio."],
+    guide: ["Choose a source, such as a register or the PC.", "Choose a destination, such as an ALU input, MAR, or MDR.", "Pick an ALU operation when the path uses the ALU.", "Step the transfer and watch the highlighted route.", "The register file changes only on the write-back step."],
+    takeaways: ["The datapath moves operands and results.", "Multiplexers choose which value travels.", "The ALU computes. Control signals name the active route."],
   },
   bus: {
     theory: { title: "Internal bus", body: "A shared bus accepts one driver. Two enabled drivers make X. Nobody driving is Z. Register-transfer machines often time-multiplex one bus instead of wiring every path." },
-    guide: ["Enable one driver and read the bus.", "Enable two different values — X.", "Disable all — Z.", "This is the same contention rule as tri-state gates."],
-    takeaways: ["One bus driver is valid.", "Two drivers make the bus X.", "Z means the bus is undriven."],
+    guide: ["Choose one source block.", "Choose a destination block.", "Step the transfer and read the bus value.", "Turn on a second driver to see a bus conflict.", "The destination updates only when exactly one source drives."],
+    takeaways: ["One shared bus carries addresses and data.", "Only one block may drive the bus.", "Two drivers make the value X and the transfer is blocked.", "Z means nobody is driving."],
   },
   extend: {
     theory: { title: "Extend and shift", body: "Immediates are narrower than the datapath. Sign-extend copies the sign bit; zero-extend fills 0s. Shifters then place that field for branches or addresses." },
-    guide: ["Sign-extend a negative 8-bit pattern to 16 bits.", "Zero-extend the same pattern and compare.", "Shift the result and read the word.", "This is the hardware behind ADDI and PC-relative offsets."],
-    takeaways: ["Sign-extend copies the MSB.", "Zero-extend fills high 0s.", "Width change is not a new number system; it is padding."],
+    guide: ["Enter an input value and choose the input width.", "Choose the output width.", "Pick sign extend, zero extend, a shift, or a rotate.", "Change the shift amount and read the bit cells.", "Compare the signed and unsigned readings of the same bits."],
+    takeaways: ["Sign extension copies the sign bit into the new high bits.", "Zero extension fills those bits with 0.", "A logical right shift fills with 0. An arithmetic right shift copies the sign.", "A rotate wraps the bits that leave one end."],
   },
   clock: {
     theory: { title: "Clocking the blocks", body: "State (PC, IR, registers) updates on the edge you step. Combinational pieces (ALU, muxes) appear immediately. This lab is a single-edge teaching clock, not a two-phase chip." },
-    guide: ["Step the clock and see which values stick.", "Hold enable low — state does not change.", "Compare with the timing studio's setup/hold story.", "FDE will sequence several of these edges per instruction."],
-    takeaways: ["State changes on the edge.", "Combinational results are not stored until a register captures them.", "One teaching clock is one step here."],
+    guide: ["Choose a rising or falling edge.", "Set Data In and the enable switch.", "Step or run the clock.", "Change Data In between edges and see that Q waits.", "Turn enable off and confirm the edge does not capture."],
+    takeaways: ["The clock tells sequential elements when to sample.", "Q changes only on the selected edge.", "Enable low blocks the capture.", "Data In can change between edges without moving Q."],
   },
 };
 
@@ -402,51 +402,51 @@ export const HAZARD_LESSONS: Record<string, TabLesson> = {
 export const HIERARCHY_LESSONS: Record<string, TabLesson> = {
   pyramid: {
     theory: { title: "The memory pyramid", body: "Registers, L1, L2, RAM, then storage. A closer level is smaller and quicker in this lab, not a universal constant. Latencies are teaching parameters you can edit." },
-    guide: ["Read each level's size and latency.", "Edit RAM latency and see AMAT move.", "Closer is faster here by construction.", "Storage is the last penalty, not a file system."],
-    takeaways: ["A closer level is smaller and quicker in this lab, not a universal constant.", "Latencies are teaching parameters.", "The pyramid is inclusion by request path, not a datasheet."],
+    guide: ["Read each level from registers down to storage.", "Compare the latency and the relative size.", "Edit a latency and watch the diagram change.", "See how a slower RAM changes later access time.", "These numbers are lab settings, not a datasheet."],
+    takeaways: ["A closer level is smaller and quicker in this lab.", "Each level below is larger and slower than the one above.", "The pyramid is a request path, not a strict datasheet.", "Storage is the last level, not a file system."],
   },
   access: {
-    theory: { title: "Walking an access", body: "A request checks registers, then the lab caches, then RAM, then storage. Hits stop the walk. Misses pay the next penalty. AMAT uses the cache statistics and the RAM penalty you set." },
-    guide: ["Step a trace address.", "See which level answers.", "A first visit is a miss until filled.", "AMAT is the weighted time of this walk."],
-    takeaways: ["AMAT uses the Phase 3 cache statistics and the RAM penalty you set.", "A hit never pays the farther levels.", "The walk order is fixed in this lab."],
+    theory: { title: "Walking an access", body: "A request checks registers, then L1, then L2, then RAM, then storage. A hit stops the walk. A miss may copy the block into a closer level. AMAT uses the latencies and miss rates you set." },
+    guide: ["Enter a hexadecimal address.", "Choose read or write.", "Click Trace Access and watch the path.", "See which level hits and which levels are filled.", "Try another address, including one past RAM."],
+    takeaways: ["The CPU checks registers, then L1, L2, RAM, and finally storage.", "A hit stops the search and returns the data.", "A miss checks the next level and may fill closer levels.", "Closer levels are faster, and their latencies are teaching parameters."],
   },
   locality: {
-    theory: { title: "Reuse in the trace", body: "Temporal reuse is the fraction of repeated addresses. Spatial reuse is the fraction of steps that stay inside one line. The numbers come from the trace you typed, not a slogan." },
-    guide: ["Repeat an address and watch temporal reuse rise.", "Step consecutive addresses in one line.", "Random-looking traces lower both.", "Compare with the Cache studio's locality tab."],
-    takeaways: ["Temporal reuse is the fraction of repeated addresses.", "Spatial reuse is the fraction of steps that stay inside one line.", "The trace produces the rates."],
+    theory: { title: "Reuse in the trace", body: "Temporal locality is using the same address again. Spatial locality is using a nearby address, often in the same cache block. The scores come from the pattern you run." },
+    guide: ["Read what temporal and spatial locality mean.", "Choose a pattern, start address, stride, and length.", "Run or step the sequence.", "Watch repeated cells and nearby cells.", "Load the poor and good examples and compare them."],
+    takeaways: ["Programs often reuse the same address.", "Programs often use a nearby address next.", "Caches help because real programs behave this way.", "A teaching hit-rate estimate rises when the pattern stays in a few blocks."],
   },
   cache: {
-    theory: { title: "Caches in the pyramid", body: "L1 and L2 here are the same cache engine as the Cache studio. Mapping, write policy, and AMAT nest: L1 miss penalty is L2's AMAT. Repeated addresses become L1 hits after the first fill." },
-    guide: ["Repeated addresses become L1 hits after the first fill.", "Nearby addresses share a cache line.", "Change L1 size and re-run the trace.", "A miss at both levels pays RAM."],
-    takeaways: ["Nearby addresses share a cache line.", "L1 is checked before L2.", "This cache is the same engine as /studios/cache."],
+    theory: { title: "A small cache", body: "A block number is the address divided by the block size. A direct-mapped cache has one line per index. A set-associative cache searches every way in the set. Miss types come from a same-size fully associative shadow cache." },
+    guide: ["Set the block size, line count, and associativity.", "Enter a sequence of addresses.", "Run the sequence or step one address.", "Watch the tag, the line, and the miss type.", "Compare LRU and FIFO on a full set."],
+    takeaways: ["A hit means the block is already in the cache.", "A miss means that block is absent.", "Replacement chooses which block to evict when the set is full.", "Compulsory, conflict, and capacity are different reasons for a miss.", "Reuse of a block raises the hit rate."],
   },
 };
 
 export const VM_LESSONS: Record<string, TabLesson> = {
   translate: {
     theory: { title: "Virtual address split", body: "A virtual address is a page number (VPN) plus an offset. The offset is copied into the physical address. The VPN indexes the page table (or TLB) to find the frame. This lab is not an operating system." },
-    guide: ["Set offset bits and read the page size 2^n.", "Split a virtual address into VPN and offset.", "A valid PTE supplies the frame.", "The offset never goes through the table."],
-    takeaways: ["Page size in this lab is 2 to the power of the offset bits you choose.", "VPN selects the page. The offset is copied into the physical address.", "Translation is a lookup, not arithmetic on the whole VA."],
+    guide: ["Set the page size (offset bits) and enter a virtual address.", "Click Translate to split the address and walk the TLB and page table.", "Observe the translation and the resulting physical address.", "Try Read and Write, and addresses that miss or fault."],
+    takeaways: ["The offset stays unchanged. The VPN is translated to a frame.", "A TLB hit can bypass the page-table walk.", "Page size is 2 to the power of the offset bits you choose."],
   },
   table: {
-    theory: { title: "Page table", body: "Each VPN has an entry: valid, frame, and permission bits. A fault means the page is not resident. Installing a page updates the table so the next translation can succeed." },
-    guide: ["Read the PTE for the current VPN.", "A invalid entry is a page fault in this lab.", "Install a page and translate again.", "Permissions are the Protection tab."],
-    takeaways: ["A fault means the page is not resident.", "Installing a page updates the table so the next translation can succeed.", "The table is per-process in a real OS; here it is one teaching table."],
+    theory: { title: "Page table", body: "Each VPN has an entry: valid, frame, dirty, referenced, and permission bits. A fault means the page is not resident. Loading a page updates the table so the next lookup can succeed." },
+    guide: ["Set virtual pages, physical frames, and page size.", "Enter a virtual address and click Lookup.", "Select a VPN and inspect its page-table entry.", "A valid bit of 0 is a page fault until you handle it.", "Watch the frame highlight follow the selected mapping."],
+    takeaways: ["The VPN indexes the page-table entry.", "The valid bit controls residency.", "The frame number selects the physical page. The offset is copied."],
   },
   tlb: {
-    theory: { title: "TLB", body: "The TLB caches recent VPN→frame translations. A TLB miss still hits if the page table entry is valid — you pay a table walk, not a page fault. A TLB hit skips the table." },
-    guide: ["Translate twice and watch the second hit the TLB.", "Invalidate a line and miss again.", "A TLB miss still hits if the page table entry is valid.", "A page fault is not a TLB miss."],
-    takeaways: ["A TLB miss still hits if the page table entry is valid.", "The TLB stores translations, not the page data.", "A fault is 'not in memory', not 'not in TLB'."],
+    theory: { title: "TLB", body: "The TLB caches recent VPN-to-frame translations, tagged by ASID. A hit skips the page table. A miss walks the table and may install an entry. A page fault is not a TLB miss." },
+    guide: ["Configure TLB size, associativity, and replacement.", "Enter a virtual address and an ASID, then Translate.", "See whether the lookup hit, and which entry was used.", "Try a thrashing trace and an ASID switch."],
+    takeaways: ["A hit avoids the page-table walk.", "The TLB caches translations, not page data.", "ASID keeps one process from using another's translation."],
   },
   levels: {
-    theory: { title: "Two-level page tables", body: "A large single table wastes space on unused VPNs. Two levels: an outer directory indexes inner tables that exist only where pages are used. The offset is still copied." },
-    guide: ["Split the VPN into outer and inner indexes.", "A missing inner table is still a fault.", "Walk both levels on a TLB miss.", "This is a teaching two-level split, not x86-64's four."],
-    takeaways: ["Two levels save empty inner tables.", "The offset is unchanged.", "A directory miss means the inner table is not there."],
+    theory: { title: "Two-level page tables", body: "The virtual address splits into a page-directory index, a page-table index, and an offset. Second-level tables exist only for directories that are present. This is a teaching two-level split, not a claim about one processor's page-table depth." },
+    guide: ["Set directory, table, and offset bits.", "Enter a virtual address or load the example.", "Read the page-directory index and the page-table index.", "Follow the walk from directory to second-level table to frame.", "The frame plus the offset is the physical address."],
+    takeaways: ["The address splits into directory, table, and offset fields.", "Unused second-level tables need not exist.", "The physical address is the frame shifted by the offset width, plus the offset."],
   },
   protect: {
-    theory: { title: "Protection bits", body: "A write to a read-only page is a protection fault, not a page fault. Execute, read, and write are separate permits. Valid still means resident." },
-    guide: ["Clear write on a resident page and store.", "Read still succeeds if read is set.", "A not-present page is a page fault, not protection.", "Execute is for instruction fetch in a real MMU."],
-    takeaways: ["A write to a read-only page is a protection fault, not a page fault.", "Valid and permission are different bits.", "The handler (not this lab) decides what to do."],
+    theory: { title: "Protection bits", body: "Each page has read, write, execute, and user/supervisor bits. The lab checks presence, then privilege, then the requested access. A missing page is a page fault. A denied permission is a protection fault." },
+    guide: ["Enter a virtual address.", "Choose Read, Write, or Execute.", "Choose User or Kernel.", "Read the permission bits for that page.", "Observe whether the access is granted or faulted, and why."],
+    takeaways: ["R, W, X, and user/supervisor bits control the access.", "An invalid mapping is a page fault.", "A denied permission is a protection fault, not a successful translation."],
   },
 };
 

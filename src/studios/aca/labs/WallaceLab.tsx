@@ -207,7 +207,7 @@ export function WallaceLab() {
               </div>
             </section>
           </div>
-          {tree && view && tab !== "truth" && tab !== "learn" ? (
+          {tree && view && tab !== "truth" ? (
             <ArithmeticFlow
               stages={[
                 { icon: "register", label: "Operands", tip: "Each operand is one row of bits waiting to be reduced." },

@@ -1,11 +1,12 @@
 import { useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { BooleanParseError, type AstNode, evalBoolean, formatAst, parseBoolean } from "../../engines/boolean/ast";
+import { BooleanParseError, type AstNode, evalBoolean, formatAst, literalCount, parseBoolean } from "../../engines/boolean/ast";
+import { maxtermLiteral, mintermLiteral, vennTone } from "../../engines/boolean/regions";
 import { BOOLEAN_LAWS } from "../../engines/boolean/laws";
 import { algebraicSimplify } from "../../engines/boolean/simplify";
 import { quineMcCluskey } from "../../engines/kmap/quine";
-import { assignments, canonicalFromExpression, generateTruthTable, minimizeOutputs } from "../../engines/truth/table";
+import { assignments, generateTruthTable, minimizeOutputs } from "../../engines/truth/table";
 import { Card, ExplainBar } from "../../design-system/ui";
 import { BitMark, BitSwitch } from "../shared/widgets";
 import { StudioFrame } from "../../layout/StudioFrame";
@@ -119,68 +120,89 @@ function PlayLab() {
   const liveAssign = Object.fromEntries(variables.map((name) => [name, assign[name] ?? 0])) as Record<string, 0 | 1>;
   const output = expr.parsed.ok ? evalBoolean(expr.parsed.ast, liveAssign) : null;
   const table = expr.parsed.ok ? generateTruthTable(expr.parsed.ast) : null;
-  const same = expr.parsed.ok && other.parsed.ok ? sameTables(expr.text, other.text) : null;
+  const [checked, setChecked] = useState<string>("");
   const active = variables.map((name) => assign[name] ?? 0).join("");
+  const pick = (bits: Array<0 | 1>) => setAssign((prev) => applyBits(prev, variables, bits));
+  function checkEquivalence() {
+    if (!expr.parsed.ok || !other.parsed.ok) { setChecked("Both expressions need to parse."); return; }
+    const left = expr.parsed;
+    const right = other.parsed;
+    const names = [...new Set([...left.variables, ...right.variables])].sort();
+    const differ = assignments(names).find((row) => evalBoolean(left.ast, row) !== evalBoolean(right.ast, row));
+    if (!differ) { setChecked(`Equivalent for all ${1 << names.length} assignments.`); return; }
+    const bits = names.map((name) => differ[name] ?? 0);
+    setAssign((prev) => applyBits(prev, names, bits));
+    setChecked(`Not equivalent. Counterexample ${names.map((name, index) => `${name}=${bits[index] ?? 0}`).join(", ")}. Expr 1 = ${evalBoolean(left.ast, differ)}. Expr 2 = ${evalBoolean(right.ast, differ)}.`);
+  }
   return (
-    <div className="bool-lab">
-      <div className="bool-span">
-        <Card title="Expression builder">
-          <div className="bool-keys" role="group" aria-label="Insert Boolean tokens">
-            {BUILDER_KEYS.map((key) => (
-              <button key={key.label} type="button" onClick={() => expr.setText((current) => `${current}${key.insert}`.replace(/^\s+/, ""))}>{key.label}</button>
-            ))}
-            <button type="button" onClick={() => expr.setText((current) => current.slice(0, -1))}>⌫</button>
-            <button type="button" onClick={() => expr.setText("")}>Clear</button>
-          </div>
-          <input className="text-input" aria-label="Boolean expression" value={expr.text} onChange={(e) => expr.setText(e.target.value)} />
-          <div className="bool-presets">
-            {PRESETS.map((preset) => (
-              <button key={preset} type="button" className={preset === expr.text ? "on" : ""} onClick={() => expr.setText(preset)}>{preset}</button>
-            ))}
-          </div>
-          {expr.parsed.ok ? <p className="expr">{formatAst(expr.parsed.ast)}</p> : <p>{expr.parsed.message}</p>}
-          <div className="row">
-            {variables.map((name) => (
-              <BitSwitch key={name} label={name} on={(assign[name] ?? 0) === 1} onChange={(next) => setAssign((prev) => ({ ...prev, [name]: next ? 1 : 0 }))} />
-            ))}
-            <strong className={output === 1 ? "bool-y on" : "bool-y"}>Y = {output === null ? "—" : <BitMark value={output} />}</strong>
-          </div>
+    <div className="bool-play">
+      <Card title="Expression builder">
+        <div className="bool-keys" role="group" aria-label="Insert Boolean tokens">
+          {BUILDER_KEYS.map((key) => (
+            <button key={key.label} type="button" onClick={() => expr.setText((current) => `${current}${key.insert}`.replace(/^\s+/, ""))}>{key.label}</button>
+          ))}
+          <button type="button" onClick={() => expr.setText((current) => current.slice(0, -1))}>⌫</button>
+          <button type="button" onClick={() => expr.setText("")}>Clear</button>
+        </div>
+        <input className="text-input" aria-label="Boolean expression" value={expr.text} onChange={(e) => expr.setText(e.target.value)} />
+        <p>{expr.parsed.ok ? "Valid expression" : expr.parsed.message}</p>
+        {expr.parsed.ok ? <p className="expr">{formatAst(expr.parsed.ast)}</p> : null}
+        <div className="bool-presets">
+          {PRESETS.map((preset) => (
+            <button key={preset} type="button" className={preset === expr.text ? "on" : ""} onClick={() => expr.setText(preset)}>{preset}</button>
+          ))}
+        </div>
+      </Card>
+      <Card title="Variable inputs">
+        {variables.map((name) => (
+          <BitSwitch key={name} label={name} on={(assign[name] ?? 0) === 1} onChange={(next) => setAssign((prev) => ({ ...prev, [name]: next ? 1 : 0 }))} />
+        ))}
+        <strong className={output === 1 ? "bool-y on" : "bool-y"}>Output Y = {output === null ? "—" : <BitMark value={output} />}</strong>
+      </Card>
+      <div className="bool-figures">
+        <Card title="Venn diagram">
+          {expr.parsed.ok ? <VennDiagram ast={expr.parsed.ast} names={variables} assign={liveAssign} onPick={pick} /> : <p className="muted">Fix the expression to shade the diagram.</p>}
+        </Card>
+        <Card title="Gate tree">
+          {expr.parsed.ok ? <GateTree node={expr.parsed.ast} assign={liveAssign} /> : <p className="muted">Fix the expression to draw the gates.</p>}
+        </Card>
+        <Card title="Karnaugh map">
+          {expr.parsed.ok ? <Kmap ast={expr.parsed.ast} names={variables} assign={liveAssign} onPick={pick} /> : <p className="muted">Fix the expression to fill the map.</p>}
+        </Card>
+        <Card title={variables.length === 3 ? "Boolean cube" : "Minterm chart"}>
+          {expr.parsed.ok && variables.length === 3 ? <BooleanCube ast={expr.parsed.ast} names={variables} assign={liveAssign} onPick={pick} /> : null}
+          {expr.parsed.ok && variables.length !== 3 && table ? <MintermChart table={table} active={active} /> : null}
+          {!expr.parsed.ok ? <p className="muted">Fix the expression to draw this figure.</p> : null}
         </Card>
       </div>
-      <Card title="Venn diagram">
-        {expr.parsed.ok ? <VennDiagram ast={expr.parsed.ast} names={variables} assign={liveAssign} /> : <p className="muted">Fix the expression to shade the diagram.</p>}
-      </Card>
-      <Card title="Gate tree">
-        {expr.parsed.ok ? <GateTree node={expr.parsed.ast} assign={liveAssign} /> : <p className="muted">Fix the expression to draw the gates.</p>}
-        <p className="tiny">Blue nodes are 1. White nodes are 0. The bottom node is Y.</p>
-      </Card>
-      <Card title="Karnaugh map">
-        {expr.parsed.ok ? <Kmap ast={expr.parsed.ast} names={variables} assign={liveAssign} /> : <p className="muted">Fix the expression to fill the map.</p>}
-      </Card>
-      <Card title={variables.length === 3 ? "Boolean cube" : "Minterm chart"}>
-        {expr.parsed.ok && variables.length === 3 ? <BooleanCube ast={expr.parsed.ast} names={variables} assign={liveAssign} /> : null}
-        {expr.parsed.ok && variables.length !== 3 && table ? <MintermChart table={table} active={active} /> : null}
-        {!expr.parsed.ok ? <p className="muted">Fix the expression to draw this figure.</p> : null}
-      </Card>
-      <Card title="Truth table">
-        {table ? <Table table={table} active={active} /> : <p className="muted">The table appears when the expression parses.</p>}
-      </Card>
-      <Card title="Equivalence checker">
-        <input className="text-input" aria-label="Second expression" value={other.text} onChange={(e) => other.setText(e.target.value)} />
-        <p>{same === null ? "Both expressions need to parse." : same ? "Equivalent. They produce the same truth table." : "Not equivalent. At least one row differs."}</p>
-      </Card>
+      <div className="bool-bottom">
+        <Card title="Truth table">
+          {table ? <Table table={table} active={active} onPick={pick} /> : <p className="muted">The table appears when the expression parses.</p>}
+        </Card>
+        <Card title="Equivalence checker">
+          <input className="text-input" aria-label="Second expression" value={other.text} onChange={(e) => other.setText(e.target.value)} />
+          <button type="button" className="btn btn-primary" onClick={checkEquivalence}>Check equivalence</button>
+          <p role="status">{checked || "Both expressions will be evaluated for every assignment."}</p>
+        </Card>
+      </div>
     </div>
   );
 }
 
-function Table({ table, active }: { table: ReturnType<typeof generateTruthTable>; active?: string }) {
+function applyBits(prev: Record<string, 0 | 1>, names: string[], bits: Array<0 | 1>): Record<string, 0 | 1> {
+  const next = { ...prev };
+  names.forEach((name, index) => { next[name] = bits[index] ?? 0; });
+  return next;
+}
+
+function Table({ table, active, onPick }: { table: ReturnType<typeof generateTruthTable>; active?: string; onPick?: (values: Array<0 | 1>) => void }) {
   return (
     <div className="table-wrap">
       <table className="data">
         <thead><tr>{table.variables.map((v) => <th key={v}>{v}</th>)}<th>F</th></tr></thead>
         <tbody>
           {table.rows.map((row) => (
-            <tr key={row.index} className={active === row.values.join("") ? "active" : ""}>
+            <tr key={row.index} className={active === row.values.join("") ? "active" : ""} onClick={() => onPick?.(row.values)}>
               {row.values.map((value, index) => <td key={index}>{value}</td>)}
               <td className={row.output ? "one" : ""}>{row.output}</td>
             </tr>
@@ -202,10 +224,20 @@ function isLive(names: string[], bits: Array<0 | 1>, assign: Record<string, 0 | 
 }
 
 function shade(value: 0 | 1): string {
-  return value === 1 ? "#2f6fed" : "#e7eef8";
+  return value === 1 ? "#1d4ed8" : "#f8fafc";
 }
 
-function VennDiagram({ ast, names, assign }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1> }) {
+function fillFor(value: 0 | 1, kind: "out" | "in"): string {
+  if (kind === "out") return value === 1 ? "#bfdbfe" : "#e8eef6";
+  return value === 1 ? "#1d4ed8" : "#ffffff";
+}
+
+function inkFor(value: 0 | 1, kind: "out" | "in"): string {
+  if (value === 0) return "#0f172a";
+  return kind === "out" ? "#1e3a8a" : "#ffffff";
+}
+
+function VennDiagram({ ast, names, assign, onPick }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1>; onPick?: (bits: Array<0 | 1>) => void }) {
   if (names.length > 3) return <p className="muted">Venn diagrams here cover one, two, and three variables. Use the K-map for {names.join(", ")}.</p>;
   if (names.length === 0) {
     const value = evalBoolean(ast, {});
@@ -214,8 +246,9 @@ function VennDiagram({ ast, names, assign }: { ast: AstNode; names: string[]; as
   return (
     <>
       {names.length === 1 ? <Venn1 ast={ast} name={names[0] ?? "A"} assign={assign} /> : null}
-      {names.length === 2 ? <Venn2 ast={ast} names={names} assign={assign} /> : null}
-      {names.length === 3 ? <Venn3 ast={ast} names={names} assign={assign} /> : null}
+      {names.length === 2 ? <Venn2 ast={ast} names={names} assign={assign} onPick={onPick} /> : null}
+      {names.length === 3 ? <Venn3 ast={ast} names={names} assign={assign} onPick={onPick} /> : null}
+      <p className="bool-swatch"><i className="a" /> A <i className="b" /> B <i className="c" /> C <i className="ab" /> A∩B <i className="ac" /> A∩C <i className="bc" /> B∩C <i className="abc" /> A∩B∩C. Saturated fill means F = 1.</p>
       <RegionLegend ast={ast} names={names} assign={assign} />
     </>
   );
@@ -226,16 +259,17 @@ function Venn1({ ast, name, assign }: { ast: AstNode; name: string; assign: Reco
   const outside = regionValue(ast, [name], [0]);
   return (
     <svg viewBox="0 0 280 180" className="bool-figure" role="img" aria-label={`One-variable Venn diagram for ${name}`}>
-      <rect width="280" height="180" fill={shade(outside)} />
-      <circle cx="150" cy="96" r="62" fill={shade(inside)} stroke="#2f6fed" strokeWidth="2" />
-      <text x="150" y="92" textAnchor="middle" fontSize="16" fontWeight="700" fill={inside ? "#fff" : "#1e293b"}>{name}={inside}</text>
-      <text x="24" y="28" fontSize="13" fontWeight="700" fill={outside ? "#fff" : "#334155"}>{name}′={outside}</text>
+      <rect width="280" height="180" rx="12" fill={fillFor(outside, "out")} />
+      <circle cx="150" cy="96" r="62" fill={fillFor(inside, "in")} stroke="#ffffff" strokeWidth="5" />
+      <circle cx="150" cy="96" r="62" fill="none" stroke="#1d4ed8" strokeWidth="2.5" />
+      <text x="150" y="92" textAnchor="middle" fontSize="16" fontWeight="700" fill={inkFor(inside, "in")}>{name}={inside}</text>
+      <text x="24" y="28" fontSize="13" fontWeight="700" fill={inkFor(outside, "out")}>{name}′={outside}</text>
       {assign[name] === 1 ? <circle cx="150" cy="118" r="6" fill="#f59e0b" /> : <circle cx="36" cy="42" r="6" fill="#f59e0b" />}
     </svg>
   );
 }
 
-function Venn2({ ast, names, assign }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1> }) {
+function Venn2({ ast, names, assign, onPick }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1>; onPick?: (bits: Array<0 | 1>) => void }) {
   const id = useId().replace(/:/g, "");
   const a = names[0] ?? "A";
   const b = names[1] ?? "B";
@@ -251,24 +285,29 @@ function Venn2({ ast, names, assign }: { ast: AstNode; names: string[]; assign: 
         <mask id={`${id}-notb`}><rect width="280" height="190" fill="white" /><circle cx="176" cy="100" r="64" fill="black" /></mask>
         <mask id={`${id}-nota`}><rect width="280" height="190" fill="white" /><circle cx="112" cy="100" r="64" fill="black" /></mask>
       </defs>
-      <rect width="280" height="190" fill={shade(none)} />
-      <g clipPath={`url(#${id}-a)`} mask={`url(#${id}-notb)`}><rect width="280" height="190" fill={shade(onlyA)} /></g>
-      <g clipPath={`url(#${id}-b)`} mask={`url(#${id}-nota)`}><rect width="280" height="190" fill={shade(onlyB)} /></g>
-      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-b)`}><rect width="280" height="190" fill={shade(both)} /></g></g>
-      <circle cx="112" cy="100" r="64" fill="none" stroke="#2f6fed" strokeWidth="2" />
-      <circle cx="176" cy="100" r="64" fill="none" stroke="#e11d48" strokeWidth="2" />
+      <rect width="280" height="190" rx="12" fill={vennTone("00", none).fill} />
+      <g clipPath={`url(#${id}-a)`} mask={`url(#${id}-notb)`}><rect width="280" height="190" fill={vennTone("10", onlyA).fill} /></g>
+      <g clipPath={`url(#${id}-b)`} mask={`url(#${id}-nota)`}><rect width="280" height="190" fill={vennTone("01", onlyB).fill} /></g>
+      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-b)`}><rect width="280" height="190" fill={vennTone("11", both).fill} /></g></g>
+      <circle cx="112" cy="100" r="64" fill="none" stroke="#ffffff" strokeWidth="5" />
+      <circle cx="176" cy="100" r="64" fill="none" stroke="#ffffff" strokeWidth="5" />
+      <circle cx="112" cy="100" r="64" fill="none" stroke="#1d4ed8" strokeWidth="2.5" />
+      <circle cx="176" cy="100" r="64" fill="none" stroke="#e11d48" strokeWidth="2.5" />
       <SetName x={78} y={36} color="#2f6fed" name={a} />
       <SetName x={208} y={36} color="#e11d48" name={b} />
-      <text x="78" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={onlyA ? "#fff" : "#1e293b"}>{onlyA}</text>
-      <text x="208" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={onlyB ? "#fff" : "#1e293b"}>{onlyB}</text>
-      <text x="144" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={both ? "#fff" : "#1e293b"}>{both}</text>
+      <text x="78" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={vennTone("10", onlyA).ink}>{onlyA}</text>
+      <text x="208" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={vennTone("01", onlyB).ink}>{onlyB}</text>
+      <text x="144" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={vennTone("11", both).ink}>{both}</text>
+      <RegionHit x={78} y={118} bits={[1, 0]} label={`${a} only, output ${onlyA}`} onPick={onPick} />
+      <RegionHit x={208} y={118} bits={[0, 1]} label={`${b} only, output ${onlyB}`} onPick={onPick} />
+      <RegionHit x={144} y={118} bits={[1, 1]} label={`${a} and ${b}, output ${both}`} onPick={onPick} />
       <OutsideNote value={none} />
       <LiveDot names={names} assign={assign} spots={[[1, 0, 78, 118], [0, 1, 208, 118], [1, 1, 144, 118], [0, 0, 28, 36]]} />
     </svg>
   );
 }
 
-function Venn3({ ast, names, assign }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1> }) {
+function Venn3({ ast, names, assign, onPick }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1>; onPick?: (bits: Array<0 | 1>) => void }) {
   const id = useId().replace(/:/g, "");
   const [a, b, c] = [names[0] ?? "A", names[1] ?? "B", names[2] ?? "C"];
   const onlyA = regionValue(ast, names, [1, 0, 0]);
@@ -292,27 +331,37 @@ function Venn3({ ast, names, assign }: { ast: AstNode; names: string[]; assign: 
         <mask id={`${id}-notb`}><rect width="280" height="230" fill="white" /><circle cx="176" cy="96" r="62" fill="black" /></mask>
         <mask id={`${id}-nota`}><rect width="280" height="230" fill="white" /><circle cx="112" cy="96" r="62" fill="black" /></mask>
       </defs>
-      <rect width="280" height="230" rx="12" fill={shade(none)} />
-      <g clipPath={`url(#${id}-a)`} mask={`url(#${id}-notbc)`}><rect width="280" height="230" fill={shade(onlyA)} /></g>
-      <g clipPath={`url(#${id}-b)`} mask={`url(#${id}-notac)`}><rect width="280" height="230" fill={shade(onlyB)} /></g>
-      <g clipPath={`url(#${id}-c)`} mask={`url(#${id}-notab)`}><rect width="280" height="230" fill={shade(onlyC)} /></g>
-      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-b)`} mask={`url(#${id}-notc)`}><rect width="280" height="230" fill={shade(ab)} /></g></g>
-      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-c)`} mask={`url(#${id}-notb)`}><rect width="280" height="230" fill={shade(ac)} /></g></g>
-      <g clipPath={`url(#${id}-b)`}><g clipPath={`url(#${id}-c)`} mask={`url(#${id}-nota)`}><rect width="280" height="230" fill={shade(bc)} /></g></g>
-      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-b)`}><g clipPath={`url(#${id}-c)`}><rect width="280" height="230" fill={shade(abc)} /></g></g></g>
-      <circle cx="112" cy="96" r="62" fill="none" stroke="#2f6fed" strokeWidth="2" />
-      <circle cx="176" cy="96" r="62" fill="none" stroke="#e11d48" strokeWidth="2" />
-      <circle cx="144" cy="148" r="62" fill="none" stroke="#12b76a" strokeWidth="2" />
+      <rect width="280" height="230" rx="12" fill={vennTone("000", none).fill} />
+      <g clipPath={`url(#${id}-a)`} mask={`url(#${id}-notbc)`}><rect width="280" height="230" fill={vennTone("100", onlyA).fill} /></g>
+      <g clipPath={`url(#${id}-b)`} mask={`url(#${id}-notac)`}><rect width="280" height="230" fill={vennTone("010", onlyB).fill} /></g>
+      <g clipPath={`url(#${id}-c)`} mask={`url(#${id}-notab)`}><rect width="280" height="230" fill={vennTone("001", onlyC).fill} /></g>
+      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-b)`} mask={`url(#${id}-notc)`}><rect width="280" height="230" fill={vennTone("110", ab).fill} /></g></g>
+      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-c)`} mask={`url(#${id}-notb)`}><rect width="280" height="230" fill={vennTone("101", ac).fill} /></g></g>
+      <g clipPath={`url(#${id}-b)`}><g clipPath={`url(#${id}-c)`} mask={`url(#${id}-nota)`}><rect width="280" height="230" fill={vennTone("011", bc).fill} /></g></g>
+      <g clipPath={`url(#${id}-a)`}><g clipPath={`url(#${id}-b)`}><g clipPath={`url(#${id}-c)`}><rect width="280" height="230" fill={vennTone("111", abc).fill} /></g></g></g>
+      <circle cx="112" cy="96" r="62" fill="none" stroke="#ffffff" strokeWidth="6" />
+      <circle cx="176" cy="96" r="62" fill="none" stroke="#ffffff" strokeWidth="6" />
+      <circle cx="144" cy="148" r="62" fill="none" stroke="#ffffff" strokeWidth="6" />
+      <circle cx="112" cy="96" r="62" fill="none" stroke="#1d4ed8" strokeWidth="2.5" />
+      <circle cx="176" cy="96" r="62" fill="none" stroke="#e11d48" strokeWidth="2.5" />
+      <circle cx="144" cy="148" r="62" fill="none" stroke="#059669" strokeWidth="2.5" />
       <SetName x={46} y={52} color="#2f6fed" name={a} />
       <SetName x={210} y={28} color="#e11d48" name={b} />
       <SetName x={144} y={214} color="#067647" name={c} />
-      <RegionText x={72} y={86} value={onlyA} />
-      <RegionText x={214} y={86} value={onlyB} />
-      <RegionText x={144} y={186} value={onlyC} />
-      <RegionText x={144} y={68} value={ab} />
-      <RegionText x={108} y={142} value={ac} />
-      <RegionText x={180} y={142} value={bc} />
-      <RegionText x={144} y={112} value={abc} />
+      <RegionText x={72} y={86} value={onlyA} ink={vennTone("100", onlyA).ink} />
+      <RegionText x={214} y={86} value={onlyB} ink={vennTone("010", onlyB).ink} />
+      <RegionText x={144} y={186} value={onlyC} ink={vennTone("001", onlyC).ink} />
+      <RegionText x={144} y={68} value={ab} ink={vennTone("110", ab).ink} />
+      <RegionText x={108} y={142} value={ac} ink={vennTone("101", ac).ink} />
+      <RegionText x={180} y={142} value={bc} ink={vennTone("011", bc).ink} />
+      <RegionText x={144} y={112} value={abc} ink={vennTone("111", abc).ink} />
+      <RegionHit x={72} y={100} bits={[1, 0, 0]} label={`Region ${a} only, assignment 100, minterm 4, output ${onlyA}`} onPick={onPick} />
+      <RegionHit x={214} y={100} bits={[0, 1, 0]} label={`Region ${b} only, assignment 010, minterm 2, output ${onlyB}`} onPick={onPick} />
+      <RegionHit x={144} y={186} bits={[0, 0, 1]} label={`Region ${c} only, assignment 001, minterm 1, output ${onlyC}`} onPick={onPick} />
+      <RegionHit x={144} y={78} bits={[1, 1, 0]} label={`Region ${a} and ${b}, assignment 110, minterm 6, output ${ab}`} onPick={onPick} />
+      <RegionHit x={108} y={150} bits={[1, 0, 1]} label={`Region ${a} and ${c} only, assignment 101, minterm 5, output ${ac}`} onPick={onPick} />
+      <RegionHit x={180} y={150} bits={[0, 1, 1]} label={`Region ${b} and ${c}, assignment 011, minterm 3, output ${bc}`} onPick={onPick} />
+      <RegionHit x={144} y={120} bits={[1, 1, 1]} label={`Region ${a}, ${b}, and ${c}, assignment 111, minterm 7, output ${abc}`} onPick={onPick} />
       <OutsideNote value={none} />
       <LiveDot names={names} assign={assign} spots={[
         [1, 0, 0, 72, 100], [0, 1, 0, 214, 100], [0, 0, 1, 144, 198],
@@ -342,8 +391,13 @@ function OutsideNote({ value }: { value: 0 | 1 }) {
   );
 }
 
-function RegionText({ x, y, value }: { x: number; y: number; value: 0 | 1 }) {
-  return <text x={x} y={y} textAnchor="middle" fontSize="12" fontWeight="800" fill={value ? "#fff" : "#1e293b"}>{value}</text>;
+function RegionText({ x, y, value, ink }: { x: number; y: number; value: 0 | 1; ink: string }) {
+  return <text x={x} y={y} textAnchor="middle" fontSize="13" fontWeight="800" fill={ink}>{value}</text>;
+}
+
+function RegionHit({ x, y, bits, label, onPick }: { x: number; y: number; bits: Array<0 | 1>; label: string; onPick?: (bits: Array<0 | 1>) => void }) {
+  if (!onPick) return null;
+  return <circle cx={x} cy={y} r="16" fill="transparent" style={{ cursor: "pointer" }} onClick={() => onPick(bits)} role="button" aria-label={label}><title>{label}</title></circle>;
 }
 
 function LiveDot({ names, assign, spots }: { names: string[]; assign: Record<string, 0 | 1>; spots: number[][] }) {
@@ -385,7 +439,7 @@ function GateTree({ node, assign }: { node: AstNode; assign: Record<string, 0 | 
   );
 }
 
-function Kmap({ ast, names, assign }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1> }) {
+function Kmap({ ast, names, assign, onPick }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1>; onPick?: (bits: Array<0 | 1>) => void }) {
   if (names.length === 0 || names.length > 4) return <p className="muted">This map covers one to four variables.</p>;
   const rows = names.length === 4 ? ["00", "01", "11", "10"] : names.length === 1 ? [""] : ["0", "1"];
   const cols = names.length >= 3 ? ["00", "01", "11", "10"] : ["0", "1"];
@@ -405,7 +459,7 @@ function Kmap({ ast, names, assign }: { ast: AstNode; names: string[]; assign: R
               const bits = code.split("").map((ch) => (ch === "1" ? 1 : 0)) as Array<0 | 1>;
               const value = regionValue(ast, names, bits);
               const live = isLive(names, bits, assign);
-              return <td key={code} className={`${value ? "on" : "off"} ${live ? "live" : ""}`}>{value}</td>;
+              return <td key={code} className={`${value ? "on" : "off"} ${live ? "live" : ""}`} onClick={() => onPick?.(bits)}>{value}</td>;
             })}
           </tr>
         ))}
@@ -425,7 +479,7 @@ const CUBE: Array<{ bits: [0 | 1, 0 | 1, 0 | 1]; x: number; y: number }> = [
   { bits: [1, 1, 1], x: 196, y: 114 },
 ];
 
-function BooleanCube({ ast, names, assign }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1> }) {
+function BooleanCube({ ast, names, assign, onPick }: { ast: AstNode; names: string[]; assign: Record<string, 0 | 1>; onPick?: (bits: Array<0 | 1>) => void }) {
   const edges = CUBE.flatMap((from, index) => CUBE.slice(index + 1).filter((to) => from.bits.filter((bit, bitIndex) => bit !== to.bits[bitIndex]).length === 1).map((to) => [from, to] as const));
   return (
     <svg viewBox="0 0 280 210" className="bool-figure" role="img" aria-label="Three-variable Boolean cube">
@@ -436,7 +490,7 @@ function BooleanCube({ ast, names, assign }: { ast: AstNode; names: string[]; as
         const label = vertex.bits.join("");
         return (
           <g key={label}>
-            <circle cx={vertex.x} cy={vertex.y} r="16" fill={shade(value)} stroke={live ? "#f59e0b" : "#94a3b8"} strokeWidth={live ? 3 : 1.5} />
+            <circle cx={vertex.x} cy={vertex.y} r="16" fill={shade(value)} stroke={live ? "#f59e0b" : "#94a3b8"} strokeWidth={live ? 3 : 1.5} style={{ cursor: "pointer" }} onClick={() => onPick?.([...vertex.bits])} />
             <text x={vertex.x} y={vertex.y + 4} textAnchor="middle" fontSize="11" fontWeight="800" fill={value ? "#fff" : "#1e293b"}>{value}</text>
           </g>
         );
@@ -458,36 +512,76 @@ function MintermChart({ table, active }: { table: ReturnType<typeof generateTrut
   );
 }
 
-function sameTables(left: string, right: string): boolean {
-  try {
-    const a = parseBoolean(left);
-    const b = parseBoolean(right);
-    const names = [...new Set([...a.variables, ...b.variables])].sort();
-    return assignments(names).every((row) => evalBoolean(a.ast, row) === evalBoolean(b.ast, row));
-  } catch { return false; }
-}
-
 function LawsLab() {
   const [bits, setBits] = useState<Record<string, 0 | 1>>({ A: 1, B: 0, C: 1 });
+  const [selected, setSelected] = useState("demorgan");
+  const law = BOOLEAN_LAWS.find((item) => item.id === selected) ?? BOOLEAN_LAWS[0]!;
+  const rows = assignments(law.variables);
+  const checks = rows.map((row) => {
+    const left = safeEval(law.pair[0], row);
+    const right = safeEval(law.pair[1], row);
+    return { row, left, right, ok: left === right };
+  });
+  const held = checks.filter((item) => item.ok).length;
+  const liveLeft = safeEval(law.pair[0], bits);
+  const liveRight = safeEval(law.pair[1], bits);
   return (
-    <div className="grid">
-      <Card title="Toggle the variables">
-        <div className="row">
-          {["A", "B", "C"].map((name) => <BitSwitch key={name} label={name} on={bits[name] === 1} onChange={(next) => setBits((p) => ({ ...p, [name]: next ? 1 : 0 }))} />)}
+    <div className="bool-lab">
+      <div className="bool-span">
+        <Card title="Live assignment">
+          <div className="row">
+            {["A", "B", "C"].map((name) => <BitSwitch key={name} label={name} on={bits[name] === 1} onChange={(next) => setBits((prev) => ({ ...prev, [name]: next ? 1 : 0 }))} />)}
+          </div>
+          <p className="tiny">The table uses this assignment. The chart below checks the selected law on every input.</p>
+        </Card>
+      </div>
+      <Card title="Identities">
+        <div className="table-wrap">
+          <table className="data">
+            <thead><tr><th>Law</th><th>Left</th><th>Right</th><th>Live</th></tr></thead>
+            <tbody>
+              {BOOLEAN_LAWS.map((item) => {
+                const left = safeEval(item.pair[0], bits);
+                const right = safeEval(item.pair[1], bits);
+                return (
+                  <tr key={item.id} className={item.id === law.id ? "active" : ""} onClick={() => setSelected(item.id)}>
+                    <td>{item.name}</td>
+                    <td className="mono">{item.pair[0]} = {left}</td>
+                    <td className="mono">{item.pair[1]} = {right}</td>
+                    <td>{left === right ? "Match" : "Differ"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </Card>
-      <div className="grid cards-2">
-        {BOOLEAN_LAWS.map((law) => {
-          const left = safeEval(law.pair[0], bits);
-          const right = safeEval(law.pair[1], bits);
-          return (
-            <Card key={law.id} title={law.name}>
-              <p className="mono">{law.pair[0]} = {law.pair[1]}</p>
-              <p>{left} and {right} {left === right ? "match" : "differ"}</p>
-              <p className="tiny">{law.note}</p>
-            </Card>
-          );
-        })}
+      <div className="bool-stack">
+        <Card title={law.name}>
+          <p className="expr">{law.pair[0]} = {law.pair[1]}</p>
+          <p>Live values {liveLeft} and {liveRight}. {liveLeft === liveRight ? "They match on this assignment." : "They differ on this assignment."}</p>
+          <p className="tiny">{law.note}</p>
+          <div className="bool-meter" aria-label="How many assignments keep both sides equal">
+            <span className="one" style={{ width: `${(held / Math.max(1, checks.length)) * 100}%` }} />
+          </div>
+          <p className="tiny">{held} of {checks.length} assignments keep both sides equal.</p>
+        </Card>
+        <Card title="Every assignment">
+          <div className="table-wrap">
+            <table className="data">
+              <thead><tr>{law.variables.map((name) => <th key={name}>{name}</th>)}<th>Left</th><th>Right</th></tr></thead>
+              <tbody>
+                {checks.map((item) => (
+                  <tr key={law.variables.map((name) => item.row[name]).join("")} className={item.ok ? "" : "active"}>
+                    {law.variables.map((name) => <td key={name}>{item.row[name]}</td>)}
+                    <td>{item.left}</td>
+                    <td>{item.right}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       </div>
     </div>
   );
@@ -501,19 +595,74 @@ function safeEval(expression: string, bits: Record<string, 0 | 1>): string {
   } catch { return "—"; }
 }
 
+const SIMPLIFY_PRESETS = ["A + A B", "A + 0", "(A · B)'", "A · A", "A · (B + C)", "A + A'"];
+
 function SimplifyLab() {
   const expr = useExpression("A + A B");
   const { earn } = usePrefs();
   const steps = expr.parsed.ok ? algebraicSimplify(expr.parsed.ast) : null;
   const qm = expr.parsed.ok ? quineFromAst(expr.parsed.ast) : null;
+  const before = expr.parsed.ok ? literalCount(expr.parsed.ast) : 0;
+  const after = steps ? literalCount(steps.ast) : 0;
+  const peak = Math.max(1, before, after);
+  const original = expr.parsed.ok ? generateTruthTable(expr.parsed.ast) : null;
+  const reduced = steps ? generateTruthTable(steps.ast, original?.variables) : null;
   return (
-    <Card title="Step-by-step simplification">
-      <input className="text-input" aria-label="Expression to simplify" value={expr.text} onChange={(e) => expr.setText(e.target.value)} />
-      {steps?.steps.map((step, index) => <p key={index}><strong>{index + 1}. {step.law}</strong> {step.before} → {step.after}</p>)}
-      {steps && steps.steps.length === 0 ? <p className="muted">No local algebraic rewrite fired. The prime-implicant cover is still computed.</p> : null}
-      {qm ? <p>Quine–McCluskey cover: <span className="expr" style={{ fontSize: 16 }}>{qm}</span></p> : null}
-      <button className="btn-ghost" onClick={() => earn("absorb")}>Mark the absorption challenge</button>
-    </Card>
+    <div className="bool-lab">
+      <Card title="Expression">
+        <input className="text-input" aria-label="Expression to simplify" value={expr.text} onChange={(e) => expr.setText(e.target.value)} />
+        <div className="bool-presets">
+          {SIMPLIFY_PRESETS.map((preset) => <button key={preset} type="button" className={preset === expr.text ? "on" : ""} onClick={() => expr.setText(preset)}>{preset}</button>)}
+        </div>
+        {expr.parsed.ok ? <p className="expr">{formatAst(expr.parsed.ast)}</p> : <p>{expr.parsed.message}</p>}
+        <button className="btn-ghost" type="button" onClick={() => earn("absorb")}>Mark the absorption challenge</button>
+      </Card>
+      <Card title="Literal cost">
+        <div className="bool-bars tall" aria-label="Literal count before and after">
+          <div className="on"><i style={{ height: `${18 + (before / peak) * 70}px` }} /><span>Before {before}</span></div>
+          <div><i style={{ height: `${18 + (after / peak) * 70}px`, background: "#059669" }} /><span>After {after}</span></div>
+        </div>
+        <p className="tiny">Teaching-scale logic cost.{before > 0 ? ` ${Math.max(0, Math.round((1 - after / before) * 100))}% fewer literals.` : ""}</p>
+        {steps ? <p className="expr">Final {formatAst(steps.ast)}</p> : null}
+        {qm ? <p>Quine–McCluskey <span className="expr">{qm}</span></p> : null}
+      </Card>
+      <Card title="Rewrite steps">
+        {steps && steps.steps.length > 0 ? (
+          <div className="table-wrap">
+            <table className="data">
+              <thead><tr><th>#</th><th>Law</th><th>Before</th><th>After</th></tr></thead>
+              <tbody>
+                {steps.steps.map((step, index) => (
+                  <tr key={`${step.law}-${index}`}><td>{index + 1}</td><td>{step.law}</td><td className="mono">{step.before}</td><td className="mono">{step.after}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : <p className="muted">{expr.parsed.ok ? "No local algebraic rewrite fired. The prime-implicant cover is still computed." : "Enter an expression that parses."}</p>}
+        {steps ? <p className="tiny">Result {formatAst(steps.ast)}</p> : null}
+      </Card>
+      <Card title="Original and simplified outputs">
+        {original && reduced ? (
+          <div className="table-wrap">
+            <table className="data">
+              <thead><tr>{original.variables.map((name) => <th key={name}>{name}</th>)}<th>Original</th><th>Simplified</th></tr></thead>
+              <tbody>
+                {original.rows.map((row, index) => {
+                  const next = reduced.rows[index];
+                  return (
+                    <tr key={row.index}>
+                      {row.values.map((value, bit) => <td key={bit}>{value}</td>)}
+                      <td className={row.output ? "one" : ""}>{row.output}</td>
+                      <td className={next?.output ? "one" : ""}>{next?.output ?? "—"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : <p className="muted">The comparison appears when the expression parses.</p>}
+      </Card>
+    </div>
   );
 }
 
@@ -526,65 +675,120 @@ function quineFromAst(ast: AstNode): string {
 function FormsLab() {
   const [count, setCount] = useState(3);
   const names = "ABCDEF".slice(0, count).split("");
-  const [outputs, setOutputs] = useState<Array<0 | 1 | "X">>(Array.from({ length: 8 }, (_, i) => (i % 2 === 1 ? 1 : 0)));
-  const sized = outputs.slice(0, 1 << count);
-  while (sized.length < (1 << count)) sized.push(0);
+  const [outputs, setOutputs] = useState<Array<0 | 1 | "X">>(Array.from({ length: 16 }, (_, i) => (i % 2 === 1 ? 1 : 0)));
+  const width = 1 << count;
+  const sized = Array.from({ length: width }, (_, index) => outputs[index] ?? 0);
   const sop = minimizeOutputs(names, sized, "sop");
   const pos = minimizeOutputs(names, sized, "pos");
-  const canonical = useMemo(() => {
-    try { return canonicalFromExpression(sop === "0" || sop === "1" ? sop : sop.replace(/·/g, " & ").replace(/\+/g, " | ").replace(/'/g, "'")); }
-    catch { return null; }
-  }, [sop]);
+  const ones = sized.filter((value) => value === 1).length;
+  const zeros = sized.filter((value) => value === 0).length;
+  const dont = sized.filter((value) => value === "X").length;
+  const trueRows = sized.flatMap((value, index) => (value === 1 ? [index] : []));
+  const falseRows = sized.flatMap((value, index) => (value === 0 ? [index] : []));
+  const dontRows = sized.flatMap((value, index) => (value === "X" ? [index] : []));
+  function cycle(index: number) {
+    setOutputs((prev) => {
+      const next = Array.from({ length: width }, (_, slot) => prev[slot] ?? 0);
+      const cell = next[index] ?? 0;
+      next[index] = cell === 0 ? 1 : cell === 1 ? "X" : 0;
+      return next;
+    });
+  }
   return (
-    <div className="grid cards-2">
+    <div className="bool-lab">
       <Card title="Truth table">
         <label className="field">Variables
-          <input className="text-input" type="number" min={2} max={4} value={count} onChange={(e) => setCount(Number(e.target.value))} />
+          <input className="text-input" type="number" min={2} max={4} aria-label="Variable count" value={count} onChange={(e) => setCount(Math.max(2, Math.min(4, Number(e.target.value) || 2)))} />
         </label>
-        {assignments(names).map((row, index) => (
-          <div key={index} className="row">
-            <span className="mono">{names.map((name) => row[name]).join("")}</span>
-            <button className="btn-ghost" onClick={() => setOutputs(() => {
-              const next = [...sized];
-              const cell = next[index] ?? 0;
-              next[index] = cell === 0 ? 1 : cell === 1 ? "X" : 0;
-              return next;
-            })}>{sized[index]}</button>
+        <div className="table-wrap">
+          <table className="data">
+            <thead><tr><th>#</th>{names.map((name) => <th key={name}>{name}</th>)}<th>F</th></tr></thead>
+            <tbody>
+              {assignments(names).map((row, index) => (
+                <tr key={index}>
+                  <td>{index}</td>
+                  {names.map((name) => <td key={name}>{row[name]}</td>)}
+                  <td><button type="button" className={sized[index] === 1 ? "bool-cell on" : sized[index] === "X" ? "bool-cell x" : "bool-cell"} onClick={() => cycle(index)}>{sized[index]}</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="tiny">Click F to cycle 0, 1, and X.</p>
+      </Card>
+      <div className="bool-stack">
+        <Card title="Output mix">
+          <div className="bool-meter" aria-label="Share of 0, 1, and don't-care rows">
+            <span className="zero" style={{ width: `${(zeros / width) * 100}%` }} />
+            <span className="one" style={{ width: `${(ones / width) * 100}%` }} />
+            <span className="x" style={{ width: `${(dont / width) * 100}%` }} />
           </div>
-        ))}
-      </Card>
-      <Card title="Forms">
-        <p>Minimal SOP <strong>{sop}</strong></p>
-        <p>Minimal POS <strong>{pos}</strong></p>
-        {canonical ? <p className="tiny">Canonical SOP {canonical.sop}</p> : null}
-      </Card>
+          <p className="tiny">{ones} ones · {zeros} zeros · {dont} don't-cares</p>
+        </Card>
+        <Card title="SOP and POS">
+          <p>Minimal SOP</p>
+          <p className="expr">{sop}</p>
+          <p>Minimal POS</p>
+          <p className="expr">{pos}</p>
+          <p>Canonical SOP Σm({trueRows.join(", ") || "—"})</p>
+          <p>Canonical POS ΠM({falseRows.join(", ") || "—"})</p>
+          {dontRows.length > 0 ? <p className="tiny">Don't-cares d({dontRows.join(", ")})</p> : null}
+        </Card>
+      </div>
     </div>
   );
 }
 
 function TermsLab() {
   const [count, setCount] = useState(3);
-  const [picked, setPicked] = useState(1);
-  const names = "ABC".slice(0, count).split("");
-  const rows = assignments(names.length ? names : ["A"]);
+  const [picked, setPicked] = useState(5);
+  const [outputs, setOutputs] = useState<Array<0 | 1>>([0, 1, 1, 0, 1, 0, 1, 1]);
+  const names = "ABC".slice(0, Math.max(1, Math.min(3, count))).split("");
+  const rows = assignments(names);
+  const sized = rows.map((_, index) => outputs[index] ?? 0);
+  const minterms = sized.flatMap((value, index) => (value === 1 ? [index] : []));
+  const maxterms = sized.flatMap((value, index) => (value === 0 ? [index] : []));
+  const peak = Math.max(1, rows.length);
   return (
-    <Card title="Minterms and maxterms">
-      <input type="number" min={1} max={3} value={count} aria-label="Variable count" onChange={(e) => setCount(Number(e.target.value))} />
-      <table className="data">
-        <tbody>
-          {rows.map((row, index) => {
-            const values = names.map((name) => row[name] ?? 0);
-            const min = names.map((name, bit) => ((values[bit] ?? 0) === 1 ? name : `${name}'`)).join("");
-            const max = names.map((name, bit) => ((values[bit] ?? 0) === 0 ? name : `${name}'`)).join("+");
-            return (
-              <tr key={index} className={picked === index ? "active" : ""} onClick={() => setPicked(index)}>
-                <td>m{index} = {min}</td>
-                <td>M{index} = ({max})</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </Card>
+    <div className="bool-lab">
+      <Card title="Build the function">
+        <label className="field">Variables
+          <input className="text-input" type="number" min={1} max={3} aria-label="Variable count" value={count} onChange={(e) => setCount(Math.max(1, Math.min(3, Number(e.target.value) || 1)))} />
+        </label>
+        <p className="expr">Σm({minterms.join(", ") || "—"}) · ΠM({maxterms.join(", ") || "—"})</p>
+        <div className="bool-bars tall" aria-label="Which minterms are included">
+          {sized.map((value, index) => (
+            <button key={index} type="button" className={value ? "on" : ""} onClick={() => { setPicked(index); setOutputs((prev) => { const next = rows.map((_, slot) => prev[slot] ?? 0); next[index] = next[index] === 1 ? 0 : 1; return next; }); }}>
+              <i style={{ height: `${value ? 64 : 16}px` }} />
+              <span>m{index}</span>
+            </button>
+          ))}
+        </div>
+        <p className="tiny">{minterms.length} of {peak} minterms are in the sum.</p>
+      </Card>
+      <Card title="Minterms and maxterms">
+        <div className="table-wrap">
+          <table className="data">
+            <thead><tr><th>#</th><th>Binary</th><th>Minterm</th><th>Maxterm</th><th>F</th></tr></thead>
+            <tbody>
+              {rows.map((row, index) => {
+                const values = names.map((name) => row[name] ?? 0);
+                const min = mintermLiteral(names, values);
+                const max = maxtermLiteral(names, values);
+                return (
+                  <tr key={index} className={picked === index ? "active" : ""} onClick={() => setPicked(index)}>
+                    <td>m{index}</td>
+                    <td className="mono">{values.join("")}</td>
+                    <td className="mono">{min}</td>
+                    <td className="mono">({max})</td>
+                    <td className={sized[index] ? "one" : ""}>{sized[index]}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Theory } from "../../design-system/ui";
 import {
@@ -50,6 +50,95 @@ function paint(line: string): string {
     .replace(/\b(add|addu|sub|subu|and|or|xor|nor|slt|sltu|sll|srl|sra|jr|addi|addiu|andi|ori|xori|slti|lw|sw|beq|bne|lui|j|jal|syscall|nop|li|move|b)\b/g, '<span class="rvx-kw">$1</span>');
 }
 
+function SingleCycleView({ onPick }: { onPick?: (id: string) => void }) {
+  const raw = useId().replace(/:/g, "");
+  const arrow = `${raw}a`;
+  const red = `${raw}r`;
+  const pick = (id: string) => onPick?.(id);
+  return (
+    <svg className="mips-sc" viewBox="0 0 1000 430" role="img" aria-label="MIPS Processor Datapath, single-cycle view">
+      <defs>
+        <marker id={arrow} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 1 L9 5 L0 9 Z" fill="#334155" />
+        </marker>
+        <marker id={red} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 1 L9 5 L0 9 Z" fill="#e11d48" />
+        </marker>
+      </defs>
+      <g fill="none" stroke="#334155" strokeWidth="1.6">
+        <path d="M112 186 H158" markerEnd={`url(#${arrow})`} />
+        <path d="M328 186 H388" markerEnd={`url(#${arrow})`} />
+        <path d="M358 186 V70 H500" markerEnd={`url(#${arrow})`} />
+        <path d="M420 186 V318" markerEnd={`url(#${arrow})`} />
+        <path d="M75 232 V286" markerEnd={`url(#${arrow})`} />
+        <path d="M48 304 H24 V168 H40" markerEnd={`url(#${arrow})`} />
+        <path d="M538 162 H590" markerEnd={`url(#${arrow})`} />
+        <path d="M520 214 V340 H600" />
+        <path d="M600 340 V356" markerEnd={`url(#${arrow})`} />
+        <path d="M600 340 H780 V268" markerEnd={`url(#${arrow})`} />
+        <path d="M516 340 H600" markerEnd={`url(#${arrow})`} />
+        <path d="M648 356 V250" markerEnd={`url(#${arrow})`} />
+        <path d="M712 196 H748" markerEnd={`url(#${arrow})`} />
+        <path d="M908 176 H938" markerEnd={`url(#${arrow})`} />
+        <path d="M700 230 V380 H962 V248" markerEnd={`url(#${arrow})`} />
+        <path d="M966 248 V400 H463 V258" markerEnd={`url(#${arrow})`} />
+      </g>
+      <path d="M640 68 V140" fill="none" stroke="#e11d48" strokeWidth="1.7" markerEnd={`url(#${red})`} />
+      <path d="M700 42 H830 V140" fill="none" stroke="#e11d48" strokeWidth="1.7" markerEnd={`url(#${red})`} />
+      <g className="mips-sc-hit" onClick={() => pick("control")}>
+        <rect x="430" y="16" width="270" height="52" rx="12" className="sc-cu" />
+        <text x="565" y="47" textAnchor="middle">Control Unit</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("pc")}>
+        <rect x="40" y="140" width="72" height="92" rx="14" className="sc-pc" />
+        <text x="76" y="192" textAnchor="middle">PC</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("plus")}>
+        <rect x="48" y="286" width="52" height="34" rx="8" className="sc-mux" />
+        <text x="74" y="308" textAnchor="middle">+4</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("imem")}>
+        <rect x="158" y="132" width="170" height="108" rx="12" className="sc-im" />
+        <text x="243" y="180" textAnchor="middle">Instruction</text>
+        <text x="243" y="200" textAnchor="middle">Memory</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("regs")}>
+        <rect x="388" y="118" width="150" height="140" rx="12" className="sc-rf" />
+        <text x="463" y="180" textAnchor="middle">Register File</text>
+        <text x="463" y="200" textAnchor="middle">(32 x 32)</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("imm")}>
+        <rect x="400" y="318" width="116" height="44" rx="10" className="sc-imm" />
+        <text x="458" y="345" textAnchor="middle">Imm Gen</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("mux")}>
+        <rect x="600" y="318" width="48" height="58" rx="8" className="sc-mux" />
+        <text x="624" y="351" textAnchor="middle">Mux</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("alu")}>
+        <polygon points="590,140 680,140 712,196 680,252 590,252 612,196" className="sc-alu" />
+        <text x="646" y="202" textAnchor="middle">ALU</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("dmem")}>
+        <rect x="748" y="124" width="160" height="144" rx="12" className="sc-im" />
+        <text x="828" y="190" textAnchor="middle">Data</text>
+        <text x="828" y="210" textAnchor="middle">Memory</text>
+      </g>
+      <g className="mips-sc-hit" onClick={() => pick("wb")}>
+        <rect x="938" y="150" width="48" height="70" rx="8" className="sc-mux" />
+        <text x="962" y="190" textAnchor="middle">Mux</text>
+      </g>
+      <text className="sc-lab" x="548" y="146" textAnchor="middle">Read Data 1</text>
+      <text className="sc-lab" x="556" y="328" textAnchor="middle">Read Data 2</text>
+      <text className="sc-ctrl" x="652" y="100">ALU Control</text>
+      <text className="sc-sig" x="844" y="78">MemRead</text>
+      <text className="sc-sig" x="844" y="96">MemWrite</text>
+      <text className="sc-sig" x="658" y="308">ALUSrc</text>
+      <text className="sc-sig" x="900" y="142" textAnchor="end">MemtoReg</text>
+    </svg>
+  );
+}
+
 export function OverviewPage({ api }: { api: MipsApi }) {
   const [tab, setTab] = useState<"asm" | "hex" | "out">("asm");
   const [step, setStep] = useState(0);
@@ -62,19 +151,12 @@ export function OverviewPage({ api }: { api: MipsApi }) {
         {["MIPS32", "32-bit RISC", "Load/Store", "5-Stage Pipeline", "Real Simulator"].map((item) => <span key={item}>{item}</span>)}
       </div>
       <section className="rvx-card">
-        <h3>Single-cycle datapath</h3>
-        <svg className="mips-path" viewBox="0 0 640 150" role="img" aria-label="MIPS single-cycle datapath">
-          {PATH.map((block, index) => {
-            const x = 16 + index * 126;
-            return (
-              <g key={block.id} onClick={() => go(block.to)} style={{ cursor: "pointer" }}>
-                <rect x={x} y="36" width="108" height="52" rx="12" className={step === index ? "rvx-hot" : "rvx-box"} />
-                <text x={x + 54} y="66" textAnchor="middle">{block.label}</text>
-              </g>
-            );
-          })}
-          <path d="M124 62 H142 M250 62 H268 M376 62 H394 M502 62 H520" className="rvx-wire" />
-        </svg>
+        <h3 className="mips-sc-title"><span className="mips-sc-ico" aria-hidden="true" /> MIPS Processor Datapath (Single-Cycle View)</h3>
+        <SingleCycleView onPick={(id) => {
+          const index = PATH.findIndex((block) => block.id === id);
+          if (index >= 0) setStep(index);
+          else go("/architecture/mips/datapath");
+        }} />
         <p className="mips-hint"><strong>{current?.label}.</strong> {current?.hint}</p>
         <div className="rvx-tabs">
           <button type="button" onClick={() => setStep((value) => (value + 1) % PATH.length)}>Next block</button>
@@ -313,17 +395,6 @@ const DP_OPS = [
   { label: "beq $t0, $t1, 1", word: encodeI(0x04, 8, 9, 1) },
 ];
 
-const DP_BOXES = [
-  { id: "pc", label: "PC", x: 16, y: 78, w: 78, h: 52, fill: "pc" },
-  { id: "imem", label: "Instruction Memory", x: 128, y: 68, w: 128, h: 72, fill: "im" },
-  { id: "regs", label: "Register File", x: 286, y: 62, w: 120, h: 84, fill: "rf" },
-  { id: "alu", label: "ALU", x: 436, y: 74, w: 84, h: 60, fill: "alu" },
-  { id: "dmem", label: "Data Memory", x: 548, y: 66, w: 118, h: 76, fill: "dm" },
-  { id: "mux", label: "MUX", x: 688, y: 78, w: 64, h: 52, fill: "mx" },
-  { id: "control", label: "Control Unit", x: 300, y: 8, w: 130, h: 40, fill: "cu" },
-  { id: "sign", label: "Sign Extend", x: 430, y: 168, w: 110, h: 40, fill: "se" },
-];
-
 export function DatapathPage({ api }: { api: MipsApi }) {
   const [stage, setStage] = useState(0);
   const decoded = api.cpu.decoded ?? decodeMips(DP_OPS[0]?.word ?? 0);
@@ -335,7 +406,6 @@ export function DatapathPage({ api }: { api: MipsApi }) {
   const loaded = decoded.mnemonic === "lw" ? readWord(api.cpu.mem, alu) : null;
   const wb = decoded.mnemonic === "lw" ? (typeof loaded === "number" ? loaded : null) : controls.RegWrite ? alu : null;
   const dest = controls.RegDst ? decoded.rd : decoded.rt;
-  const hot = stage === 0 ? ["pc", "imem"] : stage === 1 ? ["regs", "control"] : stage === 2 ? ["alu", "sign"] : stage === 3 ? ["dmem"] : ["mux", "regs"];
   const journey = [
     { title: "Fetch", body: `PC ${toHex32(api.cpu.pc)} goes to instruction memory and reads ${decoded.text}.` },
     { title: "Decode", body: `Control reads the opcode. ${MIPS_NAMES[decoded.rs] ?? "$rs"} = ${rsVal}, ${MIPS_NAMES[decoded.rt] ?? "$rt"} = ${rtVal}.` },
@@ -370,15 +440,7 @@ export function DatapathPage({ api }: { api: MipsApi }) {
           <button type="button" onClick={() => setStage(0)}>Reset</button>
         </div>
         <h3>Interactive Datapath — {decoded.text}</h3>
-        <svg className="mips-path" viewBox="0 0 770 220" role="img" aria-label="Single-cycle datapath">
-          <path d="M94 104 H128 M256 104 H286 M406 104 H436 M520 104 H548 M666 104 H688 M365 48 V62 M490 168 V134" className="rvx-wire" />
-          {DP_BOXES.map((box) => (
-            <g key={box.id} onClick={() => setStage(box.id === "pc" || box.id === "imem" ? 0 : box.id === "regs" || box.id === "control" ? 1 : box.id === "alu" || box.id === "sign" ? 2 : box.id === "dmem" ? 3 : 4)} style={{ cursor: "pointer" }}>
-              <rect x={box.x} y={box.y} width={box.w} height={box.h} rx="12" className={`dp-${box.fill}${hot.includes(box.id) ? " on" : ""}`} />
-              <text x={box.x + box.w / 2} y={box.y + box.h / 2 + 4} textAnchor="middle">{box.label}</text>
-            </g>
-          ))}
-        </svg>
+        <SingleCycleView onPick={(id) => setStage(id === "pc" || id === "imem" || id === "plus" ? 0 : id === "regs" || id === "control" ? 1 : id === "alu" || id === "imm" || id === "mux" ? 2 : id === "dmem" ? 3 : 4)} />
         <div className="rvx-grid2">
           <div>
             <h3>Live control signals</h3>
