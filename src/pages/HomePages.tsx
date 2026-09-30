@@ -55,6 +55,7 @@ const CHIP: Record<string, string> = {
   architecture: "Architecture",
   isa: "ISA",
   build: "Build",
+  vlsi: "VLSI",
 };
 
 function Catalog({ home }: { home: boolean }) {

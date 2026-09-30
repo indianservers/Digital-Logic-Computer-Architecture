@@ -418,6 +418,7 @@ table.data td.one { color: var(--primary); font-weight: 800; }
 .tone-architecture .home-cat-head { background: linear-gradient(90deg, #fce7f3, #fdf2f8); }
 .tone-isa .home-cat-head { background: linear-gradient(90deg, #ffedd5, #fff7ed); }
 .tone-build .home-cat-head { background: linear-gradient(90deg, #e0e7ff, #eef2ff); }
+.tone-vlsi .home-cat-head { background: linear-gradient(90deg, #e2e8f0, #f8fafc); }
 .studio-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px; min-height: 168px; overflow: hidden; transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
 .studio-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .studio-card.tone-foundations { border-color: #7dd3fc; background: linear-gradient(180deg, #f0f9ff, #fff); }
@@ -429,6 +430,7 @@ table.data td.one { color: var(--primary); font-weight: 800; }
 .studio-card.tone-architecture { border-color: #f9a8d4; background: linear-gradient(180deg, #fdf2f8, #fff); }
 .studio-card.tone-isa { border-color: #fdba74; background: linear-gradient(180deg, #fff7ed, #fff); }
 .studio-card.tone-build { border-color: #a5b4fc; background: linear-gradient(180deg, #eef2ff, #fff); }
+.studio-card.tone-vlsi { border-color: #94a3b8; background: linear-gradient(180deg, #f8fafc, #fff); }
 .studio-card.is-locked { opacity: 0.78; filter: saturate(0.75); }
 .studio-mark {
   display: grid; place-items: center; border-radius: 12px; flex: none; color: white;
@@ -444,6 +446,7 @@ table.data td.one { color: var(--primary); font-weight: 800; }
 .mark-accelerator, .mark-hetero, .mark-soc, .mark-cpu8, .mark-cpu16, .mark-gpu { background: linear-gradient(180deg, #f472b6, #be185d); }
 .mark-mips, .mark-riscv-lab, .mark-arm, .mark-x86, .mark-compare-isa, .mark-mobile, .mark-desktop { background: linear-gradient(180deg, #fb923c, #c2410c); }
 .mark-builder, .mark-sandbox { background: linear-gradient(180deg, #818cf8, #4338ca); }
+.mark-vlsi { background: linear-gradient(180deg, #334155, #0f172a); }
 .learn-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 .learn-list li { display: flex; gap: 10px; align-items: flex-start; }
 .lock { font-size: 11px; font-weight: 800; color: #b45309; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 999px; padding: 4px 8px; }

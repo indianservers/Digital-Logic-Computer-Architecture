@@ -34,6 +34,7 @@ import { RoutingStudio } from "./studios/routing/RoutingStudio";
 import { TimingStudio } from "./studios/timing/TimingStudio";
 import { TruthStudio } from "./studios/truth-tables/TruthStudio";
 import { VmStudio } from "./studios/vm/VmStudio";
+import { VlsiStudio } from "./studios/vlsi/VlsiStudio";
 
 const AcceleratorStudio = lazy(() => import("./studios/accelerator/AcceleratorStudio"));
 const HeteroStudio = lazy(() => import("./studios/hetero/HeteroStudio"));
@@ -66,6 +67,8 @@ export function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/learn" element={<LearnPage />} />
         <Route path="/studios" element={<StudiosPage />} />
+        <Route path="/studios/vlsi" element={<VlsiStudio />} />
+        <Route path="/studios/vlsi/:labId" element={<VlsiStudio />} />
         <Route path="/studios/number-systems" element={<NumberSystemsStudio />} />
         <Route path="/studios/boolean-algebra" element={<BooleanStudio />} />
         <Route path="/studios/logic-gates" element={<LogicGatesStudio />} />

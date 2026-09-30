@@ -96,6 +96,8 @@ function glyph(id: string) {
       return <><rect x="5" y="7" width="22" height="14" rx="2" fill="#fff" /><rect x="12" y="21" width="8" height="3" fill="#fff" /><rect x="9" y="24" width="14" height="2" rx="1" fill="#fff" /></>;
     case "builder":
       return <><path d="M8 22V10l8-4 8 4v12H8z" fill="#fff" /><path d="M16 10v12M8 16h16" stroke="#4338ca" strokeWidth="1.6" /></>;
+    case "vlsi":
+      return <><rect x="6" y="8" width="20" height="6" rx="1" fill="#fbbf24" /><rect x="6" y="15" width="20" height="2" fill="#7dd3fc" /><rect x="5" y="18" width="22" height="8" rx="1" fill="#fff" /><rect x="8" y="18" width="5" height="4" fill="#38bdf8" /><rect x="19" y="18" width="5" height="4" fill="#fb7185" /></>;
     case "sandbox":
       return <><rect x="5" y="14" width="22" height="10" rx="2" fill="#fff" /><rect x="9" y="8" width="6" height="6" rx="1" fill="#c7d2fe" /><rect x="17" y="8" width="6" height="6" rx="1" fill="#a5b4fc" /></>;
     default:

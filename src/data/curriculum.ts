@@ -1,4 +1,5 @@
 import { ACA_LABS, acaRoute } from "./acaLabs";
+import { implementedVlsiLabs, vlsiRoute } from "./vlsiLabs";
 
 export type StudioCategory =
   | "foundations"
@@ -9,7 +10,8 @@ export type StudioCategory =
   | "systems"
   | "architecture"
   | "isa"
-  | "build";
+  | "build"
+  | "vlsi";
 
 export interface StudioInfo {
   id: string;
@@ -38,6 +40,7 @@ export const CATEGORIES: Array<{
   { id: "architecture", title: "Architecture studios", blurb: "Accelerators, SoCs, and the teaching 8-bit and 16-bit CPUs.", art: "/icons/cat-architecture.png", tone: "pink" },
   { id: "isa", title: "ISA explorers", blurb: "MIPS, RISC-V, ARM, x86, and mobile or desktop packages.", art: "/icons/cat-isa.png", tone: "orange" },
   { id: "build", title: "Build & sandbox", blurb: "Assemble a custom CPU, then mix engines in one workspace.", art: "/icons/cat-build.png", tone: "indigo" },
+  { id: "vlsi", title: "VLSI Studio", blurb: "From transistor physics to silicon implementation.", art: "/icons/cat-vlsi.svg", tone: "slate" },
 ];
 
 export const STUDIOS: StudioInfo[] = [
@@ -89,6 +92,7 @@ export const STUDIOS: StudioInfo[] = [
   { id: "desktop", title: "Modern Desktop CPU Explorer", phase: 7, path: "/architecture/desktop", summary: "Generic package, caches, DDR, PCIe, boost, and package power.", topics: ["desktop", "boost", "pcie"], active: true, category: "isa" },
   { id: "builder", title: "Build Your Own CPU", phase: 8, path: "/architecture/builder", summary: "Construct a processor from registers, ALU, memory, and a custom ISA.", topics: ["cpu builder", "isa", "assembler", "datapath"], active: true, category: "build" },
   { id: "sandbox", title: "Computer Architecture Sandbox", phase: 8, path: "/architecture/sandbox", summary: "Combine gates, datapaths, caches, CPUs, and coherence in one workspace.", topics: ["sandbox", "circuit", "multicore"], active: true, category: "build" },
+  { id: "vlsi", title: "VLSI Studio", phase: 2, path: "/studios/vlsi", summary: "From transistor physics to silicon implementation.", topics: ["mosfet", "cmos", "vlsi", "inverter", "nand", "transmission gate"], active: true, category: "vlsi" },
 ];
 
 export function matchStudio(path: string): StudioInfo | undefined {
@@ -156,6 +160,7 @@ const ALIASES: Record<string, string[]> = {
   alu: ["arithmetic logic unit", "flags", "zero flag"],
   timing: ["setup time", "hold time", "clock", "metastability"],
   latches: ["flip flop", "flip-flop", "sr latch", "sr", "d flip flop", "jk", "jk flip flop", "t flip flop", "master slave"],
+  vlsi: ["mosfet", "cmos inverter", "vlsi", "transmission gate", "pass transistor", "voltage transfer"],
   registers: ["shift register", "siso", "sipo", "piso", "pipo", "johnson counter"],
   counters: ["ripple counter", "synchronous counter", "mod n", "decade counter", "ring counter"],
   fsm: ["finite state machine", "state machine", "moore", "mealy", "state diagram"],
@@ -244,7 +249,17 @@ function searchCatalog(): StudioInfo[] {
     active: true,
     category: "systems" as const,
   }));
-  return [...PAGES, ...COMPARE_LABS, ...MOBILE_LABS, ...DESKTOP_LABS, ...acaSearch, ...STUDIOS];
+  const vlsiSearch: StudioInfo[] = implementedVlsiLabs().map((lab) => ({
+    id: `vlsi-${lab.slug}`,
+    title: lab.title,
+    phase: 2,
+    path: vlsiRoute(lab.slug),
+    summary: lab.summary,
+    topics: [lab.slug, lab.category, "vlsi"],
+    active: true,
+    category: "vlsi" as const,
+  }));
+  return [...PAGES, ...COMPARE_LABS, ...MOBILE_LABS, ...DESKTOP_LABS, ...acaSearch, ...vlsiSearch, ...STUDIOS];
 }
 
 function searchRank(item: StudioInfo, query: string): number {

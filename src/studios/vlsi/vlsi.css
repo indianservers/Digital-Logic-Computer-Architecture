@@ -1,0 +1,176 @@
+.vlsi {
+  --vlsi-ink: #0f172a;
+  --vlsi-muted: #475569;
+  --vlsi-line: #d6dee8;
+  --vlsi-panel: #f8fafc;
+  --vlsi-stage: #0b1220;
+  --vlsi-nmos: #0284c7;
+  --vlsi-pmos: #e11d48;
+  --vlsi-on: #15803d;
+  --vlsi-warn: #b45309;
+  --vlsi-bad: #b91c1c;
+  --vlsi-measure: #0f766e;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  max-width: 100%;
+  color: var(--vlsi-ink);
+}
+.vlsi h1, .vlsi h2, .vlsi h3, .vlsi p { margin: 0; }
+.vlsi a { color: #1d4ed8; font-weight: 700; }
+.vlsi button {
+  cursor: pointer;
+  border: 1px solid var(--vlsi-line);
+  background: #fff;
+  color: var(--vlsi-ink);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+.vlsi button.on, .vlsi button[aria-pressed="true"] {
+  background: #0f172a;
+  color: #f8fafc;
+  border-color: #0f172a;
+}
+.vlsi-hero, .vlsi-panel, .vlsi-later, .vlsi-home-cat {
+  background: var(--vlsi-panel);
+  border: 1px solid var(--vlsi-line);
+  border-radius: 16px;
+  padding: 14px;
+}
+.vlsi-hero h1 { font-size: 28px; letter-spacing: -0.04em; max-width: 18ch; }
+.vlsi-hero p, .vlsi-caption, .vlsi-later, .vlsi-observe p { color: var(--vlsi-muted); line-height: 1.45; }
+.vlsi-hero p:first-child { color: var(--vlsi-measure); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 12px; }
+.vlsi-cards, .vlsi-devices, .vlsi-legend, .vlsi-stage-bar, .vlsi-play, .vlsi-choice, .vlsi-bits, .vlsi-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.vlsi-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.vlsi-card {
+  display: grid;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid var(--vlsi-line);
+  border-radius: 14px;
+  padding: 12px;
+  min-height: 128px;
+}
+.vlsi-card span { color: var(--vlsi-measure); font-size: 12px; font-weight: 800; }
+.vlsi-mark { width: 16px; height: 16px; color: #0f766e; }
+.vlsi-card em { color: var(--vlsi-muted); font-style: normal; font-size: 13px; }
+.vlsi-card:nth-child(3n + 1) { border-top: 3px solid #0284c7; }
+.vlsi-card:nth-child(3n + 2) { border-top: 3px solid #e11d48; }
+.vlsi-card:nth-child(3n) { border-top: 3px solid #0f766e; }
+.vlsi-later ul { display: flex; flex-wrap: wrap; gap: 8px 14px; padding: 0; margin: 8px 0 0; list-style: none; }
+.vlsi-later li { color: var(--vlsi-muted); }
+.vlsi-bar, .vlsi-title { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.vlsi-bar { min-width: 0; }
+.vlsi-title { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.vlsi-title h1 { font-size: 22px; letter-spacing: -0.03em; }
+.vlsi-title p, .vlsi-status { color: var(--vlsi-muted); font-size: 13px; }
+.vlsi-home-link, .vlsi-nav a, .vlsi-nav button { display: inline-flex; gap: 6px; align-items: center; text-decoration: none; }
+.vlsi-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr) minmax(210px, 300px);
+  gap: 12px;
+  align-items: start;
+  min-width: 0;
+}
+.vlsi-stage {
+  background: var(--vlsi-stage);
+  color: #e2e8f0;
+  border-radius: 16px;
+  padding: 12px;
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+.vlsi-stage .vlsi-caption { color: #cbd5e1; }
+.vlsi-panel { display: grid; gap: 10px; align-content: start; }
+.vlsi-panel h2 { font-size: 15px; }
+.vlsi-slider { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; font-size: 13px; font-weight: 700; }
+.vlsi-slider input { grid-column: 1 / -1; width: 100%; accent-color: #0f766e; }
+.vlsi-slider strong { color: var(--vlsi-measure); font-variant-numeric: tabular-nums; }
+.vlsi-choice button, .vlsi-bits button, .vlsi-play button { border-radius: 10px; }
+.vlsi-measure { display: grid; gap: 2px; padding-bottom: 6px; border-bottom: 1px solid var(--vlsi-line); }
+.vlsi-measure span, .vlsi-measure small { color: var(--vlsi-muted); font-size: 12px; }
+.vlsi-measure b { color: var(--vlsi-measure); font-size: 18px; font-variant-numeric: tabular-nums; }
+.vlsi-badge { border-radius: 999px; padding: 3px 8px; font-size: 12px; font-weight: 800; background: #e2e8f0; color: #334155; }
+.vlsi-badge.nmos { background: #e0f2fe; color: #075985; }
+.vlsi-badge.pmos { background: #ffe4e6; color: #9f1239; }
+.vlsi-badge.on { background: #dcfce7; color: #166534; }
+.vlsi-badge.off { background: #e2e8f0; color: #64748b; }
+.vlsi-badge.warn { background: #ffedd5; color: #9a3412; }
+.vlsi-badge.bad { background: #fee2e2; color: #991b1b; }
+.vlsi-badge.info { background: #ccfbf1; color: #115e59; }
+.vlsi-observe { display: grid; gap: 6px; font-size: 13px; }
+.vlsi-experiment, .vlsi-take { background: #fff; border-radius: 10px; padding: 8px; }
+.vlsi-theory { font-size: 13px; color: var(--vlsi-muted); }
+.vlsi-theory summary { cursor: pointer; font-weight: 800; color: var(--vlsi-ink); }
+.vlsi-device, .vlsi-chart, .vlsi-wave { width: 100%; height: auto; display: block; }
+.vlsi-plot-bg { fill: #111827; }
+.vlsi-gridline { stroke: #334155; stroke-width: 1; }
+.vlsi-axis { fill: #94a3b8; font-size: 10px; }
+.vlsi-marker { fill: #f8fafc; stroke: #22d3ee; stroke-width: 2; }
+.vlsi-marker-label { fill: #e2e8f0; font-size: 11px; }
+.vlsi-truth { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 13px; }
+.vlsi-truth th, .vlsi-truth td { border-bottom: 1px solid var(--vlsi-line); text-align: center; padding: 4px; }
+.vlsi-truth tr.on { background: #ccfbf1; font-weight: 800; }
+.vlsi-symbol { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.vlsi-bars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; min-height: 180px; }
+.vlsi-bars div { display: grid; align-items: end; justify-items: center; gap: 6px; background: #111827; border-radius: 12px; padding: 8px; min-height: 180px; }
+.vlsi-bars div.on { outline: 2px solid #22d3ee; }
+.vlsi-bars i { display: block; width: 28px; min-height: 4px; border-radius: 8px 8px 0 0; background: linear-gradient(#4ade80, #0284c7); }
+.vlsi-bars span, .vlsi-bars b { color: #e2e8f0; font-size: 12px; }
+.vlsi-clock { justify-self: start; }
+.vlsi-split { display: flex; min-height: 28px; border-radius: 999px; overflow: hidden; background: #111827; }
+.vlsi-split span { background: #38bdf8; color: #082f49; font-size: 11px; font-weight: 800; display: grid; place-items: center; min-width: 0; }
+.vlsi-split .short { background: #fb7185; }
+.vlsi-split .leak { background: #fbbf24; }
+.vlsi-ylab { font-size: 10px; }
+@media (max-width: 1180px) {
+  .vlsi-grid { grid-template-columns: 1fr; }
+  .vlsi-bar { flex-wrap: wrap; }
+}
+.vlsi-stage-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.vlsi-stage-head { justify-content: space-between; }
+.vlsi-stage h2, .vlsi-stage h3 { color: #e2e8f0; }
+.vlsi-callout { color: #cbd5e1; font-size: 13px; line-height: 1.45; }
+.vlsi-svg-label { fill: #e2e8f0; font-size: 11px; }
+.vlsi-gate { fill: #1e293b; stroke: #64748b; stroke-width: 1.5; }
+.vlsi-gate.on { stroke: #4ade80; }
+.vlsi-gate.crit { stroke: #fb7185; fill: #3f1d2e; }
+.vlsi-wire { stroke: #64748b; stroke-width: 2; fill: none; }
+.vlsi-wire.on { stroke: #38bdf8; }
+.vlsi-on { fill: #22d3ee; }
+.vlsi-off { fill: #334155; }
+.vlsi-layout { width: 100%; height: auto; background: #111827; border-radius: 12px; }
+.vlsi-layout rect { cursor: pointer; }
+.vlsi-path-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)); }
+.vlsi-path-row button { display: grid; gap: 2px; text-align: left; border-radius: 12px; background: #111827; color: #e2e8f0; border-color: #334155; position: relative; }
+.vlsi-path-row button.on { border-color: #22d3ee; background: #0f172a; color: #f8fafc; }
+.vlsi-path-row i { height: 3px; border-radius: 99px; background: #fbbf24; }
+.vlsi-triple { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.vlsi-triple section { display: grid; gap: 6px; align-content: start; }
+.vlsi-drc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.vlsi-stage .vlsi-truth th, .vlsi-stage .vlsi-truth td { color: #e2e8f0; border-bottom-color: #334155; }
+.vlsi-stage .vlsi-truth tr.on { background: #134e4a; }
+.vlsi-code { display: grid; gap: 4px; }
+.vlsi-code button { display: block; width: 100%; text-align: left; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; border-radius: 8px; }
+.vlsi-split { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.vlsi-chip, .vlsi-heat { width: 100%; height: auto; border-radius: 12px; }
+.vlsi-chip rect, .vlsi-heat rect { cursor: pointer; }
+.vlsi textarea { width: 100%; min-height: 72px; font: inherit; border-radius: 10px; border: 1px solid var(--vlsi-line); padding: 8px; background: #fff; color: var(--vlsi-ink); }
+@media (max-width: 800px) {
+  .vlsi-triple { grid-template-columns: 1fr; }
+  .vlsi-split { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vlsi-flow, .vlsi animate { display: none; }
+}
