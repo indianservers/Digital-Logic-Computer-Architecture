@@ -78,6 +78,8 @@ function glyph(id: string) {
       return <><rect x="6" y="8" width="20" height="16" rx="3" fill="#fff" /><path d="M10 16h12" stroke="#be185d" strokeWidth="2" /><path d="M16 8v-3M16 24v3M6 16H3M26 16h3" stroke="#fff" strokeWidth="1.6" /></>;
     case "cpu16":
       return <><rect x="5" y="7" width="22" height="18" rx="3" fill="#fff" /><path d="M9 13h14M9 19h10" stroke="#be185d" strokeWidth="1.8" /></>;
+    case "microcontroller":
+      return <><rect x="7" y="7" width="18" height="18" rx="3" fill="#fff" /><rect x="11" y="11" width="10" height="10" rx="2" fill="#0f766e" /><path d="M11 4v3m5-3v3m5-3v3M11 25v3m5-3v3m5-3v3M4 11h3m-3 5h3m-3 5h3m18-10h3m-3 5h3m-3 5h3" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" /></>;
     case "gpu":
       return <><rect x="5" y="10" width="22" height="14" rx="3" fill="#fff" /><path d="M9 17h3M14 17h3M19 17h3" stroke="#be185d" strokeWidth="2" strokeLinecap="round" /></>;
     case "mips":

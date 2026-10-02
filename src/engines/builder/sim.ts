@@ -346,7 +346,7 @@ export function parseDesignJson(raw: string): { ok: true; design: CpuDesign } | 
   try {
     const parsed = JSON.parse(raw) as { kind?: string; design?: CpuDesign };
     if (!parsed.design || !Array.isArray(parsed.design.nodes) || !Array.isArray(parsed.design.wires) || !parsed.design.isa) {
-      return { ok: false, error: "That file is not a LogicLab CPU design. Expected a .cpu.json object with nodes, wires, and isa." };
+      return { ok: false, error: "That file is not a valid CPU design. Expected a .cpu.json object with nodes, wires, and isa." };
     }
     return { ok: true, design: parsed.design };
   } catch {

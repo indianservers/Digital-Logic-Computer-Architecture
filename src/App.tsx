@@ -35,6 +35,9 @@ import { TimingStudio } from "./studios/timing/TimingStudio";
 import { TruthStudio } from "./studios/truth-tables/TruthStudio";
 import { VmStudio } from "./studios/vm/VmStudio";
 import { VlsiStudio } from "./studios/vlsi/VlsiStudio";
+import { MicrocontrollerStudio } from "./studios/microcontroller/MicrocontrollerStudio";
+import { MicrocontrollerProjectLab } from "./studios/microcontroller/MicrocontrollerProjectLab";
+import { MicrocontrollerLabRoute } from "./studios/microcontroller/labs/LabRoute";
 
 const AcceleratorStudio = lazy(() => import("./studios/accelerator/AcceleratorStudio"));
 const HeteroStudio = lazy(() => import("./studios/hetero/HeteroStudio"));
@@ -69,6 +72,9 @@ export function App() {
         <Route path="/studios" element={<StudiosPage />} />
         <Route path="/studios/vlsi" element={<VlsiStudio />} />
         <Route path="/studios/vlsi/:labId" element={<VlsiStudio />} />
+        <Route path="/studios/microcontroller" element={<MicrocontrollerStudio />} />
+        <Route path="/studios/microcontroller/project/:slug" element={<MicrocontrollerProjectLab />} />
+        <Route path="/studios/microcontroller/lab/:slug" element={<MicrocontrollerLabRoute />} />
         <Route path="/studios/number-systems" element={<NumberSystemsStudio />} />
         <Route path="/studios/boolean-algebra" element={<BooleanStudio />} />
         <Route path="/studios/logic-gates" element={<LogicGatesStudio />} />

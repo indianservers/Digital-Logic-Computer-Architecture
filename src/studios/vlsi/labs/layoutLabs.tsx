@@ -60,9 +60,10 @@ function LayoutSvg({ rects, hidden, selected, onSelect, focus }: {
 function LayerToggles({ hidden, onToggle }: { hidden: LayerId[]; onToggle: (layer: LayerId) => void }) {
   const layers = Object.keys(LAYER_LABEL) as LayerId[];
   return (
-    <div className="vlsi-choice" role="group" aria-label="Layer visibility">
+    <div className="vlsi-choice vlsi-layers" role="group" aria-label="Layer visibility and colors">
       {layers.map((layer) => (
         <button key={layer} type="button" className={hidden.includes(layer) ? "" : "on"} aria-pressed={!hidden.includes(layer)} onClick={() => onToggle(layer)}>
+          <i className="vlsi-swatch" style={{ background: FILL[layer] }} aria-hidden="true" />
           {LAYER_LABEL[layer]}
         </button>
       ))}

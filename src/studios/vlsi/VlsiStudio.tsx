@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Link, useParams } from "react-router-dom";
-import { VLSI_CATEGORIES, VLSI_HOME, VLSI_LABS, vlsiLabBySlug, vlsiRoute, type VlsiLabMeta } from "../../data/vlsiLabs";
+import { VLSI_HOME, vlsiLabBySlug } from "../../data/vlsiLabs";
+import { VlsiHome } from "./home";
 import { VlsiFrame } from "./shell";
 import { CmosInverterLab, CmosPowerLab, CmosVtcLab, PropagationDelayLab } from "./labs/cmosLabs";
 import { MosCapacitorLab, MosfetFundamentalsLab, MosfetIvLab } from "./labs/deviceLabs";
@@ -124,74 +125,14 @@ const LABS: Record<string, () => ReactElement> = {
   "rtl-gdsii": RtlGdsLab,
 };
 
-function LabCard({ lab }: { lab: VlsiLabMeta }) {
-  return (
-    <Link className="vlsi-card" to={vlsiRoute(lab.slug)}>
-      <CategoryMark category={lab.category} />
-      <span>Lab {lab.number}</span>
-      <strong>{lab.title}</strong>
-      <em>{lab.summary}</em>
-    </Link>
-  );
-}
-
-function CategoryMark({ category }: { category: VlsiLabMeta["category"] }) {
-  const paths: Record<VlsiLabMeta["category"], string> = {
-    device: "M3 12h10M8 12V4M5 7h6",
-    cmos: "M3 4h4v8H3zM9 4h4v8H9z",
-    timing: "M2 12c2-8 4-8 6 0s4 8 6 0",
-    layout: "M3 3h4v4H3zM9 3h4v4H9zM3 9h4v4H3zM9 9h4v4H9z",
-    cells: "M2 4h12v8H2zM6 4v8M10 4v8",
-    physical: "M3 13V5l5-2 5 2v8l-5 2z",
-    power: "M8 2v6l3-1-4 7V8L4 9z",
-    memory: "M3 3h10v10H3zM3 6h10M3 10h10",
-    advanced: "M8 2l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z",
-    fab: "M8 2a6 6 0 100 12 6 6 0 000-12zM8 2v12",
-    dft: "M2 8h3l2-4 2 8 2-4h3",
-    soc: "M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z",
-    flow: "M2 3h5v3H2zM9 7h5v3H9zM2 11h5v3H2zM7 4h2M9 8H7M7 12h2",
-  };
-  return (
-    <svg className="vlsi-mark" viewBox="0 0 16 16" aria-hidden="true">
-      <path d={paths[category]} fill="none" stroke="currentColor" strokeWidth="1.3" />
-    </svg>
-  );
-}
-
-export function VlsiHome() {
-  const open = VLSI_CATEGORIES.filter((category) => VLSI_LABS.some((lab) => lab.category === category.id && lab.implemented));
-  const later = VLSI_CATEGORIES.filter((category) => !open.some((item) => item.id === category.id));
-  return (
-    <div className="vlsi">
-      <header className="vlsi-hero">
-        <p>VLSI Studio</p>
-        <h1>From transistor physics to silicon implementation</h1>
-        <p>Change a voltage, a width, or a logic input and watch the silicon respond. {VLSI_LABS.filter((lab) => lab.implemented).length} labs are open.{later.length > 0 ? " The rest of the sequence stays listed until its simulator is ready." : " Every lab in the sequence has a simulator."}</p>
-      </header>
-      {open.map((category) => (
-        <section key={category.id} className="vlsi-home-cat">
-          <h2>{category.title}</h2>
-          <p>{category.blurb}</p>
-          <div className="vlsi-cards">
-            {VLSI_LABS.filter((lab) => lab.category === category.id && lab.implemented).map((lab) => <LabCard key={lab.slug} lab={lab} />)}
-          </div>
-        </section>
-      ))}
-      {later.length > 0 ? (
-        <section className="vlsi-later">
-          <h2>Later in this studio</h2>
-          <ul>
-            {later.map((category) => <li key={category.id}>{category.title}</li>)}
-          </ul>
-        </section>
-      ) : null}
-    </div>
-  );
+function renderPreview(slug: string): ReactElement | null {
+  const Screen = LABS[slug];
+  return Screen ? <Screen /> : null;
 }
 
 export function VlsiStudio() {
   const { labId } = useParams();
-  if (!labId) return <VlsiHome />;
+  if (!labId) return <VlsiHome renderPreview={renderPreview} />;
   const lab = vlsiLabBySlug(labId);
   if (!lab) {
     return (
@@ -220,7 +161,7 @@ export function VlsiStudio() {
     );
   }
   return (
-    <VlsiFrame lab={lab}>
+    <VlsiFrame key={lab.slug} lab={lab}>
       <Screen />
     </VlsiFrame>
   );

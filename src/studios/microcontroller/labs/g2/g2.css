@@ -1,0 +1,351 @@
+/* Core Labs 11-20 (bench layout). Everything is scoped under .mcl-root. */
+
+/* Shared bench pieces */
+.mcl-root .mcl-g2-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 9px; font-size: 12.5px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-g2-btns { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; min-width: 0; flex: 1; max-width: 230px; }
+.mcl-root .mcl-g2-btns.three button { font-size: 11px; height: 28px; }
+.mcl-root .mcl-g2-btns button { height: 32px; border: 1px solid #d6e3f5; border-radius: 7px; background: #eef4fc; color: #1b2f4e; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: background .15s, color .15s; }
+.mcl-root .mcl-g2-btns button:hover:not(:disabled) { border-color: #9cc0ef; }
+.mcl-root .mcl-g2-btns button:disabled { opacity: .45; cursor: not-allowed; }
+.mcl-root .mcl-g2-btns button.on.blue { background: #1677ff; border-color: #1677ff; color: #fff; }
+.mcl-root .mcl-g2-btns button.on.green { background: #16a34a; border-color: #16a34a; color: #fff; }
+.mcl-root .mcl-g2-btns button.on.dark { background: #1b2f4e; border-color: #1b2f4e; color: #fff; }
+.mcl-root .mcl-g2-hint { display: flex; align-items: flex-start; gap: 6px; margin: 6px 0 0; padding: 6px 8px; border-radius: 6px; background: #eef5ff; color: #1b4f8f; font-size: 11.5px; line-height: 1.35; }
+.mcl-root .mcl-g2-hint.warn { background: #fff7e6; color: #8a5300; }
+.mcl-root .mcl-g2-hint svg { flex: none; margin-top: 1px; }
+.mcl-root .mcl-g2-faults { display: grid; gap: 6px; margin-top: 10px; padding-top: 9px; border-top: 1px dashed #dbe5f1; }
+.mcl-root .mcl-g2-faults > b { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #1b2f4e; }
+.mcl-root .mcl-g2-mat { border-radius: 12px; background: #e3e8ef; border: 1px solid #d3dae4; padding: 10px; }
+.mcl-root .mcl-g2-mat svg { display: block; width: 100%; height: auto; max-height: 380px; }
+.mcl-root .mcl-g2-pin[role="button"] { cursor: pointer; outline: none; }
+.mcl-root .mcl-g2-pin:focus-visible rect { stroke: #fde68a; stroke-width: 1.5; }
+.mcl-root .mcl-g2-state { display: inline-block; min-width: 76px; padding: 4px 10px; border-radius: 6px; background: #e8f1fd; color: #1769e0; font-size: 11.5px; font-weight: 700; text-align: center; letter-spacing: .02em; }
+.mcl-root .mcl-g2-state.hi { background: #dcfce7; color: #15803d; }
+.mcl-root .mcl-g2-state.warn { background: #fff4e0; color: #b45309; }
+.mcl-root .mcl-g2-state.bad { background: #fee2e2; color: #b42318; }
+.mcl-root .mcl-g2-kv { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+.mcl-root .mcl-g2-kv > div { padding: 6px 8px; border-radius: 7px; background: #f4f8fd; border: 1px solid #e1eaf5; min-width: 0; }
+.mcl-root .mcl-g2-kv small { display: block; font-size: 10.5px; color: #64748b; }
+.mcl-root .mcl-g2-kv b { font-size: 16px; color: #0f2547; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-g2-kv b.bad { color: #b42318; }
+.mcl-root .mcl-g2-kv b.ok { color: #15803d; }
+.mcl-root .mcl-g2-range { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-g2-range input { width: 100%; accent-color: #1677ff; }
+.mcl-root .mcl-g2-range output { min-width: 52px; text-align: right; font-variant-numeric: tabular-nums; color: #1769e0; }
+.mcl-root .mcl-g2-stepper { display: inline-flex; align-items: center; gap: 4px; }
+.mcl-root .mcl-g2-stepper button { width: 24px; height: 24px; border: 1px solid #d6e3f5; border-radius: 6px; background: #eef4fc; color: #1b2f4e; font: inherit; font-weight: 800; cursor: pointer; }
+.mcl-root .mcl-g2-stepper code { min-width: 54px; text-align: center; font-family: ui-monospace, Consolas, monospace; font-size: 12px; padding: 3px 6px; border-radius: 5px; background: #f4f8fd; border: 1px solid #e1eaf5; }
+.mcl-root .mcl-g2-grid { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(300px, 1fr); grid-template-areas: "bench ctl" "bench scope" "code tasks"; gap: 14px; align-items: start; }
+.mcl-root .mcl-g2-grid > .g-bench { grid-area: bench; align-self: stretch; }
+.mcl-root .mcl-g2-grid > .g-ctl { grid-area: ctl; }
+.mcl-root .mcl-g2-grid > .g-scope { grid-area: scope; }
+.mcl-root .mcl-g2-grid > .g-code { grid-area: code; }
+.mcl-root .mcl-g2-grid > .g-tasks { grid-area: tasks; align-self: stretch; }
+.mcl-root .mcl-g2-grid > .g-tasks > .mcl-panel { height: 100%; }
+.mcl-root .mcl-g2-grid .g-scope .mcl-g2-btns { max-width: 250px; }
+.mcl-root .mcl-g2-grid .g-scope .mcl-g2-btns button { height: 26px; font-size: 11px; padding: 0 8px; white-space: nowrap; }
+
+/* Lab 11 - GPIO Fundamentals */
+.mcl-root .mcl-l11-grid { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(300px, 1fr); grid-template-areas: "bench ctl" "bench scope" "code tasks"; gap: 14px; align-items: start; }
+.mcl-root .mcl-l11-bench { grid-area: bench; align-self: stretch; }
+.mcl-root .mcl-l11-ctl { grid-area: ctl; }
+.mcl-root .mcl-l11-scope { grid-area: scope; }
+.mcl-root .mcl-l11-code { grid-area: code; }
+.mcl-root .mcl-l11-tasks { grid-area: tasks; align-self: stretch; }
+.mcl-root .mcl-l11-tasks > .mcl-panel { height: 100%; }
+.mcl-root .mcl-l11-part { cursor: pointer; outline: none; }
+.mcl-root .mcl-l11-pins { margin-top: 10px; }
+.mcl-root .mcl-l11-pins th, .mcl-root .mcl-l11-pins td { font-size: 11.5px; padding: 5px 7px; }
+.mcl-root .mcl-l11-pins tr { cursor: pointer; }
+.mcl-root .mcl-l11-pins td:first-child { font-weight: 700; white-space: nowrap; }
+.mcl-root .mcl-l11-pins td:first-child i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.mcl-root .mcl-l11-pins td.warn { color: #b45309; font-weight: 700; }
+.mcl-root .mcl-l11-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 9px; font-size: 12.5px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-l11-row > span { flex: none; min-width: 72px; }
+.mcl-root .mcl-l11-chips { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; }
+.mcl-root .mcl-l11-chips button { height: 24px; padding: 0 9px; border: 1px solid #d6e3f5; border-radius: 6px; background: #f4f8fd; color: #1769e0; font: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+.mcl-root .mcl-l11-chips button.on { background: #dbeafe; border-color: #93c5fd; color: #0f4fb8; }
+.mcl-root .mcl-l11-read { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 7px 8px; border-radius: 7px; background: #f4f8fd; border: 1px solid #e1eaf5; }
+.mcl-root .mcl-l11-read code { font-family: ui-monospace, Consolas, monospace; font-size: 10.5px; padding: 1px 5px; border-radius: 4px; background: #fff; border: 1px solid #e1eaf5; color: #1b2f4e; }
+.mcl-root .mcl-l11-read b { margin-left: auto; font-size: 12px; color: #475569; }
+.mcl-root .mcl-l11-read b.hi { color: #15803d; }
+.mcl-root .mcl-l11-read b.warn { color: #b45309; }
+/* Lab 13 - Digital Output */
+.mcl-root .mcl-l13-side { display: grid; gap: 14px; align-content: start; }
+.mcl-root .mcl-l13-side > .mcl-panel { height: auto; }
+.mcl-root .mcl-l13-safety { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+.mcl-root .mcl-l13-safety li { display: grid; grid-template-columns: 8px minmax(0, 1fr) 104px; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 7px; background: #f6f9fd; border: 1px solid #e3ebf5; }
+.mcl-root .mcl-l13-safety li > i { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e1; }
+.mcl-root .mcl-l13-safety li.ok > i { background: #22c55e; }
+.mcl-root .mcl-l13-safety li.warn { background: #fffaf0; border-color: #fde7c2; }
+.mcl-root .mcl-l13-safety li.warn > i { background: #f59e0b; }
+.mcl-root .mcl-l13-safety li.bad { background: #fff5f5; border-color: #fecaca; }
+.mcl-root .mcl-l13-safety li.bad > i { background: #ef4444; }
+.mcl-root .mcl-l13-safety b { display: block; font-size: 11.5px; color: #1b2f4e; text-transform: capitalize; }
+.mcl-root .mcl-l13-safety small { display: block; font-size: 10.5px; color: #5b6b82; line-height: 1.3; }
+.mcl-root .mcl-l13-bar { position: relative; display: block; height: 16px; border-radius: 4px; background: #e8eef6; overflow: hidden; }
+.mcl-root .mcl-l13-bar em { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, #60a5fa, #1677ff); }
+.mcl-root .mcl-l13-safety li.warn .mcl-l13-bar em { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+.mcl-root .mcl-l13-safety li.bad .mcl-l13-bar em { background: linear-gradient(90deg, #f87171, #dc2626); }
+.mcl-root .mcl-l13-bar code { position: relative; display: block; text-align: center; font-family: ui-monospace, Consolas, monospace; font-size: 10px; line-height: 16px; color: #0f2547; }
+.mcl-root .mcl-l13-total { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 10px; margin-top: 8px; font-size: 11.5px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-l13-sound path { animation: mcl-l13-sound .5s ease-in-out infinite alternate; }
+.mcl-root .mcl-l13-sound path:nth-child(2) { animation-delay: .15s; }
+@keyframes mcl-l13-sound { from { opacity: .25; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .mcl-root .mcl-l13-sound path { animation: none; } }
+
+/* Lab 14 - GPIO Register Programming */
+.mcl-root .mcl-l14-bits { display: grid; grid-template-columns: 62px 92px minmax(120px, 1fr) repeat(16, minmax(18px, 26px)); align-items: center; gap: 3px; }
+.mcl-root .mcl-l14-bits.head { padding: 0 12px 4px; }
+.mcl-root .mcl-l14-bits.head em { font-style: normal; font-size: 9.5px; color: #8094ad; text-align: center; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l14-reg { padding: 10px 12px; margin-bottom: 8px; border-radius: 9px; background: #f7fafe; border: 1px solid #e1eaf5; transition: border-color .15s; }
+.mcl-root .mcl-l14-reg.sel { border-color: #9cc0ef; background: #f2f7ff; }
+.mcl-root .mcl-l14-reg b { font-size: 13px; color: #0f2547; }
+.mcl-root .mcl-l14-reg .addr { font-size: 11px; color: #64748b; }
+.mcl-root .mcl-l14-reg .val { font-size: 13px; font-weight: 700; color: #1769e0; }
+.mcl-root .mcl-l14-reg .val small { font-size: 9.5px; font-weight: 500; color: #8094ad; }
+.mcl-root .mcl-l14-reg .cell { height: 22px; padding: 0; border: 1px solid #dbe5f1; border-radius: 4px; background: #eef3f9; color: #64748b; font: 700 9.5px ui-monospace, Consolas, monospace; cursor: pointer; }
+.mcl-root .mcl-l14-reg .cell:disabled { cursor: default; }
+.mcl-root .mcl-l14-reg .cell.focus { outline: 2px solid #1677ff; outline-offset: 1px; }
+.mcl-root .mcl-l14-reg .cell.one, .mcl-root .mcl-l14-legend i.one { background: #22c55e; border-color: #16a34a; color: #fff; }
+.mcl-root .mcl-l14-reg .cell.m1, .mcl-root .mcl-l14-legend i.m1 { background: #22c55e; border-color: #16a34a; color: #fff; }
+.mcl-root .mcl-l14-reg .cell.m2, .mcl-root .mcl-l14-legend i.m2 { background: #3b82f6; border-color: #2563eb; color: #fff; }
+.mcl-root .mcl-l14-reg .cell.m3, .mcl-root .mcl-l14-legend i.m3 { background: #a78bfa; border-color: #7c3aed; color: #fff; }
+.mcl-root .mcl-l14-reg .cell.p1 { background: #dbeafe; color: #1d4ed8; }
+.mcl-root .mcl-l14-reg .cell.p2 { background: #ede9fe; color: #6d28d9; }
+.mcl-root .mcl-l14-reg .cell.set, .mcl-root .mcl-l14-legend i.set { background: #16a34a; border-color: #15803d; color: #fff; }
+.mcl-root .mcl-l14-reg .cell.rst, .mcl-root .mcl-l14-legend i.rst { background: #ef4444; border-color: #dc2626; color: #fff; }
+.mcl-root .mcl-l14-reg .cell.fl, .mcl-root .mcl-l14-legend i.fl { background: #fef3c7; border-color: #f59e0b; color: #b45309; }
+.mcl-root .mcl-l14-legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 2px; font-size: 10.5px; color: #4b6283; }
+.mcl-root .mcl-l14-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.mcl-root .mcl-l14-legend i { width: 11px; height: 11px; border-radius: 3px; background: #eef3f9; border: 1px solid #dbe5f1; }
+.mcl-root .mcl-l14-chips, .mcl-root .mcl-l14-pins { display: grid; gap: 4px; margin-bottom: 8px; }
+.mcl-root .mcl-l14-chips { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.mcl-root .mcl-l14-pins { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.mcl-root .mcl-l14-chips button, .mcl-root .mcl-l14-pins button { height: 24px; padding: 0; border: 1px solid #d6e3f5; border-radius: 6px; background: #f4f8fd; color: #1b2f4e; font: inherit; font-size: 10.5px; font-weight: 700; cursor: pointer; }
+.mcl-root .mcl-l14-chips button.on, .mcl-root .mcl-l14-pins button.on { background: #1b2f4e; border-color: #1b2f4e; color: #fff; }
+.mcl-root .mcl-l14-field { margin: 4px 0 8px; font-size: 12.5px; font-weight: 800; color: #0f2547; }
+.mcl-root .mcl-g2-btns.four { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row; max-width: none; }
+.mcl-root .mcl-l14-grid .g-ctl .mcl-g2-btns { max-width: none; }
+.mcl-root .mcl-l14-c { display: block; margin-top: 8px; padding: 6px 8px; border-radius: 6px; background: #0f1b2e; color: #c7e0ff; font: 11px ui-monospace, Consolas, monospace; white-space: pre-wrap; word-break: break-all; }
+.mcl-root .mcl-l14-raw { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px; margin-top: 8px; font-size: 11.5px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-l14-raw input { min-width: 0; height: 28px; padding: 0 8px; border: 1px solid #d6e3f5; border-radius: 6px; font-size: 12px; }
+.mcl-root .mcl-l14-raw button, .mcl-root .mcl-l14-tools button { height: 28px; padding: 0 10px; border: 1px solid #1677ff; border-radius: 6px; background: #1677ff; color: #fff; font: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+.mcl-root .mcl-l14-tools { display: flex; gap: 6px; }
+.mcl-root .mcl-l14-tools button { white-space: nowrap; }
+.mcl-root .mcl-l14-tools button:not(.go) { background: #eef4fc; border-color: #d6e3f5; color: #1b2f4e; }
+.mcl-root .mcl-l14-tools button:disabled { opacity: .45; cursor: not-allowed; }
+.mcl-root .mcl-l14-trace { max-height: 230px; overflow: auto; }
+.mcl-root .mcl-l14-trace td { font-size: 11px; vertical-align: top; }
+.mcl-root .mcl-l14-trace tr.ed td { background: #f2f7ff; }
+.mcl-root .mcl-l14-trace tr.bad td { background: #fff5f5; color: #b42318; }
+.mcl-root .mcl-l14-empty { margin: 0; font-size: 12.5px; line-height: 1.5; color: #334866; }
+.mcl-root .mcl-l14-switch { cursor: pointer; outline: none; }
+.mcl-root .mcl-l14-switch:focus-visible rect { stroke: #fde68a; stroke-width: 2; }
+
+/* Lab 15: pin multiplexing */
+.mcl-root .mcl-l15-grid { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(300px, 1fr); grid-template-areas: "explorer routing" "code conflict"; gap: 14px; align-items: start; }
+.mcl-root .mcl-l15-grid > .g-explorer { grid-area: explorer; align-self: stretch; }
+.mcl-root .mcl-l15-grid > .g-routing { grid-area: routing; align-self: stretch; }
+.mcl-root .mcl-l15-grid > .g-code { grid-area: code; min-width: 0; }
+.mcl-root .mcl-l15-grid > .g-conflict { grid-area: conflict; min-width: 0; }
+.mcl-root .mcl-l15-mat { background: #f7f9fc; }
+.mcl-root .mcl-l15-mat svg { max-height: 420px; }
+.mcl-root .mcl-l15-kv b { font-size: 12.5px; }
+.mcl-root .mcl-g2-pin.sel text { fill: #1677ff; }
+.mcl-root .mcl-l15-rows { display: grid; gap: 5px; }
+.mcl-root .mcl-l15-row { display: grid; grid-template-columns: 42px minmax(0, 1fr) 40px; align-items: center; gap: 8px; padding: 2px 4px; border-radius: 7px; cursor: pointer; }
+.mcl-root .mcl-l15-row.sel { background: #f0f6ff; }
+.mcl-root .mcl-l15-row > b { font-size: 12px; color: #1b2f4e; }
+.mcl-root .mcl-l15-row select { width: 100%; min-width: 0; height: 27px; padding: 0 8px; border: 1px solid #d6e3f5; border-radius: 7px; background: #f8fafc; color: #475569; font: inherit; font-size: 11.5px; font-weight: 700; text-align: center; text-align-last: center; cursor: pointer; }
+.mcl-root .mcl-l15-row select.on { background: #eef5ff; color: #1769e0; }
+.mcl-root .mcl-l15-row.bad select { background: #fef2f2; border-color: #fca5a5; color: #b42318; }
+.mcl-root .mcl-l15-row.warn select { border-color: #fcd34d; }
+.mcl-root .mcl-l15-row > button { height: 25px; border: 1px solid #d6e3f5; border-radius: 6px; background: #f4f8fd; color: #475569; font: inherit; font-size: 10.5px; font-weight: 800; cursor: pointer; }
+.mcl-root .mcl-l15-row > button.on { background: #0891b2; border-color: #0891b2; color: #fff; }
+.mcl-root .mcl-l15-row > button:disabled { opacity: .35; cursor: default; }
+.mcl-root .mcl-l15-intro { margin: 0 0 9px; font-size: 12.5px; line-height: 1.5; color: #334866; }
+.mcl-root .mcl-l15-sigs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+.mcl-root .mcl-l15-sigs span { padding: 2px 8px; border-radius: 99px; border: 1px solid #d6e3f5; background: #f8fafc; font-size: 10.5px; font-weight: 700; color: #334866; font-family: ui-monospace, Consolas, monospace; }
+.mcl-root .mcl-l15-sigs span.ok { background: #fff; }
+.mcl-root .mcl-l15-sigs span.warn { background: #fff7e6; border-color: #f6d79b; color: #8a5300; }
+.mcl-root .mcl-l15-sigs span.bad { background: #fdecec; border-color: #f5c2c2; color: #a61b1b; }
+.mcl-root .mcl-l15-issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.mcl-root .mcl-l15-issues li { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 6px; padding: 7px 9px; border-radius: 7px; font-size: 12px; line-height: 1.4; }
+.mcl-root .mcl-l15-issues li.error { background: #fdecec; color: #8f1d1d; }
+.mcl-root .mcl-l15-issues li.warn { background: #fff7e6; color: #7a4a00; }
+.mcl-root .mcl-l15-issues li svg { margin-top: 2px; }
+.mcl-root .mcl-l15-issues li button { grid-column: 2; justify-self: start; height: 25px; padding: 0 10px; border: 1px solid #1677ff; border-radius: 6px; background: #1677ff; color: #fff; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
+.mcl-root .mcl-l15-ok { display: flex; align-items: center; gap: 6px; margin: 0; padding: 7px 9px; border-radius: 7px; background: #eaf8ef; color: #137a3a; font-size: 12px; }
+
+/* Lab 16: interrupts */
+.mcl-root .mcl-l16-grid { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(300px, 1fr); grid-template-areas: "timeline cpu" "code step"; gap: 14px; align-items: start; }
+.mcl-root .mcl-l16-grid > .g-timeline { grid-area: timeline; align-self: stretch; min-width: 0; }
+.mcl-root .mcl-l16-grid > .g-cpu { grid-area: cpu; align-self: stretch; min-width: 0; }
+.mcl-root .mcl-l16-grid > .g-code { grid-area: code; min-width: 0; }
+.mcl-root .mcl-l16-grid > .g-step { grid-area: step; min-width: 0; }
+.mcl-root .mcl-l16-phases { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin: 4px 0 12px; }
+.mcl-root .mcl-l16-phases > div { position: relative; display: grid; place-items: center; height: 48px; border-radius: 10px; border: 1px solid #c9daf3; background: #e9f1fd; font-size: 12.5px; font-weight: 700; color: #1b2f4e; text-align: center; transition: box-shadow .15s, transform .15s; }
+.mcl-root .mcl-l16-phases > div i { position: absolute; left: -17px; top: 50%; width: 16px; height: 2px; background: #1677ff; }
+.mcl-root .mcl-l16-phases .p-request { background: #fde9e9; border-color: #f5c2c2; }
+.mcl-root .mcl-l16-phases .p-stacking { background: #fff2d9; border-color: #f2d398; }
+.mcl-root .mcl-l16-phases .p-isr { background: #e4f6ea; border-color: #b4e0c2; }
+.mcl-root .mcl-l16-phases > div.on { box-shadow: 0 0 0 2px #1677ff, 0 4px 12px rgba(22, 119, 255, .18); transform: translateY(-1px); }
+.mcl-root .mcl-l16-lanes { display: block; width: 100%; height: auto; max-height: 220px; }
+.mcl-root .mcl-l16-kv b { font-size: 13px; }
+.mcl-root .mcl-l16-hist { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin: 9px 0 8px; font-size: 11.5px; color: #64748b; }
+.mcl-root .mcl-l16-hist > span { font-weight: 700; color: #1b2f4e; margin-right: 2px; }
+.mcl-root .mcl-l16-hist button { height: 24px; padding: 0 8px; border: 1px solid #d6e3f5; border-radius: 99px; background: #f8fafc; color: #334866; font: inherit; font-size: 10.5px; font-weight: 700; cursor: pointer; }
+.mcl-root .mcl-l16-hist button.on { background: #1677ff; border-color: #1677ff; color: #fff; }
+.mcl-root .mcl-l16-note { margin: 6px 0 0; font-size: 10.5px; color: #64748b; line-height: 1.4; }
+.mcl-root .mcl-l16-state { display: grid; gap: 7px; }
+.mcl-root .mcl-l16-state > div { display: grid; grid-template-columns: minmax(84px, .8fr) minmax(0, 1.2fr); align-items: center; gap: 10px; font-size: 12px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-l16-state b { justify-self: start; min-width: 72px; padding: 4px 10px; border-radius: 6px; background: #e8f1fd; color: #1769e0; font-size: 11.5px; font-family: ui-monospace, Consolas, monospace; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.mcl-root .mcl-l16-state b.hi { background: #dcfce7; color: #15803d; }
+.mcl-root .mcl-l16-state b.warn { background: #fff4e0; color: #b45309; }
+.mcl-root .mcl-l16-state b.bad { background: #fee2e2; color: #b42318; }
+.mcl-root .mcl-l16-frame { margin-top: 12px; }
+.mcl-root .mcl-l16-frame > b { display: block; margin-bottom: 5px; font-size: 11.5px; color: #1b2f4e; }
+.mcl-root .mcl-l16-frame td { padding: 3px 6px; font-size: 11px; }
+.mcl-root .mcl-l16-btns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }
+.mcl-root .mcl-l16-btns button { height: 34px; border: 1px solid #d6e3f5; border-radius: 7px; background: #eef4fc; color: #1b2f4e; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+.mcl-root .mcl-l16-btns button.trig { background: #e5484d; border-color: #e5484d; color: #fff; }
+.mcl-root .mcl-l16-btns button:disabled { opacity: .45; cursor: not-allowed; }
+.mcl-root .mcl-l16-now { display: grid; gap: 3px; padding: 8px 10px; border-radius: 8px; border: 1px solid #c9daf3; background: #f3f8ff; font-size: 12px; line-height: 1.45; color: #334866; }
+.mcl-root .mcl-l16-now b { color: #1b2f4e; }
+.mcl-root .mcl-l16-now.p-request { background: #fef4f4; border-color: #f5c2c2; }
+.mcl-root .mcl-l16-now.p-stacking { background: #fff8eb; border-color: #f2d398; }
+.mcl-root .mcl-l16-now.p-isr { background: #effaf3; border-color: #b4e0c2; }
+
+/* Lab 17: external interrupts */
+.mcl-root .mcl-l17-pill { min-width: 132px; height: 28px; padding: 0 10px; border: 1px solid #cfe0f7; border-radius: 7px; background: #e8f1fd; color: #1769e0; font: inherit; font-size: 12px; font-weight: 700; text-align: center; text-align-last: center; cursor: pointer; }
+.mcl-root .mcl-l17-pill:disabled { opacity: .55; cursor: not-allowed; }
+.mcl-root .mcl-l17-pill.off { background: #fff4e0; border-color: #f2d398; color: #b45309; }
+.mcl-root .mcl-l17-regs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; margin-top: 10px; padding-top: 9px; border-top: 1px dashed #dbe5f1; }
+.mcl-root .mcl-l17-regs > div { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-width: 0; padding: 4px 7px; border-radius: 6px; background: #f4f8fd; border: 1px solid #e1eaf5; font-size: 10.5px; color: #64748b; }
+.mcl-root .mcl-l17-regs span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: ui-monospace, Consolas, monospace; }
+.mcl-root .mcl-l17-regs b { flex: none; font-family: ui-monospace, Consolas, monospace; font-size: 11px; color: #0f2547; }
+.mcl-root .mcl-l17-regs b.warn { color: #b45309; }
+.mcl-root .mcl-l17-regs b.bad { color: #b42318; }
+.mcl-root .mcl-l17-timing { margin: 8px 0 0; font-size: 12px; color: #4b6283; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l17-timing span { margin: 0 6px; color: #94a3b8; }
+.mcl-root .mcl-l17-src { margin-bottom: 10px; }
+.mcl-root .mcl-l17-src button { font-size: 12px; white-space: nowrap; }
+.mcl-root .mcl-l17-levels { display: inline-flex; gap: 6px; }
+.mcl-root .mcl-l17-levels .mcl-g2-state { min-width: 58px; }
+
+/* Lab 18: interrupt priority and nesting */
+.mcl-root .mcl-l18-grid { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(300px, 1fr); grid-template-areas: "timeline editor" "code metrics"; gap: 14px; align-items: start; }
+.mcl-root .mcl-l18-grid > .g-timeline { grid-area: timeline; align-self: stretch; min-width: 0; }
+.mcl-root .mcl-l18-grid > .g-editor { grid-area: editor; align-self: stretch; min-width: 0; }
+.mcl-root .mcl-l18-grid > .g-code { grid-area: code; min-width: 0; }
+.mcl-root .mcl-l18-grid > .g-metrics { grid-area: metrics; min-width: 0; }
+.mcl-root .mcl-l18-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.mcl-root .mcl-l18-btns button { height: 32px; padding: 0 14px; border: 1px solid #d6e3f5; border-radius: 7px; background: #eef4fc; color: #1b2f4e; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.mcl-root .mcl-l18-btns button.go { background: #1677ff; border-color: #1677ff; color: #fff; }
+.mcl-root .mcl-l18-btns button:disabled { opacity: .45; cursor: not-allowed; }
+.mcl-root .mcl-l18-lanes { display: block; width: 100%; height: auto; max-height: 330px; cursor: crosshair; }
+.mcl-root .mcl-l18-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; font-size: 11px; color: #64748b; }
+.mcl-root .mcl-l18-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.mcl-root .mcl-l18-legend i { display: inline-block; width: 18px; height: 9px; border-radius: 3px; }
+.mcl-root .mcl-l18-legend i.solid { background: #16a34a; }
+.mcl-root .mcl-l18-legend i.hatch { background: repeating-linear-gradient(45deg, #f1f5f9 0 3px, #cbd5e1 3px 5px); border: 1px solid #94a3b8; }
+.mcl-root .mcl-l18-legend i.dash { border: 1px dashed #16a34a; }
+.mcl-root .mcl-l18-legend i.tri { width: 0; height: 0; border-radius: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #16a34a; }
+.mcl-root .mcl-l18-prios { display: grid; gap: 9px; }
+.mcl-root .mcl-l18-prio { display: grid; grid-template-columns: minmax(70px, 1fr) 84px minmax(78px, 1fr); align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #dde7f3; border-radius: 9px; background: #fbfdff; position: relative; }
+.mcl-root .mcl-l18-prio > b { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: #1b2f4e; }
+.mcl-root .mcl-l18-prio > b i { width: 8px; height: 8px; border-radius: 50%; }
+.mcl-root .mcl-l18-prio select { height: 28px; border: 1px solid #cfe0f7; border-radius: 7px; background: #e8f1fd; color: #1769e0; font: inherit; font-size: 12px; font-weight: 700; text-align: center; text-align-last: center; cursor: pointer; }
+.mcl-root .mcl-l18-prio .st { font-size: 12px; font-weight: 700; color: #64748b; }
+.mcl-root .mcl-l18-prio .st.act { color: #15803d; }
+.mcl-root .mcl-l18-prio .st.pre { color: #b45309; }
+.mcl-root .mcl-l18-prio .st.pend { color: #1769e0; }
+.mcl-root .mcl-l18-prio small { position: absolute; right: 10px; bottom: 2px; font-size: 9.5px; color: #b45309; }
+.mcl-root .mcl-l18-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.mcl-root .mcl-l18-metrics > div { padding: 7px 9px; border-radius: 7px; background: #f4f8fd; border: 1px solid #e1eaf5; }
+.mcl-root .mcl-l18-metrics small { display: block; font-size: 10.5px; color: #64748b; }
+.mcl-root .mcl-l18-metrics b { font-size: 17px; color: #0f2547; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l18-metrics b.bad { color: #b42318; }
+.mcl-root .mcl-l18-sub { margin: 6px 0 0; font-size: 11.5px; color: #4b6283; }
+.mcl-root .mcl-l18-table { margin-top: 8px; }
+.mcl-root .mcl-l18-table th, .mcl-root .mcl-l18-table td { padding: 4px 5px; font-size: 11px; }
+.mcl-root .mcl-l18-table td i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; }
+.mcl-root .mcl-l18-table td.bad { color: #b42318; font-weight: 700; }
+
+/* Lab 19: timers and counters */
+.mcl-root .mcl-l19-viz { display: grid; grid-template-columns: minmax(200px, 300px) minmax(220px, 1fr); align-items: center; gap: 18px 36px; padding: 10px 18px 4px; }
+.mcl-root .mcl-l19-ring { display: block; width: 100%; max-width: 280px; height: auto; justify-self: center; }
+.mcl-root .mcl-l19-ring circle { transition: stroke .2s; }
+.mcl-root .mcl-l19-rows { display: grid; gap: 12px; max-width: 380px; }
+.mcl-root .mcl-l19-rows > div { display: grid; grid-template-columns: minmax(96px, 1fr) minmax(96px, 128px); align-items: center; gap: 12px; }
+.mcl-root .mcl-l19-rows span { font-size: 12.5px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-l19-rows b { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 30px; padding: 0 10px; border-radius: 8px; background: #e8f1fd; color: #1769e0; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mcl-root .mcl-l19-rows b.warn { background: #fff4e0; color: #b45309; }
+.mcl-root .mcl-l19-rows b.bad { background: #fde8e8; color: #b42318; }
+.mcl-root .mcl-l19-led i { width: 9px; height: 9px; border-radius: 50%; background: #94a3b8; }
+.mcl-root .mcl-l19-led.on { background: #e3f7ea; color: #15803d; }
+.mcl-root .mcl-l19-led.on i { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.mcl-root .mcl-l19-formula { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px; margin: 10px 0 0; padding: 9px 12px; border-radius: 8px; background: #f4f8fd; border: 1px solid #e1eaf5; font-size: 12px; color: #4b6283; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l19-formula b { color: #0f2547; }
+.mcl-root .mcl-l19-formula b.bad { color: #b42318; }
+.mcl-root .mcl-l19-ctl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+.mcl-root .mcl-l19-ctl button { height: 34px; border: 1px solid #d6e3f5; border-radius: 7px; background: #eef4fc; color: #1b2f4e; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.mcl-root .mcl-l19-ctl button.go { background: #16a34a; border-color: #16a34a; color: #fff; }
+.mcl-root .mcl-l19-ctl button:disabled { opacity: .45; cursor: not-allowed; }
+.mcl-root .mcl-l19-field { cursor: text; }
+.mcl-root .mcl-l19-num { width: 96px; height: 30px; padding: 0 8px; border: 1px solid #cfe0f7; border-radius: 7px; background: #eef4fc; color: #0f2547; font: inherit; font-size: 13px; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l19-num:focus { outline: 2px solid #1677ff; outline-offset: 1px; background: #fff; }
+.mcl-root .mcl-l19-num.pending { border-color: #f59e0b; background: #fff8eb; }
+.mcl-root .mcl-l19-drift { flex-wrap: wrap; }
+.mcl-root .mcl-l19-drift button { margin-left: auto; height: 26px; padding: 0 10px; border: 1px solid #1677ff; border-radius: 6px; background: #1677ff; color: #fff; font: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+.mcl-root .mcl-l19-live { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.mcl-root .mcl-l19-live > div { padding: 7px 9px; border-radius: 7px; background: #f4f8fd; border: 1px solid #e1eaf5; min-width: 0; }
+.mcl-root .mcl-l19-live span { display: block; font-size: 10.5px; color: #64748b; }
+.mcl-root .mcl-l19-live b { font-size: 14px; color: #0f2547; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.mcl-root .mcl-l19-live b.ok { color: #15803d; }
+.mcl-root .mcl-l19-live b.warn { color: #b45309; }
+.mcl-root .mcl-l19-live b.bad { color: #b42318; }
+.mcl-root .mcl-l19-log { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 3px; max-height: 150px; overflow: auto; }
+.mcl-root .mcl-l19-log li { display: flex; gap: 8px; font-size: 11.5px; color: #33496b; line-height: 1.35; }
+.mcl-root .mcl-l19-log time { flex: none; width: 58px; color: #94a3b8; font-variant-numeric: tabular-nums; }
+
+/* Lab 20: input capture and output compare */
+.mcl-root .mcl-l20-grid { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(300px, 1fr); grid-template-areas: "timing channels" "code experiment"; gap: 14px; align-items: start; }
+.mcl-root .mcl-l20-grid > .g-timing { grid-area: timing; align-self: stretch; min-width: 0; }
+.mcl-root .mcl-l20-grid > .g-channels { grid-area: channels; align-self: stretch; min-width: 0; }
+.mcl-root .mcl-l20-grid > .g-code { grid-area: code; min-width: 0; }
+.mcl-root .mcl-l20-grid > .g-experiment { grid-area: experiment; min-width: 0; }
+.mcl-root .mcl-l20-h { margin: 4px 0 6px; font-size: 12.5px; font-weight: 700; color: #1b2f4e; }
+.mcl-root .mcl-l20-h + .mcl-scope, .mcl-root .mcl-l20-h + * { margin-bottom: 8px; }
+.mcl-root .mcl-l20-read { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 8px 0 0; font-size: 12px; color: #4b6283; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l20-read b { color: #0f2547; }
+.mcl-root .mcl-l20-read b.bad { color: #b42318; }
+.mcl-root .mcl-l20-read .dim { margin-left: auto; color: #94a3b8; }
+.mcl-root .mcl-l20-val { min-width: 96px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 7px; background: #e8f1fd; color: #1769e0; font-size: 12px; font-variant-numeric: tabular-nums; }
+.mcl-root .mcl-l20-caps { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 10px 0; }
+
+@media (max-width: 1380px) {
+  .mcl-root .mcl-l11-grid, .mcl-root .mcl-g2-grid, .mcl-root .mcl-l16-grid, .mcl-root .mcl-l18-grid, .mcl-root .mcl-l20-grid { grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr); }
+  .mcl-root .mcl-l16-phases { gap: 10px; }
+  .mcl-root .mcl-l16-phases > div { font-size: 11px; }
+  .mcl-root .mcl-l16-phases > div i { left: -11px; width: 10px; }
+}
+@media (max-width: 1500px) {
+  .mcl-root .mcl-l15-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "explorer explorer" "routing conflict" "code code"; }
+}
+@media (max-width: 1500px) {
+  .mcl-root .mcl-l14-bits { grid-template-columns: 52px 78px minmax(92px, 1fr) repeat(16, minmax(16px, 24px)); gap: 2px; }
+  .mcl-root .mcl-l14-reg { padding: 8px 9px; }
+  .mcl-root .mcl-l14-bits.head { padding: 0 9px 4px; }
+  .mcl-root .mcl-l14-reg .addr { font-size: 10px; }
+  .mcl-root .mcl-l14-reg .val { font-size: 12px; }
+  .mcl-root .mcl-l14-reg .cell { font-size: 8.5px; }
+}
+@media (max-width: 1100px) {
+  .mcl-root .mcl-g2-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bench" "ctl" "scope" "code" "tasks"; }
+  .mcl-root .mcl-l15-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "explorer" "routing" "code" "conflict"; }
+  .mcl-root .mcl-l16-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "timeline" "cpu" "code" "step"; }
+  .mcl-root .mcl-l18-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "timeline" "editor" "code" "metrics"; }
+  .mcl-root .mcl-l20-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "timing" "channels" "code" "experiment"; }
+}

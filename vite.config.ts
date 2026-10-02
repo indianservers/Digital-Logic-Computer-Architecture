@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg"],
       manifest: {
-        name: "LogicLab — Digital Logic & Computer Architecture",
-        short_name: "LogicLab",
-        description: "Interactive digital logic and computer architecture labs that run entirely in the browser.",
+        name: "Digital Electronics & Computing Lab",
+        short_name: "Electronics Lab",
+        description: "Interactive labs for digital electronics, VLSI, microcontrollers, and computer architecture.",
         theme_color: "#2F6FED",
         background_color: "#F4F7FB",
         display: "standalone",

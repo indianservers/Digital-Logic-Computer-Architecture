@@ -76,17 +76,21 @@ export function CapSection({ state, depletion, body }: { state: CapState; deplet
   );
 }
 
-export function InverterSchematic({ vdd, vin, vout, pmosOn, nmosOn, current }: {
+export function InverterSchematic({ vdd, vin, vout, pmosOn, nmosOn, current, amps }: {
   vdd: number;
   vin: number;
   vout: number;
   pmosOn: boolean;
   nmosOn: boolean;
   current: boolean;
+  amps?: number;
 }) {
   const pColor = pmosOn ? "#fb7185" : "#64748b";
   const nColor = nmosOn ? "#38bdf8" : "#64748b";
   const out = vout > vdd / 2 ? "#4ade80" : "#94a3b8";
+  const strength = amps && amps > 0 ? Math.min(1, Math.max(0, (Math.log10(amps) + 8) / 5)) : 0.4;
+  const duration = (2.4 - strength * 1.9).toFixed(2);
+  const dots = amps === undefined ? 1 : 2 + Math.round(strength * 4);
   return (
     <svg className="vlsi-device" viewBox="0 0 420 300" role="img" aria-label="CMOS inverter schematic">
       <text x="210" y="28" textAnchor="middle" fill="#fecaca" fontSize="13">VDD {vdd.toFixed(2)} V</text>
@@ -102,7 +106,16 @@ export function InverterSchematic({ vdd, vin, vout, pmosOn, nmosOn, current }: {
       <text x="210" y="172" textAnchor="middle" fill={nColor} fontSize="12">NMOS {nmosOn ? "ON" : "OFF"}</text>
       <line x1="210" y1="186" x2="210" y2="230" stroke={nmosOn ? "#4ade80" : "#64748b"} strokeWidth={nmosOn ? 4 : 2} />
       <text x="210" y="250" textAnchor="middle" fill="#cbd5e1" fontSize="13">GND</text>
-      {current ? <circle r="4" fill="#86efac"><animate attributeName="cy" from={pmosOn && !nmosOn ? "220" : "40"} to={pmosOn && !nmosOn ? "40" : "220"} dur="1.2s" repeatCount="indefinite" /><animate attributeName="cx" values="210" dur="1.2s" repeatCount="indefinite" /></circle> : null}
+      {current ? (
+        <g className="vlsi-flow">
+          {Array.from({ length: dots }, (_, index) => (
+            <circle key={index} cx="210" r={3 + strength * 1.5} fill="#86efac">
+              <animate attributeName="cy" from={pmosOn && !nmosOn ? "220" : "40"} to={pmosOn && !nmosOn ? "40" : "220"} dur={`${duration}s`} begin={`${(index * Number(duration)) / dots}s`} repeatCount="indefinite" />
+            </circle>
+          ))}
+        </g>
+      ) : null}
+      {amps !== undefined && current ? <text x="226" y="214" fill="#86efac" fontSize="11">I ≈ {amps < 1e-6 ? `${(amps * 1e9).toFixed(0)} nA` : amps < 1e-3 ? `${(amps * 1e6).toFixed(1)} µA` : `${(amps * 1e3).toFixed(2)} mA`}</text> : null}
     </svg>
   );
 }

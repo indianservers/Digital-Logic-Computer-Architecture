@@ -36,7 +36,7 @@ function StudioCard({ studio, visited, next, preview }: { studio: StudioInfo; vi
       </div>
       <strong>{studio.title}</strong>
       <p className="studio-action">{studio.summary.split(".")[0]}</p>
-      <span className="tiny">Phase {studio.phase} · about {minutes} min{count ? ` · ${count} concepts` : ""}</span>
+      <span className="tiny">{studio.id === "microcontroller" ? "72 planned labs · studio roadmap" : `Phase ${studio.phase} · about ${minutes} min${count ? ` · ${count} concepts` : ""}`}</span>
       {preview ? <span className="studio-preview">Opens {destinationLabel(studio.path, studio)}. {studio.summary}</span> : null}
     </>
   );
@@ -56,6 +56,7 @@ const CHIP: Record<string, string> = {
   isa: "ISA",
   build: "Build",
   vlsi: "VLSI",
+  microcontroller: "Microcontrollers",
 };
 
 function Catalog({ home }: { home: boolean }) {
@@ -86,7 +87,7 @@ function Catalog({ home }: { home: boolean }) {
         <section className="home-hero-card">
           <div className="home-hero-copy">
             <div className="tiny">LEARN · BUILD · THINK</div>
-            <h1>Digital Logic & Computer Architecture</h1>
+            <h1>Digital Electronics & Computing Lab</h1>
             <p className="muted">Change an input and the lab’s engine updates the picture. Progress and notes stay in this browser, which is what Offline Ready means.</p>
             <div className="row" style={{ marginTop: 12 }}>
               {firstVisit ? <Link to="/studios/number-systems" className="btn-primary">Start here · Number Systems</Link> : (
@@ -110,7 +111,7 @@ function Catalog({ home }: { home: boolean }) {
               <Link to="/cheat-sheet"><b>{MASTER_CONCEPTS.length}</b><span>concepts</span></Link>
             </div>
           </div>
-          <img className="home-hero-art" src="/icons/home-hero.png" width={640} height={280} alt="Colorful LogicLab workshop with gates, bits, a CPU, and a bus" />
+          <img className="home-hero-art" src="/icons/home-hero.png" width={640} height={280} alt="Colorful electronics workshop with gates, bits, a CPU, and a bus" />
         </section>
       ) : (
         <header className="home-catalog-head">

@@ -11,7 +11,8 @@ export type StudioCategory =
   | "architecture"
   | "isa"
   | "build"
-  | "vlsi";
+  | "vlsi"
+  | "microcontroller";
 
 export interface StudioInfo {
   id: string;
@@ -41,6 +42,7 @@ export const CATEGORIES: Array<{
   { id: "isa", title: "ISA explorers", blurb: "MIPS, RISC-V, ARM, x86, and mobile or desktop packages.", art: "/icons/cat-isa.png", tone: "orange" },
   { id: "build", title: "Build & sandbox", blurb: "Assemble a custom CPU, then mix engines in one workspace.", art: "/icons/cat-build.png", tone: "indigo" },
   { id: "vlsi", title: "VLSI Studio", blurb: "From transistor physics to silicon implementation.", art: "/icons/cat-vlsi.svg", tone: "slate" },
+  { id: "microcontroller", title: "Microcontrollers & embedded systems", blurb: "MCU architecture, peripherals, firmware, and projects.", art: "/icons/cat-architecture.png", tone: "teal" },
 ];
 
 export const STUDIOS: StudioInfo[] = [
@@ -93,6 +95,7 @@ export const STUDIOS: StudioInfo[] = [
   { id: "builder", title: "Build Your Own CPU", phase: 8, path: "/architecture/builder", summary: "Construct a processor from registers, ALU, memory, and a custom ISA.", topics: ["cpu builder", "isa", "assembler", "datapath"], active: true, category: "build" },
   { id: "sandbox", title: "Computer Architecture Sandbox", phase: 8, path: "/architecture/sandbox", summary: "Combine gates, datapaths, caches, CPUs, and coherence in one workspace.", topics: ["sandbox", "circuit", "multicore"], active: true, category: "build" },
   { id: "vlsi", title: "VLSI Studio", phase: 2, path: "/studios/vlsi", summary: "From transistor physics to silicon implementation.", topics: ["mosfet", "cmos", "vlsi", "inverter", "nand", "transmission gate"], active: true, category: "vlsi" },
+  { id: "microcontroller", title: "Microcontroller Studio", phase: 8, path: "/studios/microcontroller", summary: "Browse 72 planned labs covering MCU architecture, GPIO, peripherals, firmware, and embedded projects.", topics: ["mcu", "embedded", "gpio", "pwm", "uart", "spi", "i2c", "rtos", "arduino", "stm32", "esp32"], active: true, category: "microcontroller" },
 ];
 
 export function matchStudio(path: string): StudioInfo | undefined {

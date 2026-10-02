@@ -58,7 +58,7 @@ export function StudioTop() {
   }, [query]);
   return (
     <header className="aca-top">
-      <Link to="/" className="aca-app-home">LogicLab</Link>
+      <Link to="/" className="aca-app-home">Digital Electronics & Computing Lab</Link>
       <Link to={ACA_HOME} className="aca-brand">
         <span className="aca-mark" aria-hidden="true">ACA</span>
         <div>
@@ -117,7 +117,7 @@ export function LabChrome({ lab, title, kicker, subtitle, badge, hint, reading, 
       <div className="aca-studio-body">
         <aside className="aca-lab-nav">
           <p>Virtual Labs</p>
-          <Link to="/">LogicLab</Link>
+          <Link to="/">Digital Electronics & Computing Lab</Link>
           <Link to={ACA_HOME}>Studio home</Link>
           <span className="aca-current">{index >= 0 ? `Lab ${index + 1}\n${ACA_LABS[index]?.title ?? title}` : title}</span>
           {SECTIONS.map((item) => (
@@ -138,7 +138,7 @@ export function LabChrome({ lab, title, kicker, subtitle, badge, hint, reading, 
           <header className="vl-head">
             <div>
               <nav className="vl-crumb" aria-label="Breadcrumb">
-                <Link to="/">LogicLab</Link>
+                <Link to="/">Digital Electronics & Computing Lab</Link>
                 <span aria-hidden="true">/</span>
                 <Link to="/studios">Studios</Link>
                 <span aria-hidden="true">/</span>
@@ -163,7 +163,7 @@ export function LabChrome({ lab, title, kicker, subtitle, badge, hint, reading, 
               {section === "Procedure" && guide && !guide.walkthrough ? <><h2>Procedure</h2><ol>{guide.procedure.map((item) => <li key={item}>{item}</li>)}</ol><h2>Try changing</h2><ul>{guide.controls.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul><h2>Challenges</h2><ol>{guide.variations.map((item) => <li key={item}>{item}</li>)}</ol></> : null}
               {section === "Posttest" && guide ? <><h2>Posttest</h2>{guide.walkthrough ? <><h3>Check yourself</h3><ol>{guide.walkthrough.check.map((item) => <li key={item}>{item}</li>)}</ol></> : null}{guide.viva.map((item) => <p key={item.question}><b>{item.question}</b> {item.answer}</p>)}<h2>Learning outcomes</h2><ul>{guide.learningOutcomes.map((item) => <li key={item}>{item}</li>)}</ul><p>{guide.summary}</p></> : null}
               {section === "References" && guide ? <><h2>References</h2>{guide.formulas.map((item) => <p key={item.name}><b>{item.name}.</b> {item.expression} {item.note}</p>)}<ul>{guide.assumptions.map((item) => <li key={item}>{item}</li>)}</ul></> : null}
-              {section === "Contributors" ? <><h2>Contributors</h2><p>Advanced Computer Architecture Studio, built in LogicLab for browser-side experiments. The lab engines run on this device.</p></> : null}
+              {section === "Contributors" ? <><h2>Contributors</h2><p>Advanced Computer Architecture Studio, built in Digital Electronics & Computing Lab for browser-side experiments. The lab engines run on this device.</p></> : null}
               {section === "Feedback" ? <><h2>Feedback</h2><p>Notes stay in this browser.</p><textarea aria-label="Lab notes" rows={6} value={notes} onChange={(event) => { setNotes(event.target.value); window.localStorage.setItem(`aca-lab-notes:${lab}`, event.target.value); }} /></> : null}
             </section>
           )}

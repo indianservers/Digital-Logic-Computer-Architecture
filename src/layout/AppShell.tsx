@@ -119,7 +119,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {home ? <aside className={open ? "sidebar open" : "sidebar"}>
         <Link to="/" className="brand">
           <span className="brand-mark"><Icon name="bolt" size={18} /></span>
-          <span><strong>LogicLab</strong><span>Learn · Build · Think</span></span>
+          <span><strong>Digital Electronics & Computing Lab</strong><span>Learn · Build · Think</span></span>
         </Link>
         <nav className="nav-group">
           {LINKS.map((link) => (

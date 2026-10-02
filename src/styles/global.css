@@ -139,6 +139,8 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
   display: grid; place-items: center; color: white; box-shadow: 0 8px 16px rgba(47, 111, 237, 0.28);
 }
 .brand strong { display: block; font-size: 15px; letter-spacing: -0.02em; }
+.brand > span:last-child { min-width: 0; }
+.brand > span:last-child strong { line-height: 1.2; }
 .brand span { color: var(--text-muted); font-size: 11px; }
 .nav-group { display: flex; flex-direction: column; gap: 2px; }
 .nav-label { margin: 12px 8px 6px; color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
@@ -419,6 +421,7 @@ table.data td.one { color: var(--primary); font-weight: 800; }
 .tone-isa .home-cat-head { background: linear-gradient(90deg, #ffedd5, #fff7ed); }
 .tone-build .home-cat-head { background: linear-gradient(90deg, #e0e7ff, #eef2ff); }
 .tone-vlsi .home-cat-head { background: linear-gradient(90deg, #e2e8f0, #f8fafc); }
+.tone-microcontroller .home-cat-head { background: linear-gradient(90deg, #ccfbf1, #f0fdfa); }
 .studio-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px; min-height: 168px; overflow: hidden; transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
 .studio-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .studio-card.tone-foundations { border-color: #7dd3fc; background: linear-gradient(180deg, #f0f9ff, #fff); }
@@ -431,6 +434,7 @@ table.data td.one { color: var(--primary); font-weight: 800; }
 .studio-card.tone-isa { border-color: #fdba74; background: linear-gradient(180deg, #fff7ed, #fff); }
 .studio-card.tone-build { border-color: #a5b4fc; background: linear-gradient(180deg, #eef2ff, #fff); }
 .studio-card.tone-vlsi { border-color: #94a3b8; background: linear-gradient(180deg, #f8fafc, #fff); }
+.studio-card.tone-microcontroller { border-color: #5eead4; background: linear-gradient(180deg, #f0fdfa, #fff); }
 .studio-card.is-locked { opacity: 0.78; filter: saturate(0.75); }
 .studio-mark {
   display: grid; place-items: center; border-radius: 12px; flex: none; color: white;
@@ -447,6 +451,19 @@ table.data td.one { color: var(--primary); font-weight: 800; }
 .mark-mips, .mark-riscv-lab, .mark-arm, .mark-x86, .mark-compare-isa, .mark-mobile, .mark-desktop { background: linear-gradient(180deg, #fb923c, #c2410c); }
 .mark-builder, .mark-sandbox { background: linear-gradient(180deg, #818cf8, #4338ca); }
 .mark-vlsi { background: linear-gradient(180deg, #334155, #0f172a); }
+.mark-microcontroller { background: linear-gradient(180deg, #2dd4bf, #0f766e); }
+.microcontroller-studio { display: grid; gap: 24px; max-width: 1100px; margin: 0 auto; }
+.microcontroller-hero { padding: 26px; background: linear-gradient(120deg, #ccfbf1, #eff6ff); }
+.microcontroller-hero h1 { margin: 12px 0 8px; }
+.microcontroller-hero p { margin: 8px 0 0; max-width: 720px; }
+.microcontroller-search { display: grid; gap: 6px; font-weight: 700; max-width: 520px; }
+.microcontroller-section h2 { margin: 0 0 12px; }
+.microcontroller-section h2 .tiny { margin-left: 6px; font-weight: 500; }
+.microcontroller-labs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; padding: 0; margin: 0; list-style: none; }
+.microcontroller-labs li { display: flex; align-items: center; gap: 10px; min-height: 70px; }
+.microcontroller-labs strong { flex: 1; }
+.microcontroller-number { color: #0f766e; font-weight: 800; font-variant-numeric: tabular-nums; }
+.microcontroller-labs .pill { flex: none; font-size: 11px; }
 .learn-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 .learn-list li { display: flex; gap: 10px; align-items: flex-start; }
 .lock { font-size: 11px; font-weight: 800; color: #b45309; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 999px; padding: 4px 8px; }

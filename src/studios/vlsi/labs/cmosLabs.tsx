@@ -5,7 +5,7 @@ function inverterBias(vin: number, vdd: number, wn: number, wp: number, vtn = 0.
   return { vdd, vin, kn: deviceK("nmos", wn, 0.18), kp: deviceK("pmos", wp, 0.18), vtn, vtp };
 }
 import { InverterSchematic } from "../diagrams";
-import { Badge, Chart, Choice, Measure, Observe, PlayControls, Slider, Theory, Wave, useTicker } from "../widgets";
+import { Badge, Chart, Choice, ControlGroup, Measure, Observe, PlayControls, Slider, Theory, Wave, useTicker } from "../widgets";
 
 export function CmosInverterLab() {
   const [vin, setVin] = useState(0);
@@ -39,7 +39,7 @@ export function CmosInverterLab() {
           <Badge tone={point.nmosOn ? "nmos" : "off"}>NMOS {point.nmosOn ? "ON" : "OFF"}</Badge>
           <Badge tone={point.logic === 1 ? "on" : "info"}>Y = {point.logic}</Badge>
         </div>
-        <InverterSchematic vdd={vdd} vin={vin} vout={point.vout} pmosOn={point.pmosOn} nmosOn={point.nmosOn} current={point.current > 1e-8} />
+        <InverterSchematic vdd={vdd} vin={vin} vout={point.vout} pmosOn={point.pmosOn} nmosOn={point.nmosOn} current={point.current > 1e-8} amps={point.current} />
       </section>
       <aside className="vlsi-panel vlsi-read">
         <h2>Readings</h2>
@@ -96,8 +96,18 @@ export function CmosVtcLab() {
           ]}
           marker={{ x: nearest.vin, y: nearest.vout, label: `gain ${nearest.gain.toFixed(1)}` }}
           onPick={(x) => setVin(x)}
+          bands={[
+            { x0: 0, x1: margins.vil, label: "reads 0", color: "#38bdf8" },
+            { x0: margins.vil, x1: margins.vih, label: "transition", color: "#fbbf24" },
+            { x0: margins.vih, x1: vdd, label: "reads 1", color: "#fb7185" },
+          ]}
+          vlines={[
+            { x: margins.vil, label: "VIL" },
+            { x: margins.vm, label: "VM", color: "#4ade80" },
+            { x: margins.vih, label: "VIH" },
+          ]}
         />
-        <Slider label="Operating Vin" value={vin} min={0} max={vdd} step={0.02} text={engineering(vin, "V")} onChange={setVin} />
+        <Slider label="Operating Vin" value={vin} min={0} max={vdd} step={0.02} text={engineering(vin, "V")} onChange={setVin} marks={[{ value: margins.vil, label: "VIL" }, { value: margins.vm, label: "VM" }, { value: margins.vih, label: "VIH" }]} />
         <div className="vlsi-stage-bar">
           <Badge tone={point.pmosOn && !point.nmosOn ? "pmos" : "off"}>PMOS region</Badge>
           <Badge tone={point.pmosOn && point.nmosOn ? "warn" : "off"}>Transition</Badge>
@@ -154,18 +164,24 @@ export function CmosPowerLab() {
     <div className="vlsi-grid">
       <aside className="vlsi-panel">
         <h2>Activity and supply</h2>
-        <Slider label="VDD" value={vdd} min={0.4} max={2.5} step={0.05} text={engineering(vdd, "V")} onChange={setVdd} />
-        <Slider label="Frequency" value={frequency / 1e6} min={1} max={2000} step={1} text={engineering(frequency, "Hz")} onChange={(value) => setFrequency(value * 1e6)} />
-        <Slider label="Activity α" value={alpha} min={0} max={1} step={0.01} text={alpha.toFixed(2)} onChange={setAlpha} />
-        <Slider label="Load" value={load} min={1} max={200} step={1} text={`${load.toFixed(0)} fF`} onChange={setLoad} />
-        <Slider label="Temperature" value={temp} min={0} max={125} step={1} text={`${temp.toFixed(0)} °C`} onChange={setTemp} />
-        <Slider label="VTH" value={vth} min={0.15} max={0.8} step={0.01} text={engineering(vth, "V")} onChange={setVth} />
-        <Slider label="Device width" value={width} min={0.4} max={8} step={0.1} text={`${width.toFixed(1)} µm`} onChange={setWidth} />
-        <div className="vlsi-choice" role="group" aria-label="Power terms">
-          <button type="button" className={showDyn ? "on" : ""} aria-pressed={showDyn} onClick={() => setShowDyn((value) => !value)}>Dynamic</button>
-          <button type="button" className={showShort ? "on" : ""} aria-pressed={showShort} onClick={() => setShowShort((value) => !value)}>Short-circuit</button>
-          <button type="button" className={showLeak ? "on" : ""} aria-pressed={showLeak} onClick={() => setShowLeak((value) => !value)}>Leakage</button>
-        </div>
+        <ControlGroup title="Switching">
+          <Slider label="VDD" value={vdd} min={0.4} max={2.5} step={0.05} text={engineering(vdd, "V")} onChange={setVdd} />
+          <Slider label="Frequency" value={frequency / 1e6} min={1} max={2000} step={1} text={engineering(frequency, "Hz")} onChange={(value) => setFrequency(value * 1e6)} />
+          <Slider label="Activity α" value={alpha} min={0} max={1} step={0.01} text={alpha.toFixed(2)} onChange={setAlpha} />
+          <Slider label="Load" value={load} min={1} max={200} step={1} text={`${load.toFixed(0)} fF`} onChange={setLoad} />
+        </ControlGroup>
+        <ControlGroup title="Device and temperature">
+          <Slider label="Temperature" value={temp} min={0} max={125} step={1} text={`${temp.toFixed(0)} °C`} onChange={setTemp} />
+          <Slider label="VTH" value={vth} min={0.15} max={0.8} step={0.01} text={engineering(vth, "V")} onChange={setVth} />
+          <Slider label="Device width" value={width} min={0.4} max={8} step={0.1} text={`${width.toFixed(1)} µm`} onChange={setWidth} />
+        </ControlGroup>
+        <ControlGroup title="Terms shown">
+          <div className="vlsi-choice" role="group" aria-label="Power terms">
+            <button type="button" className={showDyn ? "on" : ""} aria-pressed={showDyn} onClick={() => setShowDyn((value) => !value)}>Dynamic</button>
+            <button type="button" className={showShort ? "on" : ""} aria-pressed={showShort} onClick={() => setShowShort((value) => !value)}>Short-circuit</button>
+            <button type="button" className={showLeak ? "on" : ""} aria-pressed={showLeak} onClick={() => setShowLeak((value) => !value)}>Leakage</button>
+          </div>
+        </ControlGroup>
       </aside>
       <section className="vlsi-stage">
         <div className="vlsi-split" aria-label="Power contribution">
@@ -178,7 +194,7 @@ export function CmosPowerLab() {
       </section>
       <aside className="vlsi-panel vlsi-read">
         <h2>Breakdown</h2>
-        <Measure label="Dynamic" value={showDyn ? parts.dynamic : 0} unit="W" hint={share(showDyn ? parts.dynamic : 0)} />
+        <Measure label="Dynamic" value={showDyn ? parts.dynamic : 0} unit="W" hint={share(showDyn ? parts.dynamic : 0)} formula={`α·C·VDD²·f = ${alpha.toFixed(2)} × ${load.toFixed(0)} fF × (${vdd.toFixed(2)} V)² × ${engineering(frequency, "Hz")} = ${engineering(alpha * load * 1e-15 * vdd * vdd * frequency, "W")}`} />
         <Measure label="Short-circuit" value={showShort ? parts.shortCircuit : 0} unit="W" hint={share(showShort ? parts.shortCircuit : 0)} />
         <Measure label="Leakage" value={showLeak ? parts.leakage : 0} unit="W" hint={share(showLeak ? parts.leakage : 0)} />
         <Measure label="Total" value={total} unit="W" />
@@ -210,12 +226,35 @@ export function PropagationDelayLab() {
     }
     return points;
   }, [wn, wp, vdd, slew, kind]);
-  const vin = kind === "falling"
-    ? [0, 0, vdd * 0.1, vdd * 0.5, vdd, vdd, vdd, vdd]
-    : [vdd, vdd, vdd * 0.9, vdd * 0.5, 0, 0, 0, 0];
-  const vout = kind === "falling"
-    ? [vdd, vdd, vdd * 0.9, vdd * 0.5, vdd * 0.1, 0, 0, 0]
-    : [0, 0, vdd * 0.1, vdd * 0.5, vdd * 0.9, vdd, vdd, vdd];
+  const edge = useMemo(() => {
+    const tp = kind === "falling" ? delay.tpHL : delay.tpLH;
+    const tau = (kind === "falling" ? delay.fall : delay.rise) / 2.2;
+    const ramp = (slew * 1e-12) / 0.8;
+    const start = Math.max(tau, ramp) * 0.6;
+    const in50 = start + ramp / 2;
+    const t0 = in50 + tp - 0.69 * tau;
+    const window = Math.max(t0 + 4.6 * tau, start + ramp) * 1.08;
+    const samples = 80;
+    const dt = window / (samples - 1);
+    const vin: number[] = [];
+    const vout: number[] = [];
+    for (let index = 0; index < samples; index += 1) {
+      const t = index * dt;
+      const rampFraction = Math.min(1, Math.max(0, (t - start) / Math.max(ramp, 1e-15)));
+      const decay = t < t0 ? 1 : Math.exp(-(t - t0) / tau);
+      vin.push(kind === "falling" ? rampFraction * vdd : (1 - rampFraction) * vdd);
+      vout.push(kind === "falling" ? decay * vdd : (1 - decay) * vdd);
+    }
+    return {
+      vin,
+      vout,
+      dt,
+      spans: [
+        { from: in50, to: in50 + tp, label: kind === "falling" ? "tpHL" : "tpLH", color: "#fbbf24" },
+        { from: t0 + tau * Math.log(1 / 0.9), to: t0 + tau * Math.log(10), label: kind === "falling" ? "fall 90→10%" : "rise 10→90%", color: "#22d3ee" },
+      ],
+    };
+  }, [kind, delay.tpHL, delay.tpLH, delay.fall, delay.rise, slew, vdd]);
   return (
     <div className="vlsi-grid">
       <aside className="vlsi-panel">
@@ -229,9 +268,9 @@ export function PropagationDelayLab() {
         <Theory title="Delay model"><p>Req is VDD divided by the saturation current of the switching device at VGS = VDS = VDD, using the same square-law model as the MOSFET labs. tp ≈ 0.69 Req CL, plus a tenth of the input slew. 10%, 50%, and 90% are the usual waveform marks.</p></Theory>
       </aside>
       <section className="vlsi-stage">
-        <Wave traces={[
-          { name: "Vin", color: "#60a5fa", values: vin, min: 0, max: vdd },
-          { name: "Vout", color: "#4ade80", values: vout, min: 0, max: vdd },
+        <Wave dt={edge.dt} unit="s" spans={edge.spans} traces={[
+          { name: "Vin", color: "#60a5fa", values: edge.vin, min: 0, max: vdd },
+          { name: "Vout", color: "#4ade80", values: edge.vout, min: 0, max: vdd },
         ]} />
         <p className="vlsi-caption">Markers: 10% {engineering(vdd * 0.1, "V")} · 50% {engineering(vdd * 0.5, "V")} · 90% {engineering(vdd * 0.9, "V")}</p>
         <Chart ariaLabel="Delay versus load" series={[{ name: "tp", color: "#22d3ee", points: loadSweep }]} xMax={180} yMax={Math.max(...loadSweep.map((point) => point.y)) * 1.15} xLabel="CL (fF)" yLabel="tp (ps)" marker={{ x: load, y: (kind === "falling" ? delay.tpHL : delay.tpLH) * 1e12, label: kind }} />

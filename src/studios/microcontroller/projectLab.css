@@ -1,0 +1,175 @@
+.mcu-project-shell { --mcu-blue: #1769e0; --mcu-border: #dfe8f2; --mcu-text: #10284b; display: grid; grid-template-columns: 212px minmax(0, 1fr); gap: 18px; color: var(--mcu-text); max-width: 1900px; margin: 0 auto; }
+.mcu-project-shell * { box-sizing: border-box; }
+.mcu-project-nav { position: sticky; top: 68px; align-self: start; max-height: calc(100vh - 84px); overflow-y: auto; display: flex; flex-direction: column; gap: 3px; padding: 15px 8px; background: #f7faff; border: 1px solid var(--mcu-border); border-radius: 14px; }
+.mcu-project-nav a { padding: 9px 10px; border-radius: 8px; text-decoration: none; color: #415675; font-size: 13px; display: flex; gap: 8px; align-items: center; line-height: 1.28; }
+.mcu-project-nav a:hover, .mcu-project-nav a:focus-visible { background: #e8f1ff; color: #0958ce; }
+.mcu-project-nav a.active { background: #dfedff; color: #075edb; font-weight: 700; box-shadow: inset 3px 0 #1769e0; }
+.mcu-project-nav a span:first-child { flex: none; width: 21px; font-weight: 700; }
+.mcu-project-nav .mcu-project-brand { font-size: 16px; font-weight: 800; color: #10284b; padding-bottom: 15px; }
+.mcu-project-nav h2 { color: #1161db; font-size: 12px; padding: 12px 10px 4px; margin: 9px 0 0; border-top: 1px solid var(--mcu-border); }
+.mcu-project-content { min-width: 0; }
+.mcu-project-head { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin: 5px 0 15px; }
+.mcu-project-head nav { color: #68809d; font-size: 12px; margin-bottom: 8px; }
+.mcu-project-head nav a { color: #4671a4; text-decoration: none; }
+.mcu-project-head h1 { color: #0d2146; margin: 0 0 4px; font-size: clamp(22px, 1.7vw, 30px); letter-spacing: -.035em; line-height: 1.15; }
+.mcu-project-head p { color: #556b8b; margin: 0; font-size: 13px; }
+.mcu-main-actions { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
+.mcu-project-shell button, .mcu-project-shell select { cursor: pointer; }
+.mcu-main-actions button, .mcu-code-actions button, .mcu-extra-actions button { border: 1px solid #d5e1ef; border-radius: 8px; color: #143667; background: white; font-weight: 700; padding: 9px 13px; font-size: 12px; box-shadow: 0 1px 3px #14243c0d; }
+.mcu-project-shell .mcu-primary { border-color: #15a44a; color: white; background: #1bb44f; }
+.mcu-project-shell button:hover:not(:disabled) { filter: brightness(.96); }
+.mcu-project-shell button:disabled { opacity: .45; cursor: not-allowed; }
+.mcu-project-shell button:focus-visible, .mcu-project-shell input:focus-visible, .mcu-project-shell select:focus-visible, .mcu-project-shell textarea:focus-visible { outline: 3px solid #83b7ff; outline-offset: 2px; }
+.mcu-project-grid { display: grid; grid-template-columns: minmax(360px, 1.3fr) minmax(245px, .86fr) minmax(235px, .72fr); gap: 12px; align-items: start; }
+.mcu-panel { min-width: 0; background: white; border: 1px solid var(--mcu-border); border-radius: 11px; padding: 10px; box-shadow: 0 3px 12px #192f4c0a; }
+.mcu-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 0 0 8px; }
+.mcu-panel-head h2 { font-size: 14px; font-weight: 800; color: #10284b; margin: 0; }
+.mcu-panel-head h2::before { content: "▣"; color: var(--mcu-blue); margin-right: 8px; }
+.mcu-panel-head > span { font-size: 11px; color: #607696; white-space: nowrap; }
+.mcu-panel-head .mcu-live { color: #168243; }
+.mcu-scene { display: block; width: 100%; height: auto; aspect-ratio: 5 / 3; border-radius: 7px; overflow: hidden; background: #e8edf2; }
+.mcu-wire-live { stroke-dasharray: 8 3; }
+.mcu-scene-footer { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #576d88; padding: 7px 2px 0; }
+.mcu-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.mcu-metrics > div { background: #f4f8fd; border: 1px solid #e8eef6; border-radius: 8px; padding: 10px; min-height: 62px; }
+.mcu-metrics span { display: block; color: #637999; font-size: 11px; margin-bottom: 4px; }
+.mcu-metrics strong { display: block; color: #11274f; font-size: 18px; line-height: 1.15; overflow-wrap: anywhere; }
+.mcu-status > p, .mcu-status .mcu-zone-readings { color: #405879; font-size: 12px; margin: 12px 3px 2px; }
+.mcu-zone-readings > div { display: flex; align-items: center; gap: 4px; margin: 4px 0; }
+.mcu-zone-readings meter { flex: 1; }
+.mcu-controls { display: grid; gap: 9px; }
+.mcu-control { display: grid; gap: 5px; font-size: 12px; color: #3c5070; }
+.mcu-control > span:first-child { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.mcu-control strong { color: #132c59; font-size: 12px; }
+.mcu-control input[type="range"] { width: 100%; accent-color: #1769e0; }
+.mcu-control select, .mcu-pin-assignments select { width: 100%; border: 1px solid #dae4ef; background: white; border-radius: 7px; padding: 6px; color: #183353; }
+.mcu-toggle { display: flex; justify-content: space-between; align-items: center; min-height: 24px; }
+.mcu-toggle input { position: absolute; opacity: 0; }
+.mcu-switch { width: 37px; height: 21px; border-radius: 20px; background: #afbbcc; position: relative; flex: none; }
+.mcu-switch::after { content: ""; position: absolute; width: 16px; height: 16px; left: 3px; top: 2.5px; border-radius: 50%; background: white; transition: transform .15s; }
+.mcu-toggle input:checked + .mcu-switch { background: #1769e0; }
+.mcu-toggle input:checked + .mcu-switch::after { transform: translateX(15px); }
+.mcu-toggle input:focus-visible + .mcu-switch { outline: 3px solid #83b7ff; }
+.mcu-extra-actions { display: flex; gap: 5px; flex-wrap: wrap; border-top: 1px solid #e4ecf5; padding-top: 8px; }
+.mcu-extra-actions h3 { width: 100%; font-size: 12px; margin: 0; }
+.mcu-extra-actions button { padding: 6px 8px; }
+.mcu-extra-actions span { color: #4c6685; font-size: 11px; }
+.mcu-editor { display: flex; border: 1px solid #dce6f1; border-radius: 7px; background: #f9fbff; height: 266px; overflow: hidden; }
+.mcu-line-numbers { color: #8a9bb1; font: 12px/1.55 Consolas, monospace; padding: 10px 7px; text-align: right; background: #f0f5fb; user-select: none; overflow: hidden; }
+.mcu-editor-surface { position: relative; flex: 1; min-width: 0; height: 100%; }
+.mcu-editor-surface pre, .mcu-editor textarea { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; border: 0; overflow: auto; font: 12px/1.55 Consolas, monospace; padding: 10px; tab-size: 2; white-space: pre; }
+.mcu-editor-surface pre { color: #17355e; pointer-events: none; scrollbar-width: none; }
+.mcu-editor-surface pre::-webkit-scrollbar { display: none; }
+.mcu-editor textarea { resize: none; background: transparent; color: transparent; caret-color: #17355e; outline: none; }
+.mcu-editor textarea::selection { background: #b9d7ff88; }
+.mcu-code-comment { color: #15803d; }.mcu-code-directive { color: #7c3aed; }.mcu-code-number { color: #b45309; }.mcu-code-keyword { color: #1259cf; font-weight: 700; }.mcu-code-function { color: #0e7490; }
+.mcu-code-actions { display: flex; align-items: center; gap: 7px; margin-top: 8px; flex-wrap: wrap; }
+.mcu-code-help { margin-top: 9px; padding: 8px 10px; border: 1px solid #dce7f3; border-radius: 7px; background: #f7fbff; color: #47617f; font-size: 11px; line-height: 1.45; }
+.mcu-code-help summary { cursor: pointer; font-weight: 700; color: #195695; }
+.mcu-code-help p { margin: 8px 0 5px; }
+.mcu-code-help code { font-family: Consolas, monospace; overflow-wrap: anywhere; }
+.mcu-execution { display: grid; gap: 3px; margin-top: 8px; padding: 7px 9px; border-radius: 7px; background: #edf5ff; color: #315274; font: 10px/1.4 Consolas, monospace; overflow-wrap: anywhere; }
+.mcu-execution strong { color: #153d67; font-size: 11px; }
+.mcu-execution small { color: #61768f; font-size: 10px; }
+.mcu-code-actions span { color: #697e99; font-size: 11px; }
+.mcu-compiled { color: #168347; font-size: 11px; margin: 7px 2px 0; }
+.mcu-diagnostics, .mcu-warning { color: #b4232f; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 7px; padding: 8px; margin-top: 8px; font-size: 12px; }
+.mcu-hardware { display: grid; grid-template-columns: 115px minmax(0, 1fr); gap: 10px; min-height: 255px; }
+.mcu-board { border: 3px solid #245b9a; border-radius: 9px; background: #2472b6; position: relative; min-height: 190px; display: grid; place-items: center; }
+.mcu-board::before, .mcu-board::after { content: ""; position: absolute; top: 13px; bottom: 13px; width: 9px; background: repeating-linear-gradient(#d4b978 0 8px, #233e54 8px 14px); }
+.mcu-board::before { left: 4px; } .mcu-board::after { right: 4px; }
+.mcu-board-chip { background: #273645; border: 2px solid #688097; border-radius: 5px; color: #fff; width: 68px; height: 62px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+.mcu-board-chip small { font-size: 7px; font-weight: 400; }
+.mcu-board i { display: none; }
+.mcu-hardware-wires { display: grid; align-content: center; gap: 3px; }
+.mcu-hardware-wires > div { display: grid; grid-template-columns: 12px 37px minmax(0, 1fr) auto; align-items: center; gap: 4px; border-bottom: 1px solid #e8eef6; padding: 4px 0; font-size: 10px; }
+.mcu-hardware-wires > div > span { border: 2px solid #91a4b5; height: 9px; width: 9px; border-radius: 50%; background: #f1f5f9; }
+.mcu-hardware-wires > div > span.on { border-color: #16a34a; background: #4ade80; }
+.mcu-hardware-wires b { color: #163d73; }.mcu-hardware-wires em { color: #4e6482; font-style: normal; }.mcu-hardware-wires strong { color: #208047; }
+.mcu-inspect-stack { display: grid; gap: 12px; }
+.mcu-chart, .mcu-signal { display: block; width: 100%; height: auto; }
+.mcu-chart-foot { display: flex; justify-content: space-between; color: #7084a0; font-size: 10px; }
+.mcu-log { max-height: 120px; overflow: auto; color: #526982; font: 11px/1.5 Consolas, monospace; }
+.mcu-log > div { border-bottom: 1px solid #e8eef6; padding: 4px; }
+.mcu-notes { background: #fffdf8; }
+.mcu-notes p { display: flex; gap: 8px; margin: 7px 0; color: #4b5f7c; font-size: 11px; line-height: 1.4; }
+.mcu-notes p span { display: grid; place-items: center; flex: none; width: 18px; height: 18px; color: white; background: #31b464; border-radius: 50%; font-size: 11px; }
+.mcu-notice { color: #1858a5; background: #eaf3ff; border: 1px solid #cfe4ff; border-radius: 7px; padding: 7px 11px; font-size: 12px; margin-bottom: 10px; }
+.mcu-builder-modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; max-height: 150px; overflow: auto; }
+.mcu-builder-modules label, .mcu-wiring-flags label { font-size: 10px; color: #405a79; }
+.mcu-builder-modules input, .mcu-wiring-flags input { accent-color: #1769e0; }
+.mcu-wiring-flags { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0; }
+.mcu-pin-assignments { max-height: 180px; overflow: auto; display: grid; gap: 4px; }
+.mcu-pin-assignments label { display: flex; justify-content: space-between; align-items: center; gap: 5px; font-size: 10px; }.mcu-pin-assignments select { width: 88px; padding: 3px; }
+.mcu-missing { padding: 30px; }
+.mcu-enhancements { grid-column: 1 / -1; }
+.mcu-enhancements > p { margin: 0 0 11px; color: #56708d; font-size: 12px; }
+.mcu-enhancement-controls { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.mcu-enhancement-item { padding: 9px; border: 1px solid #dbe6f2; border-radius: 8px; background: #f8fbff; min-width: 0; }
+.mcu-enhancement-item small { display: block; margin-top: 5px; color: #657b94; font-size: 10px; line-height: 1.4; }
+.mcu-enhancement-metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 9px; }
+.mcu-enhancement-metrics > div { display: grid; gap: 4px; padding: 10px; border-radius: 8px; background: #ecf4ff; min-width: 0; }
+.mcu-enhancement-metrics span { font-size: 10px; color: #4e6784; }
+.mcu-enhancement-metrics strong { font-size: 16px; color: #163a65; overflow-wrap: anywhere; }
+.mcu-enhancement-metrics small { font-size: 10px; color: #647c97; line-height: 1.35; }
+@media (max-width: 1400px) { .mcu-enhancement-controls, .mcu-enhancement-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .mcu-enhancement-controls, .mcu-enhancement-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1400px) { .mcu-project-shell { grid-template-columns: 185px minmax(0, 1fr); gap: 10px; } .mcu-project-grid { grid-template-columns: minmax(340px, 1.2fr) minmax(230px, .85fr); } .mcu-controls { grid-column: 2; grid-row: 1 / span 2; } .mcu-status { grid-column: 1; } .mcu-project-head { align-items: flex-start; } }
+@media (max-width: 1050px) { .mcu-project-shell { grid-template-columns: 1fr; } .mcu-project-nav { position: static; max-height: none; display: block; overflow-x: auto; white-space: nowrap; } .mcu-project-nav h2 { display: none; } .mcu-project-nav a { display: inline-flex; white-space: normal; max-width: 180px; vertical-align: middle; } .mcu-project-nav .mcu-project-brand { display: inline-flex; } .mcu-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mcu-controls { grid-column: auto; grid-row: auto; } }
+@media (max-width: 680px) { .mcu-project-grid { grid-template-columns: 1fr; } .mcu-project-head { display: block; } .mcu-main-actions { justify-content: flex-start; margin-top: 12px; } .mcu-panel { padding: 9px; } .mcu-project-shell { gap: 8px; } }
+
+/* Project mockup scenes: photographic hardware with state-driven instrumentation. */
+.mcu-photo-scene { position: relative; width: 100%; aspect-ratio: 5 / 3; overflow: hidden; border-radius: 8px; background: #172235; isolation: isolate; }
+.mcu-photo-scene > img:first-child { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter .25s ease; user-select: none; }
+.mcu-photo-scene::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, #08182a45 0%, transparent 25%, transparent 70%, #08182a55 100%); }
+.mcu-photo-badge { position: absolute; z-index: 4; display: grid; gap: 2px; max-width: 43%; padding: 7px 10px; border: 1px solid #ffffff6e; border-radius: 8px; background: #102943dd; color: white; box-shadow: 0 3px 14px #0004; backdrop-filter: blur(8px); font-variant-numeric: tabular-nums; }
+.mcu-photo-badge.top-left { left: 12px; top: 12px; }.mcu-photo-badge.top-right { right: 12px; top: 12px; text-align: right; }
+.mcu-photo-badge small { color: #d3e5f5; font-size: 9px; letter-spacing: .08em; font-weight: 700; }.mcu-photo-badge strong { font-size: clamp(12px, 1.1vw, 17px); line-height: 1.18; }
+.mcu-photo-badge.green { background: #086138df; }.mcu-photo-badge.red { background: #9b1c2ddf; }
+.mcu-photo-signal { position: absolute; z-index: 3; display: grid; gap: 3px; padding: 4px; border-radius: 8px; background: #101820e6; box-shadow: 0 1px 7px #0008; }
+.mcu-photo-signal span { width: clamp(6px, .9vw, 10px); aspect-ratio: 1; border-radius: 50%; background: #252e34; box-shadow: inset 0 1px 3px #000; }
+.mcu-photo-signal .lit.red { background: #fb3838; box-shadow: 0 0 13px 4px #f33434a8; }.mcu-photo-signal .lit.amber { background: #ffd747; box-shadow: 0 0 13px 4px #ffd747ad; }.mcu-photo-signal .lit.green { background: #39f071; box-shadow: 0 0 13px 4px #39f071a6; }
+.mcu-photo-signal.signal-ns { left: 12%; top: 30%; }.mcu-photo-signal.signal-ew { right: 17%; top: 25%; }
+.mcu-street-glow { position: absolute; z-index: 2; width: 28%; height: 45%; pointer-events: none; border-radius: 50%; background: radial-gradient(ellipse, #fff8bbd9 0%, #ffe19670 24%, transparent 69%); mix-blend-mode: screen; transition: opacity .25s; }.mcu-street-glow.glow-near { left: 23%; top: 7%; }.mcu-street-glow.glow-far { left: 42%; top: 33%; width: 18%; height: 26%; }
+.mcu-photo-lcd { position: absolute; z-index: 3; right: 6%; top: 52%; width: 26%; padding: 7px 5px; display: grid; text-align: center; color: #193d21; background: #b5e66ad9; box-shadow: 0 0 18px #bbf08a88; font-family: Consolas, monospace; transform: rotate(-1deg); }.mcu-photo-lcd small { font-size: 10px; }.mcu-photo-lcd strong { font-size: clamp(12px, 1.4vw, 23px); }
+.mcu-sonar-waves { position: absolute; z-index: 2; top: 30%; left: 37%; width: 34%; height: 38%; transition: opacity .2s; }.mcu-sonar-waves span { position: absolute; top: 4%; bottom: 4%; width: 20%; border-right: 3px solid #65dbff; border-radius: 50%; filter: drop-shadow(0 0 4px #55d9ff); animation: mcu-sonar 1.6s ease-in-out infinite; }.mcu-sonar-waves span:nth-child(2) { left: 29%; animation-delay: .25s; }.mcu-sonar-waves span:nth-child(3) { left: 58%; animation-delay: .5s; }
+.mcu-photo-scene .mcu-ultrasonic-target { position: absolute; z-index: 3; bottom: 21%; width: auto; height: 48%; object-fit: contain; filter: drop-shadow(4px 12px 7px #0007); transform-origin: center bottom; transition: left .18s ease-out, transform .18s ease-out; }
+.mcu-sonar-measure { position: absolute; z-index: 3; left: 42%; right: 10%; bottom: 15%; text-align: center; color: #fff; font-size: 12px; text-shadow: 0 1px 3px #000; }.mcu-sonar-measure strong { display: block; font-size: 18px; }
+.mcu-zone-overlay { position: absolute; z-index: 3; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; left: 25%; right: 3%; bottom: 12%; }.mcu-zone-overlay > div { display: grid; text-align: center; color: white; background: #122d25d9; padding: 5px; border-radius: 7px; border: 1px solid #ffffff5c; }.mcu-zone-overlay .watering { background: #075d97e8; box-shadow: 0 0 15px #60d8ffae; }.mcu-zone-overlay small { font-size: 9px; }.mcu-zone-overlay strong { font-size: 15px; }
+.mcu-robot-target { position: absolute; z-index: 3; width: 20px; height: 20px; border: 3px solid #f74243; border-radius: 50%; box-shadow: 0 0 0 7px #f7424333, 0 0 13px #f74243; transition: left .1s linear, top .1s linear; }
+.mcu-photo-scene .mcu-robot-sprite { position: absolute; z-index: 3; width: 16%; height: auto; aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 8px 8px #0009); transition: left .1s linear, top .1s linear, transform .1s linear; }
+.mcu-motor-spin { position: absolute; z-index: 3; right: 11%; top: 37%; width: 13%; aspect-ratio: 1; border: 4px dashed #4fbbffad; border-radius: 50%; opacity: .15; }.mcu-motor-spin.spinning { opacity: .9; animation: mcu-spin linear infinite; }
+.mcu-photo-scene .mcu-motor-fan { position: absolute; z-index: 3; width: 12%; height: auto; left: 91%; top: 59%; object-fit: contain; transition: transform .1s linear, filter .2s; }
+.mcu-arm-joint { position: absolute; z-index: 3; border: 1px solid #fff9; border-radius: 6px; background: #f5faffed; padding: 3px 6px; color: #153a64; font-size: 10px; font-weight: 800; box-shadow: 0 2px 6px #0003; font-variant-numeric: tabular-nums; }.mcu-arm-joint.shoulder { left: 31%; top: 13%; }.mcu-arm-joint.elbow { left: 57%; top: 26%; }.mcu-arm-joint.base { left: 48%; top: 73%; }.mcu-arm-joint.wrist { left: 19%; top: 39%; }
+.mcu-weather-rain { position: absolute; inset: 0; z-index: 2; background: repeating-linear-gradient(110deg, transparent 0 22px, #e5f5ff82 23px 24px, transparent 25px 45px); background-size: 100% 80px; animation: mcu-rain .8s linear infinite; pointer-events: none; }
+.mcu-room-light { position: absolute; z-index: 2; width: 24%; height: 28%; border-radius: 50%; opacity: 0; background: radial-gradient(ellipse, #fff5b5b3, #ffdb676e 35%, transparent 75%); mix-blend-mode: screen; transition: opacity .2s; }.mcu-room-light.on { opacity: 1; }.mcu-room-light.living { left: 17%; top: 34%; }.mcu-room-light.bedroom { right: 17%; top: 13%; }.mcu-room-light.kitchen { left: 21%; top: 11%; }.mcu-room-light.garage { right: 15%; bottom: 26%; }
+.mcu-wifi-beacon { position: absolute; z-index: 3; left: 35%; top: 20%; color: #37c9ff; font-size: 44px; opacity: .25; text-shadow: 0 0 18px #38c9ff; }.mcu-wifi-beacon.connected { opacity: 1; animation: mcu-beacon 1.4s ease-in-out infinite; }
+.mcu-builder-screen { position: absolute; z-index: 3; top: 13%; left: 42%; width: 14%; height: 12%; display: grid; align-content: center; gap: 1px; padding: 3px; background: #071a2ae8; color: #86d7ff; font: 8px/1.1 Consolas, monospace; box-shadow: 0 0 8px #67baff88; overflow: hidden; }.mcu-builder-screen strong { font-size: 8px; white-space: nowrap; }.mcu-builder-screen span { font-size: 7px; }
+.mcu-builder-led { position: absolute; z-index: 3; bottom: 42%; width: 13px; height: 13px; border-radius: 50%; background: #555; }.mcu-builder-led.green { left: 64%; }.mcu-builder-led.red { left: 70%; }.mcu-builder-led.green.on { background: #41ed5f; box-shadow: 0 0 16px 8px #41ed5fa1; }.mcu-builder-led.red.on { background: #ff4b4b; box-shadow: 0 0 16px 8px #ff4b4ba1; }
+@keyframes mcu-sonar { 50% { opacity: .3; transform: translateX(4px); } }@keyframes mcu-spin { to { transform: rotate(360deg); } }
+@keyframes mcu-rain { to { background-position: 0 80px; } }@keyframes mcu-beacon { 50% { opacity: .35; } }
+
+.mcu-readout-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; border-bottom: 1px solid #e8eef5; padding: 8px 3px; font-size: 12px; }.mcu-readout-row:last-child { border-bottom: 0; }.mcu-readout-row span { color: #536887; }.mcu-readout-row strong { color: #102a53; text-align: right; font-variant-numeric: tabular-nums; }.mcu-readout-row .good { color: #139447; }.mcu-readout-row .bad { color: #dd3343; }
+.mcu-readout-bar { margin: 9px 3px 13px; }.mcu-readout-bar > div { display: flex; justify-content: space-between; gap: 7px; font-size: 11px; color: #4c6284; }.mcu-readout-bar strong { color: #143361; font-variant-numeric: tabular-nums; }.mcu-readout-bar meter { width: 100%; height: 11px; margin-top: 5px; accent-color: #1769e0; }
+.mcu-readout-large { color: #0b2354; font-size: clamp(28px, 3vw, 46px); font-weight: 800; letter-spacing: -.05em; line-height: 1.1; margin: 6px 0 12px; font-variant-numeric: tabular-nums; }.mcu-readout-large small { font-size: .5em; letter-spacing: 0; }
+.mcu-readout-sequence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 3px 0 9px; }.mcu-readout-sequence > div { display: grid; justify-items: center; text-align: center; gap: 5px; padding: 8px 3px; border-radius: 7px; background: #f2f5f9; border: 1px solid #e5eaf0; }.mcu-readout-sequence > div.current { background: #e3faea; border-color: #7ddd9c; }.mcu-readout-sequence small { font-size: 9px; color: #3b5070; }.mcu-readout-sequence .lamp { width: 13px; height: 13px; border-radius: 50%; background: #65748a; }.mcu-readout-sequence .current .lamp.red { background: #e93a43; box-shadow: 0 0 8px #e93a43; }.mcu-readout-sequence .current .lamp.yellow { background: #ffc53c; box-shadow: 0 0 8px #ffc53c; }.mcu-readout-sequence .current .lamp.green { background: #24c55d; box-shadow: 0 0 8px #24c55d; }
+.mcu-readout-temperature { display: flex; align-items: center; gap: 18px; min-height: 190px; }.mcu-readout-temperature > div:last-child { min-width: 0; }.mcu-readout-temperature > div:last-child > span { color: #51708d; font-size: 12px; }.mcu-readout-thermo { position: relative; flex: none; width: 23px; height: 150px; border-radius: 20px; border: 4px solid #e0e8f2; background: #f6f9fc; }.mcu-readout-thermo::after { content: ""; position: absolute; width: 29px; height: 29px; background: #ef3c40; border-radius: 50%; left: -7px; bottom: -9px; }.mcu-readout-thermo i { position: absolute; background: #f03d42; width: 9px; left: 3px; bottom: 8px; border-radius: 7px; }
+.mcu-readout-sensors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }.mcu-readout-sensors > div { display: grid; justify-items: center; gap: 5px; padding: 9px 3px; border: 1px solid #e4ebf3; border-radius: 7px; background: #f4f7fb; }.mcu-readout-sensors > div.detected { background: #fff0f1; border-color: #ffc6cc; }.mcu-readout-sensors .sensor-eye { width: 18px; height: 29px; border-radius: 8px; border: 4px solid #909cac; background: #2f3846; }.mcu-readout-sensors .detected .sensor-eye { background: #f4434d; box-shadow: 0 0 10px #f4434d; }.mcu-readout-sensors strong { font-size: 18px; }.mcu-readout-sensors small { font-size: 9px; color: #627896; }
+.mcu-rpm-gauge { width: min(190px, 75%); aspect-ratio: 1; margin: 8px auto 12px; border-radius: 50%; padding: 16px; }.mcu-rpm-gauge > div { width: 100%; height: 100%; border-radius: 50%; background: white; display: grid; place-content: center; text-align: center; }.mcu-rpm-gauge strong { font-size: 35px; line-height: 1; color: #102a53; }.mcu-rpm-gauge small { font-size: 13px; color: #5d7191; }
+.mcu-readout-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }.mcu-readout-pair > div { display: grid; gap: 3px; padding: 9px; border-radius: 7px; background: #f2f6fb; }.mcu-readout-pair small { color: #59708e; }.mcu-readout-pair strong { color: #0b2450; font-size: 18px; }
+.mcu-readout-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }.mcu-readout-grid > div { display: grid; gap: 2px; background: #f3f8fd; border: 1px solid #e6eef6; border-radius: 8px; padding: 10px; min-width: 0; }.mcu-readout-grid small { color: #637c98; font-size: 10px; }.mcu-readout-grid strong { color: #0a285b; font-size: clamp(15px, 1.4vw, 21px); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }.mcu-readout-grid span { color: #687e9b; font-size: 10px; }
+.mcu-lab-street .mcu-controls, .mcu-lab-home .mcu-controls { grid-column: 2; grid-row: 1; }.mcu-lab-street .mcu-status, .mcu-lab-home .mcu-status { grid-column: 3; grid-row: 1; }
+@media (max-width: 1400px) { .mcu-lab-street .mcu-controls, .mcu-lab-home .mcu-controls, .mcu-lab-street .mcu-status, .mcu-lab-home .mcu-status { grid-column: auto; grid-row: auto; } }
+.mcu-hardware { grid-template-columns: minmax(110px, 39%) minmax(0, 1fr); min-height: 258px; }
+.mcu-board { min-height: 258px; border: 1px solid #dce9f5; border-radius: 8px; background: #f1f7fb url('/mcu-project-scenes/nucleo-board.png') center / contain no-repeat; display: block; }
+.mcu-board.esp32 { background-image: url('/mcu-project-scenes/esp32-board.png'); }
+.mcu-board::before, .mcu-board::after { display: none; }
+.mcu-board-chip { position: absolute; bottom: 4px; left: 5%; width: 90%; height: auto; min-height: 25px; padding: 3px; border: 0; border-radius: 5px; background: #0d2b4ac9; font-size: 11px; box-shadow: 0 1px 5px #0003; }
+.mcu-board-chip small { display: none; }
+.mcu-hardware-wires > div { grid-template-columns: 12px 33px minmax(0, 1fr) auto; font-size: 10px; }
+.mcu-lab-builder .mcu-project-grid { grid-template-columns: minmax(360px, 1.55fr) minmax(215px, .78fr) minmax(205px, .7fr) minmax(205px, .7fr); }
+.mcu-lab-builder .mcu-simulation { grid-column: 1; grid-row: 1; }.mcu-lab-builder .mcu-builder-panel { grid-column: 2; grid-row: 1; }.mcu-lab-builder .mcu-status { grid-column: 3; grid-row: 1; }.mcu-lab-builder .mcu-controls { grid-column: 4; grid-row: 1; }
+.mcu-lab-builder .mcu-code-panel { grid-column: 1; grid-row: 2; }.mcu-lab-builder .mcu-hardware-panel { grid-column: 2 / span 2; grid-row: 2; }.mcu-lab-builder .mcu-inspect-stack { grid-column: 4; grid-row: 2; }
+@media (max-width: 1500px) { .mcu-lab-builder .mcu-project-grid { grid-template-columns: minmax(330px, 1.25fr) minmax(215px, .9fr) minmax(215px, .9fr); }.mcu-lab-builder .mcu-simulation { grid-column: 1; grid-row: 1; }.mcu-lab-builder .mcu-builder-panel { grid-column: 2; grid-row: 1; }.mcu-lab-builder .mcu-status { grid-column: 3; grid-row: 1; }.mcu-lab-builder .mcu-controls { grid-column: 3; grid-row: 2; }.mcu-lab-builder .mcu-code-panel { grid-column: 1; grid-row: 2; }.mcu-lab-builder .mcu-hardware-panel { grid-column: 2; grid-row: 2; }.mcu-lab-builder .mcu-inspect-stack { grid-column: auto; grid-row: auto; } }
+@media (max-width: 1050px) { .mcu-lab-builder .mcu-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.mcu-lab-builder .mcu-project-grid > * { grid-column: auto; grid-row: auto; } }
+@media (max-width: 680px) { .mcu-lab-builder .mcu-project-grid { grid-template-columns: 1fr; } }

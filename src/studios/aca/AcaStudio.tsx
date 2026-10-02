@@ -128,13 +128,13 @@ function AcaHome() {
       <div className="aca-studio-body">
         <aside className="aca-lab-nav">
           <p>Virtual Labs</p>
-          <Link to="/">LogicLab</Link>
+          <Link to="/">Digital Electronics & Computing Lab</Link>
           <Link to={ACA_HOME} className="on">Studio home</Link>
           <div className="aca-watermark">Architecture Today for Smarter Tomorrow</div>
         </aside>
         <div className="vl">
       <nav className="vl-crumb" aria-label="Breadcrumb">
-        <Link to="/">LogicLab</Link>
+        <Link to="/">Digital Electronics & Computing Lab</Link>
         <span aria-hidden="true">/</span>
         <Link to="/studios">Studios</Link>
         <span aria-hidden="true">/</span>

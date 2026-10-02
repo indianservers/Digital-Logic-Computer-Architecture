@@ -13,7 +13,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error("LogicLab studio error", error, info.componentStack);
+    console.error("Digital Electronics & Computing Lab studio error", error, info.componentStack);
   }
 
   render() {
