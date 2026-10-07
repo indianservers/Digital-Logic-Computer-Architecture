@@ -16,7 +16,7 @@ function regHost() {
       const ref: Ref = { name: path, type: "uint32_t", float: false, get: () => regs[path] ?? 0, set: (v) => { regs[path] = Number(v) >>> 0; } };
       return ref;
     },
-    call(name, args, fw) {
+    call(name, _args, fw) {
       if (name === "HAL_GPIO_TogglePin") { toggles.push(fw.time); return 0; }
       return undefined;
     },
