@@ -96,6 +96,7 @@ export const STUDIOS: StudioInfo[] = [
   { id: "sandbox", title: "Computer Architecture Sandbox", phase: 8, path: "/architecture/sandbox", summary: "Combine gates, datapaths, caches, CPUs, and coherence in one workspace.", topics: ["sandbox", "circuit", "multicore"], active: true, category: "build" },
   { id: "vlsi", title: "VLSI Studio", phase: 2, path: "/studios/vlsi", summary: "From transistor physics to silicon implementation.", topics: ["mosfet", "cmos", "vlsi", "inverter", "nand", "transmission gate"], active: true, category: "vlsi" },
   { id: "microcontroller", title: "Microcontroller Studio", phase: 8, path: "/studios/microcontroller", summary: "Browse 72 planned labs covering MCU architecture, GPIO, peripherals, firmware, and embedded projects.", topics: ["mcu", "embedded", "gpio", "pwm", "uart", "spi", "i2c", "rtos", "arduino", "stm32", "esp32"], active: true, category: "microcontroller" },
+  { id: "how-devices-work", title: "How Devices Work Studio", phase: 5, path: "/studios/how-devices-work", summary: "Explore how real-world digital systems sense, process, communicate and respond.", topics: ["devices", "medical", "aviation", "marine", "defence", "robotics", "everyday technology"], active: true, category: "systems" },
 ];
 
 export function matchStudio(path: string): StudioInfo | undefined {

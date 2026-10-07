@@ -1,0 +1,5 @@
+
+> digital-electronics-computing-lab@1.0.0 build
+> tsc --noEmit && vite build
+
+src/studios/microcontroller/labs/core/cinterp.test.ts(19,16): error TS6133: 'args' is declared but its value is never read.

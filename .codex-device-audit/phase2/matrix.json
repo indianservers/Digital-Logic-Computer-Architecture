@@ -1,0 +1,862 @@
+[
+  {
+    "number": 55,
+    "device": "Centrifuge",
+    "mockup": "055 - Centrifuge.png",
+    "route": "/studios/how-devices-work/medical/centrifuge",
+    "visual": "PASS: final source comparison; device/external/exploded/IPO top row, seven-step workflow, native circuit, speed trace beside density tube, controls and six lower panels",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 56,
+    "device": "Blood Cell Analyzer",
+    "mockup": "056 - Blood Cell Analyzer.png",
+    "route": "/studios/how-devices-work/medical/blood-cell-analyzer",
+    "visual": "PASS: final source comparison; real annotated analyzer and internal components, four-stage IPO, seven-step workflow, RBC/WBC/platelet native charts and CBC table; scoped compact controls",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 57,
+    "device": "Automated Chemistry Analyzer",
+    "mockup": "057 - Automated Chemistry Analyzer.png",
+    "route": "/studios/how-devices-work/medical/automated-chemistry-analyzer",
+    "visual": "PASS: final source comparison; annotated external analyzer, internal machine and optical close-up, right controls, six-step photometry workflow, live absorbance/transmission, native controller and fluid system, compact assessment",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 58,
+    "device": "Aircraft Flight Computer",
+    "mockup": "058 - Aircraft Flight Computer.png",
+    "route": "/studios/how-devices-work/aviation/aircraft-flight-computer",
+    "visual": "PASS within supplied-reference limit: individually inspected recovered 640x512 component thumbnail; original flight-computer hardware retained. No full-page layout supplied. Native device-specific sensor/bus/processor/guidance/monitoring/power architecture individually verified.",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 59,
+    "device": "Fly-by-Wire System",
+    "mockup": "059 - Fly-by-Wire System.png",
+    "route": "/studios/how-devices-work/aviation/fly-by-wire",
+    "visual": "PASS: final source comparison; preserved complete sidestick/aircraft hero, real control-surface overview, native three-channel computer/servo feedback architecture, seven steps, side-by-side native response plots and animated actual aircraft",
+    "interaction": "PASS: prior controls/modes/fault/quiz checks plus new aircraft response from 0/0 to bank 5.00\u00b0 and pitch 2.00\u00b0, pause retains values",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 60,
+    "device": "Glass Cockpit",
+    "mockup": "060 - Glass Cockpit.png",
+    "route": "/studios/how-devices-work/aviation/glass-cockpit",
+    "visual": "PASS: final source comparison; full cockpit hero, restored GPS/transponder antenna labels, display-unit exploded photo, native six-input avionics/data/display architecture, four live instrument examples in reference order and compact lower panels",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 61,
+    "device": "Primary Flight Display",
+    "mockup": "061 - Primary Flight Display.png",
+    "route": "/studios/how-devices-work/aviation/primary-flight-display",
+    "visual": "PASS: final source comparison; native live PFD inside real bezel, full annotated external and exploded hardware, sensor inputs, eight-step workflow, six controls, element definitions and pale learning/quiz panels with corrected contrast",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 62,
+    "device": "Air Data Computer",
+    "mockup": "062 - Air Data Computer.png",
+    "route": "/studios/how-devices-work/aviation/air-data-computer",
+    "visual": "PASS: final source comparison; retained computer/probe hero and exploded components, native aircraft pitot/static/OAT connection paths, seven steps/formulas, five circular computed gauges and compact quiz",
+    "interaction": "PASS: prior controls/fault/modes checks plus Mach formula independently tested; blocked pitot yields IAS 0, TAS 0, Mach 0.00 while static altitude and density remain available",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 63,
+    "device": "Inertial Navigation System",
+    "mockup": "063 - Inertial Navigation System.png",
+    "route": "/studios/how-devices-work/aviation/inertial-navigation-system",
+    "visual": "PASS: final source comparison; full native title with cleaned hero crop, retained real INS/exploded hardware/aircraft context, native gyro/accelerometer/ADC/fusion/bus/power architecture, motion and trajectory panel, navigation table and separate drift panel",
+    "interaction": "PASS: prior controls/fault/modes/quiz plus new aiding comparison: unaided drift36m to aided3.6m; displacement903.6m, velocity30.12m/s, yaw180\u00b0; charts/readouts share engine outputs",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 64,
+    "device": "GPS Navigation System",
+    "mockup": "064 - GPS Navigation System.png",
+    "route": "/studios/how-devices-work/aviation/gps-navigation-system",
+    "visual": "PASS: final source comparison; full satellite/receiver hero, all internal labels including connectors, native receiver architecture, six illustrated stages in one row, widened native live-map/sky/PVT panels and source-like bottom proportions",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 65,
+    "device": "Engine FADEC Controller",
+    "mockup": "065 - Engine FADEC Controller.png",
+    "route": "/studios/how-devices-work/aviation/engine-fadec-controller",
+    "visual": "PASS: final source comparison; actual FADEC hardware, exploded assembly, dual-channel control architecture, seven-step workflow, four native gauges and combined scaled response graph, compact lower panels",
+    "interaction": "PASS",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 66,
+    "device": "Aircraft Engine Monitoring System",
+    "mockup": "066 - Aircraft Engine Monitoring System.png",
+    "route": "/studios/how-devices-work/aviation/aircraft-engine-monitoring-system",
+    "visual": "PASS: final source comparison; annotated engine/cockpit hero, overview checklist, sensor-location and numbered internal hardware, native six-input acquisition/monitoring architecture, vertical workflow, combined tabbed traces and alert table",
+    "interaction": "PASS: prior complete checks plus EGT End1000 gives Critical and auto-selects EGT/EPR combined chart",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 67,
+    "device": "Drone Flight Controller",
+    "mockup": "067 - Drone Flight Controller.png",
+    "route": "/studios/how-devices-work/aviation/drone-flight-controller",
+    "visual": "PASS: final source comparison; complete drone/controller hero, annotated Pixhawk and exploded sensor/MCU assembly, native feedback architecture, six workflow stages, combined attitude graph, compact controls and six applications",
+    "interaction": "PASS: prior complete checks plus roll command30\u00b0 reaches29.731\u00b0, combined native chart and four motor details work",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 68,
+    "device": "Weather Radar",
+    "mockup": "068 - Weather Radar.png",
+    "route": "/studios/how-devices-work/aviation/weather-radar",
+    "visual": "PASS: final source comparison; full radome/display/cloud hero, annotated external and seven-component exploded hardware, dedicated native T/R receiver/ADC/DSP/display diagram, six steps, blue IPO, five-color native radar display and interpretation",
+    "interaction": "PASS: prior complete checks plus40NM button changes live range and gain0 removes all return cells",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 69,
+    "device": "Radar Altimeter",
+    "mockup": "069 - Radar Altimeter.png",
+    "route": "/studios/how-devices-work/aviation/radar-altimeter",
+    "visual": "PASS: final source comparison; belly-antenna/unit/display hero, annotated separate antennas and exploded electronics, native FMCW Tx/Rx reference/IF/ADC/DSP/avionics architecture, waveform IPO with live height and paired signal/height plots",
+    "interaction": "PASS: prior complete checks plus250\u21922500ft gives delay0.508\u21925.084\u00b5s and beat101.67\u21921016.703kHz, native IPO updates",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 70,
+    "device": "Radio Altimeter",
+    "mockup": "070 - Radio Altimeter.png",
+    "route": "/studios/how-devices-work/aviation/radio-altimeter",
+    "visual": "PASS: final source comparison; complete radio-unit/antenna/landing hero, restored internal labels, distinct overview/vertical steps/landing photo row, native FMCW circuit and live waveform IPO, cockpit indication, landing graph and simulator output",
+    "interaction": "PASS: prior complete checks plus landing output reaches0ft and round-trip delay0\u00b5s; current-height physics independently tested",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 71,
+    "device": "Aircraft Transponder",
+    "mockup": "071 - Aircraft Transponder.png",
+    "route": "/studios/how-devices-work/aviation/aircraft-transponder",
+    "visual": "PASS: final source comparison; actual transponder/aircraft/tower hero, annotated external and eight-board internals, ATC context, six workflow stages, native horizontal receiver/decoder/control/transmitter flow, mode buttons, dark reply plot beside decoded table",
+    "interaction": "PASS: prior complete checks plus ModeS replies with28000ft and N738PA, squawk1280 invalidates output",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 72,
+    "device": "ADS-B System",
+    "mockup": "072 - ADS-B System.png",
+    "route": "/studios/how-devices-work/aviation/ads-b-system",
+    "visual": "PASS: final source comparison; transponder/aircraft/GNSS/ground hero, four native overview icons, six visible hardware captions, vertical six-stage workflow, dedicated GNSS/encoder/transmitter/antenna/reception architecture and compact traffic display",
+    "interaction": "PASS: prior complete checks plus hidden traffic removes all aircraft labels and GNSS failure invalidates display",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 73,
+    "device": "Traffic Collision Avoidance System",
+    "mockup": "073 - Traffic Collision Avoidance System.png",
+    "route": "/studios/how-devices-work/aviation/traffic-collision-avoidance-system",
+    "visual": "PASS: final source comparison; full aircraft/TCAS hero, actual TCAS unit and six visible component captions, native interrogation/reply/surveillance diagram with actual aircraft, distinct square TA/RA indicators, vertical proximity bands, live encounter scene and compact source-order panels",
+    "interaction": "PASS: prior complete checks plus closure0 removes advisory despite700ft separation; actual aircraft scene and live vertical bands reflect controls",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 74,
+    "device": "Flight Data Recorder",
+    "mockup": "074 - Flight Data Recorder.png",
+    "route": "/studios/how-devices-work/aviation/flight-data-recorder",
+    "visual": "PASS: final source comparison; native aircraft sensor bus and protected acquisition architecture, seven workflow icons, combined captured-record chart with channel visibility and frame cursor, real recorder and six protection features",
+    "interaction": "PASS: maneuver frame playback bank14.6 degrees; hiding altitude removes one chart line",
+    "console": "PASS on current loads; resolved development HMR errors excluded",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 75,
+    "device": "Cockpit Voice Recorder",
+    "mockup": "075 - Cockpit Voice Recorder.png",
+    "route": "/studios/how-devices-work/aviation/cockpit-voice-recorder",
+    "visual": "PASS: final source comparison; real orange recorder and cockpit, eight internal labels, native parallel microphone acquisition diagram, four icon IPO, stacked audio waveforms, seven steps and underwater recovery hardware",
+    "interaction": "PASS: zero input flattens all four channels; sample rate16 doubles PCM to128kB/s; underwater recovery activates locator",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 76,
+    "device": "Satellite Communication Terminal",
+    "mockup": "076 - Satellite Communication Terminal.png",
+    "route": "/studios/how-devices-work/aviation/satellite-communication-terminal",
+    "visual": "PASS: final source comparison; full aircraft relay hero, labeled external and internal hardware, native parallel SATCOM RF/control/power architecture, real three-endpoint relay geometry, seven steps and five takeaways",
+    "interaction": "PASS: manual azimuth90 yields60dB pointing loss and payload inhibited",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 77,
+    "device": "Satellite Attitude-Control Computer",
+    "mockup": "077 - Satellite Attitude-Control Computer.png",
+    "route": "/studios/how-devices-work/aviation/satellite-attitude-control-computer",
+    "visual": "PASS: final source comparison; dark orbital hero and mission context, full labeled ACC hardware, native sensor-estimator-controller-actuator diagram, closed-loop feedback architecture, real rotating spacecraft and compact controls",
+    "interaction": "PASS: Sun pointing target45 degrees moves real spacecraft and reaches45.64 degrees with error-0.64",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 78,
+    "device": "Phased-Array Radar",
+    "mockup": "078 - Phased-Array Radar.png",
+    "route": "/studios/how-devices-work/defence/phased-array-radar",
+    "visual": "PASS: final source comparison; full radar/context/exploded top row, native specific phased-array RF/data architecture, interactive electronic beam and array-factor chart, eight steps and paired native PPI/track table",
+    "interaction": "PASS: azimuth60 updates beam, array-factor main lobe and PPI; current track table matches plotted geometry",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 79,
+    "device": "Ground Surveillance Radar",
+    "mockup": "079 - Ground Surveillance Radar.png",
+    "route": "/studios/how-devices-work/defence/ground-surveillance-radar",
+    "visual": "PASS: final source comparison; tall labeled external/exploded columns, native pulse RF architecture, paired PPI and current tracks, native terrain coverage, six horizontal stages and blue five-part takeaways",
+    "interaction": "PASS: target count10 plotsT1\u2013T10; range40 updates PPI and coverage",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 80,
+    "device": "Passive Radar",
+    "mockup": "080 - Passive Radar.png",
+    "route": "/studios/how-devices-work/defence/passive-radar",
+    "visual": "PASS: final source comparison; native broadcast/reference/surveillance architecture, distinct bistatic geometry and dark live track map, source hardware and six vertical stages, compact controls and five takeaways",
+    "interaction": "PASS: running target moves35.4 to36.9km X and delay325.1 to332.9 microseconds; new constant-velocity propagation test",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 81,
+    "device": "Air-Defence Radar",
+    "mockup": "081 - Air-Defence Radar.png",
+    "route": "/studios/how-devices-work/defence/air-defence-radar",
+    "visual": "PASS: final source comparison; labeled truck/exploded hardware, native transmitter/receiver/exciter/IFF/power-cooling architecture, seven illustrated stages, altitude-band coverage and paired PPI/current tracks",
+    "interaction": "PASS: scan24rpm runs sweep; range50 updates six targets and coverage-axis values",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 82,
+    "device": "Thermal Imaging Camera",
+    "mockup": "082 - Thermal Imaging Camera.png",
+    "route": "/studios/how-devices-work/defence/thermal-imaging-camera",
+    "visual": "PASS: final source comparison; real camera/exploded and visible-thermal hero, native optics bolometer ROIC NUC/display/power diagram, native icon IPO and eight steps, consistent palette thumbnails, integrated image/controls and readable quiz",
+    "interaction": "PASS: separate Person/White hot selectors work; emissivity0.1 gives21.7206C center; native live image and vertical color scale update",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 83,
+    "device": "Night-Vision System",
+    "mockup": "083 - Night-Vision System.png",
+    "route": "/studios/how-devices-work/defence/night-vision-system",
+    "visual": "PASS within supplied-reference limit: individually inspected recovered binocular hardware thumbnail; full-page layout unavailable. Native objective/photocathode/MCP/phosphor diagram and green image simulation inspected. Gain 100 with IR assist saturates display and triples photons.",
+    "interaction": "PASS",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 84,
+    "device": "Infrared Surveillance Camera",
+    "mockup": "084 - Infrared Surveillance Camera.png",
+    "route": "/studios/how-devices-work/defence/infrared-surveillance-camera",
+    "visual": "PASS: final source comparison; annotated camera, exploded nine-component hardware, native reflected-light CMOS processing and storage/network/PoE architecture, three icon IPO, seven steps, day/night references, paired image and controls, five takeaways and quiz. LED zero produces dark scene.",
+    "interaction": "PASS",
+    "console": "PASS on fresh localhost origin; restart websocket history excluded",
+    "responsive": "PASS at five measured CSS sizes, \u00b11 px rounding"
+  },
+  {
+    "number": 85,
+    "device": "Laser Range Finder",
+    "mockup": "085 - Laser Range Finder.png",
+    "route": "/studios/how-devices-work/defence/laser-range-finder",
+    "visual": "PASS: final source comparison; large original hardware, numbered external and exploded views, native laser/APD/TIA/timing/MCU/display/power architecture and actual live receiver circuit display, seven-step workflow, paired native target scene and controls, six takeaways. 1000 m produced 6671 ns delay and 999.94 m measured output.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 86,
+    "device": "Software Defined Radio",
+    "mockup": "086 - Software Defined Radio.png",
+    "route": "/studios/how-devices-work/defence/software-defined-radio",
+    "visual": "PASS: final source comparison; full SDR hardware and USB context, exploded components, native shared RX software TX diagram, fitted separate RX TX circuits, seven steps, dark live spectrum/waterfall, visible switched Spectrum Waterfall IQ charts, six takeaways. Tune108 MHz mutes IQ output.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 87,
+    "device": "Secure Digital Radio",
+    "mockup": "087 - Secure Digital Radio.png",
+    "route": "/studios/how-devices-work/defence/secure-digital-radio",
+    "visual": "PASS: final source comparison; original radio, numbered external and exploded views, native key-supervised powered RF architecture, eight compact steps, distinct TX RX flow, compact AES-GCM controls and six takeaways. Valid packet recovers plaintext; tampered packet rejects.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 88,
+    "device": "IFF System",
+    "mockup": "088 - IFF System.png",
+    "route": "/studios/how-devices-work/defence/iff-system",
+    "visual": "PASS: final source comparison; paired interrogator and transponder, eight hardware parts, complete annotated internal crop, native separate interrogator/aircraft RF decode verification response paths, seven steps, native tower-aircraft request/response diagram, live PPI and readable octal control, five keys below applications. Invalid octal rejected and unverified remains unknown.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 89,
+    "device": "Electronic Identification System",
+    "mockup": "089 - Electronic Identification System.png",
+    "route": "/studios/how-devices-work/defence/electronic-identification-system",
+    "visual": "PASS: final source comparison; original card reader context, six external parts, complete exploded labels, native policy-database branch and separate lock/log outputs, eight steps, native tag/reader/controller/database flow, right reader simulation, five takeaways. Valid grant expired denial and two event records verified.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 90,
+    "device": "Inertial Navigation System",
+    "mockup": "090 - Inertial Navigation System.png",
+    "route": "/studios/how-devices-work/defence/inertial-navigation-system",
+    "visual": "PASS: final source comparison; original INS and complete connection labels, exploded module, compact about panel, native five-column sensor conditioning ADC fusion navigation diagram with error feedback, three simulation views and clearly labeled interval predictions, six horizontal steps, native branched fusion flow and six takeaways. Aiding reduces predicted drift36 to3.6m; live trajectory20.33m at9s.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 91,
+    "device": "GPS Receiver",
+    "mockup": "091 - GPS Receiver.png",
+    "route": "/studios/how-devices-work/defence/gps-receiver",
+    "visual": "PASS: final source comparison; complete annotated GNSS receiver, exploded modules, native RF downconversion correlation timing-reference PVT diagram, satellite constellation/earth signal diagram, map sky NMEA outputs, seven horizontal steps, compact simulation and six keys. Twelve-satellite NMEA with W longitude and zero-satellite no-fix verified.",
+    "interaction": "PASS: all inputs/modes, quiz, anatomy, activation/reset/fault; secure radio AES-GCM success/rejection/reset verified",
+    "console": "PASS: current localhost loads have no application errors; Lit development warning only",
+    "responsive": "PASS: five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 92,
+    "device": "Electronic Compass",
+    "mockup": "092 - Electronic Compass.png",
+    "route": "/studios/how-devices-work/defence/electronic-compass",
+    "visual": "PASS: individually compared source; full annotated compass and internal components, native architecture and six-stage heading computation, seven-step horizontal workflow, native rotating compass, scoped external strap and six takeaways",
+    "interaction": "PASS: pitch 60\u00b0 keeps tilt-compensated heading 287.0\u00b0; uncompensated reading changes to 214.0\u00b0",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 93,
+    "device": "Satellite Communication Terminal",
+    "mockup": "093 - Satellite Communication Terminal.png",
+    "route": "/studios/how-devices-work/defence/satellite-communication-terminal",
+    "visual": "PASS: individually compared source; annotated dish/exploded terminal; native paired BUC uplink and LNB downlink architecture with satellite; six horizontal steps, native ground-terminal relay, six applications, five takeaways and side-by-side controls/results",
+    "interaction": "PASS: azimuth 210 degrees produces 60 dB pointing loss and zero payload throughput; initial aligned terminal carries 25 Mbps",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 94,
+    "device": "Perimeter Intrusion Detection System",
+    "mockup": "094 - Perimeter Intrusion Detection System.png",
+    "route": "/studios/how-devices-work/defence/perimeter-intrusion-detection-system",
+    "visual": "PASS: individually compared source; real annotated deployment, controller enclosure and five numbered captions, native three-input/controller/three-output architecture, compact eight-step principle, native six-icon detection flow, night scene, eight applications and six takeaways",
+    "interaction": "PASS: human crossing activates local alarm and records event; wind disturbance remains below alarm criterion",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 95,
+    "device": "Biometric Access System",
+    "mockup": "095 - Biometric Access System.png",
+    "route": "/studios/how-devices-work/defence/biometric-access-system",
+    "visual": "PASS: individually compared source; complete annotated terminal lock and exit button, exploded hardware, twelve parts in 4x3 grid, dedicated SoC/memory/secure-element access architecture and DC/camera/fingerprint/card/relay circuit, six-stage data flow and source panel order",
+    "interaction": "PASS: synthetic fingerprint 82.8 percent accepted with relay and log; similarity zero produces no authorized match",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 96,
+    "device": "Sonar Detection System",
+    "mockup": "096 - Sonar Detection System.png",
+    "route": "/studios/how-devices-work/defence/sonar-detection-system",
+    "visual": "PASS: individually compared source; console/vessel acoustic hero, annotated external and exploded hardware, native navigation/projector/transducer/LNA/filter/ADC/DSP architecture, separate receive circuit with clock/DC rails, eight horizontal stages, paired live PPI/water column, four application images",
+    "interaction": "PASS: active first range 820 m with 1093.333 ms delay; passive mode removes direct range and transmit delay and shows bearing-only targets",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 97,
+    "device": "Unmanned Surveillance Vehicle Electronics",
+    "mockup": "097 - Unmanned Surveillance Vehicle Electronics.png",
+    "route": "/studios/how-devices-work/defence/unmanned-surveillance-vehicle-electronics",
+    "visual": "PASS: individually compared source; full annotated quadrotor and exploded electronics, six sensor inputs and six outputs around separate onboard/flight controllers, native BMS/regulator ESC/motor and I2C pullup circuits, EO/thermal processing/operator flow, seven compact steps and six applications",
+    "interaction": "PASS: Split View renders both EO and thermal operator streams; running response reaches 99.49 m toward 100 m target with 4.651 m/s ground speed",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 98,
+    "device": "Marine Radar",
+    "mockup": "098 - Marine Radar.png",
+    "route": "/studios/how-devices-work/marine/marine-radar",
+    "visual": "PASS: individually compared source; scanner/intro/external-parts/vessel hero, exploded scanner, native timing/modulator/PA/duplexer/antenna LNA/mixer/IF/ADC/DSP/display architecture with LO and heading reference; six compact steps; controls beside native PPI, circuit and signal flow; six sea applications",
+    "interaction": "PASS: zero gain yields zero targets, sea return and rain return; Head-Up/North-Up controls and clutter suppression remain active",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 99,
+    "device": "Fish Finder",
+    "mockup": "099 - Fish Finder.png",
+    "route": "/studios/how-devices-work/marine/fish-finder",
+    "visual": "PASS: individually compared source; device/boat/sonar hero, labeled display cable transducer and restored complete PCB annotations, native pulser/TX-RX/receiver/ADC/fish DSP architecture, eight native icon stages, acoustic water/fish/seabed signal scene, live echogram and eight applications",
+    "interaction": "PASS: depth change from 50 to 150 m updates echogram bottom and round-trip delay from 66.667 to 200 ms",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 100,
+    "device": "Depth Sounder",
+    "mockup": "100 - Depth Sounder.png",
+    "route": "/studios/how-devices-work/marine/depth-sounder",
+    "visual": "PASS: individually compared source; complete depth display/transducer and annotated installation/PCB, dedicated power MCU pulser/transducer receiver amplifier ADC architecture, native three-icon IPO and eight-icon signal flow, source circuit and calibration controls with echogram and four application photos",
+    "interaction": "PASS: 1600 m/s calibration changes 28 m actual depth to 29.867 m measured depth while echo delay remains 37.333 ms; echogram scale uses the measured reading",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 101,
+    "device": "GPS Chartplotter",
+    "mockup": "101 - GPS Chartplotter.png",
+    "route": "/studios/how-devices-work/marine/gps-chartplotter",
+    "visual": "PASS: individually compared source; restored full touch/chart/menu and right-control hardware labels plus storage caption; dedicated GNSS/RF/chart-database/NMEA/sonar processor architecture, six-stage sky-to-screen flow and separate RF DC-regulator NMEA circuits; native chart and waypoint list with compact navigation settings",
+    "interaction": "PASS: Add waypoint creates fourth planner entry and map marker; Simulation runs local route to 46.6 s and pauses; existing remove/edit/chart modes verified",
+    "console": "PASS: no current browser errors",
+    "responsive": "PASS: five measured loaded CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844); no broken images or page overflow"
+  },
+  {
+    "number": 102,
+    "device": "Automatic Identification System - AIS",
+    "mockup": "102 - Automatic Identification System - AIS.png",
+    "route": "/studios/how-devices-work/marine/ais",
+    "visual": "PASS: final source comparison; restored complete annotated AIS hardware; dedicated VHF/GPS/message architecture, GMSK RF circuit, native vessel tracking with selected report beside chart, ship/shore signal exchange, compact six-step workflow and controls",
+    "interaction": "PASS: selected vessel 4; invalid MMSI inhibits run; reset restores identity",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 103,
+    "device": "Marine Autopilot",
+    "mockup": "103 - Marine Autopilot.png",
+    "route": "/studios/how-devices-work/marine/marine-autopilot",
+    "visual": "PASS: final source comparison; restored internal legend and actuator caption; dedicated sensor/PID/actuator/rudder feedback architecture and circuit; native course heading rudder simulation, compact workflow and five applications",
+    "interaction": "PASS: running heading advances; pause; standby removes actuator demand",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 104,
+    "device": "Electronic Compass",
+    "mockup": "104 - Electronic Compass.png",
+    "route": "/studios/how-devices-work/marine/electronic-compass",
+    "visual": "PASS: final source comparison; dedicated magnetometer tilt fusion calibration and power architecture; I2C sensors EEPROM MCU CAN/UART circuit; native signal flow, six-step workflow, four application photos",
+    "interaction": "PASS: pitch30 uncompensated229.1 degrees; compensated273.5 degrees; live NMEA updates",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 105,
+    "device": "Marine VHF Radio",
+    "mockup": "105 - Marine VHF Radio.png",
+    "route": "/studios/how-devices-work/marine/marine-vhf-radio",
+    "visual": "PASS: final source comparison; large annotated radio, restored exploded labels, dedicated TX/RX/DSC/GPS block diagram and native two-row signal flow; compact controls and channel display; lower applications and keys aligned beside workflow",
+    "interaction": "PASS: DSC70 shows156.525MHz and inhibits PTT/voice audio",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 106,
+    "device": "EPIRB Emergency Beacon",
+    "mockup": "106 - EPIRB Emergency Beacon.png",
+    "route": "/studios/how-devices-work/marine/epirb-emergency-beacon",
+    "visual": "PASS: final source comparison; tall actual beacon external and fully annotated exploded hardware; dedicated GPS activation battery dual RF and strobe architecture; native ocean satellite ground station rescue relay; three application photos and staged simulator",
+    "interaction": "PASS: activation advances to homing/strobe; pause at13 seconds",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 107,
+    "device": "Dynamic Positioning System",
+    "mockup": "107 - Dynamic Positioning System.png",
+    "route": "/studios/how-devices-work/marine/dynamic-positioning-system",
+    "visual": "PASS: final source comparison; vessel and real bridge hero pair, eight internal subsystems, dedicated DP sensor disturbance thrust feedback architecture, five-stage vertical control loop, six-stage signal flow, native station keeping and four application photos",
+    "interaction": "PASS: live station-keeping error advances; pause retains measured0.555m",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 108,
+    "device": "Underwater ROV Control System",
+    "mockup": "108 - Underwater ROV Control System.png",
+    "route": "/studios/how-devices-work/marine/underwater-rov-control-system",
+    "visual": "PASS: final source comparison; actual ROV and topside console with native telemetry/camera, cleaned exploded hardware, dedicated tether/SBC/actuator architecture and sensor/ESC/power circuit, two-row command and return data flow, compact controls and application photo row",
+    "interaction": "PASS: lights8W, gripperclosed0%, camera15 degrees visibly update scene",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 109,
+    "device": "Autonomous Underwater Vehicle Navigation",
+    "mockup": "109 - Autonomous Underwater Vehicle Navigation.png",
+    "route": "/studios/how-devices-work/marine/autonomous-underwater-vehicle-navigation",
+    "visual": "PASS: final source comparison; underwater AUV hero, overview photo and fully restored internal captions, dedicated mission fusion guidance actuator feedback architecture, native surface GPS/acoustic comms scene, editable waypoint map, four application photos",
+    "interaction": "PASS: fifth waypoint adds marker and two inputs; surface fix mode clears drift",
+    "console": "PASS: no errors on current load",
+    "responsive": "PASS: five measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 110,
+    "device": "Digital Engine Control",
+    "mockup": "110 - Digital Engine Control.png",
+    "route": "/studios/how-devices-work/marine/digital-engine-control",
+    "visual": "PASS: individual source comparison; annotated engine and full ECU legend, eight sensor bus, CAN diagnostics, dedicated circuit, five native signal plots, idle table and live RPM gauge",
+    "interaction": "PASS: inputs, applicable modes, faults, quiz, anatomy, run/reset and device-specific tools",
+    "console": "PASS: no application errors on current localhost loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 111,
+    "device": "Servo Motor Controller",
+    "mockup": "111 - Servo Motor Controller.png",
+    "route": "/studios/how-devices-work/robotics/servo-motor-controller",
+    "visual": "PASS: individual source comparison; real servo and labelled exploded parts, specifications and gearbox photo, native closed-loop architecture and seven-stage signal flow, animated shaft arm, full live values and six application photos",
+    "interaction": "PASS: inputs, applicable modes, faults, quiz, anatomy, run/reset and device-specific tools",
+    "console": "PASS: no application errors on current localhost loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 112,
+    "device": "Stepper Motor Controller",
+    "mockup": "112 - Stepper Motor Controller.png",
+    "route": "/studios/how-devices-work/robotics/stepper-motor-controller",
+    "visual": "PASS: individual source comparison; real NEMA motor driver and exploded parts, dedicated STEP DIR EN sequencer/current regulator architecture, five native plots, live perspective motor and full values, excitation sequence and four application photos",
+    "interaction": "PASS: inputs, applicable modes, faults, quiz, anatomy, run/reset and device-specific tools",
+    "console": "PASS: no application errors on current localhost loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 113,
+    "device": "Mobile Robot",
+    "mockup": "113 - Mobile Robot.png",
+    "route": "/studios/how-devices-work/robotics/mobile-robot",
+    "visual": "PASS against supplied low-resolution thumbnail: individually inspected blue four-wheel robot preserved; full-page reference unavailable. Native four-wheel motion body, sensor and driver architecture, functional circuit and component inspection",
+    "interaction": "PASS: inputs, applicable modes, faults, quiz, anatomy, run/reset and device-specific tools",
+    "console": "PASS: no application errors on current localhost loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 114,
+    "device": "Line-Following Robot",
+    "mockup": "114 - Line-Following Robot.png",
+    "route": "/studios/how-devices-work/robotics/line-following-robot",
+    "visual": "PASS: individual source comparison; actual robot and exploded components, three hardware IPO photos, battery regulation sensor MCU dual motor architecture, five-stage signal feedback and sensor meters, native yellow-wheel tracking body and six application photos",
+    "interaction": "PASS: inputs, applicable modes, faults, quiz, anatomy, run/reset and device-specific tools",
+    "console": "PASS: no application errors on current localhost loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 115,
+    "device": "Self-Balancing Robot",
+    "mockup": "115 - Self-Balancing Robot.png",
+    "route": "/studios/how-devices-work/robotics/self-balancing-robot",
+    "visual": "PASS: individual source comparison; blue-wheel robot and exploded parts, three hardware IPO images, native upright setpoint PID motor IMU feedback loop, live layered robot model, eight steps and four application photos",
+    "interaction": "PASS: device actions, operating modes, live keyboard control extrema with rendered outputs, fault/reset and quiz feedback",
+    "console": "PASS: no errors on current localhost browser loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 116,
+    "device": "Industrial Robot Controller",
+    "mockup": "116 - Industrial Robot Controller.png",
+    "route": "/studios/how-devices-work/robotics/industrial-robot-controller",
+    "visual": "PASS: individual source comparison; large actual controller and annotated cabinet, native safety motion IO communication architecture, AC EMI and DC supply safety bus CPU six drives motors fieldbus circuit, signal legend, yellow live arm and four application photos",
+    "interaction": "PASS: device actions, operating modes, live keyboard control extrema with rendered outputs, fault/reset and quiz feedback",
+    "console": "PASS: no errors on current localhost browser loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 117,
+    "device": "Collaborative Robot",
+    "mockup": "117 - Collaborative Robot.png",
+    "route": "/studios/how-devices-work/robotics/collaborative-robot",
+    "visual": "PASS: individual source comparison; scoped sidebar, full cobot workplace hero, labelled exploded joint, blue/green/purple IPO, native command/safety/feedback and independent safety electrical architecture, nine component photographs and four application scenes",
+    "interaction": "PASS: live keyboard extrema/modes/device actions; two-waypoint replay changes to second target; lower force limit preserves held joints; Front/Side/Top native projections and expandable contact/proximity controls verified",
+    "console": "PASS: no current application console errors",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 118,
+    "device": "LiDAR Mapping Robot",
+    "mockup": "118 - LiDAR Mapping Robot.png",
+    "route": "/studios/how-devices-work/robotics/lidar-mapping-robot",
+    "visual": "PASS: final individual source comparison; three-column robot/title/live point-cloud hero, real complete labelled exploded hardware, blue/green/orange IPO, native sensor-computer-driver-motors architecture, five illustrated scan-flow stages and application photographs",
+    "interaction": "PASS: all live keyboard extrema, manual motion/map actions, operating modes/fault/reset/quiz; speed slider changes to Autonomous and reports 1 m/s at maximum",
+    "console": "PASS: no current application console errors",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 119,
+    "device": "SLAM Navigation System",
+    "mockup": "119 - SLAM Navigation System.png",
+    "route": "/studios/how-devices-work/robotics/slam-navigation-system",
+    "visual": "PASS: individual source comparison; hardware photo beside native live occupancy map, full annotated internals, distinct sensor-fusion localization mapping planning architecture, six native workflow illustrations, seven-stage data flow and five application photos",
+    "interaction": "PASS: device actions, operating modes, live keyboard control extrema with rendered outputs, fault/reset and quiz feedback",
+    "console": "PASS: no errors on current localhost browser loads",
+    "responsive": "PASS: five fresh measured sizes; no broken images or page overflow"
+  },
+  {
+    "number": 120,
+    "device": "Autonomous Mobile Robot",
+    "mockup": "120 - Autonomous Mobile Robot.png",
+    "route": "/studios/how-devices-work/robotics/autonomous-mobile-robot",
+    "visual": "PASS: individually inspected low-resolution truck thumbnail; full-page source unavailable; distinct ground-truck hardware, native steering/traction architecture and live bicycle-model truck.",
+    "interaction": "PASS: device actions, operating modes, live keyboard control extrema with rendered outputs, fault/reset and quiz feedback",
+    "console": "PASS: no errors on current localhost browser loads",
+    "responsive": "PASS: 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 121,
+    "device": "Warehouse Robot",
+    "mockup": "121 - Warehouse Robot.png",
+    "route": "/studios/how-devices-work/robotics/warehouse-robot",
+    "visual": "PASS: Final source comparison: annotated lift robot, three photographic IPO panels, industrial computer with SLAM planning motion lift and task management, separate traction/lift circuits, seven stages and four application photos",
+    "interaction": "PASS: Lift only inhibits travel and reaches requested 1 m; navigation, controls, modes, fault/reset and quiz previously verified",
+    "console": "PASS: current loads have no new errors; historical WarehouseArchitecture key warning repaired",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 122,
+    "device": "Machine-Vision System",
+    "mockup": "122 - Machine-Vision System.png",
+    "route": "/studios/how-devices-work/robotics/machine-vision-system",
+    "visual": "PASS: Final source comparison: camera/conveyor hero, annotated camera/lens/light/processor setup, three IPO panels, native trigger-camera-processor accept/reject diagram, eight inspection stages and four application photos",
+    "interaction": "PASS: normal part accepted; maximum missing feature with strict threshold rejected, inspection event log updates; controls modes fault/reset and quiz previously verified",
+    "console": "PASS: current loads have no new errors; historical WarehouseArchitecture key warning repaired",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 123,
+    "device": "Quadruped Robot",
+    "mockup": "123 - Quadruped Robot.png",
+    "route": "/studios/how-devices-work/robotics/quadruped-robot",
+    "visual": "PASS: individual source comparison; realistic quadruped and annotated exploded view, six correctly labelled hardware close-ups, native perception/fusion/gait/IK/12-motor feedback architecture, six application photos and device-specific gait view.",
+    "interaction": "PASS: stepping gait changes hip 61.796 to 57.122 degrees and knee -95.519 to -97.526 degrees; all modes controls fault/reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads after repairing temporary missing component-image references",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 124,
+    "device": "Wi-Fi Router",
+    "mockup": "124 - Wi-Fi Router.png",
+    "route": "/studios/how-devices-work/everyday/wi-fi-router",
+    "visual": "PASS: individual source comparison; labelled router PCB across two rows, router hardware hero, native WAN PHY SoC CPU switching wireless RAM flash branches, dedicated packet-flow icons, compact controls and eight application photos.",
+    "interaction": "PASS: transmit-power minimum reduces signal from -47.229 to -58.99 dBm and throughput from 117.13 to 103.778 Mbps; all modes settings clients channel fault reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 125,
+    "device": "Bluetooth Headphones",
+    "mockup": "125 - Bluetooth Headphones.png",
+    "route": "/studios/how-devices-work/everyday/bluetooth-headphones",
+    "visual": "PASS: individual source comparison; sidebar and left headphone hero, full annotated exploded hardware, seven colour-numbered stages, native compressed audio/downlink and microphone/uplink branches, power/data signal rows and compact controls.",
+    "interaction": "PASS: full volume gives 100 percent output; ANC off restores residual noise to 35 percent and attenuation to 0 dB; playback modes fault reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 126,
+    "device": "Smartwatch",
+    "mockup": "126 - Smartwatch.png",
+    "route": "/studios/how-devices-work/everyday/smartwatch",
+    "visual": "PASS: final individual source comparison; sidebar, split hardware/anatomy hero, native green/blue/purple sensor flow, MCU circuit with memory/PMIC/charging, health and step panels",
+    "interaction": "PASS: device-specific actions, operating modes and keyboard control extrema with rendered outputs, fault/reset and quiz feedback",
+    "console": "PASS: no errors on current localhost browser loads",
+    "responsive": "PASS: repeated after final native flow/circuit edits at all five measured CSS sizes; phone flow columns checked for clipping and page overflow, no broken images"
+  },
+  {
+    "number": 127,
+    "device": "RFID Access Card",
+    "mockup": "127 - RFID Access Card.png",
+    "route": "/studios/how-devices-work/everyday/rfid-access-card",
+    "visual": "PASS: individual source comparison; reader/card hero, four pictorial stages, separate reader components, coupling, block/circuit/data/steps rows; native LF diagrams correct the source frequency error",
+    "interaction": "PASS: authorized, unknown, revoked credentials; keyboard coupling extrema, controls expanded on phone, run/reset/fault, quiz and component inspection",
+    "console": "PASS: no errors on current localhost browser loads",
+    "responsive": "PASS: repeated after final edits at all five measured CSS sizes (1367x768, 1440x900, 1920x1080, 768x1024, 391x844), including expanded phone controls; no broken images or page overflow"
+  },
+  {
+    "number": 128,
+    "device": "Barcode Scanner",
+    "mockup": "128 - Barcode Scanner.png",
+    "route": "/studios/how-devices-work/everyday/barcode-scanner",
+    "visual": "PASS: individual source comparison; full scanner and labelled exploded parts, restored optical captions and three hardware views, native red/blue/green IPO with real PCB, optical-sensor/AFE/decoder/supply circuit, six native signal stages and four application photographs",
+    "interaction": "PASS: keyboard extrema/modes, real Code 128B modulo-103 decoder, optical failure thresholds and damaged pattern; final compact surface-condition selector, live decoded output and expandable optical settings rechecked",
+    "console": "PASS: no current application console errors",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 129,
+    "device": "QR Code Scanner",
+    "mockup": "129 - QR Code Scanner.png",
+    "route": "/studios/how-devices-work/everyday/qr-code-scanner",
+    "visual": "PASS: final individual source comparison; left title/phone hero, full labelled exploded smartphone, two separate native IPO/image-processing panels, six illustrated horizontal working steps, coloured lens-to-output block chain and five application photographs",
+    "interaction": "PASS: actual pixel decoder, example and local image upload, contrast failure, 270-degree rotation success; new example/upload mode tabs and expandable image settings verified",
+    "console": "PASS: no current application console errors",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 130,
+    "device": "Biometric Fingerprint Scanner",
+    "mockup": "130 - Biometric Fingerprint Scanner.png",
+    "route": "/studios/how-devices-work/everyday/biometric-fingerprint-scanner",
+    "visual": "PASS: individual source comparison; fingerprint reader hero and annotated exploded parts, six stages, native sensing-to-template/security/output block diagram, three IPO panels and illustrated six-stage data flow.",
+    "interaction": "PASS: Scan Fingerprint then Process then Match produces Template match accepted; all quality offset threshold modes fault/reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 131,
+    "device": "CCTV Camera",
+    "mockup": "131 - CCTV Camera.png",
+    "route": "/studios/how-devices-work/everyday/cctv-camera",
+    "visual": "PASS: individual source comparison; CCTV/sidebar hero, full annotated exploded view, six hardware IPO images, native lens-sensor-ISP-encoding/network branching and optional microphone, seven-stage signal icons and native live street scene.",
+    "interaction": "PASS: Network disconnected sets delivered frame rate to 0 fps while capture stays available; all exposure lighting codec bandwidth modes fault/reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 132,
+    "device": "IR Camera",
+    "mockup": "132 - IR Camera.png",
+    "route": "/studios/how-devices-work/everyday/ir-camera",
+    "visual": "PASS: individual source comparison; overview camera beside labelled exploded parts and thermal simulation, six photographed IPO stages, full sensing captions, native thermal cup/person/panel fields, six coloured flow rows and six application photos.",
+    "interaction": "PASS: emissivity minimum changes estimated spot from 62.3 to 206.94 C and shows 144.64 C estimation error; all source modes temperature ambient fault reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 133,
+    "device": "Television",
+    "mockup": "133 - Television.png",
+    "route": "/studios/how-devices-work/everyday/television",
+    "visual": "PASS: individual source comparison; television beside overview, annotated exploded TV, seven working stages, input-processing-output panels, native separate video/audio/OS branches, ten hardware close-ups and eight applications.",
+    "interaction": "PASS: streaming bandwidth 1 Mbps reduces delivered picture quality to 8.333 percent; all input modes brightness volume tuner controls fault/reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 134,
+    "device": "Digital Door Lock",
+    "mockup": "134 - Digital Door Lock.png",
+    "route": "/studios/how-devices-work/everyday/digital-door-lock",
+    "visual": "PASS: individual source comparison; tall real lock and annotated internals, four credential/processing/actuator/feedback panels, eight working stages, compact native keypad, secure-controller branched diagram, six security explanations and applications.",
+    "interaction": "PASS: demo PIN 1234 unlocks latch; door-open sensor holds unlock beyond timeout; other credential modes lockout battery timer fault/reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 135,
+    "device": "Microwave Oven Controller",
+    "mockup": "135 - Microwave Oven Controller.png",
+    "route": "/studios/how-devices-work/everyday/microwave-oven-controller",
+    "visual": "PASS: individual source comparison; microwave and labelled inside view, exploded keypad/display/PCB/housing, three coloured IPO panels, live countdown and six output lamps, native safety/control circuit and four application photographs.",
+    "interaction": "PASS: opening door gives Door open \u2014 heating inhibited; all power time food mass modes completion fault reset quiz previously verified.",
+    "console": "PASS: no new errors on current loads",
+    "responsive": "PASS: fresh measurements at 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 136,
+    "device": "Washing Machine Controller",
+    "mockup": "136 - Washing Machine Controller.png",
+    "route": "/studios/how-devices-work/everyday/washing-machine-controller",
+    "visual": "PASS: final individual source comparison with default details closed; physical washer, controller front panel, photographed components, circuit, stages and native drum simulation retain source hierarchy",
+    "interaction": "PASS: all program modes, keyboard controls, door/fault/reset and quiz; Water temperature in Wash changes 20 to 37.333333 \u00b0C and heater Off to On; Spin speed in Spin changes 396.708101 to 1388.478354 rpm",
+    "console": "PASS: no errors on current loaded pages",
+    "responsive": "PASS: five successful measured sizes 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 137,
+    "device": "Induction Cooktop",
+    "mockup": "137 - Induction Cooktop.png",
+    "route": "/studios/how-devices-work/everyday/induction-cooktop",
+    "visual": "PASS: final individual comparison; cooktop/pan and exploded artwork, source panel hierarchy, native closed half-bridge resonant circuit, step and safety panels",
+    "interaction": "PASS: device-specific actions, operating modes and keyboard control extrema with rendered outputs, fault/reset and quiz feedback",
+    "console": "PASS: no errors on current loaded pages",
+    "responsive": "PASS: five successful measured sizes 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 138,
+    "device": "Smart Energy Meter",
+    "mockup": "138 - Smart Energy Meter.png",
+    "route": "/studios/how-devices-work/everyday/smart-energy-meter",
+    "visual": "PASS: final source comparison; meter/exploded hero, eleven component photographs in five/six rows, metering circuit and native utility-record flow, green LCD readout",
+    "interaction": "PASS: sampled voltage/current power, all controls and modes, relay preserves accumulated energy, tamper/fault/reset; full 10 s run ends at exactly 2.3000 kWh for 2300 W / 1 h and disables Run until reset",
+    "console": "PASS: no errors on current loaded pages",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 139,
+    "device": "GPS Receiver",
+    "mockup": "139 - GPS Receiver.png",
+    "route": "/studios/how-devices-work/everyday/gps-receiver",
+    "visual": "PASS: individual source comparison; real receiver hero, timing facts, labelled PCB and exploded hardware, native RF front end, satellite input, range projection and compact simulation with visible position output",
+    "interaction": "PASS: all range extrema and locations, noise/geometry/fault controls, no-fix inhibition, run/reset; clock bias remains accessible in compact advanced section",
+    "console": "PASS: no errors on current loaded pages",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  },
+  {
+    "number": 140,
+    "device": "Digital Multimeter",
+    "mockup": "140 - Digital Multimeter.png",
+    "route": "/studios/how-devices-work/everyday/digital-multimeter",
+    "visual": "PASS: final individual source comparison; same hardware, hero hierarchy, three-stage working principle and panel arrangement; taller controls retain accessible native inputs",
+    "interaction": "PASS: keyboard control extrema, all modes, fuse/probe states, continuity, current-range overload OL, reset; guide and overview navigation implemented",
+    "console": "PASS: no current application console errors",
+    "responsive": "PASS: final layout repeated at measured CSS 1367x768, 1440x900, 1920x1080, 768x1024, 391x844; no page overflow or broken images"
+  }
+]

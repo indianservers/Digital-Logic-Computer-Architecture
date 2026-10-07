@@ -1,0 +1,15 @@
+{
+  "labs": 86,
+  "unique_viewport_checks": 430,
+  "sizes": [
+    "1366x768",
+    "1440x900",
+    "1920x1080",
+    "768x1024",
+    "391x844"
+  ],
+  "result": "PASS",
+  "studio_tests_passed": 688,
+  "studio_typescript": "PASS",
+  "vite_production_build": "PASS"
+}

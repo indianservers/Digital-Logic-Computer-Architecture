@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 191ms
+
+ Test Files  1 passed (1)
+      Tests  38 passed (38)
+   Start at  19:59:32
+   Duration  12.70s (transform 685ms, setup 0ms, collect 12.21s, tests 191ms, environment 0ms, prepare 81ms)
+

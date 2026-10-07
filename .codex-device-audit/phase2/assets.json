@@ -1,0 +1,4666 @@
+[
+  {
+    "number": 55,
+    "mockup": "055 - Centrifuge.png",
+    "regions": {
+      "device": [
+        0.117,
+        0.153,
+        0.332,
+        0.493
+      ],
+      "external": [
+        0.342,
+        0.186,
+        0.48,
+        0.493
+      ],
+      "internal": [
+        0.49,
+        0.179,
+        0.7,
+        0.492
+      ],
+      "stage1": [
+        0.127,
+        0.572,
+        0.181,
+        0.672
+      ],
+      "stage2": [
+        0.201,
+        0.573,
+        0.252,
+        0.674
+      ],
+      "stage3": [
+        0.275,
+        0.574,
+        0.322,
+        0.674
+      ],
+      "stage4": [
+        0.346,
+        0.572,
+        0.406,
+        0.674
+      ],
+      "stage5": [
+        0.439,
+        0.571,
+        0.485,
+        0.673
+      ],
+      "stage6": [
+        0.513,
+        0.573,
+        0.574,
+        0.673
+      ],
+      "stage7": [
+        0.615,
+        0.57,
+        0.639,
+        0.673
+      ],
+      "input": [
+        0.717,
+        0.263,
+        0.783,
+        0.419
+      ],
+      "rotor": [
+        0.804,
+        0.257,
+        0.884,
+        0.39
+      ],
+      "output": [
+        0.906,
+        0.266,
+        0.944,
+        0.432
+      ]
+    },
+    "assets": [
+      "055-device.webp",
+      "055-external.webp",
+      "055-input.webp",
+      "055-internal.webp",
+      "055-output.webp",
+      "055-rotor.webp",
+      "055-stage1.webp",
+      "055-stage2.webp",
+      "055-stage3.webp",
+      "055-stage4.webp",
+      "055-stage5.webp",
+      "055-stage6.webp",
+      "055-stage7.webp"
+    ]
+  },
+  {
+    "number": 56,
+    "mockup": "056 - Blood Cell Analyzer.png",
+    "regions": {
+      "device": [
+        0.113,
+        0.211,
+        0.38,
+        0.514
+      ],
+      "external": [
+        0.113,
+        0.211,
+        0.38,
+        0.514
+      ],
+      "internal": [
+        0.393,
+        0.198,
+        0.68,
+        0.51
+      ],
+      "hero": [
+        0.73,
+        0.063,
+        1,
+        0.14
+      ],
+      "flow0": [
+        0.711,
+        0.195,
+        0.735,
+        0.275
+      ],
+      "flow1": [
+        0.751,
+        0.195,
+        0.811,
+        0.275
+      ],
+      "flow2": [
+        0.839,
+        0.195,
+        0.919,
+        0.277
+      ],
+      "flow3": [
+        0.928,
+        0.193,
+        0.977,
+        0.277
+      ]
+    },
+    "assets": [
+      "056-device.webp",
+      "056-external.webp",
+      "056-flow0.webp",
+      "056-flow1.webp",
+      "056-flow2.webp",
+      "056-flow3.webp",
+      "056-hero.webp",
+      "056-internal.webp"
+    ]
+  },
+  {
+    "number": 57,
+    "mockup": "057 - Automated Chemistry Analyzer.png",
+    "regions": {
+      "device": [
+        0.009,
+        0.154,
+        0.269,
+        0.512
+      ],
+      "external": [
+        0.009,
+        0.154,
+        0.269,
+        0.512
+      ],
+      "internal": [
+        0.283,
+        0.154,
+        0.692,
+        0.51
+      ],
+      "optical": [
+        0.704,
+        0.178,
+        0.81,
+        0.5
+      ],
+      "hero": [
+        0.902,
+        0.06,
+        0.994,
+        0.174
+      ],
+      "stage1": [
+        0.021,
+        0.63,
+        0.103,
+        0.74
+      ],
+      "stage2": [
+        0.126,
+        0.63,
+        0.2,
+        0.74
+      ],
+      "stage3": [
+        0.218,
+        0.63,
+        0.293,
+        0.74
+      ],
+      "stage4": [
+        0.31,
+        0.63,
+        0.382,
+        0.74
+      ]
+    },
+    "assets": [
+      "057-device.webp",
+      "057-external.webp",
+      "057-hero.webp",
+      "057-internal.webp",
+      "057-optical.webp",
+      "057-stage1.webp",
+      "057-stage2.webp",
+      "057-stage3.webp",
+      "057-stage4.webp"
+    ]
+  },
+  {
+    "number": 58,
+    "mockup": "058 - Aircraft Flight Computer.png",
+    "regions": {
+      "device": [
+        0.025,
+        0.26,
+        0.45,
+        0.74
+      ],
+      "external": [
+        0.025,
+        0.26,
+        0.45,
+        0.74
+      ],
+      "internal": [
+        0.48,
+        0.26,
+        0.9,
+        0.74
+      ]
+    },
+    "assets": [
+      "058-device.webp",
+      "058-external.webp",
+      "058-internal.webp"
+    ]
+  },
+  {
+    "number": 59,
+    "mockup": "059 - Fly-by-Wire System.png",
+    "regions": {
+      "device": [
+        0.01,
+        0.35,
+        0.217,
+        0.605
+      ],
+      "external": [
+        0.01,
+        0.35,
+        0.217,
+        0.605
+      ],
+      "internal": [
+        0.625,
+        0.365,
+        0.696,
+        0.455
+      ],
+      "hero": [
+        0.342,
+        0.049,
+        1,
+        0.276
+      ],
+      "attitude": [
+        0.486,
+        0.73,
+        0.615,
+        0.832
+      ]
+    },
+    "assets": [
+      "059-attitude.webp",
+      "059-device.webp",
+      "059-external.webp",
+      "059-hero.webp",
+      "059-internal.webp"
+    ]
+  },
+  {
+    "number": 60,
+    "mockup": "060 - Glass Cockpit.png",
+    "regions": {
+      "device": [
+        0.119,
+        0.36,
+        0.399,
+        0.609
+      ],
+      "external": [
+        0.119,
+        0.36,
+        0.399,
+        0.609
+      ],
+      "internal": [
+        0.412,
+        0.38,
+        0.625,
+        0.651
+      ],
+      "hero": [
+        0.33,
+        0.055,
+        1,
+        0.325
+      ]
+    },
+    "assets": [
+      "060-device.webp",
+      "060-external.webp",
+      "060-hero.webp",
+      "060-internal.webp"
+    ]
+  },
+  {
+    "number": 61,
+    "mockup": "061 - Primary Flight Display.png",
+    "regions": {
+      "device": [
+        0.459,
+        0.215,
+        0.699,
+        0.572
+      ],
+      "external": [
+        0.459,
+        0.215,
+        0.699,
+        0.572
+      ],
+      "internal": [
+        0.712,
+        0.21,
+        0.988,
+        0.445
+      ],
+      "hero": [
+        0.701,
+        0.063,
+        1,
+        0.174
+      ],
+      "display": [
+        0.12,
+        0.25,
+        0.44,
+        0.574
+      ]
+    },
+    "assets": [
+      "061-device.webp",
+      "061-display.webp",
+      "061-external.webp",
+      "061-hero.webp",
+      "061-internal.webp"
+    ]
+  },
+  {
+    "number": 62,
+    "mockup": "062 - Air Data Computer.png",
+    "regions": {
+      "device": [
+        0.01,
+        0.33,
+        0.228,
+        0.515
+      ],
+      "external": [
+        0.01,
+        0.33,
+        0.228,
+        0.515
+      ],
+      "internal": [
+        0.238,
+        0.338,
+        0.762,
+        0.515
+      ],
+      "hero": [
+        0.295,
+        0.05,
+        1,
+        0.296
+      ],
+      "context": [
+        0.774,
+        0.34,
+        0.987,
+        0.515
+      ]
+    },
+    "assets": [
+      "062-context.webp",
+      "062-device.webp",
+      "062-external.webp",
+      "062-hero.webp",
+      "062-internal.webp"
+    ]
+  },
+  {
+    "number": 63,
+    "mockup": "063 - Inertial Navigation System.png",
+    "regions": {
+      "device": [
+        0.141,
+        0.31,
+        0.368,
+        0.47
+      ],
+      "external": [
+        0.141,
+        0.31,
+        0.368,
+        0.47
+      ],
+      "internal": [
+        0.384,
+        0.306,
+        0.716,
+        0.47
+      ],
+      "hero": [
+        0.47,
+        0.042,
+        1,
+        0.261
+      ],
+      "context": [
+        0.733,
+        0.31,
+        0.986,
+        0.468
+      ]
+    },
+    "assets": [
+      "063-context.webp",
+      "063-device.webp",
+      "063-external.webp",
+      "063-hero.webp",
+      "063-internal.webp"
+    ]
+  },
+  {
+    "number": 64,
+    "mockup": "064 - GPS Navigation System.png",
+    "regions": {
+      "device": [
+        0.012,
+        0.334,
+        0.209,
+        0.571
+      ],
+      "external": [
+        0.012,
+        0.334,
+        0.209,
+        0.571
+      ],
+      "internal": [
+        0.22,
+        0.331,
+        0.438,
+        0.577
+      ],
+      "hero": [
+        0.294,
+        0.05,
+        0.986,
+        0.286
+      ],
+      "map": [
+        0.451,
+        0.615,
+        0.735,
+        0.775
+      ]
+    },
+    "assets": [
+      "064-device.webp",
+      "064-external.webp",
+      "064-hero.webp",
+      "064-internal.webp",
+      "064-map.webp"
+    ]
+  },
+  {
+    "number": 65,
+    "mockup": "065 - Engine FADEC Controller.png",
+    "regions": {
+      "device": [
+        0.012,
+        0.378,
+        0.223,
+        0.606
+      ],
+      "external": [
+        0.012,
+        0.378,
+        0.223,
+        0.606
+      ],
+      "internal": [
+        0.231,
+        0.383,
+        0.668,
+        0.608
+      ],
+      "hero": [
+        0.3,
+        0.054,
+        1,
+        0.325
+      ]
+    },
+    "assets": [
+      "065-device.webp",
+      "065-external.webp",
+      "065-hero.webp",
+      "065-internal.webp"
+    ]
+  },
+  {
+    "number": 66,
+    "mockup": "066 - Aircraft Engine Monitoring System.png",
+    "regions": {
+      "device": [
+        0.311,
+        0.361,
+        0.521,
+        0.608
+      ],
+      "external": [
+        0.311,
+        0.361,
+        0.521,
+        0.608
+      ],
+      "internal": [
+        0.53,
+        0.362,
+        0.706,
+        0.513
+      ],
+      "hero": [
+        0.412,
+        0.05,
+        1,
+        0.302
+      ],
+      "context": [
+        0.106,
+        0.403,
+        0.205,
+        0.608
+      ]
+    },
+    "assets": [
+      "066-context.webp",
+      "066-device.webp",
+      "066-external.webp",
+      "066-hero.webp",
+      "066-internal.webp"
+    ]
+  },
+  {
+    "number": 67,
+    "mockup": "067 - Drone Flight Controller.png",
+    "regions": {
+      "device": [
+        0.122,
+        0.321,
+        0.375,
+        0.575
+      ],
+      "external": [
+        0.122,
+        0.321,
+        0.375,
+        0.575
+      ],
+      "internal": [
+        0.387,
+        0.328,
+        0.676,
+        0.568
+      ],
+      "hero": [
+        0.345,
+        0.047,
+        1,
+        0.272
+      ]
+    },
+    "assets": [
+      "067-device.webp",
+      "067-external.webp",
+      "067-hero.webp",
+      "067-internal.webp"
+    ]
+  },
+  {
+    "number": 68,
+    "mockup": "068 - Weather Radar.png",
+    "regions": {
+      "device": [
+        0.123,
+        0.365,
+        0.35,
+        0.54
+      ],
+      "external": [
+        0.123,
+        0.365,
+        0.35,
+        0.54
+      ],
+      "internal": [
+        0.36,
+        0.359,
+        0.695,
+        0.54
+      ],
+      "hero": [
+        0.285,
+        0.054,
+        1,
+        0.295
+      ]
+    },
+    "assets": [
+      "068-device.webp",
+      "068-external.webp",
+      "068-hero.webp",
+      "068-internal.webp"
+    ]
+  },
+  {
+    "number": 69,
+    "mockup": "069 - Radar Altimeter.png",
+    "regions": {
+      "device": [
+        0.012,
+        0.39,
+        0.238,
+        0.549
+      ],
+      "external": [
+        0.012,
+        0.39,
+        0.238,
+        0.549
+      ],
+      "internal": [
+        0.251,
+        0.391,
+        0.572,
+        0.56
+      ],
+      "hero": [
+        0.255,
+        0.047,
+        1,
+        0.339
+      ]
+    },
+    "assets": [
+      "069-device.webp",
+      "069-external.webp",
+      "069-hero.webp",
+      "069-internal.webp"
+    ]
+  },
+  {
+    "number": 70,
+    "mockup": "070 - Radio Altimeter.png",
+    "regions": {
+      "device": [
+        0.274,
+        0.061,
+        0.523,
+        0.292
+      ],
+      "external": [
+        0.274,
+        0.061,
+        0.523,
+        0.292
+      ],
+      "internal": [
+        0.251,
+        0.34,
+        0.527,
+        0.571
+      ],
+      "hero": [
+        0.271,
+        0.047,
+        1,
+        0.3
+      ],
+      "context": [
+        0.75,
+        0.345,
+        0.985,
+        0.585
+      ],
+      "display": [
+        0.598,
+        0.63,
+        0.753,
+        0.79
+      ]
+    },
+    "assets": [
+      "070-context.webp",
+      "070-device.webp",
+      "070-display.webp",
+      "070-external.webp",
+      "070-hero.webp",
+      "070-internal.webp"
+    ]
+  },
+  {
+    "number": 71,
+    "mockup": "071 - Aircraft Transponder.png",
+    "regions": {
+      "device": [
+        0.12,
+        0.371,
+        0.368,
+        0.588
+      ],
+      "external": [
+        0.12,
+        0.371,
+        0.368,
+        0.588
+      ],
+      "internal": [
+        0.377,
+        0.372,
+        0.773,
+        0.593
+      ],
+      "hero": [
+        0.376,
+        0.054,
+        1,
+        0.31
+      ],
+      "context": [
+        0.784,
+        0.365,
+        0.992,
+        0.594
+      ]
+    },
+    "assets": [
+      "071-context.webp",
+      "071-device.webp",
+      "071-external.webp",
+      "071-hero.webp",
+      "071-internal.webp"
+    ]
+  },
+  {
+    "number": 72,
+    "mockup": "072 - ADS-B System.png",
+    "regions": {
+      "device": [
+        0.291,
+        0.055,
+        0.55,
+        0.311
+      ],
+      "external": [
+        0.291,
+        0.055,
+        0.55,
+        0.311
+      ],
+      "internal": [
+        0.218,
+        0.384,
+        0.46,
+        0.553
+      ],
+      "hero": [
+        0.29,
+        0.048,
+        1,
+        0.322
+      ]
+    },
+    "assets": [
+      "072-device.webp",
+      "072-external.webp",
+      "072-hero.webp",
+      "072-internal.webp"
+    ]
+  },
+  {
+    "number": 73,
+    "mockup": "073 - Traffic Collision Avoidance System.png",
+    "regions": {
+      "own-aircraft": [
+        0.522,
+        0.356,
+        0.598,
+        0.416
+      ],
+      "traffic-aircraft": [
+        0.724,
+        0.356,
+        0.796,
+        0.416
+      ],
+      "device": [
+        0.118,
+        0.37,
+        0.291,
+        0.551
+      ],
+      "external": [
+        0.118,
+        0.37,
+        0.291,
+        0.551
+      ],
+      "internal": [
+        0.302,
+        0.36,
+        0.503,
+        0.508
+      ],
+      "hero": [
+        0.42,
+        0.05,
+        1,
+        0.294
+      ]
+    },
+    "assets": [
+      "073-device.webp",
+      "073-external.webp",
+      "073-hero.webp",
+      "073-internal.webp",
+      "073-own-aircraft.webp",
+      "073-traffic-aircraft.webp"
+    ]
+  },
+  {
+    "number": 74,
+    "mockup": "074 - Flight Data Recorder.png",
+    "regions": {
+      "device": [
+        0.127,
+        0.344,
+        0.37,
+        0.566
+      ],
+      "external": [
+        0.127,
+        0.344,
+        0.37,
+        0.566
+      ],
+      "internal": [
+        0.38,
+        0.344,
+        0.753,
+        0.535
+      ],
+      "hero": [
+        0.367,
+        0.054,
+        1,
+        0.295
+      ]
+    },
+    "assets": [
+      "074-device.webp",
+      "074-external.webp",
+      "074-hero.webp",
+      "074-internal.webp"
+    ]
+  },
+  {
+    "number": 75,
+    "mockup": "075 - Cockpit Voice Recorder.png",
+    "regions": {
+      "underwater": [
+        0.5,
+        0.86,
+        0.638,
+        0.965
+      ],
+      "device": [
+        0.104,
+        0.336,
+        0.33,
+        0.545
+      ],
+      "external": [
+        0.104,
+        0.336,
+        0.33,
+        0.545
+      ],
+      "internal": [
+        0.343,
+        0.337,
+        0.707,
+        0.488
+      ],
+      "hero": [
+        0.405,
+        0.06,
+        0.73,
+        0.31
+      ],
+      "context": [
+        0.743,
+        0.085,
+        0.994,
+        0.24
+      ]
+    },
+    "assets": [
+      "075-context.webp",
+      "075-device.webp",
+      "075-external.webp",
+      "075-hero.webp",
+      "075-internal.webp",
+      "075-underwater.webp"
+    ]
+  },
+  {
+    "number": 76,
+    "mockup": "076 - Satellite Communication Terminal.png",
+    "regions": {
+      "antenna": [
+        0.131,
+        0.436,
+        0.18,
+        0.603
+      ],
+      "link-aircraft": [
+        0.407,
+        0.766,
+        0.467,
+        0.817
+      ],
+      "link-satellite": [
+        0.494,
+        0.686,
+        0.541,
+        0.745
+      ],
+      "link-ground": [
+        0.592,
+        0.755,
+        0.637,
+        0.823
+      ],
+      "device": [
+        0.676,
+        0.16,
+        0.99,
+        0.369
+      ],
+      "external": [
+        0.676,
+        0.16,
+        0.99,
+        0.369
+      ],
+      "internal": [
+        0.126,
+        0.412,
+        0.416,
+        0.632
+      ],
+      "hero": [
+        0.122,
+        0.138,
+        0.668,
+        0.369
+      ],
+      "context": [
+        0.122,
+        0.138,
+        0.668,
+        0.369
+      ]
+    },
+    "assets": [
+      "076-antenna.webp",
+      "076-context.webp",
+      "076-device.webp",
+      "076-external.webp",
+      "076-hero.webp",
+      "076-internal.webp",
+      "076-link-aircraft.webp",
+      "076-link-ground.webp",
+      "076-link-satellite.webp"
+    ]
+  },
+  {
+    "number": 77,
+    "mockup": "077 - Satellite Attitude-Control Computer.png",
+    "regions": {
+      "spacecraft": [
+        0.212,
+        0.051,
+        0.558,
+        0.28
+      ],
+      "orbit": [
+        0.6,
+        0.054,
+        0.68,
+        0.3
+      ],
+      "device": [
+        0.017,
+        0.36,
+        0.251,
+        0.612
+      ],
+      "external": [
+        0.017,
+        0.36,
+        0.251,
+        0.612
+      ],
+      "internal": [
+        0.266,
+        0.347,
+        0.513,
+        0.645
+      ],
+      "hero": [
+        0.201,
+        0.04,
+        0.782,
+        0.308
+      ]
+    },
+    "assets": [
+      "077-device.webp",
+      "077-external.webp",
+      "077-hero.webp",
+      "077-internal.webp",
+      "077-orbit.webp",
+      "077-spacecraft.webp"
+    ]
+  },
+  {
+    "number": 78,
+    "mockup": "078 - Phased-Array Radar.png",
+    "regions": {
+      "beam-array": [
+        0.752,
+        0.52,
+        0.789,
+        0.612
+      ],
+      "device": [
+        0.438,
+        0.16,
+        0.64,
+        0.414
+      ],
+      "external": [
+        0.438,
+        0.16,
+        0.64,
+        0.414
+      ],
+      "internal": [
+        0.648,
+        0.157,
+        0.99,
+        0.414
+      ],
+      "hero": [
+        0.107,
+        0.135,
+        0.43,
+        0.414
+      ],
+      "context": [
+        0.107,
+        0.135,
+        0.43,
+        0.414
+      ]
+    },
+    "assets": [
+      "078-beam-array.webp",
+      "078-context.webp",
+      "078-device.webp",
+      "078-external.webp",
+      "078-hero.webp",
+      "078-internal.webp"
+    ]
+  },
+  {
+    "number": 79,
+    "mockup": "079 - Ground Surveillance Radar.png",
+    "regions": {
+      "terrain": [
+        0.84,
+        0.045,
+        0.89,
+        0.259
+      ],
+      "coverage-radar": [
+        0.462,
+        0.052,
+        0.58,
+        0.26
+      ],
+      "device": [
+        0.012,
+        0.315,
+        0.231,
+        0.714
+      ],
+      "external": [
+        0.012,
+        0.315,
+        0.231,
+        0.714
+      ],
+      "internal": [
+        0.247,
+        0.304,
+        0.467,
+        0.716
+      ],
+      "hero": [
+        0.35,
+        0.044,
+        0.69,
+        0.26
+      ]
+    },
+    "assets": [
+      "079-coverage-radar.webp",
+      "079-device.webp",
+      "079-external.webp",
+      "079-hero.webp",
+      "079-internal.webp",
+      "079-terrain.webp"
+    ]
+  },
+  {
+    "number": 80,
+    "mockup": "080 - Passive Radar.png",
+    "regions": {
+      "device": [
+        0.106,
+        0.333,
+        0.376,
+        0.574
+      ],
+      "external": [
+        0.106,
+        0.333,
+        0.376,
+        0.574
+      ],
+      "internal": [
+        0.394,
+        0.335,
+        0.656,
+        0.571
+      ],
+      "hero": [
+        0.46,
+        0.052,
+        0.994,
+        0.291
+      ]
+    },
+    "assets": [
+      "080-device.webp",
+      "080-external.webp",
+      "080-hero.webp",
+      "080-internal.webp"
+    ]
+  },
+  {
+    "number": 81,
+    "mockup": "081 - Air-Defence Radar.png",
+    "regions": {
+      "coverage-hardware": [
+        0.394,
+        0.739,
+        0.434,
+        0.827
+      ],
+      "device": [
+        0.012,
+        0.337,
+        0.241,
+        0.603
+      ],
+      "external": [
+        0.012,
+        0.337,
+        0.241,
+        0.603
+      ],
+      "internal": [
+        0.249,
+        0.332,
+        0.483,
+        0.603
+      ],
+      "hero": [
+        0.35,
+        0.055,
+        1,
+        0.298
+      ]
+    },
+    "assets": [
+      "081-coverage-hardware.webp",
+      "081-device.webp",
+      "081-external.webp",
+      "081-hero.webp",
+      "081-internal.webp"
+    ]
+  },
+  {
+    "number": 82,
+    "mockup": "082 - Thermal Imaging Camera.png",
+    "regions": {
+      "device": [
+        0.124,
+        0.35,
+        0.351,
+        0.58
+      ],
+      "external": [
+        0.124,
+        0.35,
+        0.351,
+        0.58
+      ],
+      "internal": [
+        0.368,
+        0.36,
+        0.692,
+        0.515
+      ],
+      "hero": [
+        0.46,
+        0.02,
+        0.624,
+        0.305
+      ],
+      "visible": [
+        0.694,
+        0.103,
+        0.833,
+        0.247
+      ],
+      "thermal": [
+        0.837,
+        0.103,
+        0.957,
+        0.247
+      ]
+    },
+    "assets": [
+      "082-device.webp",
+      "082-external.webp",
+      "082-hero.webp",
+      "082-internal.webp",
+      "082-thermal.webp",
+      "082-visible.webp"
+    ]
+  },
+  {
+    "number": 83,
+    "mockup": "083 - Night-Vision System.png",
+    "regions": {
+      "device": [
+        0.04,
+        0.39,
+        0.5,
+        0.7
+      ],
+      "external": [
+        0.04,
+        0.39,
+        0.5,
+        0.7
+      ]
+    },
+    "assets": [
+      "083-device.webp",
+      "083-external.webp"
+    ]
+  },
+  {
+    "number": 84,
+    "mockup": "084 - Infrared Surveillance Camera.png",
+    "regions": {
+      "device": [
+        0.083,
+        0.32,
+        0.315,
+        0.532
+      ],
+      "external": [
+        0.083,
+        0.32,
+        0.315,
+        0.532
+      ],
+      "internal": [
+        0.329,
+        0.328,
+        0.682,
+        0.532
+      ],
+      "hero": [
+        0.465,
+        0.06,
+        1,
+        0.23
+      ],
+      "day": [
+        0.71,
+        0.58,
+        0.843,
+        0.716
+      ],
+      "night": [
+        0.85,
+        0.58,
+        0.992,
+        0.716
+      ],
+      "scene": [
+        0.089,
+        0.814,
+        0.283,
+        0.98
+      ]
+    },
+    "assets": [
+      "084-day.webp",
+      "084-device.webp",
+      "084-external.webp",
+      "084-hero.webp",
+      "084-internal.webp",
+      "084-night.webp",
+      "084-scene.webp"
+    ]
+  },
+  {
+    "number": 85,
+    "mockup": "085 - Laser Range Finder.png",
+    "regions": {
+      "device": [
+        0.114,
+        0.158,
+        0.338,
+        0.455
+      ],
+      "external": [
+        0.499,
+        0.165,
+        0.684,
+        0.379
+      ],
+      "internal": [
+        0.696,
+        0.19,
+        0.986,
+        0.36
+      ]
+    },
+    "assets": [
+      "085-device.webp",
+      "085-external.webp",
+      "085-internal.webp"
+    ]
+  },
+  {
+    "number": 86,
+    "mockup": "086 - Software Defined Radio.png",
+    "regions": {
+      "device": [
+        0.116,
+        0.206,
+        0.395,
+        0.489
+      ],
+      "external": [
+        0.423,
+        0.204,
+        0.697,
+        0.276
+      ],
+      "internal": [
+        0.719,
+        0.192,
+        0.986,
+        0.55
+      ],
+      "context": [
+        0.426,
+        0.365,
+        0.697,
+        0.534
+      ]
+    },
+    "assets": [
+      "086-context.webp",
+      "086-device.webp",
+      "086-external.webp",
+      "086-internal.webp"
+    ]
+  },
+  {
+    "number": 87,
+    "mockup": "087 - Secure Digital Radio.png",
+    "regions": {
+      "device": [
+        0.022,
+        0.22,
+        0.138,
+        0.576
+      ],
+      "external": [
+        0.281,
+        0.218,
+        0.38,
+        0.565
+      ],
+      "internal": [
+        0.491,
+        0.218,
+        0.685,
+        0.454
+      ]
+    },
+    "assets": [
+      "087-device.webp",
+      "087-external.webp",
+      "087-internal.webp"
+    ]
+  },
+  {
+    "number": 88,
+    "mockup": "088 - IFF System.png",
+    "regions": {
+      "device": [
+        0.136,
+        0.183,
+        0.29,
+        0.373
+      ],
+      "external": [
+        0.405,
+        0.185,
+        0.541,
+        0.364
+      ],
+      "internal": [
+        0.133,
+        0.49,
+        0.395,
+        0.747
+      ],
+      "part-1": [
+        0.687,
+        0.204,
+        0.75,
+        0.286
+      ],
+      "part-2": [
+        0.763,
+        0.204,
+        0.8260000000000001,
+        0.286
+      ],
+      "part-3": [
+        0.8390000000000001,
+        0.204,
+        0.9020000000000001,
+        0.286
+      ],
+      "part-4": [
+        0.915,
+        0.204,
+        0.978,
+        0.286
+      ],
+      "part-5": [
+        0.687,
+        0.33199999999999996,
+        0.75,
+        0.39999999999999997
+      ],
+      "part-6": [
+        0.763,
+        0.33199999999999996,
+        0.8260000000000001,
+        0.39999999999999997
+      ],
+      "part-7": [
+        0.8390000000000001,
+        0.33199999999999996,
+        0.9020000000000001,
+        0.39999999999999997
+      ],
+      "part-8": [
+        0.915,
+        0.33199999999999996,
+        0.978,
+        0.39999999999999997
+      ]
+    },
+    "assets": [
+      "088-device.webp",
+      "088-external.webp",
+      "088-internal.webp",
+      "088-part-1.webp",
+      "088-part-2.webp",
+      "088-part-3.webp",
+      "088-part-4.webp",
+      "088-part-5.webp",
+      "088-part-6.webp",
+      "088-part-7.webp",
+      "088-part-8.webp"
+    ]
+  },
+  {
+    "number": 89,
+    "mockup": "089 - Electronic Identification System.png",
+    "regions": {
+      "device": [
+        0.547,
+        0.214,
+        0.633,
+        0.32
+      ],
+      "external": [
+        0.451,
+        0.214,
+        0.725,
+        0.494
+      ],
+      "internal": [
+        0.747,
+        0.214,
+        0.988,
+        0.514
+      ],
+      "context": [
+        0.134,
+        0.18,
+        0.443,
+        0.457
+      ],
+      "hero": [
+        0.75,
+        0.052,
+        0.891,
+        0.168
+      ]
+    },
+    "assets": [
+      "089-context.webp",
+      "089-device.webp",
+      "089-external.webp",
+      "089-hero.webp",
+      "089-internal.webp"
+    ]
+  },
+  {
+    "number": 90,
+    "mockup": "090 - Inertial Navigation System.png",
+    "regions": {
+      "device": [
+        0.145,
+        0.184,
+        0.353,
+        0.446
+      ],
+      "external": [
+        0.383,
+        0.215,
+        0.585,
+        0.475
+      ],
+      "internal": [
+        0.613,
+        0.187,
+        0.812,
+        0.489
+      ]
+    },
+    "assets": [
+      "090-device.webp",
+      "090-external.webp",
+      "090-internal.webp"
+    ]
+  },
+  {
+    "number": 91,
+    "mockup": "091 - GPS Receiver.png",
+    "regions": {
+      "device": [
+        0.131,
+        0.199,
+        0.423,
+        0.473
+      ],
+      "external": [
+        0.131,
+        0.199,
+        0.423,
+        0.473
+      ],
+      "internal": [
+        0.452,
+        0.2,
+        0.681,
+        0.479
+      ]
+    },
+    "assets": [
+      "091-device.webp",
+      "091-external.webp",
+      "091-internal.webp"
+    ]
+  },
+  {
+    "number": 92,
+    "mockup": "092 - Electronic Compass.png",
+    "regions": {
+      "device": [
+        0.016,
+        0.26,
+        0.28,
+        0.629
+      ],
+      "external": [
+        0.163,
+        0.646,
+        0.29,
+        0.809
+      ],
+      "internal": [
+        0.311,
+        0.242,
+        0.602,
+        0.509
+      ]
+    },
+    "assets": [
+      "092-device.webp",
+      "092-external.webp",
+      "092-internal.webp"
+    ]
+  },
+  {
+    "number": 93,
+    "mockup": "093 - Satellite Communication Terminal.png",
+    "regions": {
+      "device": [
+        0.067,
+        0.209,
+        0.336,
+        0.672
+      ],
+      "external": [
+        0.067,
+        0.209,
+        0.336,
+        0.672
+      ],
+      "internal": [
+        0.353,
+        0.207,
+        0.558,
+        0.672
+      ]
+    },
+    "assets": [
+      "093-device.webp",
+      "093-external.webp",
+      "093-internal.webp"
+    ]
+  },
+  {
+    "number": 94,
+    "mockup": "094 - Perimeter Intrusion Detection System.png",
+    "regions": {
+      "device": [
+        0.471,
+        0.213,
+        0.667,
+        0.475
+      ],
+      "external": [
+        0.104,
+        0.213,
+        0.452,
+        0.517
+      ],
+      "internal": [
+        0.464,
+        0.213,
+        0.674,
+        0.595
+      ],
+      "context": [
+        0.104,
+        0.213,
+        0.452,
+        0.517
+      ],
+      "scene": [
+        0.106,
+        0.866,
+        0.244,
+        0.985
+      ],
+      "controller": [
+        0.809,
+        0.292,
+        0.864,
+        0.394
+      ]
+    },
+    "assets": [
+      "094-context.webp",
+      "094-controller.webp",
+      "094-device.webp",
+      "094-external.webp",
+      "094-internal.webp",
+      "094-scene.webp"
+    ]
+  },
+  {
+    "number": 95,
+    "mockup": "095 - Biometric Access System.png",
+    "regions": {
+      "device": [
+        0.02,
+        0.248,
+        0.297,
+        0.739
+      ],
+      "external": [
+        0.237,
+        0.536,
+        0.297,
+        0.739
+      ],
+      "internal": [
+        0.312,
+        0.244,
+        0.692,
+        0.458
+      ],
+      "part-1": [
+        0.713,
+        0.235,
+        0.77,
+        0.27699999999999997
+      ],
+      "part-2": [
+        0.7809999999999999,
+        0.235,
+        0.838,
+        0.27699999999999997
+      ],
+      "part-3": [
+        0.849,
+        0.235,
+        0.906,
+        0.27699999999999997
+      ],
+      "part-4": [
+        0.917,
+        0.235,
+        0.9740000000000001,
+        0.27699999999999997
+      ],
+      "part-5": [
+        0.713,
+        0.32,
+        0.77,
+        0.362
+      ],
+      "part-6": [
+        0.7809999999999999,
+        0.32,
+        0.838,
+        0.362
+      ],
+      "part-7": [
+        0.849,
+        0.32,
+        0.906,
+        0.362
+      ],
+      "part-8": [
+        0.917,
+        0.32,
+        0.9740000000000001,
+        0.362
+      ],
+      "part-9": [
+        0.713,
+        0.405,
+        0.77,
+        0.447
+      ],
+      "part-10": [
+        0.7809999999999999,
+        0.405,
+        0.838,
+        0.447
+      ],
+      "part-11": [
+        0.849,
+        0.405,
+        0.906,
+        0.447
+      ],
+      "part-12": [
+        0.917,
+        0.405,
+        0.9740000000000001,
+        0.447
+      ]
+    },
+    "assets": [
+      "095-device.webp",
+      "095-external.webp",
+      "095-internal.webp",
+      "095-part-1.webp",
+      "095-part-10.webp",
+      "095-part-11.webp",
+      "095-part-12.webp",
+      "095-part-2.webp",
+      "095-part-3.webp",
+      "095-part-4.webp",
+      "095-part-5.webp",
+      "095-part-6.webp",
+      "095-part-7.webp",
+      "095-part-8.webp",
+      "095-part-9.webp"
+    ]
+  },
+  {
+    "number": 96,
+    "mockup": "096 - Sonar Detection System.png",
+    "regions": {
+      "device": [
+        0.322,
+        0.04,
+        0.656,
+        0.32
+      ],
+      "external": [
+        0.014,
+        0.367,
+        0.277,
+        0.573
+      ],
+      "internal": [
+        0.291,
+        0.368,
+        0.622,
+        0.572
+      ],
+      "context": [
+        0.66,
+        0.038,
+        0.999,
+        0.32
+      ],
+      "ocean": [
+        0.653,
+        0.039,
+        1,
+        0.29
+      ],
+      "water": [
+        0.656,
+        0.123,
+        1,
+        0.291
+      ],
+      "application-0": [
+        0.596,
+        0.81,
+        0.69,
+        0.86
+      ],
+      "application-1": [
+        0.697,
+        0.81,
+        0.79,
+        0.86
+      ],
+      "application-2": [
+        0.596,
+        0.897,
+        0.69,
+        0.948
+      ],
+      "application-3": [
+        0.697,
+        0.897,
+        0.79,
+        0.948
+      ]
+    },
+    "assets": [
+      "096-application-0.webp",
+      "096-application-1.webp",
+      "096-application-2.webp",
+      "096-application-3.webp",
+      "096-context.webp",
+      "096-device.webp",
+      "096-external.webp",
+      "096-internal.webp",
+      "096-ocean.webp",
+      "096-water.webp"
+    ]
+  },
+  {
+    "number": 97,
+    "mockup": "097 - Unmanned Surveillance Vehicle Electronics.png",
+    "regions": {
+      "device": [
+        0.016,
+        0.194,
+        0.382,
+        0.49
+      ],
+      "external": [
+        0.016,
+        0.207,
+        0.38,
+        0.477
+      ],
+      "internal": [
+        0.398,
+        0.194,
+        0.663,
+        0.523
+      ],
+      "context": [
+        0.025,
+        0.578,
+        0.131,
+        0.638
+      ],
+      "thermal": [
+        0.026,
+        0.656,
+        0.13,
+        0.721
+      ]
+    },
+    "assets": [
+      "097-context.webp",
+      "097-device.webp",
+      "097-external.webp",
+      "097-internal.webp",
+      "097-thermal.webp"
+    ]
+  },
+  {
+    "number": 98,
+    "mockup": "098 - Marine Radar.png",
+    "regions": {
+      "device": [
+        0.008,
+        0.058,
+        0.31,
+        0.295
+      ],
+      "external": [
+        0.795,
+        0.057,
+        0.999,
+        0.296
+      ],
+      "internal": [
+        0.018,
+        0.326,
+        0.259,
+        0.607
+      ],
+      "installation": [
+        0.776,
+        0.047,
+        0.999,
+        0.295
+      ]
+    },
+    "assets": [
+      "098-device.webp",
+      "098-external.webp",
+      "098-installation.webp",
+      "098-internal.webp"
+    ]
+  },
+  {
+    "number": 99,
+    "mockup": "099 - Fish Finder.png",
+    "regions": {
+      "device": [
+        0.441,
+        0.05,
+        0.716,
+        0.267
+      ],
+      "external": [
+        0.022,
+        0.321,
+        0.286,
+        0.543
+      ],
+      "internal": [
+        0.301,
+        0.326,
+        0.592,
+        0.535
+      ],
+      "context": [
+        0.718,
+        0.047,
+        0.999,
+        0.272
+      ]
+    },
+    "assets": [
+      "099-context.webp",
+      "099-device.webp",
+      "099-external.webp",
+      "099-internal.webp"
+    ]
+  },
+  {
+    "number": 100,
+    "mockup": "100 - Depth Sounder.png",
+    "regions": {
+      "device": [
+        0.018,
+        0.143,
+        0.406,
+        0.485
+      ],
+      "external": [
+        0.425,
+        0.111,
+        0.65,
+        0.48
+      ],
+      "internal": [
+        0.667,
+        0.104,
+        0.992,
+        0.465
+      ],
+      "application-0": [
+        0.714,
+        0.813,
+        0.775,
+        0.866
+      ],
+      "application-1": [
+        0.783,
+        0.813,
+        0.849,
+        0.866
+      ],
+      "application-2": [
+        0.856,
+        0.813,
+        0.92,
+        0.866
+      ],
+      "application-3": [
+        0.928,
+        0.813,
+        0.991,
+        0.866
+      ]
+    },
+    "assets": [
+      "100-application-0.webp",
+      "100-application-1.webp",
+      "100-application-2.webp",
+      "100-application-3.webp",
+      "100-device.webp",
+      "100-external.webp",
+      "100-internal.webp"
+    ]
+  },
+  {
+    "number": 101,
+    "mockup": "101 - GPS Chartplotter.png",
+    "regions": {
+      "device": [
+        0.02,
+        0.161,
+        0.575,
+        0.443
+      ],
+      "external": [
+        0.61,
+        0.194,
+        0.984,
+        0.443
+      ],
+      "internal": [
+        0.013,
+        0.485,
+        0.29,
+        0.74
+      ],
+      "context": [
+        0.524,
+        0.003,
+        0.999,
+        0.151
+      ]
+    },
+    "assets": [
+      "101-context.webp",
+      "101-device.webp",
+      "101-external.webp",
+      "101-internal.webp"
+    ]
+  },
+  {
+    "number": 102,
+    "mockup": "102 - Automatic Identification System - AIS.png",
+    "regions": {
+      "device": [
+        0.012,
+        0.115,
+        0.321,
+        0.35
+      ],
+      "external": [
+        0.345,
+        0.095,
+        0.642,
+        0.358
+      ],
+      "internal": [
+        0.669,
+        0.104,
+        0.989,
+        0.343
+      ]
+    },
+    "assets": [
+      "102-device.webp",
+      "102-external.webp",
+      "102-internal.webp"
+    ]
+  },
+  {
+    "number": 103,
+    "mockup": "103 - Marine Autopilot.png",
+    "regions": {
+      "device": [
+        0.029,
+        0.297,
+        0.336,
+        0.513
+      ],
+      "external": [
+        0.355,
+        0.294,
+        0.652,
+        0.53
+      ],
+      "internal": [
+        0.672,
+        0.296,
+        0.978,
+        0.525
+      ],
+      "context": [
+        0.437,
+        0.055,
+        0.786,
+        0.253
+      ]
+    },
+    "assets": [
+      "103-context.webp",
+      "103-device.webp",
+      "103-external.webp",
+      "103-internal.webp"
+    ]
+  },
+  {
+    "number": 104,
+    "mockup": "104 - Electronic Compass.png",
+    "regions": {
+      "device": [
+        0.018,
+        0.175,
+        0.253,
+        0.426
+      ],
+      "external": [
+        0.275,
+        0.19,
+        0.465,
+        0.447
+      ],
+      "internal": [
+        0.487,
+        0.186,
+        0.705,
+        0.447
+      ],
+      "application-0": [
+        0.017,
+        0.885,
+        0.104,
+        0.95
+      ],
+      "application-1": [
+        0.117,
+        0.885,
+        0.204,
+        0.95
+      ],
+      "application-2": [
+        0.216,
+        0.885,
+        0.3,
+        0.95
+      ],
+      "application-3": [
+        0.313,
+        0.885,
+        0.411,
+        0.95
+      ]
+    },
+    "assets": [
+      "104-application-0.webp",
+      "104-application-1.webp",
+      "104-application-2.webp",
+      "104-application-3.webp",
+      "104-device.webp",
+      "104-external.webp",
+      "104-internal.webp"
+    ]
+  },
+  {
+    "number": 105,
+    "mockup": "105 - Marine VHF Radio.png",
+    "regions": {
+      "device": [
+        0.35,
+        0.153,
+        0.828,
+        0.443
+      ],
+      "external": [
+        0.35,
+        0.153,
+        0.828,
+        0.443
+      ],
+      "internal": [
+        0.019,
+        0.493,
+        0.347,
+        0.687
+      ],
+      "context": [
+        0.834,
+        0.194,
+        0.982,
+        0.319
+      ]
+    },
+    "assets": [
+      "105-context.webp",
+      "105-device.webp",
+      "105-external.webp",
+      "105-internal.webp"
+    ]
+  },
+  {
+    "number": 106,
+    "mockup": "106 - EPIRB Emergency Beacon.png",
+    "regions": {
+      "device": [
+        0.177,
+        0.115,
+        0.299,
+        0.516
+      ],
+      "external": [
+        0.304,
+        0.151,
+        0.452,
+        0.509
+      ],
+      "internal": [
+        0.466,
+        0.147,
+        0.666,
+        0.511
+      ],
+      "context": [
+        0.017,
+        0.559,
+        0.352,
+        0.953
+      ],
+      "application-0": [
+        0.684,
+        0.722,
+        0.772,
+        0.805
+      ],
+      "application-1": [
+        0.779,
+        0.722,
+        0.877,
+        0.805
+      ],
+      "application-2": [
+        0.88,
+        0.722,
+        0.978,
+        0.805
+      ]
+    },
+    "assets": [
+      "106-application-0.webp",
+      "106-application-1.webp",
+      "106-application-2.webp",
+      "106-context.webp",
+      "106-device.webp",
+      "106-external.webp",
+      "106-internal.webp"
+    ]
+  },
+  {
+    "number": 107,
+    "mockup": "107 - Dynamic Positioning System.png",
+    "regions": {
+      "device": [
+        0.134,
+        0.102,
+        0.66,
+        0.359
+      ],
+      "external": [
+        0.67,
+        0.135,
+        0.99,
+        0.349
+      ],
+      "internal": [
+        0.326,
+        0.396,
+        0.632,
+        0.568
+      ],
+      "vessel": [
+        0.222,
+        0.103,
+        0.529,
+        0.342
+      ],
+      "application-0": [
+        0.667,
+        0.846,
+        0.739,
+        0.905
+      ],
+      "application-1": [
+        0.744,
+        0.846,
+        0.817,
+        0.905
+      ],
+      "application-2": [
+        0.667,
+        0.916,
+        0.739,
+        0.965
+      ],
+      "application-3": [
+        0.744,
+        0.916,
+        0.817,
+        0.965
+      ]
+    },
+    "assets": [
+      "107-application-0.webp",
+      "107-application-1.webp",
+      "107-application-2.webp",
+      "107-application-3.webp",
+      "107-device.webp",
+      "107-external.webp",
+      "107-internal.webp",
+      "107-vessel.webp"
+    ]
+  },
+  {
+    "number": 108,
+    "mockup": "108 - Underwater ROV Control System.png",
+    "regions": {
+      "device": [
+        0.076,
+        0.132,
+        0.391,
+        0.319
+      ],
+      "external": [
+        0.504,
+        0.156,
+        0.736,
+        0.324
+      ],
+      "internal": [
+        0.24,
+        0.361,
+        0.648,
+        0.548
+      ],
+      "context": [
+        0.85,
+        0.147,
+        0.984,
+        0.279
+      ],
+      "application-0": [
+        0.661,
+        0.82,
+        0.737,
+        0.87
+      ],
+      "application-1": [
+        0.744,
+        0.82,
+        0.818,
+        0.87
+      ],
+      "application-2": [
+        0.824,
+        0.82,
+        0.899,
+        0.87
+      ],
+      "application-3": [
+        0.906,
+        0.82,
+        0.982,
+        0.87
+      ]
+    },
+    "assets": [
+      "108-application-0.webp",
+      "108-application-1.webp",
+      "108-application-2.webp",
+      "108-application-3.webp",
+      "108-context.webp",
+      "108-device.webp",
+      "108-external.webp",
+      "108-internal.webp"
+    ]
+  },
+  {
+    "number": 109,
+    "mockup": "109 - Autonomous Underwater Vehicle Navigation.png",
+    "regions": {
+      "device": [
+        0.372,
+        0.183,
+        0.653,
+        0.277
+      ],
+      "external": [
+        0.124,
+        0.396,
+        0.273,
+        0.539
+      ],
+      "internal": [
+        0.4,
+        0.351,
+        0.686,
+        0.526
+      ],
+      "context": [
+        0.118,
+        0.134,
+        0.873,
+        0.313
+      ],
+      "hero": [
+        0.368,
+        0.141,
+        0.747,
+        0.301
+      ],
+      "application-0": [
+        0.635,
+        0.801,
+        0.726,
+        0.86
+      ],
+      "application-1": [
+        0.734,
+        0.801,
+        0.833,
+        0.86
+      ],
+      "application-2": [
+        0.635,
+        0.892,
+        0.726,
+        0.949
+      ],
+      "application-3": [
+        0.734,
+        0.892,
+        0.833,
+        0.949
+      ]
+    },
+    "assets": [
+      "109-application-0.webp",
+      "109-application-1.webp",
+      "109-application-2.webp",
+      "109-application-3.webp",
+      "109-context.webp",
+      "109-device.webp",
+      "109-external.webp",
+      "109-hero.webp",
+      "109-internal.webp"
+    ]
+  },
+  {
+    "number": 110,
+    "mockup": "110 - Digital Engine Control.png",
+    "regions": {
+      "device": [
+        0.275,
+        0.089,
+        0.679,
+        0.416
+      ],
+      "external": [
+        0.278,
+        0.089,
+        0.679,
+        0.41
+      ],
+      "internal": [
+        0.685,
+        0.151,
+        0.982,
+        0.407
+      ]
+    },
+    "assets": [
+      "110-device.webp",
+      "110-external.webp",
+      "110-internal.webp"
+    ]
+  },
+  {
+    "number": 111,
+    "mockup": "111 - Servo Motor Controller.png",
+    "regions": {
+      "device": [
+        0.007,
+        0.106,
+        0.213,
+        0.41
+      ],
+      "external": [
+        0.007,
+        0.106,
+        0.213,
+        0.41
+      ],
+      "internal": [
+        0.336,
+        0.119,
+        0.665,
+        0.416
+      ],
+      "context": [
+        0.851,
+        0.286,
+        0.989,
+        0.382
+      ],
+      "application-0": [
+        0.026,
+        0.883,
+        0.077,
+        0.936
+      ],
+      "application-1": [
+        0.119,
+        0.885,
+        0.157,
+        0.936
+      ],
+      "application-2": [
+        0.185,
+        0.883,
+        0.217,
+        0.936
+      ],
+      "application-3": [
+        0.253,
+        0.883,
+        0.283,
+        0.94
+      ],
+      "application-4": [
+        0.32,
+        0.89,
+        0.378,
+        0.935
+      ],
+      "application-5": [
+        0.413,
+        0.883,
+        0.46,
+        0.936
+      ]
+    },
+    "assets": [
+      "111-application-0.webp",
+      "111-application-1.webp",
+      "111-application-2.webp",
+      "111-application-3.webp",
+      "111-application-4.webp",
+      "111-application-5.webp",
+      "111-context.webp",
+      "111-device.webp",
+      "111-external.webp",
+      "111-internal.webp"
+    ]
+  },
+  {
+    "number": 112,
+    "mockup": "112 - Stepper Motor Controller.png",
+    "regions": {
+      "device": [
+        0.263,
+        0.082,
+        0.619,
+        0.343
+      ],
+      "external": [
+        0.263,
+        0.082,
+        0.619,
+        0.343
+      ],
+      "internal": [
+        0.637,
+        0.151,
+        0.982,
+        0.338
+      ],
+      "application-0": [
+        0.384,
+        0.847,
+        0.461,
+        0.929
+      ],
+      "application-1": [
+        0.469,
+        0.847,
+        0.536,
+        0.929
+      ],
+      "application-2": [
+        0.546,
+        0.847,
+        0.622,
+        0.929
+      ],
+      "application-3": [
+        0.631,
+        0.847,
+        0.707,
+        0.929
+      ]
+    },
+    "assets": [
+      "112-application-0.webp",
+      "112-application-1.webp",
+      "112-application-2.webp",
+      "112-application-3.webp",
+      "112-device.webp",
+      "112-external.webp",
+      "112-internal.webp"
+    ]
+  },
+  {
+    "number": 113,
+    "mockup": "113 - Mobile Robot.png",
+    "regions": {
+      "device": [
+        0.042,
+        0.414,
+        0.427,
+        0.797
+      ],
+      "external": [
+        0.042,
+        0.414,
+        0.427,
+        0.797
+      ]
+    },
+    "assets": [
+      "113-device.webp",
+      "113-external.webp"
+    ]
+  },
+  {
+    "number": 114,
+    "mockup": "114 - Line-Following Robot.png",
+    "regions": {
+      "device": [
+        0.594,
+        0.047,
+        0.873,
+        0.185
+      ],
+      "external": [
+        0.594,
+        0.047,
+        0.873,
+        0.185
+      ],
+      "internal": [
+        0.223,
+        0.219,
+        0.49,
+        0.489
+      ],
+      "context": [
+        0.015,
+        0.823,
+        0.26,
+        0.962
+      ],
+      "flow-0": [
+        0.508,
+        0.267,
+        0.573,
+        0.34
+      ],
+      "flow-1": [
+        0.589,
+        0.267,
+        0.651,
+        0.34
+      ],
+      "flow-2": [
+        0.664,
+        0.267,
+        0.729,
+        0.346
+      ],
+      "application-0": [
+        0.505,
+        0.822,
+        0.58,
+        0.867
+      ],
+      "application-1": [
+        0.588,
+        0.822,
+        0.661,
+        0.867
+      ],
+      "application-2": [
+        0.673,
+        0.822,
+        0.747,
+        0.867
+      ],
+      "application-3": [
+        0.506,
+        0.9,
+        0.58,
+        0.945
+      ],
+      "application-4": [
+        0.589,
+        0.9,
+        0.66,
+        0.945
+      ],
+      "application-5": [
+        0.674,
+        0.9,
+        0.747,
+        0.945
+      ]
+    },
+    "assets": [
+      "114-application-0.webp",
+      "114-application-1.webp",
+      "114-application-2.webp",
+      "114-application-3.webp",
+      "114-application-4.webp",
+      "114-application-5.webp",
+      "114-context.webp",
+      "114-device.webp",
+      "114-external.webp",
+      "114-flow-0.webp",
+      "114-flow-1.webp",
+      "114-flow-2.webp",
+      "114-internal.webp"
+    ]
+  },
+  {
+    "number": 115,
+    "mockup": "115 - Self-Balancing Robot.png",
+    "regions": {
+      "device": [
+        0.127,
+        0.166,
+        0.349,
+        0.467
+      ],
+      "external": [
+        0.127,
+        0.166,
+        0.349,
+        0.467
+      ],
+      "internal": [
+        0.386,
+        0.19,
+        0.684,
+        0.455
+      ],
+      "flow-0": [
+        0.72,
+        0.251,
+        0.767,
+        0.302
+      ],
+      "flow-1": [
+        0.821,
+        0.25,
+        0.862,
+        0.301
+      ],
+      "flow-2": [
+        0.913,
+        0.247,
+        0.953,
+        0.301
+      ],
+      "application-0": [
+        0.496,
+        0.761,
+        0.606,
+        0.831
+      ],
+      "application-1": [
+        0.615,
+        0.761,
+        0.722,
+        0.831
+      ],
+      "application-2": [
+        0.496,
+        0.861,
+        0.606,
+        0.932
+      ],
+      "application-3": [
+        0.615,
+        0.861,
+        0.722,
+        0.932
+      ]
+    },
+    "assets": [
+      "115-application-0.webp",
+      "115-application-1.webp",
+      "115-application-2.webp",
+      "115-application-3.webp",
+      "115-device.webp",
+      "115-external.webp",
+      "115-flow-0.webp",
+      "115-flow-1.webp",
+      "115-flow-2.webp",
+      "115-internal.webp"
+    ]
+  },
+  {
+    "number": 116,
+    "mockup": "116 - Industrial Robot Controller.png",
+    "regions": {
+      "device": [
+        0.013,
+        0.132,
+        0.438,
+        0.438
+      ],
+      "external": [
+        0.013,
+        0.132,
+        0.438,
+        0.438
+      ],
+      "internal": [
+        0.452,
+        0.16,
+        0.727,
+        0.433
+      ],
+      "application-0": [
+        0.688,
+        0.779,
+        0.759,
+        0.858
+      ],
+      "application-1": [
+        0.766,
+        0.779,
+        0.835,
+        0.858
+      ],
+      "application-2": [
+        0.842,
+        0.779,
+        0.909,
+        0.858
+      ],
+      "application-3": [
+        0.917,
+        0.779,
+        0.981,
+        0.858
+      ]
+    },
+    "assets": [
+      "116-application-0.webp",
+      "116-application-1.webp",
+      "116-application-2.webp",
+      "116-application-3.webp",
+      "116-device.webp",
+      "116-external.webp",
+      "116-internal.webp"
+    ]
+  },
+  {
+    "number": 117,
+    "mockup": "117 - Collaborative Robot.png",
+    "regions": {
+      "device": [
+        0.111,
+        0.094,
+        0.479,
+        0.387
+      ],
+      "external": [
+        0.111,
+        0.094,
+        0.479,
+        0.387
+      ],
+      "internal": [
+        0.49,
+        0.126,
+        0.748,
+        0.383
+      ],
+      "part-0": [
+        0.72,
+        0.452,
+        0.772,
+        0.49
+      ],
+      "part-1": [
+        0.808,
+        0.452,
+        0.86,
+        0.49
+      ],
+      "part-2": [
+        0.905,
+        0.452,
+        0.958,
+        0.49
+      ],
+      "part-3": [
+        0.72,
+        0.536,
+        0.772,
+        0.576
+      ],
+      "part-4": [
+        0.808,
+        0.536,
+        0.86,
+        0.576
+      ],
+      "part-5": [
+        0.905,
+        0.536,
+        0.958,
+        0.576
+      ],
+      "part-6": [
+        0.72,
+        0.62,
+        0.772,
+        0.65
+      ],
+      "part-7": [
+        0.808,
+        0.62,
+        0.86,
+        0.65
+      ],
+      "part-8": [
+        0.908,
+        0.613,
+        0.975,
+        0.65
+      ],
+      "application-0": [
+        0.719,
+        0.687,
+        0.85,
+        0.745
+      ],
+      "application-1": [
+        0.863,
+        0.687,
+        0.981,
+        0.745
+      ],
+      "application-2": [
+        0.719,
+        0.79,
+        0.85,
+        0.85
+      ],
+      "application-3": [
+        0.863,
+        0.79,
+        0.981,
+        0.85
+      ]
+    },
+    "assets": [
+      "117-application-0.webp",
+      "117-application-1.webp",
+      "117-application-2.webp",
+      "117-application-3.webp",
+      "117-device.webp",
+      "117-external.webp",
+      "117-internal.webp",
+      "117-part-0.webp",
+      "117-part-1.webp",
+      "117-part-2.webp",
+      "117-part-3.webp",
+      "117-part-4.webp",
+      "117-part-5.webp",
+      "117-part-6.webp",
+      "117-part-7.webp",
+      "117-part-8.webp"
+    ]
+  },
+  {
+    "number": 118,
+    "mockup": "118 - LiDAR Mapping Robot.png",
+    "regions": {
+      "device": [
+        0.036,
+        0.061,
+        0.281,
+        0.286
+      ],
+      "external": [
+        0.036,
+        0.061,
+        0.281,
+        0.286
+      ],
+      "internal": [
+        0.02,
+        0.331,
+        0.332,
+        0.552
+      ],
+      "application-0": [
+        0.521,
+        0.82,
+        0.581,
+        0.902
+      ],
+      "application-1": [
+        0.588,
+        0.82,
+        0.649,
+        0.902
+      ],
+      "application-2": [
+        0.654,
+        0.82,
+        0.699,
+        0.902
+      ],
+      "application-3": [
+        0.709,
+        0.82,
+        0.761,
+        0.902
+      ]
+    },
+    "assets": [
+      "118-application-0.webp",
+      "118-application-1.webp",
+      "118-application-2.webp",
+      "118-application-3.webp",
+      "118-device.webp",
+      "118-external.webp",
+      "118-internal.webp"
+    ]
+  },
+  {
+    "number": 119,
+    "mockup": "119 - SLAM Navigation System.png",
+    "regions": {
+      "device": [
+        0.161,
+        0.221,
+        0.307,
+        0.418
+      ],
+      "external": [
+        0.034,
+        0.208,
+        0.353,
+        0.389
+      ],
+      "internal": [
+        0.547,
+        0.188,
+        0.985,
+        0.41
+      ],
+      "application-0": [
+        0.522,
+        0.886,
+        0.574,
+        0.947
+      ],
+      "application-1": [
+        0.576,
+        0.886,
+        0.626,
+        0.947
+      ],
+      "application-2": [
+        0.631,
+        0.886,
+        0.681,
+        0.947
+      ],
+      "application-3": [
+        0.686,
+        0.886,
+        0.735,
+        0.947
+      ],
+      "application-4": [
+        0.739,
+        0.886,
+        0.794,
+        0.947
+      ]
+    },
+    "assets": [
+      "119-application-0.webp",
+      "119-application-1.webp",
+      "119-application-2.webp",
+      "119-application-3.webp",
+      "119-application-4.webp",
+      "119-device.webp",
+      "119-external.webp",
+      "119-internal.webp"
+    ]
+  },
+  {
+    "number": 120,
+    "mockup": "120 - Autonomous Mobile Robot.png",
+    "regions": {
+      "device": [
+        0.102,
+        0.421,
+        0.522,
+        0.742
+      ],
+      "external": [
+        0.102,
+        0.421,
+        0.522,
+        0.742
+      ]
+    },
+    "assets": [
+      "120-device.webp",
+      "120-external.webp"
+    ]
+  },
+  {
+    "number": 121,
+    "mockup": "121 - Warehouse Robot.png",
+    "regions": {
+      "device": [
+        0.4,
+        0.046,
+        0.88,
+        0.252
+      ],
+      "external": [
+        0.4,
+        0.046,
+        0.88,
+        0.252
+      ],
+      "internal": [
+        0.028,
+        0.303,
+        0.381,
+        0.574
+      ],
+      "ipo-0": [
+        0.4,
+        0.332,
+        0.429,
+        0.386
+      ],
+      "ipo-1": [
+        0.51,
+        0.367,
+        0.578,
+        0.438
+      ],
+      "ipo-2": [
+        0.607,
+        0.336,
+        0.633,
+        0.371
+      ],
+      "application-0": [
+        0.027,
+        0.905,
+        0.132,
+        0.957
+      ],
+      "application-1": [
+        0.145,
+        0.905,
+        0.25,
+        0.957
+      ],
+      "application-2": [
+        0.266,
+        0.905,
+        0.372,
+        0.957
+      ],
+      "application-3": [
+        0.387,
+        0.905,
+        0.493,
+        0.957
+      ]
+    },
+    "assets": [
+      "121-application-0.webp",
+      "121-application-1.webp",
+      "121-application-2.webp",
+      "121-application-3.webp",
+      "121-device.webp",
+      "121-external.webp",
+      "121-internal.webp",
+      "121-ipo-0.webp",
+      "121-ipo-1.webp",
+      "121-ipo-2.webp"
+    ]
+  },
+  {
+    "number": 122,
+    "mockup": "122 - Machine-Vision System.png",
+    "regions": {
+      "device": [
+        0.015,
+        0.04,
+        0.339,
+        0.444
+      ],
+      "external": [
+        0.015,
+        0.04,
+        0.339,
+        0.444
+      ],
+      "internal": [
+        0.363,
+        0.231,
+        0.674,
+        0.439
+      ],
+      "part": [
+        0.181,
+        0.791,
+        0.304,
+        0.94
+      ],
+      "input": [
+        0.716,
+        0.282,
+        0.764,
+        0.341
+      ],
+      "application-0": [
+        0.669,
+        0.713,
+        0.737,
+        0.764
+      ],
+      "application-1": [
+        0.753,
+        0.713,
+        0.819,
+        0.764
+      ],
+      "application-2": [
+        0.836,
+        0.713,
+        0.897,
+        0.764
+      ],
+      "application-3": [
+        0.914,
+        0.713,
+        0.979,
+        0.764
+      ]
+    },
+    "assets": [
+      "122-application-0.webp",
+      "122-application-1.webp",
+      "122-application-2.webp",
+      "122-application-3.webp",
+      "122-device.webp",
+      "122-external.webp",
+      "122-input.webp",
+      "122-internal.webp",
+      "122-part.webp"
+    ]
+  },
+  {
+    "number": 123,
+    "mockup": "123 - Quadruped Robot.png",
+    "regions": {
+      "device": [
+        0.014,
+        0.179,
+        0.389,
+        0.468
+      ],
+      "external": [
+        0.014,
+        0.179,
+        0.389,
+        0.468
+      ],
+      "internal": [
+        0.405,
+        0.203,
+        0.735,
+        0.465
+      ],
+      "part-0": [
+        0.753,
+        0.211,
+        0.817,
+        0.288
+      ],
+      "part-1": [
+        0.836,
+        0.211,
+        0.897,
+        0.288
+      ],
+      "part-2": [
+        0.916,
+        0.211,
+        0.978,
+        0.288
+      ],
+      "part-3": [
+        0.753,
+        0.33,
+        0.817,
+        0.412
+      ],
+      "part-4": [
+        0.836,
+        0.33,
+        0.897,
+        0.412
+      ],
+      "part-5": [
+        0.916,
+        0.33,
+        0.978,
+        0.412
+      ],
+      "application-0": [
+        0.014,
+        0.927,
+        0.077,
+        0.967
+      ],
+      "application-1": [
+        0.082,
+        0.927,
+        0.148,
+        0.967
+      ],
+      "application-2": [
+        0.156,
+        0.927,
+        0.23,
+        0.967
+      ],
+      "application-3": [
+        0.238,
+        0.927,
+        0.312,
+        0.967
+      ],
+      "application-4": [
+        0.322,
+        0.927,
+        0.414,
+        0.967
+      ],
+      "application-5": [
+        0.421,
+        0.927,
+        0.505,
+        0.967
+      ]
+    },
+    "assets": [
+      "123-application-0.webp",
+      "123-application-1.webp",
+      "123-application-2.webp",
+      "123-application-3.webp",
+      "123-application-4.webp",
+      "123-application-5.webp",
+      "123-device.webp",
+      "123-external.webp",
+      "123-internal.webp",
+      "123-part-0.webp",
+      "123-part-1.webp",
+      "123-part-2.webp",
+      "123-part-3.webp",
+      "123-part-4.webp",
+      "123-part-5.webp"
+    ]
+  },
+  {
+    "number": 124,
+    "mockup": "124 - Wi-Fi Router.png",
+    "regions": {
+      "device": [
+        0.744,
+        0.087,
+        0.989,
+        0.259
+      ],
+      "external": [
+        0.744,
+        0.087,
+        0.989,
+        0.259
+      ],
+      "internal": [
+        0.02,
+        0.313,
+        0.327,
+        0.711
+      ],
+      "application-0": [
+        0.7,
+        0.784,
+        0.762,
+        0.815
+      ],
+      "application-1": [
+        0.773,
+        0.784,
+        0.834,
+        0.815
+      ],
+      "application-2": [
+        0.845,
+        0.784,
+        0.905,
+        0.815
+      ],
+      "application-3": [
+        0.916,
+        0.784,
+        0.977,
+        0.815
+      ],
+      "application-4": [
+        0.7,
+        0.856,
+        0.762,
+        0.889
+      ],
+      "application-5": [
+        0.773,
+        0.856,
+        0.834,
+        0.889
+      ],
+      "application-6": [
+        0.845,
+        0.856,
+        0.905,
+        0.889
+      ],
+      "application-7": [
+        0.916,
+        0.856,
+        0.977,
+        0.889
+      ]
+    },
+    "assets": [
+      "124-application-0.webp",
+      "124-application-1.webp",
+      "124-application-2.webp",
+      "124-application-3.webp",
+      "124-application-4.webp",
+      "124-application-5.webp",
+      "124-application-6.webp",
+      "124-application-7.webp",
+      "124-device.webp",
+      "124-external.webp",
+      "124-internal.webp"
+    ]
+  },
+  {
+    "number": 125,
+    "mockup": "125 - Bluetooth Headphones.png",
+    "regions": {
+      "device": [
+        0.085,
+        0.076,
+        0.267,
+        0.559
+      ],
+      "external": [
+        0.085,
+        0.076,
+        0.267,
+        0.559
+      ],
+      "internal": [
+        0.286,
+        0.218,
+        0.738,
+        0.548
+      ]
+    },
+    "assets": [
+      "125-device.webp",
+      "125-external.webp",
+      "125-internal.webp"
+    ]
+  },
+  {
+    "number": 126,
+    "mockup": "126 - Smartwatch.png",
+    "regions": {
+      "health": [
+        0.366,
+        0.789,
+        0.471,
+        0.984
+      ],
+      "device": [
+        0.255,
+        0.073,
+        0.425,
+        0.47
+      ],
+      "external": [
+        0.255,
+        0.073,
+        0.425,
+        0.47
+      ],
+      "internal": [
+        0.448,
+        0.112,
+        0.99,
+        0.456
+      ]
+    },
+    "assets": [
+      "126-device.webp",
+      "126-external.webp",
+      "126-health.webp",
+      "126-internal.webp"
+    ]
+  },
+  {
+    "number": 127,
+    "mockup": "127 - RFID Access Card.png",
+    "regions": {
+      "device": [
+        0.118,
+        0.182,
+        0.49,
+        0.528
+      ],
+      "external": [
+        0.118,
+        0.182,
+        0.49,
+        0.528
+      ],
+      "internal": [
+        0.132,
+        0.562,
+        0.323,
+        0.75
+      ],
+      "reader": [
+        0.445,
+        0.562,
+        0.577,
+        0.75
+      ],
+      "principle": [
+        0.711,
+        0.574,
+        0.927,
+        0.741
+      ]
+    },
+    "assets": [
+      "127-device.webp",
+      "127-external.webp",
+      "127-internal.webp",
+      "127-principle.webp",
+      "127-reader.webp"
+    ]
+  },
+  {
+    "number": 128,
+    "mockup": "128 - Barcode Scanner.png",
+    "regions": {
+      "device": [
+        0.019,
+        0.155,
+        0.21,
+        0.697
+      ],
+      "external": [
+        0.019,
+        0.155,
+        0.21,
+        0.697
+      ],
+      "internal": [
+        0.229,
+        0.184,
+        0.58,
+        0.508
+      ],
+      "views": [
+        0.819,
+        0.187,
+        0.978,
+        0.423
+      ],
+      "principle": [
+        0.136,
+        0.499,
+        0.359,
+        0.696
+      ],
+      "processor": [
+        0.395,
+        0.283,
+        0.451,
+        0.363
+      ],
+      "application-0": [
+        0.021,
+        0.916,
+        0.068,
+        0.982
+      ],
+      "application-1": [
+        0.127,
+        0.916,
+        0.179,
+        0.982
+      ],
+      "application-2": [
+        0.253,
+        0.916,
+        0.308,
+        0.982
+      ],
+      "application-3": [
+        0.369,
+        0.916,
+        0.431,
+        0.982
+      ]
+    },
+    "assets": [
+      "128-application-0.webp",
+      "128-application-1.webp",
+      "128-application-2.webp",
+      "128-application-3.webp",
+      "128-device.webp",
+      "128-external.webp",
+      "128-internal.webp",
+      "128-principle.webp",
+      "128-processor.webp",
+      "128-views.webp"
+    ]
+  },
+  {
+    "number": 129,
+    "mockup": "129 - QR Code Scanner.png",
+    "regions": {
+      "device": [
+        0.009,
+        0.312,
+        0.234,
+        0.806
+      ],
+      "external": [
+        0.009,
+        0.312,
+        0.234,
+        0.806
+      ],
+      "internal": [
+        0.261,
+        0.13,
+        0.632,
+        0.482
+      ],
+      "application-0": [
+        0.294,
+        0.881,
+        0.359,
+        0.933
+      ],
+      "application-1": [
+        0.368,
+        0.881,
+        0.433,
+        0.933
+      ],
+      "application-2": [
+        0.443,
+        0.881,
+        0.508,
+        0.933
+      ],
+      "application-3": [
+        0.519,
+        0.881,
+        0.577,
+        0.933
+      ],
+      "application-4": [
+        0.585,
+        0.881,
+        0.647,
+        0.933
+      ]
+    },
+    "assets": [
+      "129-application-0.webp",
+      "129-application-1.webp",
+      "129-application-2.webp",
+      "129-application-3.webp",
+      "129-application-4.webp",
+      "129-device.webp",
+      "129-external.webp",
+      "129-internal.webp"
+    ]
+  },
+  {
+    "number": 130,
+    "mockup": "130 - Biometric Fingerprint Scanner.png",
+    "regions": {
+      "device": [
+        0.049,
+        0.198,
+        0.231,
+        0.493
+      ],
+      "external": [
+        0.049,
+        0.198,
+        0.231,
+        0.493
+      ],
+      "internal": [
+        0.271,
+        0.23,
+        0.71,
+        0.494
+      ],
+      "principle": [
+        0.173,
+        0.776,
+        0.284,
+        0.934
+      ]
+    },
+    "assets": [
+      "130-device.webp",
+      "130-external.webp",
+      "130-internal.webp",
+      "130-principle.webp"
+    ]
+  },
+  {
+    "number": 131,
+    "mockup": "131 - CCTV Camera.png",
+    "regions": {
+      "device": [
+        0.399,
+        0.071,
+        0.686,
+        0.345
+      ],
+      "external": [
+        0.399,
+        0.071,
+        0.686,
+        0.345
+      ],
+      "internal": [
+        0.13,
+        0.384,
+        0.482,
+        0.646
+      ],
+      "scene": [
+        0.728,
+        0.752,
+        0.775,
+        0.88
+      ],
+      "stage-0": [
+        0.507,
+        0.395,
+        0.548,
+        0.453
+      ],
+      "stage-1": [
+        0.574,
+        0.395,
+        0.617,
+        0.453
+      ],
+      "stage-2": [
+        0.642,
+        0.395,
+        0.685,
+        0.453
+      ],
+      "stage-3": [
+        0.716,
+        0.395,
+        0.758,
+        0.453
+      ],
+      "stage-4": [
+        0.787,
+        0.395,
+        0.83,
+        0.453
+      ],
+      "stage-5": [
+        0.859,
+        0.395,
+        0.978,
+        0.453
+      ]
+    },
+    "assets": [
+      "131-device.webp",
+      "131-external.webp",
+      "131-internal.webp",
+      "131-scene.webp",
+      "131-stage-0.webp",
+      "131-stage-1.webp",
+      "131-stage-2.webp",
+      "131-stage-3.webp",
+      "131-stage-4.webp",
+      "131-stage-5.webp"
+    ]
+  },
+  {
+    "number": 132,
+    "mockup": "132 - IR Camera.png",
+    "regions": {
+      "device": [
+        0.23,
+        0.047,
+        0.391,
+        0.462
+      ],
+      "external": [
+        0.23,
+        0.047,
+        0.391,
+        0.462
+      ],
+      "internal": [
+        0.405,
+        0.119,
+        0.787,
+        0.421
+      ],
+      "principle": [
+        0.436,
+        0.507,
+        0.685,
+        0.697
+      ],
+      "stage-0": [
+        0.02,
+        0.518,
+        0.077,
+        0.605
+      ],
+      "stage-1": [
+        0.095,
+        0.518,
+        0.131,
+        0.605
+      ],
+      "stage-2": [
+        0.16,
+        0.518,
+        0.204,
+        0.605
+      ],
+      "stage-3": [
+        0.239,
+        0.518,
+        0.279,
+        0.605
+      ],
+      "stage-4": [
+        0.308,
+        0.518,
+        0.361,
+        0.605
+      ],
+      "stage-5": [
+        0.387,
+        0.518,
+        0.414,
+        0.605
+      ],
+      "application-0": [
+        0.532,
+        0.754,
+        0.614,
+        0.821
+      ],
+      "application-1": [
+        0.621,
+        0.754,
+        0.698,
+        0.821
+      ],
+      "application-2": [
+        0.707,
+        0.754,
+        0.785,
+        0.821
+      ],
+      "application-3": [
+        0.532,
+        0.863,
+        0.614,
+        0.93
+      ],
+      "application-4": [
+        0.621,
+        0.863,
+        0.698,
+        0.93
+      ],
+      "application-5": [
+        0.707,
+        0.863,
+        0.785,
+        0.93
+      ]
+    },
+    "assets": [
+      "132-application-0.webp",
+      "132-application-1.webp",
+      "132-application-2.webp",
+      "132-application-3.webp",
+      "132-application-4.webp",
+      "132-application-5.webp",
+      "132-device.webp",
+      "132-external.webp",
+      "132-internal.webp",
+      "132-principle.webp",
+      "132-stage-0.webp",
+      "132-stage-1.webp",
+      "132-stage-2.webp",
+      "132-stage-3.webp",
+      "132-stage-4.webp",
+      "132-stage-5.webp"
+    ]
+  },
+  {
+    "number": 133,
+    "mockup": "133 - Television.png",
+    "regions": {
+      "device": [
+        0.315,
+        0.05,
+        0.567,
+        0.398
+      ],
+      "external": [
+        0.315,
+        0.05,
+        0.567,
+        0.398
+      ],
+      "internal": [
+        0.579,
+        0.092,
+        0.989,
+        0.39
+      ],
+      "part-0": [
+        0.298,
+        0.688,
+        0.341,
+        0.744
+      ],
+      "part-1": [
+        0.35,
+        0.688,
+        0.396,
+        0.744
+      ],
+      "part-2": [
+        0.405,
+        0.688,
+        0.45,
+        0.744
+      ],
+      "part-3": [
+        0.46,
+        0.688,
+        0.502,
+        0.744
+      ],
+      "part-4": [
+        0.298,
+        0.786,
+        0.324,
+        0.832
+      ],
+      "part-5": [
+        0.334,
+        0.786,
+        0.364,
+        0.832
+      ],
+      "part-6": [
+        0.371,
+        0.786,
+        0.398,
+        0.832
+      ],
+      "part-7": [
+        0.406,
+        0.786,
+        0.435,
+        0.832
+      ],
+      "part-8": [
+        0.442,
+        0.786,
+        0.471,
+        0.832
+      ],
+      "part-9": [
+        0.488,
+        0.786,
+        0.5,
+        0.832
+      ]
+    },
+    "assets": [
+      "133-device.webp",
+      "133-external.webp",
+      "133-internal.webp",
+      "133-part-0.webp",
+      "133-part-1.webp",
+      "133-part-2.webp",
+      "133-part-3.webp",
+      "133-part-4.webp",
+      "133-part-5.webp",
+      "133-part-6.webp",
+      "133-part-7.webp",
+      "133-part-8.webp",
+      "133-part-9.webp"
+    ]
+  },
+  {
+    "number": 134,
+    "mockup": "134 - Digital Door Lock.png",
+    "regions": {
+      "device": [
+        0.022,
+        0.14,
+        0.23,
+        0.638
+      ],
+      "external": [
+        0.022,
+        0.14,
+        0.23,
+        0.638
+      ],
+      "internal": [
+        0.149,
+        0.15,
+        0.482,
+        0.61
+      ]
+    },
+    "assets": [
+      "134-device.webp",
+      "134-external.webp",
+      "134-internal.webp"
+    ]
+  },
+  {
+    "number": 135,
+    "mockup": "135 - Microwave Oven Controller.png",
+    "regions": {
+      "device": [
+        0.141,
+        0.147,
+        0.544,
+        0.469
+      ],
+      "external": [
+        0.141,
+        0.147,
+        0.544,
+        0.469
+      ],
+      "inside": [
+        0.562,
+        0.156,
+        0.983,
+        0.467
+      ],
+      "internal": [
+        0.152,
+        0.507,
+        0.416,
+        0.693
+      ],
+      "application-0": [
+        0.737,
+        0.73,
+        0.787,
+        0.774
+      ],
+      "application-1": [
+        0.796,
+        0.73,
+        0.846,
+        0.774
+      ],
+      "application-2": [
+        0.854,
+        0.73,
+        0.905,
+        0.774
+      ],
+      "application-3": [
+        0.914,
+        0.73,
+        0.975,
+        0.774
+      ]
+    },
+    "assets": [
+      "135-application-0.webp",
+      "135-application-1.webp",
+      "135-application-2.webp",
+      "135-application-3.webp",
+      "135-device.webp",
+      "135-external.webp",
+      "135-inside.webp",
+      "135-internal.webp"
+    ]
+  },
+  {
+    "number": 136,
+    "mockup": "136 - Washing Machine Controller.png",
+    "regions": {
+      "device": [
+        0.014,
+        0.135,
+        0.28,
+        0.575
+      ],
+      "external": [
+        0.014,
+        0.135,
+        0.28,
+        0.575
+      ],
+      "internal": [
+        0.676,
+        0.164,
+        0.981,
+        0.471
+      ],
+      "panel": [
+        0.301,
+        0.165,
+        0.648,
+        0.304
+      ],
+      "part-1": [
+        0.68,
+        0.169,
+        0.743,
+        0.232
+      ],
+      "part-2": [
+        0.766,
+        0.171,
+        0.824,
+        0.231
+      ],
+      "part-3": [
+        0.846,
+        0.169,
+        0.904,
+        0.232
+      ],
+      "part-4": [
+        0.925,
+        0.169,
+        0.98,
+        0.232
+      ],
+      "part-5": [
+        0.677,
+        0.268,
+        0.724,
+        0.322
+      ],
+      "part-6": [
+        0.73,
+        0.268,
+        0.79,
+        0.323
+      ],
+      "part-7": [
+        0.797,
+        0.266,
+        0.851,
+        0.324
+      ],
+      "part-8": [
+        0.863,
+        0.266,
+        0.905,
+        0.327
+      ],
+      "part-9": [
+        0.93,
+        0.267,
+        0.97,
+        0.327
+      ],
+      "part-10": [
+        0.672,
+        0.367,
+        0.714,
+        0.433
+      ],
+      "part-11": [
+        0.731,
+        0.374,
+        0.812,
+        0.433
+      ],
+      "part-12": [
+        0.836,
+        0.37,
+        0.893,
+        0.423
+      ]
+    },
+    "assets": [
+      "136-device.webp",
+      "136-external.webp",
+      "136-internal.webp",
+      "136-panel.webp",
+      "136-part-1.webp",
+      "136-part-10.webp",
+      "136-part-11.webp",
+      "136-part-12.webp",
+      "136-part-2.webp",
+      "136-part-3.webp",
+      "136-part-4.webp",
+      "136-part-5.webp",
+      "136-part-6.webp",
+      "136-part-7.webp",
+      "136-part-8.webp",
+      "136-part-9.webp"
+    ]
+  },
+  {
+    "number": 137,
+    "mockup": "137 - Induction Cooktop.png",
+    "regions": {
+      "device": [
+        0.426,
+        0.025,
+        0.866,
+        0.321
+      ],
+      "external": [
+        0.426,
+        0.025,
+        0.866,
+        0.321
+      ],
+      "internal": [
+        0.014,
+        0.366,
+        0.282,
+        0.743
+      ]
+    },
+    "assets": [
+      "137-device.webp",
+      "137-external.webp",
+      "137-internal.webp"
+    ]
+  },
+  {
+    "number": 138,
+    "mockup": "138 - Smart Energy Meter.png",
+    "regions": {
+      "device": [
+        0.35,
+        0.046,
+        0.6,
+        0.395
+      ],
+      "external": [
+        0.35,
+        0.046,
+        0.6,
+        0.395
+      ],
+      "internal": [
+        0.629,
+        0.109,
+        0.982,
+        0.321
+      ],
+      "part-1": [
+        0.029,
+        0.433,
+        0.079,
+        0.503
+      ],
+      "part-2": [
+        0.1,
+        0.439,
+        0.152,
+        0.497
+      ],
+      "part-3": [
+        0.167,
+        0.435,
+        0.237,
+        0.499
+      ],
+      "part-4": [
+        0.258,
+        0.448,
+        0.298,
+        0.493
+      ],
+      "part-5": [
+        0.318,
+        0.45,
+        0.369,
+        0.501
+      ],
+      "part-6": [
+        0.023,
+        0.58,
+        0.071,
+        0.635
+      ],
+      "part-7": [
+        0.09,
+        0.58,
+        0.123,
+        0.631
+      ],
+      "part-8": [
+        0.145,
+        0.581,
+        0.181,
+        0.63
+      ],
+      "part-9": [
+        0.22,
+        0.585,
+        0.258,
+        0.63
+      ],
+      "part-10": [
+        0.268,
+        0.58,
+        0.317,
+        0.632
+      ],
+      "part-11": [
+        0.334,
+        0.58,
+        0.373,
+        0.63
+      ]
+    },
+    "assets": [
+      "138-device.webp",
+      "138-external.webp",
+      "138-internal.webp",
+      "138-part-1.webp",
+      "138-part-10.webp",
+      "138-part-11.webp",
+      "138-part-2.webp",
+      "138-part-3.webp",
+      "138-part-4.webp",
+      "138-part-5.webp",
+      "138-part-6.webp",
+      "138-part-7.webp",
+      "138-part-8.webp",
+      "138-part-9.webp"
+    ]
+  },
+  {
+    "number": 139,
+    "mockup": "139 - GPS Receiver.png",
+    "regions": {
+      "device": [
+        0.343,
+        0.059,
+        0.704,
+        0.312
+      ],
+      "external": [
+        0.343,
+        0.059,
+        0.704,
+        0.312
+      ],
+      "inside": [
+        0.017,
+        0.369,
+        0.343,
+        0.653
+      ],
+      "internal": [
+        0.368,
+        0.362,
+        0.577,
+        0.657
+      ],
+      "satellites": [
+        0.274,
+        0.72,
+        0.434,
+        0.85
+      ]
+    },
+    "assets": [
+      "139-device.webp",
+      "139-external.webp",
+      "139-inside.webp",
+      "139-internal.webp",
+      "139-satellites.webp"
+    ]
+  },
+  {
+    "number": 140,
+    "mockup": "140 - Digital Multimeter.png",
+    "regions": {
+      "device": [
+        0.457,
+        0.045,
+        0.733,
+        0.424
+      ],
+      "external": [
+        0.457,
+        0.045,
+        0.733,
+        0.424
+      ],
+      "inside": [
+        0.013,
+        0.462,
+        0.348,
+        0.695
+      ],
+      "internal": [
+        0.374,
+        0.468,
+        0.596,
+        0.695
+      ],
+      "application-0": [
+        0.795,
+        0.746,
+        0.888,
+        0.78
+      ],
+      "application-1": [
+        0.894,
+        0.746,
+        0.984,
+        0.78
+      ],
+      "application-2": [
+        0.795,
+        0.818,
+        0.888,
+        0.848
+      ],
+      "application-3": [
+        0.894,
+        0.818,
+        0.984,
+        0.848
+      ]
+    },
+    "assets": [
+      "140-application-0.webp",
+      "140-application-1.webp",
+      "140-application-2.webp",
+      "140-application-3.webp",
+      "140-device.webp",
+      "140-external.webp",
+      "140-inside.webp",
+      "140-internal.webp"
+    ]
+  }
+]

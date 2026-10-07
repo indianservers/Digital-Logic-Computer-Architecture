@@ -1,0 +1,433 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+stderr | src/studios/how-devices-work/course-audit.test.ts > inventory every complete device page
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/course-audit.test.ts (141 tests) 13148ms
+   ✓ inventory every complete device page  11061ms
+
+ Test Files  1 passed (1)
+      Tests  141 passed (141)
+   Start at  18:20:25
+   Duration  22.93s (transform 2.87s, setup 0ms, collect 8.89s, tests 13.15s, environment 0ms, prepare 316ms)
+

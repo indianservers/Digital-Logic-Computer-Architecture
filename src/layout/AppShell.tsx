@@ -91,6 +91,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const hits = useMemo(() => searchStudios(query), [query]);
   const aca = location.pathname.startsWith("/studios/advanced-computer-architecture");
+  const deviceLab = /^\/studios\/how-devices-work\/[^/]+\/[^/]+\/?$/.test(location.pathname);
   const gates = location.pathname.startsWith("/studios/logic-gates");
   const truth = location.pathname.startsWith("/studios/truth-tables");
   const combo = location.pathname.startsWith("/studios/combinational");
@@ -105,6 +106,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     setQuery("");
   }, [location.pathname, location.search, noteVisit]);
 
+  if (deviceLab) return <div className="hdw-lab-shell"><ErrorBoundary>{children}</ErrorBoundary></div>;
   if (aca) {
     return (
       <div className="app-shell aca-bleed">

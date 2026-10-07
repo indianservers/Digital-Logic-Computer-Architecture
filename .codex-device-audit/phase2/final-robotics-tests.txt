@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 2250ms
+   ✓ Phase G robotics and networking > 122: renders correct local hardware and native controls  668ms
+
+ Test Files  1 passed (1)
+      Tests  43 passed (43)
+   Start at  01:14:16
+   Duration  12.35s (transform 1.73s, setup 0ms, collect 9.72s, tests 2.25s, environment 0ms, prepare 123ms)
+

@@ -1,0 +1,21 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 511ms
+ ✓ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests) 438ms
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 1002ms
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 67ms
+ ✓ src/studios/how-devices-work/advanced/systems.test.ts (42 tests) 594ms
+   ✓ Phase C: recording, space, radar and imaging > 82: renders device-specific art, architecture and controls  304ms
+ ✓ src/studios/how-devices-work/advanced/marine.test.ts (44 tests) 340ms
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 388ms
+ ✓ src/studios/how-devices-work/advanced/security.test.ts (42 tests) 408ms
+ ✓ src/studios/how-devices-work/advanced/control.test.ts (43 tests) 410ms
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 726ms
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 266ms
+
+ Test Files  11 passed (11)
+      Tests  688 passed (688)
+   Start at  17:56:34
+   Duration  16.13s (transform 12.19s, setup 0ms, collect 122.20s, tests 5.15s, environment 3ms, prepare 3.58s)
+

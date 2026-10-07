@@ -1,0 +1,2004 @@
+[
+  {
+    "number": 1,
+    "device": "Digital Thermometer",
+    "mockup": "01 - Digital Thermometer.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/01-hero.webp",
+      "/device-labs/01-external.webp",
+      "/device-labs/01-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 2,
+    "device": "ECG Machine",
+    "mockup": "02 - ECG Machine.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/02-hero.webp",
+      "/device-labs/02-external.webp",
+      "/device-labs/02-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 3,
+    "device": "Pulse Oximeter",
+    "mockup": "03 - Pulse Oximeter.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/03-hero.webp",
+      "/device-labs/03-external.webp",
+      "/device-labs/03-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.818,
+        0.138,
+        0.984,
+        0.176
+      ],
+      [
+        0.148,
+        0.205,
+        0.663,
+        0.493
+      ],
+      [
+        0.678,
+        0.245,
+        0.984,
+        0.49
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 4,
+    "device": "Digital Blood Pressure Monitor",
+    "mockup": "04 - Digital Blood Pressure Monitor.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/04-hero.webp",
+      "/device-labs/04-external.webp",
+      "/device-labs/04-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 5,
+    "device": "Ultrasound Scanner",
+    "mockup": "05 - Ultrasound Scanner.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/05-hero.webp",
+      "/device-labs/05-external.webp",
+      "/device-labs/05-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 6,
+    "device": "MRI Scanner",
+    "mockup": "06 - MRI Scanner.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/06-hero.webp",
+      "/device-labs/06-external.webp",
+      "/device-labs/06-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 7,
+    "device": "CT Scanner",
+    "mockup": "07 - CT Scanner.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/07-external.webp",
+      "/device-labs/07-hero.webp",
+      "/device-labs/07-internal.webp",
+      "/device-labs/07-scene.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 8,
+    "device": "TV Remote Control",
+    "mockup": "08 - TV Remote Control.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/08-hero.webp",
+      "/device-labs/08-external.webp",
+      "/device-labs/08-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 9,
+    "device": "NFC Payment System",
+    "mockup": "09 - NFC Payment System.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/09-hero.webp",
+      "/device-labs/09-external.webp",
+      "/device-labs/09-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.24,
+        0.435,
+        0.61
+      ],
+      [
+        0.44,
+        0.33,
+        0.765,
+        0.59
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 10,
+    "device": "Robotic Arm",
+    "mockup": "10 - Robotic Arm.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "clinical-card-grid",
+    "assets": [
+      "/device-labs/10-external.webp",
+      "/device-labs/10-hero.webp",
+      "/device-labs/10-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.06,
+        1,
+        0.24
+      ],
+      [
+        0.12,
+        0.235,
+        0.429,
+        0.587
+      ],
+      [
+        0.445,
+        0.305,
+        0.73,
+        0.583
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 11,
+    "device": "SONAR",
+    "mockup": "11 - SONAR.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "wide-instrument",
+    "assets": [
+      "/device-labs/11-hero.webp",
+      "/device-labs/11-external.webp",
+      "/device-labs/11-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.13,
+        0.18,
+        0.99,
+        0.32
+      ],
+      [
+        0.14,
+        0.4,
+        0.49,
+        0.61
+      ],
+      [
+        0.14,
+        0.4,
+        0.49,
+        0.61
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 12,
+    "device": "Aircraft Autopilot",
+    "mockup": "12 - Aircraft Autopilot.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "wide-instrument",
+    "assets": [
+      "/device-labs/12-hero.webp",
+      "/device-labs/12-external.webp",
+      "/device-labs/12-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.4,
+        0.16,
+        0.99,
+        0.32
+      ],
+      [
+        0.15,
+        0.43,
+        0.51,
+        0.61
+      ],
+      [
+        0.15,
+        0.35,
+        0.51,
+        0.61
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 13,
+    "device": "Surveillance Radar",
+    "mockup": "13 - Surveillance Radar.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "wide-instrument",
+    "assets": [
+      "/device-labs/13-hero.webp",
+      "/device-labs/13-external.webp",
+      "/device-labs/13-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.63,
+        0.055,
+        1,
+        0.245
+      ],
+      [
+        0.155,
+        0.35,
+        0.466,
+        0.582
+      ],
+      [
+        0.155,
+        0.35,
+        0.466,
+        0.582
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 14,
+    "device": "Digital Camera",
+    "mockup": "14 - Digital Camera.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "wide-instrument",
+    "assets": [
+      "/device-labs/14-hero.webp",
+      "/device-labs/14-external.webp",
+      "/device-labs/14-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.16,
+        0.225,
+        0.995,
+        0.445
+      ],
+      [
+        0.16,
+        0.49,
+        0.545,
+        0.707
+      ],
+      [
+        0.16,
+        0.49,
+        0.545,
+        0.707
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 15,
+    "device": "Smartphone",
+    "mockup": "15 - Smartphone.png",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "theme": "light",
+    "composition": "wide-instrument",
+    "assets": [
+      "/device-labs/15-hero.webp",
+      "/device-labs/15-external.webp",
+      "/device-labs/15-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.66,
+        0.055,
+        0.98,
+        0.3
+      ],
+      [
+        0.145,
+        0.415,
+        0.527,
+        0.674
+      ],
+      [
+        0.145,
+        0.415,
+        0.527,
+        0.674
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 16,
+    "device": "Infrared Thermometer",
+    "mockup": "16 - Infrared Thermometer.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "theme": "light",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/16-hero.webp",
+      "/device-labs/16-external.webp",
+      "/device-labs/16-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.292,
+        0.192,
+        0.484,
+        0.775
+      ],
+      [
+        0.217,
+        0.175,
+        0.686,
+        0.808
+      ],
+      [
+        0.54,
+        0.568,
+        0.68,
+        0.686
+      ]
+    ],
+    "mockupLimitation": "thumbnail-listing screenshot"
+  },
+  {
+    "number": 17,
+    "device": "Digital Stethoscope",
+    "mockup": "17 - Digital Stethoscope.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/17-external.webp",
+      "/device-labs/17-hero.webp",
+      "/device-labs/17-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 18,
+    "device": "Glucometer",
+    "mockup": "18 - Glucometer.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/18-external.webp",
+      "/device-labs/18-hero.webp",
+      "/device-labs/18-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 19,
+    "device": "ICU Patient Monitor",
+    "mockup": "19 - ICU Patient Monitor.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/19-external.webp",
+      "/device-labs/19-hero.webp",
+      "/device-labs/19-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 20,
+    "device": "Heart Rate Monitor",
+    "mockup": "20 - Heart Rate Monitor.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/20-external.webp",
+      "/device-labs/20-hero.webp",
+      "/device-labs/20-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 21,
+    "device": "Portable ECG",
+    "mockup": "21 - Portable ECG.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/21-external.webp",
+      "/device-labs/21-hero.webp",
+      "/device-labs/21-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 22,
+    "device": "Holter Monitor",
+    "mockup": "22 - Holter Monitor.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/22-external.webp",
+      "/device-labs/22-hero.webp",
+      "/device-labs/22-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.303
+      ],
+      [
+        0.318,
+        0.344,
+        0.607,
+        0.538
+      ],
+      [
+        0.621,
+        0.345,
+        0.989,
+        0.541
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 23,
+    "device": "EEG Machine",
+    "mockup": "23 - EEG Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/23-external.webp",
+      "/device-labs/23-hero.webp",
+      "/device-labs/23-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 24,
+    "device": "EMG Machine",
+    "mockup": "24 - EMG Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/24-external.webp",
+      "/device-labs/24-hero.webp",
+      "/device-labs/24-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.053,
+        1,
+        0.318
+      ],
+      [
+        0.318,
+        0.355,
+        0.63,
+        0.55
+      ],
+      [
+        0.643,
+        0.355,
+        0.993,
+        0.55
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 25,
+    "device": "Fetal Heart Monitor",
+    "mockup": "25 - Fetal Heart Monitor.png",
+    "sourceSize": [
+      1199,
+      1312
+    ],
+    "theme": "light",
+    "composition": "portrait",
+    "assets": [
+      "/device-labs/25-hero.webp",
+      "/device-labs/25-external.webp",
+      "/device-labs/25-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.55,
+        0.034,
+        1,
+        0.189
+      ],
+      [
+        0.17,
+        0.268,
+        0.59,
+        0.47
+      ],
+      [
+        0.609,
+        0.244,
+        0.99,
+        0.47
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 26,
+    "device": "Fetal Monitor",
+    "mockup": "26 - Fetal Monitor.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/26-external.webp",
+      "/device-labs/26-hero.webp",
+      "/device-labs/26-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.35,
+        0.313,
+        0.676,
+        0.54
+      ],
+      [
+        0.691,
+        0.31,
+        0.987,
+        0.54
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 27,
+    "device": "Electronic Spirometer",
+    "mockup": "27 - Electronic Spirometer.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/27-external.webp",
+      "/device-labs/27-hero.webp",
+      "/device-labs/27-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.35,
+        0.313,
+        0.676,
+        0.54
+      ],
+      [
+        0.691,
+        0.31,
+        0.987,
+        0.54
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 28,
+    "device": "Peak Flow Meter",
+    "mockup": "28 - Peak Flow Meter.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/28-external.webp",
+      "/device-labs/28-hero.webp",
+      "/device-labs/28-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.35,
+        0.313,
+        0.676,
+        0.54
+      ],
+      [
+        0.691,
+        0.31,
+        0.987,
+        0.54
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 29,
+    "device": "Digital Weighing Scale",
+    "mockup": "29 - Digital Weighing Scale.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/29-external.webp",
+      "/device-labs/29-hero.webp",
+      "/device-labs/29-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.35,
+        0.313,
+        0.676,
+        0.54
+      ],
+      [
+        0.691,
+        0.31,
+        0.987,
+        0.54
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 30,
+    "device": "Body Composition Analyzer",
+    "mockup": "30 - Body Composition Analyzer.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/30-external.webp",
+      "/device-labs/30-hero.webp",
+      "/device-labs/30-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.35,
+        0.313,
+        0.676,
+        0.54
+      ],
+      [
+        0.691,
+        0.31,
+        0.987,
+        0.54
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 31,
+    "device": "X-Ray Machine",
+    "mockup": "31 - X-Ray Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/31-hero.webp",
+      "/device-labs/31-external.webp",
+      "/device-labs/31-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.338,
+        0.313,
+        0.65,
+        0.554
+      ],
+      [
+        0.655,
+        0.321,
+        0.993,
+        0.556
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 32,
+    "device": "Digital Radiography Detector",
+    "mockup": "32 - Digital Radiography Detector.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/32-hero.webp",
+      "/device-labs/32-external.webp",
+      "/device-labs/32-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.345,
+        0.31,
+        0.661,
+        0.556
+      ],
+      [
+        0.671,
+        0.317,
+        0.992,
+        0.553
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 33,
+    "device": "Doppler Ultrasound",
+    "mockup": "33 - Doppler Ultrasound.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/33-hero.webp",
+      "/device-labs/33-external.webp",
+      "/device-labs/33-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.402,
+        0.3,
+        0.704,
+        0.555
+      ],
+      [
+        0.71,
+        0.317,
+        0.99,
+        0.555
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 34,
+    "device": "PET Scanner",
+    "mockup": "34 - PET Scanner.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/34-hero.webp",
+      "/device-labs/34-external.webp",
+      "/device-labs/34-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.064,
+        1,
+        0.264
+      ],
+      [
+        0.347,
+        0.31,
+        0.681,
+        0.554
+      ],
+      [
+        0.688,
+        0.315,
+        0.992,
+        0.554
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 35,
+    "device": "SPECT Scanner",
+    "mockup": "35 - SPECT Scanner.png",
+    "sourceSize": [
+      1222,
+      1287
+    ],
+    "theme": "dark",
+    "composition": "portrait",
+    "assets": [
+      "/device-labs/35-hero.webp",
+      "/device-labs/35-external.webp",
+      "/device-labs/35-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.177,
+        0.16,
+        0.695,
+        0.484
+      ],
+      [
+        0.177,
+        0.17,
+        0.696,
+        0.48
+      ],
+      [
+        0.357,
+        0.52,
+        0.64,
+        0.66
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 36,
+    "device": "Mammography System",
+    "mockup": "36 - Mammography System.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/36-external.webp",
+      "/device-labs/36-hero.webp",
+      "/device-labs/36-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.44,
+        0.05,
+        1,
+        0.316
+      ],
+      [
+        0.113,
+        0.393,
+        0.376,
+        0.67
+      ],
+      [
+        0.381,
+        0.397,
+        0.696,
+        0.669
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 37,
+    "device": "Endoscope Camera System",
+    "mockup": "37 - Endoscope Camera System.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/37-external.webp",
+      "/device-labs/37-hero.webp",
+      "/device-labs/37-internal.webp",
+      "/device-labs/37-scene.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.05,
+        1,
+        0.32
+      ],
+      [
+        0.13,
+        0.443,
+        0.417,
+        0.717
+      ],
+      [
+        0.435,
+        0.447,
+        0.753,
+        0.719
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 38,
+    "device": "Digital Microscope",
+    "mockup": "38 - Digital Microscope.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/38-external.webp",
+      "/device-labs/38-hero.webp",
+      "/device-labs/38-internal.webp",
+      "/device-labs/38-scene.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.4,
+        0.052,
+        1,
+        0.38
+      ],
+      [
+        0.118,
+        0.415,
+        0.365,
+        0.656
+      ],
+      [
+        0.371,
+        0.414,
+        0.785,
+        0.656
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 39,
+    "device": "Ventilator",
+    "mockup": "39 - Ventilator.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/39-hero.webp",
+      "/device-labs/39-external.webp",
+      "/device-labs/39-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.42,
+        0.057,
+        1,
+        0.352
+      ],
+      [
+        0.12,
+        0.39,
+        0.373,
+        0.68
+      ],
+      [
+        0.38,
+        0.4,
+        0.67,
+        0.68
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 40,
+    "device": "Infusion Pump",
+    "mockup": "40 - Infusion Pump.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/40-hero.webp",
+      "/device-labs/40-external.webp",
+      "/device-labs/40-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.05,
+        1,
+        0.318
+      ],
+      [
+        0.12,
+        0.397,
+        0.383,
+        0.606
+      ],
+      [
+        0.4,
+        0.4,
+        0.993,
+        0.61
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 41,
+    "device": "Syringe Pump",
+    "mockup": "41 - Syringe Pump.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/41-hero.webp",
+      "/device-labs/41-external.webp",
+      "/device-labs/41-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.055,
+        1,
+        0.322
+      ],
+      [
+        0.122,
+        0.412,
+        0.461,
+        0.613
+      ],
+      [
+        0.474,
+        0.41,
+        0.993,
+        0.617
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 42,
+    "device": "Defibrillator",
+    "mockup": "42 - Defibrillator.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/42-hero.webp",
+      "/device-labs/42-external.webp",
+      "/device-labs/42-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.053,
+        1,
+        0.323
+      ],
+      [
+        0.11,
+        0.363,
+        0.385,
+        0.65
+      ],
+      [
+        0.389,
+        0.367,
+        0.674,
+        0.65
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 43,
+    "device": "AED",
+    "mockup": "43 - AED.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/43-hero.webp",
+      "/device-labs/43-external.webp",
+      "/device-labs/43-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.057,
+        1,
+        0.39
+      ],
+      [
+        0.11,
+        0.444,
+        0.335,
+        0.72
+      ],
+      [
+        0.343,
+        0.447,
+        0.666,
+        0.715
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 44,
+    "device": "Pacemaker",
+    "mockup": "44 - Pacemaker.png",
+    "sourceSize": [
+      1222,
+      1287
+    ],
+    "theme": "dark",
+    "composition": "portrait",
+    "assets": [
+      "/device-labs/44-hero.webp",
+      "/device-labs/44-external.webp",
+      "/device-labs/44-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.819,
+        0.188,
+        0.99,
+        0.4
+      ],
+      [
+        0.15,
+        0.185,
+        0.539,
+        0.542
+      ],
+      [
+        0.15,
+        0.55,
+        0.663,
+        0.691
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 45,
+    "device": "Implantable Cardioverter Defibrillator",
+    "mockup": "45 - Implantable Cardioverter Defibrillator.png",
+    "sourceSize": [
+      1223,
+      1286
+    ],
+    "theme": "dark",
+    "composition": "portrait",
+    "assets": [
+      "/device-labs/45-hero.webp",
+      "/device-labs/45-external.webp",
+      "/device-labs/45-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.4,
+        0.12,
+        0.66,
+        0.374
+      ],
+      [
+        0.345,
+        0.114,
+        0.66,
+        0.377
+      ],
+      [
+        0.008,
+        0.592,
+        0.564,
+        0.714
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 46,
+    "device": "Dialysis Machine",
+    "mockup": "46 - Dialysis Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/46-hero.webp",
+      "/device-labs/46-external.webp",
+      "/device-labs/46-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.595,
+        0.067,
+        0.857,
+        0.161
+      ],
+      [
+        0.339,
+        0.219,
+        0.553,
+        0.572
+      ],
+      [
+        0.562,
+        0.219,
+        0.832,
+        0.573
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 47,
+    "device": "CPAP Machine",
+    "mockup": "47 - CPAP Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/47-hero.webp",
+      "/device-labs/47-external.webp",
+      "/device-labs/47-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.49,
+        0.064,
+        0.994,
+        0.297
+      ],
+      [
+        0.057,
+        0.386,
+        0.351,
+        0.711
+      ],
+      [
+        0.357,
+        0.389,
+        0.673,
+        0.691
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 48,
+    "device": "BiPAP Machine",
+    "mockup": "48 - BiPAP Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/48-hero.webp",
+      "/device-labs/48-external.webp",
+      "/device-labs/48-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.229,
+        0.055,
+        0.696,
+        0.376
+      ],
+      [
+        0.706,
+        0.105,
+        0.989,
+        0.372
+      ],
+      [
+        0.01,
+        0.42,
+        0.322,
+        0.742
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 49,
+    "device": "Anesthesia Machine",
+    "mockup": "49 - Anesthesia Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/49-hero.webp",
+      "/device-labs/49-external.webp",
+      "/device-labs/49-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.012,
+        0.196,
+        0.35,
+        0.751
+      ],
+      [
+        0.009,
+        0.188,
+        0.35,
+        0.766
+      ],
+      [
+        0.357,
+        0.192,
+        0.746,
+        0.562
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 50,
+    "device": "Electrosurgical Unit",
+    "mockup": "50 - Electrosurgical Unit.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/50-hero.webp",
+      "/device-labs/50-external.webp",
+      "/device-labs/50-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.06,
+        1,
+        0.289
+      ],
+      [
+        0.003,
+        0.321,
+        0.352,
+        0.633
+      ],
+      [
+        0.358,
+        0.32,
+        0.688,
+        0.63
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 51,
+    "device": "TENS Machine",
+    "mockup": "51 - TENS Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/51-hero.webp",
+      "/device-labs/51-external.webp",
+      "/device-labs/51-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.39,
+        0.064,
+        0.861,
+        0.345
+      ],
+      [
+        0.01,
+        0.383,
+        0.269,
+        0.682
+      ],
+      [
+        0.281,
+        0.383,
+        0.6,
+        0.679
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 52,
+    "device": "Medical Laser System",
+    "mockup": "52 - Medical Laser System.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/52-hero.webp",
+      "/device-labs/52-external.webp",
+      "/device-labs/52-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.4,
+        0.045,
+        0.999,
+        0.29
+      ],
+      [
+        0.103,
+        0.327,
+        0.345,
+        0.646
+      ],
+      [
+        0.35,
+        0.327,
+        0.59,
+        0.646
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 53,
+    "device": "Hearing Aid",
+    "mockup": "53 - Hearing Aid.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/53-audiogram.webp",
+      "/device-labs/53-external.webp",
+      "/device-labs/53-hero.webp",
+      "/device-labs/53-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.43,
+        0.054,
+        0.79,
+        0.295
+      ],
+      [
+        0.098,
+        0.341,
+        0.359,
+        0.627
+      ],
+      [
+        0.369,
+        0.342,
+        0.7,
+        0.628
+      ]
+    ],
+    "mockupLimitation": null
+  },
+  {
+    "number": 54,
+    "device": "PCR Machine",
+    "mockup": "54 - PCR Machine.png",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "theme": "dark",
+    "composition": "technical-dashboard",
+    "assets": [
+      "/device-labs/54-hero.webp",
+      "/device-labs/54-external.webp",
+      "/device-labs/54-internal.webp"
+    ],
+    "sourceRegions": [
+      [
+        0.39,
+        0.056,
+        0.851,
+        0.3
+      ],
+      [
+        0.105,
+        0.378,
+        0.303,
+        0.633
+      ],
+      [
+        0.312,
+        0.355,
+        0.575,
+        0.633
+      ]
+    ],
+    "mockupLimitation": null
+  }
+]

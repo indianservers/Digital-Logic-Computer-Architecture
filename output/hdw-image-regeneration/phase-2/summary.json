@@ -1,0 +1,28 @@
+{
+  "scope": "How Devices Work only",
+  "unique_pages": 140,
+  "source_mockups": 140,
+  "existing_raster_files": 742,
+  "named_components": 1198,
+  "minimum_core_images_planned": 1618,
+  "generated_images": 23,
+  "completed_page_sets": 2,
+  "remaining_page_sets": 138,
+  "phases": [
+    {
+      "phase": 1,
+      "scope": "Whole-catalogue inventory, asset rules, complete Sonar pilot, integration and quality verification."
+    },
+    {
+      "phase": 2,
+      "scope": "Generate remaining page sets and every named component, additional useful raster roles and detailed views. Maintain per-lab stats."
+    },
+    {
+      "phase": 3,
+      "scope": "Integrate and validate all page sets; prepare component composition layouts and animation hooks."
+    }
+  ],
+  "animation_status": "Independent transparent components delivered for pilot; no animated frames or actual part animation generated yet.",
+  "master_policy": "Keep original native-resolution PNG and alpha, no mockup cropping, no lossy recompression, no embedded page labels. Generic representative hardware illustrations; editable HTML names and explanations.",
+  "limitations": "2D individually generated component art is not an exact CAD assembly. Perspective and design are guided by the same reference, but exact geometric reconstruction/rotation requires further work."
+}

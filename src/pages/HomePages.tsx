@@ -31,12 +31,12 @@ function StudioCard({ studio, visited, next, preview }: { studio: StudioInfo; vi
   const body = (
     <>
       <div className="studio-card-head">
-        <StudioMark id={studio.id} />
+        {studio.id === "how-devices-work" ? <img src="/devices/studio-collection.svg" alt="Collection of medical, aviation and robotic systems" width={140} height={86} /> : <StudioMark id={studio.id} />}
         {studio.active ? <span className="pill ok">{visited ? "Visited" : "Open"}</span> : <span className="lock">Phase {studio.phase}</span>}
       </div>
       <strong>{studio.title}</strong>
       <p className="studio-action">{studio.summary.split(".")[0]}</p>
-      <span className="tiny">{studio.id === "microcontroller" ? "72 planned labs · studio roadmap" : `Phase ${studio.phase} · about ${minutes} min${count ? ` · ${count} concepts` : ""}`}</span>
+      <span className="tiny">{studio.id === "how-devices-work" ? "140 catalogue entries • Medical • Aviation • Marine • Defence • Robotics • Everyday Technology" : studio.id === "microcontroller" ? "72 planned labs · studio roadmap" : `Phase ${studio.phase} · about ${minutes} min${count ? ` · ${count} concepts` : ""}`}</span>
       {preview ? <span className="studio-preview">Opens {destinationLabel(studio.path, studio)}. {studio.summary}</span> : null}
     </>
   );

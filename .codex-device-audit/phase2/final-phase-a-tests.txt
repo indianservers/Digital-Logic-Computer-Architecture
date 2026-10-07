@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 137ms
+
+ Test Files  1 passed (1)
+      Tests  41 passed (41)
+   Start at  02:10:32
+   Duration  7.89s (transform 818ms, setup 0ms, collect 7.49s, tests 137ms, environment 0ms, prepare 99ms)
+

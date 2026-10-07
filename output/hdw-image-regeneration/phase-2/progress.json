@@ -1,0 +1,11 @@
+{
+  "phase": 2,
+  "status": "incomplete",
+  "accepted_total_all_phases": 23,
+  "page_sets_generated": [
+    11,
+    63
+  ],
+  "remaining_page_sets": 138,
+  "rejected_variants": 1
+}

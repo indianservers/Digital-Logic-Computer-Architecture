@@ -1,0 +1,184 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ❯ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests | 3 failed) 257ms
+   ✓ consumer labs 125–134 > provides all ten independent routes 2ms
+   ✓ consumer labs 125–134 > 125: renders its own layout and artwork 23ms
+   ✓ consumer labs 125–134 > 125: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 125: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 126: renders its own layout and artwork 15ms
+   ✓ consumer labs 125–134 > 126: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 126: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 127: renders its own layout and artwork 18ms
+   ✓ consumer labs 125–134 > 127: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 127: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 128: renders its own layout and artwork 25ms
+   ✓ consumer labs 125–134 > 128: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 128: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 129: renders its own layout and artwork 12ms
+   ✓ consumer labs 125–134 > 129: all modes have finite metrics and signals 0ms
+   ✓ consumer labs 125–134 > 129: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 130: renders its own layout and artwork 12ms
+   ✓ consumer labs 125–134 > 130: all modes have finite metrics and signals 0ms
+   ✓ consumer labs 125–134 > 130: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 131: renders its own layout and artwork 22ms
+   ✓ consumer labs 125–134 > 131: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 131: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 132: renders its own layout and artwork 70ms
+   ✓ consumer labs 125–134 > 132: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 132: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 133: renders its own layout and artwork 18ms
+   ✓ consumer labs 125–134 > 133: all modes have finite metrics and signals 1ms
+   ✓ consumer labs 125–134 > 133: component fault invalidates outputs 0ms
+   ✓ consumer labs 125–134 > 134: renders its own layout and artwork 19ms
+   × consumer labs 125–134 > 134: all modes have finite metrics and signals 5ms
+     → Missing or invalid device parameter: failures
+   × consumer labs 125–134 > 134: component fault invalidates outputs 1ms
+     → Missing or invalid device parameter: failures
+   ✓ consumer labs 125–134 > EAN-13 encoding decodes its generated modules and rejects damage 1ms
+   ✓ consumer labs 125–134 > EAN-13 validates many distinct payloads 0ms
+   ✓ consumer labs 125–134 > ANC reduces residual signal and disabling restores ambient noise 0ms
+   ✓ consumer labs 125–134 > movement integrates cadence with elapsed time 0ms
+   ✓ consumer labs 125–134 > HF card requires energy, authorized policy and a tap 0ms
+   ✓ consumer labs 125–134 > scanner refuses damaged or dark symbols 3ms
+   ✓ consumer labs 125–134 > minutiae displacement and capture quality change actual match score 0ms
+   ✓ consumer labs 125–134 > network capacity constrains delivered camera frames 0ms
+   ✓ consumer labs 125–134 > emissivity compensation recovers true temperature with correct setting 0ms
+   ✓ consumer labs 125–134 > stream source uses bandwidth and HDMI remains direct 0ms
+   × consumer labs 125–134 > depleted lock battery inhibits latch 1ms
+     → Missing or invalid device parameter: failures
+   ✓ Code 128 B reads printable payloads and rejects damaged checksum modules 0ms
+ ❯ src/studios/how-devices-work/advanced/control.test.ts (43 tests | 9 failed) 1241ms
+   ✓ Phase F radio, vessel and motor controls > provides all ten separate routes including the recovered robot 17ms
+   × Phase F radio, vessel and motor controls > 105: renders real hardware and usable native controls 137ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 105: each input changes a finite applicable response 35ms
+   ✓ Phase F radio, vessel and motor controls > 105: faults inhibit derived signals 5ms
+   × Phase F radio, vessel and motor controls > 106: renders real hardware and usable native controls 30ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 106: each input changes a finite applicable response 2ms
+   ✓ Phase F radio, vessel and motor controls > 106: faults inhibit derived signals 1ms
+   × Phase F radio, vessel and motor controls > 107: renders real hardware and usable native controls 57ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 107: each input changes a finite applicable response 92ms
+   ✓ Phase F radio, vessel and motor controls > 107: faults inhibit derived signals 5ms
+   × Phase F radio, vessel and motor controls > 108: renders real hardware and usable native controls 27ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 108: each input changes a finite applicable response 19ms
+   ✓ Phase F radio, vessel and motor controls > 108: faults inhibit derived signals 2ms
+   × Phase F radio, vessel and motor controls > 109: renders real hardware and usable native controls 24ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 109: each input changes a finite applicable response 12ms
+   ✓ Phase F radio, vessel and motor controls > 109: faults inhibit derived signals 1ms
+   × Phase F radio, vessel and motor controls > 110: renders real hardware and usable native controls 39ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 110: each input changes a finite applicable response 23ms
+   ✓ Phase F radio, vessel and motor controls > 110: faults inhibit derived signals 2ms
+   × Phase F radio, vessel and motor controls > 111: renders real hardware and usable native controls 35ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 111: each input changes a finite applicable response 38ms
+   ✓ Phase F radio, vessel and motor controls > 111: faults inhibit derived signals 1ms
+   ✓ Phase F radio, vessel and motor controls > 112: renders real hardware and usable native controls 221ms
+   ✓ Phase F radio, vessel and motor controls > 112: each input changes a finite applicable response 37ms
+   ✓ Phase F radio, vessel and motor controls > 112: faults inhibit derived signals 1ms
+   × Phase F radio, vessel and motor controls > 113: renders real hardware and usable native controls 77ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 113: each input changes a finite applicable response 14ms
+   ✓ Phase F radio, vessel and motor controls > 113: faults inhibit derived signals 1ms
+   × Phase F radio, vessel and motor controls > 114: renders real hardware and usable native controls 101ms
+     → Missing or invalid device parameter: direction
+   ✓ Phase F radio, vessel and motor controls > 114: each input changes a finite applicable response 110ms
+   ✓ Phase F radio, vessel and motor controls > 114: faults inhibit derived signals 3ms
+   ✓ Control engineering relationships > DSC suppresses audio and receive-only suppresses transmission 6ms
+   ✓ Control engineering relationships > squelch mutes weak input 1ms
+   ✓ Control engineering relationships > self-test has no alert and relay outage blocks progression 1ms
+   ✓ Control engineering relationships > low beacon battery prevents activation 1ms
+   ✓ Control engineering relationships > station-keeping reduces environmental drift 7ms
+   ✓ Control engineering relationships > ROV depth hold converges to pressure setpoint 4ms
+   ✓ Control engineering relationships > DVL fusion reduces accumulated inertial drift 1ms
+   ✓ Control engineering relationships > cold start enriches fuel while thermal protection limits demand 6ms
+   ✓ Control engineering relationships > servo feedback approaches target 5ms
+   ✓ Control engineering relationships > microsteps reduce angle and reverse winding order 5ms
+   ✓ Control engineering relationships > differential drive goes straight or turns with unequal wheels 2ms
+   ✓ Control engineering relationships > lost line stops motors and offset produces corrective differential 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 134: all modes have finite metrics and signals
+RangeError: Missing or invalid device parameter: failures
+ ❯ parameterValue src/studios/how-devices-work/advanced/parameters.ts:5:11
+      3|   const value = values[key];
+      4|   if (typeof value !== 'number' || !Number.isFinite(value)) {
+      5|     throw new RangeError(`Missing or invalid device parameter: ${key}`…
+       |           ^
+      6|   }
+      7|   return value;
+ ❯ simulateConsumer src/studios/how-devices-work/advanced/consumer-engine.ts:30:458
+ ❯ src/studios/how-devices-work/advanced/consumer.test.ts:14:501
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 134: component fault invalidates outputs
+RangeError: Missing or invalid device parameter: failures
+ ❯ parameterValue src/studios/how-devices-work/advanced/parameters.ts:5:11
+      3|   const value = values[key];
+      4|   if (typeof value !== 'number' || !Number.isFinite(value)) {
+      5|     throw new RangeError(`Missing or invalid device parameter: ${key}`…
+       |           ^
+      6|   }
+      7|   return value;
+ ❯ simulateConsumer src/studios/how-devices-work/advanced/consumer-engine.ts:30:458
+ ❯ src/studios/how-devices-work/advanced/consumer.test.ts:14:846
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > depleted lock battery inhibits latch
+RangeError: Missing or invalid device parameter: failures
+ ❯ parameterValue src/studios/how-devices-work/advanced/parameters.ts:5:11
+      3|   const value = values[key];
+      4|   if (typeof value !== 'number' || !Number.isFinite(value)) {
+      5|     throw new RangeError(`Missing or invalid device parameter: ${key}`…
+       |           ^
+      6|   }
+      7|   return value;
+ ❯ simulateConsumer src/studios/how-devices-work/advanced/consumer-engine.ts:30:458
+ ❯ result src/studios/how-devices-work/advanced/consumer.test.ts:10:122
+ ❯ value src/studios/how-devices-work/advanced/consumer.test.ts:11:83
+ ❯ src/studios/how-devices-work/advanced/consumer.test.ts:25:120
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 105: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 106: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 107: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 108: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 109: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 110: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 111: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 113: renders real hardware and usable native controls
+ FAIL  src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 114: renders real hardware and usable native controls
+RangeError: Missing or invalid device parameter: direction
+ ❯ parameterValue src/studios/how-devices-work/advanced/parameters.ts:5:11
+      3|   const value = values[key];
+      4|   if (typeof value !== 'number' || !Number.isFinite(value)) {
+      5|     throw new RangeError(`Missing or invalid device parameter: ${key}`…
+       |           ^
+      6|   }
+      7|   return value;
+ ❯ src/studios/how-devices-work/advanced/ControlLabPage.tsx:81:296
+ ❯ ControlLabPage src/studios/how-devices-work/advanced/ControlLabPage.tsx:81:152
+ ❯ Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+ ❯ retryNode node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6783:21
+ ❯ renderNodeDestructive node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6717:11
+ ❯ renderElement node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6390:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  12 failed | 74 passed (86)
+   Start at  23:27:00
+   Duration  14.42s (transform 2.57s, setup 0ms, collect 13.92s, tests 1.50s, environment 1ms, prepare 361ms)
+

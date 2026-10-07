@@ -1,0 +1,13 @@
+import type {AdvancedResult} from './engine';
+import {itemAt} from './parameters';
+export function StepperArchitecture(){
+ const box=(x:number,y:number,w:number,h:number,t:string,rows:string[])=><g><rect x={x} y={y} width={w} height={h} rx="3" fill="#eaf4ff" stroke="#4293cc"/><text x={x+w/2} y={y+18} textAnchor="middle" fontWeight="bold" fontSize="10">{t}</text>{rows.map((s,i)=><text key={s} x={x+w/2} y={y+38+i*20} textAnchor="middle" fontSize="9">{s}</text>)}</g>;
+ return <svg viewBox="0 0 610 250" role="img" aria-label="MCU STEP DIR enable interfaces microstep sequencer chopper current regulation dual MOSFET H bridge and two phase motor with separate DC supply">
+ {box(5,28,139,122,'MCU / controller',['Arduino / ESP32','CNC controller'])}{box(223,5,219,211,'Stepper motor driver',['A4988 / DRV8825','Interface logic / translator','Microstep phase sequencer','Chopper current regulation','MOSFET H-bridge stage'])}{box(499,45,106,153,'Two-phase motor',['Phase A winding','Phase B winding','Rotor / shaft'])}{box(5,185,139,60,'DC power supply',['8–35 V motor rail'])}
+ {[55,86,117].map((y,i)=><g key={y}><path d={'M144 '+y+'h79'} stroke="#3183b9"/><text x="180" y={y-4} textAnchor="middle" fontSize="9">{['STEP','DIR','EN'][i]}</text></g>)}<path d="M442 92h57M442 154h57M144 215h79" stroke="#3585be"/><text x="469" y="85" fontSize="9">A±</text><text x="469" y="148" fontSize="9">B±</text><text x="174" y="209" fontSize="9" fill="#c95d53">VMOT</text>
+ </svg>;
+}
+export function StepperLive({result,threeD=false}:{result:AdvancedResult;threeD?:boolean}){
+ const angle=result.valid?itemAt(result.visual,0):0;
+ return <div className={threeD?"stepper-live expanded":"stepper-live"}><svg viewBox="0 0 250 190" role="img" aria-label="Live stepper motor rotor and commanded shaft angle"><path d="M49 35L158 18L224 60V153L114 176L49 137Z" fill="#333e47" stroke="#151f26"/><path d="M49 35L114 73L224 60M114 73V176" fill="none" stroke="#768490"/><path d="M49 35L114 73V176L49 137Z" fill="#dce3e6" stroke="#8c9aa4"/>{[[59,50],[104,82],[59,129],[103,158]].map(([x,y])=><circle key={y} cx={x} cy={y} r="4" fill="#596872"/>)}<ellipse cx="81" cy="104" rx="20" ry="28" fill="#5a6770"/><path d="M81 104L27 79" stroke="#cad7df" strokeWidth="14"/><g transform={'translate(27 79) rotate('+angle+')'}><ellipse rx="10" ry="8" fill="#a8b7bf" stroke="#607a88"/><path d="M0 0L0-7" stroke="#2783c6" strokeWidth="3"/></g><text x="140" y="189" textAnchor="middle" fontSize="13">{angle.toFixed(1)}° commanded</text></svg><table aria-label="Live stepper values"><tbody>{result.metrics.map(m=><tr key={m.label}><th>{m.label}</th><td>{m.value} {m.unit}</td></tr>)}</tbody></table></div>;
+}

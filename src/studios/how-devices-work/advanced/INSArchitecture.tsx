@@ -1,0 +1,12 @@
+export function INSArchitecture() {
+  return <svg viewBox="0 0 600 300" role="img" aria-label="Inertial navigation architecture: three-axis gyroscopes and accelerometers, conditioning and ADC, attitude and navigation processor, optional GNSS aiding, data buses and power">
+    <defs><marker id="ins-signal-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#36c0ef"/></marker></defs>
+    {["Gyroscopes (3 axes)","Accelerometers (3 axes)"].map((label,i)=><g key={label}><rect x="10" y={80+i*74} width="144" height="55" rx="5" fill="#0d3654" stroke="#31b9ff"/><text x="82" y={110+i*74} textAnchor="middle" fill="#dceeff" fontSize="11">{label}</text><path d={`M154 ${107+i*74}H171V140H184`} stroke="#36c0ef" fill="none" markerEnd="url(#ins-signal-arrow)"/></g>)}
+    <rect x="187" y="104" width="102" height="74" rx="5" fill="#0d3654" stroke="#31b9ff"/><text x="238" y="133" textAnchor="middle" fill="#dceeff" fontSize="12">Conditioning</text><text x="238" y="155" textAnchor="middle" fill="#dceeff" fontSize="12">+ ADC</text><path d="M289 140H313" stroke="#36c0ef" markerEnd="url(#ins-signal-arrow)"/>
+    <rect x="317" y="77" width="149" height="134" rx="5" fill="#104c70" stroke="#31b9ff"/>{['IMU processor','Attitude propagation','Frame transformation','Velocity / position','Fusion + validity'].map((label,i)=><text key={label} x="391" y={101+i*22} textAnchor="middle" fill="#dceeff" fontSize={i?11:13}>{label}</text>)}
+    <rect x="334" y="14" width="114" height="34" rx="5" fill="#dceeff" stroke="#c47adf"/><text x="391" y="36" textAnchor="middle" fill="#12354b" fontSize="12">GNSS (optional)</text><path d="M391 48V74" stroke="#c47adf" markerEnd="url(#ins-signal-arrow)"/>
+    <rect x="494" y="94" width="96" height="102" rx="5" fill="#0d3654" stroke="#31b9ff"/>{['Data buses','ARINC 429','Avionics / FMS','Navigation output'].map((label,i)=><text key={label} x="542" y={120+i*19} textAnchor="middle" fill="#dceeff" fontSize="10">{label}</text>)}<path d="M466 141H491" stroke="#60d8a3" markerEnd="url(#ins-signal-arrow)"/>
+    <rect x="185" y="247" width="281" height="32" rx="5" fill="#0d3654" stroke="#31b9ff"/><text x="325" y="269" textAnchor="middle" fill="#dceeff" fontSize="12">Protected power supply</text><path d="M238 247V178M391 247V211M185 263H82V209" stroke="#e6ad51" fill="none"/>
+    <text x="300" y="296" textAnchor="middle" fill="#9fc4d7" fontSize="10">Angular rate → attitude · specific force → velocity → position</text>
+  </svg>;
+}

@@ -1,0 +1,43 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/course-audit.test.ts (1 test) 21836ms
+   ✓ inventory every complete device page  21823ms
+ ✓ src/studios/how-devices-work/course.test.ts (280 tests) 24202ms
+   ✓ 1: seven tabs and no simulator mounted on initial Overview  529ms
+   ✓ 2: seven tabs and no simulator mounted on initial Overview  368ms
+   ✓ 3: seven tabs and no simulator mounted on initial Overview  314ms
+   ✓ 4: seven tabs and no simulator mounted on initial Overview  466ms
+   ✓ 5: seven tabs and no simulator mounted on initial Overview  569ms
+   ✓ 6: seven tabs and no simulator mounted on initial Overview  356ms
+   ✓ 7: seven tabs and no simulator mounted on initial Overview  604ms
+   ✓ 8: seven tabs and no simulator mounted on initial Overview  608ms
+   ✓ 9: seven tabs and no simulator mounted on initial Overview  401ms
+   ✓ 10: seven tabs and no simulator mounted on initial Overview  322ms
+   ✓ 11: seven tabs and no simulator mounted on initial Overview  370ms
+   ✓ 12: seven tabs and no simulator mounted on initial Overview  313ms
+   ✓ 13: seven tabs and no simulator mounted on initial Overview  3186ms
+   ✓ 14: seven tabs and no simulator mounted on initial Overview  836ms
+   ✓ 15: seven tabs and no simulator mounted on initial Overview  1004ms
+   ✓ 16: seven tabs and no simulator mounted on initial Overview  924ms
+   ✓ 17: seven tabs and no simulator mounted on initial Overview  1308ms
+   ✓ 18: seven tabs and no simulator mounted on initial Overview  880ms
+   ✓ 19: seven tabs and no simulator mounted on initial Overview  1142ms
+   ✓ 20: seven tabs and no simulator mounted on initial Overview  2376ms
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 707ms
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 644ms
+ ✓ src/studios/how-devices-work/advanced/systems.test.ts (42 tests) 444ms
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 372ms
+ ✓ src/studios/how-devices-work/advanced/control.test.ts (43 tests) 340ms
+ ✓ src/studios/how-devices-work/advanced/security.test.ts (42 tests) 276ms
+ ✓ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests) 267ms
+ ✓ src/studios/how-devices-work/advanced/marine.test.ts (44 tests) 255ms
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 246ms
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 196ms
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 38ms
+
+ Test Files  13 passed (13)
+      Tests  969 passed (969)
+   Start at  19:24:16
+   Duration  50.24s (transform 5.38s, setup 0ms, collect 40.24s, tests 49.82s, environment 2ms, prepare 1.12s)
+

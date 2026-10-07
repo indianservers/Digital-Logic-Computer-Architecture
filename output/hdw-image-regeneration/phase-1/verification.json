@@ -1,0 +1,21 @@
+{
+  "page": "SONAR",
+  "lab": 11,
+  "individual_generated_masters": 11,
+  "resolution": "1536x1024 for all 11",
+  "transparent_masters": 10,
+  "context_hero": 1,
+  "standalone_component_selections_verified": 8,
+  "page_image_fit": "contain",
+  "desktop_overflow": false,
+  "narrow_viewport_css_width": 294,
+  "narrow_viewport_overflow": false,
+  "simulation_check": "Target distance 80 to 250 m changes round-trip delay from 106.667 to 333.333 ms; reset exercised.",
+  "tests": "600 passed across labs, course and catalogue",
+  "studio_typecheck": "passed",
+  "scope": "How Devices Work only",
+  "bulk_regeneration": "Pending phase 2; other 139 pages have not been regenerated.",
+  "animation": "Separate component files prepared; no animated frames generated in phase 1.",
+  "narrow_component_selections_verified": 8,
+  "production_build": "passed"
+}

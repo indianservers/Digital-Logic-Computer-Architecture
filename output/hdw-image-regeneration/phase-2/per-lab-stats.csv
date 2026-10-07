@@ -1,0 +1,141 @@
+﻿lab,page_name,route,existing_raster_files,named_components,generated_total,generated_components,minimum_core_images,status
+1,Digital Thermometer,/studios/how-devices-work/medical/digital-thermometer,3,7,0,0,10,pending bulk regeneration
+2,ECG Machine,/studios/how-devices-work/medical/ecg,3,8,0,0,11,pending bulk regeneration
+3,Pulse Oximeter,/studios/how-devices-work/medical/pulse-oximeter,3,8,0,0,11,pending bulk regeneration
+4,Digital Blood Pressure Monitor,/studios/how-devices-work/medical/digital-blood-pressure-monitor,3,8,0,0,11,pending bulk regeneration
+5,Ultrasound Scanner,/studios/how-devices-work/medical/ultrasound-scanner,3,8,0,0,11,pending bulk regeneration
+6,MRI Scanner,/studios/how-devices-work/medical/mri-scanner,3,8,0,0,11,pending bulk regeneration
+7,CT Scanner,/studios/how-devices-work/medical/ct-scanner,4,8,0,0,11,pending bulk regeneration
+8,TV Remote Control,/studios/how-devices-work/everyday/tv-remote,3,8,0,0,11,pending bulk regeneration
+9,NFC Payment System,/studios/how-devices-work/everyday/nfc-payment-system,3,8,0,0,11,pending bulk regeneration
+10,Robotic Arm,/studios/how-devices-work/robotics/robotic-arm,3,9,0,0,12,pending bulk regeneration
+11,SONAR,/studios/how-devices-work/marine/sonar,3,8,11,8,11,core asset set generated
+12,Aircraft Autopilot,/studios/how-devices-work/aviation/aircraft-autopilot,3,7,0,0,10,pending bulk regeneration
+13,Surveillance Radar,/studios/how-devices-work/defence/surveillance-radar,3,8,0,0,11,pending bulk regeneration
+14,Digital Camera,/studios/how-devices-work/everyday/digital-camera,3,8,0,0,11,pending bulk regeneration
+15,Smartphone,/studios/how-devices-work/everyday/smartphone,3,8,0,0,11,pending bulk regeneration
+16,Infrared Thermometer,/studios/how-devices-work/medical/infrared-thermometer,3,8,0,0,11,pending bulk regeneration
+17,Digital Stethoscope,/studios/how-devices-work/medical/digital-stethoscope,3,9,0,0,12,pending bulk regeneration
+18,Glucometer,/studios/how-devices-work/medical/glucometer,3,8,0,0,11,pending bulk regeneration
+19,ICU Patient Monitor,/studios/how-devices-work/medical/icu-patient-monitor,3,8,0,0,11,pending bulk regeneration
+20,Heart Rate Monitor,/studios/how-devices-work/medical/heart-rate-monitor,3,8,0,0,11,pending bulk regeneration
+21,Portable ECG,/studios/how-devices-work/medical/portable-ecg,3,8,0,0,11,pending bulk regeneration
+22,Holter Monitor,/studios/how-devices-work/medical/holter-monitor,3,8,0,0,11,pending bulk regeneration
+23,EEG Machine,/studios/how-devices-work/medical/eeg-machine,3,8,0,0,11,pending bulk regeneration
+24,EMG Machine,/studios/how-devices-work/medical/emg-machine,3,8,0,0,11,pending bulk regeneration
+25,Fetal Heart Monitor,/studios/how-devices-work/medical/fetal-heart-monitor,3,8,0,0,11,pending bulk regeneration
+26,Fetal Monitor,/studios/how-devices-work/medical/fetal-monitor,3,8,0,0,11,pending bulk regeneration
+27,Electronic Spirometer,/studios/how-devices-work/medical/electronic-spirometer,3,8,0,0,11,pending bulk regeneration
+28,Peak Flow Meter,/studios/how-devices-work/medical/peak-flow-meter,3,7,0,0,10,pending bulk regeneration
+29,Digital Weighing Scale,/studios/how-devices-work/medical/digital-weighing-scale,3,8,0,0,11,pending bulk regeneration
+30,Body Composition Analyzer,/studios/how-devices-work/medical/body-composition-analyzer,3,8,0,0,11,pending bulk regeneration
+31,X-Ray Machine,/studios/how-devices-work/medical/x-ray-machine,3,8,0,0,11,pending bulk regeneration
+32,Digital Radiography Detector,/studios/how-devices-work/medical/digital-radiography-detector,3,8,0,0,11,pending bulk regeneration
+33,Doppler Ultrasound,/studios/how-devices-work/medical/doppler-ultrasound,3,8,0,0,11,pending bulk regeneration
+34,PET Scanner,/studios/how-devices-work/medical/pet-scanner,3,8,0,0,11,pending bulk regeneration
+35,SPECT Scanner,/studios/how-devices-work/medical/spect-scanner,6,7,0,0,10,pending bulk regeneration
+36,Mammography System,/studios/how-devices-work/medical/mammography-system,3,8,0,0,11,pending bulk regeneration
+37,Endoscope Camera System,/studios/how-devices-work/medical/endoscope-camera-system,4,8,0,0,11,pending bulk regeneration
+38,Digital Microscope,/studios/how-devices-work/medical/digital-microscope,4,8,0,0,11,pending bulk regeneration
+39,Ventilator,/studios/how-devices-work/medical/ventilator,3,9,0,0,12,pending bulk regeneration
+40,Infusion Pump,/studios/how-devices-work/medical/infusion-pump,3,8,0,0,11,pending bulk regeneration
+41,Syringe Pump,/studios/how-devices-work/medical/syringe-pump,3,8,0,0,11,pending bulk regeneration
+42,Defibrillator,/studios/how-devices-work/medical/defibrillator,3,8,0,0,11,pending bulk regeneration
+43,AED,/studios/how-devices-work/medical/aed,3,8,0,0,11,pending bulk regeneration
+44,Pacemaker,/studios/how-devices-work/medical/pacemaker,5,8,0,0,11,pending bulk regeneration
+45,Implantable Cardioverter Defibrillator,/studios/how-devices-work/medical/implantable-cardioverter-defibrillator,5,8,0,0,11,pending bulk regeneration
+46,Dialysis Machine,/studios/how-devices-work/medical/dialysis-machine,4,8,0,0,11,pending bulk regeneration
+47,CPAP Machine,/studios/how-devices-work/medical/cpap-machine,3,8,0,0,11,pending bulk regeneration
+48,BiPAP Machine,/studios/how-devices-work/medical/bipap-machine,3,8,0,0,11,pending bulk regeneration
+49,Anesthesia Machine,/studios/how-devices-work/medical/anesthesia-machine,3,9,0,0,12,pending bulk regeneration
+50,Electrosurgical Unit,/studios/how-devices-work/medical/electrosurgical-unit,3,8,0,0,11,pending bulk regeneration
+51,TENS Machine,/studios/how-devices-work/medical/tens-machine,3,7,0,0,10,pending bulk regeneration
+52,Medical Laser System,/studios/how-devices-work/medical/medical-laser-system,3,8,0,0,11,pending bulk regeneration
+53,Hearing Aid,/studios/how-devices-work/medical/hearing-aid,4,8,0,0,11,pending bulk regeneration
+54,PCR Machine,/studios/how-devices-work/medical/pcr-machine,3,8,0,0,11,pending bulk regeneration
+55,Centrifuge,/studios/how-devices-work/medical/centrifuge,13,9,0,0,12,pending bulk regeneration
+56,Blood Cell Analyzer,/studios/how-devices-work/medical/blood-cell-analyzer,8,9,0,0,12,pending bulk regeneration
+57,Automated Chemistry Analyzer,/studios/how-devices-work/medical/automated-chemistry-analyzer,9,10,0,0,13,pending bulk regeneration
+58,Aircraft Flight Computer,/studios/how-devices-work/aviation/aircraft-flight-computer,3,8,0,0,11,pending bulk regeneration
+59,Fly-by-Wire System,/studios/how-devices-work/aviation/fly-by-wire,5,9,0,0,12,pending bulk regeneration
+60,Glass Cockpit,/studios/how-devices-work/aviation/glass-cockpit,4,8,0,0,11,pending bulk regeneration
+61,Primary Flight Display,/studios/how-devices-work/aviation/primary-flight-display,5,7,0,0,10,pending bulk regeneration
+62,Air Data Computer,/studios/how-devices-work/aviation/air-data-computer,5,9,0,0,12,pending bulk regeneration
+63,Inertial Navigation System,/studios/how-devices-work/aviation/inertial-navigation-system,5,8,12,8,11,core asset set generated
+64,GPS Navigation System,/studios/how-devices-work/aviation/gps-navigation-system,5,9,0,0,12,pending bulk regeneration
+65,Engine FADEC Controller,/studios/how-devices-work/aviation/engine-fadec-controller,4,7,0,0,10,pending bulk regeneration
+66,Aircraft Engine Monitoring System,/studios/how-devices-work/aviation/aircraft-engine-monitoring-system,5,6,0,0,9,pending bulk regeneration
+67,Drone Flight Controller,/studios/how-devices-work/aviation/drone-flight-controller,4,6,0,0,9,pending bulk regeneration
+68,Weather Radar,/studios/how-devices-work/aviation/weather-radar,4,7,0,0,10,pending bulk regeneration
+69,Radar Altimeter,/studios/how-devices-work/aviation/radar-altimeter,4,9,0,0,12,pending bulk regeneration
+70,Radio Altimeter,/studios/how-devices-work/aviation/radio-altimeter,6,6,0,0,9,pending bulk regeneration
+71,Aircraft Transponder,/studios/how-devices-work/aviation/aircraft-transponder,5,8,0,0,11,pending bulk regeneration
+72,ADS-B System,/studios/how-devices-work/aviation/ads-b-system,4,7,0,0,10,pending bulk regeneration
+73,Traffic Collision Avoidance System,/studios/how-devices-work/aviation/traffic-collision-avoidance-system,6,7,0,0,10,pending bulk regeneration
+74,Flight Data Recorder,/studios/how-devices-work/aviation/flight-data-recorder,4,8,0,0,11,pending bulk regeneration
+75,Cockpit Voice Recorder,/studios/how-devices-work/aviation/cockpit-voice-recorder,6,8,0,0,11,pending bulk regeneration
+76,Satellite Communication Terminal,/studios/how-devices-work/aviation/satellite-communication-terminal,9,9,0,0,12,pending bulk regeneration
+77,Satellite Attitude-Control Computer,/studios/how-devices-work/aviation/satellite-attitude-control-computer,6,8,0,0,11,pending bulk regeneration
+78,Phased-Array Radar,/studios/how-devices-work/defence/phased-array-radar,6,9,0,0,12,pending bulk regeneration
+79,Ground Surveillance Radar,/studios/how-devices-work/defence/ground-surveillance-radar,6,9,0,0,12,pending bulk regeneration
+80,Passive Radar,/studios/how-devices-work/defence/passive-radar,4,8,0,0,11,pending bulk regeneration
+81,Air-Defence Radar,/studios/how-devices-work/defence/air-defence-radar,5,9,0,0,12,pending bulk regeneration
+82,Thermal Imaging Camera,/studios/how-devices-work/defence/thermal-imaging-camera,6,8,0,0,11,pending bulk regeneration
+83,Night-Vision System,/studios/how-devices-work/defence/night-vision-system,2,8,0,0,11,pending bulk regeneration
+84,Infrared Surveillance Camera,/studios/how-devices-work/defence/infrared-surveillance-camera,7,9,0,0,12,pending bulk regeneration
+85,Laser Range Finder,/studios/how-devices-work/defence/laser-range-finder,3,9,0,0,12,pending bulk regeneration
+86,Software Defined Radio,/studios/how-devices-work/defence/software-defined-radio,4,9,0,0,12,pending bulk regeneration
+87,Secure Digital Radio,/studios/how-devices-work/defence/secure-digital-radio,3,8,0,0,11,pending bulk regeneration
+88,IFF System,/studios/how-devices-work/defence/iff-system,11,8,0,0,11,pending bulk regeneration
+89,Electronic Identification System,/studios/how-devices-work/defence/electronic-identification-system,5,9,0,0,12,pending bulk regeneration
+90,Inertial Navigation System,/studios/how-devices-work/defence/inertial-navigation-system,3,8,0,0,11,pending bulk regeneration
+91,GPS Receiver,/studios/how-devices-work/defence/gps-receiver,3,8,0,0,11,pending bulk regeneration
+92,Electronic Compass,/studios/how-devices-work/defence/electronic-compass,3,8,0,0,11,pending bulk regeneration
+93,Satellite Communication Terminal,/studios/how-devices-work/defence/satellite-communication-terminal,3,9,0,0,12,pending bulk regeneration
+94,Perimeter Intrusion Detection System,/studios/how-devices-work/defence/perimeter-intrusion-detection-system,6,8,0,0,11,pending bulk regeneration
+95,Biometric Access System,/studios/how-devices-work/defence/biometric-access-system,15,12,0,0,15,pending bulk regeneration
+96,Sonar Detection System,/studios/how-devices-work/defence/sonar-detection-system,10,10,0,0,13,pending bulk regeneration
+97,Unmanned Surveillance Vehicle Electronics,/studios/how-devices-work/defence/unmanned-surveillance-vehicle-electronics,5,12,0,0,15,pending bulk regeneration
+98,Marine Radar,/studios/how-devices-work/marine/marine-radar,4,12,0,0,15,pending bulk regeneration
+99,Fish Finder,/studios/how-devices-work/marine/fish-finder,4,10,0,0,13,pending bulk regeneration
+100,Depth Sounder,/studios/how-devices-work/marine/depth-sounder,7,10,0,0,13,pending bulk regeneration
+101,GPS Chartplotter,/studios/how-devices-work/marine/gps-chartplotter,4,11,0,0,14,pending bulk regeneration
+102,Automatic Identification System (AIS),/studios/how-devices-work/marine/ais,3,10,0,0,13,pending bulk regeneration
+103,Marine Autopilot,/studios/how-devices-work/marine/marine-autopilot,4,10,0,0,13,pending bulk regeneration
+104,Electronic Compass,/studios/how-devices-work/marine/electronic-compass,7,10,0,0,13,pending bulk regeneration
+105,Marine VHF Radio,/studios/how-devices-work/marine/marine-vhf-radio,4,12,0,0,15,pending bulk regeneration
+106,EPIRB Emergency Beacon,/studios/how-devices-work/marine/epirb-emergency-beacon,7,10,0,0,13,pending bulk regeneration
+107,Dynamic Positioning System,/studios/how-devices-work/marine/dynamic-positioning-system,8,9,0,0,12,pending bulk regeneration
+108,Underwater ROV Control System,/studios/how-devices-work/marine/underwater-rov-control-system,8,12,0,0,15,pending bulk regeneration
+109,Autonomous Underwater Vehicle Navigation,/studios/how-devices-work/marine/autonomous-underwater-vehicle-navigation,9,10,0,0,13,pending bulk regeneration
+110,Digital Engine Control,/studios/how-devices-work/marine/digital-engine-control,3,12,0,0,15,pending bulk regeneration
+111,Servo Motor Controller,/studios/how-devices-work/robotics/servo-motor-controller,10,9,0,0,12,pending bulk regeneration
+112,Stepper Motor Controller,/studios/how-devices-work/robotics/stepper-motor-controller,7,10,0,0,13,pending bulk regeneration
+113,Mobile Robot,/studios/how-devices-work/robotics/mobile-robot,2,9,0,0,12,pending bulk regeneration
+114,Line-Following Robot,/studios/how-devices-work/robotics/line-following-robot,13,9,0,0,12,pending bulk regeneration
+115,Self-Balancing Robot,/studios/how-devices-work/robotics/self-balancing-robot,10,7,0,0,10,pending bulk regeneration
+116,Industrial Robot Controller,/studios/how-devices-work/robotics/industrial-robot-controller,7,10,0,0,13,pending bulk regeneration
+117,Collaborative Robot,/studios/how-devices-work/robotics/collaborative-robot,16,9,0,0,12,pending bulk regeneration
+118,LiDAR Mapping Robot,/studios/how-devices-work/robotics/lidar-mapping-robot,7,8,0,0,11,pending bulk regeneration
+119,SLAM Navigation System,/studios/how-devices-work/robotics/slam-navigation-system,8,8,0,0,11,pending bulk regeneration
+120,Autonomous Mobile Robot,/studios/how-devices-work/robotics/autonomous-mobile-robot,2,8,0,0,11,pending bulk regeneration
+121,Warehouse Robot,/studios/how-devices-work/robotics/warehouse-robot,10,9,0,0,12,pending bulk regeneration
+122,Machine-Vision System,/studios/how-devices-work/robotics/machine-vision-system,9,8,0,0,11,pending bulk regeneration
+123,Quadruped Robot,/studios/how-devices-work/robotics/quadruped-robot,15,8,0,0,11,pending bulk regeneration
+124,Wi-Fi Router,/studios/how-devices-work/everyday/wi-fi-router,11,8,0,0,11,pending bulk regeneration
+125,Bluetooth Headphones,/studios/how-devices-work/everyday/bluetooth-headphones,3,7,0,0,10,pending bulk regeneration
+126,Smartwatch,/studios/how-devices-work/everyday/smartwatch,4,9,0,0,12,pending bulk regeneration
+127,RFID Access Card,/studios/how-devices-work/everyday/rfid-access-card,5,9,0,0,12,pending bulk regeneration
+128,Barcode Scanner,/studios/how-devices-work/everyday/barcode-scanner,10,9,0,0,12,pending bulk regeneration
+129,QR Code Scanner,/studios/how-devices-work/everyday/qr-code-scanner,8,9,0,0,12,pending bulk regeneration
+130,Biometric Fingerprint Scanner,/studios/how-devices-work/everyday/biometric-fingerprint-scanner,4,9,0,0,12,pending bulk regeneration
+131,CCTV Camera,/studios/how-devices-work/everyday/cctv-camera,10,9,0,0,12,pending bulk regeneration
+132,IR Camera,/studios/how-devices-work/everyday/ir-camera,16,9,0,0,12,pending bulk regeneration
+133,Television,/studios/how-devices-work/everyday/television,13,11,0,0,14,pending bulk regeneration
+134,Digital Door Lock,/studios/how-devices-work/everyday/digital-door-lock,3,9,0,0,12,pending bulk regeneration
+135,Microwave Oven Controller,/studios/how-devices-work/everyday/microwave-oven-controller,8,8,0,0,11,pending bulk regeneration
+136,Washing Machine Controller,/studios/how-devices-work/everyday/washing-machine-controller,16,12,0,0,15,pending bulk regeneration
+137,Induction Cooktop,/studios/how-devices-work/everyday/induction-cooktop,3,8,0,0,11,pending bulk regeneration
+138,Smart Energy Meter,/studios/how-devices-work/everyday/smart-energy-meter,14,11,0,0,14,pending bulk regeneration
+139,GPS Receiver,/studios/how-devices-work/everyday/gps-receiver,5,10,0,0,13,pending bulk regeneration
+140,Digital Multimeter,/studios/how-devices-work/everyday/digital-multimeter,8,10,0,0,13,pending bulk regeneration

@@ -1,0 +1,11 @@
+export function PositioningArchitecture({control=false}:{control?:boolean}){
+ const box=(x:number,y:number,w:number,title:string,sub:string,fill="#e8f5ff")=><g><rect x={x} y={y} width={w} height="45" rx="4" fill={fill} stroke="#7dadce"/><text x={x+w/2} y={y+19} textAnchor="middle" fontSize="11">{title}</text><text x={x+w/2} y={y+35} textAnchor="middle" fontSize="9">{sub}</text></g>;
+ return <svg viewBox={control?'0 0 350 345':'0 0 600 290'} role="img" aria-label={control?'Position and heading setpoint PID three degree of freedom position control thrust allocation thruster controllers propulsion and feedback':'Dynamic positioning GNSS gyro wind motion reference environmental inputs control computer thruster controllers propulsion vessel feedback'}>
+ {control?<>{[['Position / heading','Setpoint'],['PID / advanced control','Surge · sway · yaw'],['Thrust allocation','Optimize usage'],['Thruster controllers','Drive commands'],['Thrusters / propulsion','Vessel response']].map(([t,d],i)=><g key={t}>{box(25,10+i*65,230,t!,d!)}{i<4&&<path d={`M140 ${55+i*65}v20`} stroke="#3976a5"/>}</g>)}<path d="M255 292h58V98h-58" stroke="#3976a5" fill="none"/><text x="298" y="185" textAnchor="middle" fontSize="10">Feedback</text></>:<>
+ {['GPS / GNSS','Gyrocompass','Wind sensor','Motion reference'].map((t,i)=><g key={t}>{box(125+i*115,8,104,t,'Position references')}<path d={`M${177+i*115} 53v20H285v24`} stroke="#3976a5" fill="none"/></g>)}
+ {['Wind','Current','Waves'].map((t,i)=><g key={t}>{box(4,90+i*61,99,t,'Disturbance')}<path d={`M103 ${112+i*61}h27V148h59`} stroke="#3976a5" fill="none"/></g>)}
+ {box(189,115,174,'DP control computer','Position · heading · allocation','#dceeff')}{box(396,115,91,'Thruster control','Command / feedback')}{box(505,115,91,'Propulsion','Azimuth / tunnel','#e4f3e7')}{box(244,229,157,'Vessel response','Position / heading')}
+ <path d="M363 138h33M487 138h18M550 160v92H401M244 252h-39V160" stroke="#3976a5" fill="none"/><text x="417" y="220" fontSize="10">Feedback</text></>}
+ </svg>;
+}
+export function PositioningSignal(){return <div className="positioning-signal"><div>{['Sensors','Filtering / validation','Position / motion','3 DOF PID control','Thrust commands','Thrusters'].map((t,i)=><span key={t}>{t}{i<5&&<b>→</b>}</span>)}</div><p>← Feedback: position, heading, motion, thruster status and alarms</p></div>;}

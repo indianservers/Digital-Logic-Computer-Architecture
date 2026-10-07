@@ -1,0 +1,5 @@
+export function GPSStageIcon({stage}:{stage:number}) {
+  return <svg viewBox="0 0 80 65" aria-hidden="true" className="adv-gps-stage-icon"><g fill="none" stroke="#5abaff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    {stage===0?<g transform="rotate(-35 40 32)"><rect x="30" y="20" width="20" height="23" fill="#419ae0"/><path d="M10 20H25V43H10ZM55 20H70V43H55ZM40 43V54M34 54H46M17 20V43M62 20V43"/></g>:stage===1?<><path d="M20 45V25M12 45H28M20 29L12 17H28Z"/><path d="M34 22Q47 32 34 42M44 14Q64 32 44 50M55 6Q80 32 55 58"/></>:stage===2||stage===3?<><path d="M23 8H48L61 21V57H23ZM48 8V21H61M31 29H53M31 38H53M31 47H47"/>{stage===2&&<path d="M8 31L15 38L8 45M67 31L74 38L67 45"/>}</>:stage===4?<><circle cx="29" cy="28" r="21"/><circle cx="51" cy="28" r="21"/><circle cx="40" cy="46" r="17"/><circle cx="40" cy="32" r="3" fill="#5abaff"/></>:<><path d="M8 50L24 30L40 39L59 14L72 20"/><path d="M8 57V8M8 57H74"/><circle cx="59" cy="14" r="4" fill="#5abaff"/></>}
+  </g></svg>;
+}

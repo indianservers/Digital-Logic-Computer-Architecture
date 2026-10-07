@@ -1,0 +1,6 @@
+{
+  "mode": "built-in image_gen",
+  "prompt": "Generate one standalone isolated memory daughterboard only. Small green rectangular PCB with exactly two large black rectangular memory chips and a gold edge connector. High-detail realistic technical product illustration, three-quarter slightly downward camera, entire tiny board centered with broad empty margins. Genuine transparent background. Absolutely no enclosure, no housing, no inertial sensor, gyroscope, aluminum box, machine, tools or second object. No text, numbers, labels, headings, UI, watermark. Only the single green memory daughterboard. This is an independently movable component asset for an educational Inertial Navigation System. Do not include the full device.",
+  "rejected": "memory-v1.png includes unwanted full-device enclosure",
+  "accepted": "/device-labs/generated/063-inertial-navigation-system/memory-v2.png"
+}

@@ -1,0 +1,322 @@
+[
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "adc",
+    "image": "/device-labs/generated/011-sonar/adc.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "display",
+    "image": "/device-labs/generated/011-sonar/display.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "echo-processor",
+    "image": "/device-labs/generated/011-sonar/echo-processor.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "power-amplifier",
+    "image": "/device-labs/generated/011-sonar/power-amplifier.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "pressure-housing",
+    "image": "/device-labs/generated/011-sonar/pressure-housing.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "pulse-generator",
+    "image": "/device-labs/generated/011-sonar/pulse-generator.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "receive-amplifier",
+    "image": "/device-labs/generated/011-sonar/receive-amplifier.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "component_id": "transducer",
+    "image": "/device-labs/generated/011-sonar/transducer.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "accelerometer-assembly",
+    "image": "/device-labs/generated/063-inertial-navigation-system/accelerometer-assembly.png",
+    "native_size": [
+      1312,
+      1199
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "adc-interface",
+    "image": "/device-labs/generated/063-inertial-navigation-system/adc-interface.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "data-bus-interface",
+    "image": "/device-labs/generated/063-inertial-navigation-system/data-bus-interface.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "gyroscope-assembly",
+    "image": "/device-labs/generated/063-inertial-navigation-system/gyroscope-assembly.png",
+    "native_size": [
+      1374,
+      1145
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "memory-v2",
+    "image": "/device-labs/generated/063-inertial-navigation-system/memory-v2.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "power-supply",
+    "image": "/device-labs/generated/063-inertial-navigation-system/power-supply.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "processor-board",
+    "image": "/device-labs/generated/063-inertial-navigation-system/processor-board.png",
+    "native_size": [
+      1374,
+      1145
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "component_id": "rugged-enclosure",
+    "image": "/device-labs/generated/063-inertial-navigation-system/rugged-enclosure.png",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "transform_origin": [
+      0.5,
+      0.5
+    ],
+    "preview_translation_pixels": [
+      0,
+      -14
+    ],
+    "respects_reduced_motion": true,
+    "assembly_alignment": "Not a CAD assembly; future physical assembly transforms require calibration."
+  }
+]

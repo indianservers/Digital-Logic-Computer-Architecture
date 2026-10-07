@@ -1,0 +1,24 @@
+import {createElement} from 'react';
+import {test,expect} from 'vitest';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {MemoryRouter} from 'react-router-dom';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import LabPage from './labs/LabPage';
+import AdvancedLabPage from './advanced/AdvancedLabPage';
+import {LABS,labPath} from './labs/data';
+import DeviceExamples from './DeviceExamples';
+import {CourseAuditContext} from './DeviceCourse';
+import {ADVANCED_LABS,advancedPath} from './advanced/data';
+test('inventory every complete device page',()=>{
+ const phase=process.env.HDW_AUDIT_PHASE??'before';
+ const dir=`.codex-device-audit/tab-migration/${phase}`;
+ mkdirSync(dir,{recursive:true});
+ const records=[];
+ for(const lab of [...LABS,...ADVANCED_LABS]){
+  const route=lab.number<=54?labPath(lab as typeof LABS[number]):advancedPath(lab as typeof ADVANCED_LABS[number]);
+  const html=renderToStaticMarkup(createElement(CourseAuditContext.Provider,{value:true},createElement(MemoryRouter,{initialEntries:[route]},lab.number<=54?createElement(LabPage,{lab:lab as typeof LABS[number]}):createElement(AdvancedLabPage,{lab:lab as typeof ADVANCED_LABS[number]}))));
+  writeFileSync(`${dir}/${lab.number}.html`,html);
+  records.push({number:lab.number,device:lab.device.name,route,parts:lab.parts,controls:lab.controls,modes:lab.modes,applications:lab.applications,principle:lab.principle});
+ }
+ writeFileSync(`${dir}/pages.json`,JSON.stringify(records,null,2));
+},30000);

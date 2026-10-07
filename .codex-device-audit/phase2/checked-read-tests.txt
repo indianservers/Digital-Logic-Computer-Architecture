@@ -1,0 +1,20 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 402ms
+ ✓ src/studios/how-devices-work/advanced/systems.test.ts (41 tests) 287ms
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 588ms
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 296ms
+ ✓ src/studios/how-devices-work/advanced/security.test.ts (42 tests) 233ms
+ ✓ src/studios/how-devices-work/advanced/marine.test.ts (43 tests) 215ms
+ ✓ src/studios/how-devices-work/advanced/control.test.ts (43 tests) 214ms
+ ✓ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests) 239ms
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 203ms
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 169ms
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 35ms
+
+ Test Files  11 passed (11)
+      Tests  686 passed (686)
+   Start at  02:57:10
+   Duration  17.89s (transform 2.27s, setup 0ms, collect 22.60s, tests 2.88s, environment 2ms, prepare 787ms)
+

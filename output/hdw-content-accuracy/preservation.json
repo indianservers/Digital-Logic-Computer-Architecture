@@ -1,0 +1,982 @@
+[
+  {
+    "number": 1,
+    "name": "Digital Thermometer",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 2,
+    "name": "ECG Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 3,
+    "name": "Pulse Oximeter",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 4,
+    "name": "Digital Blood Pressure Monitor",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 5,
+    "name": "Ultrasound Scanner",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 6,
+    "name": "MRI Scanner",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 7,
+    "name": "CT Scanner",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 8,
+    "name": "TV Remote Control",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 9,
+    "name": "NFC Payment System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 10,
+    "name": "Robotic Arm",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 11,
+    "name": "SONAR",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 12,
+    "name": "Aircraft Autopilot",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 13,
+    "name": "Surveillance Radar",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 14,
+    "name": "Digital Camera",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 15,
+    "name": "Smartphone",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 16,
+    "name": "Infrared Thermometer",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 17,
+    "name": "Digital Stethoscope",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 18,
+    "name": "Glucometer",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 19,
+    "name": "ICU Patient Monitor",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 20,
+    "name": "Heart Rate Monitor",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 21,
+    "name": "Portable ECG",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 22,
+    "name": "Holter Monitor",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 23,
+    "name": "EEG Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 24,
+    "name": "EMG Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 25,
+    "name": "Fetal Heart Monitor",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 26,
+    "name": "Fetal Monitor",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 27,
+    "name": "Electronic Spirometer",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 28,
+    "name": "Peak Flow Meter",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 29,
+    "name": "Digital Weighing Scale",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 30,
+    "name": "Body Composition Analyzer",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 31,
+    "name": "X-Ray Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 32,
+    "name": "Digital Radiography Detector",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 33,
+    "name": "Doppler Ultrasound",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 34,
+    "name": "PET Scanner",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 35,
+    "name": "SPECT Scanner",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 36,
+    "name": "Mammography System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 37,
+    "name": "Endoscope Camera System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 38,
+    "name": "Digital Microscope",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 39,
+    "name": "Ventilator",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 40,
+    "name": "Infusion Pump",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 41,
+    "name": "Syringe Pump",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 42,
+    "name": "Defibrillator",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 43,
+    "name": "AED",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 44,
+    "name": "Pacemaker",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 45,
+    "name": "Implantable Cardioverter Defibrillator",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 46,
+    "name": "Dialysis Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 47,
+    "name": "CPAP Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 48,
+    "name": "BiPAP Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 49,
+    "name": "Anesthesia Machine",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 50,
+    "name": "Electrosurgical Unit",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 51,
+    "name": "TENS Machine",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 52,
+    "name": "Medical Laser System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 53,
+    "name": "Hearing Aid",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 54,
+    "name": "PCR Machine",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 55,
+    "name": "Centrifuge",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 56,
+    "name": "Blood Cell Analyzer",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 57,
+    "name": "Automated Chemistry Analyzer",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 58,
+    "name": "Aircraft Flight Computer",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 59,
+    "name": "Fly-by-Wire System",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 60,
+    "name": "Glass Cockpit",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 61,
+    "name": "Primary Flight Display",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 62,
+    "name": "Air Data Computer",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 63,
+    "name": "Inertial Navigation System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 64,
+    "name": "GPS Navigation System",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 65,
+    "name": "Engine FADEC Controller",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 66,
+    "name": "Aircraft Engine Monitoring System",
+    "partsBefore": 6,
+    "partsAfter": 6,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 67,
+    "name": "Drone Flight Controller",
+    "partsBefore": 6,
+    "partsAfter": 6,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 68,
+    "name": "Weather Radar",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 69,
+    "name": "Radar Altimeter",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 70,
+    "name": "Radio Altimeter",
+    "partsBefore": 6,
+    "partsAfter": 6,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 71,
+    "name": "Aircraft Transponder",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 72,
+    "name": "ADS-B System",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 73,
+    "name": "Traffic Collision Avoidance System",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 74,
+    "name": "Flight Data Recorder",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 75,
+    "name": "Cockpit Voice Recorder",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 76,
+    "name": "Satellite Communication Terminal",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 77,
+    "name": "Satellite Attitude-Control Computer",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 78,
+    "name": "Phased-Array Radar",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 79,
+    "name": "Ground Surveillance Radar",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 80,
+    "name": "Passive Radar",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 81,
+    "name": "Air-Defence Radar",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 82,
+    "name": "Thermal Imaging Camera",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 83,
+    "name": "Night-Vision System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 84,
+    "name": "Infrared Surveillance Camera",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 85,
+    "name": "Laser Range Finder",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 86,
+    "name": "Software Defined Radio",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 87,
+    "name": "Secure Digital Radio",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 88,
+    "name": "IFF System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 89,
+    "name": "Electronic Identification System",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 90,
+    "name": "Inertial Navigation System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 91,
+    "name": "GPS Receiver",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 92,
+    "name": "Electronic Compass",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 93,
+    "name": "Satellite Communication Terminal",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 94,
+    "name": "Perimeter Intrusion Detection System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 95,
+    "name": "Biometric Access System",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 96,
+    "name": "Sonar Detection System",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 97,
+    "name": "Unmanned Surveillance Vehicle Electronics",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 98,
+    "name": "Marine Radar",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 99,
+    "name": "Fish Finder",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 100,
+    "name": "Depth Sounder",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 101,
+    "name": "GPS Chartplotter",
+    "partsBefore": 11,
+    "partsAfter": 11,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 102,
+    "name": "Automatic Identification System (AIS)",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 103,
+    "name": "Marine Autopilot",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 104,
+    "name": "Electronic Compass",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 105,
+    "name": "Marine VHF Radio",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 106,
+    "name": "EPIRB Emergency Beacon",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 107,
+    "name": "Dynamic Positioning System",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 108,
+    "name": "Underwater ROV Control System",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 109,
+    "name": "Autonomous Underwater Vehicle Navigation",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 110,
+    "name": "Digital Engine Control",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 111,
+    "name": "Servo Motor Controller",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 112,
+    "name": "Stepper Motor Controller",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 113,
+    "name": "Mobile Robot",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 114,
+    "name": "Line-Following Robot",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 115,
+    "name": "Self-Balancing Robot",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 116,
+    "name": "Industrial Robot Controller",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 117,
+    "name": "Collaborative Robot",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 118,
+    "name": "LiDAR Mapping Robot",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 119,
+    "name": "SLAM Navigation System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 120,
+    "name": "Autonomous Mobile Robot",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 121,
+    "name": "Warehouse Robot",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 122,
+    "name": "Machine-Vision System",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 123,
+    "name": "Quadruped Robot",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 124,
+    "name": "Wi-Fi Router",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 125,
+    "name": "Bluetooth Headphones",
+    "partsBefore": 7,
+    "partsAfter": 7,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 126,
+    "name": "Smartwatch",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 127,
+    "name": "RFID Access Card",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 128,
+    "name": "Barcode Scanner",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 129,
+    "name": "QR Code Scanner",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 130,
+    "name": "Biometric Fingerprint Scanner",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 131,
+    "name": "CCTV Camera",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 132,
+    "name": "IR Camera",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 133,
+    "name": "Television",
+    "partsBefore": 11,
+    "partsAfter": 11,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 134,
+    "name": "Digital Door Lock",
+    "partsBefore": 9,
+    "partsAfter": 9,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 135,
+    "name": "Microwave Oven Controller",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 136,
+    "name": "Washing Machine Controller",
+    "partsBefore": 12,
+    "partsAfter": 12,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 137,
+    "name": "Induction Cooktop",
+    "partsBefore": 8,
+    "partsAfter": 8,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 138,
+    "name": "Smart Energy Meter",
+    "partsBefore": 11,
+    "partsAfter": 11,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 139,
+    "name": "GPS Receiver",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  },
+  {
+    "number": 140,
+    "name": "Digital Multimeter",
+    "partsBefore": 10,
+    "partsAfter": 10,
+    "controlsUnchanged": true
+  }
+]

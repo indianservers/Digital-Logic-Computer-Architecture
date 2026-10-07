@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 282ms
+
+ Test Files  1 passed (1)
+      Tests  32 passed (32)
+   Start at  00:35:57
+   Duration  1.51s (transform 263ms, setup 0ms, collect 1.01s, tests 282ms, environment 0ms, prepare 77ms)
+

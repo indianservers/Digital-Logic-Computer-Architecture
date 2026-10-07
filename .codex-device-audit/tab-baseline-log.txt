@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/course-audit.test.ts (1 test) 2319ms
+   ✓ inventory every complete device page  2317ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  18:12:22
+   Duration  8.68s (transform 1.45s, setup 0ms, collect 5.78s, tests 2.32s, environment 0ms, prepare 222ms)
+

@@ -1,0 +1,18 @@
+{
+  "phase": 3,
+  "scope": "Integration, independent component-motion previews and QA for the two available generated sets.",
+  "page_sets": [{"lab": 11, "name": "SONAR", "accepted_images": 11, "separate_components": 8}, {"lab": 63, "name": "Inertial Navigation System", "accepted_images": 12, "separate_components": 8}],
+  "accepted_images_total": 23,
+  "rejected_variants": 1,
+  "repair": "INS memory was regenerated to remove an unwanted whole enclosure; only the standalone daughterboard is served.",
+  "integration_repair": "Connected INS assets to AdvancedLabPage, its actual renderer, rather than the unused aviation-family path.",
+  "browser_component_checks": {"desktop": 16, "narrow_css_width": 294, "narrow": 16, "broken_images": 0, "overflow": 0},
+  "motion_preview": "Start and stop verified on both pages; isolated vertical translation only. Reduced-motion preference is respected in CSS.",
+  "image_controls": "Full-resolution links, PNG download links, lazy loading, complete framing with object-fit contain.",
+  "tests": "968 passed across all How Devices Work tests",
+  "studio_typecheck": "passed",
+  "production_build": "passed",
+  "remaining_page_sets": 138,
+  "overall_status": "Incomplete: remaining phase-2 assets and their phase-3 integration are pending.",
+  "animation_limit": "No exact physical assembly, exploded-part trajectory, 3D rotation or exported animated frame sequence is implemented."
+}

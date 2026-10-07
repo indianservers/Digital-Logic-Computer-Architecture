@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 1009ms
+ ✓ src/studios/how-devices-work/course.test.ts (280 tests) 3989ms
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 46ms
+
+ Test Files  3 passed (3)
+      Tests  600 passed (600)
+   Start at  19:47:23
+   Duration  9.57s (transform 1.81s, setup 0ms, collect 11.94s, tests 5.04s, environment 0ms, prepare 304ms)
+

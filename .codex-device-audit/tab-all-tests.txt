@@ -1,0 +1,1150 @@
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+stderr | src/studios/how-devices-work/advanced/household.test.ts > household labs 135–140 > 135: renders own panels, controls and hardware
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 125: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 126: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 127: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 128: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/household.test.ts > household labs 135–140 > 137: renders own panels, controls and hardware
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 129: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 130: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 131: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/household.test.ts > household labs 135–140 > 139: renders own panels, controls and hardware
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 132: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 133: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/consumer.test.ts > consumer labs 125–134 > 134: renders its own layout and artwork
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests) 1016ms
+stderr | src/studios/how-devices-work/advanced/household.test.ts > household labs 135–140 > 140: renders own panels, controls and hardware
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 1195ms
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 1: Digital Thermometer renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 2: ECG Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 3: Pulse Oximeter renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 4: Digital Blood Pressure Monitor renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 5: Ultrasound Scanner renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 6: MRI Scanner renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 7: CT Scanner renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 8: TV Remote Control renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 9: NFC Payment System renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 1–10 > 10: Robotic Arm renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 11: SONAR renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 12: Aircraft Autopilot renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 13: Surveillance Radar renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 14: Digital Camera renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 15: Smartphone renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 16: Infrared Thermometer renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 17: Digital Stethoscope renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 18: Glucometer renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 19: ICU Patient Monitor renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 11–20 > 20: Heart Rate Monitor renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 21: Portable ECG renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 22: Holter Monitor renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 23: EEG Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 24: EMG Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 25: Fetal Heart Monitor renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 26: Fetal Monitor renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 27: Electronic Spirometer renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 28: Peak Flow Meter renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 29: Digital Weighing Scale renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 21–30 > 30: Body Composition Analyzer renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 31: X-Ray Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 32: Digital Radiography Detector renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 33: Doppler Ultrasound renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 34: PET Scanner renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 35: SPECT Scanner renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 36: Mammography System renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 37: Endoscope Camera System renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 38: Digital Microscope renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 39: Ventilator renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 31–40 > 40: Infusion Pump renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 41: Syringe Pump renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 42: Defibrillator renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 43: AED renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 44: Pacemaker renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 45: Implantable Cardioverter Defibrillator renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 46: Dialysis Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 47: CPAP Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 48: BiPAP Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 49: Anesthesia Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 50: Electrosurgical Unit renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 51: TENS Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 177ms
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 52: Medical Laser System renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 53: Hearing Aid renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/labs/labs.test.ts > Device labs 41–54 > 54: PCR Machine renders real controls, artwork and learning content
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 5765ms
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 75: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 95: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 65: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 115: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 76: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 85: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 96: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 66: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 77: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 105: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 116: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 67: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 97: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 78: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 117: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 106: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 79: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 98: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 107: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 68: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 80: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 86: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 55: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 69: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 108: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 81: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 99: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 118: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 87: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 56: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 70: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 109: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 88: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 71: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 57: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 100: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 89: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 72: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 110: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 58: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 101: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 90: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 59: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 73: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 111: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 119: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 91: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 60: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 102: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/aviation.test.ts > Phase B: device-specific aviation pages > 74: renders its hardware, architecture, controls and quiz
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 112: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 61: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 92: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 103: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 1137ms
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 120: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 62: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 93: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 113: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/marine.test.ts > Phase E: access, acoustics and marine navigation > 104: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/marine.test.ts (44 tests) 1237ms
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 63: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/security.test.ts > Phase D: optical, RF, identification and navigation > 94: renders its source hardware, functional diagram and inputs
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 121: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/control.test.ts > Phase F radio, vessel and motor controls > 114: renders real hardware and usable native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/security.test.ts (42 tests) 1179ms
+   ✓ Phase D: optical, RF, identification and navigation > 86: renders its source hardware, functional diagram and inputs  340ms
+stderr | src/studios/how-devices-work/advanced/advanced.test.ts > Phase A: labs 55–64 > 64: renders real components and supplied hardware assets
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/control.test.ts (43 tests) 1251ms
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 910ms
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 82: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 83: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/systems.test.ts > Phase C: recording, space, radar and imaging > 84: renders device-specific art, architecture and controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 122: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/systems.test.ts (42 tests) 1998ms
+   ✓ Phase C: recording, space, radar and imaging > 82: renders device-specific art, architecture and controls  913ms
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 123: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+stderr | src/studios/how-devices-work/advanced/robotics.test.ts > Phase G robotics and networking > 124: renders correct local hardware and native controls
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 2248ms
+   ✓ Phase G robotics and networking > 122: renders correct local hardware and native controls  529ms
+ ✓ src/studios/how-devices-work/course.test.ts (280 tests) 12284ms
+stderr | src/studios/how-devices-work/course-audit.test.ts > inventory every complete device page
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from LabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AdvancedFirstBatchPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from AviationLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SystemsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from SecurityLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from MarineLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ControlLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from RoboticsLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from ConsumerLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `DeviceCourse`. It was passed a child from HouseholdLabPage. See https://react.dev/link/warning-keys for more information.
+
+ ✓ src/studios/how-devices-work/course-audit.test.ts (141 tests) 20280ms
+   ✓ inventory every complete device page  16631ms
+
+ Test Files  13 passed (13)
+      Tests  1109 passed (1109)
+   Start at  18:33:54
+   Duration  31.35s (transform 19.67s, setup 0ms, collect 156.95s, tests 50.68s, environment 8ms, prepare 5.95s)
+

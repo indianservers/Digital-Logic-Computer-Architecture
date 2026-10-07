@@ -1,0 +1,23 @@
+{
+  "desktop": {
+    "pages": 140,
+    "checks": 1120,
+    "issues": 0
+  },
+  "mobile": {
+    "sample_pages": 15,
+    "checks": 120,
+    "css_width": 391,
+    "issues": 0
+  },
+  "tablet": {
+    "sample_pages": 11,
+    "checks": 88,
+    "css_width": 768,
+    "issues": 0
+  },
+  "production_quiz_pages": [
+    1,
+    65
+  ]
+}

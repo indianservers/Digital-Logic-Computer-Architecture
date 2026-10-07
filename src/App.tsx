@@ -53,6 +53,8 @@ const MobileStudio = lazy(() => import("./studios/mobile/MobileStudio"));
 const DesktopStudio = lazy(() => import("./studios/desktop/DesktopStudio"));
 const BuilderStudio = lazy(() => import("./studios/builder/BuilderStudio"));
 const SandboxStudio = lazy(() => import("./studios/sandbox/SandboxStudio"));
+const HowDevicesWorkStudio = lazy(() => import("./studios/how-devices-work/HowDevicesWorkStudio"));
+const DevicePage = lazy(() => import("./studios/how-devices-work/HowDevicesWorkStudio").then(module => ({ default: module.DevicePage })));
 
 function UpcomingRoute() {
   const { id } = useParams();
@@ -70,6 +72,8 @@ export function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/learn" element={<LearnPage />} />
         <Route path="/studios" element={<StudiosPage />} />
+        <Route path="/studios/how-devices-work" element={<Suspend><HowDevicesWorkStudio /></Suspend>} />
+        <Route path="/studios/how-devices-work/:category/:slug" element={<Suspend><DevicePage /></Suspend>} />
         <Route path="/studios/vlsi" element={<VlsiStudio />} />
         <Route path="/studios/vlsi/:labId" element={<VlsiStudio />} />
         <Route path="/studios/microcontroller" element={<MicrocontrollerStudio />} />

@@ -1,0 +1,5 @@
+const fs=require('fs'),ts=require('../node_modules/typescript');
+for(const file of fs.readdirSync('src/studios/how-devices-work/advanced').filter(f=>f.endsWith('.tsx'))){const path='src/studios/how-devices-work/advanced/'+file,source=fs.readFileSync(path,'utf8'),tree=ts.createSourceFile(path,source,ts.ScriptTarget.Latest,true),edits=[];
+ const walk=n=>{if(ts.isCallExpression(n)&&ts.isIdentifier(n.expression)&&['useEffect','useMemo','useCallback'].includes(n.expression.text)&&n.arguments[1]&&ts.isArrayLiteralExpression(n.arguments[1])){const visit=c=>{if(ts.isCallExpression(c)&&c.expression.getText(tree)==='parameterValue'&&c.arguments[0]?.getText(tree)==='p'&&ts.isStringLiteral(c.arguments[1]))edits.push([c.getStart(tree),c.end,'p.'+c.arguments[1].text]);ts.forEachChild(c,visit);};visit(n.arguments[1]);}ts.forEachChild(n,walk);};walk(tree);
+ let changed=source;for(const [start,end,text]of edits.sort((a,b)=>b[0]-a[0]))changed=changed.slice(0,start)+text+changed.slice(end);if(changed!==source)fs.writeFileSync(path,changed);
+}
