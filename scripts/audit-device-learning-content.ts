@@ -1,0 +1,13 @@
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {LABS,labPath} from '../src/studios/how-devices-work/labs/data';
+import {ADVANCED_LABS,advancedPath} from '../src/studios/how-devices-work/advanced/data';
+import {operatingExplanation,wordCount} from '../src/studios/how-devices-work/learning-content';
+import {BUILD_PLANS} from '../src/studios/how-devices-work/build-plans';
+const rows=[...LABS,...ADVANCED_LABS].map(lab=>({number:lab.number,name:lab.device.name,route:'steps' in lab?advancedPath(lab):labPath(lab),sections:operatingExplanation(lab),build:BUILD_PLANS[lab.number]}));
+const report=rows.map(row=>({...row,words:wordCount(row.sections.map(s=>s.text).join(' '))}));
+mkdirSync('output/hdw-learning-content',{recursive:true});
+writeFileSync('output/hdw-learning-content/page-review.json',JSON.stringify(report,null,2)+'\n');
+writeFileSync('output/hdw-learning-content/word-counts.csv','Number,Page,Words,Build plan\n'+report.map(r=>`${r.number},${JSON.stringify(r.name)},${r.words},${Boolean(r.build)}`).join('\n')+'\n');
+const failures=report.filter(r=>r.words<200||r.words>400||!r.build);
+console.log(JSON.stringify({pages:report.length,minimum:Math.min(...report.map(r=>r.words)),maximum:Math.max(...report.map(r=>r.words)),failures:failures.map(r=>({number:r.number,name:r.name,words:r.words}))}));
+if(failures.length)process.exitCode=1;

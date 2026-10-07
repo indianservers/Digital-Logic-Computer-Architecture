@@ -8,3 +8,4 @@
 .hdw-course .sy-quiz-content fieldset{min-width:0;border:1px solid #bdd4e6;border-radius:8px;margin:14px 0;padding:16px}.hdw-course .sy-quiz-content legend{font-weight:700;padding:0 8px}.hdw-course .sy-quiz-content fieldset button{display:block;margin:8px 0;max-width:100%;white-space:normal}
 
 .hdw-course-card .dl-selected{background:#e8f3fb!important;color:#18394d!important;border-color:#b4cde0!important}.hdw-course-card .dl-component-details{color:#18394d}
+.hdw-course .hdw-operating-guide p,.hdw-course .hdw-making-guide p{font-size:16px;line-height:1.8;margin:10px 0 18px;max-width:80ch;overflow-wrap:anywhere}.hdw-course .hdw-operating-guide h3,.hdw-course .hdw-making-guide h3{font-size:18px;line-height:1.4;margin:24px 0 8px}.hdw-course .hdw-operating-guide p>strong{font-size:inherit}.hdw-course .hdw-making-guide summary{font-size:14px;cursor:pointer}

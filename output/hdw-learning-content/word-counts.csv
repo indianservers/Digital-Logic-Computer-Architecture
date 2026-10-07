@@ -1,0 +1,141 @@
+Number,Page,Words,Build plan
+1,"Digital Thermometer",299,true
+2,"ECG Machine",287,true
+3,"Pulse Oximeter",273,true
+4,"Digital Blood Pressure Monitor",270,true
+5,"Ultrasound Scanner",265,true
+6,"MRI Scanner",266,true
+7,"CT Scanner",292,true
+8,"TV Remote Control",265,true
+9,"NFC Payment System",262,true
+10,"Robotic Arm",305,true
+11,"SONAR",274,true
+12,"Aircraft Autopilot",269,true
+13,"Surveillance Radar",306,true
+14,"Digital Camera",307,true
+15,"Smartphone",311,true
+16,"Infrared Thermometer",317,true
+17,"Digital Stethoscope",287,true
+18,"Glucometer",303,true
+19,"ICU Patient Monitor",290,true
+20,"Heart Rate Monitor",267,true
+21,"Portable ECG",324,true
+22,"Holter Monitor",275,true
+23,"EEG Machine",285,true
+24,"EMG Machine",288,true
+25,"Fetal Heart Monitor",302,true
+26,"Fetal Monitor",269,true
+27,"Electronic Spirometer",293,true
+28,"Peak Flow Meter",293,true
+29,"Digital Weighing Scale",265,true
+30,"Body Composition Analyzer",281,true
+31,"X-Ray Machine",283,true
+32,"Digital Radiography Detector",266,true
+33,"Doppler Ultrasound",308,true
+34,"PET Scanner",300,true
+35,"SPECT Scanner",292,true
+36,"Mammography System",292,true
+37,"Endoscope Camera System",283,true
+38,"Digital Microscope",283,true
+39,"Ventilator",260,true
+40,"Infusion Pump",296,true
+41,"Syringe Pump",281,true
+42,"Defibrillator",307,true
+43,"AED",300,true
+44,"Pacemaker",272,true
+45,"Implantable Cardioverter Defibrillator",291,true
+46,"Dialysis Machine",308,true
+47,"CPAP Machine",277,true
+48,"BiPAP Machine",260,true
+49,"Anesthesia Machine",295,true
+50,"Electrosurgical Unit",282,true
+51,"TENS Machine",289,true
+52,"Medical Laser System",319,true
+53,"Hearing Aid",269,true
+54,"PCR Machine",302,true
+55,"Centrifuge",265,true
+56,"Blood Cell Analyzer",272,true
+57,"Automated Chemistry Analyzer",314,true
+58,"Aircraft Flight Computer",301,true
+59,"Fly-by-Wire System",307,true
+60,"Glass Cockpit",301,true
+61,"Primary Flight Display",314,true
+62,"Air Data Computer",312,true
+63,"Inertial Navigation System",267,true
+64,"GPS Navigation System",309,true
+65,"Engine FADEC Controller",266,true
+66,"Aircraft Engine Monitoring System",261,true
+67,"Drone Flight Controller",260,true
+68,"Weather Radar",318,true
+69,"Radar Altimeter",318,true
+70,"Radio Altimeter",316,true
+71,"Aircraft Transponder",310,true
+72,"ADS-B System",277,true
+73,"Traffic Collision Avoidance System",308,true
+74,"Flight Data Recorder",314,true
+75,"Cockpit Voice Recorder",301,true
+76,"Satellite Communication Terminal",285,true
+77,"Satellite Attitude-Control Computer",274,true
+78,"Phased-Array Radar",269,true
+79,"Ground Surveillance Radar",311,true
+80,"Passive Radar",267,true
+81,"Air-Defence Radar",303,true
+82,"Thermal Imaging Camera",262,true
+83,"Night-Vision System",261,true
+84,"Infrared Surveillance Camera",273,true
+85,"Laser Range Finder",270,true
+86,"Software Defined Radio",281,true
+87,"Secure Digital Radio",265,true
+88,"IFF System",313,true
+89,"Electronic Identification System",265,true
+90,"Inertial Navigation System",297,true
+91,"GPS Receiver",262,true
+92,"Electronic Compass",271,true
+93,"Satellite Communication Terminal",263,true
+94,"Perimeter Intrusion Detection System",264,true
+95,"Biometric Access System",263,true
+96,"Sonar Detection System",300,true
+97,"Unmanned Surveillance Vehicle Electronics",287,true
+98,"Marine Radar",276,true
+99,"Fish Finder",268,true
+100,"Depth Sounder",266,true
+101,"GPS Chartplotter",264,true
+102,"Automatic Identification System (AIS)",315,true
+103,"Marine Autopilot",310,true
+104,"Electronic Compass",275,true
+105,"Marine VHF Radio",266,true
+106,"EPIRB Emergency Beacon",297,true
+107,"Dynamic Positioning System",310,true
+108,"Underwater ROV Control System",283,true
+109,"Autonomous Underwater Vehicle Navigation",268,true
+110,"Digital Engine Control",283,true
+111,"Servo Motor Controller",316,true
+112,"Stepper Motor Controller",292,true
+113,"Mobile Robot",310,true
+114,"Line-Following Robot",320,true
+115,"Self-Balancing Robot",267,true
+116,"Industrial Robot Controller",285,true
+117,"Collaborative Robot",279,true
+118,"LiDAR Mapping Robot",271,true
+119,"SLAM Navigation System",321,true
+120,"Autonomous Mobile Robot",318,true
+121,"Warehouse Robot",260,true
+122,"Machine-Vision System",268,true
+123,"Quadruped Robot",318,true
+124,"Wi-Fi Router",279,true
+125,"Bluetooth Headphones",287,true
+126,"Smartwatch",301,true
+127,"RFID Access Card",270,true
+128,"Barcode Scanner",307,true
+129,"QR Code Scanner",295,true
+130,"Biometric Fingerprint Scanner",263,true
+131,"CCTV Camera",264,true
+132,"IR Camera",299,true
+133,"Television",287,true
+134,"Digital Door Lock",268,true
+135,"Microwave Oven Controller",288,true
+136,"Washing Machine Controller",296,true
+137,"Induction Cooktop",275,true
+138,"Smart Energy Meter",291,true
+139,"GPS Receiver",270,true
+140,"Digital Multimeter",281,true
