@@ -1,0 +1,78 @@
+{
+  "status": "Unapproved generic drafts. Not installed on learning pages; exact manufacturer model required.",
+  "selectedModel": "Fluke 87V",
+  "selectionAuthorizedBy": "User: any best",
+  "assets": [
+    {
+      "file": "input-protection",
+      "name": "MOV / TVS / fuse protection",
+      "prompt": "A physically plausible multimeter input-protection component group, only one cream ceramic cartridge fuse with metal endcaps in a holder, two blue disc metal-oxide varistors with two leads each, and one black surface-mount transient-voltage-suppression diode with two metal end terminals on a small green PCB region. Do not draw a glass fuse, high-voltage transformer or complete meter. Illustrative placement, not an exact safety-rated schematic.",
+      "original": "C:/Users/saisa/.codex/generated_images/01a10f87-ab34-75b0-aac1-1b7651a681f2/exec-807fa6cb-7d5d-4156-a494-4644f39b56d9.png",
+      "status": "reviewed representative geometry"
+    },
+    {
+      "file": "rotary-selector",
+      "name": "Rotary selector",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: A single disassembled digital multimeter rotary selector subsystem: one black plastic rotary knob with pointer ridge, its short molded shaft and one circular PCB contact pattern with concentric segmented gold/copper tracks and a separate plausible sprung metal wiper contact. No dial numbers, no whole meter. Components aligned vertically with slight separation, wholly visible. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: Rotary selector. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-be69b85b-973b-4fe8-a5be-057224ca5bf0.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/rotary-selector.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "voltage-divider",
+      "name": "Voltage divider",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: A digital multimeter high-impedance voltage-divider circuit region on a small green printed circuit board: a series chain of physically plausible precision high-value resistors leading toward one lower-value resistor, clean solder joints, restrained traces and ample clearances. Do not pretend the visual is a verified circuit schematic. Only the resistor divider region, no meter enclosure or other modules. No markings or text. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: Voltage divider. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-5e274c39-4d07-492e-b61d-40485e1da40b.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/voltage-divider.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "current-shunt",
+      "name": "Current shunt",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: One precision low-resistance four-terminal current-sense shunt resistor as used in electrical measurement: robust flat metal resistance strip bridging two larger current terminals, with two separate finer Kelvin voltage-sense terminals, on a very small supporting PCB. Physically plausible low resistance metal element, not a large transformer or ordinary high-value resistor. Whole object visible. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: Current shunt. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-4d03cfeb-f56d-4e65-8591-95532cbfae73.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/current-shunt.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "resistance-test-source",
+      "name": "Resistance test source",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: An isolated small analog constant-current test-source circuit region from a digital multimeter PCB: a small black low-pin-count analog IC, precision resistors and small decoupling capacitors on green FR4. This is an illustrative circuit region that is integrated on a shared PCB in real meters, not a separately detachable module. No battery, no external device, no screen. Realistic solder joints and plausible electronic packages. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: Resistance test source. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-e03992b0-0563-4a4e-89ea-ed97d7c57654.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/resistance-test-source.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "input-conditioning",
+      "name": "Input conditioning / filter",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: An isolated small multimeter analog input-conditioning circuit region on green FR4, featuring one small dual amplifier IC, a compact resistor/capacitor RC filter network and well-spaced signal traces. Only this region of a shared printed circuit board, not an entire multimeter. Physically plausible packages and solder joints. No invented modular connectors. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: Input conditioning / filter. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-3a4e6809-72aa-42bf-a807-8f0febd95725.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/input-conditioning.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "measurement-ic",
+      "name": "ADC / measurement IC",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: A single black rectangular precision analog-to-digital measurement integrated circuit in a physically plausible quad-flat package with fine gull-wing metal pins on all four sides, clean visible package seams, blank unmarked top. The complete IC is shown individually, without a circuit board, display or meter body. The internal ADC cannot be seen and must not be represented by invented transparent machinery. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: ADC / measurement IC. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-1908f500-b91a-4e23-94d5-a6b05655486a.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/measurement-ic.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "lcd-buzzer",
+      "name": "LCD / buzzer",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: A digital multimeter output subsystem: one standalone rectangular segmented monochrome LCD glass display with gray-green polarizer and blank unenergized segments, thin black frame and elastomeric zebra-strip connection beneath; beside it one small round black piezo buzzer with a top acoustic opening and two leads. Both complete and visible. No displayed numbers, no boards or device enclosure. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: LCD / buzzer. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-036404b3-eb0e-4a91-9857-64dcd67bc6a0.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/lcd-buzzer.png",
+      "status": "generated; awaiting visual review"
+    },
+    {
+      "file": "battery-supply",
+      "name": "Battery / supply",
+      "prompt": "Use case: scientific-educational. Asset: individually generated standalone component for the Digital Multimeter learning page. Subject: One generic rectangular 9 volt alkaline battery with two unequal snap terminals on its top, plus its matching insulated snap connector attached to red and black supply wires. Entire battery and connector visible, no printed brand, no fake lettering, no device body. Physically plausible unequal male/female snap geometry. Style: sharp photorealistic technical product illustration, mild three-quarter view, neutral studio lighting, realistic materials. Framing: entire components with at least 10% empty transparent margin on every side; absolutely no cropping. Background must be real transparent alpha, no colored field or glow. No page, no mockup, no labels, no titles, no words, no symbols, no arrows, no collage of unrelated parts. Show only the named subsystem: Battery / supply. Representative engineering illustration, not a claimed exact manufacturer teardown.",
+      "original": "C:\\Users\\saisa\\.codex\\generated_images\\01a10f87-ab34-75b0-aac1-1b7651a681f2\\exec-dc0e99f8-efd6-4fae-9bf1-b991c29bf88f.png",
+      "saved": "C:/Indian Servers/Digital Logic Architecture/public/device-labs/generated/140-digital-multimeter/battery-supply.png",
+      "status": "generated; awaiting visual review"
+    }
+  ]
+}

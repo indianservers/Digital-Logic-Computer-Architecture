@@ -1,0 +1,5838 @@
+[
+  {
+    "lab": 1,
+    "page_name": "Digital Thermometer",
+    "route": "/studios/how-devices-work/medical/digital-thermometer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/01-external.webp",
+      "public/device-labs/01-hero.webp",
+      "public/device-labs/01-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Thermistor",
+      "Voltage divider",
+      "Signal-conditioning amplifier",
+      "ADC",
+      "Microcontroller",
+      "Coin-cell battery",
+      "LCD"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 2,
+    "page_name": "ECG Machine",
+    "route": "/studios/how-devices-work/medical/ecg",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/02-external.webp",
+      "public/device-labs/02-hero.webp",
+      "public/device-labs/02-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Electrodes",
+      "Lead protection",
+      "Instrumentation amplifier",
+      "HPF / LPF / notch filter",
+      "ADC",
+      "DSP",
+      "Display",
+      "Printer / storage"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 3,
+    "page_name": "Pulse Oximeter",
+    "route": "/studios/how-devices-work/medical/pulse-oximeter",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/03-external.webp",
+      "public/device-labs/03-hero.webp",
+      "public/device-labs/03-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Red LED",
+      "Infrared LED",
+      "Photodiode",
+      "Transimpedance amplifier",
+      "Analog filter",
+      "ADC",
+      "DSP",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 4,
+    "page_name": "Digital Blood Pressure Monitor",
+    "route": "/studios/how-devices-work/medical/digital-blood-pressure-monitor",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/04-external.webp",
+      "public/device-labs/04-hero.webp",
+      "public/device-labs/04-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Inflatable cuff",
+      "Air pump",
+      "Pressure sensor",
+      "Deflation valve",
+      "Analog front end",
+      "ADC",
+      "MCU",
+      "LCD"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 5,
+    "page_name": "Ultrasound Scanner",
+    "route": "/studios/how-devices-work/medical/ultrasound-scanner",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/05-external.webp",
+      "public/device-labs/05-hero.webp",
+      "public/device-labs/05-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Transducer array",
+      "Pulse generator",
+      "Transmit / receive switch",
+      "Low-noise amplifier",
+      "ADC",
+      "Receive beamformer",
+      "DSP",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 6,
+    "page_name": "MRI Scanner",
+    "route": "/studios/how-devices-work/medical/mri-scanner",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/06-external.webp",
+      "public/device-labs/06-hero.webp",
+      "public/device-labs/06-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Main magnet",
+      "Gradient coils",
+      "RF transmitter",
+      "RF receive coil",
+      "Gradient amplifiers",
+      "Receive chain",
+      "ADC",
+      "Reconstruction computer"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 7,
+    "page_name": "CT Scanner",
+    "route": "/studios/how-devices-work/medical/ct-scanner",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/07-external.webp",
+      "public/device-labs/07-hero.webp",
+      "public/device-labs/07-internal.webp",
+      "public/device-labs/07-scene.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal",
+      "scene"
+    ],
+    "named_components": [
+      "Rotating X-ray source",
+      "Detector array",
+      "Gantry",
+      "Slip ring",
+      "Acquisition electronics",
+      "ADC",
+      "Reconstruction computer",
+      "Patient table"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 8,
+    "page_name": "TV Remote Control",
+    "route": "/studios/how-devices-work/everyday/tv-remote",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/08-external.webp",
+      "public/device-labs/08-hero.webp",
+      "public/device-labs/08-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Keypad",
+      "Switch matrix",
+      "Microcontroller",
+      "Command encoder",
+      "38 kHz modulator",
+      "IR LED",
+      "Battery",
+      "IR receiver"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 9,
+    "page_name": "NFC Payment System",
+    "route": "/studios/how-devices-work/everyday/nfc-payment-system",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/09-external.webp",
+      "public/device-labs/09-hero.webp",
+      "public/device-labs/09-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Reader antenna",
+      "RF front end",
+      "NFC controller",
+      "Secure element",
+      "Credential token",
+      "Processor",
+      "Display",
+      "Network interface"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 10,
+    "page_name": "Robotic Arm",
+    "route": "/studios/how-devices-work/robotics/robotic-arm",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/10-external.webp",
+      "public/device-labs/10-hero.webp",
+      "public/device-labs/10-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Base joint",
+      "Shoulder joint",
+      "Elbow joint",
+      "Wrist pitch",
+      "Wrist roll",
+      "Tool joint",
+      "Servo drives",
+      "Controller",
+      "End effector"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 11,
+    "page_name": "SONAR",
+    "route": "/studios/how-devices-work/marine/sonar",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/11-external.webp",
+      "public/device-labs/11-hero.webp",
+      "public/device-labs/11-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Pulse generator",
+      "Power amplifier",
+      "Transducer",
+      "Receive amplifier",
+      "ADC",
+      "Echo processor",
+      "Display",
+      "Pressure housing"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [
+      {
+        "role": "adc",
+        "path": "/device-labs/generated/011-sonar/adc.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 2010158,
+        "sha256": "0dfdd83b7bb286c9e32bed189b845c562eaa27e8f5c22d31625a69dce72edfa4",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "display",
+        "path": "/device-labs/generated/011-sonar/display.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1954327,
+        "sha256": "4221862915adaa045a6cdbaccb7f42115f077f84dd652f83ffdcd8d3cad1ef18",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "echo-processor",
+        "path": "/device-labs/generated/011-sonar/echo-processor.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 2253519,
+        "sha256": "21f48e208ad52ed0af8a6d45dd04e1a02bffc59ac52180fb0d2da8a6f234fa96",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "external",
+        "path": "/device-labs/generated/011-sonar/external.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1697559,
+        "sha256": "5a124b5a53dd5019065ad7e39669b87f34ac7d3060ea0b1836f214809935c990",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "hero",
+        "path": "/device-labs/generated/011-sonar/hero.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "alpha_range": null,
+        "bytes": 2350317,
+        "sha256": "4e3601de134bfc4c020cfee0f66d167503b4b90dbb2976a4bb2ab1f127528a39",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "internal",
+        "path": "/device-labs/generated/011-sonar/internal.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 2102649,
+        "sha256": "4311b6df67c879e8b222e61103520d24ba3d146b61f09df0666f65cb011cde01",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "power-amplifier",
+        "path": "/device-labs/generated/011-sonar/power-amplifier.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 2021649,
+        "sha256": "8b1fd28daa65cc266bcf5a20b9425425c4851d4ffaedefd035dd9f33fffbf08f",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "pressure-housing",
+        "path": "/device-labs/generated/011-sonar/pressure-housing.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1677113,
+        "sha256": "5513f3ada9c3cfe1da0b0451d642653a0ffaf15c6cc824f7bd2d7dfbec7d9d65",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "pulse-generator",
+        "path": "/device-labs/generated/011-sonar/pulse-generator.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1678681,
+        "sha256": "b096cd77943f0fc3136bf4c515ea8c01fdeb00dfb41de2f1d18629cbae4bd336",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "receive-amplifier",
+        "path": "/device-labs/generated/011-sonar/receive-amplifier.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1850690,
+        "sha256": "b830ebf997c34d9eaec9cd4ccf8fb015b0e6e3f5bb2f5591b92990a3308c9e53",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "transducer",
+        "path": "/device-labs/generated/011-sonar/transducer.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1720448,
+        "sha256": "a4b5598182ff3f4a05dc0830a39e11b3c7f80d184609b0f5bcced8965fe1186c",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      }
+    ],
+    "generated_count": 11,
+    "generated_component_count": 8,
+    "status": "core asset set generated"
+  },
+  {
+    "lab": 12,
+    "page_name": "Aircraft Autopilot",
+    "route": "/studios/how-devices-work/aviation/aircraft-autopilot",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/12-external.webp",
+      "public/device-labs/12-hero.webp",
+      "public/device-labs/12-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Air-data computer",
+      "Inertial sensors",
+      "Flight-control computer",
+      "Mode-control panel",
+      "Servo actuators",
+      "Control surfaces",
+      "Data bus"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 13,
+    "page_name": "Surveillance Radar",
+    "route": "/studios/how-devices-work/defence/surveillance-radar",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/13-external.webp",
+      "public/device-labs/13-hero.webp",
+      "public/device-labs/13-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Pulse generator",
+      "Transmitter",
+      "Antenna",
+      "Duplexer",
+      "Receiver",
+      "ADC",
+      "Range / Doppler processor",
+      "Tracker"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 14,
+    "page_name": "Digital Camera",
+    "route": "/studios/how-devices-work/everyday/digital-camera",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/14-external.webp",
+      "public/device-labs/14-hero.webp",
+      "public/device-labs/14-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Lens",
+      "Aperture",
+      "Shutter",
+      "CMOS sensor",
+      "ADC",
+      "Image signal processor",
+      "Memory",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 15,
+    "page_name": "Smartphone",
+    "route": "/studios/how-devices-work/everyday/smartphone",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/15-external.webp",
+      "public/device-labs/15-hero.webp",
+      "public/device-labs/15-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Touchscreen",
+      "Mobile SoC",
+      "RAM",
+      "Flash storage",
+      "Cameras",
+      "Radio antennas",
+      "Battery",
+      "Audio codec"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 16,
+    "page_name": "Infrared Thermometer",
+    "route": "/studios/how-devices-work/medical/infrared-thermometer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/16-external.webp",
+      "public/device-labs/16-hero.webp",
+      "public/device-labs/16-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "IR optics",
+      "Thermopile",
+      "Ambient sensor",
+      "Amplifier",
+      "ADC",
+      "Compensation MCU",
+      "Display",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 17,
+    "page_name": "Digital Stethoscope",
+    "route": "/studios/how-devices-work/medical/digital-stethoscope",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/17-external.webp",
+      "public/device-labs/17-hero.webp",
+      "public/device-labs/17-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Chestpiece diaphragm",
+      "Acoustic sensor",
+      "Preamplifier",
+      "Analog filter",
+      "ADC",
+      "DSP",
+      "Bluetooth",
+      "Battery",
+      "Audio output"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 18,
+    "page_name": "Glucometer",
+    "route": "/studios/how-devices-work/medical/glucometer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/18-external.webp",
+      "public/device-labs/18-hero.webp",
+      "public/device-labs/18-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Test strip",
+      "Electrochemical electrodes",
+      "Current front end",
+      "ADC",
+      "MCU",
+      "Calibration memory",
+      "Display",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 19,
+    "page_name": "ICU Patient Monitor",
+    "route": "/studios/how-devices-work/medical/icu-patient-monitor",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/19-external.webp",
+      "public/device-labs/19-hero.webp",
+      "public/device-labs/19-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "ECG electrodes",
+      "SpO₂ probe",
+      "BP cuff",
+      "Temperature probe",
+      "Isolated front ends",
+      "ADC",
+      "Alarm processor",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 20,
+    "page_name": "Heart Rate Monitor",
+    "route": "/studios/how-devices-work/medical/heart-rate-monitor",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/20-external.webp",
+      "public/device-labs/20-hero.webp",
+      "public/device-labs/20-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Green LEDs",
+      "Photodiode",
+      "Analog front end",
+      "ADC",
+      "Heart-rate processor",
+      "Bluetooth",
+      "Battery",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 21,
+    "page_name": "Portable ECG",
+    "route": "/studios/how-devices-work/medical/portable-ecg",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/21-external.webp",
+      "public/device-labs/21-hero.webp",
+      "public/device-labs/21-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Electrodes",
+      "Protection",
+      "Instrumentation amplifier",
+      "Analog filters",
+      "ADC",
+      "MCU",
+      "Memory",
+      "Wireless module"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 22,
+    "page_name": "Holter Monitor",
+    "route": "/studios/how-devices-work/medical/holter-monitor",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/22-external.webp",
+      "public/device-labs/22-hero.webp",
+      "public/device-labs/22-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Electrode leads",
+      "Input protection",
+      "Instrumentation amplifier",
+      "Filter",
+      "ADC",
+      "MCU",
+      "Timestamp memory",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 23,
+    "page_name": "EEG Machine",
+    "route": "/studios/how-devices-work/medical/eeg-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/23-external.webp",
+      "public/device-labs/23-hero.webp",
+      "public/device-labs/23-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Electrode cap",
+      "Input protection",
+      "Differential amplifier",
+      "Band-pass filter",
+      "ADC",
+      "DSP",
+      "Memory",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 24,
+    "page_name": "EMG Machine",
+    "route": "/studios/how-devices-work/medical/emg-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/24-external.webp",
+      "public/device-labs/24-hero.webp",
+      "public/device-labs/24-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Muscle electrodes",
+      "Input protection",
+      "Differential amplifier",
+      "Band-pass filter",
+      "ADC",
+      "DSP",
+      "Stimulus synchronization",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 25,
+    "page_name": "Fetal Heart Monitor",
+    "route": "/studios/how-devices-work/medical/fetal-heart-monitor",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/25-external.webp",
+      "public/device-labs/25-hero.webp",
+      "public/device-labs/25-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Ultrasound transducer",
+      "TOCO sensor",
+      "Analog front end",
+      "ADC",
+      "Heart-rate DSP",
+      "Audio output",
+      "LCD",
+      "Recorder"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 26,
+    "page_name": "Fetal Monitor",
+    "route": "/studios/how-devices-work/medical/fetal-monitor",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/26-external.webp",
+      "public/device-labs/26-hero.webp",
+      "public/device-labs/26-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Doppler transducer",
+      "TOCO transducer",
+      "Maternal sensors",
+      "Analog conditioning",
+      "ADC",
+      "DSP",
+      "Alarm processor",
+      "Printer"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 27,
+    "page_name": "Electronic Spirometer",
+    "route": "/studios/how-devices-work/medical/electronic-spirometer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/27-external.webp",
+      "public/device-labs/27-hero.webp",
+      "public/device-labs/27-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Mouthpiece",
+      "Flow sensor",
+      "Tubing",
+      "Pressure front end",
+      "ADC",
+      "MCU",
+      "Display",
+      "Memory"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 28,
+    "page_name": "Peak Flow Meter",
+    "route": "/studios/how-devices-work/medical/peak-flow-meter",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/28-external.webp",
+      "public/device-labs/28-hero.webp",
+      "public/device-labs/28-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Mouthpiece",
+      "Airflow channel",
+      "Flow indicator",
+      "Electronic sensor",
+      "Signal conditioning",
+      "MCU",
+      "Display"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 29,
+    "page_name": "Digital Weighing Scale",
+    "route": "/studios/how-devices-work/medical/digital-weighing-scale",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/29-external.webp",
+      "public/device-labs/29-hero.webp",
+      "public/device-labs/29-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Load cells",
+      "Wheatstone bridge",
+      "Instrumentation amplifier",
+      "High-resolution ADC",
+      "MCU",
+      "Tare logic",
+      "Display",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 30,
+    "page_name": "Body Composition Analyzer",
+    "route": "/studios/how-devices-work/medical/body-composition-analyzer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/30-external.webp",
+      "public/device-labs/30-hero.webp",
+      "public/device-labs/30-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Contact electrodes",
+      "AC excitation source",
+      "Voltage / current front end",
+      "ADC",
+      "Impedance processor",
+      "Model memory",
+      "Display",
+      "Load cells"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 31,
+    "page_name": "X-Ray Machine",
+    "route": "/studios/how-devices-work/medical/x-ray-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/31-external.webp",
+      "public/device-labs/31-hero.webp",
+      "public/device-labs/31-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "X-ray tube",
+      "Collimator",
+      "Generator",
+      "Patient support",
+      "Detector",
+      "Readout / ADC",
+      "Image processor",
+      "Control console"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 32,
+    "page_name": "Digital Radiography Detector",
+    "route": "/studios/how-devices-work/medical/digital-radiography-detector",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/32-external.webp",
+      "public/device-labs/32-hero.webp",
+      "public/device-labs/32-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Scintillator",
+      "Photodiode array",
+      "Thin-film transistors",
+      "Readout electronics",
+      "ADC",
+      "Correction processor",
+      "Battery",
+      "Wireless link"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 33,
+    "page_name": "Doppler Ultrasound",
+    "route": "/studios/how-devices-work/medical/doppler-ultrasound",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/33-external.webp",
+      "public/device-labs/33-hero.webp",
+      "public/device-labs/33-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Transducer",
+      "Pulser",
+      "T/R switch",
+      "Receive beamformer",
+      "I/Q demodulator",
+      "ADC",
+      "Doppler DSP",
+      "Color mapper"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 34,
+    "page_name": "PET Scanner",
+    "route": "/studios/how-devices-work/medical/pet-scanner",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/34-external.webp",
+      "public/device-labs/34-hero.webp",
+      "public/device-labs/34-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Detector ring",
+      "Scintillation crystals",
+      "SiPM / PMT",
+      "Coincidence electronics",
+      "ADC / timing",
+      "Correction computer",
+      "Reconstruction",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 35,
+    "page_name": "SPECT Scanner",
+    "route": "/studios/how-devices-work/medical/spect-scanner",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/35-collimator.webp",
+      "public/device-labs/35-external.webp",
+      "public/device-labs/35-gamma-camera.webp",
+      "public/device-labs/35-hero.webp",
+      "public/device-labs/35-internal.webp",
+      "public/device-labs/35-radiotracer.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "collimator",
+      "external",
+      "gamma-camera",
+      "hero",
+      "internal",
+      "radiotracer"
+    ],
+    "named_components": [
+      "Collimator",
+      "Scintillation crystal",
+      "Photomultiplier tubes",
+      "Event-position electronics",
+      "Rotating gantry",
+      "Acquisition computer",
+      "Reconstruction"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 36,
+    "page_name": "Mammography System",
+    "route": "/studios/how-devices-work/medical/mammography-system",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/36-external.webp",
+      "public/device-labs/36-hero.webp",
+      "public/device-labs/36-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "X-ray tube",
+      "Compression assembly",
+      "Collimator",
+      "Detector",
+      "Readout / ADC",
+      "Image processor",
+      "Display",
+      "Safety interlocks"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 37,
+    "page_name": "Endoscope Camera System",
+    "route": "/studios/how-devices-work/medical/endoscope-camera-system",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/37-external.webp",
+      "public/device-labs/37-hero.webp",
+      "public/device-labs/37-internal.webp",
+      "public/device-labs/37-scene.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal",
+      "scene"
+    ],
+    "named_components": [
+      "Light source",
+      "Optical fibers",
+      "Distal optics",
+      "Image sensor",
+      "ADC",
+      "Image processor",
+      "Control unit",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 38,
+    "page_name": "Digital Microscope",
+    "route": "/studios/how-devices-work/medical/digital-microscope",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/38-external.webp",
+      "public/device-labs/38-hero.webp",
+      "public/device-labs/38-internal.webp",
+      "public/device-labs/38-scene.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal",
+      "scene"
+    ],
+    "named_components": [
+      "Illuminator",
+      "Specimen stage",
+      "Objective lens",
+      "Tube lens",
+      "Camera sensor",
+      "ADC",
+      "Image processor",
+      "Focus mechanism"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 39,
+    "page_name": "Ventilator",
+    "route": "/studios/how-devices-work/medical/ventilator",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/39-external.webp",
+      "public/device-labs/39-hero.webp",
+      "public/device-labs/39-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Air inlet filter",
+      "Blower / turbine",
+      "Oxygen mixer",
+      "Inspiratory valve",
+      "Flow sensor",
+      "Pressure sensor",
+      "Expiratory valve",
+      "Humidifier",
+      "Controller"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 40,
+    "page_name": "Infusion Pump",
+    "route": "/studios/how-devices-work/medical/infusion-pump",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/40-external.webp",
+      "public/device-labs/40-hero.webp",
+      "public/device-labs/40-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Fluid reservoir",
+      "Motor / mechanism",
+      "Pressure sensor",
+      "Air detector",
+      "Flow supervisor",
+      "MCU",
+      "Battery",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 41,
+    "page_name": "Syringe Pump",
+    "route": "/studios/how-devices-work/medical/syringe-pump",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/41-external.webp",
+      "public/device-labs/41-hero.webp",
+      "public/device-labs/41-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Syringe barrel",
+      "Plunger",
+      "Lead screw",
+      "Motor / gears",
+      "Position encoder",
+      "Force sensor",
+      "MCU",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 42,
+    "page_name": "Defibrillator",
+    "route": "/studios/how-devices-work/medical/defibrillator",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/42-external.webp",
+      "public/device-labs/42-hero.webp",
+      "public/device-labs/42-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "ECG front end",
+      "Rhythm processor",
+      "Charge supervisor",
+      "Energy-storage capacitor",
+      "Monitored output stage",
+      "Pads",
+      "Interlocks",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 43,
+    "page_name": "AED",
+    "route": "/studios/how-devices-work/medical/aed",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/43-external.webp",
+      "public/device-labs/43-hero.webp",
+      "public/device-labs/43-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Pads",
+      "ECG front end",
+      "Rhythm analysis",
+      "Safety controller",
+      "Battery",
+      "Energy storage",
+      "Audio prompts",
+      "Output supervisor"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 44,
+    "page_name": "Pacemaker",
+    "route": "/studios/how-devices-work/medical/pacemaker",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/44-external.webp",
+      "public/device-labs/44-generator.webp",
+      "public/device-labs/44-hero.webp",
+      "public/device-labs/44-internal.webp",
+      "public/device-labs/44-types.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "generator",
+      "hero",
+      "internal",
+      "types"
+    ],
+    "named_components": [
+      "Pulse generator",
+      "Leads",
+      "Sensing amplifier",
+      "Escape timer",
+      "Output stage",
+      "Battery",
+      "Telemetry",
+      "Connector header"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 45,
+    "page_name": "Implantable Cardioverter Defibrillator",
+    "route": "/studios/how-devices-work/medical/implantable-cardioverter-defibrillator",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/45-external.webp",
+      "public/device-labs/45-generator.webp",
+      "public/device-labs/45-hero.webp",
+      "public/device-labs/45-internal.webp",
+      "public/device-labs/45-radiograph.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "generator",
+      "hero",
+      "internal",
+      "radiograph"
+    ],
+    "named_components": [
+      "Sensing leads",
+      "Input amplifier",
+      "ADC",
+      "Rhythm classifier",
+      "Microcontroller",
+      "Battery",
+      "Energy store",
+      "Telemetry"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 46,
+    "page_name": "Dialysis Machine",
+    "route": "/studios/how-devices-work/medical/dialysis-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/46-external.webp",
+      "public/device-labs/46-hero.webp",
+      "public/device-labs/46-internal.webp",
+      "public/device-labs/46-real-world.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal",
+      "real-world"
+    ],
+    "named_components": [
+      "Blood pump",
+      "Dialyzer",
+      "Dialysate pump",
+      "Heater",
+      "Pressure sensors",
+      "Conductivity sensor",
+      "Air detector",
+      "Ultrafiltration controller"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 47,
+    "page_name": "CPAP Machine",
+    "route": "/studios/how-devices-work/medical/cpap-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/47-external.webp",
+      "public/device-labs/47-hero.webp",
+      "public/device-labs/47-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Air filter",
+      "Blower",
+      "Pressure sensor",
+      "Flow sensor",
+      "Control board",
+      "Humidifier",
+      "Tubing",
+      "Mask"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 48,
+    "page_name": "BiPAP Machine",
+    "route": "/studios/how-devices-work/medical/bipap-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/48-external.webp",
+      "public/device-labs/48-hero.webp",
+      "public/device-labs/48-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Blower",
+      "Pressure sensor",
+      "Flow sensor",
+      "Breath-phase detector",
+      "Controller",
+      "Humidifier",
+      "Tubing",
+      "Mask"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 49,
+    "page_name": "Anesthesia Machine",
+    "route": "/studios/how-devices-work/medical/anesthesia-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/49-external.webp",
+      "public/device-labs/49-hero.webp",
+      "public/device-labs/49-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Gas supply",
+      "Flow controls",
+      "Vaporizer",
+      "Breathing circuit",
+      "CO₂ absorber",
+      "Oxygen sensor",
+      "Pressure sensor",
+      "Controller",
+      "Scavenging"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 50,
+    "page_name": "Electrosurgical Unit",
+    "route": "/studios/how-devices-work/medical/electrosurgical-unit",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/50-external.webp",
+      "public/device-labs/50-hero.webp",
+      "public/device-labs/50-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "RF generator",
+      "Power control",
+      "Output monitor",
+      "Return-pad monitor",
+      "Isolated output interface",
+      "Microcontroller",
+      "Cooling",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 51,
+    "page_name": "TENS Machine",
+    "route": "/studios/how-devices-work/medical/tens-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/51-external.webp",
+      "public/device-labs/51-hero.webp",
+      "public/device-labs/51-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Microcontroller",
+      "Timing generator",
+      "Current-controlled output",
+      "Lead wires",
+      "Electrodes",
+      "Battery",
+      "Display"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 52,
+    "page_name": "Medical Laser System",
+    "route": "/studios/how-devices-work/medical/medical-laser-system",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/52-external.webp",
+      "public/device-labs/52-hero.webp",
+      "public/device-labs/52-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Laser source",
+      "Power driver",
+      "Optical delivery",
+      "Power sensor",
+      "Cooling system",
+      "Interlocks",
+      "Controller",
+      "Display"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 53,
+    "page_name": "Hearing Aid",
+    "route": "/studios/how-devices-work/medical/hearing-aid",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/53-audiogram.webp",
+      "public/device-labs/53-external.webp",
+      "public/device-labs/53-hero.webp",
+      "public/device-labs/53-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "audiogram",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Microphone",
+      "Preamp",
+      "ADC",
+      "DSP",
+      "Frequency-dependent gain",
+      "DAC",
+      "Receiver",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 54,
+    "page_name": "PCR Machine",
+    "route": "/studios/how-devices-work/medical/pcr-machine",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/54-external.webp",
+      "public/device-labs/54-hero.webp",
+      "public/device-labs/54-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Heated lid",
+      "Thermal block",
+      "Thermistors",
+      "Peltier modules",
+      "Driver",
+      "Cooling fan",
+      "MCU",
+      "Optical module (qPCR)"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 55,
+    "page_name": "Centrifuge",
+    "route": "/studios/how-devices-work/medical/centrifuge",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/055-device.webp",
+      "public/device-labs/advanced/055-external.webp",
+      "public/device-labs/advanced/055-input.webp",
+      "public/device-labs/advanced/055-internal.webp",
+      "public/device-labs/advanced/055-output.webp",
+      "public/device-labs/advanced/055-rotor.webp",
+      "public/device-labs/advanced/055-stage1.webp",
+      "public/device-labs/advanced/055-stage2.webp",
+      "public/device-labs/advanced/055-stage3.webp",
+      "public/device-labs/advanced/055-stage4.webp",
+      "public/device-labs/advanced/055-stage5.webp",
+      "public/device-labs/advanced/055-stage6.webp",
+      "public/device-labs/advanced/055-stage7.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "input",
+      "internal",
+      "output",
+      "rotor",
+      "stage1",
+      "stage2",
+      "stage3",
+      "stage4",
+      "stage5",
+      "stage6",
+      "stage7"
+    ],
+    "named_components": [
+      "Lid lock interlock",
+      "Rotor and tube holders",
+      "Spindle",
+      "Tachometer",
+      "Brushless motor",
+      "Imbalance sensor",
+      "Control board",
+      "Power supply",
+      "Cooling fan"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 56,
+    "page_name": "Blood Cell Analyzer",
+    "route": "/studios/how-devices-work/medical/blood-cell-analyzer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/056-device.webp",
+      "public/device-labs/advanced/056-external.webp",
+      "public/device-labs/advanced/056-flow0.webp",
+      "public/device-labs/advanced/056-flow1.webp",
+      "public/device-labs/advanced/056-flow2.webp",
+      "public/device-labs/advanced/056-flow3.webp",
+      "public/device-labs/advanced/056-hero.webp",
+      "public/device-labs/advanced/056-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "flow0",
+      "flow1",
+      "flow2",
+      "flow3",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Sample probe",
+      "Reagent pumps",
+      "Fluidics manifold",
+      "Mixing chamber",
+      "Impedance aperture",
+      "Laser optical module",
+      "Photodiodes",
+      "Control electronics",
+      "Waste chamber"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 57,
+    "page_name": "Automated Chemistry Analyzer",
+    "route": "/studios/how-devices-work/medical/automated-chemistry-analyzer",
+    "categories": [
+      "medical"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/057-device.webp",
+      "public/device-labs/advanced/057-external.webp",
+      "public/device-labs/advanced/057-hero.webp",
+      "public/device-labs/advanced/057-internal.webp",
+      "public/device-labs/advanced/057-optical.webp",
+      "public/device-labs/advanced/057-stage1.webp",
+      "public/device-labs/advanced/057-stage2.webp",
+      "public/device-labs/advanced/057-stage3.webp",
+      "public/device-labs/advanced/057-stage4.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "optical",
+      "stage1",
+      "stage2",
+      "stage3",
+      "stage4"
+    ],
+    "named_components": [
+      "Sample carousel",
+      "Pipetting arm",
+      "Reagent tray",
+      "Mixing system",
+      "Reaction cuvette",
+      "Incubator heater",
+      "Light source",
+      "Wavelength filter",
+      "Photodiode",
+      "Control board"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 58,
+    "page_name": "Aircraft Flight Computer",
+    "route": "/studios/how-devices-work/aviation/aircraft-flight-computer",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/058-device.webp",
+      "public/device-labs/advanced/058-external.webp",
+      "public/device-labs/advanced/058-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Avionics connectors",
+      "Air-data interface",
+      "Inertial data interface",
+      "Processor boards",
+      "Memory",
+      "Power conversion",
+      "Data bus transceiver",
+      "Cooling chassis"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 59,
+    "page_name": "Fly-by-Wire System",
+    "route": "/studios/how-devices-work/aviation/fly-by-wire",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/059-attitude.webp",
+      "public/device-labs/advanced/059-device.webp",
+      "public/device-labs/advanced/059-external.webp",
+      "public/device-labs/advanced/059-hero.webp",
+      "public/device-labs/advanced/059-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "attitude",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Side-stick sensors",
+      "Air data sensors",
+      "IMU",
+      "Redundant flight computers",
+      "Data buses",
+      "Actuator electronics",
+      "Servo actuator",
+      "Position feedback sensor",
+      "Power supply"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 60,
+    "page_name": "Glass Cockpit",
+    "route": "/studios/how-devices-work/aviation/glass-cockpit",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/060-device.webp",
+      "public/device-labs/advanced/060-external.webp",
+      "public/device-labs/advanced/060-hero.webp",
+      "public/device-labs/advanced/060-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "LCD display",
+      "Backlight",
+      "Graphics processor",
+      "Flight computer",
+      "ARINC data interface",
+      "Power regulator",
+      "Cooling assembly",
+      "Connector panel"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 61,
+    "page_name": "Primary Flight Display",
+    "route": "/studios/how-devices-work/aviation/primary-flight-display",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/061-device.webp",
+      "public/device-labs/advanced/061-display.webp",
+      "public/device-labs/advanced/061-external.webp",
+      "public/device-labs/advanced/061-hero.webp",
+      "public/device-labs/advanced/061-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "display",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Display screen",
+      "Function keys",
+      "Bezel",
+      "Graphics processor",
+      "Data interface boards",
+      "Power supply",
+      "Cooling and EMI shielding"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 62,
+    "page_name": "Air Data Computer",
+    "route": "/studios/how-devices-work/aviation/air-data-computer",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/062-context.webp",
+      "public/device-labs/advanced/062-device.webp",
+      "public/device-labs/advanced/062-external.webp",
+      "public/device-labs/advanced/062-hero.webp",
+      "public/device-labs/advanced/062-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Pitot pressure port",
+      "Static pressure port",
+      "Pressure sensors",
+      "Temperature input",
+      "ADC",
+      "Processor board",
+      "Calibration memory",
+      "ARINC interface",
+      "Power regulator"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 63,
+    "page_name": "Inertial Navigation System",
+    "route": "/studios/how-devices-work/aviation/inertial-navigation-system",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/063-context.webp",
+      "public/device-labs/advanced/063-device.webp",
+      "public/device-labs/advanced/063-external.webp",
+      "public/device-labs/advanced/063-hero.webp",
+      "public/device-labs/advanced/063-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Gyroscope assembly",
+      "Accelerometer assembly",
+      "ADC interface",
+      "Processor board",
+      "Memory",
+      "Power supply",
+      "Data bus interface",
+      "Rugged enclosure"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [
+      {
+        "role": "accelerometer-assembly",
+        "path": "/device-labs/generated/063-inertial-navigation-system/accelerometer-assembly.png",
+        "width": 1312,
+        "height": 1199,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "bytes": 1367590,
+        "sha256": "b13758c30411bd1acaa4ce5952648a48ed91a2baed2e9834ba12bab947fe7322",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "adc-interface",
+        "path": "/device-labs/generated/063-inertial-navigation-system/adc-interface.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1697601,
+        "sha256": "5960311004c253cca973c4b48159534d736dd50826e7c66ae8347374b3bad0b6",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "context",
+        "path": "/device-labs/generated/063-inertial-navigation-system/context.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "alpha_range": null,
+        "bytes": 2483423,
+        "sha256": "4bc9cdf11aa23f6f7a7ac125ed9409d8951fcf7207d9fd17249397be250737da",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "data-bus-interface",
+        "path": "/device-labs/generated/063-inertial-navigation-system/data-bus-interface.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1930674,
+        "sha256": "3e45f656997c12298afee0d939e985c08962c0107935c947d730f92fb763bb89",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "external",
+        "path": "/device-labs/generated/063-inertial-navigation-system/external.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1880532,
+        "sha256": "3d1f660ed85e1b1731b599cf35e474cce31c31f18afa4420668818bfa885e08c",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "gyroscope-assembly",
+        "path": "/device-labs/generated/063-inertial-navigation-system/gyroscope-assembly.png",
+        "width": 1374,
+        "height": 1145,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "bytes": 1635475,
+        "sha256": "ac8c768626dd1a6c32a794cda1a9a2195ec4ddf8f937e8e52b3a0d5238008d4f",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "hero",
+        "path": "/device-labs/generated/063-inertial-navigation-system/hero.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "alpha_range": null,
+        "bytes": 2333900,
+        "sha256": "c8ed02e37c70103d4a51980dfb8ff58c3987962de300ecc349d34d989fadec19",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "internal",
+        "path": "/device-labs/generated/063-inertial-navigation-system/internal.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1840521,
+        "sha256": "2d65da16a301a5a57fdcce58711f227f04683377d6d3c14c0af31df6b239d22d",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "memory-v2",
+        "path": "/device-labs/generated/063-inertial-navigation-system/memory-v2.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1725482,
+        "sha256": "251fa1e0dba9ec4cd341cf03f60c0946b7d53efd91d84c9ec70d5b8d5b79341d",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "power-supply",
+        "path": "/device-labs/generated/063-inertial-navigation-system/power-supply.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 2021021,
+        "sha256": "0a5785ca448c08f447b2139e8ff8172d3f33c597040c83e36edf002ab2fbc67e",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "processor-board",
+        "path": "/device-labs/generated/063-inertial-navigation-system/processor-board.png",
+        "width": 1374,
+        "height": 1145,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "bytes": 1645431,
+        "sha256": "a0a989cc5cad0c1135dfed3ddd2f4be67d71ca6f313ccc6a37ea4e0d754eaac6",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      },
+      {
+        "role": "rugged-enclosure",
+        "path": "/device-labs/generated/063-inertial-navigation-system/rugged-enclosure.png",
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          254
+        ],
+        "bytes": 1995677,
+        "sha256": "87555473e4bb8f9cc78e6af9cc2771870603a1e7c7133554ba7ee0ca7659b5dd",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      }
+    ],
+    "generated_count": 12,
+    "generated_component_count": 8,
+    "status": "core asset set generated"
+  },
+  {
+    "lab": 64,
+    "page_name": "GPS Navigation System",
+    "route": "/studios/how-devices-work/aviation/gps-navigation-system",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/064-device.webp",
+      "public/device-labs/advanced/064-external.webp",
+      "public/device-labs/advanced/064-hero.webp",
+      "public/device-labs/advanced/064-internal.webp",
+      "public/device-labs/advanced/064-map.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "map"
+    ],
+    "named_components": [
+      "GNSS antenna",
+      "Low-noise amplifier",
+      "RF filter",
+      "Downconverter",
+      "Reference oscillator",
+      "Correlator",
+      "Navigation processor",
+      "Memory",
+      "Display interface"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 65,
+    "page_name": "Engine FADEC Controller",
+    "route": "/studios/how-devices-work/aviation/engine-fadec-controller",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/065-device.webp",
+      "public/device-labs/advanced/065-external.webp",
+      "public/device-labs/advanced/065-hero.webp",
+      "public/device-labs/advanced/065-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "EMI filter and supply",
+      "Signal conditioning",
+      "ADC",
+      "Dual control processor",
+      "Program memory",
+      "Actuator drivers",
+      "Connectors and cooling"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 66,
+    "page_name": "Aircraft Engine Monitoring System",
+    "route": "/studios/how-devices-work/aviation/aircraft-engine-monitoring-system",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/066-context.webp",
+      "public/device-labs/advanced/066-device.webp",
+      "public/device-labs/advanced/066-external.webp",
+      "public/device-labs/advanced/066-hero.webp",
+      "public/device-labs/advanced/066-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Input signal conditioning",
+      "Analog-to-digital converters",
+      "Monitoring processor",
+      "Data memory",
+      "ARINC / CAN interface",
+      "Power supply"
+    ],
+    "minimum_core_images": 9,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 67,
+    "page_name": "Drone Flight Controller",
+    "route": "/studios/how-devices-work/aviation/drone-flight-controller",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/067-device.webp",
+      "public/device-labs/advanced/067-external.webp",
+      "public/device-labs/advanced/067-hero.webp",
+      "public/device-labs/advanced/067-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Power regulation",
+      "IMU gyroscope / accelerometer",
+      "Barometer",
+      "Flight control MCU",
+      "GNSS / UART interface",
+      "PWM / DShot outputs"
+    ],
+    "minimum_core_images": 9,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 68,
+    "page_name": "Weather Radar",
+    "route": "/studios/how-devices-work/aviation/weather-radar",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/068-device.webp",
+      "public/device-labs/advanced/068-external.webp",
+      "public/device-labs/advanced/068-hero.webp",
+      "public/device-labs/advanced/068-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Scanning antenna",
+      "Transmit / receive switch",
+      "Microwave transmitter",
+      "Low-noise receiver",
+      "Signal processor",
+      "Display computer",
+      "Control panel"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 69,
+    "page_name": "Radar Altimeter",
+    "route": "/studios/how-devices-work/aviation/radar-altimeter",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/069-device.webp",
+      "public/device-labs/advanced/069-external.webp",
+      "public/device-labs/advanced/069-hero.webp",
+      "public/device-labs/advanced/069-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "RF synthesizer",
+      "Power amplifier",
+      "Transmit / receive antennas",
+      "Mixer",
+      "IF filter and amplifier",
+      "ADC",
+      "Height processor",
+      "Avionics interface",
+      "Power supply"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 70,
+    "page_name": "Radio Altimeter",
+    "route": "/studios/how-devices-work/aviation/radio-altimeter",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/070-context.webp",
+      "public/device-labs/advanced/070-device.webp",
+      "public/device-labs/advanced/070-display.webp",
+      "public/device-labs/advanced/070-external.webp",
+      "public/device-labs/advanced/070-hero.webp",
+      "public/device-labs/advanced/070-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "display",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "RF transmitter / receiver",
+      "Processor board",
+      "Power supply",
+      "Transmit antenna",
+      "Receive antenna",
+      "Avionics connector"
+    ],
+    "minimum_core_images": 9,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 71,
+    "page_name": "Aircraft Transponder",
+    "route": "/studios/how-devices-work/aviation/aircraft-transponder",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/071-context.webp",
+      "public/device-labs/advanced/071-device.webp",
+      "public/device-labs/advanced/071-external.webp",
+      "public/device-labs/advanced/071-hero.webp",
+      "public/device-labs/advanced/071-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "1030 MHz receiver",
+      "Decoder and signal processing",
+      "Mode control processor",
+      "Code selector and memory",
+      "Altitude encoder",
+      "1090 MHz transmitter",
+      "Power amplifier",
+      "Avionics interface"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 72,
+    "page_name": "ADS-B System",
+    "route": "/studios/how-devices-work/aviation/ads-b-system",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/072-device.webp",
+      "public/device-labs/advanced/072-external.webp",
+      "public/device-labs/advanced/072-hero.webp",
+      "public/device-labs/advanced/072-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "RF antenna connector",
+      "1090 MHz transmitter",
+      "ADS-B encoder",
+      "Control processor",
+      "ARINC data interfaces",
+      "Power supply",
+      "GNSS receiver"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 73,
+    "page_name": "Traffic Collision Avoidance System",
+    "route": "/studios/how-devices-work/aviation/traffic-collision-avoidance-system",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/073-device.webp",
+      "public/device-labs/advanced/073-external.webp",
+      "public/device-labs/advanced/073-hero.webp",
+      "public/device-labs/advanced/073-internal.webp",
+      "public/device-labs/advanced/073-own-aircraft.webp",
+      "public/device-labs/advanced/073-traffic-aircraft.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "own-aircraft",
+      "traffic-aircraft"
+    ],
+    "named_components": [
+      "1030 / 1090 MHz transceiver",
+      "Signal processing",
+      "Surveillance processor",
+      "Threat tracking logic",
+      "RA decision computer",
+      "Avionics interface",
+      "Directional antennas"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 74,
+    "page_name": "Flight Data Recorder",
+    "route": "/studios/how-devices-work/aviation/flight-data-recorder",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/074-device.webp",
+      "public/device-labs/advanced/074-external.webp",
+      "public/device-labs/advanced/074-hero.webp",
+      "public/device-labs/advanced/074-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Front cover and connector",
+      "Shock mounts",
+      "Data acquisition unit",
+      "Processor and formatter",
+      "Solid-state memory",
+      "Power backup",
+      "Underwater locator beacon",
+      "Thermal insulation"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 75,
+    "page_name": "Cockpit Voice Recorder",
+    "route": "/studios/how-devices-work/aviation/cockpit-voice-recorder",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/075-context.webp",
+      "public/device-labs/advanced/075-device.webp",
+      "public/device-labs/advanced/075-external.webp",
+      "public/device-labs/advanced/075-hero.webp",
+      "public/device-labs/advanced/075-internal.webp",
+      "public/device-labs/advanced/075-underwater.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "underwater"
+    ],
+    "named_components": [
+      "Microphone inputs",
+      "Audio interface",
+      "Audio ADC",
+      "Recording processor",
+      "Circular memory",
+      "Power section",
+      "Crash-protected enclosure",
+      "Underwater locator beacon"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 76,
+    "page_name": "Satellite Communication Terminal",
+    "route": "/studios/how-devices-work/aviation/satellite-communication-terminal",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/076-antenna.webp",
+      "public/device-labs/advanced/076-context.webp",
+      "public/device-labs/advanced/076-device.webp",
+      "public/device-labs/advanced/076-external.webp",
+      "public/device-labs/advanced/076-hero.webp",
+      "public/device-labs/advanced/076-internal.webp",
+      "public/device-labs/advanced/076-link-aircraft.webp",
+      "public/device-labs/advanced/076-link-ground.webp",
+      "public/device-labs/advanced/076-link-satellite.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "antenna",
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "link-aircraft",
+      "link-ground",
+      "link-satellite"
+    ],
+    "named_components": [
+      "Steerable antenna",
+      "Radome",
+      "Diplexer",
+      "Low-noise amplifier",
+      "Downconverter",
+      "Modem and codec",
+      "Upconverter",
+      "High-power amplifier",
+      "Antenna controller"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 77,
+    "page_name": "Satellite Attitude-Control Computer",
+    "route": "/studios/how-devices-work/aviation/satellite-attitude-control-computer",
+    "categories": [
+      "aviation"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/077-device.webp",
+      "public/device-labs/advanced/077-external.webp",
+      "public/device-labs/advanced/077-hero.webp",
+      "public/device-labs/advanced/077-internal.webp",
+      "public/device-labs/advanced/077-orbit.webp",
+      "public/device-labs/advanced/077-spacecraft.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "orbit",
+      "spacecraft"
+    ],
+    "named_components": [
+      "Star tracker interface",
+      "Gyroscope interface",
+      "Attitude processor",
+      "Program memory",
+      "Wheel motor driver",
+      "Reaction wheel",
+      "Power regulation",
+      "Telemetry interface"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 78,
+    "page_name": "Phased-Array Radar",
+    "route": "/studios/how-devices-work/defence/phased-array-radar",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/078-beam-array.webp",
+      "public/device-labs/advanced/078-context.webp",
+      "public/device-labs/advanced/078-device.webp",
+      "public/device-labs/advanced/078-external.webp",
+      "public/device-labs/advanced/078-hero.webp",
+      "public/device-labs/advanced/078-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "beam-array",
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Antenna elements",
+      "T/R modules",
+      "Phase shifters",
+      "Power amplifiers",
+      "Low-noise amplifiers",
+      "Beamformer",
+      "ADC",
+      "Radar signal processor",
+      "Cooling system"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 79,
+    "page_name": "Ground Surveillance Radar",
+    "route": "/studios/how-devices-work/defence/ground-surveillance-radar",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/079-coverage-radar.webp",
+      "public/device-labs/advanced/079-device.webp",
+      "public/device-labs/advanced/079-external.webp",
+      "public/device-labs/advanced/079-hero.webp",
+      "public/device-labs/advanced/079-internal.webp",
+      "public/device-labs/advanced/079-terrain.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "coverage-radar",
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "terrain"
+    ],
+    "named_components": [
+      "Scanning antenna",
+      "RF transmitter",
+      "T/R switch",
+      "Receive amplifier",
+      "Mixer",
+      "ADC",
+      "Doppler processor",
+      "Track computer",
+      "Operator display"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 80,
+    "page_name": "Passive Radar",
+    "route": "/studios/how-devices-work/defence/passive-radar",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/080-device.webp",
+      "public/device-labs/advanced/080-external.webp",
+      "public/device-labs/advanced/080-hero.webp",
+      "public/device-labs/advanced/080-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Reference antenna",
+      "Surveillance antenna",
+      "RF filters",
+      "Synchronized receivers",
+      "ADC channels",
+      "Cross-correlator",
+      "Clutter cancellation",
+      "Bistatic tracker"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 81,
+    "page_name": "Air-Defence Radar",
+    "route": "/studios/how-devices-work/defence/air-defence-radar",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/081-coverage-hardware.webp",
+      "public/device-labs/advanced/081-device.webp",
+      "public/device-labs/advanced/081-external.webp",
+      "public/device-labs/advanced/081-hero.webp",
+      "public/device-labs/advanced/081-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "coverage-hardware",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Antenna array",
+      "RF exciter",
+      "Power amplifier",
+      "Duplexer",
+      "Receiver",
+      "ADC",
+      "Signal processor",
+      "Track processor",
+      "Display console"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 82,
+    "page_name": "Thermal Imaging Camera",
+    "route": "/studios/how-devices-work/defence/thermal-imaging-camera",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/082-device.webp",
+      "public/device-labs/advanced/082-external.webp",
+      "public/device-labs/advanced/082-hero.webp",
+      "public/device-labs/advanced/082-internal.webp",
+      "public/device-labs/advanced/082-thermal.webp",
+      "public/device-labs/advanced/082-visible.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "thermal",
+      "visible"
+    ],
+    "named_components": [
+      "Infrared lens",
+      "Microbolometer array",
+      "Readout IC",
+      "ADC",
+      "Image processor",
+      "Calibration shutter",
+      "Display",
+      "Battery supply"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 83,
+    "page_name": "Night-Vision System",
+    "route": "/studios/how-devices-work/defence/night-vision-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/083-device.webp",
+      "public/device-labs/advanced/083-external.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external"
+    ],
+    "named_components": [
+      "Objective lens",
+      "Photocathode",
+      "Microchannel plate",
+      "Phosphor screen",
+      "Eyepiece",
+      "High-voltage supply",
+      "Gain controller",
+      "IR illuminator"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 84,
+    "page_name": "Infrared Surveillance Camera",
+    "route": "/studios/how-devices-work/defence/infrared-surveillance-camera",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/084-day.webp",
+      "public/device-labs/advanced/084-device.webp",
+      "public/device-labs/advanced/084-external.webp",
+      "public/device-labs/advanced/084-hero.webp",
+      "public/device-labs/advanced/084-internal.webp",
+      "public/device-labs/advanced/084-night.webp",
+      "public/device-labs/advanced/084-scene.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "day",
+      "device",
+      "external",
+      "hero",
+      "internal",
+      "night",
+      "scene"
+    ],
+    "named_components": [
+      "Lens",
+      "IR-cut filter",
+      "CMOS sensor",
+      "IR LED array",
+      "LED driver",
+      "Image processor",
+      "Video encoder",
+      "Network interface",
+      "Power supply"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 85,
+    "page_name": "Laser Range Finder",
+    "route": "/studios/how-devices-work/defence/laser-range-finder",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/085-device.webp",
+      "public/device-labs/advanced/085-external.webp",
+      "public/device-labs/advanced/085-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Laser diode",
+      "Transmit optics",
+      "Receiver lens",
+      "Photodiode / APD",
+      "Transimpedance amplifier",
+      "Timing discriminator",
+      "Time-to-digital converter",
+      "MCU",
+      "OLED display"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 86,
+    "page_name": "Software Defined Radio",
+    "route": "/studios/how-devices-work/defence/software-defined-radio",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/086-context.webp",
+      "public/device-labs/advanced/086-device.webp",
+      "public/device-labs/advanced/086-external.webp",
+      "public/device-labs/advanced/086-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "SMA antenna port",
+      "Clock reference",
+      "USB interface",
+      "RF filters",
+      "LNA",
+      "I/Q mixer",
+      "ADC / DAC",
+      "FPGA / DSP",
+      "RF amplifier"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 87,
+    "page_name": "Secure Digital Radio",
+    "route": "/studios/how-devices-work/defence/secure-digital-radio",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/087-device.webp",
+      "public/device-labs/advanced/087-external.webp",
+      "public/device-labs/advanced/087-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Microphone / speaker",
+      "Audio codec",
+      "Encryption module",
+      "Key management",
+      "Baseband processor",
+      "RF transceiver",
+      "Power amplifier",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 88,
+    "page_name": "IFF System",
+    "route": "/studios/how-devices-work/defence/iff-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/088-device.webp",
+      "public/device-labs/advanced/088-external.webp",
+      "public/device-labs/advanced/088-internal.webp",
+      "public/device-labs/advanced/088-part-1.webp",
+      "public/device-labs/advanced/088-part-2.webp",
+      "public/device-labs/advanced/088-part-3.webp",
+      "public/device-labs/advanced/088-part-4.webp",
+      "public/device-labs/advanced/088-part-5.webp",
+      "public/device-labs/advanced/088-part-6.webp",
+      "public/device-labs/advanced/088-part-7.webp",
+      "public/device-labs/advanced/088-part-8.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "part-1",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5",
+      "part-6",
+      "part-7",
+      "part-8"
+    ],
+    "named_components": [
+      "Interrogator timing unit",
+      "RF transmitter",
+      "Antenna",
+      "RF receiver",
+      "Mode decoder",
+      "Authentication module",
+      "Response processor",
+      "Power supply"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 89,
+    "page_name": "Electronic Identification System",
+    "route": "/studios/how-devices-work/defence/electronic-identification-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/089-context.webp",
+      "public/device-labs/advanced/089-device.webp",
+      "public/device-labs/advanced/089-external.webp",
+      "public/device-labs/advanced/089-hero.webp",
+      "public/device-labs/advanced/089-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "RFID credential",
+      "Reader antenna",
+      "RF interface",
+      "Controller MCU",
+      "Communication link",
+      "Local policy database",
+      "Relay driver",
+      "Door lock",
+      "Event log"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 90,
+    "page_name": "Inertial Navigation System",
+    "route": "/studios/how-devices-work/defence/inertial-navigation-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/090-device.webp",
+      "public/device-labs/advanced/090-external.webp",
+      "public/device-labs/advanced/090-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Accelerometers",
+      "Gyroscopes",
+      "Optional magnetometer",
+      "Signal conditioning",
+      "ADC",
+      "Sensor-fusion processor",
+      "Interface connectors",
+      "Power regulation"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 91,
+    "page_name": "GPS Receiver",
+    "route": "/studios/how-devices-work/defence/gps-receiver",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/091-device.webp",
+      "public/device-labs/advanced/091-external.webp",
+      "public/device-labs/advanced/091-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "GNSS antenna",
+      "LNA / SAW filter",
+      "Downconverter",
+      "ADC",
+      "Code correlators",
+      "Navigation processor",
+      "TCXO",
+      "Display / NMEA interface"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 92,
+    "page_name": "Electronic Compass",
+    "route": "/studios/how-devices-work/defence/electronic-compass",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/092-device.webp",
+      "public/device-labs/advanced/092-external.webp",
+      "public/device-labs/advanced/092-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Three-axis magnetometer",
+      "Accelerometer",
+      "Conditioning / ADC",
+      "Calibration processor",
+      "Display",
+      "Battery",
+      "Control buttons",
+      "Housing"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 93,
+    "page_name": "Satellite Communication Terminal",
+    "route": "/studios/how-devices-work/defence/satellite-communication-terminal",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/093-device.webp",
+      "public/device-labs/advanced/093-external.webp",
+      "public/device-labs/advanced/093-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Parabolic dish",
+      "Feed horn",
+      "Block upconverter",
+      "LNB receive chain",
+      "Modem",
+      "Codec / baseband",
+      "Tracking controller",
+      "Power supply",
+      "Network interface"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 94,
+    "page_name": "Perimeter Intrusion Detection System",
+    "route": "/studios/how-devices-work/defence/perimeter-intrusion-detection-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/094-context.webp",
+      "public/device-labs/advanced/094-controller.webp",
+      "public/device-labs/advanced/094-device.webp",
+      "public/device-labs/advanced/094-external.webp",
+      "public/device-labs/advanced/094-internal.webp",
+      "public/device-labs/advanced/094-scene.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "controller",
+      "device",
+      "external",
+      "internal",
+      "scene"
+    ],
+    "named_components": [
+      "Fence vibration sensor",
+      "Infrared beam sensor",
+      "PIR / microwave sensor",
+      "Main controller",
+      "Network module",
+      "Backup battery",
+      "Surge protection",
+      "Alarm output"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 95,
+    "page_name": "Biometric Access System",
+    "route": "/studios/how-devices-work/defence/biometric-access-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/095-device.webp",
+      "public/device-labs/advanced/095-external.webp",
+      "public/device-labs/advanced/095-internal.webp",
+      "public/device-labs/advanced/095-part-1.webp",
+      "public/device-labs/advanced/095-part-10.webp",
+      "public/device-labs/advanced/095-part-11.webp",
+      "public/device-labs/advanced/095-part-12.webp",
+      "public/device-labs/advanced/095-part-2.webp",
+      "public/device-labs/advanced/095-part-3.webp",
+      "public/device-labs/advanced/095-part-4.webp",
+      "public/device-labs/advanced/095-part-5.webp",
+      "public/device-labs/advanced/095-part-6.webp",
+      "public/device-labs/advanced/095-part-7.webp",
+      "public/device-labs/advanced/095-part-8.webp",
+      "public/device-labs/advanced/095-part-9.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "part-1",
+      "part-10",
+      "part-11",
+      "part-12",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5",
+      "part-6",
+      "part-7",
+      "part-8",
+      "part-9"
+    ],
+    "named_components": [
+      "Camera module",
+      "IR illuminator",
+      "Fingerprint sensor",
+      "ARM processor",
+      "Flash memory",
+      "Secure element",
+      "Lock relay",
+      "Wi-Fi / Ethernet",
+      "12 V supply",
+      "Backup battery",
+      "Tamper switch",
+      "Speaker / buzzer"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 96,
+    "page_name": "Sonar Detection System",
+    "route": "/studios/how-devices-work/defence/sonar-detection-system",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/096-application-0.webp",
+      "public/device-labs/advanced/096-application-1.webp",
+      "public/device-labs/advanced/096-application-2.webp",
+      "public/device-labs/advanced/096-application-3.webp",
+      "public/device-labs/advanced/096-context.webp",
+      "public/device-labs/advanced/096-device.webp",
+      "public/device-labs/advanced/096-external.webp",
+      "public/device-labs/advanced/096-internal.webp",
+      "public/device-labs/advanced/096-ocean.webp",
+      "public/device-labs/advanced/096-water.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "context",
+      "device",
+      "external",
+      "internal",
+      "ocean",
+      "water"
+    ],
+    "named_components": [
+      "Protective dome",
+      "Hydrophone array",
+      "Projector",
+      "Preamplifier",
+      "Band-pass filter",
+      "ADC",
+      "DSP / beamformer",
+      "Power supply",
+      "Navigation interface",
+      "Display console"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 97,
+    "page_name": "Unmanned Surveillance Vehicle Electronics",
+    "route": "/studios/how-devices-work/defence/unmanned-surveillance-vehicle-electronics",
+    "categories": [
+      "defence"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/097-context.webp",
+      "public/device-labs/advanced/097-device.webp",
+      "public/device-labs/advanced/097-external.webp",
+      "public/device-labs/advanced/097-internal.webp",
+      "public/device-labs/advanced/097-thermal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "internal",
+      "thermal"
+    ],
+    "named_components": [
+      "EO gimbal camera",
+      "Thermal camera",
+      "GNSS module",
+      "IMU",
+      "Obstacle sensors",
+      "Onboard computer",
+      "Flight controller",
+      "Telemetry radio",
+      "SSD",
+      "Power distribution board",
+      "Battery management",
+      "LiPo battery"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 98,
+    "page_name": "Marine Radar",
+    "route": "/studios/how-devices-work/marine/marine-radar",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/098-device.webp",
+      "public/device-labs/advanced/098-external.webp",
+      "public/device-labs/advanced/098-installation.webp",
+      "public/device-labs/advanced/098-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "installation",
+      "internal"
+    ],
+    "named_components": [
+      "Scanner antenna",
+      "Radome",
+      "Pedestal",
+      "Drive motor",
+      "Rotary joint",
+      "Waveguide",
+      "RF transmitter",
+      "Duplexer",
+      "LNA / mixer",
+      "ADC / DSP",
+      "Heading / GPS interface",
+      "Display"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 99,
+    "page_name": "Fish Finder",
+    "route": "/studios/how-devices-work/marine/fish-finder",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/099-context.webp",
+      "public/device-labs/advanced/099-device.webp",
+      "public/device-labs/advanced/099-external.webp",
+      "public/device-labs/advanced/099-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Display head",
+      "Cable",
+      "Sonar transducer",
+      "Power supply",
+      "Pulser",
+      "T/R protection",
+      "Receiver / filter",
+      "ADC",
+      "DSP processor",
+      "Display interface"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 100,
+    "page_name": "Depth Sounder",
+    "route": "/studios/how-devices-work/marine/depth-sounder",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/100-application-0.webp",
+      "public/device-labs/advanced/100-application-1.webp",
+      "public/device-labs/advanced/100-application-2.webp",
+      "public/device-labs/advanced/100-application-3.webp",
+      "public/device-labs/advanced/100-device.webp",
+      "public/device-labs/advanced/100-external.webp",
+      "public/device-labs/advanced/100-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Display unit",
+      "Through-hull transducer",
+      "DC power converter",
+      "High-voltage pulser",
+      "T/R protection",
+      "Low-noise receiver",
+      "Amplifier / filter",
+      "ADC",
+      "Timing / MCU / DSP",
+      "Display interface"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 101,
+    "page_name": "GPS Chartplotter",
+    "route": "/studios/how-devices-work/marine/gps-chartplotter",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/101-context.webp",
+      "public/device-labs/advanced/101-device.webp",
+      "public/device-labs/advanced/101-external.webp",
+      "public/device-labs/advanced/101-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Touch display",
+      "Chart storage / SD",
+      "GNSS antenna",
+      "RF front end",
+      "Navigation processor",
+      "Flash memory",
+      "Power management",
+      "NMEA 0183",
+      "NMEA 2000",
+      "Ethernet",
+      "Sonar interface"
+    ],
+    "minimum_core_images": 14,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 102,
+    "page_name": "Automatic Identification System (AIS)",
+    "route": "/studios/how-devices-work/marine/ais",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/102-device.webp",
+      "public/device-labs/advanced/102-external.webp",
+      "public/device-labs/advanced/102-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "VHF antenna",
+      "GPS antenna",
+      "RF front end",
+      "VHF transceiver",
+      "Baseband modem",
+      "AIS encoder / decoder",
+      "Processor",
+      "Display",
+      "NMEA ports",
+      "Power supply"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 103,
+    "page_name": "Marine Autopilot",
+    "route": "/studios/how-devices-work/marine/marine-autopilot",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/103-context.webp",
+      "public/device-labs/advanced/103-device.webp",
+      "public/device-labs/advanced/103-external.webp",
+      "public/device-labs/advanced/103-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Control head",
+      "Heading sensor",
+      "GNSS antenna",
+      "Rudder-angle sensor",
+      "Autopilot MCU",
+      "NMEA interface",
+      "DC power supply",
+      "H-bridge driver",
+      "Hydraulic pump",
+      "Rudder"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 104,
+    "page_name": "Electronic Compass",
+    "route": "/studios/how-devices-work/marine/electronic-compass",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/104-application-0.webp",
+      "public/device-labs/advanced/104-application-1.webp",
+      "public/device-labs/advanced/104-application-2.webp",
+      "public/device-labs/advanced/104-application-3.webp",
+      "public/device-labs/advanced/104-device.webp",
+      "public/device-labs/advanced/104-external.webp",
+      "public/device-labs/advanced/104-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Weatherproof radome",
+      "Mounting base",
+      "Cable outlet",
+      "Magnetometer",
+      "Accelerometer / tilt sensor",
+      "Processing MCU",
+      "Calibration EEPROM",
+      "Power regulator",
+      "NMEA 2000 transceiver",
+      "NMEA 0183 interface"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 105,
+    "page_name": "Marine VHF Radio",
+    "route": "/studios/how-devices-work/marine/marine-vhf-radio",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/105-context.webp",
+      "public/device-labs/advanced/105-device.webp",
+      "public/device-labs/advanced/105-external.webp",
+      "public/device-labs/advanced/105-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Microphone",
+      "Audio preamplifier",
+      "FM synthesizer / modulator",
+      "RF power amplifier",
+      "Low-pass filter",
+      "Duplexer",
+      "LNA / mixer",
+      "FM demodulator",
+      "Audio amplifier",
+      "DSC controller",
+      "GPS interface",
+      "Display / channel knob"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 106,
+    "page_name": "EPIRB Emergency Beacon",
+    "route": "/studios/how-devices-work/marine/epirb-emergency-beacon",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/106-application-0.webp",
+      "public/device-labs/advanced/106-application-1.webp",
+      "public/device-labs/advanced/106-application-2.webp",
+      "public/device-labs/advanced/106-context.webp",
+      "public/device-labs/advanced/106-device.webp",
+      "public/device-labs/advanced/106-external.webp",
+      "public/device-labs/advanced/106-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Antenna",
+      "Strobe LED",
+      "Activation switch",
+      "Water sensor",
+      "GNSS receiver",
+      "406 MHz transmitter",
+      "121.5 MHz homing transmitter",
+      "Controller",
+      "Primary battery",
+      "Waterproof housing"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 107,
+    "page_name": "Dynamic Positioning System",
+    "route": "/studios/how-devices-work/marine/dynamic-positioning-system",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/107-application-0.webp",
+      "public/device-labs/advanced/107-application-1.webp",
+      "public/device-labs/advanced/107-application-2.webp",
+      "public/device-labs/advanced/107-application-3.webp",
+      "public/device-labs/advanced/107-device.webp",
+      "public/device-labs/advanced/107-external.webp",
+      "public/device-labs/advanced/107-internal.webp",
+      "public/device-labs/advanced/107-vessel.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal",
+      "vessel"
+    ],
+    "named_components": [
+      "GNSS position reference",
+      "Gyrocompass",
+      "Wind sensor",
+      "Motion reference unit",
+      "Operator console",
+      "DP computer",
+      "Thruster controllers",
+      "Azimuth thrusters",
+      "Power system"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 108,
+    "page_name": "Underwater ROV Control System",
+    "route": "/studios/how-devices-work/marine/underwater-rov-control-system",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/108-application-0.webp",
+      "public/device-labs/advanced/108-application-1.webp",
+      "public/device-labs/advanced/108-application-2.webp",
+      "public/device-labs/advanced/108-application-3.webp",
+      "public/device-labs/advanced/108-context.webp",
+      "public/device-labs/advanced/108-device.webp",
+      "public/device-labs/advanced/108-external.webp",
+      "public/device-labs/advanced/108-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Topside console",
+      "Tether",
+      "Communication module",
+      "Control computer",
+      "Motor drivers",
+      "Power converter",
+      "IMU",
+      "Pressure sensor",
+      "Camera",
+      "LED lights",
+      "Manipulator interface",
+      "Six thrusters"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 109,
+    "page_name": "Autonomous Underwater Vehicle Navigation",
+    "route": "/studios/how-devices-work/marine/autonomous-underwater-vehicle-navigation",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/109-application-0.webp",
+      "public/device-labs/advanced/109-application-1.webp",
+      "public/device-labs/advanced/109-application-2.webp",
+      "public/device-labs/advanced/109-application-3.webp",
+      "public/device-labs/advanced/109-context.webp",
+      "public/device-labs/advanced/109-device.webp",
+      "public/device-labs/advanced/109-external.webp",
+      "public/device-labs/advanced/109-hero.webp",
+      "public/device-labs/advanced/109-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "context",
+      "device",
+      "external",
+      "hero",
+      "internal"
+    ],
+    "named_components": [
+      "Acoustic modem",
+      "Mission planner",
+      "Navigation computer",
+      "Battery",
+      "Sonar",
+      "INS / IMU",
+      "Doppler velocity log",
+      "Pressure sensor",
+      "Propulsion",
+      "Control fins"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 110,
+    "page_name": "Digital Engine Control",
+    "route": "/studios/how-devices-work/marine/digital-engine-control",
+    "categories": [
+      "marine"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/110-device.webp",
+      "public/device-labs/advanced/110-external.webp",
+      "public/device-labs/advanced/110-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Crankshaft sensor",
+      "Camshaft sensor",
+      "Throttle sensor",
+      "Coolant temperature sensor",
+      "MAP sensor",
+      "ECU input conditioning",
+      "Processor",
+      "Flash / EEPROM",
+      "Injector drivers",
+      "Ignition drivers",
+      "CAN transceiver",
+      "Power / sealed enclosure"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 111,
+    "page_name": "Servo Motor Controller",
+    "route": "/studios/how-devices-work/robotics/servo-motor-controller",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/111-application-0.webp",
+      "public/device-labs/advanced/111-application-1.webp",
+      "public/device-labs/advanced/111-application-2.webp",
+      "public/device-labs/advanced/111-application-3.webp",
+      "public/device-labs/advanced/111-application-4.webp",
+      "public/device-labs/advanced/111-application-5.webp",
+      "public/device-labs/advanced/111-context.webp",
+      "public/device-labs/advanced/111-device.webp",
+      "public/device-labs/advanced/111-external.webp",
+      "public/device-labs/advanced/111-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "application-5",
+      "context",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Output shaft",
+      "Gearbox",
+      "DC motor",
+      "Position sensor",
+      "Control PCB",
+      "PWM decoder / MCU",
+      "H-bridge",
+      "Power input",
+      "PWM input"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 112,
+    "page_name": "Stepper Motor Controller",
+    "route": "/studios/how-devices-work/robotics/stepper-motor-controller",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/112-application-0.webp",
+      "public/device-labs/advanced/112-application-1.webp",
+      "public/device-labs/advanced/112-application-2.webp",
+      "public/device-labs/advanced/112-application-3.webp",
+      "public/device-labs/advanced/112-device.webp",
+      "public/device-labs/advanced/112-external.webp",
+      "public/device-labs/advanced/112-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Front bearing",
+      "Permanent-magnet rotor",
+      "Phase A / B coils",
+      "Rear bearing",
+      "Translator",
+      "Current regulator",
+      "H-bridge MOSFETs",
+      "Current-sense resistor",
+      "STEP / DIR interface",
+      "Motor power supply"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 113,
+    "page_name": "Mobile Robot",
+    "route": "/studios/how-devices-work/robotics/mobile-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/113-device.webp",
+      "public/device-labs/advanced/113-external.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external"
+    ],
+    "named_components": [
+      "Wheeled chassis",
+      "Battery",
+      "Motor drivers",
+      "Left / right motors",
+      "Wheel encoders",
+      "IMU",
+      "Distance sensor",
+      "Controller",
+      "Communication antenna"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 114,
+    "page_name": "Line-Following Robot",
+    "route": "/studios/how-devices-work/robotics/line-following-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/114-application-0.webp",
+      "public/device-labs/advanced/114-application-1.webp",
+      "public/device-labs/advanced/114-application-2.webp",
+      "public/device-labs/advanced/114-application-3.webp",
+      "public/device-labs/advanced/114-application-4.webp",
+      "public/device-labs/advanced/114-application-5.webp",
+      "public/device-labs/advanced/114-context.webp",
+      "public/device-labs/advanced/114-device.webp",
+      "public/device-labs/advanced/114-external.webp",
+      "public/device-labs/advanced/114-flow-0.webp",
+      "public/device-labs/advanced/114-flow-1.webp",
+      "public/device-labs/advanced/114-flow-2.webp",
+      "public/device-labs/advanced/114-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "application-5",
+      "context",
+      "device",
+      "external",
+      "flow-0",
+      "flow-1",
+      "flow-2",
+      "internal"
+    ],
+    "named_components": [
+      "Chassis plates",
+      "Microcontroller",
+      "L298N-style motor driver",
+      "DC gear motors",
+      "Wheels",
+      "IR reflectance array",
+      "Battery",
+      "5 V regulator",
+      "Status LEDs"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 115,
+    "page_name": "Self-Balancing Robot",
+    "route": "/studios/how-devices-work/robotics/self-balancing-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/115-application-0.webp",
+      "public/device-labs/advanced/115-application-1.webp",
+      "public/device-labs/advanced/115-application-2.webp",
+      "public/device-labs/advanced/115-application-3.webp",
+      "public/device-labs/advanced/115-device.webp",
+      "public/device-labs/advanced/115-external.webp",
+      "public/device-labs/advanced/115-flow-0.webp",
+      "public/device-labs/advanced/115-flow-1.webp",
+      "public/device-labs/advanced/115-flow-2.webp",
+      "public/device-labs/advanced/115-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "flow-0",
+      "flow-1",
+      "flow-2",
+      "internal"
+    ],
+    "named_components": [
+      "MPU6050-style IMU",
+      "Arduino Nano-style MCU",
+      "TB6612-style dual motor driver",
+      "Li-Po battery",
+      "Frame",
+      "DC gear motors / encoders",
+      "Wheels"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 116,
+    "page_name": "Industrial Robot Controller",
+    "route": "/studios/how-devices-work/robotics/industrial-robot-controller",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/116-application-0.webp",
+      "public/device-labs/advanced/116-application-1.webp",
+      "public/device-labs/advanced/116-application-2.webp",
+      "public/device-labs/advanced/116-application-3.webp",
+      "public/device-labs/advanced/116-device.webp",
+      "public/device-labs/advanced/116-external.webp",
+      "public/device-labs/advanced/116-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Cooling fans",
+      "AC-DC power supply",
+      "Safety controller",
+      "Real-time CPU board",
+      "Motion control board",
+      "Servo drive modules",
+      "I/O terminals",
+      "Ethernet / fieldbus",
+      "Teach pendant",
+      "Joint encoders"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 117,
+    "page_name": "Collaborative Robot",
+    "route": "/studios/how-devices-work/robotics/collaborative-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/117-application-0.webp",
+      "public/device-labs/advanced/117-application-1.webp",
+      "public/device-labs/advanced/117-application-2.webp",
+      "public/device-labs/advanced/117-application-3.webp",
+      "public/device-labs/advanced/117-device.webp",
+      "public/device-labs/advanced/117-external.webp",
+      "public/device-labs/advanced/117-internal.webp",
+      "public/device-labs/advanced/117-part-0.webp",
+      "public/device-labs/advanced/117-part-1.webp",
+      "public/device-labs/advanced/117-part-2.webp",
+      "public/device-labs/advanced/117-part-3.webp",
+      "public/device-labs/advanced/117-part-4.webp",
+      "public/device-labs/advanced/117-part-5.webp",
+      "public/device-labs/advanced/117-part-6.webp",
+      "public/device-labs/advanced/117-part-7.webp",
+      "public/device-labs/advanced/117-part-8.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal",
+      "part-0",
+      "part-1",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5",
+      "part-6",
+      "part-7",
+      "part-8"
+    ],
+    "named_components": [
+      "Brushless joint motor",
+      "Harmonic drive",
+      "Torque sensor",
+      "Position encoder",
+      "Safety electronics",
+      "End effector",
+      "Vision camera",
+      "Robot controller",
+      "Teach pendant"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 118,
+    "page_name": "LiDAR Mapping Robot",
+    "route": "/studios/how-devices-work/robotics/lidar-mapping-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/118-application-0.webp",
+      "public/device-labs/advanced/118-application-1.webp",
+      "public/device-labs/advanced/118-application-2.webp",
+      "public/device-labs/advanced/118-application-3.webp",
+      "public/device-labs/advanced/118-device.webp",
+      "public/device-labs/advanced/118-external.webp",
+      "public/device-labs/advanced/118-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "2D LiDAR sensor",
+      "Onboard computer",
+      "IMU",
+      "Wheel encoders",
+      "Dual motor driver",
+      "Battery",
+      "Communication module",
+      "Left / right motors"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 119,
+    "page_name": "SLAM Navigation System",
+    "route": "/studios/how-devices-work/robotics/slam-navigation-system",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/119-application-0.webp",
+      "public/device-labs/advanced/119-application-1.webp",
+      "public/device-labs/advanced/119-application-2.webp",
+      "public/device-labs/advanced/119-application-3.webp",
+      "public/device-labs/advanced/119-application-4.webp",
+      "public/device-labs/advanced/119-device.webp",
+      "public/device-labs/advanced/119-external.webp",
+      "public/device-labs/advanced/119-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "LiDAR / camera",
+      "IMU",
+      "Wheel encoders",
+      "Onboard processor",
+      "Map memory",
+      "Motor controller",
+      "DC motors",
+      "Battery"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 120,
+    "page_name": "Autonomous Mobile Robot",
+    "route": "/studios/how-devices-work/robotics/autonomous-mobile-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/120-device.webp",
+      "public/device-labs/advanced/120-external.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external"
+    ],
+    "named_components": [
+      "Vehicle platform",
+      "Range / camera sensing",
+      "Navigation processor",
+      "Steering actuator",
+      "Drive motors",
+      "Wheel odometry",
+      "GNSS receiver",
+      "Battery / power distribution"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 121,
+    "page_name": "Warehouse Robot",
+    "route": "/studios/how-devices-work/robotics/warehouse-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/121-application-0.webp",
+      "public/device-labs/advanced/121-application-1.webp",
+      "public/device-labs/advanced/121-application-2.webp",
+      "public/device-labs/advanced/121-application-3.webp",
+      "public/device-labs/advanced/121-device.webp",
+      "public/device-labs/advanced/121-external.webp",
+      "public/device-labs/advanced/121-internal.webp",
+      "public/device-labs/advanced/121-ipo-0.webp",
+      "public/device-labs/advanced/121-ipo-1.webp",
+      "public/device-labs/advanced/121-ipo-2.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal",
+      "ipo-0",
+      "ipo-1",
+      "ipo-2"
+    ],
+    "named_components": [
+      "360° LiDAR",
+      "Wireless antenna",
+      "Industrial computer",
+      "Battery / BMS",
+      "Drive motors",
+      "Wheel encoders",
+      "Lift mechanism",
+      "Barcode / vision sensor",
+      "Shelf / bin"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 122,
+    "page_name": "Machine-Vision System",
+    "route": "/studios/how-devices-work/robotics/machine-vision-system",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/122-application-0.webp",
+      "public/device-labs/advanced/122-application-1.webp",
+      "public/device-labs/advanced/122-application-2.webp",
+      "public/device-labs/advanced/122-application-3.webp",
+      "public/device-labs/advanced/122-device.webp",
+      "public/device-labs/advanced/122-external.webp",
+      "public/device-labs/advanced/122-input.webp",
+      "public/device-labs/advanced/122-internal.webp",
+      "public/device-labs/advanced/122-part.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "input",
+      "internal",
+      "part"
+    ],
+    "named_components": [
+      "Industrial CMOS camera",
+      "Lens",
+      "LED ring light",
+      "Trigger sensor",
+      "Vision processor",
+      "Communication interface",
+      "PLC output",
+      "Conveyor / diverter"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 123,
+    "page_name": "Quadruped Robot",
+    "route": "/studios/how-devices-work/robotics/quadruped-robot",
+    "categories": [
+      "robotics"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/123-application-0.webp",
+      "public/device-labs/advanced/123-application-1.webp",
+      "public/device-labs/advanced/123-application-2.webp",
+      "public/device-labs/advanced/123-application-3.webp",
+      "public/device-labs/advanced/123-application-4.webp",
+      "public/device-labs/advanced/123-application-5.webp",
+      "public/device-labs/advanced/123-device.webp",
+      "public/device-labs/advanced/123-external.webp",
+      "public/device-labs/advanced/123-internal.webp",
+      "public/device-labs/advanced/123-part-0.webp",
+      "public/device-labs/advanced/123-part-1.webp",
+      "public/device-labs/advanced/123-part-2.webp",
+      "public/device-labs/advanced/123-part-3.webp",
+      "public/device-labs/advanced/123-part-4.webp",
+      "public/device-labs/advanced/123-part-5.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "application-5",
+      "device",
+      "external",
+      "internal",
+      "part-0",
+      "part-1",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5"
+    ],
+    "named_components": [
+      "LiDAR / depth camera",
+      "IMU",
+      "Compute module",
+      "Battery pack",
+      "BLDC servo actuators",
+      "Reduction gears",
+      "Leg links",
+      "Foot contact sensors"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 124,
+    "page_name": "Wi-Fi Router",
+    "route": "/studios/how-devices-work/everyday/wi-fi-router",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/124-application-0.webp",
+      "public/device-labs/advanced/124-application-1.webp",
+      "public/device-labs/advanced/124-application-2.webp",
+      "public/device-labs/advanced/124-application-3.webp",
+      "public/device-labs/advanced/124-application-4.webp",
+      "public/device-labs/advanced/124-application-5.webp",
+      "public/device-labs/advanced/124-application-6.webp",
+      "public/device-labs/advanced/124-application-7.webp",
+      "public/device-labs/advanced/124-device.webp",
+      "public/device-labs/advanced/124-external.webp",
+      "public/device-labs/advanced/124-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "application-5",
+      "application-6",
+      "application-7",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Dual-band antennas",
+      "RF front end",
+      "Router SoC / CPU",
+      "RAM",
+      "Flash memory",
+      "Ethernet switch / PHY",
+      "Power regulation",
+      "Crystal oscillator"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 125,
+    "page_name": "Bluetooth Headphones",
+    "route": "/studios/how-devices-work/everyday/bluetooth-headphones",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/125-device.webp",
+      "public/device-labs/advanced/125-external.webp",
+      "public/device-labs/advanced/125-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Antenna",
+      "Bluetooth SoC",
+      "DSP / audio codec",
+      "DAC / amplifier",
+      "Speaker driver",
+      "Microphones",
+      "Battery / charging circuit"
+    ],
+    "minimum_core_images": 10,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 126,
+    "page_name": "Smartwatch",
+    "route": "/studios/how-devices-work/everyday/smartwatch",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/126-device.webp",
+      "public/device-labs/advanced/126-external.webp",
+      "public/device-labs/advanced/126-health.webp",
+      "public/device-labs/advanced/126-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "health",
+      "internal"
+    ],
+    "named_components": [
+      "Touch layer",
+      "OLED display",
+      "SoC / memory",
+      "PPG sensor",
+      "Accelerometer",
+      "Gyroscope",
+      "Haptic motor",
+      "Wireless module",
+      "Battery / charging coil"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 127,
+    "page_name": "RFID Access Card",
+    "route": "/studios/how-devices-work/everyday/rfid-access-card",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/127-device.webp",
+      "public/device-labs/advanced/127-external.webp",
+      "public/device-labs/advanced/127-internal.webp",
+      "public/device-labs/advanced/127-principle.webp",
+      "public/device-labs/advanced/127-reader.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "principle",
+      "reader"
+    ],
+    "named_components": [
+      "Card antenna coil",
+      "RFID chip",
+      "Plastic shell",
+      "Reader antenna",
+      "RF front end",
+      "Reader MCU",
+      "Access controller",
+      "Door relay",
+      "12 V supply"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 128,
+    "page_name": "Barcode Scanner",
+    "route": "/studios/how-devices-work/everyday/barcode-scanner",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/128-application-0.webp",
+      "public/device-labs/advanced/128-application-1.webp",
+      "public/device-labs/advanced/128-application-2.webp",
+      "public/device-labs/advanced/128-application-3.webp",
+      "public/device-labs/advanced/128-device.webp",
+      "public/device-labs/advanced/128-external.webp",
+      "public/device-labs/advanced/128-internal.webp",
+      "public/device-labs/advanced/128-principle.webp",
+      "public/device-labs/advanced/128-processor.webp",
+      "public/device-labs/advanced/128-views.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "internal",
+      "principle",
+      "processor",
+      "views"
+    ],
+    "named_components": [
+      "Illumination LED",
+      "Lens",
+      "CMOS / photodiode",
+      "Analog front end / ADC",
+      "Decoder MCU",
+      "Trigger",
+      "Buzzer",
+      "USB / wireless",
+      "Battery"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 129,
+    "page_name": "QR Code Scanner",
+    "route": "/studios/how-devices-work/everyday/qr-code-scanner",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/129-application-0.webp",
+      "public/device-labs/advanced/129-application-1.webp",
+      "public/device-labs/advanced/129-application-2.webp",
+      "public/device-labs/advanced/129-application-3.webp",
+      "public/device-labs/advanced/129-application-4.webp",
+      "public/device-labs/advanced/129-device.webp",
+      "public/device-labs/advanced/129-external.webp",
+      "public/device-labs/advanced/129-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Lens",
+      "CMOS camera",
+      "Flash LED",
+      "Image signal processor",
+      "SoC / decoder",
+      "Memory",
+      "Battery",
+      "Display",
+      "Wireless interface"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 130,
+    "page_name": "Biometric Fingerprint Scanner",
+    "route": "/studios/how-devices-work/everyday/biometric-fingerprint-scanner",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/130-device.webp",
+      "public/device-labs/advanced/130-external.webp",
+      "public/device-labs/advanced/130-internal.webp",
+      "public/device-labs/advanced/130-principle.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "principle"
+    ],
+    "named_components": [
+      "Sensing surface",
+      "LED illumination",
+      "Optical / capacitive sensor",
+      "ADC",
+      "Processor",
+      "Template flash",
+      "Secure element",
+      "Interface driver",
+      "Status LED / buzzer"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 131,
+    "page_name": "CCTV Camera",
+    "route": "/studios/how-devices-work/everyday/cctv-camera",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/131-device.webp",
+      "public/device-labs/advanced/131-external.webp",
+      "public/device-labs/advanced/131-internal.webp",
+      "public/device-labs/advanced/131-scene.webp",
+      "public/device-labs/advanced/131-stage-0.webp",
+      "public/device-labs/advanced/131-stage-1.webp",
+      "public/device-labs/advanced/131-stage-2.webp",
+      "public/device-labs/advanced/131-stage-3.webp",
+      "public/device-labs/advanced/131-stage-4.webp",
+      "public/device-labs/advanced/131-stage-5.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "scene",
+      "stage-0",
+      "stage-1",
+      "stage-2",
+      "stage-3",
+      "stage-4",
+      "stage-5"
+    ],
+    "named_components": [
+      "Housing",
+      "Lens",
+      "CMOS sensor",
+      "IR LEDs",
+      "ISP / encoder",
+      "Flash / SDRAM",
+      "Ethernet PHY / PoE",
+      "Microphone",
+      "SD card"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 132,
+    "page_name": "IR Camera",
+    "route": "/studios/how-devices-work/everyday/ir-camera",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/132-application-0.webp",
+      "public/device-labs/advanced/132-application-1.webp",
+      "public/device-labs/advanced/132-application-2.webp",
+      "public/device-labs/advanced/132-application-3.webp",
+      "public/device-labs/advanced/132-application-4.webp",
+      "public/device-labs/advanced/132-application-5.webp",
+      "public/device-labs/advanced/132-device.webp",
+      "public/device-labs/advanced/132-external.webp",
+      "public/device-labs/advanced/132-internal.webp",
+      "public/device-labs/advanced/132-principle.webp",
+      "public/device-labs/advanced/132-stage-0.webp",
+      "public/device-labs/advanced/132-stage-1.webp",
+      "public/device-labs/advanced/132-stage-2.webp",
+      "public/device-labs/advanced/132-stage-3.webp",
+      "public/device-labs/advanced/132-stage-4.webp",
+      "public/device-labs/advanced/132-stage-5.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "application-4",
+      "application-5",
+      "device",
+      "external",
+      "internal",
+      "principle",
+      "stage-0",
+      "stage-1",
+      "stage-2",
+      "stage-3",
+      "stage-4",
+      "stage-5"
+    ],
+    "named_components": [
+      "Germanium IR lens",
+      "Calibration shutter",
+      "Microbolometer array",
+      "Analog front end / ADC",
+      "Reference temperature sensor",
+      "Processor",
+      "Flash memory",
+      "LCD / OLED",
+      "Battery"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 133,
+    "page_name": "Television",
+    "route": "/studios/how-devices-work/everyday/television",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/133-device.webp",
+      "public/device-labs/advanced/133-external.webp",
+      "public/device-labs/advanced/133-internal.webp",
+      "public/device-labs/advanced/133-part-0.webp",
+      "public/device-labs/advanced/133-part-1.webp",
+      "public/device-labs/advanced/133-part-2.webp",
+      "public/device-labs/advanced/133-part-3.webp",
+      "public/device-labs/advanced/133-part-4.webp",
+      "public/device-labs/advanced/133-part-5.webp",
+      "public/device-labs/advanced/133-part-6.webp",
+      "public/device-labs/advanced/133-part-7.webp",
+      "public/device-labs/advanced/133-part-8.webp",
+      "public/device-labs/advanced/133-part-9.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "part-0",
+      "part-1",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5",
+      "part-6",
+      "part-7",
+      "part-8",
+      "part-9"
+    ],
+    "named_components": [
+      "RF tuner",
+      "HDMI receiver",
+      "Wi-Fi / Ethernet",
+      "Main SoC",
+      "RAM / flash",
+      "T-CON board",
+      "Display panel",
+      "LED backlight",
+      "Audio amplifier",
+      "Speakers",
+      "Power supply"
+    ],
+    "minimum_core_images": 14,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 134,
+    "page_name": "Digital Door Lock",
+    "route": "/studios/how-devices-work/everyday/digital-door-lock",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/134-device.webp",
+      "public/device-labs/advanced/134-external.webp",
+      "public/device-labs/advanced/134-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Keypad / touchscreen",
+      "Fingerprint / RFID module",
+      "MCU",
+      "Secure element",
+      "Motor / latch actuator",
+      "H-bridge driver",
+      "Door-position sensor",
+      "Wireless module",
+      "Battery pack"
+    ],
+    "minimum_core_images": 12,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 135,
+    "page_name": "Microwave Oven Controller",
+    "route": "/studios/how-devices-work/everyday/microwave-oven-controller",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/135-application-0.webp",
+      "public/device-labs/advanced/135-application-1.webp",
+      "public/device-labs/advanced/135-application-2.webp",
+      "public/device-labs/advanced/135-application-3.webp",
+      "public/device-labs/advanced/135-device.webp",
+      "public/device-labs/advanced/135-external.webp",
+      "public/device-labs/advanced/135-inside.webp",
+      "public/device-labs/advanced/135-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "inside",
+      "internal"
+    ],
+    "named_components": [
+      "Keypad",
+      "Display board",
+      "Main MCU board",
+      "Door interlock switches",
+      "Relay / triac driver",
+      "High-voltage supply / magnetron",
+      "Turntable motor",
+      "Cooling fan"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 136,
+    "page_name": "Washing Machine Controller",
+    "route": "/studios/how-devices-work/everyday/washing-machine-controller",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/136-device.webp",
+      "public/device-labs/advanced/136-external.webp",
+      "public/device-labs/advanced/136-internal.webp",
+      "public/device-labs/advanced/136-panel.webp",
+      "public/device-labs/advanced/136-part-1.webp",
+      "public/device-labs/advanced/136-part-10.webp",
+      "public/device-labs/advanced/136-part-11.webp",
+      "public/device-labs/advanced/136-part-12.webp",
+      "public/device-labs/advanced/136-part-2.webp",
+      "public/device-labs/advanced/136-part-3.webp",
+      "public/device-labs/advanced/136-part-4.webp",
+      "public/device-labs/advanced/136-part-5.webp",
+      "public/device-labs/advanced/136-part-6.webp",
+      "public/device-labs/advanced/136-part-7.webp",
+      "public/device-labs/advanced/136-part-8.webp",
+      "public/device-labs/advanced/136-part-9.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "panel",
+      "part-1",
+      "part-10",
+      "part-11",
+      "part-12",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5",
+      "part-6",
+      "part-7",
+      "part-8",
+      "part-9"
+    ],
+    "named_components": [
+      "MCU / controller board",
+      "Power supply",
+      "Inlet valve",
+      "Drain pump",
+      "Drum motor",
+      "Inverter motor driver",
+      "Door lock / switch",
+      "Water-level sensor",
+      "NTC temperature sensor",
+      "Tachometer",
+      "Detergent dispenser",
+      "Wiring harness"
+    ],
+    "minimum_core_images": 15,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 137,
+    "page_name": "Induction Cooktop",
+    "route": "/studios/how-devices-work/everyday/induction-cooktop",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/137-device.webp",
+      "public/device-labs/advanced/137-external.webp",
+      "public/device-labs/advanced/137-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal"
+    ],
+    "named_components": [
+      "Ceramic glass top",
+      "Touch control panel",
+      "Induction work coil",
+      "Temperature sensor",
+      "IGBT / MOSFET power board",
+      "MCU / gate driver",
+      "Cooling fan",
+      "Rectifier / DC bus"
+    ],
+    "minimum_core_images": 11,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 138,
+    "page_name": "Smart Energy Meter",
+    "route": "/studios/how-devices-work/everyday/smart-energy-meter",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/138-device.webp",
+      "public/device-labs/advanced/138-external.webp",
+      "public/device-labs/advanced/138-internal.webp",
+      "public/device-labs/advanced/138-part-1.webp",
+      "public/device-labs/advanced/138-part-10.webp",
+      "public/device-labs/advanced/138-part-11.webp",
+      "public/device-labs/advanced/138-part-2.webp",
+      "public/device-labs/advanced/138-part-3.webp",
+      "public/device-labs/advanced/138-part-4.webp",
+      "public/device-labs/advanced/138-part-5.webp",
+      "public/device-labs/advanced/138-part-6.webp",
+      "public/device-labs/advanced/138-part-7.webp",
+      "public/device-labs/advanced/138-part-8.webp",
+      "public/device-labs/advanced/138-part-9.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "internal",
+      "part-1",
+      "part-10",
+      "part-11",
+      "part-2",
+      "part-3",
+      "part-4",
+      "part-5",
+      "part-6",
+      "part-7",
+      "part-8",
+      "part-9"
+    ],
+    "named_components": [
+      "Current transformer / shunt",
+      "Voltage sensing network",
+      "Metering IC",
+      "Voltage / current ADC",
+      "Microcontroller",
+      "LCD display",
+      "Disconnect relay",
+      "Communication module",
+      "Memory / RTC",
+      "Tamper detection",
+      "Power supply"
+    ],
+    "minimum_core_images": 14,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 139,
+    "page_name": "GPS Receiver",
+    "route": "/studios/how-devices-work/everyday/gps-receiver",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/139-device.webp",
+      "public/device-labs/advanced/139-external.webp",
+      "public/device-labs/advanced/139-inside.webp",
+      "public/device-labs/advanced/139-internal.webp",
+      "public/device-labs/advanced/139-satellites.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "device",
+      "external",
+      "inside",
+      "internal",
+      "satellites"
+    ],
+    "named_components": [
+      "Patch antenna",
+      "Low-noise amplifier",
+      "SAW band-pass filter",
+      "Mixer / local oscillator",
+      "ADC",
+      "Baseband correlator",
+      "TCXO timing reference",
+      "Navigation MCU",
+      "Memory",
+      "Display / power supply"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [],
+    "generated_count": 0,
+    "generated_component_count": 0,
+    "status": "pending bulk regeneration"
+  },
+  {
+    "lab": 140,
+    "page_name": "Digital Multimeter",
+    "route": "/studios/how-devices-work/everyday/digital-multimeter",
+    "categories": [
+      "everyday"
+    ],
+    "legacy_files": [
+      "public/device-labs/advanced/140-application-0.webp",
+      "public/device-labs/advanced/140-application-1.webp",
+      "public/device-labs/advanced/140-application-2.webp",
+      "public/device-labs/advanced/140-application-3.webp",
+      "public/device-labs/advanced/140-device.webp",
+      "public/device-labs/advanced/140-external.webp",
+      "public/device-labs/advanced/140-inside.webp",
+      "public/device-labs/advanced/140-internal.webp"
+    ],
+    "legacy_roles_to_replace": [
+      "application-0",
+      "application-1",
+      "application-2",
+      "application-3",
+      "device",
+      "external",
+      "inside",
+      "internal"
+    ],
+    "named_components": [
+      "Input terminals / probes",
+      "MOV / TVS / fuse protection",
+      "Rotary selector",
+      "Voltage divider",
+      "Current shunt",
+      "Resistance test source",
+      "Input conditioning / filter",
+      "ADC / measurement IC",
+      "LCD / buzzer",
+      "Battery / supply"
+    ],
+    "minimum_core_images": 13,
+    "additional_views": "Replace every useful existing raster role; add detail/state views where warranted, with no fixed image cap.",
+    "generated_images": [
+      {
+        "role": "external",
+        "path": "/device-labs/generated/140-digital-multimeter/external.png",
+        "width": 1224,
+        "height": 1285,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "bytes": 1869479,
+        "sha256": "be7d5346eaa4ed31329b40fea53d894ff2821252abffe3b1ae3eae622f91ebcf",
+        "generation": "individual built-in image_gen call",
+        "postprocessing": "none; original generated PNG copied byte-for-byte"
+      }
+    ],
+    "generated_count": 1,
+    "generated_component_count": 0,
+    "status": "partially generated"
+  }
+]

@@ -7,3 +7,6 @@
 .hdw-generated-part[data-motion=true] img{animation:hdw-part-motion 2s ease-in-out infinite alternate}
 @keyframes hdw-part-motion{from{transform:translateY(0)}to{transform:translateY(-14px)}}
 @media(prefers-reduced-motion:reduce){.hdw-generated-part[data-motion=true] img{animation:none}}
+.hdw-generated-part-options{display:flex;flex-wrap:wrap;gap:8px}
+.hdw-generated-part-options button{padding:10px 12px;border:1px solid #98b6cb;border-radius:8px;background:white;color:#24445e;min-height:44px;font:inherit;cursor:pointer}
+.hdw-generated-part-options button[aria-pressed=true]{background:#24445e;color:white}

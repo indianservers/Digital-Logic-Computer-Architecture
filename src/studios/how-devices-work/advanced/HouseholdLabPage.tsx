@@ -1,4 +1,5 @@
 import DeviceCourse from '../DeviceCourse';
+import {GENERATED_DEVICE_ART} from '../generated-assets';
 import {MicrowaveIPO} from './MicrowavePanels';
 import {parameterValue,itemAt} from './parameters';
 import {useEffect,useMemo,useState,type ReactNode} from 'react';
@@ -10,7 +11,7 @@ import {simulateHousehold,gpsSolution} from './household-engine';
 import {Card,Flow,Quiz} from './SystemsLabPage';
 import DeviceCircuit from './DeviceCircuit';
 import './household.css';
-const art=(n:number,role:string)=>`/device-labs/advanced/${n}-${role}.webp?v=9`;
+const art=(n:number,role:string)=>GENERATED_DEVICE_ART[n]?.[role]??`/device-labs/advanced/${n}-${role}.webp?v=9`;
 const layouts:Record<number,[string,number,number,number,number?][]>= {
 135:[['device',1,12,1],['inside',13,12,1],['internal',1,8,2],['flow',9,8,2],['simulation',17,8,2],['circuit',1,11,3],['steps',12,7,3],['applications',19,6,3]],
 136:[['device',1,7,1,2],['panel',8,9,1],['parts',17,8,1,2],['flow',8,9,2],['circuit',8,9,3],['simulation',17,8,3],['steps',1,7,3,2],['stages',8,9,4],['applications',17,4,4],['keys',21,4,4]],

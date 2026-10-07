@@ -1,0 +1,21 @@
+import {mkdirSync,writeFileSync,readdirSync,statSync} from 'node:fs';
+import {LABS,labPath} from '../src/studios/how-devices-work/labs/data';
+import {ADVANCED_LABS,advancedPath} from '../src/studios/how-devices-work/advanced/data';
+import {GENERATED_DEVICE_ART,GENERATED_PART_ART} from '../src/studios/how-devices-work/generated-assets';
+const folder='output/hdw-image-regeneration/whole-catalogue-review';
+mkdirSync(folder,{recursive:true});
+const pages=[...LABS.map(l=>({...l,route:labPath(l)})),...ADVANCED_LABS.map(l=>({...l,route:advancedPath(l)}))];
+const rows=pages.map(l=>{
+ const directory=l.number<=54?'public/device-labs':'public/device-labs/advanced';
+ const prefix=l.number<=54?String(l.number).padStart(2,'0'):String(l.number).padStart(3,'0');
+ const legacy=readdirSync(directory).filter(f=>f.startsWith(prefix+'-')&&f.endsWith('.webp'));
+ const parts=l.parts.map(name=>({name,image:GENERATED_PART_ART[l.number]?.[name]??null,status:GENERATED_PART_ART[l.number]?.[name]?'generated illustration; physical review required per asset':'individual generated asset missing'}));
+ const generated=Object.values(GENERATED_DEVICE_ART[l.number]??{});
+ return {number:l.number,name:l.device.name,route:l.route,legacyRasterFiles:legacy.map(f=>`${directory}/${f}`),legacyRasterCount:legacy.length,generatedDeviceRoles:GENERATED_DEVICE_ART[l.number]??{},parts,generatedPartCount:parts.filter(p=>p.image).length,allNamedPartsHaveImages:parts.every(p=>p.image),allGeneratedFilesExist:[...generated,...parts.flatMap(p=>p.image?[p.image]:[])].every(p=>{try{return statSync(`public${p}`).isFile();}catch{return false;}}),accuracyStatus:'Representative illustration; no claim of exact manufacturer teardown or 100% verified geometry'};
+});
+writeFileSync(`${folder}/page-asset-coverage.json`,JSON.stringify(rows,null,2));
+const escape=(s:string)=>`"${s.replaceAll('"','""')}"`;
+writeFileSync(`${folder}/page-asset-coverage.csv`,['Device,Page name,Route,Legacy rasters,Named parts,Generated part assets,Complete part coverage',...rows.map(r=>[String(r.number),r.name,r.route,String(r.legacyRasterCount),String(r.parts.length),String(r.generatedPartCount),String(r.allNamedPartsHaveImages)].map(escape).join(','))].join('\n'));
+const summary={pages:rows.length,legacyRasterFiles:rows.reduce((n,r)=>n+r.legacyRasterCount,0),namedComponents:rows.reduce((n,r)=>n+r.parts.length,0),registeredGeneratedParts:rows.reduce((n,r)=>n+r.generatedPartCount,0),pagesWithCompletePartCoverage:rows.filter(r=>r.allNamedPartsHaveImages).length,missingPartImages:rows.reduce((n,r)=>n+r.parts.length-r.generatedPartCount,0)};
+writeFileSync(`${folder}/coverage-summary.json`,JSON.stringify(summary,null,2));
+console.log(JSON.stringify(summary));

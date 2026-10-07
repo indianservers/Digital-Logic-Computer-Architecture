@@ -14,7 +14,7 @@ OUT = ROOT / 'output/hdw-image-regeneration' / phase
 OUT.mkdir(parents=True, exist_ok=True)
 pages = json.loads((ROOT / '.codex-device-audit/tab-migration/comparison.json').read_text())
 catalogue = (ROOT / 'src/studios/how-devices-work/catalogue.ts').read_text(encoding='utf-8')
-devices = json.loads(catalogue.split('export const DEVICES: Device[] = ')[1].split(';')[0])
+devices = json.JSONDecoder().raw_decode(catalogue.split('export const DEVICES: Device[] = ')[1])[0]
 assert len(devices) == len(pages) == 140
 
 inventory = []
