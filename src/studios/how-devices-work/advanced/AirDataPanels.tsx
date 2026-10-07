@@ -6,7 +6,7 @@ export function AirDataConnections() {
     <path d="M239 87V217H165V239M258 114V204H209V239M225 121V195H252V239" fill="none" stroke="#ff5353" strokeWidth="3"/>
     <path d="M258 114V204H209V239" fill="none" stroke="#31b9ff" strokeWidth="3"/><path d="M225 121V195H252V239" fill="none" stroke="#79da55" strokeWidth="3"/>
     {[['Pitot · total pressure','#ff5353'],['Static pressure','#31b9ff'],['Air temperature · OAT','#79da55']].map(([label,color],i)=><g key={label}><path d={`M12 ${15+i*19}H34`} stroke={color} strokeWidth="3"/><text x="41" y={19+i*19} fill="#d9eeff" fontSize="12">{label}</text></g>)}
-    <rect x="135" y="238" width="145" height="32" rx="4" fill="#104569" stroke="#31b9ff"/><text x="207" y="259" fill="white" textAnchor="middle" fontSize="12">Air Data Computer</text><path d="M280 254H305" stroke="#31b9ff" strokeWidth="3"/><text x="315" y="239" fill="#d9eeff" fontSize="11">ARINC → avionics</text><text x="315" y="255" fill="#d9eeff" fontSize="11">PFD · FMS · autopilot</text><text x="315" y="271" fill="#93b6cf" fontSize="10">Computed data + validity</text>
+    <rect x="135" y="238" width="145" height="32" rx="4" fill="#104569" stroke="#31b9ff"/><text x="207" y="259" fill="white" textAnchor="middle" fontSize="12">Air Data Computer</text><path d="M280 254H305" stroke="#31b9ff" strokeWidth="3"/><text x="315" y="239" fill="#d9eeff" fontSize="12">ARINC → avionics</text><text x="315" y="255" fill="#d9eeff" fontSize="12">PFD · FMS · autopilot</text><text x="315" y="271" fill="#93b6cf" fontSize="12">Computed data + validity</text>
   </svg>;
 }
 

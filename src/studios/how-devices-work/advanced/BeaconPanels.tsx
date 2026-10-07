@@ -1,5 +1,5 @@
 export function BeaconArchitecture(){
- const box=(x:number,y:number,w:number,title:string,sub:string)=><g><rect x={x} y={y} width={w} height="47" rx="4" fill="#f3f8ff" stroke="#719cbd"/><text x={x+w/2} y={y+19} textAnchor="middle" fontSize="10">{title}</text><text x={x+w/2} y={y+35} textAnchor="middle" fontSize="9">{sub}</text></g>;
+ const box=(x:number,y:number,w:number,title:string,sub:string)=><g><rect x={x} y={y} width={w} height="47" rx="4" fill="#f3f8ff" stroke="#719cbd"/><text x={x+w/2} y={y+19} textAnchor="middle" fontSize="12">{title}</text><text x={x+w/2} y={y+35} textAnchor="middle" fontSize="12">{sub}</text></g>;
  return <svg viewBox="0 0 460 260" role="img" aria-label="EPIRB GPS and activation switch MCU controller battery management 406MHz satellite 121.5MHz homing and strobe branches">
  {box(10,75,95,'GPS receiver','Position')}{box(10,165,95,'Activation','Switch / immersion')}{box(162,105,125,'Microcontroller','Encode and control')}{box(164,8,122,'Battery pack','Power management')}{box(330,55,120,'406 MHz TX','Satellite antenna')}{box(330,145,120,'121.5 MHz TX','Homing antenna')}{box(330,210,120,'Strobe light','LED')}
  <path d="M105 99h28v30h29M105 189h28v-48h29M225 55v50M287 129h23V79h20M310 129v40h20M310 169v64h20" stroke="#3576a4" fill="none"/>
