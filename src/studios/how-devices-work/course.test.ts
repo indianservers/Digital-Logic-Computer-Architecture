@@ -10,10 +10,10 @@ import {renderToStaticMarkup as renderAllTabs} from './test-course-render';
 import DeviceExamples from './DeviceExamples';
 
 for(const lab of [...LABS,...ADVANCED_LABS]){
- test(`${lab.number}: seven tabs and no simulator mounted on initial Overview`,()=>{
+ test(`${lab.number}: eight tabs and no simulator mounted on initial Overview`,()=>{
   const page=lab.number<=54?createElement(LabPage,{lab:lab as typeof LABS[number]}):createElement(AdvancedLabPage,{lab:lab as typeof ADVANCED_LABS[number]});
   const html=renderToStaticMarkup(createElement(MemoryRouter,null,page));
-  expect((html.match(/role="tab"/g)??[]).length).toBe(7);
+  expect((html.match(/role="tab"/g)??[]).length).toBe(8);
   expect((html.match(/role="tabpanel"/g)??[]).length).toBe(1);
   expect(html).toContain('course-overview-panel');
   expect(html).not.toContain('type="range"');
@@ -24,6 +24,14 @@ for(const lab of [...LABS,...ADVANCED_LABS]){
   for(const input of complete.matchAll(/<input[^>]*type="range"[^>]*>/g)){expect(input.index).toBeGreaterThan(simulation);expect(input.index).toBeLessThan(applications);}
   const physical=complete.slice(complete.indexOf('id="inside-physical-panel"'),complete.indexOf('id="inside-anatomy-panel"'));
   expect(physical).toMatch(/<(img|svg)\b/);
+  const insideAnatomy=complete.slice(complete.indexOf('id="inside-anatomy-panel"'),complete.indexOf('id="course-parts-anatomy-panel"'));
+  const anatomyTab=complete.slice(complete.indexOf('id="course-parts-anatomy-panel"'),complete.indexOf('id="course-deep-panel"'));
+  for(const panel of [insideAnatomy,anatomyTab]){
+   expect(panel).toContain('Parts Anatomy');
+   expect(panel).toContain('Supporting Parts &amp; Assembly Details');
+   expect(panel).toContain('Original anatomy diagrams and component controls');
+   expect((panel.match(/class="hdw-anatomy-card"/g)??[]).length).toBeGreaterThanOrEqual(lab.parts.length);
+  }
 
  });
  test(`${lab.number}: independent representative examples produce finite output`,()=>{

@@ -1,0 +1,1364 @@
+[
+  {
+    "src": "/devices/parts/generated/radio-transceiver-module.png",
+    "caption": "Representative radio transceiver module",
+    "kind": "illustration",
+    "family": "Radio transceiver module",
+    "thumbnail": "/devices/parts/previews/9045df172228ef2b-thumb.webp",
+    "preview": "/devices/parts/previews/9045df172228ef2b-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/power-supply.png",
+    "caption": "Representative power conversion module",
+    "kind": "illustration",
+    "family": "Power supply module",
+    "thumbnail": "/devices/parts/previews/42b33edcb71fca1d-thumb.webp",
+    "preview": "/devices/parts/previews/42b33edcb71fca1d-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/194cf77017915678.jpg",
+    "caption": "Component-family reference: Lidar sensor",
+    "family": "Lidar sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Velodyne Lidar Alpha Prime Ultra Puck Puck Sensor Family.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Velodyne_Lidar_Alpha_Prime_Ultra_Puck_Puck_Sensor_Family.jpg",
+    "attribution": "APJarvis",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/7f33e2f26055292e-thumb.webp",
+    "preview": "/devices/parts/previews/7f33e2f26055292e-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/15cd97d3f2bdef55.jpg",
+    "caption": "Component-family reference: 38 khz modulator",
+    "family": "38 khz modulator",
+    "kind": "reference",
+    "sourceTitle": "File:Alps remote control BHR970001B-7517.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alps_remote_control_BHR970001B-7517.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/67eebfd5a82da694-thumb.webp",
+    "preview": "/devices/parts/previews/67eebfd5a82da694-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/942c86dbb2f382a8.jpg",
+    "caption": "Component-family reference: AA battery",
+    "family": "AA battery",
+    "kind": "reference",
+    "sourceTitle": "File:AA VARTA battery-side PNr°0782.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AA_VARTA_battery-side_PNr%C2%B00782.jpg",
+    "attribution": "D-Kuru",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/43c4c9651392e547-thumb.webp",
+    "preview": "/devices/parts/previews/43c4c9651392e547-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/processor-board.png",
+    "caption": "Example processor board; this function may share a board with other functions",
+    "kind": "illustration",
+    "family": "Processor and control circuit board",
+    "thumbnail": "/devices/parts/previews/0c04f8894505d638-thumb.webp",
+    "preview": "/devices/parts/previews/0c04f8894505d638-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/accelerometer-assembly.png",
+    "caption": "Representative inertial sensor hardware",
+    "kind": "illustration",
+    "family": "Inertial measurement unit",
+    "thumbnail": "/devices/parts/previews/fe2cbff3bfdbbbcc-thumb.webp",
+    "preview": "/devices/parts/previews/fe2cbff3bfdbbbcc-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/526953ba6fc0b9a4.jpg",
+    "caption": "Component-family reference: Ultrasound transducer",
+    "family": "Ultrasound transducer",
+    "kind": "reference",
+    "sourceTitle": "File:A medical ultrasound linear array probe, scan head, transducer.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_medical_ultrasound_linear_array_probe,_scan_head,_transducer.jpg",
+    "attribution": "Harrison Keely",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/38c58b809f897949-thumb.webp",
+    "preview": "/devices/parts/previews/38c58b809f897949-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/transducer.png",
+    "caption": "Representative acoustic transducer",
+    "kind": "illustration",
+    "family": "Sonar transducer",
+    "thumbnail": "/devices/parts/previews/46edde6c7d73f9d1-thumb.webp",
+    "preview": "/devices/parts/previews/46edde6c7d73f9d1-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/microphone.png",
+    "kind": "illustration",
+    "caption": "Representative microphone illustration",
+    "family": "Microphone",
+    "thumbnail": "/devices/parts/previews/bf902528b4482c59-thumb.webp",
+    "preview": "/devices/parts/previews/bf902528b4482c59-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/adc-interface.png",
+    "caption": "Representative analog-to-digital conversion interface",
+    "kind": "illustration",
+    "family": "Analog to digital converter board",
+    "thumbnail": "/devices/parts/previews/843a95bf363a2a95-thumb.webp",
+    "preview": "/devices/parts/previews/843a95bf363a2a95-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/7bc81ad54a7004f4.jpg",
+    "caption": "Component-family reference: Push button switch",
+    "family": "Push button switch",
+    "kind": "reference",
+    "sourceTitle": "File:Illuminated Push button switch PB switch with LED.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Illuminated_Push_button_switch_PB_switch_with_LED.jpg",
+    "attribution": "Mithilrkadam",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/4511b5527361b16a-thumb.webp",
+    "preview": "/devices/parts/previews/4511b5527361b16a-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/3eb03b4fbbb9b10c.jpg",
+    "caption": "Component-family reference: Motor driver circuit board",
+    "family": "Motor driver circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:ULN2003 unioplar stepper motor driver module.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:ULN2003_unioplar_stepper_motor_driver_module.jpg",
+    "attribution": "Kushagra Keshari",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/86ad5a17e4ec5d0f-thumb.webp",
+    "preview": "/devices/parts/previews/86ad5a17e4ec5d0f-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/dcac41ad02540e70.jpg",
+    "caption": "Component-family reference: Servomotor",
+    "family": "Servomotor",
+    "kind": "reference",
+    "sourceTitle": "File:Servomotor 01.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Servomotor_01.jpg",
+    "attribution": "José Luis Gálvez (Digigalos)",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/aa58002cc7a92f47-thumb.webp",
+    "preview": "/devices/parts/previews/aa58002cc7a92f47-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/d2c8a09e4ee069cd.jpg",
+    "caption": "Component-family reference: Rotary encoder",
+    "family": "Rotary encoder",
+    "kind": "reference",
+    "sourceTitle": "File:Rotary Encoder.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rotary_Encoder.jpg",
+    "attribution": "Projuktiponno",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/362e1ca03ce7cc2d-thumb.webp",
+    "preview": "/devices/parts/previews/362e1ca03ce7cc2d-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/1270125f22a83a45.jpg",
+    "caption": "Component-family reference: Pressure sensor",
+    "family": "Pressure sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Fit Meter barometric pressure sensor - 34976237574.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fit_Meter_barometric_pressure_sensor_-_34976237574.jpg",
+    "attribution": "BoringPersonHexi",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/072174f97b118a42-thumb.webp",
+    "preview": "/devices/parts/previews/072174f97b118a42-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/68a8fdfcbb3374ba.jpg",
+    "caption": "Component-family reference: Liquid level sensor",
+    "family": "Liquid level sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Mechanical float switch waterpool.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mechanical_float_switch_waterpool.jpg",
+    "attribution": "Hp.Baumeler",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/6e4bc3088af50262-thumb.webp",
+    "preview": "/devices/parts/previews/6e4bc3088af50262-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/air-filter.png",
+    "kind": "illustration",
+    "caption": "Representative air filter illustration",
+    "family": "Air filter",
+    "thumbnail": "/devices/parts/previews/fd42a761ac7bfff4-thumb.webp",
+    "preview": "/devices/parts/previews/fd42a761ac7bfff4-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electric-pump.png",
+    "kind": "illustration",
+    "caption": "Representative electric pump illustration",
+    "family": "Electric pump",
+    "thumbnail": "/devices/parts/previews/2728eb10dd28e98d-thumb.webp",
+    "preview": "/devices/parts/previews/2728eb10dd28e98d-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/data-bus-interface.png",
+    "caption": "Example electronic data interface board",
+    "kind": "illustration",
+    "family": "Electronic interface board",
+    "thumbnail": "/devices/parts/previews/f95d1a0154cd89a8-thumb.webp",
+    "preview": "/devices/parts/previews/f95d1a0154cd89a8-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/flow-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative flow sensor illustration",
+    "family": "Flow sensor",
+    "thumbnail": "/devices/parts/previews/bdfaa07bf4b95683-thumb.webp",
+    "preview": "/devices/parts/previews/bdfaa07bf4b95683-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/loudspeaker.png",
+    "kind": "illustration",
+    "caption": "Representative loudspeaker illustration",
+    "family": "Loudspeaker",
+    "thumbnail": "/devices/parts/previews/c7776ba0aa4aa0e0-thumb.webp",
+    "preview": "/devices/parts/previews/c7776ba0aa4aa0e0-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/d0f03acb6118292c.jpg",
+    "caption": "Component-family reference: Temperature sensor",
+    "family": "Temperature sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Maxdetect Humidity and Temperature Sensor - RHT03 10167.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maxdetect_Humidity_and_Temperature_Sensor_-_RHT03_10167.jpg",
+    "attribution": "SparkFun",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/127e32f3cdb82ec6-thumb.webp",
+    "preview": "/devices/parts/previews/127e32f3cdb82ec6-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/receive-amplifier.png",
+    "caption": "Example analog signal amplification board",
+    "kind": "illustration",
+    "family": "Analog amplifier circuit board",
+    "thumbnail": "/devices/parts/previews/fd11f35584fcf269-thumb.webp",
+    "preview": "/devices/parts/previews/fd11f35584fcf269-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/adc.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "Analog to digital converter board",
+    "thumbnail": "/devices/parts/previews/3553680f4e643ceb-thumb.webp",
+    "preview": "/devices/parts/previews/3553680f4e643ceb-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/c3f71be16277ae4b.jpg",
+    "caption": "Component-family reference: Radio antenna",
+    "family": "Radio antenna",
+    "kind": "reference",
+    "sourceTitle": "File:XBee Series 2 with Whip Antenna, with US Quarter.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:XBee_Series_2_with_Whip_Antenna,_with_US_Quarter.jpg",
+    "attribution": "Mark Fickett",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/9c6759743a8d63ce-thumb.webp",
+    "preview": "/devices/parts/previews/9c6759743a8d63ce-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/fa7e27534769385f.png",
+    "caption": "Component-family reference: Phased array antenna",
+    "family": "Phased array antenna",
+    "kind": "reference",
+    "sourceTitle": "File:Braun phased array antenna 1905.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Braun_phased_array_antenna_1905.png",
+    "attribution": "Karl Ferdinand Braun",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/3f82ad7835d9f7d5-thumb.webp",
+    "preview": "/devices/parts/previews/3f82ad7835d9f7d5-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/cce006889b266cdc.jpg",
+    "caption": "Component-family reference: Parabolic antenna",
+    "family": "Parabolic antenna",
+    "kind": "reference",
+    "sourceTitle": "File:CSIRO ScienceImage 3881 Five Antennas at Narrabri.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_3881_Five_Antennas_at_Narrabri.jpg",
+    "attribution": "John Masterson, CSIRO",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/2ec4c3a25a4e639a-thumb.webp",
+    "preview": "/devices/parts/previews/2ec4c3a25a4e639a-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/cc48e601326d4b87.jpg",
+    "caption": "Component-family reference: Camera lens",
+    "family": "Camera lens",
+    "kind": "reference",
+    "sourceTitle": "File:Photographic lenses and tubes 2025.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photographic_lenses_and_tubes_2025.jpg",
+    "attribution": "Carlos Valenzuela Montuy",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/86090c634c50511e-thumb.webp",
+    "preview": "/devices/parts/previews/86090c634c50511e-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/ec1ef56871bb7b53.jpg",
+    "caption": "Component-family reference: Arduino Uno board",
+    "family": "Arduino Uno board",
+    "kind": "reference",
+    "sourceTitle": "File:Arduino Uno - R3.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arduino_Uno_-_R3.jpg",
+    "attribution": "SparkFun Electronics from Boulder, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/a684bf2750f8631d-thumb.webp",
+    "preview": "/devices/parts/previews/a684bf2750f8631d-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/usb-type-a-to-type-b-cable.png",
+    "kind": "illustration",
+    "caption": "Representative usb type a to type b cable illustration",
+    "family": "USB Type A to Type B cable",
+    "thumbnail": "/devices/parts/previews/b0aaf33e8fb3f3a6-thumb.webp",
+    "preview": "/devices/parts/previews/b0aaf33e8fb3f3a6-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/43400cf9dda7a749.jpg",
+    "caption": "Component-family reference: Audio codec circuit board",
+    "family": "Audio codec circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:TCM 237387 alarm clock with MP3 player - board 1 - Wolfson WM8759GED-7471.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:TCM_237387_alarm_clock_with_MP3_player_-_board_1_-_Wolfson_WM8759GED-7471.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/4ceda45a9371dd47-thumb.webp",
+    "preview": "/devices/parts/previews/4ceda45a9371dd47-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/ce59c67ddd2fe68a.jpg",
+    "caption": "Component-family reference: Smart card chip",
+    "family": "Smart card chip",
+    "kind": "reference",
+    "sourceTitle": "File:Differentsmartcardpadlayouts.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Differentsmartcardpadlayouts.jpg",
+    "attribution": "Hywel Clatworthy",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/26eb4af06f1a5330-thumb.webp",
+    "preview": "/devices/parts/previews/26eb4af06f1a5330-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/9e372604886abe0b.jpg",
+    "caption": "Component-family reference: Marine propeller",
+    "family": "Marine propeller",
+    "kind": "reference",
+    "sourceTitle": "File:Rudder and propeller Beached fishing vessel Nørre Vorupør Denmark 2017-04-14.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rudder_and_propeller_Beached_fishing_vessel_N%C3%B8rre_Vorup%C3%B8r_Denmark_2017-04-14.jpg",
+    "attribution": "Kim Hansen",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/3f5d4b8b165d29a7-thumb.webp",
+    "preview": "/devices/parts/previews/3f5d4b8b165d29a7-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/7a37353cf91060aa.jpg",
+    "caption": "Component-family reference: Light emitting diode",
+    "family": "Light emitting diode",
+    "kind": "reference",
+    "sourceTitle": "File:Red LED.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_LED.jpg",
+    "attribution": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/1a4fd72f14591ffc-thumb.webp",
+    "preview": "/devices/parts/previews/1a4fd72f14591ffc-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/6d6b40b0f2c8a0cf.jpg",
+    "caption": "Component-family reference: Rechargeable battery",
+    "family": "Rechargeable battery",
+    "kind": "reference",
+    "sourceTitle": "File:IKEA LADDA rechargeable AA-batteries.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:IKEA_LADDA_rechargeable_AA-batteries.jpg",
+    "attribution": "RAIL P (RAIL.PHOTOGRAPHY)",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/0aa3ded49093e367-thumb.webp",
+    "preview": "/devices/parts/previews/0aa3ded49093e367-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/cmos-image-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative cmos image sensor illustration",
+    "family": "CMOS image sensor",
+    "thumbnail": "/devices/parts/previews/b3a735be331895ef-thumb.webp",
+    "preview": "/devices/parts/previews/b3a735be331895ef-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/robot-joint.png",
+    "kind": "illustration",
+    "caption": "Representative robot joint illustration",
+    "family": "Robot joint",
+    "thumbnail": "/devices/parts/previews/5b29b59388b0e793-thumb.webp",
+    "preview": "/devices/parts/previews/5b29b59388b0e793-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/battery-management-board.png",
+    "kind": "illustration",
+    "caption": "Representative battery management board illustration",
+    "family": "Battery management board",
+    "thumbnail": "/devices/parts/previews/09b7932f01d62a6f-thumb.webp",
+    "preview": "/devices/parts/previews/09b7932f01d62a6f-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electromagnetic-coil.png",
+    "kind": "illustration",
+    "caption": "Representative electromagnetic coil illustration",
+    "family": "Electromagnetic coil",
+    "thumbnail": "/devices/parts/previews/027feaa0b78f0230-thumb.webp",
+    "preview": "/devices/parts/previews/027feaa0b78f0230-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/battery-holder.png",
+    "kind": "illustration",
+    "caption": "Representative battery holder illustration",
+    "family": "Battery holder",
+    "thumbnail": "/devices/parts/previews/24ff0e650d7048fd-thumb.webp",
+    "preview": "/devices/parts/previews/24ff0e650d7048fd-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/a8bb9e5317210cd8.jpg",
+    "caption": "Component-family reference: Emergency position indicating radio beacon",
+    "family": "Emergency position indicating radio beacon",
+    "kind": "reference",
+    "sourceTitle": "File:GLONASS GPS Personal Radio Beacon.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GLONASS_GPS_Personal_Radio_Beacon.jpg",
+    "attribution": "Ambanmba (talk)",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/691903ac8b2b3fe7-thumb.webp",
+    "preview": "/devices/parts/previews/691903ac8b2b3fe7-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/lcd-display-module.png",
+    "kind": "illustration",
+    "caption": "Representative lcd display module illustration",
+    "family": "LCD display module",
+    "thumbnail": "/devices/parts/previews/bb4fca0709e08a6c-thumb.webp",
+    "preview": "/devices/parts/previews/bb4fca0709e08a6c-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/2932cfdf95c5c9df.jpg",
+    "caption": "Component-family reference: Brushless motor",
+    "family": "Brushless motor",
+    "kind": "reference",
+    "sourceTitle": "File:Blaupunkt CR-4500 - drive unit - tape Drive Capstan, brushless DC electric motor-9992.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blaupunkt_CR-4500_-_drive_unit_-_tape_Drive_Capstan,_brushless_DC_electric_motor-9992.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/d48642cb8f432aec-thumb.webp",
+    "preview": "/devices/parts/previews/d48642cb8f432aec-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/rf-front-end-circuit.png",
+    "kind": "illustration",
+    "caption": "Representative rf front end circuit illustration",
+    "family": "RF front end circuit",
+    "thumbnail": "/devices/parts/previews/663a2aaae0512351-thumb.webp",
+    "preview": "/devices/parts/previews/663a2aaae0512351-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/c910b590367a3cd0.jpg",
+    "caption": "Component-family reference: Peristaltic pump",
+    "family": "Peristaltic pump",
+    "kind": "reference",
+    "sourceTitle": "File:Laboratory peristaltic pump Gilson-01.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laboratory_peristaltic_pump_Gilson-01.jpg",
+    "attribution": "Lilly_M",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/73261bf3b201b4fb-thumb.webp",
+    "preview": "/devices/parts/previews/73261bf3b201b4fb-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electrical-connector.png",
+    "kind": "illustration",
+    "caption": "Representative electrical connector illustration",
+    "family": "Electrical connector",
+    "thumbnail": "/devices/parts/previews/b1a69ac822245d19-thumb.webp",
+    "preview": "/devices/parts/previews/b1a69ac822245d19-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/blood-pressure-cuff.png",
+    "kind": "illustration",
+    "caption": "Representative blood pressure cuff illustration",
+    "family": "Blood pressure cuff",
+    "thumbnail": "/devices/parts/previews/a666fada100fe041-thumb.webp",
+    "preview": "/devices/parts/previews/a666fada100fe041-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/8a9c289cc72a89d3.jpg",
+    "caption": "Component-family reference: Jumper wire",
+    "family": "Jumper wire",
+    "kind": "reference",
+    "sourceTitle": "File:Jumper wire.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jumper_wire.jpg",
+    "attribution": "Alzbla",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/c39b7549b557f930-thumb.webp",
+    "preview": "/devices/parts/previews/c39b7549b557f930-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/f8324ecbaaa230ef.jpg",
+    "caption": "Component-family reference: CPAP mask",
+    "family": "CPAP mask",
+    "kind": "reference",
+    "sourceTitle": "File:CPAP continuous positive airway pressure mask installed.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CPAP_continuous_positive_airway_pressure_mask_installed.jpg",
+    "attribution": "Pöllö",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/eb4c1b8fe066a491-thumb.webp",
+    "preview": "/devices/parts/previews/eb4c1b8fe066a491-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/memory-v2.png",
+    "caption": "Representative memory hardware",
+    "kind": "illustration",
+    "family": "Memory circuit board",
+    "thumbnail": "/devices/parts/previews/83b8168291b08c1b-thumb.webp",
+    "preview": "/devices/parts/previews/83b8168291b08c1b-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/camera-shutter.png",
+    "kind": "illustration",
+    "caption": "Representative camera shutter illustration",
+    "family": "Camera shutter",
+    "thumbnail": "/devices/parts/previews/46e6b6946a5327a0-thumb.webp",
+    "preview": "/devices/parts/previews/46e6b6946a5327a0-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/e385d36cde43c10c.png",
+    "caption": "Component-family reference: USB cable",
+    "family": "USB cable",
+    "kind": "reference",
+    "sourceTitle": "File:USB-C.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:USB-C.png",
+    "attribution": "Xxmarijnw",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/7821edf7ef82b033-thumb.webp",
+    "preview": "/devices/parts/previews/7821edf7ef82b033-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/a965e9bb195005f1.jpg",
+    "caption": "Component-family reference: Robot chassis",
+    "family": "Robot chassis",
+    "kind": "reference",
+    "sourceTitle": "File:Small wheeled robot chassis displayed on shelves.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Small_wheeled_robot_chassis_displayed_on_shelves.jpg",
+    "attribution": "Mrshaxas",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/e65901ce3368a290-thumb.webp",
+    "preview": "/devices/parts/previews/e65901ce3368a290-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/d98c56d931b89fbb.jpg",
+    "caption": "Component-family reference: Crystal oscillator",
+    "family": "Crystal oscillator",
+    "kind": "reference",
+    "sourceTitle": "File:VCXO K1523BAT - supporting circuitry 02.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:VCXO_K1523BAT_-_supporting_circuitry_02.jpg",
+    "attribution": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/0f67e640ebea73c9-thumb.webp",
+    "preview": "/devices/parts/previews/0f67e640ebea73c9-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/5b42afd50f6f4518.jpg",
+    "caption": "Component-family reference: Photodiode",
+    "family": "Photodiode",
+    "kind": "reference",
+    "sourceTitle": "File:Photodiode.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photodiode.jpg",
+    "attribution": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/9148c61e6d2f885a-thumb.webp",
+    "preview": "/devices/parts/previews/9148c61e6d2f885a-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/anesthesia-machine-vaporizer.png",
+    "kind": "illustration",
+    "caption": "Representative anesthesia machine vaporizer illustration",
+    "family": "Anesthesia machine vaporizer",
+    "thumbnail": "/devices/parts/previews/4cbca9d8c169e6a9-thumb.webp",
+    "preview": "/devices/parts/previews/4cbca9d8c169e6a9-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/ea62fda9974a2dc4.jpg",
+    "caption": "Component-family reference: Coin cell battery",
+    "family": "Coin cell battery",
+    "kind": "reference",
+    "sourceTitle": "File:KTS CR1220 Lithium coin cell battery-9622.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:KTS_CR1220_Lithium_coin_cell_battery-9622.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/60874ca764d8c080-thumb.webp",
+    "preview": "/devices/parts/previews/60874ca764d8c080-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/x-ray-collimator.png",
+    "kind": "illustration",
+    "caption": "Representative x-ray collimator illustration",
+    "family": "X-ray collimator",
+    "thumbnail": "/devices/parts/previews/4b8f9fa6d47da117-thumb.webp",
+    "preview": "/devices/parts/previews/4b8f9fa6d47da117-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/enclosure-and-mounting-hardware.png",
+    "caption": "Example electronics enclosure and mounting hardware",
+    "kind": "illustration",
+    "family": "Mechanical enclosure and fasteners",
+    "thumbnail": "/devices/parts/previews/b0b83c46d6ffd935-thumb.webp",
+    "preview": "/devices/parts/previews/b0b83c46d6ffd935-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/load-cell.png",
+    "kind": "illustration",
+    "caption": "Representative load cell illustration",
+    "family": "Load cell",
+    "thumbnail": "/devices/parts/previews/f8a9676d06f4b28c-thumb.webp",
+    "preview": "/devices/parts/previews/f8a9676d06f4b28c-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/laptop-computer.png",
+    "kind": "illustration",
+    "caption": "Representative laptop computer illustration",
+    "family": "Laptop computer",
+    "thumbnail": "/devices/parts/previews/77f633aca9e005be-thumb.webp",
+    "preview": "/devices/parts/previews/77f633aca9e005be-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/heat-sink.png",
+    "kind": "illustration",
+    "caption": "Representative heat sink illustration",
+    "family": "Heat sink",
+    "thumbnail": "/devices/parts/previews/ad70dc09881d36af-thumb.webp",
+    "preview": "/devices/parts/previews/ad70dc09881d36af-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electrocardiography-electrodes.png",
+    "kind": "illustration",
+    "caption": "Representative electrocardiography electrodes illustration",
+    "family": "Electrocardiography electrodes",
+    "thumbnail": "/devices/parts/previews/bb0fe6203af7a6d5-thumb.webp",
+    "preview": "/devices/parts/previews/bb0fe6203af7a6d5-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/control-panel.png",
+    "kind": "illustration",
+    "caption": "Representative control panel illustration",
+    "family": "Control panel",
+    "thumbnail": "/devices/parts/previews/14e7986e8b9644ec-thumb.webp",
+    "preview": "/devices/parts/previews/14e7986e8b9644ec-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/aircraft-control-surface.png",
+    "kind": "illustration",
+    "caption": "Representative aircraft control surface illustration",
+    "family": "Aircraft control surface",
+    "thumbnail": "/devices/parts/previews/da3636ed5c9f14e9-thumb.webp",
+    "preview": "/devices/parts/previews/da3636ed5c9f14e9-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/conveyor-belt.png",
+    "kind": "illustration",
+    "caption": "Representative conveyor belt illustration",
+    "family": "Conveyor belt",
+    "thumbnail": "/devices/parts/previews/ef37d2646ff8292b-thumb.webp",
+    "preview": "/devices/parts/previews/ef37d2646ff8292b-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/radio-frequency-shielding.png",
+    "kind": "illustration",
+    "caption": "Representative radio frequency shielding illustration",
+    "family": "Radio frequency shielding",
+    "thumbnail": "/devices/parts/previews/635b1b64c3669323-thumb.webp",
+    "preview": "/devices/parts/previews/635b1b64c3669323-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/rfid-tag.png",
+    "kind": "illustration",
+    "caption": "Representative rfid tag illustration",
+    "family": "RFID tag",
+    "thumbnail": "/devices/parts/previews/6d15d5245986a6c3-thumb.webp",
+    "preview": "/devices/parts/previews/6d15d5245986a6c3-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/37e96ce70a98582d.jpg",
+    "caption": "Component-family reference: Resistor",
+    "family": "Resistor",
+    "kind": "reference",
+    "sourceTitle": "File:3 Resistors.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:3_Resistors.jpg",
+    "attribution": "Afrank99",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/37072ac76ba334cc-thumb.webp",
+    "preview": "/devices/parts/previews/37072ac76ba334cc-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/cecbbb3c2c375480.png",
+    "caption": "Component-family reference: DC electric motor",
+    "family": "DC electric motor",
+    "kind": "reference",
+    "sourceTitle": "File:Electric motor cycle 2.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Electric_motor_cycle_2.png",
+    "attribution": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/31736884d757160f-thumb.webp",
+    "preview": "/devices/parts/previews/31736884d757160f-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/6a72c471b25f2636.jpg",
+    "caption": "Component-family reference: Solenoid valve",
+    "family": "Solenoid valve",
+    "kind": "reference",
+    "sourceTitle": "File:Xerox ColorQube 8570 - print head - ASF Thomas pump with solenoid valve-91915.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Xerox_ColorQube_8570_-_print_head_-_ASF_Thomas_pump_with_solenoid_valve-91915.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/37f3f01e5c4f975c-thumb.webp",
+    "preview": "/devices/parts/previews/37f3f01e5c4f975c-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/scintillation-detector.png",
+    "kind": "illustration",
+    "caption": "Representative scintillation detector illustration",
+    "family": "Scintillation detector",
+    "thumbnail": "/devices/parts/previews/72b770f72ab2ca41-thumb.webp",
+    "preview": "/devices/parts/previews/72b770f72ab2ca41-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/ct-scanner-gantry.png",
+    "kind": "illustration",
+    "caption": "Representative ct scanner gantry illustration",
+    "family": "CT scanner gantry",
+    "thumbnail": "/devices/parts/previews/c0190e0bc4c2af3b-thumb.webp",
+    "preview": "/devices/parts/previews/c0190e0bc4c2af3b-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/cuvette.png",
+    "kind": "illustration",
+    "caption": "Representative cuvette illustration",
+    "family": "Cuvette",
+    "thumbnail": "/devices/parts/previews/aac15a54379bc29c-thumb.webp",
+    "preview": "/devices/parts/previews/aac15a54379bc29c-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/flexible-tubing.png",
+    "kind": "illustration",
+    "caption": "Representative flexible tubing illustration",
+    "family": "Flexible tubing",
+    "thumbnail": "/devices/parts/previews/854d79450cd9fab3-thumb.webp",
+    "preview": "/devices/parts/previews/854d79450cd9fab3-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/dialyzer.png",
+    "kind": "illustration",
+    "caption": "Representative dialyzer illustration",
+    "family": "Dialyzer",
+    "thumbnail": "/devices/parts/previews/429ba609fd934356-thumb.webp",
+    "preview": "/devices/parts/previews/429ba609fd934356-preview.webp"
+  },
+  {
+    "src": "/devices/parts/references/a23cebeabc90327d.jpg",
+    "caption": "Component-family reference: RF switch",
+    "family": "RF switch",
+    "kind": "reference",
+    "sourceTitle": "File:E+m ZV7 - manual RF switch-4557.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:E%2Bm_ZV7_-_manual_RF_switch-4557.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09",
+    "thumbnail": "/devices/parts/previews/f81d73a79e2fcf1f-thumb.webp",
+    "preview": "/devices/parts/previews/f81d73a79e2fcf1f-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/microswitch.png",
+    "kind": "illustration",
+    "caption": "Representative microswitch illustration",
+    "family": "Microswitch",
+    "thumbnail": "/devices/parts/previews/789a7b4eaf1a1d10-thumb.webp",
+    "preview": "/devices/parts/previews/789a7b4eaf1a1d10-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/display.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "LCD display module",
+    "thumbnail": "/devices/parts/previews/79f4441c28a40bf8-thumb.webp",
+    "preview": "/devices/parts/previews/79f4441c28a40bf8-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/gps-receiver-module.png",
+    "kind": "illustration",
+    "caption": "Representative gps receiver module illustration",
+    "family": "GPS receiver module",
+    "thumbnail": "/devices/parts/previews/20395a456a020c84-thumb.webp",
+    "preview": "/devices/parts/previews/20395a456a020c84-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electric-door-lock.png",
+    "kind": "illustration",
+    "caption": "Representative electric door lock illustration",
+    "family": "Electric door lock",
+    "thumbnail": "/devices/parts/previews/7f3c2cd157540470-thumb.webp",
+    "preview": "/devices/parts/previews/7f3c2cd157540470-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/hearing-aid-receiver.png",
+    "kind": "illustration",
+    "caption": "Representative hearing aid receiver illustration",
+    "family": "Hearing aid receiver",
+    "thumbnail": "/devices/parts/previews/4aa9cf99b23a0453-thumb.webp",
+    "preview": "/devices/parts/previews/4aa9cf99b23a0453-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/echo-processor.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "Processor and control circuit board",
+    "thumbnail": "/devices/parts/previews/b7526ac3931e550b-thumb.webp",
+    "preview": "/devices/parts/previews/b7526ac3931e550b-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electroencephalography-electrode-cap.png",
+    "kind": "illustration",
+    "caption": "Representative electroencephalography electrode cap illustration",
+    "family": "Electroencephalography electrode cap",
+    "thumbnail": "/devices/parts/previews/00df731bac6ba753-thumb.webp",
+    "preview": "/devices/parts/previews/00df731bac6ba753-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/capacitor.png",
+    "kind": "illustration",
+    "caption": "Representative capacitor illustration",
+    "family": "Capacitor",
+    "thumbnail": "/devices/parts/previews/bc35a759ee070251-thumb.webp",
+    "preview": "/devices/parts/previews/bc35a759ee070251-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/pir-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative pir sensor illustration",
+    "family": "PIR sensor",
+    "thumbnail": "/devices/parts/previews/5425c3396fd896db-thumb.webp",
+    "preview": "/devices/parts/previews/5425c3396fd896db-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/eyepiece.png",
+    "kind": "illustration",
+    "caption": "Representative eyepiece illustration",
+    "family": "Eyepiece",
+    "thumbnail": "/devices/parts/previews/ec274dacd6f070d0-thumb.webp",
+    "preview": "/devices/parts/previews/ec274dacd6f070d0-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/piezoelectric-vibration-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative piezoelectric vibration sensor illustration",
+    "family": "Piezoelectric vibration sensor",
+    "thumbnail": "/devices/parts/previews/647da1d44b86ad12-thumb.webp",
+    "preview": "/devices/parts/previews/647da1d44b86ad12-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/fingerprint-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative fingerprint sensor illustration",
+    "family": "Fingerprint sensor",
+    "thumbnail": "/devices/parts/previews/7db3139ebb8a5ae4-thumb.webp",
+    "preview": "/devices/parts/previews/7db3139ebb8a5ae4-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/laboratory-reagent-bottle.png",
+    "kind": "illustration",
+    "caption": "Representative laboratory reagent bottle illustration",
+    "family": "Laboratory reagent bottle",
+    "thumbnail": "/devices/parts/previews/3c8cc9045a4bb9a4-thumb.webp",
+    "preview": "/devices/parts/previews/3c8cc9045a4bb9a4-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/microscope-stage.png",
+    "kind": "illustration",
+    "caption": "Representative microscope stage illustration",
+    "family": "Microscope stage",
+    "thumbnail": "/devices/parts/previews/0057ed263f939080-thumb.webp",
+    "preview": "/devices/parts/previews/0057ed263f939080-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/ball-bearing.png",
+    "kind": "illustration",
+    "caption": "Representative ball bearing illustration",
+    "family": "Ball bearing",
+    "thumbnail": "/devices/parts/previews/368ae07484c49ef8-thumb.webp",
+    "preview": "/devices/parts/previews/368ae07484c49ef8-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/gas-pressure-regulator.png",
+    "kind": "illustration",
+    "caption": "Representative gas pressure regulator illustration",
+    "family": "Gas pressure regulator",
+    "thumbnail": "/devices/parts/previews/0cee07daa9076219-thumb.webp",
+    "preview": "/devices/parts/previews/0cee07daa9076219-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/gearbox.png",
+    "kind": "illustration",
+    "caption": "Representative gearbox illustration",
+    "family": "Gearbox",
+    "thumbnail": "/devices/parts/previews/0e2f8c4a907eac0c-thumb.webp",
+    "preview": "/devices/parts/previews/0e2f8c4a907eac0c-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/thermal-imaging-camera.png",
+    "kind": "illustration",
+    "caption": "Representative thermal imaging camera illustration",
+    "family": "Thermal imaging camera",
+    "thumbnail": "/devices/parts/previews/6d4dd2befde4cfd4-thumb.webp",
+    "preview": "/devices/parts/previews/6d4dd2befde4cfd4-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/gps-antenna.png",
+    "kind": "illustration",
+    "caption": "Representative gps antenna illustration",
+    "family": "GPS antenna",
+    "thumbnail": "/devices/parts/previews/8438eb23f0557fca-thumb.webp",
+    "preview": "/devices/parts/previews/8438eb23f0557fca-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/gyroscope-assembly.png",
+    "caption": "Representative gyroscope assembly",
+    "kind": "illustration",
+    "family": "Gyroscope",
+    "thumbnail": "/devices/parts/previews/1a9ba014815b40fb-thumb.webp",
+    "preview": "/devices/parts/previews/1a9ba014815b40fb-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/headphones.png",
+    "kind": "illustration",
+    "caption": "Representative headphones illustration",
+    "family": "Headphones",
+    "thumbnail": "/devices/parts/previews/3d413b77d58c3d4e-thumb.webp",
+    "preview": "/devices/parts/previews/3d413b77d58c3d4e-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/magnetometer.png",
+    "kind": "illustration",
+    "caption": "Representative magnetometer illustration",
+    "family": "Magnetometer",
+    "thumbnail": "/devices/parts/previews/66d3effe79d8d8bc-thumb.webp",
+    "preview": "/devices/parts/previews/66d3effe79d8d8bc-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/heating-element.png",
+    "kind": "illustration",
+    "caption": "Representative heating element illustration",
+    "family": "Heating element",
+    "thumbnail": "/devices/parts/previews/5441400ca788ecd5-thumb.webp",
+    "preview": "/devices/parts/previews/5441400ca788ecd5-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/infrared-led.png",
+    "kind": "illustration",
+    "caption": "Representative infrared led illustration",
+    "family": "Infrared LED",
+    "thumbnail": "/devices/parts/previews/d3d9f8007ba1b583-thumb.webp",
+    "preview": "/devices/parts/previews/d3d9f8007ba1b583-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electronic-fuse-protection.png",
+    "kind": "illustration",
+    "caption": "Representative electronic fuse protection illustration",
+    "family": "Electronic fuse protection",
+    "thumbnail": "/devices/parts/previews/e365c897a6890a06-thumb.webp",
+    "preview": "/devices/parts/previews/e365c897a6890a06-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/infrared-receiver.png",
+    "kind": "illustration",
+    "caption": "Representative infrared receiver illustration",
+    "family": "Infrared receiver",
+    "thumbnail": "/devices/parts/previews/a786d6683a2cd933-thumb.webp",
+    "preview": "/devices/parts/previews/a786d6683a2cd933-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/infrared-reflectance-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative infrared reflectance sensor illustration",
+    "family": "Infrared reflectance sensor",
+    "thumbnail": "/devices/parts/previews/161093c3c36f8d26-thumb.webp",
+    "preview": "/devices/parts/previews/161093c3c36f8d26-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/optical-filter.png",
+    "kind": "illustration",
+    "caption": "Representative optical filter illustration",
+    "family": "Optical filter",
+    "thumbnail": "/devices/parts/previews/ceef6d9912ca659d-thumb.webp",
+    "preview": "/devices/parts/previews/ceef6d9912ca659d-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/laser-diode.png",
+    "kind": "illustration",
+    "caption": "Representative laser diode illustration",
+    "family": "Laser diode",
+    "thumbnail": "/devices/parts/previews/aa5da2e979c79502-thumb.webp",
+    "preview": "/devices/parts/previews/aa5da2e979c79502-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/lead-screw.png",
+    "kind": "illustration",
+    "caption": "Representative lead screw illustration",
+    "family": "Lead screw",
+    "thumbnail": "/devices/parts/previews/506368d660be555a-thumb.webp",
+    "preview": "/devices/parts/previews/506368d660be555a-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/lithium-polymer-battery.png",
+    "kind": "illustration",
+    "caption": "Representative lithium polymer battery illustration",
+    "family": "Lithium polymer battery",
+    "thumbnail": "/devices/parts/previews/38518ce13a7f368e-thumb.webp",
+    "preview": "/devices/parts/previews/38518ce13a7f368e-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/mri-magnet.png",
+    "kind": "illustration",
+    "caption": "Representative mri magnet illustration",
+    "family": "MRI magnet",
+    "thumbnail": "/devices/parts/previews/5347068f304f37d2-thumb.webp",
+    "preview": "/devices/parts/previews/5347068f304f37d2-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/cryostat.png",
+    "kind": "illustration",
+    "caption": "Representative cryostat illustration",
+    "family": "Cryostat",
+    "thumbnail": "/devices/parts/previews/416cdd5ded5399b3-thumb.webp",
+    "preview": "/devices/parts/previews/416cdd5ded5399b3-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/image-intensifier.png",
+    "kind": "illustration",
+    "caption": "Representative image intensifier illustration",
+    "family": "Image intensifier",
+    "thumbnail": "/devices/parts/previews/cfa4eabe79179f32-thumb.webp",
+    "preview": "/devices/parts/previews/cfa4eabe79179f32-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/waveguide.png",
+    "kind": "illustration",
+    "caption": "Representative waveguide illustration",
+    "family": "Waveguide",
+    "thumbnail": "/devices/parts/previews/97fbd99455cc3189-thumb.webp",
+    "preview": "/devices/parts/previews/97fbd99455cc3189-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/thermistor.png",
+    "kind": "illustration",
+    "caption": "Representative thermistor illustration",
+    "family": "Thermistor",
+    "thumbnail": "/devices/parts/previews/77302e16d0e3ec13-thumb.webp",
+    "preview": "/devices/parts/previews/77302e16d0e3ec13-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/optical-fiber.png",
+    "kind": "illustration",
+    "caption": "Representative optical fiber illustration",
+    "family": "Optical fiber",
+    "thumbnail": "/devices/parts/previews/751b897641c57534-thumb.webp",
+    "preview": "/devices/parts/previews/751b897641c57534-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/oxygen-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative oxygen sensor illustration",
+    "family": "Oxygen sensor",
+    "thumbnail": "/devices/parts/previews/9ad549b65e1a7d24-thumb.webp",
+    "preview": "/devices/parts/previews/9ad549b65e1a7d24-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/printed-circuit-board.png",
+    "kind": "illustration",
+    "caption": "Representative printed circuit board illustration",
+    "family": "Printed circuit board",
+    "thumbnail": "/devices/parts/previews/f4d12e0c8e5025be-thumb.webp",
+    "preview": "/devices/parts/previews/f4d12e0c8e5025be-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/thermoelectric-cooler.png",
+    "kind": "illustration",
+    "caption": "Representative thermoelectric cooler illustration",
+    "family": "Thermoelectric cooler",
+    "thumbnail": "/devices/parts/previews/efbf70d84062b1ad-thumb.webp",
+    "preview": "/devices/parts/previews/efbf70d84062b1ad-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/stepper-motor.png",
+    "kind": "illustration",
+    "caption": "Representative stepper motor illustration",
+    "family": "Stepper motor",
+    "thumbnail": "/devices/parts/previews/f5053208e46c8b30-thumb.webp",
+    "preview": "/devices/parts/previews/f5053208e46c8b30-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/photomultiplier-tube.png",
+    "kind": "illustration",
+    "caption": "Representative photomultiplier tube illustration",
+    "family": "Photomultiplier tube",
+    "thumbnail": "/devices/parts/previews/fdccf56af9216fdb-thumb.webp",
+    "preview": "/devices/parts/previews/fdccf56af9216fdb-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/laboratory-pipette.png",
+    "kind": "illustration",
+    "caption": "Representative laboratory pipette illustration",
+    "family": "Laboratory pipette",
+    "thumbnail": "/devices/parts/previews/7c1845b9279b3fd0-thumb.webp",
+    "preview": "/devices/parts/previews/7c1845b9279b3fd0-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/syringe-pump.png",
+    "kind": "illustration",
+    "caption": "Representative syringe pump illustration",
+    "family": "Syringe pump",
+    "thumbnail": "/devices/parts/previews/0b2648d738c1b083-thumb.webp",
+    "preview": "/devices/parts/previews/0b2648d738c1b083-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/power-amplifier.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "Analog amplifier circuit board",
+    "thumbnail": "/devices/parts/previews/ff308d351840d4ee-thumb.webp",
+    "preview": "/devices/parts/previews/ff308d351840d4ee-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/pulse-oximeter-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative pulse oximeter sensor illustration",
+    "family": "Pulse oximeter sensor",
+    "thumbnail": "/devices/parts/previews/2c6913305af6fb38-thumb.webp",
+    "preview": "/devices/parts/previews/2c6913305af6fb38-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/pressure-housing.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "Mechanical enclosure and fasteners",
+    "thumbnail": "/devices/parts/previews/6e567286bee3fad0-thumb.webp",
+    "preview": "/devices/parts/previews/6e567286bee3fad0-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/thermal-printer.png",
+    "kind": "illustration",
+    "caption": "Representative thermal printer illustration",
+    "family": "Thermal printer",
+    "thumbnail": "/devices/parts/previews/d695c768b5ca57a6-thumb.webp",
+    "preview": "/devices/parts/previews/d695c768b5ca57a6-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/radome.png",
+    "kind": "illustration",
+    "caption": "Representative radome illustration",
+    "family": "Radome",
+    "thumbnail": "/devices/parts/previews/f0d029922e9a79ae-thumb.webp",
+    "preview": "/devices/parts/previews/f0d029922e9a79ae-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/011-sonar/pulse-generator.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "Motor driver circuit board",
+    "thumbnail": "/devices/parts/previews/8e9af3a4ea570938-thumb.webp",
+    "preview": "/devices/parts/previews/8e9af3a4ea570938-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/reaction-wheel.png",
+    "kind": "illustration",
+    "caption": "Representative reaction wheel illustration",
+    "family": "Reaction wheel",
+    "thumbnail": "/devices/parts/previews/71be0f78510738db-thumb.webp",
+    "preview": "/devices/parts/previews/71be0f78510738db-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/robot-wheel.png",
+    "kind": "illustration",
+    "caption": "Representative robot wheel illustration",
+    "family": "Robot wheel",
+    "thumbnail": "/devices/parts/previews/b2830a6ea7e526f6-thumb.webp",
+    "preview": "/devices/parts/previews/b2830a6ea7e526f6-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/coaxial-cable-connector.png",
+    "kind": "illustration",
+    "caption": "Representative coaxial cable connector illustration",
+    "family": "Coaxial cable connector",
+    "thumbnail": "/devices/parts/previews/6cd6a3f7f7d4644e-thumb.webp",
+    "preview": "/devices/parts/previews/6cd6a3f7f7d4644e-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/electronics-hand-tools.png",
+    "kind": "illustration",
+    "caption": "Representative electronics hand tools illustration",
+    "family": "Electronics hand tools",
+    "thumbnail": "/devices/parts/previews/4f3a4fc0900604c7-thumb.webp",
+    "preview": "/devices/parts/previews/4f3a4fc0900604c7-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/slip-ring.png",
+    "kind": "illustration",
+    "caption": "Representative slip ring illustration",
+    "family": "Slip ring",
+    "thumbnail": "/devices/parts/previews/b7086a4169965976-thumb.webp",
+    "preview": "/devices/parts/previews/b7086a4169965976-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/x-ray-tube.png",
+    "kind": "illustration",
+    "caption": "Representative x-ray tube illustration",
+    "family": "X-ray tube",
+    "thumbnail": "/devices/parts/previews/4925eb43da039546-thumb.webp",
+    "preview": "/devices/parts/previews/4925eb43da039546-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/centrifuge-rotor.png",
+    "kind": "illustration",
+    "caption": "Representative centrifuge rotor illustration",
+    "family": "Centrifuge rotor",
+    "thumbnail": "/devices/parts/previews/44fc9b956e3ebed0-thumb.webp",
+    "preview": "/devices/parts/previews/44fc9b956e3ebed0-preview.webp"
+  },
+  {
+    "src": "/device-labs/generated/063-inertial-navigation-system/rugged-enclosure.png",
+    "kind": "illustration",
+    "caption": "Representative standalone component illustration",
+    "family": "Mechanical enclosure and fasteners",
+    "thumbnail": "/devices/parts/previews/b90cc3ba0e368824-thumb.webp",
+    "preview": "/devices/parts/previews/b90cc3ba0e368824-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/aircraft-joystick.png",
+    "kind": "illustration",
+    "caption": "Representative aircraft joystick illustration",
+    "family": "Aircraft joystick",
+    "thumbnail": "/devices/parts/previews/aad23fdf9682d744-thumb.webp",
+    "preview": "/devices/parts/previews/aad23fdf9682d744-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/breadboard.png",
+    "kind": "illustration",
+    "caption": "Representative breadboard illustration",
+    "family": "Breadboard",
+    "thumbnail": "/devices/parts/previews/b1c5e71d79a709cc-thumb.webp",
+    "preview": "/devices/parts/previews/b1c5e71d79a709cc-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/glucose-test-strip.png",
+    "kind": "illustration",
+    "caption": "Representative glucose test strip illustration",
+    "family": "Glucose test strip",
+    "thumbnail": "/devices/parts/previews/f755206bcb832435-thumb.webp",
+    "preview": "/devices/parts/previews/f755206bcb832435-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/thermal-insulation-material.png",
+    "kind": "illustration",
+    "caption": "Representative thermal insulation material illustration",
+    "family": "Thermal insulation material",
+    "thumbnail": "/devices/parts/previews/09870aab91c5e773-thumb.webp",
+    "preview": "/devices/parts/previews/09870aab91c5e773-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/thermopile.png",
+    "kind": "illustration",
+    "caption": "Representative thermopile illustration",
+    "family": "Thermopile",
+    "thumbnail": "/devices/parts/previews/f9603c23cc4b6ff0-thumb.webp",
+    "preview": "/devices/parts/previews/f9603c23cc4b6ff0-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/tmp36-temperature-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative tmp36 temperature sensor illustration",
+    "family": "TMP36 temperature sensor",
+    "thumbnail": "/devices/parts/previews/b01cef0fd8347750-thumb.webp",
+    "preview": "/devices/parts/previews/b01cef0fd8347750-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/underwater-locator-beacon.png",
+    "kind": "illustration",
+    "caption": "Representative underwater locator beacon illustration",
+    "family": "underwater locator beacon",
+    "thumbnail": "/devices/parts/previews/8ea847f8e8ce3f70-thumb.webp",
+    "preview": "/devices/parts/previews/8ea847f8e8ce3f70-preview.webp"
+  },
+  {
+    "src": "/devices/parts/generated/anemometer-wind-sensor.png",
+    "kind": "illustration",
+    "caption": "Representative anemometer wind sensor illustration",
+    "family": "Anemometer wind sensor",
+    "thumbnail": "/devices/parts/previews/00419ce4d64ef7c7-thumb.webp",
+    "preview": "/devices/parts/previews/00419ce4d64ef7c7-preview.webp"
+  }
+]

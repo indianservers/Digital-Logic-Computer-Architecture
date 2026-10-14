@@ -1,0 +1,74 @@
+[
+  {
+    "lab": "library",
+    "reference": "UI Target\\BuildOwnCPU\\01_Component_Library.png",
+    "mean_absolute_rgb_difference": 16.74,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "datapath",
+    "reference": "UI Target\\BuildOwnCPU\\02_Datapath_Designer.png",
+    "mean_absolute_rgb_difference": 17.3,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "wires",
+    "reference": "UI Target\\BuildOwnCPU\\03_Wire_and_Bus_System.png",
+    "mean_absolute_rgb_difference": 17.72,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "isa",
+    "reference": "UI Target\\BuildOwnCPU\\04_Custom_ISA_Designer.png",
+    "mean_absolute_rgb_difference": 16.44,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "format",
+    "reference": "UI Target\\BuildOwnCPU\\05_Instruction_Format_Designer.png",
+    "mean_absolute_rgb_difference": 18.67,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "control",
+    "reference": "UI Target\\BuildOwnCPU\\06_Control_Unit_Designer.png",
+    "mean_absolute_rgb_difference": 15.92,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "memory",
+    "reference": "UI Target\\BuildOwnCPU\\07_Memory_System.png",
+    "mean_absolute_rgb_difference": 20.31,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "editor",
+    "reference": "UI Target\\BuildOwnCPU\\08_Program_Editor.png",
+    "mean_absolute_rgb_difference": 15.31,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "assembler",
+    "reference": "UI Target\\BuildOwnCPU\\09_Assembler.png",
+    "mean_absolute_rgb_difference": 13.82,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "debug",
+    "reference": "UI Target\\BuildOwnCPU\\10_Execution_Debugger.png",
+    "mean_absolute_rgb_difference": 16.42,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "validate",
+    "reference": "UI Target\\BuildOwnCPU\\11_Validation.png",
+    "mean_absolute_rgb_difference": 15.21,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  },
+  {
+    "lab": "templates",
+    "reference": "UI Target\\BuildOwnCPU\\12_CPU_Templates.png",
+    "mean_absolute_rgb_difference": 18.32,
+    "note": "Diagnostic only. Functional project data and illustrations differ; this is not a pixel-perfect acceptance test."
+  }
+]

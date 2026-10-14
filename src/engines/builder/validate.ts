@@ -8,23 +8,30 @@ export interface Issue {
   wireId?: string;
 }
 
-const COMBO: Set<ArchNode["kind"]> = new Set(["alu", "mux", "shifter", "cmp", "inc", "sext", "buf", "split", "join", "decoder", "cu", "and", "or", "not", "nand", "xor", "bus"]);
-
 function nodeNamed(design: CpuDesign, kind: ArchNode["kind"]): ArchNode | undefined {
   return design.nodes.find((node) => node.kind === kind);
 }
 
 export function combinationalLoops(design: CpuDesign): string[][] {
   const edges = new Map<string, string[]>();
+  const vertices=new Map<string,string>();
+  const key=(id:string,port:string)=>JSON.stringify([id,port]);
+  const inputs=(node:ArchNode,output:string):string[]=>{
+    if(["pc","acc","gpr","ir","mar","mdr","sp","flags","dff","counter","clock","const","cache","core"].includes(node.kind))return [];
+    if(node.kind==="regfile")return [output==="a"?"ra":"rb"];
+    if(["imem","umem"].includes(node.kind))return ["addr"];
+    if(node.kind==="dmem")return ["addr","re"];
+    if(node.kind==="cu"||node.kind==="decoder")return output==="one"?[]:output==="pcnext"?["ir","pc","zero"]:["ir"];
+    return portsOf(node).filter(p=>p.dir==="in").map(p=>p.id);
+  };
   for (const node of design.nodes) {
-    if (!COMBO.has(node.kind)) continue;
-    edges.set(node.id, []);
+    for(const port of portsOf(node).filter(p=>p.dir==="out")){const id=key(node.id,port.id);vertices.set(id,node.id);edges.set(id,[]);}
   }
   for (const wire of design.wires) {
     const src = design.nodes.find((node) => node.id === wire.from);
     const dst = design.nodes.find((node) => node.id === wire.to);
-    if (!src || !dst || !COMBO.has(src.kind) || !COMBO.has(dst.kind)) continue;
-    edges.get(src.id)?.push(dst.id);
+    if (!src || !dst) continue;
+    for(const port of portsOf(dst).filter(p=>p.dir==="out"&&inputs(dst,p.id).includes(wire.toPort)))edges.get(key(src.id,wire.fromPort))?.push(key(dst.id,port.id));
   }
   const color = new Map<string, 0 | 1 | 2>();
   const stack: string[] = [];
@@ -37,7 +44,7 @@ export function combinationalLoops(design: CpuDesign): string[][] {
       if (mark === 0) visit(next);
       else if (mark === 1) {
         const start = stack.indexOf(next);
-        cycles.push(stack.slice(start).concat(next));
+        cycles.push(stack.slice(start).concat(next).map(vertex=>vertices.get(vertex)!));
       }
     }
     stack.pop();
@@ -51,7 +58,10 @@ export function validateDesign(design: CpuDesign): Issue[] {
   const issues: Issue[] = [];
   issues.push(...validateIsa(design.isa).map((item) => ({ level: item.level, message: item.message })));
   const drivers = new Map<string, string[]>();
+  const nodeIds=new Set<string>();const wireIds=new Set<string>();
+  for(const node of design.nodes){if(nodeIds.has(node.id))issues.push({level:"error",message:`Duplicate component identifier ${node.id}.`,nodeId:node.id});nodeIds.add(node.id);}
   for (const wire of design.wires) {
+    if(wireIds.has(wire.id))issues.push({level:"error",message:`Duplicate wire identifier ${wire.id}.`,wireId:wire.id});wireIds.add(wire.id);
     const key = `${wire.to}:${wire.toPort}`;
     const list = drivers.get(key) ?? [];
     list.push(wire.id);
@@ -64,6 +74,8 @@ export function validateDesign(design: CpuDesign): Issue[] {
     }
     const out = portOf(src, wire.fromPort);
     const inn = portOf(dst, wire.toPort);
+    if(!out||!inn||out.dir!=="out"||inn.dir!=="in")issues.push({level:"error",message:"Connection must use an existing output and an existing input.",wireId:wire.id});
+    if(out&&inn&&out.role!==inn.role)issues.push({level:"warning",message:`Signal role differs: ${out.role} drives ${inn.role}. Verify this conversion is intentional.`,wireId:wire.id});
     if (out && inn && out.width !== inn.width) {
       issues.push({ level: "error", message: `Width mismatch: ${out.width}-bit output cannot directly drive a ${inn.width}-bit input.`, wireId: wire.id, nodeId: dst.id });
     }
@@ -82,12 +94,12 @@ export function validateDesign(design: CpuDesign): Issue[] {
     for (const port of ins) {
       const driven = design.wires.some((wire) => wire.to === node.id && wire.toPort === port.id);
       if (driven) continue;
-      if (port.role === "clock" && (node.kind === "pc" || node.kind === "regfile" || node.kind === "acc" || node.kind === "ir" || node.kind === "dff")) {
+      if (port.role === "clock" && ["pc","regfile","acc","ir","dff","gpr","mar","mdr","sp","counter","flags","dmem","umem"].includes(node.kind)) {
         issues.push({ level: "error", message: `${node.name} has no clock connection.`, nodeId: node.id });
       } else if (port.id === "d" && (node.kind === "pc" || node.kind === "acc" || node.kind === "gpr" || node.kind === "ir")) {
         issues.push({ level: "error", message: `${node.name} data input is not connected.`, nodeId: node.id });
       } else if (port.role === "control" && port.id === "we" && (node.kind === "regfile" || node.kind === "acc" || node.kind === "dmem")) {
-        issues.push({ level: "warning", message: `${node.name} write-enable is floating. It will stay 0 unless the control unit drives it.`, nodeId: node.id });
+        issues.push({ level: "warning", message: `${node.name} write-enable is floating (Z). Strict execution faults if this input is required; connect a defined control signal.`, nodeId: node.id });
       } else if (port.id === "s" && node.kind === "mux") {
         issues.push({ level: "error", message: `MUX ${node.name} has no select control. The output is ambiguous.`, nodeId: node.id });
       }

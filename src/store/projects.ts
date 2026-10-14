@@ -62,10 +62,13 @@ export async function deleteProject(id: string): Promise<void> {
 export async function saveRecord(record: SavedRecord): Promise<void> {
   const db = await openDb();
   await new Promise<void>((resolve, reject) => {
-    const request = db.transaction(RECORDS, "readwrite").objectStore(RECORDS).put(record);
-    request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    const transaction=db.transaction(RECORDS,"readwrite");
+    transaction.oncomplete=()=>resolve();
+    transaction.onerror=()=>reject(transaction.error);
+    transaction.onabort=()=>reject(transaction.error??new Error("Local save transaction aborted."));
+    transaction.objectStore(RECORDS).put(record);
   });
+  db.close();
 }
 
 export async function listRecords(kind: SavedRecord["kind"]): Promise<SavedRecord[]> {

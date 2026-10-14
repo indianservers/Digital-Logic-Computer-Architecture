@@ -1,0 +1,5 @@
+.ce-component-icon { width:48px; height:48px; flex:none; display:block; filter:drop-shadow(0 2px 2px #15396918); transition:transform .18s ease,filter .18s ease; }
+.cpu-studio .palette-item { padding:7px 3px; min-height:78px; }
+.palette-item:hover .ce-component-icon,.palette-item:focus-visible .ce-component-icon,.ce-part-card:hover .ce-component-icon { transform:translateY(-2px) rotate(-3deg); filter:drop-shadow(0 4px 3px #15396930); }
+.ce-part-card .ce-component-icon { width:64px; height:64px; }
+@media (prefers-reduced-motion:reduce) { .ce-component-icon { transition:none; } .palette-item:hover .ce-component-icon,.palette-item:focus-visible .ce-component-icon,.ce-part-card:hover .ce-component-icon { transform:none; } }

@@ -30,7 +30,7 @@ export function ArchitectureFrame({ studioId, onReset, children }: { studioId: s
     );
   }
   return (
-    <div className="studio arch-studio">
+    <div className={`studio arch-studio ${studioId === "builder" ? "cpu-studio" : ""}`}>
       <nav className="arch-menu" aria-label={`${studio.title} labs`}>
         <Link to="/" className="arch-home"><Icon name="home" size={14} /> Home</Link>
         <Link to={studio.path} className="arch-home"><Icon name="back" size={14} /> Studio Home</Link>
@@ -40,7 +40,7 @@ export function ArchitectureFrame({ studioId, onReset, children }: { studioId: s
           const current = labId ?? "overview";
           return (
             <NavLink key={item.id} to={to} end={item.id === "overview"} className={() => (current === item.id ? "arch-link active" : "arch-link")}>
-              {item.title}
+              {studioId === "builder" ? <Icon name="grid" size={17} /> : null}{item.title}
             </NavLink>
           );
         })}
@@ -50,10 +50,11 @@ export function ArchitectureFrame({ studioId, onReset, children }: { studioId: s
           <div className="studio-head">
             <div className="studio-icon"><Icon name="grid" /></div>
             <div>
-              <h1>{studio.title}</h1>
-              <p>{lab.title} · {studio.summary}</p>
+              <h1>{studioId === "builder" ? <>Build Your Own <em>CPU</em></> : studio.title}</h1>
+              {studioId === "builder" ? <><p className="cpu-tagline">Design. Connect. Experiment. Learn.</p><p>Construct a processor from registers, ALU, memory, and a custom ISA. Wires carry values.</p></> : <p>{lab.title} · {studio.summary}</p>}
             </div>
           </div>
+          {studioId === "builder" && <div className="cpu-hero-art" aria-hidden="true"><div className="cpu-hero-chip"><span>CPU</span></div><div className="cpu-hero-words">IDEAS<br />CIRCUITS<br />PROCESSORS<br />POSSIBILITIES</div></div>}
           <div className="row">
             <Link to={studio.path} className="btn-ghost"><Icon name="back" size={14} /> Studio Home</Link>
             <Link to="/" className="btn-ghost"><Icon name="home" size={14} /> Home</Link>

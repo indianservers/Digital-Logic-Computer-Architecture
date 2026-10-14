@@ -25,6 +25,7 @@ export const PART4_STUDIOS: ArchStudioDef[] = [
       lab("debug", "Execution Debugger", ["Step clock or instruction.", "Read PC, IR, ALU, flags, memory, and control.", "Walk bounded history."], ["Each cycle explains why state changed.", "Breakpoints pause with a reason."]),
       lab("validate", "Validation", ["Open the issue list.", "Click an error to focus the component."], ["Messages name the missing wire or conflicting opcode.", "Warnings do not block stepping; errors should be fixed first."]),
       lab("templates", "CPU Templates", ["Read width, ISA, and complexity.", "Open in Builder and edit freely."], ["Templates are starting machines, not locked demos.", "Save locally as .cpu.json."]),
+      lab("contest", "Contest & Evidence", ["Generate or import challenges for your ISA.","Run the suite and inspect every result.","Export a submission and rerun it as a judge."], ["Tests execute on the actual submitted datapath.","Hashes check package integrity; independent reruns check claimed results."]),
     ],
   },
   {

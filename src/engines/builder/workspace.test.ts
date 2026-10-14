@@ -1,0 +1,24 @@
+import { describe,it,expect,vi,afterEach } from "vitest";
+import { CPU_TEMPLATES } from "./templates";
+import { addNode,emptyDesign } from "./model";
+import { conditionMatches,designChanges,projectVersions,saveVersion,signalDisplay,signalsOf,stateChanges,waveformVcd } from "./workspace";
+import { sampleWave,evaluateGraph,stepInstruction } from "./sim";
+import { DEFAULT_RULES,scoreEvidence } from "./scoring";
+import { runContestSuite,newTest } from "./contest";
+import { referenceAlu,referenceFlags } from "./contest";
+import { aluNum } from "./sim";
+import { OPERATIONS } from "./componentContract";
+const cpu=()=>CPU_TEMPLATES[2]!.build();
+afterEach(()=>vi.unstubAllGlobals());
+describe("Workspace accuracy and recovery",()=>{
+ it("checks every supported ALU operation at every supported width against independent arithmetic and flags",()=>{for(const width of [1,4,8,16,32])for(const op of OPERATIONS)for(const a of [0,1,2**(width-1)-1,2**(width-1),2**width-1])for(const b of [0,1,2**(width-1),2**width-1]){const actual=aluNum(a,b,op,width);expect(actual.y,`${width}-bit ${op} ${a},${b}`).toBe(referenceAlu(a,b,op,width));expect({z:actual.z,n:actual.n,c:actual.c,v:actual.v}).toEqual(referenceFlags(a,b,op,width));}});
+ it("preserves unknown/disconnected values rather than formatting them as zero",()=>{expect(signalDisplay("10XZ")).toMatchObject({hex:"—",unsigned:"—",state:"Unknown (X)"});expect(signalDisplay("ZZZZ").state).toBe("Disconnected (Z)");});
+ it("interprets signed data but not control codes",()=>{expect(signalDisplay("11111110")).toMatchObject({unsigned:"254",signed:"-2",hex:"0xFE"});expect(signalDisplay("1","control").signed).toBe("Control");});
+ it("inspects actual wires and exposes a disconnected MUX select as X",()=>{const d=cpu();const mux=d.nodes.find(n=>n.kind==="mux")!;d.wires=d.wires.filter(w=>!(w.to===mux.id&&w.toPort==="s"));expect(signalsOf(d).filter(s=>s.from===mux.id).some(s=>s.binary.includes("X"))).toBe(true);});
+ it("records changes at register and memory addresses",()=>{const a=cpu(),b=structuredClone(a);const rf=b.nodes.find(n=>n.kind==="regfile")!;rf.values[3]=42;b.nodes.find(n=>n.kind==="dmem")!.mem[2]=7;expect(stateChanges(a,b)).toEqual(expect.arrayContaining([expect.objectContaining({field:"R[3]",after:42}),expect.objectContaining({field:"MEM[2]",after:7})]));});
+ it("checks conditions against actual architecture and rejects injected expressions",()=>{const d=cpu();d.nodes.find(n=>n.kind==="regfile")!.values[3]=42;expect(conditionMatches("R3 == 42",d,null)).toBe(true);expect(conditionMatches("PC >= 0",d,null)).toBe(true);expect(()=>conditionMatches("R99 == 0",d,null)).toThrow("unavailable");expect(()=>conditionMatches("alert(1)",d,null)).toThrow("Use PC");expect(()=>conditionMatches("PC == 0 || true",d,null)).toThrow();});
+ it("compares versions and saves at most twelve recoverable snapshots",()=>{const memory=new Map<string,string>();vi.stubGlobal("localStorage",{getItem:(k:string)=>memory.get(k)??null,setItem:(k:string,v:string)=>memory.set(k,v)});const d=cpu();for(let i=0;i<14;i++)saveVersion({...d,name:`CPU ${i}`},`M${i}`);expect(projectVersions()).toHaveLength(12);expect(projectVersions()[0]!.name).toBe("M13");expect(designChanges(d,{...d,program:"HALT"})).toContain("Program changed");});
+ it("exports real recorded signals with honest timestamps and X/Z",()=>{let d=addNode(emptyDesign(),"const",0,0,4);d.nodes[0]!.value=10;const s=sampleWave(d,1,1,evaluateGraph(d));const vcd=waveformVcd(d,[s]);expect(vcd).toContain("b1010 s0");expect(vcd).toContain("#1");expect(vcd).toContain("not physical clock timing");s.logic![`${d.nodes[0]!.id}:y`]="10XZ";expect(waveformVcd(d,[s])).toContain("b10xz s0");});
+ it("full snapshot rollback preserves microcontroller state and register values",()=>{const d=cpu();const saved=structuredClone(d);const result=stepInstruction(d,1);expect(result.design).not.toEqual(saved);expect(saved).toEqual(d);});
+ it("scores measured results and rejects missing required tests",async()=>{const d=cpu();const r=await runContestSuite(d,[{...newTest(1),source:"HALT"}]);expect(scoreEvidence(r,DEFAULT_RULES,d.nodes.length)).toMatchObject({eligible:true,correctness:100});expect(scoreEvidence(r,{...DEFAULT_RULES,requiredTests:["absent"]},1).eligible).toBe(false);expect(scoreEvidence({...r,results:[{...r.results[0]!,status:"cancelled"}]},DEFAULT_RULES,1).eligible).toBe(false);});
+});

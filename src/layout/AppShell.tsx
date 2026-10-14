@@ -106,6 +106,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     setQuery("");
   }, [location.pathname, location.search, noteVisit]);
 
+  if (location.pathname.startsWith("/architecture/builder")) return <div className="cpu-engineering-shell"><ErrorBoundary>{children}</ErrorBoundary></div>;
   if (deviceLab) return <div className="hdw-lab-shell"><ErrorBoundary>{children}</ErrorBoundary></div>;
   if (aca) {
     return (
@@ -146,6 +147,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </aside> : null}
       <div className="workspace">
         <header className="topbar">
+          {location.pathname.startsWith("/architecture/builder") && <Link to="/" className="cpu-brand"><span>◈</span><div><strong>AIMER Society</strong><small>Visualizations for a Smarter Tomorrow</small></div></Link>}
           {home ? <button className="icon-btn menu-btn" aria-label="Open navigation" onClick={() => setOpen(true)}><Icon name="grid" /></button> : null}
           <nav className="crumbs" aria-label="Breadcrumb">
             {crumbs.map((item, index) => (

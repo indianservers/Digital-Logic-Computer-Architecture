@@ -1,0 +1,252 @@
+[
+  {
+    "number": 1,
+    "enhancement": "Simulation contract",
+    "evidence": "Engineering tools → Accuracy: modeled behavior, reset and limits; export contract."
+  },
+  {
+    "number": 2,
+    "enhancement": "Architecture eligibility",
+    "evidence": "Accuracy: severity-grouped actual graph findings and locate actions."
+  },
+  {
+    "number": 3,
+    "enhancement": "Wiring-driven execution",
+    "evidence": "Strict graph execution; explicit controller IR/PC/Z wires; negative rewiring regression tests."
+  },
+  {
+    "number": 4,
+    "enhancement": "Four-state execution",
+    "evidence": "Live 0/1/X/Z wires and benches; strict active-input faults. Architectural storage is numeric and cannot retain X/Z."
+  },
+  {
+    "number": 5,
+    "enhancement": "Clock-edge consistency",
+    "evidence": "Clock alternates low/high; rising action advances microcycle. Step advances instruction, Run advances microcycles; common engine."
+  },
+  {
+    "number": 6,
+    "enhancement": "Explicit reset policy",
+    "evidence": "Builder: clear data or preserve separate data memory. Contest always clears data/reloads source."
+  },
+  {
+    "number": 7,
+    "enhancement": "Independent correctness oracle",
+    "evidence": "Contest: separate BigInt reference execution and flag semantics; assembler/decoder shared."
+  },
+  {
+    "number": 8,
+    "enhancement": "Reference coverage disclosure",
+    "evidence": "Accuracy and contest capability matrix: eligible register-file CPUs versus assertion-only architectures."
+  },
+  {
+    "number": 9,
+    "enhancement": "ALU truth tables",
+    "evidence": "Component Library benches and boundary tables; arithmetic/reference regressions across supported widths."
+  },
+  {
+    "number": 10,
+    "enhancement": "Memory semantics",
+    "evidence": "Memory System permissions, capacities and word offsets; Timing & ISA documents addressing and scope."
+  },
+  {
+    "number": 11,
+    "enhancement": "Instruction legality",
+    "evidence": "ISA validation, assembler diagnostics and unknown-opcode execution faults."
+  },
+  {
+    "number": 12,
+    "enhancement": "Branch semantics",
+    "evidence": "Timing & ISA: PC masking, jump and signed relative branch explanation and example."
+  },
+  {
+    "number": 13,
+    "enhancement": "Real timing modes",
+    "evidence": "Timing & ISA: instruction versus FSM microcycle; explicitly no physical gate-delay model."
+  },
+  {
+    "number": 14,
+    "enhancement": "Reproducible runs",
+    "evidence": "Contest: version, configuration, reset-state graph, seed, execution/suite hashes and traces."
+  },
+  {
+    "number": 15,
+    "enhancement": "Golden regression fixtures",
+    "evidence": "Accuracy: five executable template assertions; automated negative designs and engine regression tests."
+  },
+  {
+    "number": 16,
+    "enhancement": "Larger working canvas",
+    "evidence": "Focus Canvas/F6 hides hero and outer panels; Hide Panels expands canvas further."
+  },
+  {
+    "number": 17,
+    "enhancement": "Resizable panels",
+    "evidence": "Palette/inspector size sliders; vertically resizable canvas; responsive stacking."
+  },
+  {
+    "number": 18,
+    "enhancement": "Readable toolbox cards",
+    "evidence": "Illustrated/Compact palette toggle; compact widths use two-column cards."
+  },
+  {
+    "number": 19,
+    "enhancement": "Useful component tooltips",
+    "evidence": "Each toolbox component exposes functional contract, timing and allowed widths."
+  },
+  {
+    "number": 20,
+    "enhancement": "Search by function",
+    "evidence": "Search indexes behavior/category with storage and selector aliases."
+  },
+  {
+    "number": 21,
+    "enhancement": "Recent and favorite components",
+    "evidence": "Builder palette filters; recent insertion history and existing Library favorites."
+  },
+  {
+    "number": 22,
+    "enhancement": "Compatible-port highlighting",
+    "evidence": "Selecting output highlights compatible undriven inputs; Escape cancels."
+  },
+  {
+    "number": 23,
+    "enhancement": "Connection preview",
+    "evidence": "Engineering tools → Connections: named source/destination, width and role before commit."
+  },
+  {
+    "number": 24,
+    "enhancement": "Clear rejected connections",
+    "evidence": "Connections preview gives direction/width/occupied-input errors; canvas rejection shown in alert."
+  },
+  {
+    "number": 25,
+    "enhancement": "Accessible signal styling",
+    "evidence": "Solid data, dashed control, dot-dash clock, dotted X/Z; role/value text and accessible names."
+  },
+  {
+    "number": 26,
+    "enhancement": "Selectable wire routes",
+    "evidence": "Click selects instead of deleting; orthogonal routing and draggable/keyboard bend handles, persisted in project."
+  },
+  {
+    "number": 27,
+    "enhancement": "Minimap and navigation",
+    "evidence": "Minimap component targets, zoom percentage/out, fit and selected-component zoom."
+  },
+  {
+    "number": 28,
+    "enhancement": "Keyboard construction",
+    "evidence": "Palette buttons, focusable nodes/ports, Enter/Space wiring, arrow-key movement and explicit connection form."
+  },
+  {
+    "number": 29,
+    "enhancement": "Touch-friendly wiring",
+    "evidence": "Enlarged port hit areas; output/input tapping and form-based connection."
+  },
+  {
+    "number": 30,
+    "enhancement": "Searchable action menu",
+    "evidence": "Commands/Ctrl K: searchable actions/components, trapped dialog focus, Escape close."
+  },
+  {
+    "number": 31,
+    "enhancement": "Guided first CPU",
+    "evidence": "Engineering tools → Learn: ordered observed graph milestones and template starting points."
+  },
+  {
+    "number": 32,
+    "enhancement": "Challenge checkpoints",
+    "evidence": "Live fetch/decode/datapath/structural/assembly/execution checkpoints; correctness proven separately by tests."
+  },
+  {
+    "number": 33,
+    "enhancement": "Validation problem list",
+    "evidence": "Accuracy severity groups, stable finding IDs and component location."
+  },
+  {
+    "number": 34,
+    "enhancement": "Explain-before-fix",
+    "evidence": "Expandable correction explanations; changes remain deliberate, with no silent repair."
+  },
+  {
+    "number": 35,
+    "enhancement": "Useful empty states",
+    "evidence": "Signal/recovery/execution instructions and disabled actions until evidence exists."
+  },
+  {
+    "number": 36,
+    "enhancement": "Safe project replacement",
+    "evidence": "New/import/template/open/restore preserve a milestone first; failed snapshot blocks replacement."
+  },
+  {
+    "number": 37,
+    "enhancement": "Named project versions",
+    "evidence": "Recovery: up to twelve named snapshots, semantic component/wire/ISA/source comparison, restore/export."
+  },
+  {
+    "number": 38,
+    "enhancement": "Multiple-tab protection",
+    "evidence": "Storage-event conflict detection pauses edits; keep/adopt copies with both saved as milestones. Not distributed locking."
+  },
+  {
+    "number": 39,
+    "enhancement": "Honest save status",
+    "evidence": "Immediate draft checkpoint plus durable IndexedDB transaction status and export recovery actions."
+  },
+  {
+    "number": 40,
+    "enhancement": "Accessibility pass",
+    "evidence": "Focusable SVG nodes/ports/wires, input names, keyboard actions, visible focus, dialog focus trap and reduced motion; no external certification."
+  },
+  {
+    "number": 41,
+    "enhancement": "Live signal inspector",
+    "evidence": "Signals: actual four-state wire values in binary/hex/unsigned/signed; control codes are not signed data."
+  },
+  {
+    "number": 42,
+    "enhancement": "Before/after state comparison",
+    "evidence": "Last Step Changes highlights actual register, memory and value changes."
+  },
+  {
+    "number": 43,
+    "enhancement": "Linked execution trace",
+    "evidence": "Recorded instruction rows map PC to source/word and operation; ALU location and full-state history export."
+  },
+  {
+    "number": 44,
+    "enhancement": "Conditional breakpoints",
+    "evidence": "Learn: safe PC/Rn/MEM/address/flag comparison grammar, checked before and after Run steps."
+  },
+  {
+    "number": 45,
+    "enhancement": "Trace-based reverse stepping",
+    "evidence": "Reverse Step restores full design/controller/trace/clock snapshots; last 64 steps retained."
+  },
+  {
+    "number": 46,
+    "enhancement": "Waveform export",
+    "evidence": "Timing & ISA: VCD/JSON with recorded four-state signals; arbitrary timestamp scale explicitly disclosed."
+  },
+  {
+    "number": 47,
+    "enhancement": "Bounded background execution",
+    "evidence": "Run uses interval microcycles and configured execution limit; contest yields, reports progress and cancels bounded runs."
+  },
+  {
+    "number": 48,
+    "enhancement": "Organizer-owned test suites",
+    "evidence": "Contest judge tab imports private suites and reruns imported designs without replacing entrant project."
+  },
+  {
+    "number": 49,
+    "enhancement": "Transparent contest scoring",
+    "evidence": "Contest → Scoring Rules: required-test eligibility, correctness, declared tie-break, rules and measured evidence exports."
+  },
+  {
+    "number": 50,
+    "enhancement": "Judge evidence bundle",
+    "evidence": "Contest submission: actual design/ISA/source/configuration/tests/results/traces/hashes; independent replay and printable report."
+  }
+]

@@ -1,3 +1,4 @@
+import { CATEGORIES as DEVICE_CATEGORIES, STUDIO_PATH as DEVICE_STUDIO_PATH } from "../studios/how-devices-work/catalogue";
 import { ACA_LABS, acaRoute } from "./acaLabs";
 import { implementedVlsiLabs, vlsiRoute } from "./vlsiLabs";
 
@@ -8,6 +9,7 @@ export type StudioCategory =
   | "memory"
   | "processor"
   | "systems"
+  | "devices"
   | "architecture"
   | "isa"
   | "build"
@@ -38,6 +40,7 @@ export const CATEGORIES: Array<{
   { id: "memory", title: "Memory systems", blurb: "Arrays, caches, hierarchy, and virtual addresses.", art: "/icons/cat-memory.png", tone: "violet" },
   { id: "processor", title: "Processor core", blurb: "Datapath, ISA, fetch–decode–execute, control, and pipeline.", art: "/icons/cat-processor.png", tone: "blue" },
   { id: "systems", title: "I/O, buses & parallelism", blurb: "Devices, interrupts, the bus, ILP, and coherence.", art: "/icons/cat-systems.png", tone: "teal" },
+  { id: "devices", title: "How Devices work", blurb: "Explore the systems inside medical, aviation, marine, defence, robotic and everyday devices.", art: "/devices/studio-collection.svg", tone: "teal" },
   { id: "architecture", title: "Architecture studios", blurb: "Accelerators, SoCs, and the teaching 8-bit and 16-bit CPUs.", art: "/icons/cat-architecture.png", tone: "pink" },
   { id: "isa", title: "ISA explorers", blurb: "MIPS, RISC-V, ARM, x86, and mobile or desktop packages.", art: "/icons/cat-isa.png", tone: "orange" },
   { id: "build", title: "Build & sandbox", blurb: "Assemble a custom CPU, then mix engines in one workspace.", art: "/icons/cat-build.png", tone: "indigo" },
@@ -96,7 +99,12 @@ export const STUDIOS: StudioInfo[] = [
   { id: "sandbox", title: "Computer Architecture Sandbox", phase: 8, path: "/architecture/sandbox", summary: "Combine gates, datapaths, caches, CPUs, and coherence in one workspace.", topics: ["sandbox", "circuit", "multicore"], active: true, category: "build" },
   { id: "vlsi", title: "VLSI Studio", phase: 2, path: "/studios/vlsi", summary: "From transistor physics to silicon implementation.", topics: ["mosfet", "cmos", "vlsi", "inverter", "nand", "transmission gate"], active: true, category: "vlsi" },
   { id: "microcontroller", title: "Microcontroller Studio", phase: 8, path: "/studios/microcontroller", summary: "Browse 72 planned labs covering MCU architecture, GPIO, peripherals, firmware, and embedded projects.", topics: ["mcu", "embedded", "gpio", "pwm", "uart", "spi", "i2c", "rtos", "arduino", "stm32", "esp32"], active: true, category: "microcontroller" },
-  { id: "how-devices-work", title: "How Devices Work Studio", phase: 5, path: "/studios/how-devices-work", summary: "Explore how real-world digital systems sense, process, communicate and respond.", topics: ["devices", "medical", "aviation", "marine", "defence", "robotics", "everyday technology"], active: true, category: "systems" },
+  { id: "how-devices-work", title: "How Devices Work Studio", phase: 5, path: "/studios/how-devices-work", summary: "Explore how real-world digital systems sense, process, communicate and respond.", topics: ["devices", "medical", "aviation", "marine", "defence", "robotics", "everyday technology"], active: true, category: "devices" },
+  ...DEVICE_CATEGORIES.map((category): StudioInfo => ({
+    id: `devices-${category.id}`, title: category.name, phase: 5,
+    path: `${DEVICE_STUDIO_PATH}#hdw-${category.id}`, summary: category.description,
+    topics: ["devices", category.id, category.name], active: true, category: "devices",
+  })),
 ];
 
 export function matchStudio(path: string): StudioInfo | undefined {

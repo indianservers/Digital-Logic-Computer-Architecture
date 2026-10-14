@@ -2,9 +2,11 @@ import { alu, type AluOp } from "../digital/arithmetic";
 import { fromUnsigned, toUnsigned } from "../digital/vector";
 import { accessCache, createCache, type CacheMachine } from "../cache/cache";
 import { mesiStep, presetCache, type MesiState } from "../arch/coherence";
-import { assemble, decodeWord } from "./isa";
-import { maskBits, patchNode, portsOf, type ArchNode, type CpuDesign } from "./model";
-import { combinationalLoops } from "./validate";
+import { assemble, decodeWord, immediateWidth, signedImmediate } from "./isa";
+import { fieldsOf, maskBits, patchNode, portsOf, type ArchNode, type CpuDesign } from "./model";
+import { canonicalJson, migrateProject, engineeringOf } from "./project";
+import { evaluateLogicGraph } from "./logicGraph";
+import { combinationalLoops, validateDesign } from "./validate";
 
 export const HISTORY = 64;
 const ALU_CODE: AluOp[] = ["ADD", "SUB", "AND", "OR", "XOR", "NOT", "SHL", "SHR", "CMP", "INC", "DEC"];
@@ -39,12 +41,15 @@ export interface SimSnap {
   nodes: ArchNode[];
   cycle: number;
   trace: ExecTrace | null;
+  design?: CpuDesign;
+  clock?: 0 | 1;
 }
 
 export interface WaveSample {
   cycle: number;
   clock: number;
   values: Record<string, number>;
+  logic?: Record<string, string>;
 }
 
 export interface GraphView {
@@ -59,9 +64,9 @@ function findKind(design: CpuDesign, kind: ArchNode["kind"]): ArchNode | undefin
 
 export function aluNum(a: number, b: number, op: AluOp, width: number): { y: number; z: 0 | 1; n: 0 | 1; c: 0 | 1; v: 0 | 1 } {
   const mask = maskBits(width);
-  const result = alu(fromUnsigned(a & mask, width), fromUnsigned(b & mask, width), op);
+  const result = alu(fromUnsigned((a & mask) >>> 0, width), fromUnsigned((b & mask) >>> 0, width), op);
   const y = toUnsigned(result.result) ?? 0;
-  return { y: y & mask, z: result.zero, n: result.negative, c: result.carry, v: result.overflow };
+  return { y: (y & mask) >>> 0, z: result.zero, n: result.negative, c: result.carry, v: result.overflow };
 }
 
 function portKey(id: string, port: string): string {
@@ -77,9 +82,9 @@ function readReg(node: ArchNode | undefined, index: number): number {
 function writeReg(node: ArchNode, index: number, data: number, we: boolean): ArchNode {
   if (!we) return node;
   const mask = maskBits(node.width);
-  if (node.kind === "acc") return { ...node, value: data & mask };
+  if (node.kind === "acc") return { ...node, value: (data & mask) >>> 0 };
   const values = node.values.slice();
-  if (index >= 0 && index < values.length) values[index] = data & mask;
+  if (index >= 0 && index < values.length) values[index] = (data & mask) >>> 0;
   return { ...node, values };
 }
 
@@ -97,7 +102,7 @@ export function controlsOf(mnemonic: string, isa: CpuDesign["isa"]): Controls {
   };
 }
 
-export function evaluateGraph(design: CpuDesign): GraphView {
+export function evaluateGraph(design: CpuDesign, controlOverrides?: Record<string, 0 | 1 | "instruction">): GraphView {
   const values = new Map<string, number>();
   const loops = combinationalLoops(design);
   for (const node of design.nodes) {
@@ -112,31 +117,55 @@ export function evaluateGraph(design: CpuDesign): GraphView {
     if (node.kind === "imem" || node.kind === "dmem" || node.kind === "umem") {
       values.set(portKey(node.id, "q"), node.mem[node.value] ?? 0);
     }
-    if (node.kind === "flags") values.set(portKey(node.id, "qz"), node.value & 1);
+    if (node.kind === "flags") { for(const [port,bit] of [["qz",0],["qn",1],["qc",2],["qv",3]] as const) values.set(portKey(node.id,port),(node.value>>>bit)&1); }
   }
   const inputOf = (id: string, port: string): number => {
     const wire = design.wires.find((item) => item.to === id && item.toPort === port);
     if (!wire) return 0;
     return values.get(portKey(wire.from, wire.fromPort)) ?? 0;
   };
-  for (let pass = 0; pass < 24; pass += 1) {
+  for (let pass = 0; pass < Math.max(24, design.nodes.length + 2); pass += 1) {
     let changed = false;
     for (const node of design.nodes) {
       const write = (port: string, value: number) => {
         const key = portKey(node.id, port);
-        const masked = value & maskBits(portsOf(node).find((item) => item.id === port)?.width ?? node.width);
+        const masked = (value & maskBits(portsOf(node).find((item) => item.id === port)?.width ?? node.width)) >>> 0;
         if (values.get(key) !== masked) {
           values.set(key, masked);
           changed = true;
         }
       };
+      if (node.kind === "regfile") {
+        write("a", node.values[inputOf(node.id, "ra")] ?? 0); write("b", node.values[inputOf(node.id, "rb")] ?? 0);
+      }
+      if (node.kind === "imem" || node.kind === "dmem" || node.kind === "umem") {
+        const addr = inputOf(node.id, "addr"); write("q", node.kind === "dmem" && !inputOf(node.id,"re") ? 0 : node.mem[addr] ?? 0);
+      }
+      if (node.kind === "cu" || node.kind === "decoder") {
+        const decoded = decodeWord(design.isa, inputOf(node.id, "ir")); const i = decoded.instr;
+        const c = controlsOf(i?.mnemonic ?? "", design.isa); const f = decoded.fields;
+        const config = engineeringOf(design); const overrides = controlOverrides ?? (config.mode === "multi" ? config.control.find(s => s.id === config.state)?.signals ?? {} : {});
+        const signal = (key: keyof Controls): number => { const v = overrides[key]; return v === 0 || v === 1 ? v : Number(c[key]); };
+        write("regwrite", signal("RegWrite")); write("alusrc", signal("ALUSrc")); write("memread", signal("MemRead")); write("memwrite", signal("MemWrite")); write("memtoreg", signal("MemToReg")); write("branch", signal("Branch"));
+        write("aluop", ALU_CODE.indexOf(c.ALUOp));
+        write("ra", i?.operandA === "rd" ? f.rd ?? 0 : i?.operands.includes("rs1") ? f.rs1 ?? 0 : f.rd ?? 0); write("rb", i?.mem === "store" ? f.rd ?? 0 : f.rs2 ?? 0); write("rd", f.rd ?? 0);
+        const bits = i ? immediateWidth(design.isa, i) : 0; const imm = f.imm ?? 0;
+        write("imm", i && fieldsOf(design.isa, i.format).some(fld => fld.purpose === "imm" && fld.signed) ? signedImmediate(imm, bits) : imm);
+        write("azero", (i?.operandA ?? (i?.mem !== "none" || i?.mnemonic === "LOADI" ? "zero" : "rd")) === "zero" ? 1 : 0);
+        const pc = inputOf(node.id,"pc"); const zero = inputOf(node.id,"zero")===1;
+        const branchEnabled=signal("Branch")!==0;
+        const nextPc = i?.pc === "halt" ? pc : i?.pc === "jump" && branchEnabled ? imm : branchEnabled && (i?.pc === "branchEq" && zero || i?.pc === "branchNe" && !zero) ? pc + signedImmediate(imm, bits) : pc + 1;
+        write("pcnext", nextPc); write("one", 1);
+      }
       if (node.kind === "mux") write("y", inputOf(node.id, "s") ? inputOf(node.id, "i1") : inputOf(node.id, "i0"));
       if (node.kind === "alu") {
         const op = ALU_CODE[inputOf(node.id, "op")] ?? node.op;
         write("y", aluNum(inputOf(node.id, "a"), inputOf(node.id, "b"), op, node.width).y);
-        write("z", aluNum(inputOf(node.id, "a"), inputOf(node.id, "b"), op, node.width).z);
+        const flags=aluNum(inputOf(node.id,"a"),inputOf(node.id,"b"),op,node.width);
+        write("z",flags.z);write("n",flags.n);write("c",flags.c);write("v",flags.v);
       }
-      if (node.kind === "buf" || node.kind === "sext") write("y", inputOf(node.id, "a"));
+      if (node.kind === "buf") write("y", inputOf(node.id, "a"));
+      if (node.kind === "sext") write("y", signedImmediate(inputOf(node.id, "a"), node.inputWidth ?? node.width));
       if (node.kind === "inc") write("y", (inputOf(node.id, "a") + 1) & maskBits(node.width));
       if (node.kind === "shifter") write("y", (inputOf(node.id, "a") << 1) & maskBits(node.width));
       if (node.kind === "cmp") write("eq", inputOf(node.id, "a") === inputOf(node.id, "b") ? 1 : 0);
@@ -174,6 +203,7 @@ export function loadProgram(design: CpuDesign): { design: CpuDesign; error: stri
   if (!assembled.ok) return { design, error: assembled.errors.map((item) => `Line ${item.line}: ${item.message}`).join(" ") };
   const imem = findKind(design, "imem") ?? findKind(design, "umem");
   if (!imem) return { design, error: "Instruction memory is missing." };
+  if (assembled.words.length > imem.mem.length) return { design, error: `Program needs ${assembled.words.length} words, but instruction memory holds ${imem.mem.length}.` };
   const mem = imem.mem.slice().fill(0);
   assembled.words.forEach((word, index) => {
     if (index < mem.length) mem[index] = word;
@@ -190,104 +220,137 @@ export function resetCpu(design: CpuDesign): CpuDesign {
     else if (node.kind === "const" || node.kind === "clock") continue;
     else next = patchNode(next, node.id, { value: 0 });
   }
+  next = { ...next, engineering: { ...engineeringOf(next), state: engineeringOf(next).startState, cycle: 0, pendingSignals: undefined } };
   return loadProgram(next).design;
 }
 
-export function stepInstruction(design: CpuDesign, cycle: number): { design: CpuDesign; trace: ExecTrace } {
-  const width = design.isa.dataWidth;
-  const mask = maskBits(width);
-  const pcNode = findKind(design, "pc");
-  const imem = findKind(design, "imem") ?? findKind(design, "umem");
-  const dmem = findKind(design, "dmem") ?? findKind(design, "umem");
-  const rf = findKind(design, "regfile") ?? findKind(design, "acc");
-  const aluNode = findKind(design, "alu");
-  const irNode = findKind(design, "ir");
-  const flags = findKind(design, "flags");
-  const pc = pcNode?.value ?? 0;
-  const ir = imem?.mem[pc] ?? 0;
-  const decoded = decodeWord(design.isa, ir);
-  const instr = decoded.instr;
-  const mnemonic = instr?.mnemonic ?? "UNK";
-  const controls = controlsOf(mnemonic, design.isa);
-  const rs1 = decoded.fields.rs1 ?? 0;
-  const rs2 = decoded.fields.rs2 ?? 0;
-  const rd = decoded.fields.rd ?? 0;
-  const imm = decoded.fields.imm ?? 0;
-  const a = !instr
-    ? 0
-    : instr.operands.includes("rs1")
-      ? readReg(rf, rs1)
-      : instr.mem !== "none" || instr.mnemonic === "LOADI"
-        ? 0
-        : readReg(rf, rd);
-  const b = controls.ALUSrc ? imm : readReg(rf, rs2);
-  const aluRes = aluNum(a, b, controls.ALUOp, width);
-  let memOp = "none";
-  let writeData = aluRes.y;
-  let nextDesign = design;
-  if (irNode) nextDesign = patchNode(nextDesign, irNode.id, { value: ir });
-  if (aluNode) nextDesign = patchNode(nextDesign, aluNode.id, { value: aluRes.y, op: controls.ALUOp });
-  if (dmem && controls.MemRead) {
-    writeData = dmem.mem[aluRes.y & (dmem.mem.length - 1)] ?? 0;
-    memOp = `load [${aluRes.y}] → ${writeData}`;
-    nextDesign = patchNode(nextDesign, dmem.id, { value: writeData });
-  }
-  if (dmem && controls.MemWrite) {
-    const data = readReg(rf, rd);
-    const mem = (findKind(nextDesign, dmem.kind)?.mem ?? dmem.mem).slice();
-    const addr = aluRes.y & (mem.length - 1);
-    mem[addr] = data & mask;
-    memOp = `store ${data} → [${addr}]`;
-    nextDesign = patchNode(nextDesign, dmem.id, { mem, value: data });
-  }
-  if (rf) {
-    const current = findKind(nextDesign, rf.kind) ?? rf;
-    nextDesign = patchNode(nextDesign, rf.id, writeReg(current, rd, writeData, Boolean(controls.RegWrite)));
-  }
-  if (flags) nextDesign = patchNode(nextDesign, flags.id, { value: aluRes.z });
-  let nextPc = (pc + 1) & mask;
-  let halt = false;
-  if (instr?.pc === "halt") {
-    nextPc = pc;
-    halt = true;
-  } else if (instr?.pc === "jump") nextPc = imm & mask;
-  else if (instr?.pc === "branchEq" && aluRes.z) nextPc = (pc + signImm(imm, 6)) & mask;
-  else if (instr?.pc === "branchNe" && !aluRes.z) nextPc = (pc + signImm(imm, 6)) & mask;
-  if (pcNode) nextDesign = patchNode(nextDesign, pcNode.id, { value: nextPc });
-  const cu = findKind(nextDesign, "cu") ?? findKind(nextDesign, "decoder");
-  if (cu) nextDesign = patchNode(nextDesign, cu.id, { value: ir, note: mnemonic });
-  return {
-    design: nextDesign,
-    trace: {
-      cycle, pc, ir, mnemonic, opcode: decoded.fields.opcode ?? 0,
-      aluA: a, aluB: b, aluY: aluRes.y,
-      flags: { z: aluRes.z, n: aluRes.n, c: aluRes.c, v: aluRes.v },
-      memOp, controls, halt,
-      reason: halt ? "HALT" : `${mnemonic} committed at PC=${pc}`,
-    },
-  };
+function faultTrace(design: CpuDesign, cycle: number, reason: string): { design: CpuDesign; trace: ExecTrace } {
+  return { design, trace: { cycle, pc: findKind(design, "pc")?.value ?? 0, ir: 0, mnemonic: "FAULT", opcode: 0, aluA: 0, aluB: 0, aluY: 0, flags: { z: 0, n: 0, c: 0, v: 0 }, memOp: "none", controls: controlsOf("", design.isa), halt: true, reason } };
 }
-
-function signImm(value: number, width: number): number {
-  const sign = 1 << (width - 1);
-  return (value & (sign - 1)) - (value & sign);
+function wiredInput(design: CpuDesign, view: GraphView, node: ArchNode, port: string): number | undefined {
+  const wires = design.wires.filter(w => w.to === node.id && w.toPort === port);
+  if (wires.length !== 1) return undefined;
+  const wire = wires[0]!; return view.values.get(`${wire.from}:${wire.fromPort}`);
+}
+export function stepInstruction(design: CpuDesign, cycle: number): { design: CpuDesign; trace: ExecTrace } {
+  if (engineeringOf(design).mode === "multi") {
+    let current = design;
+    for (let i = 0; i < 64; i++) { const committing=engineeringOf(current).control.find(s=>s.id===engineeringOf(current).state)?.action==="writeback";const result = stepMicroCycle(current, engineeringOf(current).cycle + 1); current = result.design; if (result.trace.halt || committing) return result; }
+    return faultTrace(current, cycle, "Execution deadlock: instruction did not finish in 64 cycles.");
+  }
+  return executeWiredInstruction(design, cycle);
+}
+function executeWiredInstruction(design: CpuDesign, cycle: number, overrides?: Record<string, 0 | 1 | "instruction">): { design: CpuDesign; trace: ExecTrace } {
+  const pc = findKind(design, "pc"); const imem = findKind(design, "imem") ?? findKind(design, "umem"); const rf = findKind(design, "regfile") ?? findKind(design, "acc"); const aluNode = findKind(design, "alu"); const irNode = findKind(design, "ir");
+  if (!pc || !imem || !rf || !aluNode || !irNode || !findKind(design, "clock")) return faultTrace(design, cycle, "Missing PC, instruction memory, register architecture, ALU, IR or clock.");
+  const errors = validateDesign(design).filter(i => i.level === "error");
+  if (errors.length) return faultTrace(design, cycle, errors.slice(0,3).map(e => e.message).join(" "));
+  if (combinationalLoops(design).length) return faultTrace(design, cycle, "Combinational loop prevents execution.");
+  const fetch = evaluateGraph(design); const address = wiredInput(design, fetch, imem, "addr");
+  if(engineeringOf(design).unknown==="strict"){
+    const logic=evaluateLogicGraph(design,overrides);
+    for(const [node,port] of [[imem,"addr"],[irNode,"d"],[irNode,"we"]] as const){const wire=design.wires.find(w=>w.to===node.id&&w.toPort===port);const bits=wire&&logic.values.get(`${wire.from}:${wire.fromPort}`);if(!bits||bits.some(b=>b==="X"||b==="Z"))return faultTrace(design,cycle,`Unknown or high-impedance value on ${node.name}.${port}.`);}
+  }
+  if (address === undefined || address < 0 || address >= imem.mem.length) return faultTrace(design, cycle, "Instruction address is undriven or out of bounds.");
+  const fetchedWord = wiredInput(design, fetch, irNode, "d"); if (fetchedWord === undefined) return faultTrace(design, cycle, "IR data input has no instruction-memory driver.");
+  const irEnable = wiredInput(design, fetch, irNode, "we");
+  if (irEnable === undefined) return faultTrace(design,cycle,"IR write-enable is undriven.");
+  const word = irEnable ? fetchedWord : irNode.value;
+  const decoded = decodeWord(design.isa, word); const instr = decoded.instr;
+  if (!instr) return faultTrace(design, cycle, `Unknown opcode at word address ${address}.`);
+  for (const n of [pc, irNode, rf]) if (!design.wires.some(w => w.to === n.id && w.toPort === "clk" && design.nodes.find(src => src.id === w.from)?.kind === "clock")) return faultTrace(design, cycle, `${n.name} has no clock source.`);
+  let next = patchNode(design, irNode.id, { value: word });
+  const c = controlsOf(instr.mnemonic, design.isa);
+  if (overrides) for (const key of ["RegWrite", "ALUSrc", "MemRead", "MemWrite", "MemToReg", "Branch"] as const) { const value = overrides[key]; if (value === 0 || value === 1) c[key] = value; }
+  let view = evaluateGraph(next, overrides);
+  if (engineeringOf(design).unknown === "strict") {
+    const logical = evaluateLogicGraph(next,overrides);
+    for (const port of ["a","b","op"]) { const source = next.wires.find(w => w.to === aluNode.id && w.toPort === port); const vector = source && logical.values.get(`${source.from}:${source.fromPort}`); if (!vector || vector.some(bit => bit === "X" || bit === "Z")) return faultTrace(design, cycle, `Unknown or high-impedance value on ${aluNode.name}.${port}.`); }
+  }
+  const a = wiredInput(next, view, aluNode, "a"); const b = wiredInput(next, view, aluNode, "b"); const op = wiredInput(next, view, aluNode, "op");
+  if (a === undefined || b === undefined || op === undefined) return faultTrace(design, cycle, "ALU operand or operation input is undriven.");
+  if(!ALU_CODE[op])return faultTrace(design,cycle,`Unsupported ALU control code ${op}.`);
+  const result = aluNum(a, b, ALU_CODE[op] ?? aluNode.op, aluNode.width);
+  if (aluNode.operations && !aluNode.operations.includes(ALU_CODE[op] ?? aluNode.op)) return faultTrace(design, cycle, "Selected ALU does not support this operation.");
+  next = patchNode(next, aluNode.id, { value: result.y, op: ALU_CODE[op] ?? aluNode.op }); view = evaluateGraph(next, overrides);
+  const mem = findKind(next, "dmem") ?? findKind(next, "umem"); let memOp = "none";
+  const en = wiredInput(next, view, rf, "we"); const wd = wiredInput(next, view, rf, "d");
+  const logical=engineeringOf(design).unknown==="strict"?evaluateLogicGraph(next,overrides):null;
+  const unknown=(node:ArchNode,port:string)=>{const wire=next.wires.find(w=>w.to===node.id&&w.toPort===port);const bits=wire&&logical?.values.get(`${wire.from}:${wire.fromPort}`);return logical&&(!bits||bits.some(b=>b==="X"||b==="Z"));};
+  for(const [node,port] of [[pc,"we"],[pc,"d"],[rf,"we"],...(en?[[rf,"d"],...(rf.kind==="regfile"?[[rf,"rd"]]:[])]:[])] as [ArchNode,string][])if(unknown(node,port))return faultTrace(design,cycle,`Unknown or high-impedance value on ${node.name}.${port}.`);
+  if (instr.regWrite && (en === undefined || wd === undefined)) return faultTrace(design, cycle, "Register write-enable or writeback data is undriven.");
+  if (instr.mem !== "none" && !mem) return faultTrace(design,cycle,"The instruction requires data memory.");
+  if (mem) {
+    if (!mem) return faultTrace(design, cycle, "The instruction requires data memory.");
+    const addr = wiredInput(next, view, mem, "addr"); const write=wiredInput(next,view,mem,"we");const read=wiredInput(next,view,mem,"re");
+    if(instr.mem!=="none"&&unknown(mem,instr.mem==="store"?"we":"re"))return faultTrace(design,cycle,"Unknown memory access control.");
+    if((write||read)&&(unknown(mem,"addr")||write&&unknown(mem,"d")))return faultTrace(design,cycle,"Unknown memory address or write data.");
+    if ((write||read)&&(addr === undefined || addr < 0 || addr >= mem.mem.length)) return faultTrace(design, cycle, "Memory address is undriven or out of bounds.");
+    const region = engineeringOf(next).regions.find(r => r.nodeId === mem.id);
+    const clocked=next.wires.some(w=>w.to===mem.id&&w.toPort==="clk"&&next.nodes.find(n=>n.id===w.from)?.kind==="clock");
+    if (write && clocked && addr!==undefined) { if (region?.permission === "r") return faultTrace(design, cycle, "Write to read-only memory."); const data = wiredInput(next, view, mem, "d"); if (data === undefined) return faultTrace(design, cycle, "Memory write data is undriven."); const contents = mem.mem.slice(); contents[addr] = (data & maskBits(mem.width)) >>> 0; next = patchNode(next, mem.id, { mem: contents, value: addr }); memOp = `store ${data} → [${addr}]`; }
+    else if (read&&addr!==undefined) { next = patchNode(next, mem.id, { value: addr }); memOp = `load [${addr}] → ${mem.mem[addr] ?? 0}`; }
+  }
+  // All additional enabled storage elements capture the same pre-commit datapath snapshot.
+  for(const node of next.nodes.filter(n=>["gpr","mar","mdr","sp","dff","counter"].includes(n.kind))){
+    if(!next.wires.some(w=>w.to===node.id&&w.toPort==="clk"&&next.nodes.find(n=>n.id===w.from)?.kind==="clock"))continue;
+    if(node.kind==="counter"){next=patchNode(next,node.id,{value:((node.value+1)&maskBits(node.width))>>>0});continue;}
+    if(node.kind!=="dff"&&!wiredInput(next,view,node,"we"))continue;
+    if(unknown(node,"d")||node.kind!=="dff"&&unknown(node,"we"))return faultTrace(design,cycle,`Unknown storage input on ${node.name}.`);
+    const data=wiredInput(next,view,node,"d");if(data===undefined)return faultTrace(design,cycle,`${node.name} storage data is undriven.`);
+    next=patchNode(next,node.id,{value:(data&maskBits(node.width))>>>0});
+  }
+  if (en && wd !== undefined) { const index = rf.kind === "acc" ? 0 : wiredInput(next, view, rf, "rd"); if (index === undefined || index < 0 || index >= (rf.kind === "acc" ? 1 : rf.values.length)) return faultTrace(design, cycle, "Register destination is invalid or undriven."); next = patchNode(next, rf.id, writeReg(rf, index, wd, true)); }
+  const nextPc = wiredInput(next, view, pc, "d"); if (nextPc === undefined) return faultTrace(design, cycle, "PC update input is undriven.");
+  const flags = findKind(next, "flags"); if (flags&&next.wires.some(w=>w.to===flags.id&&w.toPort==="clk"&&next.nodes.find(n=>n.id===w.from)?.kind==="clock")){for(const port of ["z","n","c","v"])if(unknown(flags,port))return faultTrace(design,cycle,`Unknown flag input ${flags.name}.${port}.`);const z=wiredInput(next,view,flags,"z"),n=wiredInput(next,view,flags,"n"),carry=wiredInput(next,view,flags,"c"),v=wiredInput(next,view,flags,"v");if(z!==undefined&&n!==undefined&&carry!==undefined&&v!==undefined)next=patchNode(next,flags.id,{value:z|n<<1|carry<<2|v<<3});}
+  const pcEnable = wiredInput(next, view, pc, "we");
+  if (pcEnable === undefined) return faultTrace(design,cycle,"PC write-enable is undriven.");
+  next = patchNode(next, pc.id, { value: pcEnable ? nextPc : pc.value }); const cu = findKind(next, "cu"); if (cu) next = patchNode(next, cu.id, { value: word, note: instr.mnemonic });
+  const config = engineeringOf(next); next = { ...next, engineering: { ...config, cycle } };
+  return { design: next, trace: { cycle, pc: address, ir: word, mnemonic: instr.mnemonic, opcode: instr.opcode, aluA: a, aluB: b, aluY: result.y, flags: result, memOp, controls: c, halt: instr.pc === "halt", reason: instr.pc === "halt" ? "HALT" : `${instr.mnemonic} committed through the wired datapath at PC=${address}` } };
+}
+export function stepMicroCycle(design: CpuDesign, cycle: number): { design: CpuDesign; trace: ExecTrace } {
+  const config = engineeringOf(design);
+  if (config.mode === "single") return executeWiredInstruction(design, cycle);
+  const state = config.control.find(s => s.id === config.state);
+  if (!state || !state.guard&&!config.control.some(s => s.id === state.next)) return faultTrace(design, cycle, "Control state has an undefined transition.");
+  const pc = findKind(design, "pc"); const imem = findKind(design, "imem")??findKind(design,"umem"); const ir = findKind(design, "ir");
+  if (!pc || !imem || !ir) return faultTrace(design, cycle, "Fetch hardware is incomplete.");
+  let next = design;
+  const pendingSignals={...(state.action==="fetch" ? {RegWrite:0 as const,MemRead:0 as const,MemWrite:0 as const} : config.pendingSignals??{}),...state.signals};
+  const successor=(current:CpuDesign)=>{if(!state.guard)return state.next;const decoded=decodeWord(current.isa,findKind(current,"ir")?.value??0);const condition=state.guard.kind==="memory" ? !!decoded.instr&&decoded.instr.mem!=="none" : state.guard.kind==="zero" ? findKind(current,"alu")?.value===0 : decoded.instr?.opcode===state.guard.equals;return condition?state.guard.whenTrue:state.guard.whenFalse;};
+  if(state.guard && (!config.control.some(s=>s.id===state.guard?.whenTrue)||!config.control.some(s=>s.id===state.guard?.whenFalse)))return faultTrace(design,cycle,"Conditional transition targets an undefined state.");
+  if (state.action === "fetch") { const view = evaluateGraph(design); const word = wiredInput(design, view, ir, "d");const address=wiredInput(design,view,imem,"addr");const enable=wiredInput(design,view,ir,"we"); if (word === undefined||enable===undefined||address===undefined||address>=imem.mem.length) return faultTrace(design, cycle, "Instruction fetch wire, enable or address is invalid."); if(enable)next = patchNode(design, ir.id, { value: word }); }
+  // Architectural writes happen atomically at writeback. The selected state's signal overrides are honored.
+  if (state.action === "writeback") {
+    const allSignals = pendingSignals;
+    const completed = executeWiredInstruction(next, cycle, allSignals);
+    return { ...completed, design: { ...completed.design, engineering: { ...engineeringOf(completed.design), state: successor(completed.design), cycle, pendingSignals:undefined } } };
+  }
+  const word = findKind(next, "ir")?.value ?? 0; const decoded = decodeWord(next.isa, word); const controls = controlsOf(decoded.instr?.mnemonic ?? "", next.isa); for(const key of ["RegWrite","ALUSrc","MemRead","MemWrite","MemToReg","Branch"] as const){const v=pendingSignals[key];if(v===0||v===1)controls[key]=v;}
+  const graph = evaluateGraph(next,pendingSignals); const aNode = findKind(next, "alu"); const a = aNode ? wiredInput(next, graph, aNode, "a") ?? 0 : 0; const b = aNode ? wiredInput(next, graph, aNode, "b") ?? 0 : 0; const arithmetic = aluNum(a, b, controls.ALUOp, next.isa.dataWidth);
+  if (aNode && state.action === "execute") next = patchNode(next, aNode.id, { value: arithmetic.y, op: controls.ALUOp });
+  next = { ...next, engineering: { ...config, state: successor(next), cycle, pendingSignals } };
+  return { design: next, trace: { cycle, pc: pc.value, ir: word, mnemonic: decoded.instr?.mnemonic ?? "FETCH", opcode: decoded.fields.opcode ?? 0, aluA: a, aluB: b, aluY: arithmetic.y, flags: arithmetic, memOp: "none", controls, halt: false, reason: `${state.name}: ${state.action} → ${engineeringOf(next).state}` } };
 }
 
 export function stepClock(design: CpuDesign, clock: 0 | 1, prev: 0 | 1): CpuDesign {
-  if (!(prev === 0 && clock === 1)) return design;
-  const view = evaluateGraph(design);
-  let next = design;
-  for (const node of design.nodes) {
-    const din = (port: string) => {
-      const wire = design.wires.find((item) => item.to === node.id && item.toPort === port);
-      if (!wire) return 0;
-      return view.values.get(`${wire.from}:${wire.fromPort}`) ?? 0;
-    };
-    if (node.kind === "dff") next = patchNode(next, node.id, { value: din("d") & 1 });
-    if (node.kind === "counter") next = patchNode(next, node.id, { value: (node.value + 1) & maskBits(node.width) });
-    if (node.kind === "gpr" || node.kind === "mdr" || node.kind === "mar" || node.kind === "sp") {
-      if (din("we")) next = patchNode(next, node.id, { value: din("d") });
-    }
+  let next={...design,nodes:design.nodes.map(n=>n.kind==="clock"?{...n,value:clock}:n)};
+  if (!(prev===0&&clock===1)) return next;
+  const view=evaluateGraph(next);
+  const logical=engineeringOf(next).unknown==="strict"?evaluateLogicGraph(next):null;
+  const prior=evaluateGraph({...design,nodes:design.nodes.map(n=>n.kind==="clock"?{...n,value:prev}:n)});
+  for(const node of design.nodes){
+    const din=(port:string)=>wiredInput(next,view,node,port);
+    const clockWire=next.wires.find(w=>w.to===node.id&&w.toPort==="clk"); if(!clockWire||prior.values.get(`${clockWire.from}:${clockWire.fromPort}`)!==0||view.values.get(`${clockWire.from}:${clockWire.fromPort}`)!==1)continue;
+    const required=["clk",...(node.kind==="counter"?[]:node.kind==="flags"?["z","n","c","v"]:node.kind==="dff"?["d"]:["we",...(din("we")?["d",...(node.kind==="regfile"?["rd"]:["dmem","umem"].includes(node.kind)?["addr"]:[])]:[])])];
+    if(logical&&required.some(port=>{const wire=next.wires.find(w=>w.to===node.id&&w.toPort===port);const bits=wire&&logical.values.get(`${wire.from}:${wire.fromPort}`);return !bits||bits.some(b=>b==="X"||b==="Z");}))continue;
+    if(node.kind==="dff"&&din("d")!==undefined)next=patchNode(next,node.id,{value:din("d")!&1});
+    if(node.kind==="counter")next=patchNode(next,node.id,{value:((node.value+1)&maskBits(node.width))>>>0});
+    if(["gpr","mdr","mar","sp","pc","ir","acc"].includes(node.kind)&&din("we")&&din("d")!==undefined)next=patchNode(next,node.id,{value:(din("d")!&maskBits(node.width))>>>0});
+    if(node.kind==="regfile"&&din("we")){const index=din("rd");const data=din("d");if(index!==undefined&&data!==undefined)next=patchNode(next,node.id,writeReg(node,index,data,true));}
+    if(node.kind==="flags"&&["z","n","c","v"].every(port=>din(port)!==undefined))next=patchNode(next,node.id,{value:din("z")!|din("n")!<<1|din("c")!<<2|din("v")!<<3});
+    if(["dmem","umem"].includes(node.kind)&&din("we")&&engineeringOf(next).regions.find(r=>r.nodeId===node.id)?.permission!=="r"){const address=din("addr");const data=din("d");if(address!==undefined&&data!==undefined&&address>=0&&address<node.mem.length){const mem=node.mem.slice();mem[address]=(data&maskBits(node.width))>>>0;next=patchNode(next,node.id,{mem});}}
   }
   return next;
 }
@@ -297,7 +360,7 @@ export function hitBreakpoint(design: CpuDesign, trace: ExecTrace, prev: CpuDesi
     if (!point.enabled) continue;
     if (point.kind === "pc" && trace.pc === (point.address ?? 0)) return `PC equals ${trace.pc}.`;
     if (point.kind === "mnemonic" && trace.mnemonic === (point.mnemonic ?? "").toUpperCase()) return `Instruction ${trace.mnemonic} reached.`;
-    if (point.kind === "flag" && point.flag === "z" && trace.flags.z !== ((findKind(prev, "flags")?.value ?? 0) & 1)) return "Zero flag changed.";
+    if(point.kind==="flag" && point.flag){const bit={z:0,n:1,c:2,v:3}[point.flag];if(trace.flags[point.flag]!==(((findKind(prev,"flags")?.value??0)>>>bit)&1))return `${point.flag.toUpperCase()} flag changed.`;}
     if (point.kind === "memwrite" && trace.controls.MemWrite) return "Memory write occurred.";
     if (point.kind === "reg") {
       const rf = findKind(design, "regfile") ?? findKind(design, "acc");
@@ -310,6 +373,7 @@ export function hitBreakpoint(design: CpuDesign, trace: ExecTrace, prev: CpuDesi
 
 export function sampleWave(design: CpuDesign, cycle: number, clock: number, view: GraphView): WaveSample {
   const values: Record<string, number> = { clock };
+  for(const [key,value] of view.values) values[key]=value;
   const pc = findKind(design, "pc");
   const cu = findKind(design, "cu");
   if (pc) values.pc = pc.value;
@@ -324,7 +388,8 @@ export function sampleWave(design: CpuDesign, cycle: number, clock: number, view
     if (!node) continue;
     values[node.name] = view.values.get(`${id}:q`) ?? view.values.get(`${id}:y`) ?? node.value;
   }
-  return { cycle, clock, values };
+  const logic=Object.fromEntries([...evaluateLogicGraph(design).values].map(([key,bits])=>[key,bits.join("")]));
+  return { cycle, clock, values, logic };
 }
 
 export function sandboxCacheAccess(machine: CacheMachine | null, address: number, op: "read" | "write"): { machine: CacheMachine; hit: boolean; explain: string } {
@@ -338,18 +403,8 @@ export function sandboxCoherence(states: MesiState[], core: number, op: "read" |
   return { states: stepped.states, bus: stepped.bus };
 }
 
-export function designJson(design: CpuDesign): string {
-  return JSON.stringify({ version: 1, kind: "logiclab-cpu", design }, null, 2);
-}
-
+export function designJson(design: CpuDesign): string { return canonicalJson(design); }
 export function parseDesignJson(raw: string): { ok: true; design: CpuDesign } | { ok: false; error: string } {
-  try {
-    const parsed = JSON.parse(raw) as { kind?: string; design?: CpuDesign };
-    if (!parsed.design || !Array.isArray(parsed.design.nodes) || !Array.isArray(parsed.design.wires) || !parsed.design.isa) {
-      return { ok: false, error: "That file is not a valid CPU design. Expected a .cpu.json object with nodes, wires, and isa." };
-    }
-    return { ok: true, design: parsed.design };
-  } catch {
-    return { ok: false, error: "Could not parse the file. Check that it is valid JSON." };
-  }
+  try { return { ok: true, design: migrateProject(JSON.parse(raw)) }; }
+  catch (error) { return { ok: false, error: error instanceof Error ? error.message : "Invalid project JSON." }; }
 }

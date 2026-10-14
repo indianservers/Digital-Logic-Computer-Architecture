@@ -1,0 +1,77 @@
+$version AIMER logical CPU waveform $end
+$comment One recorded simulated microcycle = 1 ns in this export; arbitrary visualization scale, not physical clock timing. Missing values are X. $end
+$timescale 1ns $end
+$scope module cpu $end
+$var wire 1 s0 n1_y $end
+$var wire 16 s1 n2_q $end
+$var wire 16 s2 n3_q $end
+$var wire 16 s3 n4_q $end
+$var wire 1 s4 n5_regwrite $end
+$var wire 1 s5 n5_alusrc $end
+$var wire 1 s6 n5_memread $end
+$var wire 1 s7 n5_memwrite $end
+$var wire 1 s8 n5_memtoreg $end
+$var wire 1 s9 n5_branch $end
+$var wire 4 s10 n5_aluop $end
+$var wire 3 s11 n5_ra $end
+$var wire 3 s12 n5_rb $end
+$var wire 3 s13 n5_rd $end
+$var wire 16 s14 n5_imm $end
+$var wire 1 s15 n5_azero $end
+$var wire 16 s16 n5_pcnext $end
+$var wire 1 s17 n5_one $end
+$var wire 16 s18 n6_a $end
+$var wire 16 s19 n6_b $end
+$var wire 16 s20 n7_y $end
+$var wire 1 s21 n7_z $end
+$var wire 1 s22 n7_n $end
+$var wire 1 s23 n7_c $end
+$var wire 1 s24 n7_v $end
+$var wire 16 s25 n8_q $end
+$var wire 16 s26 n9_y $end
+$var wire 16 s27 n10_y $end
+$var wire 16 s28 n11_y $end
+$var wire 16 s29 n12_y $end
+$var wire 16 s30 n13_y $end
+$var wire 1 s31 n14_qz $end
+$var wire 1 s32 n14_qn $end
+$var wire 1 s33 n14_qc $end
+$var wire 1 s34 n14_qv $end
+$upscope $end
+$enddefinitions $end
+#1
+b0 s0
+b0000000000000001 s1
+b0001010000000111 s2
+b0001001000000101 s3
+b1 s4
+b1 s5
+b0 s6
+b0 s7
+b0 s8
+b0 s9
+b0000 s10
+b001 s11
+b000 s12
+b001 s13
+b0000000000000101 s14
+b1 s15
+b0000000000000010 s16
+b1 s17
+b0000000000000101 s18
+b0000000000000000 s19
+b0000000000000101 s20
+b0 s21
+b0 s22
+b0 s23
+b0 s24
+b0000000000000000 s25
+b0000000000000101 s26
+b0000000000000000 s27
+b0000000000000101 s28
+b0000000000000000 s29
+b0000000000000010 s30
+b0 s31
+b0 s32
+b0 s33
+b0 s34

@@ -1,0 +1,722 @@
+{
+  "Power supply module": {
+    "src": "/devices/parts/references/e1dada5b81396cd9.jpg",
+    "caption": "Component-family reference: Power supply module",
+    "family": "Power supply module",
+    "kind": "reference",
+    "sourceTitle": "File:Sony VPL-HS1 - power supply module 1-93060.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sony_VPL-HS1_-_power_supply_module_1-93060.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "AA battery": {
+    "src": "/devices/parts/references/942c86dbb2f382a8.jpg",
+    "caption": "Component-family reference: AA battery",
+    "family": "AA battery",
+    "kind": "reference",
+    "sourceTitle": "File:AA VARTA battery-side PNr°0782.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AA_VARTA_battery-side_PNr%C2%B00782.jpg",
+    "attribution": "D-Kuru",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Processor and control circuit board": {
+    "src": "/devices/parts/references/c34f66a2f4043075.jpg",
+    "caption": "Component-family reference: Processor and control circuit board",
+    "family": "Processor and control circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:STEbus 8088 processor, PC-compatible, on 100x160mm Eurocard.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:STEbus_8088_processor,_PC-compatible,_on_100x160mm_Eurocard.jpg",
+    "attribution": "SpareHeadOne",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Ultrasound transducer": {
+    "src": "/devices/parts/references/526953ba6fc0b9a4.jpg",
+    "caption": "Component-family reference: Ultrasound transducer",
+    "family": "Ultrasound transducer",
+    "kind": "reference",
+    "sourceTitle": "File:A medical ultrasound linear array probe, scan head, transducer.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_medical_ultrasound_linear_array_probe,_scan_head,_transducer.jpg",
+    "attribution": "Harrison Keely",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Analog to digital converter board": {
+    "src": "/devices/parts/references/066e7048faa6824e.jpg",
+    "caption": "Component-family reference: Analog to digital converter board",
+    "family": "Analog to digital converter board",
+    "kind": "reference",
+    "sourceTitle": "File:Sony D-181 - board - Toshiba TC 9438FN-0666.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sony_D-181_-_board_-_Toshiba_TC_9438FN-0666.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Push button switch": {
+    "src": "/devices/parts/references/7bc81ad54a7004f4.jpg",
+    "caption": "Component-family reference: Push button switch",
+    "family": "Push button switch",
+    "kind": "reference",
+    "sourceTitle": "File:Illuminated Push button switch PB switch with LED.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Illuminated_Push_button_switch_PB_switch_with_LED.jpg",
+    "attribution": "Mithilrkadam",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Motor driver circuit board": {
+    "src": "/devices/parts/references/3eb03b4fbbb9b10c.jpg",
+    "caption": "Component-family reference: Motor driver circuit board",
+    "family": "Motor driver circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:ULN2003 unioplar stepper motor driver module.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:ULN2003_unioplar_stepper_motor_driver_module.jpg",
+    "attribution": "Kushagra Keshari",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Servomotor": {
+    "src": "/devices/parts/references/dcac41ad02540e70.jpg",
+    "caption": "Component-family reference: Servomotor",
+    "family": "Servomotor",
+    "kind": "reference",
+    "sourceTitle": "File:Servomotor 01.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Servomotor_01.jpg",
+    "attribution": "José Luis Gálvez (Digigalos)",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "retrievedAt": "2026-10-09"
+  },
+  "Rotary encoder": {
+    "src": "/devices/parts/references/d2c8a09e4ee069cd.jpg",
+    "caption": "Component-family reference: Rotary encoder",
+    "family": "Rotary encoder",
+    "kind": "reference",
+    "sourceTitle": "File:Rotary Encoder.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rotary_Encoder.jpg",
+    "attribution": "Projuktiponno",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Pressure sensor": {
+    "src": "/devices/parts/references/1270125f22a83a45.jpg",
+    "caption": "Component-family reference: Pressure sensor",
+    "family": "Pressure sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Fit Meter barometric pressure sensor - 34976237574.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fit_Meter_barometric_pressure_sensor_-_34976237574.jpg",
+    "attribution": "BoringPersonHexi",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Electronic interface board": {
+    "src": "/devices/parts/references/cc01b728779966eb.png",
+    "caption": "Component-family reference: Electronic interface board",
+    "family": "Electronic interface board",
+    "kind": "reference",
+    "sourceTitle": "File:GeniScan GS-4500 With Interface Board.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GeniScan_GS-4500_With_Interface_Board.png",
+    "attribution": "MarcoTangerino",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09"
+  },
+  "Flow sensor": {
+    "src": "/devices/parts/references/b6a96a96db5c164b.jpg",
+    "caption": "Component-family reference: Flow sensor",
+    "family": "Flow sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Thingwall Road Flow Measurement Station 3.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thingwall_Road_Flow_Measurement_Station_3.jpg",
+    "attribution": "Rodhullandemu",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Temperature sensor": {
+    "src": "/devices/parts/references/d0f03acb6118292c.jpg",
+    "caption": "Component-family reference: Temperature sensor",
+    "family": "Temperature sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Maxdetect Humidity and Temperature Sensor - RHT03 10167.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maxdetect_Humidity_and_Temperature_Sensor_-_RHT03_10167.jpg",
+    "attribution": "SparkFun",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Analog amplifier circuit board": {
+    "src": "/devices/parts/references/867771f5d01ce0a0.jpg",
+    "caption": "Component-family reference: Analog amplifier circuit board",
+    "family": "Analog amplifier circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:Philips 32PFL7762D-12 - board 3 - Advanced Analog Circuits AS324M-E1-0297.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Philips_32PFL7762D-12_-_board_3_-_Advanced_Analog_Circuits_AS324M-E1-0297.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Loudspeaker": {
+    "src": "/devices/parts/references/49fe663e54f4e3cb.jpg",
+    "caption": "Component-family reference: Loudspeaker",
+    "family": "Loudspeaker",
+    "kind": "reference",
+    "sourceTitle": "File:2016 Kolumna gÅ‚oÅ›nikowa Altus 110.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2016_Kolumna_g%C5%82o%C5%9Bnikowa_Altus_110.jpg",
+    "attribution": "Jacek Halicki",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Radio transceiver module": {
+    "src": "/devices/parts/references/cc6c4b92f1cfeb73.jpg",
+    "caption": "Component-family reference: Radio transceiver module",
+    "family": "Radio transceiver module",
+    "kind": "reference",
+    "sourceTitle": "File:Berliner Poulsen arc ship radiotelephone-colorized.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Berliner_Poulsen_arc_ship_radiotelephone-colorized.jpg",
+    "attribution": "Alfred Norton Goldsmith + F1jmm",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09"
+  },
+  "Lidar sensor": {
+    "src": "/devices/parts/references/194cf77017915678.jpg",
+    "caption": "Component-family reference: Lidar sensor",
+    "family": "Lidar sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Velodyne Lidar Alpha Prime Ultra Puck Puck Sensor Family.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Velodyne_Lidar_Alpha_Prime_Ultra_Puck_Puck_Sensor_Family.jpg",
+    "attribution": "APJarvis",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "38 khz modulator": {
+    "src": "/devices/parts/references/15cd97d3f2bdef55.jpg",
+    "caption": "Component-family reference: 38 khz modulator",
+    "family": "38 khz modulator",
+    "kind": "reference",
+    "sourceTitle": "File:Alps remote control BHR970001B-7517.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alps_remote_control_BHR970001B-7517.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Inertial measurement unit": {
+    "src": "/devices/parts/references/67bd7897ed561fe7.jpg",
+    "caption": "Component-family reference: Inertial measurement unit",
+    "family": "Inertial measurement unit",
+    "kind": "reference",
+    "sourceTitle": "File:IMU-28 inertial measurement unit.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:IMU-28_inertial_measurement_unit.jpg",
+    "attribution": "VictorAnyakin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Sonar transducer": {
+    "src": "/devices/parts/references/e36ead868d54f3a0.jpg",
+    "caption": "Component-family reference: Sonar transducer",
+    "family": "Sonar transducer",
+    "kind": "reference",
+    "sourceTitle": "File:The Dragon Prince deep tow fish side scan sonar transducer (2).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Dragon_Prince_deep_tow_fish_side_scan_sonar_transducer_(2).jpg",
+    "attribution": "ATSB, photo by ABIS Chris Beerens RAN",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Air filter": {
+    "src": "/devices/parts/references/a21c7fe0aebfadb3.jpg",
+    "caption": "Component-family reference: Air filter",
+    "family": "Air filter",
+    "kind": "reference",
+    "sourceTitle": "File:P100 ovm respirator.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:P100_ovm_respirator.jpg",
+    "attribution": "Jcallah",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Liquid level sensor": {
+    "src": "/devices/parts/references/68a8fdfcbb3374ba.jpg",
+    "caption": "Component-family reference: Liquid level sensor",
+    "family": "Liquid level sensor",
+    "kind": "reference",
+    "sourceTitle": "File:Mechanical float switch waterpool.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mechanical_float_switch_waterpool.jpg",
+    "attribution": "Hp.Baumeler",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Microphone": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "electret microphone"
+  },
+  "Radio antenna": {
+    "src": "/devices/parts/references/c3f71be16277ae4b.jpg",
+    "caption": "Component-family reference: Radio antenna",
+    "family": "Radio antenna",
+    "kind": "reference",
+    "sourceTitle": "File:XBee Series 2 with Whip Antenna, with US Quarter.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:XBee_Series_2_with_Whip_Antenna,_with_US_Quarter.jpg",
+    "attribution": "Mark Fickett",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Phased array antenna": {
+    "src": "/devices/parts/references/fa7e27534769385f.png",
+    "caption": "Component-family reference: Phased array antenna",
+    "family": "Phased array antenna",
+    "kind": "reference",
+    "sourceTitle": "File:Braun phased array antenna 1905.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Braun_phased_array_antenna_1905.png",
+    "attribution": "Karl Ferdinand Braun",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09"
+  },
+  "Electric pump": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "diaphragm pump"
+  },
+  "Arduino Uno board": {
+    "src": "/devices/parts/references/ec1ef56871bb7b53.jpg",
+    "caption": "Component-family reference: Arduino Uno board",
+    "family": "Arduino Uno board",
+    "kind": "reference",
+    "sourceTitle": "File:Arduino Uno - R3.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arduino_Uno_-_R3.jpg",
+    "attribution": "SparkFun Electronics from Boulder, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Parabolic antenna": {
+    "src": "/devices/parts/references/cce006889b266cdc.jpg",
+    "caption": "Component-family reference: Parabolic antenna",
+    "family": "Parabolic antenna",
+    "kind": "reference",
+    "sourceTitle": "File:CSIRO ScienceImage 3881 Five Antennas at Narrabri.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_3881_Five_Antennas_at_Narrabri.jpg",
+    "attribution": "John Masterson, CSIRO",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Camera lens": {
+    "src": "/devices/parts/references/cc48e601326d4b87.jpg",
+    "caption": "Component-family reference: Camera lens",
+    "family": "Camera lens",
+    "kind": "reference",
+    "sourceTitle": "File:Photographic lenses and tubes 2025.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photographic_lenses_and_tubes_2025.jpg",
+    "attribution": "Carlos Valenzuela Montuy",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Marine propeller": {
+    "src": "/devices/parts/references/9e372604886abe0b.jpg",
+    "caption": "Component-family reference: Marine propeller",
+    "family": "Marine propeller",
+    "kind": "reference",
+    "sourceTitle": "File:Rudder and propeller Beached fishing vessel Nørre Vorupør Denmark 2017-04-14.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rudder_and_propeller_Beached_fishing_vessel_N%C3%B8rre_Vorup%C3%B8r_Denmark_2017-04-14.jpg",
+    "attribution": "Kim Hansen",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Light emitting diode": {
+    "src": "/devices/parts/references/7a37353cf91060aa.jpg",
+    "caption": "Component-family reference: Light emitting diode",
+    "family": "Light emitting diode",
+    "kind": "reference",
+    "sourceTitle": "File:Red LED.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_LED.jpg",
+    "attribution": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Rechargeable battery": {
+    "src": "/devices/parts/references/6d6b40b0f2c8a0cf.jpg",
+    "caption": "Component-family reference: Rechargeable battery",
+    "family": "Rechargeable battery",
+    "kind": "reference",
+    "sourceTitle": "File:IKEA LADDA rechargeable AA-batteries.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:IKEA_LADDA_rechargeable_AA-batteries.jpg",
+    "attribution": "RAIL P (RAIL.PHOTOGRAPHY)",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "retrievedAt": "2026-10-09"
+  },
+  "Smart card chip": {
+    "src": "/devices/parts/references/ce59c67ddd2fe68a.jpg",
+    "caption": "Component-family reference: Smart card chip",
+    "family": "Smart card chip",
+    "kind": "reference",
+    "sourceTitle": "File:Differentsmartcardpadlayouts.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Differentsmartcardpadlayouts.jpg",
+    "attribution": "Hywel Clatworthy",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "CMOS image sensor": {
+    "src": "/devices/parts/references/99f4f48f5d1c544a.jpg",
+    "caption": "Component-family reference: CMOS image sensor",
+    "family": "CMOS image sensor",
+    "kind": "reference",
+    "sourceTitle": "File:CMOS Image-Sensor Big (35mm) and Small.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CMOS_Image-Sensor_Big_(35mm)_and_Small.jpg",
+    "attribution": "根川孝太郎",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Robot joint": {
+    "src": "/devices/parts/references/2717a1129835e368.jpg",
+    "caption": "Component-family reference: Robot joint",
+    "family": "Robot joint",
+    "kind": "reference",
+    "sourceTitle": "File:Curiosity - Robot Geologist and Chemist in One!.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Curiosity_-_Robot_Geologist_and_Chemist_in_One!.jpg",
+    "attribution": "NASA/JPL-Caltech",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09"
+  },
+  "Audio codec circuit board": {
+    "src": "/devices/parts/references/43400cf9dda7a749.jpg",
+    "caption": "Component-family reference: Audio codec circuit board",
+    "family": "Audio codec circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:TCM 237387 alarm clock with MP3 player - board 1 - Wolfson WM8759GED-7471.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:TCM_237387_alarm_clock_with_MP3_player_-_board_1_-_Wolfson_WM8759GED-7471.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Emergency position indicating radio beacon": {
+    "src": "/devices/parts/references/a8bb9e5317210cd8.jpg",
+    "caption": "Component-family reference: Emergency position indicating radio beacon",
+    "family": "Emergency position indicating radio beacon",
+    "kind": "reference",
+    "sourceTitle": "File:GLONASS GPS Personal Radio Beacon.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GLONASS_GPS_Personal_Radio_Beacon.jpg",
+    "attribution": "Ambanmba (talk)",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09"
+  },
+  "Battery management board": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "Battery management board"
+  },
+  "Brushless motor": {
+    "src": "/devices/parts/references/2932cfdf95c5c9df.jpg",
+    "caption": "Component-family reference: Brushless motor",
+    "family": "Brushless motor",
+    "kind": "reference",
+    "sourceTitle": "File:Blaupunkt CR-4500 - drive unit - tape Drive Capstan, brushless DC electric motor-9992.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blaupunkt_CR-4500_-_drive_unit_-_tape_Drive_Capstan,_brushless_DC_electric_motor-9992.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Electromagnetic coil": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "Electromagnetic coil"
+  },
+  "LCD display module": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "LCD display module"
+  },
+  "RF front end circuit": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "RF front end circuit"
+  },
+  "Blood pressure cuff": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Blood pressure cuff"
+  },
+  "Peristaltic pump": {
+    "src": "/devices/parts/references/c910b590367a3cd0.jpg",
+    "caption": "Component-family reference: Peristaltic pump",
+    "family": "Peristaltic pump",
+    "kind": "reference",
+    "sourceTitle": "File:Laboratory peristaltic pump Gilson-01.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laboratory_peristaltic_pump_Gilson-01.jpg",
+    "attribution": "Lilly_M",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Electrical connector": {
+    "src": "/devices/parts/references/3f2e2db7251c2c8d.jpg",
+    "caption": "Component-family reference: Electrical connector",
+    "family": "Electrical connector",
+    "kind": "reference",
+    "sourceTitle": "File:Rear panel of Yamaha RX-A2020 AV receiver - at IFA fair 2012.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rear_panel_of_Yamaha_RX-A2020_AV_receiver_-_at_IFA_fair_2012.jpg",
+    "attribution": "Michael Movchin",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Jumper wire": {
+    "src": "/devices/parts/references/8a9c289cc72a89d3.jpg",
+    "caption": "Component-family reference: Jumper wire",
+    "family": "Jumper wire",
+    "kind": "reference",
+    "sourceTitle": "File:Jumper wire.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jumper_wire.jpg",
+    "attribution": "Alzbla",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "CPAP mask": {
+    "src": "/devices/parts/references/f8324ecbaaa230ef.jpg",
+    "caption": "Component-family reference: CPAP mask",
+    "family": "CPAP mask",
+    "kind": "reference",
+    "sourceTitle": "File:CPAP continuous positive airway pressure mask installed.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CPAP_continuous_positive_airway_pressure_mask_installed.jpg",
+    "attribution": "Pöllö",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Memory circuit board": {
+    "src": "/devices/parts/references/83e2d93500b03bc3.jpg",
+    "caption": "Component-family reference: Memory circuit board",
+    "family": "Memory circuit board",
+    "kind": "reference",
+    "sourceTitle": "File:SanDisk Memory Stick PRO 256MB.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SanDisk_Memory_Stick_PRO_256MB.jpg",
+    "attribution": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Camera shutter": {
+    "src": "/devices/parts/references/9702b55c8a66e0f2.jpg",
+    "caption": "Component-family reference: Camera shutter",
+    "family": "Camera shutter",
+    "kind": "reference",
+    "sourceTitle": "File:Wooden house (window shutters), Riga.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wooden_house_(window_shutters),_Riga.jpg",
+    "attribution": "Photograph:  Radomianin",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "retrievedAt": "2026-10-09"
+  },
+  "USB cable": {
+    "src": "/devices/parts/references/e385d36cde43c10c.png",
+    "caption": "Component-family reference: USB cable",
+    "family": "USB cable",
+    "kind": "reference",
+    "sourceTitle": "File:USB-C.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:USB-C.png",
+    "attribution": "Xxmarijnw",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "retrievedAt": "2026-10-09"
+  },
+  "Robot chassis": {
+    "src": "/devices/parts/references/a965e9bb195005f1.jpg",
+    "caption": "Component-family reference: Robot chassis",
+    "family": "Robot chassis",
+    "kind": "reference",
+    "sourceTitle": "File:Small wheeled robot chassis displayed on shelves.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Small_wheeled_robot_chassis_displayed_on_shelves.jpg",
+    "attribution": "Mrshaxas",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Crystal oscillator": {
+    "src": "/devices/parts/references/d98c56d931b89fbb.jpg",
+    "caption": "Component-family reference: Crystal oscillator",
+    "family": "Crystal oscillator",
+    "kind": "reference",
+    "sourceTitle": "File:VCXO K1523BAT - supporting circuitry 02.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:VCXO_K1523BAT_-_supporting_circuitry_02.jpg",
+    "attribution": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Anesthesia machine vaporizer": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "Anesthesia machine vaporizer"
+  },
+  "Photodiode": {
+    "src": "/devices/parts/references/5b42afd50f6f4518.jpg",
+    "caption": "Component-family reference: Photodiode",
+    "family": "Photodiode",
+    "kind": "reference",
+    "sourceTitle": "File:Photodiode.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photodiode.jpg",
+    "attribution": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "retrievedAt": "2026-10-09"
+  },
+  "X-ray collimator": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "X-ray collimator"
+  },
+  "Mechanical enclosure and fasteners": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "electronic enclosure"
+  },
+  "Load cell": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Load cell"
+  },
+  "Heat sink": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Heat sink"
+  },
+  "Coin cell battery": {
+    "src": "/devices/parts/references/ea62fda9974a2dc4.jpg",
+    "caption": "Component-family reference: Coin cell battery",
+    "family": "Coin cell battery",
+    "kind": "reference",
+    "sourceTitle": "File:KTS CR1220 Lithium coin cell battery-9622.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:KTS_CR1220_Lithium_coin_cell_battery-9622.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Electrocardiography electrodes": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Electrocardiography electrodes"
+  },
+  "Control panel": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Control panel"
+  },
+  "Aircraft control surface": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Aircraft control surface"
+  },
+  "Conveyor belt": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Conveyor belt"
+  },
+  "Radio frequency shielding": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "Radio frequency shielding"
+  },
+  "RFID tag": {
+    "error": "HTTP Error 429: Too Many Requests",
+    "query": "RFID tag"
+  },
+  "Resistor": {
+    "src": "/devices/parts/references/37e96ce70a98582d.jpg",
+    "caption": "Component-family reference: Resistor",
+    "family": "Resistor",
+    "kind": "reference",
+    "sourceTitle": "File:3 Resistors.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:3_Resistors.jpg",
+    "attribution": "Afrank99",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "retrievedAt": "2026-10-09"
+  },
+  "DC electric motor": {
+    "src": "/devices/parts/references/cecbbb3c2c375480.png",
+    "caption": "Component-family reference: DC electric motor",
+    "family": "DC electric motor",
+    "kind": "reference",
+    "sourceTitle": "File:Electric motor cycle 2.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Electric_motor_cycle_2.png",
+    "attribution": "Unknown author",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "retrievedAt": "2026-10-09"
+  },
+  "Solenoid valve": {
+    "src": "/devices/parts/references/6a72c471b25f2636.jpg",
+    "caption": "Component-family reference: Solenoid valve",
+    "family": "Solenoid valve",
+    "kind": "reference",
+    "sourceTitle": "File:Xerox ColorQube 8570 - print head - ASF Thomas pump with solenoid valve-91915.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Xerox_ColorQube_8570_-_print_head_-_ASF_Thomas_pump_with_solenoid_valve-91915.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "CT scanner gantry": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "CT scanner gantry"
+  },
+  "Cuvette": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "Cuvette"
+  },
+  "Scintillation detector": {
+    "src": "/devices/parts/references/692357e57ff1c959.png",
+    "caption": "Component-family reference: Scintillation detector",
+    "family": "Scintillation detector",
+    "kind": "reference",
+    "sourceTitle": "File:Neutrino-telescope-heart.PNG",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Neutrino-telescope-heart.PNG",
+    "attribution": "Oyar0ukr0net",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "Flexible tubing": {
+    "error": "No downloadable appropriately licensed match",
+    "query": "Flexible tubing"
+  },
+  "Dialyzer": {
+    "src": "/devices/parts/references/b98d8f812483f5d7.png",
+    "caption": "Component-family reference: Dialyzer",
+    "family": "Dialyzer",
+    "kind": "reference",
+    "sourceTitle": "File:Hemodialysis-cs.PNG",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hemodialysis-cs.PNG",
+    "attribution": "Hemodialysis-en.svg: GYassineMrabetTalk✉  This  PNG graphic was created with Inkscape .\nderivative work: Míša R (talk)",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "retrievedAt": "2026-10-09"
+  },
+  "RF switch": {
+    "src": "/devices/parts/references/a23cebeabc90327d.jpg",
+    "caption": "Component-family reference: RF switch",
+    "family": "RF switch",
+    "kind": "reference",
+    "sourceTitle": "File:E+m ZV7 - manual RF switch-4557.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:E%2Bm_ZV7_-_manual_RF_switch-4557.jpg",
+    "attribution": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "retrievedAt": "2026-10-09"
+  }
+}

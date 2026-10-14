@@ -1,0 +1,43 @@
+{
+  "engine": "aimer-cpu-contest-2",
+  "tests": [
+    {
+      "id": "organizer-99",
+      "name": "Organizer 99",
+      "source": "LOADI R1, 99\nHALT",
+      "maxCycles": 40,
+      "reference": true,
+      "registers": {
+        "1": 99
+      },
+      "memory": {},
+      "haltPc": 1
+    },
+    {
+      "id": "organizer-memory",
+      "name": "Organizer last memory word",
+      "source": "LOADI R1, 511\nLOADI R2, 1\nADD R3, R1, R2\nSTORE R3, 63\nLOAD R4, 63\nHALT",
+      "maxCycles": 80,
+      "reference": true,
+      "registers": {
+        "3": 512,
+        "4": 512
+      },
+      "memory": {
+        "63": 512
+      },
+      "haltPc": 5
+    },
+    {
+      "id": "negative-assertion",
+      "name": "NEGATIVE FIXTURE: deliberately wrong expectation",
+      "source": "HALT",
+      "maxCycles": 20,
+      "reference": true,
+      "registers": {
+        "3": 1
+      },
+      "memory": {}
+    }
+  ]
+}

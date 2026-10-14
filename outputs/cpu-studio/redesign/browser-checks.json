@@ -1,0 +1,86 @@
+[
+  {
+    "lab": "library",
+    "label": "Component Library",
+    "heading": "Component Library",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "datapath",
+    "label": "Datapath Designer",
+    "heading": "Datapath Designer",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "wires",
+    "label": "Wire & Bus System",
+    "heading": "Wire & Bus System",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "isa",
+    "label": "Custom ISA Designer",
+    "heading": "Custom ISA Designer",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "format",
+    "label": "Instruction Format Designer",
+    "heading": "Instruction Format Designer",
+    "scrollWidth": 1672,
+    "width": 1672
+  },
+  {
+    "lab": "control",
+    "label": "Control Unit Designer",
+    "heading": "Control Unit Designer",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "memory",
+    "label": "Memory System",
+    "heading": "Memory System",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "editor",
+    "label": "Program Editor",
+    "heading": "Program Editor",
+    "scrollWidth": 1672,
+    "width": 1672
+  },
+  {
+    "lab": "assembler",
+    "label": "Assembler",
+    "heading": "Assembler",
+    "scrollWidth": 1672,
+    "width": 1672
+  },
+  {
+    "lab": "debug",
+    "label": "Execution Debugger",
+    "heading": "Execution Debugger",
+    "scrollWidth": 1657,
+    "width": 1672
+  },
+  {
+    "lab": "validate",
+    "label": "Validation",
+    "heading": "Validation",
+    "scrollWidth": 1672,
+    "width": 1672
+  },
+  {
+    "lab": "templates",
+    "label": "CPU Templates",
+    "heading": "CPU Templates",
+    "scrollWidth": 1657,
+    "width": 1672
+  }
+]

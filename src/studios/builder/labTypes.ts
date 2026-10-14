@@ -1,0 +1,3 @@
+import type { CpuDesign } from "../../engines/builder/model";
+import type { ExecTrace, SimSnap, WaveSample } from "../../engines/builder/sim";
+export interface LabProps { design: CpuDesign; commit: (design: CpuDesign) => void; onReplaceProject: (design: CpuDesign) => void; selected: string[]; onSelect: (ids: string[]) => void; trace: ExecTrace | null; history: SimSnap[]; wave: WaveSample[]; running: boolean; onRun: (running: boolean) => void; onStep: () => void; onClock: () => void; onReset: () => void; onLoad: () => void; onMessage: (message: string) => void; onNavigate: (lab: string) => void; }

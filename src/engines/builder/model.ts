@@ -1,3 +1,4 @@
+import type { EngineeringConfig } from "./project";
 import type { AluOp } from "../digital/arithmetic";
 
 export type Width = 1 | 4 | 8 | 16 | 32;
@@ -28,6 +29,12 @@ export interface ArchNode {
   op: AluOp;
   sel: number;
   note: string;
+  locked?: boolean;
+  group?: string;
+  initial?: number;
+  inputWidth?: Width;
+  operations?: AluOp[];
+  signed?: boolean;
 }
 
 export interface ArchWire {
@@ -39,7 +46,7 @@ export interface ArchWire {
 }
 
 export type FieldPurpose = "opcode" | "rd" | "rs1" | "rs2" | "imm" | "funct" | "other";
-export interface IsaField { name: string; lo: number; width: number; purpose: FieldPurpose }
+export interface IsaField { name: string; lo: number; width: number; purpose: FieldPurpose; signed?: boolean; valueOffset?: number }
 export type PcBehavior = "inc" | "branchEq" | "branchNe" | "jump" | "halt";
 export interface IsaInstruction {
   mnemonic: string;
@@ -52,6 +59,9 @@ export interface IsaInstruction {
   memToReg: boolean;
   regWrite: boolean;
   pc: PcBehavior;
+  operandA?: "zero" | "rs1" | "rd";
+  description?: string;
+  signed?: boolean;
 }
 
 export interface IsaSpec {
@@ -79,6 +89,8 @@ export interface Breakpoint {
 }
 
 export interface CpuDesign {
+  modelVersion?: 2;
+  modelMigration?: string;
   name: string;
   nodes: ArchNode[];
   wires: ArchWire[];
@@ -89,6 +101,7 @@ export interface CpuDesign {
   breakpoints: Breakpoint[];
   probes: string[];
   overlay: "data" | "control" | "both";
+  engineering?: EngineeringConfig;
 }
 
 export function maskBits(width: number): number {
@@ -125,6 +138,9 @@ export function portsOf(node: ArchNode): PortDef[] {
         { id: "v", name: "V", dir: "in", width: 1, role: "control" },
         { id: "clk", name: "CLK", dir: "in", width: 1, role: "clock" },
         { id: "qz", name: "Z", dir: "out", width: 1, role: "control" },
+        { id: "qn", name: "N", dir: "out", width: 1, role: "control" },
+        { id: "qc", name: "C", dir: "out", width: 1, role: "control" },
+        { id: "qv", name: "V", dir: "out", width: 1, role: "control" },
       ];
     case "regfile":
       return [
@@ -155,13 +171,16 @@ export function portsOf(node: ArchNode): PortDef[] {
         { id: "op", name: "Op", dir: "in", width: 4, role: "control" },
         { id: "y", name: "Y", dir: "out", width: w, role: "data" },
         { id: "z", name: "Z", dir: "out", width: 1, role: "control" },
+        { id: "n", name: "N", dir: "out", width: 1, role: "control" },
+        { id: "c", name: "C", dir: "out", width: 1, role: "control" },
+        { id: "v", name: "V", dir: "out", width: 1, role: "control" },
       ];
     case "shifter":
     case "inc":
     case "sext":
     case "buf":
       return [
-        { id: "a", name: "A", dir: "in", width: w, role: "data" },
+        { id: "a", name: "A", dir: "in", width: node.kind === "sext" ? node.inputWidth ?? w : w, role: "data" },
         { id: "y", name: "Y", dir: "out", width: w, role: "data" },
       ];
     case "cmp":
@@ -201,7 +220,9 @@ export function portsOf(node: ArchNode): PortDef[] {
     case "decoder":
     case "cu":
       return [
-        { id: "ir", name: "IR", dir: "in", width: 16, role: "data" },
+        { id: "ir", name: "IR", dir: "in", width: node.width, role: "data" },
+        { id: "pc", name: "PC", dir: "in", width: node.width, role: "data" },
+        { id: "zero", name: "ALU Z", dir: "in", width: 1, role: "control" },
         { id: "regwrite", name: "RegWrite", dir: "out", width: 1, role: "control" },
         { id: "alusrc", name: "ALUSrc", dir: "out", width: 1, role: "control" },
         { id: "memread", name: "MemRead", dir: "out", width: 1, role: "control" },
@@ -209,6 +230,13 @@ export function portsOf(node: ArchNode): PortDef[] {
         { id: "memtoreg", name: "MemToReg", dir: "out", width: 1, role: "control" },
         { id: "branch", name: "Branch", dir: "out", width: 1, role: "control" },
         { id: "aluop", name: "ALUOp", dir: "out", width: 4, role: "control" },
+        { id: "ra", name: "rs1", dir: "out", width: 3, role: "data" },
+        { id: "rb", name: "rs2", dir: "out", width: 3, role: "data" },
+        { id: "rd", name: "rd", dir: "out", width: 3, role: "data" },
+        { id: "imm", name: "Immediate", dir: "out", width: node.inputWidth ?? node.width, role: "data" },
+        { id: "azero", name: "A=0", dir: "out", width: 1, role: "control" },
+        { id: "pcnext", name: "Next PC", dir: "out", width: node.width, role: "data" },
+        { id: "one", name: "Enable", dir: "out", width: 1, role: "control" },
       ];
     case "probe":
     case "led":
@@ -344,6 +372,7 @@ function blankNode(kind: NodeKind, width: Width, id: string, x: number, y: numbe
 
 export function emptyDesign(name = "Untitled CPU"): CpuDesign {
   return {
+    modelVersion: 2,
     name, nodes: [], wires: [], nextId: 1,
     isa: defaultIsa(16, 8),
     program: "LOADI R1, 5\nLOADI R2, 7\nADD R3, R1, R2\nSTORE R3, 20\nHALT\n",
@@ -389,6 +418,7 @@ export function defaultIsa(instrWidth: number, regs: number): IsaSpec {
     { mnemonic: "BEQ", opcode: 8, format: "B", operands: ["rs1", "rs2", "imm"], aluOp: "SUB", aluSrc: "reg", mem: "none", memToReg: false, regWrite: false, pc: "branchEq" },
     { mnemonic: "JUMP", opcode: 9, format: "J", operands: ["imm"], aluOp: "ADD", aluSrc: "imm", mem: "none", memToReg: false, regWrite: false, pc: "jump" },
   ];
+  instructions.forEach(i => { i.operandA = i.mnemonic === "LOADI" || i.mem !== "none" ? "zero" : i.operands.includes("rs1") ? "rs1" : "rd"; });
   return { name: "Custom-16", instrWidth, dataWidth: 16, regs, fieldsR, fieldsI, fieldsJ, fieldsB, instructions };
 }
 
@@ -399,7 +429,7 @@ export function addNode(design: CpuDesign, kind: NodeKind, x: number, y: number,
 }
 
 export function moveNode(design: CpuDesign, id: string, x: number, y: number): CpuDesign {
-  return { ...design, nodes: design.nodes.map((node) => (node.id === id ? { ...node, x: snap(x), y: snap(y) } : node)) };
+  return { ...design, nodes: design.nodes.map((node) => (node.id === id && !node.locked ? { ...node, x: snap(x), y: snap(y) } : node)) };
 }
 
 export function patchNode(design: CpuDesign, id: string, patch: Partial<ArchNode>): CpuDesign {

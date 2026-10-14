@@ -1,0 +1,126 @@
+[
+  {
+    "items": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      10
+    ],
+    "case": "Restored SUB preset and evaluated 3-5 in the real 8-bit graph",
+    "observed": "11111110 / 254 / -2 / FE"
+  },
+  {
+    "items": [
+      9
+    ],
+    "case": "Downloaded boundary table",
+    "rows": 16,
+    "op": "SUB"
+  },
+  {
+    "items": [
+      7
+    ],
+    "case": "MUX select 1 and disconnected select Z",
+    "observed": [
+      "00100101",
+      "XXXXXXXX"
+    ]
+  },
+  {
+    "items": [
+      2,
+      4,
+      15
+    ],
+    "case": "Memory bench writes word 37 at address 4 on a rising edge",
+    "observed": "00100101"
+  },
+  {
+    "items": [
+      8
+    ],
+    "case": "Split/join 0x1234 and sign-extend signed -128",
+    "observed": [
+      "0x1234",
+      "0xFF80"
+    ]
+  },
+  {
+    "items": [
+      23,
+      45
+    ],
+    "case": "Invalid unsaved assertions disable run/export; valid restored assertions enable run",
+    "observed": true
+  },
+  {
+    "items": [
+      21,
+      22
+    ],
+    "case": "Immediate reload restored a test edit without waiting for autosave",
+    "observed": "Immediate reload recovery audit"
+  },
+  {
+    "items": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      41,
+      42
+    ],
+    "case": "Generated suite executes all 13 tests against actual wiring and independent reference",
+    "passed": 13
+  },
+  {
+    "items": [
+      43,
+      46,
+      47,
+      50
+    ],
+    "case": "Downloaded submission, CSV, trace JSON and complete printable HTML",
+    "engine": "aimer-cpu-contest-2",
+    "results": 13,
+    "printSections": 13
+  },
+  {
+    "items": [
+      44
+    ],
+    "case": "Imported v2 package hashes verified and judge replay exactly reproduced all claimed results",
+    "passed": 13
+  },
+  {
+    "items": [
+      28,
+      29,
+      35,
+      39,
+      44
+    ],
+    "case": "Organizer tests on imported CPU produce two real passes and one deliberate negative assertion failure",
+    "passed": 2,
+    "total": 3,
+    "negativeActual": 0
+  },
+  {
+    "items": [
+      40
+    ],
+    "case": "All executable template samples pass; serial teaching pipeline explicitly excluded",
+    "passed": 5
+  }
+]

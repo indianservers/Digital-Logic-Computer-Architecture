@@ -1,0 +1,10 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "include": [
+    "../../../../src/studios/builder/**/*.ts",
+    "../../../../src/studios/builder/**/*.tsx",
+    "../../../../src/engines/builder/**/*.ts",
+    "../../../../src/studios/shared/ArchCanvas.tsx",
+    "../../../../src/**/*.d.ts"
+  ]
+}

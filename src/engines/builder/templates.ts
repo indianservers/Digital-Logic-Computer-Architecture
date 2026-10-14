@@ -50,47 +50,32 @@ function link(design: CpuDesign, from: string, fromPort: string, to: string, toP
 }
 
 function coreCpu(width: Width, withRf: boolean, name: string, isa: IsaSpec, program: string): CpuDesign {
-  let d = emptyDesign(name);
-  d.isa = isa;
-  d.program = program;
-  const instrW: Width = 16;
-  d = named(d, "clock", 16, 16, "CLK", 1);
-  d = named(d, "pc", 16, 80, "PC", instrW);
-  d = named(d, "imem", 176, 80, "IMEM", instrW);
-  d = named(d, "ir", 336, 80, "IR", instrW);
-  d = named(d, "cu", 336, 220, "CU", instrW);
-  d = named(d, withRf ? "regfile" : "acc", 512, 80, withRf ? "RF" : "ACC", width);
-  d = named(d, "alu", 688, 80, "ALU", width);
-  d = named(d, "dmem", 864, 80, "DMEM", width);
-  d = named(d, "mux", 1040, 80, "WB", width);
-  d = named(d, "inc", 16, 220, "PC+1", instrW);
-  d = named(d, "flags", 688, 220, "FLAGS", 1);
-  d = named(d, "probe", 1040, 220, "RESULT", width);
-  d = link(d, "CLK", "y", "PC", "clk");
-  d = link(d, "CLK", "y", withRf ? "RF" : "ACC", "clk");
-  d = link(d, "CLK", "y", "IR", "clk");
-  d = link(d, "CLK", "y", "DMEM", "clk");
-  d = link(d, "PC", "q", "IMEM", "addr");
-  d = link(d, "IMEM", "q", "IR", "d");
-  d = link(d, "IR", "q", "CU", "ir");
-  d = link(d, "PC", "q", "PC+1", "a");
-  d = link(d, "PC+1", "y", "PC", "d");
-  d = link(d, "CU", "regwrite", withRf ? "RF" : "ACC", "we");
-  d = link(d, "ALU", "y", "WB", "i0");
-  d = link(d, "DMEM", "q", "WB", "i1");
-  d = link(d, "CU", "memtoreg", "WB", "s");
-  d = link(d, "WB", "y", withRf ? "RF" : "ACC", "d");
-  d = link(d, "ALU", "y", "DMEM", "addr");
-  d = link(d, "CU", "memwrite", "DMEM", "we");
-  d = link(d, "CU", "memread", "DMEM", "re");
-  d = link(d, "ALU", "z", "FLAGS", "z");
-  d = link(d, "WB", "y", "RESULT", "a");
-  if (withRf) {
-    d = link(d, "RF", "a", "ALU", "a");
-    d = link(d, "RF", "b", "ALU", "b");
-  } else {
-    d = link(d, "ACC", "q", "ALU", "a");
-  }
+  let d = emptyDesign(name); d.isa = isa; d.program = program;
+  const iw = isa.instrWidth as Width;
+  const parts: [NodeKind, string, number, number, Width][] = [
+    ["clock", "CLK", 30, 20, 1], ["pc", "PC", 30, 140, iw], ["imem", "IMEM", 240, 140, iw], ["ir", "IR", 450, 140, iw],
+    ["cu", "CU", 450, 380, iw], [withRf ? "regfile" : "acc", withRf ? "RF" : "ACC", 660, 140, width],
+    ["alu", "ALU", 1090, 140, width], ["dmem", "DMEM", 1300, 140, width], ["mux", "WB", 1510, 140, width],
+    ["mux", "A Select", 870, 140, width], ["mux", "B Select", 870, 370, width], ["const", "ZERO", 660, 420, width],
+    ["inc", "PC+1", 30, 380, iw], ["flags", "FLAGS", 1090, 380, 1], ["probe", "RESULT", 1510, 380, width],
+  ];
+  for (const [kind, label, x, y, bits] of parts) d = named(d, kind, x, y, label, bits);
+  d = patchNode(d, idOf(d, "ZERO"), { value: 0 });
+  d = patchNode(d, idOf(d, "CU"), { inputWidth: width });
+  const links: [string, string, string, string][] = [
+    ["CLK", "y", "PC", "clk"], ["CLK", "y", withRf ? "RF" : "ACC", "clk"], ["CLK", "y", "IR", "clk"], ["CLK", "y", "DMEM", "clk"],
+    ["PC", "q", "IMEM", "addr"], ["IMEM", "q", "IR", "d"], ["IR", "q", "CU", "ir"], ["PC", "q", "PC+1", "a"],
+    ["PC", "q", "CU", "pc"], ["ALU", "z", "CU", "zero"],
+    ["CU", "pcnext", "PC", "d"], ["CU", "one", "PC", "we"], ["CU", "one", "IR", "we"],
+    ["CU", "regwrite", withRf ? "RF" : "ACC", "we"], ["WB", "y", withRf ? "RF" : "ACC", "d"],
+    ["ALU", "y", "WB", "i0"], ["DMEM", "q", "WB", "i1"], ["CU", "memtoreg", "WB", "s"],
+    [withRf ? "RF" : "ACC", withRf ? "a" : "q", "A Select", "i0"], ["ZERO", "y", "A Select", "i1"], ["CU", "azero", "A Select", "s"], ["A Select", "y", "ALU", "a"],
+    [withRf ? "RF" : "ACC", withRf ? "b" : "q", "B Select", "i0"], ["CU", "imm", "B Select", "i1"], ["CU", "alusrc", "B Select", "s"], ["B Select", "y", "ALU", "b"], ["CU", "aluop", "ALU", "op"],
+    ["ALU", "y", "DMEM", "addr"], [withRf ? "RF" : "ACC", withRf ? "b" : "q", "DMEM", "d"],
+    ["CU", "memwrite", "DMEM", "we"], ["CU", "memread", "DMEM", "re"], ["ALU", "z", "FLAGS", "z"], ["ALU", "n", "FLAGS", "n"], ["ALU", "c", "FLAGS", "c"], ["ALU", "v", "FLAGS", "v"], ["CLK", "y", "FLAGS", "clk"], ["WB", "y", "RESULT", "a"],
+  ];
+  if (withRf) links.push(["CU", "ra", "RF", "ra"], ["CU", "rb", "RF", "rb"], ["CU", "rd", "RF", "rd"]);
+  for (const [from, fp, to, tp] of links) d = link(d, from, fp, to, tp);
   return d;
 }
 
@@ -334,3 +319,11 @@ export function sandboxPalette(mode: SandboxMode) {
   if (mode === "cpu") return ["pc", "regfile", "alu", "imem", "dmem", "cu", "mux", "clock", "probe"] as const;
   return ["pc", "gpr", "regfile", "alu", "mux", "bus", "const", "dmem", "clock", "probe"] as const;
 }
+
+export const ENGINEERING_TEMPLATES: CpuTemplate[] = [
+  CPU_TEMPLATES[0]!, CPU_TEMPLATES[2]!,
+  { id: "single32", title: "Single-Cycle 32-bit CPU", description: "32-bit datapath, 16-bit custom encodings, 8 registers and wired writeback.", isa: "Custom-16 / 32-bit data", width: 32, level: "Intermediate", build: () => { const isa = defaultIsa(16, 8); isa.dataWidth = 32; return coreCpu(32, true, "Single-cycle 32-bit CPU", isa, LOADSTORE); } },
+  { id: "multi32", title: "Multi-Cycle 32-bit CPU", description: "Editable fetch, decode, execute, memory and writeback FSM. One state per cycle.", isa: "Custom-16 / FSM control", width: 32, level: "Advanced", build: () => { const isa = defaultIsa(16, 8); isa.dataWidth = 32; return coreCpu(32, true, "Multi-cycle 32-bit CPU", isa, LOADSTORE); } },
+  { ...CPU_TEMPLATES[5]!, description: "Five named latches; serial instruction execution. Concurrent pipeline hazards, forwarding and flushing are not modeled." },
+  { ...CPU_TEMPLATES[3]!, id: "playground", title: "Custom ISA Playground", description: "Define new mnemonics and encodings, then execute on an editable datapath." },
+];

@@ -1,0 +1,44 @@
+Build Your Own CPU — workspace implementation verification
+Client date: 14 October 2026 (Asia/Calcutta)
+
+The requested 50 enhancements are mapped in workspace-50-enhancements.txt and .json. These describe actual implementation locations and explicit model limits; they do not claim physical hardware simulation or certification.
+
+Observed in the local browser before the browser connection became unavailable:
+- Focus mode and searchable command dialog opened; Fit design executed.
+- Assembled source and stepped LOADI: PC 0→1, IR/CU 4613, R1 0→5 and ALU output 0→5 appeared in Last Step Changes.
+- Reverse Step was enabled after execution and disabled after restoring the only prior snapshot.
+- Live wire table exposed named source/destination, roles, widths and actual binary/hex/unsigned/signed values.
+- Downloaded VCD declared real component output signals and explicit arbitrary timestamp scale. Saved as cpu-waveforms.vcd.
+- Golden fixtures ran all five supported templates: each reported 1/1 passing explicit result assertions.
+- A named recovery milestone was saved through the UI and shown with restore/export actions.
+- Connection source/destination options were inspected in the UI.
+
+Automated verification:
+- regression-results.json records the selected CPU/architecture/phase2 suites, including the 50-item earlier contest audit.
+- New workspace tests cover X/Z formatting and actual graph inspection, state changes, safe condition grammar, milestone limits, full snapshots, VCD X/Z, and scoring eligibility.
+- Persistence tests cover competing-tab edit blocking and preservation of both copies on explicit resolution.
+- Exhaustive boundary comparisons cover every ALU operation at 1/4/8/16/32 bits against separately implemented arithmetic and flag semantics.
+
+Browser interruption and subsequent recovery:
+The browser connection briefly stopped responding, then recovered. Subsequent checks verified width-mismatch rejection and disabled commit, real probe connection creation, safe wire selection, deliberate deletion, keyboard wiring, conditional breakpoint stopping at R1=5, zoom preserving history, reverse restoring PC=0, 50 implementation rows, real contest scoring, required-test disqualification, and mobile layout. External screen-reader/device certification and every possible architecture combination are not claimed.
+
+Scope limits:
+Numeric architectural storage cannot retain X/Z; strict active-input checks fault. Timing is ideal logical microcycles, not physical clock/gate delay. The reference shares assembly/decoding while execution arithmetic is independent. Organizer private suites stay in the judge browser; there is no server authentication or official leaderboard. Storage-event tab conflict detection is not distributed locking. VCD exports sampled states and explicitly uses arbitrary timing. Reverse history is bounded to 64 snapshots. Milestones are local, bounded to 12, and quota errors require file export.
+
+Recovery:
+project-before-workspace.cpu.json preserves the project captured before interactive verification. The pre-verification project was restored through the normal Import action. Temporary Probe and generated challenge configuration were removed from the active project; recovery milestones retain earlier copies. Viewport override was reset after responsive testing.
+Final selected automated suite: 168/168 passing, 0 failing. Executed with one worker and 30-second test/hook time limits because concurrent host workload caused default parallel test timeouts.
+Focused TypeScript validation succeeded (tsconfig.cpu.json). The repository-wide TypeScript process was stopped after an unusually prolonged run; its success is not claimed. Vite transformed all 741 modules; final bundle status recorded below when complete.
+Vite transformed 741 modules and produced application bundles successfully. Existing large-bundle warnings remain. Service-worker generation status is tracked separately.
+
+Final browser checks:
+- 50 requested enhancement entries rendered in Engineering tools.
+- A 1-bit clock-to-16-bit data connection showed a width error and disabled Commit Connection.
+- A real 16-bit RF-to-Probe connection was created by the form, selected without deletion, deliberately deleted, then recreated using keyboard Enter on output/input ports.
+- R1 == 5 stopped Run after actual LOADI; changing zoom preserved history and Reverse Step restored PC=0.
+- Contest challenges measured 100% correctness, 51 simulated cycles across passing tests, with 16 temporary verification components. A missing required test changed eligibility to false. Downloaded workspace-scoring-evidence.json records these actual measurements, not a real entrant score.
+- Mobile viewport 390px: document width 375px (scrollbar accounted for), no horizontal page overflow; canvas width 353.6px. Focus hid the hero.
+- Final desktop and mobile screenshots saved. Active project restored, viewport override reset.
+- Fit View now uses actual port-dependent node heights and the canvas aspect ratio.
+- Vite bundle and PWA/service-worker generation completed successfully; the full npm build's repository-wide TypeScript step was stopped, so only focused CPU type checking is claimed.
+- Final focused TypeScript check passed after all source changes. Final correction subset: 16/16 tests passed, including viewport-only tab changes being ignored. Selected broader suite: 168/168 passed.

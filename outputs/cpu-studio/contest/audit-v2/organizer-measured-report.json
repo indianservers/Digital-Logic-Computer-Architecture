@@ -1,0 +1,666 @@
+{
+  "engine": "aimer-cpu-contest-2",
+  "designHash": "890dcc3ab06e3f66369011127b281506d9f25a6aa80fbb549f40f3eb247d1cc6",
+  "suiteHash": "e2fa9cc418a308663853a4d21545429c224c4e3f1b45dd448c6649e89cbd9286",
+  "architecture": {
+    "name": "Simple 16-bit CPU",
+    "dataWidth": 16,
+    "instructionWidth": 16,
+    "mnemonics": [
+      "HALT",
+      "LOADI",
+      "ADD",
+      "SUB",
+      "AND",
+      "OR",
+      "LOAD",
+      "STORE",
+      "BEQ",
+      "JUMP"
+    ]
+  },
+  "findings": [],
+  "results": [
+    {
+      "id": "organizer-99",
+      "name": "Organizer 99",
+      "status": "pass",
+      "reason": "HALT reached; all requested comparisons and assertions passed.",
+      "cycles": 2,
+      "instructions": 2,
+      "cpi": 1,
+      "registers": [
+        0,
+        99,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "memory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pc": 1,
+      "coverage": [
+        "HALT",
+        "LOADI"
+      ],
+      "assertions": [
+        {
+          "target": "R1",
+          "expected": 99,
+          "actual": 99,
+          "pass": true
+        },
+        {
+          "target": "HALT PC",
+          "expected": 1,
+          "actual": 1,
+          "pass": true
+        }
+      ],
+      "trace": [
+        {
+          "cycle": 1,
+          "pc": 0,
+          "ir": 4707,
+          "mnemonic": "LOADI",
+          "opcode": 1,
+          "aluA": 0,
+          "aluB": 99,
+          "aluY": 99,
+          "flags": {
+            "y": 99,
+            "z": 0,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 1,
+            "ALUSrc": 1,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "ADD"
+          },
+          "halt": false,
+          "reason": "LOADI committed through the wired datapath at PC=0"
+        },
+        {
+          "cycle": 2,
+          "pc": 1,
+          "ir": 0,
+          "mnemonic": "HALT",
+          "opcode": 0,
+          "aluA": 0,
+          "aluB": 0,
+          "aluY": 0,
+          "flags": {
+            "y": 0,
+            "z": 1,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 0,
+            "ALUSrc": 0,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "AND"
+          },
+          "halt": true,
+          "reason": "HALT"
+        }
+      ],
+      "listing": [
+        {
+          "address": 0,
+          "word": 4707,
+          "text": "LOADI R1, 99"
+        },
+        {
+          "address": 1,
+          "word": 0,
+          "text": "HALT"
+        }
+      ]
+    },
+    {
+      "id": "organizer-memory",
+      "name": "Organizer last memory word",
+      "status": "pass",
+      "reason": "HALT reached; all requested comparisons and assertions passed.",
+      "cycles": 6,
+      "instructions": 6,
+      "cpi": 1,
+      "registers": [
+        0,
+        511,
+        1,
+        512,
+        512,
+        0,
+        0,
+        0
+      ],
+      "memory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        512
+      ],
+      "pc": 5,
+      "coverage": [
+        "ADD",
+        "HALT",
+        "LOAD",
+        "LOADI",
+        "STORE"
+      ],
+      "assertions": [
+        {
+          "target": "R3",
+          "expected": 512,
+          "actual": 512,
+          "pass": true
+        },
+        {
+          "target": "R4",
+          "expected": 512,
+          "actual": 512,
+          "pass": true
+        },
+        {
+          "target": "MEM[63]",
+          "expected": 512,
+          "actual": 512,
+          "pass": true
+        },
+        {
+          "target": "HALT PC",
+          "expected": 5,
+          "actual": 5,
+          "pass": true
+        }
+      ],
+      "trace": [
+        {
+          "cycle": 1,
+          "pc": 0,
+          "ir": 5119,
+          "mnemonic": "LOADI",
+          "opcode": 1,
+          "aluA": 0,
+          "aluB": 511,
+          "aluY": 511,
+          "flags": {
+            "y": 511,
+            "z": 0,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 1,
+            "ALUSrc": 1,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "ADD"
+          },
+          "halt": false,
+          "reason": "LOADI committed through the wired datapath at PC=0"
+        },
+        {
+          "cycle": 2,
+          "pc": 1,
+          "ir": 5121,
+          "mnemonic": "LOADI",
+          "opcode": 1,
+          "aluA": 0,
+          "aluB": 1,
+          "aluY": 1,
+          "flags": {
+            "y": 1,
+            "z": 0,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 1,
+            "ALUSrc": 1,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "ADD"
+          },
+          "halt": false,
+          "reason": "LOADI committed through the wired datapath at PC=1"
+        },
+        {
+          "cycle": 3,
+          "pc": 2,
+          "ir": 9808,
+          "mnemonic": "ADD",
+          "opcode": 2,
+          "aluA": 511,
+          "aluB": 1,
+          "aluY": 512,
+          "flags": {
+            "y": 512,
+            "z": 0,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 1,
+            "ALUSrc": 0,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "ADD"
+          },
+          "halt": false,
+          "reason": "ADD committed through the wired datapath at PC=2"
+        },
+        {
+          "cycle": 4,
+          "pc": 3,
+          "ir": 30271,
+          "mnemonic": "STORE",
+          "opcode": 7,
+          "aluA": 0,
+          "aluB": 63,
+          "aluY": 63,
+          "flags": {
+            "y": 63,
+            "z": 0,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "store 512 → [63]",
+          "controls": {
+            "RegWrite": 0,
+            "ALUSrc": 1,
+            "MemRead": 0,
+            "MemWrite": 1,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "ADD"
+          },
+          "halt": false,
+          "reason": "STORE committed through the wired datapath at PC=3"
+        },
+        {
+          "cycle": 5,
+          "pc": 4,
+          "ir": 26687,
+          "mnemonic": "LOAD",
+          "opcode": 6,
+          "aluA": 0,
+          "aluB": 63,
+          "aluY": 63,
+          "flags": {
+            "y": 63,
+            "z": 0,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "load [63] → 512",
+          "controls": {
+            "RegWrite": 1,
+            "ALUSrc": 1,
+            "MemRead": 1,
+            "MemWrite": 0,
+            "MemToReg": 1,
+            "Branch": 0,
+            "ALUOp": "ADD"
+          },
+          "halt": false,
+          "reason": "LOAD committed through the wired datapath at PC=4"
+        },
+        {
+          "cycle": 6,
+          "pc": 5,
+          "ir": 0,
+          "mnemonic": "HALT",
+          "opcode": 0,
+          "aluA": 0,
+          "aluB": 0,
+          "aluY": 0,
+          "flags": {
+            "y": 0,
+            "z": 1,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 0,
+            "ALUSrc": 0,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "AND"
+          },
+          "halt": true,
+          "reason": "HALT"
+        }
+      ],
+      "listing": [
+        {
+          "address": 0,
+          "word": 5119,
+          "text": "LOADI R1, 511"
+        },
+        {
+          "address": 1,
+          "word": 5121,
+          "text": "LOADI R2, 1"
+        },
+        {
+          "address": 2,
+          "word": 9808,
+          "text": "ADD R3, R1, R2"
+        },
+        {
+          "address": 3,
+          "word": 30271,
+          "text": "STORE R3, 63"
+        },
+        {
+          "address": 4,
+          "word": 26687,
+          "text": "LOAD R4, 63"
+        },
+        {
+          "address": 5,
+          "word": 0,
+          "text": "HALT"
+        }
+      ]
+    },
+    {
+      "id": "negative-assertion",
+      "name": "NEGATIVE FIXTURE: deliberately wrong expectation",
+      "status": "fail",
+      "reason": "An explicit final-state assertion failed.",
+      "cycles": 1,
+      "instructions": 1,
+      "cpi": 1,
+      "registers": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "memory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pc": 0,
+      "coverage": [
+        "HALT"
+      ],
+      "assertions": [
+        {
+          "target": "R3",
+          "expected": 1,
+          "actual": 0,
+          "pass": false
+        }
+      ],
+      "trace": [
+        {
+          "cycle": 1,
+          "pc": 0,
+          "ir": 0,
+          "mnemonic": "HALT",
+          "opcode": 0,
+          "aluA": 0,
+          "aluB": 0,
+          "aluY": 0,
+          "flags": {
+            "y": 0,
+            "z": 1,
+            "n": 0,
+            "c": 0,
+            "v": 0
+          },
+          "memOp": "none",
+          "controls": {
+            "RegWrite": 0,
+            "ALUSrc": 0,
+            "MemRead": 0,
+            "MemWrite": 0,
+            "MemToReg": 0,
+            "Branch": 0,
+            "ALUOp": "AND"
+          },
+          "halt": true,
+          "reason": "HALT"
+        }
+      ],
+      "listing": [
+        {
+          "address": 0,
+          "word": 0,
+          "text": "HALT"
+        }
+      ]
+    }
+  ],
+  "passed": 2,
+  "total": 3,
+  "score": 66
+}

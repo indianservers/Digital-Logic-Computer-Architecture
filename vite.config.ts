@@ -22,6 +22,17 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,woff2,woff}"],
+        // Anatomy originals are downloaded on demand, rather than at app installation.
+        globIgnores: ["**/devices/parts/**"],
+        runtimeCaching: [{
+          urlPattern: /\/devices\/parts\/previews\/.*\.webp$/,
+          handler: "CacheFirst",
+          options: {
+            cacheName: "hdw-part-previews",
+            expiration: {maxEntries:250,maxAgeSeconds:30*24*60*60},
+            cacheableResponse: {statuses:[0,200]},
+          },
+        }],
         navigateFallback: "index.html",
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
       },

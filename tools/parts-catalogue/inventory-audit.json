@@ -1,0 +1,3300 @@
+[
+  {
+    "number": 1,
+    "device": "Digital Thermometer",
+    "parts": [
+      "Thermistor",
+      "Voltage divider",
+      "Signal-conditioning amplifier",
+      "ADC",
+      "Microcontroller",
+      "Coin-cell battery",
+      "LCD"
+    ],
+    "flow": [
+      "Temperature",
+      "Thermistor",
+      "Signal conditioning",
+      "ADC",
+      "Calibration MCU",
+      "Display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 2,
+    "device": "ECG Machine",
+    "parts": [
+      "Electrodes",
+      "Lead protection",
+      "Instrumentation amplifier",
+      "HPF / LPF / notch filter",
+      "ADC",
+      "DSP",
+      "Display",
+      "Printer / storage"
+    ],
+    "flow": [
+      "Electrodes",
+      "Instrumentation amplifier",
+      "Noise filtering",
+      "ADC",
+      "DSP / MCU",
+      "ECG display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 3,
+    "device": "Pulse Oximeter",
+    "parts": [
+      "Red LED",
+      "Infrared LED",
+      "Photodiode",
+      "Transimpedance amplifier",
+      "Analog filter",
+      "ADC",
+      "DSP",
+      "Display"
+    ],
+    "flow": [
+      "Red / IR LEDs",
+      "Finger tissue",
+      "Photodiode",
+      "Analog front end",
+      "ADC / ratio processing",
+      "SpO₂ display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 4,
+    "device": "Digital Blood Pressure Monitor",
+    "parts": [
+      "Inflatable cuff",
+      "Air pump",
+      "Pressure sensor",
+      "Deflation valve",
+      "Analog front end",
+      "ADC",
+      "MCU",
+      "LCD"
+    ],
+    "flow": [
+      "Cuff inflation",
+      "Pressure sensor",
+      "Amplifier",
+      "ADC",
+      "Oscillometric algorithm",
+      "BP display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 5,
+    "device": "Ultrasound Scanner",
+    "parts": [
+      "Transducer array",
+      "Pulse generator",
+      "Transmit / receive switch",
+      "Low-noise amplifier",
+      "ADC",
+      "Receive beamformer",
+      "DSP",
+      "Display"
+    ],
+    "flow": [
+      "Pulse generator",
+      "Piezoelectric array",
+      "Returning echoes",
+      "Receive beamformer",
+      "Signal processing",
+      "Ultrasound image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 6,
+    "device": "MRI Scanner",
+    "parts": [
+      "Main magnet",
+      "Gradient coils",
+      "RF transmitter",
+      "RF receive coil",
+      "Gradient amplifiers",
+      "Receive chain",
+      "ADC",
+      "Reconstruction computer"
+    ],
+    "flow": [
+      "Main magnet / RF excitation",
+      "RF receive coil",
+      "Signal acquisition",
+      "ADC",
+      "Reconstruction computer",
+      "Image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 7,
+    "device": "CT Scanner",
+    "parts": [
+      "Rotating X-ray source",
+      "Detector array",
+      "Gantry",
+      "Slip ring",
+      "Acquisition electronics",
+      "ADC",
+      "Reconstruction computer",
+      "Patient table"
+    ],
+    "flow": [
+      "Rotating X-ray source",
+      "Detector array",
+      "Data acquisition",
+      "ADC",
+      "Tomographic reconstruction",
+      "Slice image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 8,
+    "device": "TV Remote Control",
+    "parts": [
+      "Keypad",
+      "Switch matrix",
+      "Microcontroller",
+      "Command encoder",
+      "38 kHz modulator",
+      "IR LED",
+      "Battery",
+      "IR receiver"
+    ],
+    "flow": [
+      "Button matrix",
+      "MCU",
+      "Command encoder",
+      "38 kHz modulator",
+      "IR LED",
+      "Television receiver"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 9,
+    "device": "NFC Payment System",
+    "parts": [
+      "Reader antenna",
+      "RF front end",
+      "NFC controller",
+      "Secure element",
+      "Credential token",
+      "Processor",
+      "Display",
+      "Network interface"
+    ],
+    "flow": [
+      "Reader RF field",
+      "Phone / card antenna",
+      "NFC interface",
+      "Protocol exchange",
+      "Secure credential processing",
+      "Payment-system response"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 10,
+    "device": "Robotic Arm",
+    "parts": [
+      "Base joint",
+      "Shoulder joint",
+      "Elbow joint",
+      "Wrist pitch",
+      "Wrist roll",
+      "Tool joint",
+      "Servo drives",
+      "Controller",
+      "End effector"
+    ],
+    "flow": [
+      "Target pose",
+      "Inverse kinematics",
+      "Trajectory planner",
+      "Servo drives",
+      "Joint motors / encoders",
+      "Position feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 11,
+    "device": "SONAR",
+    "parts": [
+      "Pulse generator",
+      "Power amplifier",
+      "Transducer",
+      "Receive amplifier",
+      "ADC",
+      "Echo processor",
+      "Display",
+      "Pressure housing"
+    ],
+    "flow": [
+      "Acoustic transmitter",
+      "Water / target",
+      "Transducer",
+      "Receiver / ADC",
+      "Echo processing",
+      "Sonar display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 12,
+    "device": "Aircraft Autopilot",
+    "parts": [
+      "Air-data computer",
+      "Inertial sensors",
+      "Flight-control computer",
+      "Mode-control panel",
+      "Servo actuators",
+      "Control surfaces",
+      "Data bus"
+    ],
+    "flow": [
+      "Pilot target",
+      "Air / inertial sensors",
+      "State estimate",
+      "Control law",
+      "Flight-control actuators",
+      "Aircraft feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 13,
+    "device": "Surveillance Radar",
+    "parts": [
+      "Pulse generator",
+      "Transmitter",
+      "Antenna",
+      "Duplexer",
+      "Receiver",
+      "ADC",
+      "Range / Doppler processor",
+      "Tracker"
+    ],
+    "flow": [
+      "RF transmitter",
+      "Antenna",
+      "Echo receiver",
+      "ADC",
+      "Range / Doppler processing",
+      "Radar display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 14,
+    "device": "Digital Camera",
+    "parts": [
+      "Lens",
+      "Aperture",
+      "Shutter",
+      "CMOS sensor",
+      "ADC",
+      "Image signal processor",
+      "Memory",
+      "Display"
+    ],
+    "flow": [
+      "Light / lens",
+      "Image sensor",
+      "Pixel readout",
+      "ADC",
+      "Image signal processor",
+      "Image / video"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 15,
+    "device": "Smartphone",
+    "parts": [
+      "Touchscreen",
+      "Mobile SoC",
+      "RAM",
+      "Flash storage",
+      "Cameras",
+      "Radio antennas",
+      "Battery",
+      "Audio codec"
+    ],
+    "flow": [
+      "Touch / sensors / radios",
+      "Interface controllers",
+      "Mobile SoC",
+      "Memory / operating system",
+      "Graphics / audio pipeline",
+      "Screen / speakers"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 16,
+    "device": "Infrared Thermometer",
+    "parts": [
+      "IR optics",
+      "Thermopile",
+      "Ambient sensor",
+      "Amplifier",
+      "ADC",
+      "Compensation MCU",
+      "Display",
+      "Battery"
+    ],
+    "flow": [
+      "Infrared radiation",
+      "Thermopile",
+      "Amplifier",
+      "ADC",
+      "Temperature compensation",
+      "Display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 17,
+    "device": "Digital Stethoscope",
+    "parts": [
+      "Chestpiece diaphragm",
+      "Acoustic sensor",
+      "Preamplifier",
+      "Analog filter",
+      "ADC",
+      "DSP",
+      "Bluetooth",
+      "Battery",
+      "Audio output"
+    ],
+    "flow": [
+      "Body sounds",
+      "Chest-piece microphone",
+      "Low-noise amplifier",
+      "ADC",
+      "Audio filtering",
+      "Headphones / recording"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 18,
+    "device": "Glucometer",
+    "parts": [
+      "Test strip",
+      "Electrochemical electrodes",
+      "Current front end",
+      "ADC",
+      "MCU",
+      "Calibration memory",
+      "Display",
+      "Battery"
+    ],
+    "flow": [
+      "Blood sample",
+      "Enzyme test strip",
+      "Current amplifier",
+      "ADC",
+      "Calibration processor",
+      "Glucose display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 19,
+    "device": "ICU Patient Monitor",
+    "parts": [
+      "ECG electrodes",
+      "SpO₂ probe",
+      "BP cuff",
+      "Temperature probe",
+      "Isolated front ends",
+      "ADC",
+      "Alarm processor",
+      "Display"
+    ],
+    "flow": [
+      "Patient sensors",
+      "Isolated analog front ends",
+      "Filtering / ADC",
+      "Vital-sign processing",
+      "Alarm logic",
+      "Patient display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 20,
+    "device": "Heart Rate Monitor",
+    "parts": [
+      "Green LEDs",
+      "Photodiode",
+      "Analog front end",
+      "ADC",
+      "Heart-rate processor",
+      "Bluetooth",
+      "Battery",
+      "Display"
+    ],
+    "flow": [
+      "LED illumination",
+      "Tissue reflection",
+      "Photodiode",
+      "ADC",
+      "Pulse detection",
+      "Heart-rate display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 21,
+    "device": "Portable ECG",
+    "parts": [
+      "Electrodes",
+      "Protection",
+      "Instrumentation amplifier",
+      "Analog filters",
+      "ADC",
+      "MCU",
+      "Memory",
+      "Wireless module"
+    ],
+    "flow": [
+      "Electrodes",
+      "Low-noise front end",
+      "Filter / ADC",
+      "ECG processor",
+      "Local storage",
+      "Wireless waveform transfer"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 22,
+    "device": "Holter Monitor",
+    "parts": [
+      "Electrode leads",
+      "Input protection",
+      "Instrumentation amplifier",
+      "Filter",
+      "ADC",
+      "MCU",
+      "Timestamp memory",
+      "Battery"
+    ],
+    "flow": [
+      "Chest electrodes",
+      "Isolated front end",
+      "Filter / ADC",
+      "Timestamping",
+      "Nonvolatile storage",
+      "ECG review software"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 23,
+    "device": "EEG Machine",
+    "parts": [
+      "Electrode cap",
+      "Input protection",
+      "Differential amplifier",
+      "Band-pass filter",
+      "ADC",
+      "DSP",
+      "Memory",
+      "Display"
+    ],
+    "flow": [
+      "Scalp electrodes",
+      "Differential amplifier",
+      "Filtering",
+      "ADC",
+      "Multichannel analysis",
+      "EEG traces"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 24,
+    "device": "EMG Machine",
+    "parts": [
+      "Muscle electrodes",
+      "Input protection",
+      "Differential amplifier",
+      "Band-pass filter",
+      "ADC",
+      "DSP",
+      "Stimulus synchronization",
+      "Display"
+    ],
+    "flow": [
+      "Muscle electrodes",
+      "Differential amplifier",
+      "Signal filtering",
+      "ADC",
+      "Amplitude / timing analysis",
+      "EMG waveform"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 25,
+    "device": "Fetal Heart Monitor",
+    "parts": [
+      "Ultrasound transducer",
+      "TOCO sensor",
+      "Analog front end",
+      "ADC",
+      "Heart-rate DSP",
+      "Audio output",
+      "LCD",
+      "Recorder"
+    ],
+    "flow": [
+      "Ultrasound excitation",
+      "Doppler probe",
+      "Echo demodulation",
+      "Sampling",
+      "Heart-rate extraction",
+      "Audio / rate display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 26,
+    "device": "Fetal Monitor",
+    "parts": [
+      "Doppler transducer",
+      "TOCO transducer",
+      "Maternal sensors",
+      "Analog conditioning",
+      "ADC",
+      "DSP",
+      "Alarm processor",
+      "Printer"
+    ],
+    "flow": [
+      "Doppler / uterine sensors",
+      "Signal conditioning",
+      "ADC",
+      "Rate / contraction processing",
+      "Time alignment",
+      "Monitoring traces"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 27,
+    "device": "Electronic Spirometer",
+    "parts": [
+      "Mouthpiece",
+      "Flow sensor",
+      "Tubing",
+      "Pressure front end",
+      "ADC",
+      "MCU",
+      "Display",
+      "Memory"
+    ],
+    "flow": [
+      "Exhaled airflow",
+      "Flow transducer",
+      "Signal conditioning",
+      "ADC",
+      "Flow / volume calculation",
+      "Respiratory graph"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 28,
+    "device": "Peak Flow Meter",
+    "parts": [
+      "Mouthpiece",
+      "Airflow channel",
+      "Flow indicator",
+      "Electronic sensor",
+      "Signal conditioning",
+      "MCU",
+      "Display"
+    ],
+    "flow": [
+      "Exhaled airflow",
+      "Flow sensor",
+      "Signal conditioning",
+      "Sampling",
+      "Peak detection",
+      "Flow reading"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 29,
+    "device": "Digital Weighing Scale",
+    "parts": [
+      "Load cells",
+      "Wheatstone bridge",
+      "Instrumentation amplifier",
+      "High-resolution ADC",
+      "MCU",
+      "Tare logic",
+      "Display",
+      "Battery"
+    ],
+    "flow": [
+      "Applied force",
+      "Load cell bridge",
+      "Instrumentation amplifier",
+      "ADC",
+      "Calibration MCU",
+      "Weight display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 30,
+    "device": "Body Composition Analyzer",
+    "parts": [
+      "Contact electrodes",
+      "AC excitation source",
+      "Voltage / current front end",
+      "ADC",
+      "Impedance processor",
+      "Model memory",
+      "Display",
+      "Load cells"
+    ],
+    "flow": [
+      "Low-level AC excitation",
+      "Body impedance",
+      "Voltage / current sensing",
+      "ADC",
+      "Composition model",
+      "Display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 31,
+    "device": "X-Ray Machine",
+    "parts": [
+      "X-ray tube",
+      "Collimator",
+      "Generator",
+      "Patient support",
+      "Detector",
+      "Readout / ADC",
+      "Image processor",
+      "Control console"
+    ],
+    "flow": [
+      "X-ray source",
+      "Patient attenuation",
+      "Detector",
+      "Readout / ADC",
+      "Image correction",
+      "Projection image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 32,
+    "device": "Digital Radiography Detector",
+    "parts": [
+      "Scintillator",
+      "Photodiode array",
+      "Thin-film transistors",
+      "Readout electronics",
+      "ADC",
+      "Correction processor",
+      "Battery",
+      "Wireless link"
+    ],
+    "flow": [
+      "X-ray photons",
+      "Scintillator / conversion layer",
+      "Pixel array",
+      "Readout electronics",
+      "ADC / correction",
+      "Digital projection"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 33,
+    "device": "Doppler Ultrasound",
+    "parts": [
+      "Transducer",
+      "Pulser",
+      "T/R switch",
+      "Receive beamformer",
+      "I/Q demodulator",
+      "ADC",
+      "Doppler DSP",
+      "Color mapper"
+    ],
+    "flow": [
+      "Ultrasound pulse",
+      "Moving scatterers",
+      "Echo receiver",
+      "I/Q demodulation",
+      "Doppler estimation",
+      "Flow / spectral display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 34,
+    "device": "PET Scanner",
+    "parts": [
+      "Detector ring",
+      "Scintillation crystals",
+      "SiPM / PMT",
+      "Coincidence electronics",
+      "ADC / timing",
+      "Correction computer",
+      "Reconstruction",
+      "Display"
+    ],
+    "flow": [
+      "Tracer emission",
+      "Scintillation detectors",
+      "Photodetector readout",
+      "Energy / timing processing",
+      "Tomographic reconstruction",
+      "Functional image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 35,
+    "device": "SPECT Scanner",
+    "parts": [
+      "Collimator",
+      "Scintillation crystal",
+      "Photomultiplier tubes",
+      "Event-position electronics",
+      "Rotating gantry",
+      "Acquisition computer",
+      "Reconstruction"
+    ],
+    "flow": [
+      "Tracer gamma emission",
+      "Collimator",
+      "Gamma detector",
+      "Energy / position processing",
+      "Projection reconstruction",
+      "Functional image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 36,
+    "device": "Mammography System",
+    "parts": [
+      "X-ray tube",
+      "Compression assembly",
+      "Collimator",
+      "Detector",
+      "Readout / ADC",
+      "Image processor",
+      "Display",
+      "Safety interlocks"
+    ],
+    "flow": [
+      "Controlled X-ray source",
+      "Tissue attenuation",
+      "Digital detector",
+      "Pixel readout",
+      "Image correction",
+      "Mammogram"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 37,
+    "device": "Endoscope Camera System",
+    "parts": [
+      "Light source",
+      "Optical fibers",
+      "Distal optics",
+      "Image sensor",
+      "ADC",
+      "Image processor",
+      "Control unit",
+      "Display"
+    ],
+    "flow": [
+      "Illumination",
+      "Endoscope optics",
+      "Image sensor",
+      "Video acquisition",
+      "Image processor",
+      "Clinical video display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 38,
+    "device": "Digital Microscope",
+    "parts": [
+      "Illuminator",
+      "Specimen stage",
+      "Objective lens",
+      "Tube lens",
+      "Camera sensor",
+      "ADC",
+      "Image processor",
+      "Focus mechanism"
+    ],
+    "flow": [
+      "Illumination",
+      "Specimen / objective",
+      "Image sensor",
+      "Pixel readout",
+      "Image processing",
+      "Magnified display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 39,
+    "device": "Ventilator",
+    "parts": [
+      "Air inlet filter",
+      "Blower / turbine",
+      "Oxygen mixer",
+      "Inspiratory valve",
+      "Flow sensor",
+      "Pressure sensor",
+      "Expiratory valve",
+      "Humidifier",
+      "Controller"
+    ],
+    "flow": [
+      "Breathing settings",
+      "Pressure / flow sensors",
+      "ADC",
+      "Feedback controller",
+      "Valves / blower",
+      "Monitoring display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 40,
+    "device": "Infusion Pump",
+    "parts": [
+      "Fluid reservoir",
+      "Motor / mechanism",
+      "Pressure sensor",
+      "Air detector",
+      "Flow supervisor",
+      "MCU",
+      "Battery",
+      "Display"
+    ],
+    "flow": [
+      "Rate settings",
+      "Control MCU",
+      "Motor driver",
+      "Pump mechanism",
+      "Flow / pressure feedback",
+      "Alarm / display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 41,
+    "device": "Syringe Pump",
+    "parts": [
+      "Syringe barrel",
+      "Plunger",
+      "Lead screw",
+      "Motor / gears",
+      "Position encoder",
+      "Force sensor",
+      "MCU",
+      "Battery"
+    ],
+    "flow": [
+      "Rate setting",
+      "MCU / motion plan",
+      "Motor drive",
+      "Lead screw / plunger",
+      "Position / force sensing",
+      "Delivery supervision"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 42,
+    "device": "Defibrillator",
+    "parts": [
+      "ECG front end",
+      "Rhythm processor",
+      "Charge supervisor",
+      "Energy-storage capacitor",
+      "Monitored output stage",
+      "Pads",
+      "Interlocks",
+      "Display"
+    ],
+    "flow": [
+      "ECG electrodes",
+      "Isolated acquisition",
+      "Rhythm analysis",
+      "Safety checks",
+      "Energy-control subsystem",
+      "Status / event log"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 43,
+    "device": "AED",
+    "parts": [
+      "Pads",
+      "ECG front end",
+      "Rhythm analysis",
+      "Safety controller",
+      "Battery",
+      "Energy storage",
+      "Audio prompts",
+      "Output supervisor"
+    ],
+    "flow": [
+      "ECG pads",
+      "Isolated acquisition",
+      "Rhythm classification",
+      "Safety interlocks",
+      "Therapy supervision",
+      "Voice / visual prompts"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 44,
+    "device": "Pacemaker",
+    "parts": [
+      "Pulse generator",
+      "Leads",
+      "Sensing amplifier",
+      "Escape timer",
+      "Output stage",
+      "Battery",
+      "Telemetry",
+      "Connector header"
+    ],
+    "flow": [
+      "Cardiac electrodes",
+      "Sensing amplifier",
+      "Event detection",
+      "Timing / therapy logic",
+      "Output stage",
+      "Telemetry"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 45,
+    "device": "Implantable Cardioverter Defibrillator",
+    "parts": [
+      "Sensing leads",
+      "Input amplifier",
+      "ADC",
+      "Rhythm classifier",
+      "Microcontroller",
+      "Battery",
+      "Energy store",
+      "Telemetry"
+    ],
+    "flow": [
+      "Implanted leads",
+      "Sensing front end",
+      "Rhythm detection",
+      "Therapy decision logic",
+      "Pacing / energy stage",
+      "Telemetry"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 46,
+    "device": "Dialysis Machine",
+    "parts": [
+      "Blood pump",
+      "Dialyzer",
+      "Dialysate pump",
+      "Heater",
+      "Pressure sensors",
+      "Conductivity sensor",
+      "Air detector",
+      "Ultrafiltration controller"
+    ],
+    "flow": [
+      "Blood / dialysate circuits",
+      "Pressure / conductivity sensors",
+      "Acquisition",
+      "Supervisory controller",
+      "Pump / valve control",
+      "Treatment monitor"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 47,
+    "device": "CPAP Machine",
+    "parts": [
+      "Air filter",
+      "Blower",
+      "Pressure sensor",
+      "Flow sensor",
+      "Control board",
+      "Humidifier",
+      "Tubing",
+      "Mask"
+    ],
+    "flow": [
+      "Pressure setting",
+      "Pressure sensor",
+      "ADC",
+      "Pressure controller",
+      "Blower",
+      "Airway pressure feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 48,
+    "device": "BiPAP Machine",
+    "parts": [
+      "Blower",
+      "Pressure sensor",
+      "Flow sensor",
+      "Breath-phase detector",
+      "Controller",
+      "Humidifier",
+      "Tubing",
+      "Mask"
+    ],
+    "flow": [
+      "Two pressure targets",
+      "Flow / pressure sensors",
+      "Breath-phase detection",
+      "Pressure controller",
+      "Blower / valves",
+      "Airway feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 49,
+    "device": "Anesthesia Machine",
+    "parts": [
+      "Gas supply",
+      "Flow controls",
+      "Vaporizer",
+      "Breathing circuit",
+      "CO₂ absorber",
+      "Oxygen sensor",
+      "Pressure sensor",
+      "Controller",
+      "Scavenging"
+    ],
+    "flow": [
+      "Gas supply / settings",
+      "Flow / concentration sensing",
+      "Acquisition",
+      "Delivery supervision",
+      "Gas / ventilation control",
+      "Monitoring display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 50,
+    "device": "Electrosurgical Unit",
+    "parts": [
+      "RF generator",
+      "Power control",
+      "Output monitor",
+      "Return-pad monitor",
+      "Isolated output interface",
+      "Microcontroller",
+      "Cooling",
+      "Display"
+    ],
+    "flow": [
+      "Mode / power settings",
+      "Control logic",
+      "RF generator",
+      "Output sensing",
+      "Feedback / interlocks",
+      "Status display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 51,
+    "device": "TENS Machine",
+    "parts": [
+      "Microcontroller",
+      "Timing generator",
+      "Current-controlled output",
+      "Lead wires",
+      "Electrodes",
+      "Battery",
+      "Display"
+    ],
+    "flow": [
+      "Pulse settings",
+      "Timing MCU",
+      "Pulse generator",
+      "Output driver",
+      "Electrode interface",
+      "Output monitoring"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 52,
+    "device": "Medical Laser System",
+    "parts": [
+      "Laser source",
+      "Power driver",
+      "Optical delivery",
+      "Power sensor",
+      "Cooling system",
+      "Interlocks",
+      "Controller",
+      "Display"
+    ],
+    "flow": [
+      "Treatment settings",
+      "Timing controller",
+      "Laser source",
+      "Optical delivery",
+      "Power / thermal feedback",
+      "Interlock status"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 53,
+    "device": "Hearing Aid",
+    "parts": [
+      "Microphone",
+      "Preamp",
+      "ADC",
+      "DSP",
+      "Frequency-dependent gain",
+      "DAC",
+      "Receiver",
+      "Battery"
+    ],
+    "flow": [
+      "Sound",
+      "Microphone",
+      "Preamplifier",
+      "ADC",
+      "Audio DSP",
+      "Speaker / recording"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 54,
+    "device": "PCR Machine",
+    "parts": [
+      "Heated lid",
+      "Thermal block",
+      "Thermistors",
+      "Peltier modules",
+      "Driver",
+      "Cooling fan",
+      "MCU",
+      "Optical module (qPCR)"
+    ],
+    "flow": [
+      "Thermal program",
+      "Temperature sensing",
+      "Feedback controller",
+      "Heater / cooler",
+      "Fluorescence detector",
+      "Amplification curve"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 55,
+    "device": "Centrifuge",
+    "parts": [
+      "Lid lock interlock",
+      "Rotor and tube holders",
+      "Spindle",
+      "Tachometer",
+      "Brushless motor",
+      "Imbalance sensor",
+      "Control board",
+      "Power supply",
+      "Cooling fan"
+    ],
+    "flow": [
+      "Speed settings",
+      "Motor controller",
+      "Rotor",
+      "Speed / imbalance sensors",
+      "Safety logic",
+      "Status display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 56,
+    "device": "Blood Cell Analyzer",
+    "parts": [
+      "Sample probe",
+      "Reagent pumps",
+      "Fluidics manifold",
+      "Mixing chamber",
+      "Impedance aperture",
+      "Laser optical module",
+      "Photodiodes",
+      "Control electronics",
+      "Waste chamber"
+    ],
+    "flow": [
+      "Prepared blood sample",
+      "Flow / aperture system",
+      "Optical / impedance detector",
+      "Pulse acquisition",
+      "Cell classification",
+      "Count report"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 57,
+    "device": "Automated Chemistry Analyzer",
+    "parts": [
+      "Sample carousel",
+      "Pipetting arm",
+      "Reagent tray",
+      "Mixing system",
+      "Reaction cuvette",
+      "Incubator heater",
+      "Light source",
+      "Wavelength filter",
+      "Photodiode",
+      "Control board"
+    ],
+    "flow": [
+      "Sample dispenser",
+      "Reaction chamber",
+      "Light source / detector",
+      "ADC",
+      "Calibration / concentration analysis",
+      "Result report"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 58,
+    "device": "Aircraft Flight Computer",
+    "parts": [
+      "Avionics connectors",
+      "Air-data interface",
+      "Inertial data interface",
+      "Processor boards",
+      "Memory",
+      "Power conversion",
+      "Data bus transceiver",
+      "Cooling chassis"
+    ],
+    "flow": [
+      "Aircraft sensors",
+      "Data buses",
+      "State estimation",
+      "Flight computation",
+      "Guidance outputs",
+      "Cockpit display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 59,
+    "device": "Fly-by-Wire System",
+    "parts": [
+      "Side-stick sensors",
+      "Air data sensors",
+      "IMU",
+      "Redundant flight computers",
+      "Data buses",
+      "Actuator electronics",
+      "Servo actuator",
+      "Position feedback sensor",
+      "Power supply"
+    ],
+    "flow": [
+      "Pilot controls",
+      "Input sensors",
+      "Flight-control computers",
+      "Control law / monitoring",
+      "Actuator electronics",
+      "Control surfaces"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 60,
+    "device": "Glass Cockpit",
+    "parts": [
+      "LCD display",
+      "Backlight",
+      "Graphics processor",
+      "Flight computer",
+      "ARINC data interface",
+      "Power regulator",
+      "Cooling assembly",
+      "Connector panel"
+    ],
+    "flow": [
+      "Aircraft data buses",
+      "Sensor / navigation data",
+      "Display computer",
+      "Graphics composition",
+      "Display drivers",
+      "Cockpit screens"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 61,
+    "device": "Primary Flight Display",
+    "parts": [
+      "Display screen",
+      "Function keys",
+      "Bezel",
+      "Graphics processor",
+      "Data interface boards",
+      "Power supply",
+      "Cooling and EMI shielding"
+    ],
+    "flow": [
+      "Attitude / air-data sensors",
+      "Aircraft data bus",
+      "Validity checks",
+      "Display computation",
+      "Graphics pipeline",
+      "Flight display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 62,
+    "device": "Air Data Computer",
+    "parts": [
+      "Pitot pressure port",
+      "Static pressure port",
+      "Pressure sensors",
+      "Temperature input",
+      "ADC",
+      "Processor board",
+      "Calibration memory",
+      "ARINC interface",
+      "Power regulator"
+    ],
+    "flow": [
+      "Pitot / static pressure",
+      "Pressure / temperature sensors",
+      "ADC",
+      "Air-data computation",
+      "Aircraft data bus",
+      "Flight instruments"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 63,
+    "device": "Inertial Navigation System",
+    "parts": [
+      "Gyroscope assembly",
+      "Accelerometer assembly",
+      "ADC interface",
+      "Processor board",
+      "Memory",
+      "Power supply",
+      "Data bus interface",
+      "Rugged enclosure"
+    ],
+    "flow": [
+      "Gyroscopes / accelerometers",
+      "Sensor readout",
+      "Calibration",
+      "Attitude integration",
+      "Navigation filter",
+      "Position / attitude"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 64,
+    "device": "GPS Navigation System",
+    "parts": [
+      "GNSS antenna",
+      "Low-noise amplifier",
+      "RF filter",
+      "Downconverter",
+      "Reference oscillator",
+      "Correlator",
+      "Navigation processor",
+      "Memory",
+      "Display interface"
+    ],
+    "flow": [
+      "Satellite RF signals",
+      "Antenna / RF front end",
+      "Correlation",
+      "Pseudorange measurements",
+      "Navigation solution",
+      "Position / time"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 65,
+    "device": "Engine FADEC Controller",
+    "parts": [
+      "EMI filter and supply",
+      "Signal conditioning",
+      "ADC",
+      "Dual control processor",
+      "Program memory",
+      "Actuator drivers",
+      "Connectors and cooling"
+    ],
+    "flow": [
+      "Engine sensors",
+      "Signal conditioning",
+      "ADC / bus input",
+      "Engine controller",
+      "Fuel / actuator command",
+      "Engine feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 66,
+    "device": "Aircraft Engine Monitoring System",
+    "parts": [
+      "Input signal conditioning",
+      "Analog-to-digital converters",
+      "Monitoring processor",
+      "Data memory",
+      "ARINC / CAN interface",
+      "Power supply"
+    ],
+    "flow": [
+      "Engine sensors",
+      "Data acquisition",
+      "Validation / calibration",
+      "Trend / limit processing",
+      "Aircraft data bus",
+      "Engine indications"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 67,
+    "device": "Drone Flight Controller",
+    "parts": [
+      "Power regulation",
+      "IMU gyroscope / accelerometer",
+      "Barometer",
+      "Flight control MCU",
+      "GNSS / UART interface",
+      "PWM / DShot outputs"
+    ],
+    "flow": [
+      "IMU / navigation sensors",
+      "State estimation",
+      "Flight controller",
+      "Motor mixing",
+      "ESCs / motors",
+      "Vehicle feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 68,
+    "device": "Weather Radar",
+    "parts": [
+      "Scanning antenna",
+      "Transmit / receive switch",
+      "Microwave transmitter",
+      "Low-noise receiver",
+      "Signal processor",
+      "Display computer",
+      "Control panel"
+    ],
+    "flow": [
+      "Radar transmitter",
+      "Scanning antenna",
+      "Precipitation echoes",
+      "Receive / sample chain",
+      "Weather processing",
+      "Cockpit weather display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 69,
+    "device": "Radar Altimeter",
+    "parts": [
+      "RF synthesizer",
+      "Power amplifier",
+      "Transmit / receive antennas",
+      "Mixer",
+      "IF filter and amplifier",
+      "ADC",
+      "Height processor",
+      "Avionics interface",
+      "Power supply"
+    ],
+    "flow": [
+      "Downward RF transmission",
+      "Terrain reflection",
+      "Receive antenna",
+      "Mixer / sampling",
+      "Height estimation",
+      "Altitude output"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 70,
+    "device": "Radio Altimeter",
+    "parts": [
+      "RF transmitter / receiver",
+      "Processor board",
+      "Power supply",
+      "Transmit antenna",
+      "Receive antenna",
+      "Avionics connector"
+    ],
+    "flow": [
+      "Downward RF transmission",
+      "Terrain reflection",
+      "Receive antenna",
+      "Mixer / sampling",
+      "Height estimation",
+      "Altitude output"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 71,
+    "device": "Aircraft Transponder",
+    "parts": [
+      "1030 MHz receiver",
+      "Decoder and signal processing",
+      "Mode control processor",
+      "Code selector and memory",
+      "Altitude encoder",
+      "1090 MHz transmitter",
+      "Power amplifier",
+      "Avionics interface"
+    ],
+    "flow": [
+      "Interrogation / aircraft data",
+      "Message decoder",
+      "Identity / position data",
+      "Reply encoder",
+      "RF transmitter",
+      "Ground receiver"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 72,
+    "device": "ADS-B System",
+    "parts": [
+      "RF antenna connector",
+      "1090 MHz transmitter",
+      "ADS-B encoder",
+      "Control processor",
+      "ARINC data interfaces",
+      "Power supply",
+      "GNSS receiver"
+    ],
+    "flow": [
+      "GNSS position",
+      "Aircraft identity / state",
+      "ADS-B message encoder",
+      "Transmission scheduling",
+      "RF transmitter",
+      "Surveillance receiver"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 73,
+    "device": "Traffic Collision Avoidance System",
+    "parts": [
+      "1030 / 1090 MHz transceiver",
+      "Signal processing",
+      "Surveillance processor",
+      "Threat tracking logic",
+      "RA decision computer",
+      "Avionics interface",
+      "Directional antennas"
+    ],
+    "flow": [
+      "Traffic interrogations",
+      "Surveillance replies",
+      "Track estimation",
+      "Conflict prediction",
+      "Advisory logic",
+      "Cockpit alert"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 74,
+    "device": "Flight Data Recorder",
+    "parts": [
+      "Front cover and connector",
+      "Shock mounts",
+      "Data acquisition unit",
+      "Processor and formatter",
+      "Solid-state memory",
+      "Power backup",
+      "Underwater locator beacon",
+      "Thermal insulation"
+    ],
+    "flow": [
+      "Aircraft parameter buses",
+      "Acquisition unit",
+      "Frame validation",
+      "Timestamping",
+      "Protected memory",
+      "Flight-data retrieval"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 75,
+    "device": "Cockpit Voice Recorder",
+    "parts": [
+      "Microphone inputs",
+      "Audio interface",
+      "Audio ADC",
+      "Recording processor",
+      "Circular memory",
+      "Power section",
+      "Crash-protected enclosure",
+      "Underwater locator beacon"
+    ],
+    "flow": [
+      "Cockpit microphones",
+      "Audio conditioning",
+      "ADC",
+      "Timestamp / channel framing",
+      "Protected memory",
+      "Audio retrieval"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 76,
+    "device": "Satellite Communication Terminal",
+    "parts": [
+      "Steerable antenna",
+      "Radome",
+      "Diplexer",
+      "Low-noise amplifier",
+      "Downconverter",
+      "Modem and codec",
+      "Upconverter",
+      "High-power amplifier",
+      "Antenna controller"
+    ],
+    "flow": [
+      "Digital messages",
+      "Channel coding",
+      "Modem",
+      "RF up / down conversion",
+      "Pointed antenna",
+      "Satellite link"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 77,
+    "device": "Satellite Attitude-Control Computer",
+    "parts": [
+      "Star tracker interface",
+      "Gyroscope interface",
+      "Attitude processor",
+      "Program memory",
+      "Wheel motor driver",
+      "Reaction wheel",
+      "Power regulation",
+      "Telemetry interface"
+    ],
+    "flow": [
+      "Star tracker / gyroscopes",
+      "Attitude estimation",
+      "Pointing target",
+      "Control law",
+      "Reaction wheels / actuators",
+      "Orientation feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 78,
+    "device": "Phased-Array Radar",
+    "parts": [
+      "Antenna elements",
+      "T/R modules",
+      "Phase shifters",
+      "Power amplifiers",
+      "Low-noise amplifiers",
+      "Beamformer",
+      "ADC",
+      "Radar signal processor",
+      "Cooling system"
+    ],
+    "flow": [
+      "Waveform generator",
+      "Element phase control",
+      "Antenna array",
+      "Receive channels",
+      "Beamforming / range processing",
+      "Sensing display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 79,
+    "device": "Ground Surveillance Radar",
+    "parts": [
+      "Scanning antenna",
+      "RF transmitter",
+      "T/R switch",
+      "Receive amplifier",
+      "Mixer",
+      "ADC",
+      "Doppler processor",
+      "Track computer",
+      "Operator display"
+    ],
+    "flow": [
+      "RF illumination",
+      "Ground-object echoes",
+      "Receive chain",
+      "ADC",
+      "Clutter / motion processing",
+      "Surveillance display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 80,
+    "device": "Passive Radar",
+    "parts": [
+      "Reference antenna",
+      "Surveillance antenna",
+      "RF filters",
+      "Synchronized receivers",
+      "ADC channels",
+      "Cross-correlator",
+      "Clutter cancellation",
+      "Bistatic tracker"
+    ],
+    "flow": [
+      "External RF illumination",
+      "Reference / surveillance antennas",
+      "Receive channels",
+      "ADC",
+      "Correlation / Doppler processing",
+      "Detection display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 81,
+    "device": "Air-Defence Radar",
+    "parts": [
+      "Antenna array",
+      "RF exciter",
+      "Power amplifier",
+      "Duplexer",
+      "Receiver",
+      "ADC",
+      "Signal processor",
+      "Track processor",
+      "Display console"
+    ],
+    "flow": [
+      "RF illumination",
+      "Echo reception",
+      "Digital acquisition",
+      "Detection / tracking",
+      "Track fusion",
+      "Airspace display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 82,
+    "device": "Thermal Imaging Camera",
+    "parts": [
+      "Infrared lens",
+      "Microbolometer array",
+      "Readout IC",
+      "ADC",
+      "Image processor",
+      "Calibration shutter",
+      "Display",
+      "Battery supply"
+    ],
+    "flow": [
+      "Infrared radiation",
+      "IR optics",
+      "Detector array",
+      "Readout / ADC",
+      "Correction / image processing",
+      "Thermal image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 83,
+    "device": "Night-Vision System",
+    "parts": [
+      "Objective lens",
+      "Photocathode",
+      "Microchannel plate",
+      "Phosphor screen",
+      "Eyepiece",
+      "High-voltage supply",
+      "Gain controller",
+      "IR illuminator"
+    ],
+    "flow": [
+      "Low-light scene",
+      "Objective optics",
+      "Intensifier / sensitive detector",
+      "Signal gain",
+      "Viewing optics / processing",
+      "Visible scene"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 84,
+    "device": "Infrared Surveillance Camera",
+    "parts": [
+      "Lens",
+      "IR-cut filter",
+      "CMOS sensor",
+      "IR LED array",
+      "LED driver",
+      "Image processor",
+      "Video encoder",
+      "Network interface",
+      "Power supply"
+    ],
+    "flow": [
+      "Infrared scene",
+      "IR optics",
+      "Sensitive image sensor",
+      "Pixel acquisition",
+      "Image correction",
+      "Surveillance video"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 85,
+    "device": "Laser Range Finder",
+    "parts": [
+      "Laser diode",
+      "Transmit optics",
+      "Receiver lens",
+      "Photodiode / APD",
+      "Transimpedance amplifier",
+      "Timing discriminator",
+      "Time-to-digital converter",
+      "MCU",
+      "OLED display"
+    ],
+    "flow": [
+      "Laser pulse",
+      "Target reflection",
+      "Photodetector",
+      "Timing measurement",
+      "Range calculation",
+      "Distance display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 86,
+    "device": "Software Defined Radio",
+    "parts": [
+      "SMA antenna port",
+      "Clock reference",
+      "USB interface",
+      "RF filters",
+      "LNA",
+      "I/Q mixer",
+      "ADC / DAC",
+      "FPGA / DSP",
+      "RF amplifier"
+    ],
+    "flow": [
+      "Antenna",
+      "RF front end",
+      "I/Q ADC",
+      "Digital filtering",
+      "Software demodulation",
+      "Decoded data"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 87,
+    "device": "Secure Digital Radio",
+    "parts": [
+      "Microphone / speaker",
+      "Audio codec",
+      "Encryption module",
+      "Key management",
+      "Baseband processor",
+      "RF transceiver",
+      "Power amplifier",
+      "Battery"
+    ],
+    "flow": [
+      "Voice / data",
+      "Audio sampling",
+      "Codec / authorized encryption",
+      "Channel coding",
+      "RF modem",
+      "Authorized receiver"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 88,
+    "device": "IFF System",
+    "parts": [
+      "Interrogator timing unit",
+      "RF transmitter",
+      "Antenna",
+      "RF receiver",
+      "Mode decoder",
+      "Authentication module",
+      "Response processor",
+      "Power supply"
+    ],
+    "flow": [
+      "Interrogation message",
+      "RF receiver",
+      "Protocol / identity checks",
+      "Authorized reply encoding",
+      "RF transmitter",
+      "Identification display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 89,
+    "device": "Electronic Identification System",
+    "parts": [
+      "RFID credential",
+      "Reader antenna",
+      "RF interface",
+      "Controller MCU",
+      "Communication link",
+      "Local policy database",
+      "Relay driver",
+      "Door lock",
+      "Event log"
+    ],
+    "flow": [
+      "Electronic credential",
+      "Reader interface",
+      "Protocol decode",
+      "Identity validation",
+      "Identification logic",
+      "Status output"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 90,
+    "device": "Inertial Navigation System",
+    "parts": [
+      "Accelerometers",
+      "Gyroscopes",
+      "Optional magnetometer",
+      "Signal conditioning",
+      "ADC",
+      "Sensor-fusion processor",
+      "Interface connectors",
+      "Power regulation"
+    ],
+    "flow": [
+      "Gyroscopes / accelerometers",
+      "Sensor readout",
+      "Calibration",
+      "Attitude integration",
+      "Navigation filter",
+      "Position / attitude"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 91,
+    "device": "GPS Receiver",
+    "parts": [
+      "GNSS antenna",
+      "LNA / SAW filter",
+      "Downconverter",
+      "ADC",
+      "Code correlators",
+      "Navigation processor",
+      "TCXO",
+      "Display / NMEA interface"
+    ],
+    "flow": [
+      "Satellite RF signals",
+      "Antenna / RF front end",
+      "Correlation",
+      "Pseudorange measurements",
+      "Navigation solution",
+      "Position / time"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 92,
+    "device": "Electronic Compass",
+    "parts": [
+      "Three-axis magnetometer",
+      "Accelerometer",
+      "Conditioning / ADC",
+      "Calibration processor",
+      "Display",
+      "Battery",
+      "Control buttons",
+      "Housing"
+    ],
+    "flow": [
+      "Magnetic field",
+      "Magnetometer",
+      "Sensor calibration",
+      "Tilt compensation",
+      "Heading computation",
+      "Compass display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 93,
+    "device": "Satellite Communication Terminal",
+    "parts": [
+      "Parabolic dish",
+      "Feed horn",
+      "Block upconverter",
+      "LNB receive chain",
+      "Modem",
+      "Codec / baseband",
+      "Tracking controller",
+      "Power supply",
+      "Network interface"
+    ],
+    "flow": [
+      "Digital messages",
+      "Channel coding",
+      "Modem",
+      "RF up / down conversion",
+      "Pointed antenna",
+      "Satellite link"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 94,
+    "device": "Perimeter Intrusion Detection System",
+    "parts": [
+      "Fence vibration sensor",
+      "Infrared beam sensor",
+      "PIR / microwave sensor",
+      "Main controller",
+      "Network module",
+      "Backup battery",
+      "Surge protection",
+      "Alarm output"
+    ],
+    "flow": [
+      "Perimeter sensors",
+      "Signal conditioning",
+      "Event acquisition",
+      "Detection logic",
+      "Alarm verification",
+      "Security console"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 95,
+    "device": "Biometric Access System",
+    "parts": [
+      "Camera module",
+      "IR illuminator",
+      "Fingerprint sensor",
+      "ARM processor",
+      "Flash memory",
+      "Secure element",
+      "Lock relay",
+      "Wi-Fi / Ethernet",
+      "12 V supply",
+      "Backup battery",
+      "Tamper switch",
+      "Speaker / buzzer"
+    ],
+    "flow": [
+      "Biometric sample",
+      "Sensor",
+      "Digital capture",
+      "Feature extraction",
+      "Template matching",
+      "Access decision"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 96,
+    "device": "Sonar Detection System",
+    "parts": [
+      "Protective dome",
+      "Hydrophone array",
+      "Projector",
+      "Preamplifier",
+      "Band-pass filter",
+      "ADC",
+      "DSP / beamformer",
+      "Power supply",
+      "Navigation interface",
+      "Display console"
+    ],
+    "flow": [
+      "Underwater sound / echoes",
+      "Hydrophone array",
+      "Receive front end",
+      "ADC",
+      "Acoustic detection / tracking",
+      "Observation display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 97,
+    "device": "Unmanned Surveillance Vehicle Electronics",
+    "parts": [
+      "EO gimbal camera",
+      "Thermal camera",
+      "GNSS module",
+      "IMU",
+      "Obstacle sensors",
+      "Onboard computer",
+      "Flight controller",
+      "Telemetry radio",
+      "SSD",
+      "Power distribution board",
+      "Battery management",
+      "LiPo battery"
+    ],
+    "flow": [
+      "Cameras / navigation sensors",
+      "Perception / localization",
+      "Mission controller",
+      "Vehicle control outputs",
+      "Communication link",
+      "Observation telemetry"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 98,
+    "device": "Marine Radar",
+    "parts": [
+      "Scanner antenna",
+      "Radome",
+      "Pedestal",
+      "Drive motor",
+      "Rotary joint",
+      "Waveguide",
+      "RF transmitter",
+      "Duplexer",
+      "LNA / mixer",
+      "ADC / DSP",
+      "Heading / GPS interface",
+      "Display"
+    ],
+    "flow": [
+      "RF transmitter",
+      "Antenna",
+      "Echo receiver",
+      "ADC",
+      "Range / Doppler processing",
+      "Radar display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 99,
+    "device": "Fish Finder",
+    "parts": [
+      "Display head",
+      "Cable",
+      "Sonar transducer",
+      "Power supply",
+      "Pulser",
+      "T/R protection",
+      "Receiver / filter",
+      "ADC",
+      "DSP processor",
+      "Display interface"
+    ],
+    "flow": [
+      "Acoustic pulse",
+      "Underwater echoes",
+      "Transducer",
+      "Receive acquisition",
+      "Echo strength / depth analysis",
+      "Fish-finder view"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 100,
+    "device": "Depth Sounder",
+    "parts": [
+      "Display unit",
+      "Through-hull transducer",
+      "DC power converter",
+      "High-voltage pulser",
+      "T/R protection",
+      "Low-noise receiver",
+      "Amplifier / filter",
+      "ADC",
+      "Timing / MCU / DSP",
+      "Display interface"
+    ],
+    "flow": [
+      "Acoustic pulse",
+      "Seabed reflection",
+      "Transducer",
+      "Echo timing",
+      "Depth calculation",
+      "Depth display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 101,
+    "device": "GPS Chartplotter",
+    "parts": [
+      "Touch display",
+      "Chart storage / SD",
+      "GNSS antenna",
+      "RF front end",
+      "Navigation processor",
+      "Flash memory",
+      "Power management",
+      "NMEA 0183",
+      "NMEA 2000",
+      "Ethernet",
+      "Sonar interface"
+    ],
+    "flow": [
+      "Satellite signals",
+      "GNSS receiver",
+      "Position solution",
+      "Digital chart database",
+      "Chart / route rendering",
+      "Navigation display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 102,
+    "device": "Automatic Identification System (AIS)",
+    "parts": [
+      "VHF antenna",
+      "GPS antenna",
+      "RF front end",
+      "VHF transceiver",
+      "Baseband modem",
+      "AIS encoder / decoder",
+      "Processor",
+      "Display",
+      "NMEA ports",
+      "Power supply"
+    ],
+    "flow": [
+      "GNSS / vessel data",
+      "AIS encoder",
+      "Time-slot scheduler",
+      "VHF transmitter",
+      "Nearby receiver",
+      "Traffic display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 103,
+    "device": "Marine Autopilot",
+    "parts": [
+      "Control head",
+      "Heading sensor",
+      "GNSS antenna",
+      "Rudder-angle sensor",
+      "Autopilot MCU",
+      "NMEA interface",
+      "DC power supply",
+      "H-bridge driver",
+      "Hydraulic pump",
+      "Rudder"
+    ],
+    "flow": [
+      "Heading target",
+      "Compass / motion sensors",
+      "Heading estimate",
+      "Steering controller",
+      "Rudder actuator",
+      "Vessel feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 104,
+    "device": "Electronic Compass",
+    "parts": [
+      "Weatherproof radome",
+      "Mounting base",
+      "Cable outlet",
+      "Magnetometer",
+      "Accelerometer / tilt sensor",
+      "Processing MCU",
+      "Calibration EEPROM",
+      "Power regulator",
+      "NMEA 2000 transceiver",
+      "NMEA 0183 interface"
+    ],
+    "flow": [
+      "Magnetic field",
+      "Magnetometer",
+      "Sensor calibration",
+      "Tilt compensation",
+      "Heading computation",
+      "Compass display"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 105,
+    "device": "Marine VHF Radio",
+    "parts": [
+      "Microphone",
+      "Audio preamplifier",
+      "FM synthesizer / modulator",
+      "RF power amplifier",
+      "Low-pass filter",
+      "Transmit / receive switch",
+      "LNA / mixer",
+      "FM demodulator",
+      "Audio amplifier",
+      "DSC controller",
+      "GPS interface",
+      "Display / channel knob"
+    ],
+    "flow": [
+      "Voice / digital data",
+      "Encoding",
+      "Modulation",
+      "RF front end",
+      "Demodulation / decoding",
+      "Recovered data"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 106,
+    "device": "EPIRB Emergency Beacon",
+    "parts": [
+      "Antenna",
+      "Strobe LED",
+      "Activation switch",
+      "Water sensor",
+      "GNSS receiver",
+      "406 MHz transmitter",
+      "121.5 MHz homing transmitter",
+      "Controller",
+      "Primary battery",
+      "Waterproof housing"
+    ],
+    "flow": [
+      "Activation / GNSS",
+      "Beacon controller",
+      "Identity encoding",
+      "RF power stage",
+      "Antenna",
+      "Rescue satellite"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 107,
+    "device": "Dynamic Positioning System",
+    "parts": [
+      "GNSS position reference",
+      "Gyrocompass",
+      "Wind sensor",
+      "Motion reference unit",
+      "Operator console",
+      "DP computer",
+      "Thruster controllers",
+      "Azimuth thrusters",
+      "Power system"
+    ],
+    "flow": [
+      "Position target",
+      "GNSS / motion references",
+      "State estimation",
+      "Thrust allocation",
+      "Thruster controllers",
+      "Vessel position feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 108,
+    "device": "Underwater ROV Control System",
+    "parts": [
+      "Topside console",
+      "Tether",
+      "Communication module",
+      "Control computer",
+      "Motor drivers",
+      "Power converter",
+      "IMU",
+      "Pressure sensor",
+      "Camera",
+      "LED lights",
+      "Manipulator interface",
+      "Six thrusters"
+    ],
+    "flow": [
+      "Operator / mission input",
+      "Control link",
+      "Vehicle controller",
+      "Thruster drivers",
+      "Underwater sensors",
+      "Telemetry / video"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 109,
+    "device": "Autonomous Underwater Vehicle Navigation",
+    "parts": [
+      "Acoustic modem",
+      "Mission planner",
+      "Navigation computer",
+      "Battery",
+      "Sonar",
+      "INS / IMU",
+      "Doppler velocity log",
+      "Pressure sensor",
+      "Propulsion",
+      "Control fins"
+    ],
+    "flow": [
+      "IMU / acoustic / velocity sensors",
+      "Sensor acquisition",
+      "Navigation filter",
+      "Mission planner",
+      "Vehicle controller",
+      "Navigation telemetry"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 110,
+    "device": "Digital Engine Control",
+    "parts": [
+      "Crankshaft sensor",
+      "Camshaft sensor",
+      "Throttle sensor",
+      "Coolant temperature sensor",
+      "MAP sensor",
+      "ECU input conditioning",
+      "Processor",
+      "Flash / EEPROM",
+      "Injector drivers",
+      "Ignition drivers",
+      "CAN transceiver",
+      "Power / sealed enclosure"
+    ],
+    "flow": [
+      "Engine sensors",
+      "Signal conditioning",
+      "ADC / bus input",
+      "Engine controller",
+      "Fuel / actuator command",
+      "Engine feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 111,
+    "device": "Servo Motor Controller",
+    "parts": [
+      "Output shaft",
+      "Gearbox",
+      "DC motor",
+      "Position sensor",
+      "Control PCB",
+      "PWM decoder / MCU",
+      "H-bridge",
+      "Power input",
+      "PWM input"
+    ],
+    "flow": [
+      "Position target",
+      "Encoder feedback",
+      "Position / velocity control",
+      "Current controller",
+      "Power driver",
+      "Motor motion"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 112,
+    "device": "Stepper Motor Controller",
+    "parts": [
+      "Front bearing",
+      "Permanent-magnet rotor",
+      "Phase A / B coils",
+      "Rear bearing",
+      "Translator",
+      "Current regulator",
+      "H-bridge MOSFETs",
+      "Current-sense resistor",
+      "STEP / DIR interface",
+      "Motor power supply"
+    ],
+    "flow": [
+      "Motion command",
+      "Step / direction logic",
+      "Microstep sequencer",
+      "Current-regulated driver",
+      "Motor windings",
+      "Rotor steps"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 113,
+    "device": "Mobile Robot",
+    "parts": [
+      "Wheeled chassis",
+      "Battery",
+      "Motor drivers",
+      "Left / right motors",
+      "Wheel encoders",
+      "IMU",
+      "Distance sensor",
+      "Controller",
+      "Communication antenna"
+    ],
+    "flow": [
+      "Environmental sensors",
+      "Perception",
+      "Localization / planner",
+      "Motion controller",
+      "Wheel / leg drives",
+      "Movement feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 114,
+    "device": "Line-Following Robot",
+    "parts": [
+      "Chassis plates",
+      "Microcontroller",
+      "L298N-style motor driver",
+      "DC gear motors",
+      "Wheels",
+      "IR reflectance array",
+      "Battery",
+      "5 V regulator",
+      "Status LEDs"
+    ],
+    "flow": [
+      "Track reflection",
+      "IR sensor array",
+      "Threshold / position estimate",
+      "Steering controller",
+      "Wheel motors",
+      "Path feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 115,
+    "device": "Self-Balancing Robot",
+    "parts": [
+      "MPU6050-style IMU",
+      "Arduino Nano-style MCU",
+      "TB6612-style dual motor driver",
+      "Li-Po battery",
+      "Frame",
+      "DC gear motors / encoders",
+      "Wheels"
+    ],
+    "flow": [
+      "IMU measurements",
+      "Tilt estimation",
+      "Balance controller",
+      "Motor drivers",
+      "Wheel torque",
+      "Tilt feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 116,
+    "device": "Industrial Robot Controller",
+    "parts": [
+      "Cooling fans",
+      "AC-DC power supply",
+      "Safety controller",
+      "Real-time CPU board",
+      "Motion control board",
+      "Servo drive modules",
+      "I/O terminals",
+      "Ethernet / fieldbus",
+      "Teach pendant",
+      "Joint encoders"
+    ],
+    "flow": [
+      "Robot program",
+      "Trajectory planner",
+      "Axis coordination",
+      "Servo drive commands",
+      "Encoder / safety feedback",
+      "Controller status"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 117,
+    "device": "Collaborative Robot",
+    "parts": [
+      "Brushless joint motor",
+      "Harmonic drive",
+      "Torque sensor",
+      "Position encoder",
+      "Safety electronics",
+      "End effector",
+      "Vision camera",
+      "Robot controller",
+      "Teach pendant"
+    ],
+    "flow": [
+      "Task target",
+      "Kinematics / trajectory",
+      "Joint servo control",
+      "Torque / position sensors",
+      "Safety monitoring",
+      "Motion feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 118,
+    "device": "LiDAR Mapping Robot",
+    "parts": [
+      "2D LiDAR sensor",
+      "Onboard computer",
+      "IMU",
+      "Wheel encoders",
+      "Dual motor driver",
+      "Battery",
+      "Communication module",
+      "Left / right motors"
+    ],
+    "flow": [
+      "Scanning laser",
+      "Scene reflection",
+      "Return timing",
+      "Point cloud",
+      "Localization / mapping",
+      "Navigation map"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 119,
+    "device": "SLAM Navigation System",
+    "parts": [
+      "LiDAR / camera",
+      "IMU",
+      "Wheel encoders",
+      "Onboard processor",
+      "Map memory",
+      "Motor controller",
+      "DC motors",
+      "Battery"
+    ],
+    "flow": [
+      "Camera / LiDAR / odometry",
+      "Feature extraction",
+      "Data association",
+      "Pose estimation",
+      "Map update",
+      "Navigation planner"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 120,
+    "device": "Autonomous Mobile Robot",
+    "parts": [
+      "Vehicle platform",
+      "Range / camera sensing",
+      "Navigation processor",
+      "Steering actuator",
+      "Drive motors",
+      "Wheel odometry",
+      "GNSS receiver",
+      "Battery / power distribution"
+    ],
+    "flow": [
+      "Environmental sensors",
+      "Perception",
+      "Localization / planner",
+      "Motion controller",
+      "Wheel / leg drives",
+      "Movement feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 121,
+    "device": "Warehouse Robot",
+    "parts": [
+      "360° LiDAR",
+      "Wireless antenna",
+      "Industrial computer",
+      "Battery / BMS",
+      "Drive motors",
+      "Wheel encoders",
+      "Lift mechanism",
+      "Barcode / vision sensor",
+      "Shelf / bin"
+    ],
+    "flow": [
+      "Environmental sensors",
+      "Perception",
+      "Localization / planner",
+      "Motion controller",
+      "Wheel / leg drives",
+      "Movement feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 122,
+    "device": "Machine-Vision System",
+    "parts": [
+      "Industrial CMOS camera",
+      "Lens",
+      "LED ring light",
+      "Trigger sensor",
+      "Vision processor",
+      "Communication interface",
+      "PLC output",
+      "Conveyor / diverter"
+    ],
+    "flow": [
+      "Scene illumination",
+      "Camera / optics",
+      "Image capture",
+      "Feature processing",
+      "Inspection / pose decision",
+      "Automation output"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 123,
+    "device": "Quadruped Robot",
+    "parts": [
+      "LiDAR / depth camera",
+      "IMU",
+      "Compute module",
+      "Battery pack",
+      "BLDC servo actuators",
+      "Reduction gears",
+      "Leg links",
+      "Foot contact sensors"
+    ],
+    "flow": [
+      "IMU / joint / contact sensors",
+      "Body-state estimate",
+      "Gait planner",
+      "Joint control",
+      "Leg actuators",
+      "Balance feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 124,
+    "device": "Wi-Fi Router",
+    "parts": [
+      "Dual-band antennas",
+      "RF front end",
+      "Router SoC / CPU",
+      "RAM",
+      "Flash memory",
+      "Ethernet switch / PHY",
+      "Power regulation",
+      "Crystal oscillator"
+    ],
+    "flow": [
+      "Ethernet / Wi-Fi input",
+      "PHY / MAC",
+      "Packet buffers",
+      "Routing / switching",
+      "Output queues",
+      "Network interface"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 125,
+    "device": "Bluetooth Headphones",
+    "parts": [
+      "Antenna",
+      "Bluetooth SoC",
+      "DSP / audio codec",
+      "DAC / amplifier",
+      "Speaker driver",
+      "Microphones",
+      "Battery / charging circuit"
+    ],
+    "flow": [
+      "Bluetooth RF",
+      "Baseband decoder",
+      "Audio codec",
+      "Audio DSP",
+      "DAC / amplifier",
+      "Headphone drivers"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 126,
+    "device": "Smartwatch",
+    "parts": [
+      "Touch layer",
+      "OLED display",
+      "SoC / memory",
+      "PPG sensor",
+      "Accelerometer",
+      "Gyroscope",
+      "Haptic motor",
+      "Wireless module",
+      "Battery / charging coil"
+    ],
+    "flow": [
+      "Motion / optical / touch sensors",
+      "Sensor interfaces",
+      "Wearable processor",
+      "Application / health processing",
+      "Display driver",
+      "Screen / wireless sync"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 127,
+    "device": "RFID Access Card",
+    "parts": [
+      "Card antenna coil",
+      "RFID chip",
+      "Plastic shell",
+      "Reader antenna",
+      "RF front end",
+      "Reader MCU",
+      "Access controller",
+      "Door relay",
+      "12 V supply"
+    ],
+    "flow": [
+      "Reader RF field",
+      "Card antenna",
+      "Rectifier / chip",
+      "RFID protocol",
+      "Credential identifier",
+      "Reader validation"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 128,
+    "device": "Barcode Scanner",
+    "parts": [
+      "Illumination LED",
+      "Lens",
+      "CMOS / photodiode",
+      "Analog front end / ADC",
+      "Decoder MCU",
+      "Trigger",
+      "Buzzer",
+      "USB / wireless",
+      "Battery"
+    ],
+    "flow": [
+      "Printed code",
+      "Illumination / optics",
+      "Image / line sensor",
+      "Digital capture",
+      "Code decoding",
+      "Identifier output"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 129,
+    "device": "QR Code Scanner",
+    "parts": [
+      "Lens",
+      "CMOS camera",
+      "Flash LED",
+      "Image signal processor",
+      "SoC / decoder",
+      "Memory",
+      "Battery",
+      "Display",
+      "Wireless interface"
+    ],
+    "flow": [
+      "QR pattern",
+      "Camera",
+      "Digital image",
+      "Finder / alignment detection",
+      "Error-correcting decode",
+      "Decoded data"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 130,
+    "device": "Biometric Fingerprint Scanner",
+    "parts": [
+      "Sensing surface",
+      "LED illumination",
+      "Optical / capacitive sensor",
+      "ADC",
+      "Processor",
+      "Template flash",
+      "Secure element",
+      "Interface driver",
+      "Status LED / buzzer"
+    ],
+    "flow": [
+      "Biometric sample",
+      "Sensor",
+      "Digital capture",
+      "Feature extraction",
+      "Template matching",
+      "Access decision"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 131,
+    "device": "CCTV Camera",
+    "parts": [
+      "Housing",
+      "Lens",
+      "CMOS sensor",
+      "IR LEDs",
+      "ISP / encoder",
+      "Flash / SDRAM",
+      "Ethernet PHY / PoE",
+      "Microphone",
+      "SD card"
+    ],
+    "flow": [
+      "Scene / lens",
+      "Image sensor",
+      "Pixel acquisition",
+      "Image processor",
+      "Video compression",
+      "Recorder / network stream"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 132,
+    "device": "IR Camera",
+    "parts": [
+      "Germanium IR lens",
+      "Calibration shutter",
+      "Microbolometer array",
+      "Analog front end / ADC",
+      "Reference temperature sensor",
+      "Processor",
+      "Flash memory",
+      "LCD / OLED",
+      "Battery"
+    ],
+    "flow": [
+      "Infrared radiation",
+      "IR optics",
+      "Detector array",
+      "Readout / ADC",
+      "Correction / image processing",
+      "Thermal image"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 133,
+    "device": "Television",
+    "parts": [
+      "RF tuner",
+      "HDMI receiver",
+      "Wi-Fi / Ethernet",
+      "Main SoC",
+      "RAM / flash",
+      "T-CON board",
+      "Display panel",
+      "LED backlight",
+      "Audio amplifier",
+      "Speakers",
+      "Power supply"
+    ],
+    "flow": [
+      "Broadcast / media input",
+      "Demodulator / interface",
+      "Media decoder",
+      "Image processing",
+      "Display driver",
+      "Screen / speakers"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 134,
+    "device": "Digital Door Lock",
+    "parts": [
+      "Keypad / touchscreen",
+      "Fingerprint / RFID module",
+      "MCU",
+      "Secure element",
+      "Motor / latch actuator",
+      "H-bridge driver",
+      "Door-position sensor",
+      "Wireless module",
+      "Battery pack"
+    ],
+    "flow": [
+      "Credential input",
+      "Reader / keypad",
+      "Validation controller",
+      "Access policy",
+      "Lock actuator",
+      "Door sensor / log"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 135,
+    "device": "Microwave Oven Controller",
+    "parts": [
+      "Keypad",
+      "Display board",
+      "Main MCU board",
+      "Door interlock switches",
+      "Relay / triac driver",
+      "High-voltage supply / magnetron",
+      "Turntable motor",
+      "Cooling fan"
+    ],
+    "flow": [
+      "Keypad / time setting",
+      "Door / temperature inputs",
+      "Control MCU",
+      "Timing / interlock logic",
+      "Power control outputs",
+      "Display / cycle feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 136,
+    "device": "Washing Machine Controller",
+    "parts": [
+      "MCU / controller board",
+      "Power supply",
+      "Inlet valve",
+      "Drain pump",
+      "Drum motor",
+      "Inverter motor driver",
+      "Door lock / switch",
+      "Water-level sensor",
+      "NTC temperature sensor",
+      "Tachometer",
+      "Detergent dispenser",
+      "Wiring harness"
+    ],
+    "flow": [
+      "Cycle settings",
+      "Water / temperature / speed sensors",
+      "Control MCU",
+      "Cycle sequencing",
+      "Valve / heater / motor drives",
+      "Cycle feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 137,
+    "device": "Induction Cooktop",
+    "parts": [
+      "Ceramic glass top",
+      "Touch control panel",
+      "Induction work coil",
+      "Temperature sensor",
+      "IGBT / MOSFET power board",
+      "MCU / gate driver",
+      "Cooling fan",
+      "Rectifier / DC bus"
+    ],
+    "flow": [
+      "User power setting",
+      "Pan / temperature sensing",
+      "Control MCU",
+      "Inverter drive",
+      "Induction coil",
+      "Heating feedback"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 138,
+    "device": "Smart Energy Meter",
+    "parts": [
+      "Current transformer / shunt",
+      "Voltage sensing network",
+      "Metering IC",
+      "Voltage / current ADC",
+      "Microcontroller",
+      "LCD display",
+      "Disconnect relay",
+      "Communication module",
+      "Memory / RTC",
+      "Tamper detection",
+      "Power supply"
+    ],
+    "flow": [
+      "Voltage / current sensors",
+      "Analog front end",
+      "ADC",
+      "Power calculation",
+      "Energy accumulator",
+      "Display / communication"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 139,
+    "device": "GPS Receiver",
+    "parts": [
+      "Patch antenna",
+      "Low-noise amplifier",
+      "SAW band-pass filter",
+      "Mixer / local oscillator",
+      "ADC",
+      "Baseband correlator",
+      "TCXO timing reference",
+      "Navigation MCU",
+      "Memory",
+      "Display / power supply"
+    ],
+    "flow": [
+      "Satellite RF signals",
+      "Antenna / RF front end",
+      "Correlation",
+      "Pseudorange measurements",
+      "Navigation solution",
+      "Position / time"
+    ],
+    "missingArtworkParts": []
+  },
+  {
+    "number": 140,
+    "device": "Digital Multimeter",
+    "parts": [
+      "Input terminals / probes",
+      "MOV / TVS / fuse protection",
+      "Rotary selector",
+      "Voltage divider",
+      "Current shunt",
+      "Resistance test source",
+      "Input conditioning / filter",
+      "ADC / measurement IC",
+      "LCD / buzzer",
+      "Battery / supply"
+    ],
+    "flow": [
+      "Electrical input",
+      "Protection / range selection",
+      "Signal conditioning",
+      "ADC",
+      "Measurement processor",
+      "Numeric display"
+    ],
+    "missingArtworkParts": []
+  }
+]

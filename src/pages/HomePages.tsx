@@ -1,3 +1,4 @@
+import { CATEGORIES as DEVICE_CATEGORIES, DEVICES } from "../studios/how-devices-work/catalogue";
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CATEGORIES, matchStudio, searchStudios, studioMatchesQuery, STUDIOS, type StudioInfo } from "../data/curriculum";
@@ -26,17 +27,20 @@ function destinationLabel(path: string, studio: StudioInfo): string {
 }
 
 function StudioCard({ studio, visited, next, preview }: { studio: StudioInfo; visited: boolean; next: boolean; preview: boolean }) {
+  const deviceCategory = DEVICE_CATEGORIES.find(category => studio.id === `devices-${category.id}`);
+  const deviceCount = deviceCategory ? DEVICES.filter(device => device.categories.includes(deviceCategory.id)).length : 0;
+  const deviceArt = deviceCategory ? DEVICES.find(device => device.categories.includes(deviceCategory.id))?.thumbnail : undefined;
   const count = conceptCount(studio);
   const minutes = minutesFor(count);
   const body = (
     <>
       <div className="studio-card-head">
-        {studio.id === "how-devices-work" ? <img src="/devices/studio-collection.svg" alt="Collection of medical, aviation and robotic systems" width={140} height={86} /> : <StudioMark id={studio.id} />}
+        {studio.id === "how-devices-work" ? <img src="/devices/studio-collection.svg" alt="Collection of medical, aviation and robotic systems" width={140} height={86} /> : deviceArt ? <img src={deviceArt} alt={`${studio.title} equipment`} width={140} height={86} /> : <StudioMark id={studio.id} />}
         {studio.active ? <span className="pill ok">{visited ? "Visited" : "Open"}</span> : <span className="lock">Phase {studio.phase}</span>}
       </div>
       <strong>{studio.title}</strong>
       <p className="studio-action">{studio.summary.split(".")[0]}</p>
-      <span className="tiny">{studio.id === "how-devices-work" ? "140 catalogue entries • Medical • Aviation • Marine • Defence • Robotics • Everyday Technology" : studio.id === "microcontroller" ? "72 planned labs · studio roadmap" : `Phase ${studio.phase} · about ${minutes} min${count ? ` · ${count} concepts` : ""}`}</span>
+      <span className="tiny">{deviceCategory ? `${deviceCount} devices · Explore collection` : studio.id === "how-devices-work" ? "140 catalogue entries • Medical • Aviation • Marine • Defence • Robotics • Everyday Technology" : studio.id === "microcontroller" ? "72 planned labs · studio roadmap" : `Phase ${studio.phase} · about ${minutes} min${count ? ` · ${count} concepts` : ""}`}</span>
       {preview ? <span className="studio-preview">Opens {destinationLabel(studio.path, studio)}. {studio.summary}</span> : null}
     </>
   );
@@ -52,6 +56,7 @@ const CHIP: Record<string, string> = {
   memory: "Memory",
   processor: "Processor",
   systems: "Systems",
+  devices: "How Devices work",
   architecture: "Architecture",
   isa: "ISA",
   build: "Build",

@@ -3146,3 +3146,6 @@ td.tag {
   .ax-hot { transition: none; }
 }
 
+
+.tone-devices .home-cat-head { background: linear-gradient(90deg, #ccfbf1, #f0fdfa); }
+.studio-card.tone-devices { border-color: #5eead4; background: linear-gradient(180deg, #f0fdfa, #fff); }

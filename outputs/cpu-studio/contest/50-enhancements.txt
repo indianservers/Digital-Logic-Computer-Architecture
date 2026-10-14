@@ -1,0 +1,194 @@
+BUILD YOUR OWN CPU — 50 CONTEST ENHANCEMENTS
+
+Implemented in the local studio at /architecture/builder/contest.
+Open Component Library → Test Bench for actual component experiments.
+Open Contest & Evidence → Model & Enhancements for this list in the application.
+
+The system is an executable logic-level custom CPU simulator. Its editable graph is real input to execution. It is not a physical chip, manufacturer IC replica, FPGA synthesizer, certified standard ISA, concurrent pipeline, or hardware timing/power model. The independent reference uses separate BigInt execution and condition-flag semantics but shares the assembler and decoder. Accumulator and unified-memory programs use explicit final-state assertions instead of differential comparison.
+
+Each test uses an independent reset copy; register, memory, PC, HALT and ALU-flag differences are checked after committed instructions. Source, actual encoded words, traces, assertions, cycle counts and hashes can be inspected and exported. CPI counts HALT as an instruction. All score contributions are equal-weight public test passes, not an official contest ranking.
+
+Contest resource limits: 128 components, 512 wires, 64 tests, 1–2000 simulated cycles per test. Unsupported blocks, ambiguous architectures, unknown fallback, I/O and latency claims are blocked. Graph editing supports larger designs; these contest limits are disclosed explicitly.
+
+ENHANCEMENTS AND VERIFICATION LOCATIONS
+
+1. Per-component behavior contracts
+   Area: Components. Verify: Library → Overview.
+
+2. Accurate timing and reset descriptions
+   Area: Components. Verify: Library → Specifications.
+
+3. Valid width choices by component kind
+   Area: Components. Verify: Library → configuration.
+
+4. Isolated four-state component test bench
+   Area: Components. Verify: Library → Test Bench.
+
+5. Binary, hexadecimal, unsigned and signed output views
+   Area: Components. Verify: Library → Test Bench.
+
+6. ALU operation and Z/N/C/V evaluation
+   Area: Components. Verify: Library → Test Bench.
+
+7. MUX selection and disconnected-input experiments
+   Area: Components. Verify: Library → Test Bench.
+
+8. Splitter, joiner and explicit sign-extension experiments
+   Area: Components. Verify: Library → configuration / Test Bench.
+
+9. Boundary-vector result tables and bench export
+   Area: Components. Verify: Library → Test Bench.
+
+10. Saved presets retain ALU operation and extension width
+   Area: Components. Verify: Library → Save Configuration.
+
+11. Stable finding identifiers across unrelated edits
+   Area: Validation. Verify: Validation → Findings.
+
+12. Duplicate wire identifier detection
+   Area: Validation. Verify: Validation → Findings.
+
+13. Duplicate component identifier detection
+   Area: Validation. Verify: Validation → Findings.
+
+14. Port direction errors and signal-role warnings
+   Area: Validation. Verify: Validation → Findings.
+
+15. Clock checks for every modeled storage kind
+   Area: Validation. Verify: Validation → Findings.
+
+16. Unmapped memory detection
+   Area: Validation. Verify: Validation → Findings.
+
+17. Explicit limits for latency and I/O metadata
+   Area: Validation. Verify: Validation / contest eligibility.
+
+18. One-bit split/join and invalid sign-extension checks
+   Area: Validation. Verify: Validation → Findings.
+
+19. Register-width and ISA semantic validation
+   Area: Validation. Verify: Validation → Findings.
+
+20. Reject sandbox-only cache/core CPU blocks
+   Area: Validation. Verify: Validation / contest eligibility.
+
+21. Participant, team and design-note fields
+   Area: Contest. Verify: Contest → Challenges.
+
+22. Persistent named test programs and cycle budgets
+   Area: Contest. Verify: Contest → Challenges.
+
+23. Validated test-suite JSON import
+   Area: Contest. Verify: Contest → Import Suite.
+
+24. Shareable test-suite export
+   Area: Contest. Verify: Contest → Export Suite.
+
+25. Challenge generation using declared ISA semantics
+   Area: Contest. Verify: Contest → Generate Challenges.
+
+26. Independent BigInt integer reference interpreter
+   Area: Contest. Verify: Contest → Run Suite.
+
+27. Reproducible seeded arithmetic challenges
+   Area: Contest. Verify: Contest → Seed.
+
+28. Full register comparison plus explicit register assertions
+   Area: Contest. Verify: Contest → Results.
+
+29. Full data-memory comparison plus explicit word assertions
+   Area: Contest. Verify: Contest → Results.
+
+30. PC, HALT and cycle-budget assertions
+   Area: Contest. Verify: Contest → Results.
+
+31. Strict unknown-signal and unambiguous CPU eligibility
+   Area: Contest. Verify: Contest → eligibility panel.
+
+32. Bounded microcycle execution with browser yielding
+   Area: Contest. Verify: Contest → Run Suite.
+
+33. Cancellation and progress tracking
+   Area: Contest. Verify: Contest → Cancel.
+
+34. Fresh reset and immutable project copy for every test
+   Area: Contest. Verify: Contest → Run Suite.
+
+35. First divergence reason and actual execution trace
+   Area: Contest. Verify: Contest → Results.
+
+36. Measured cycles, committed instructions and CPI
+   Area: Contest. Verify: Contest → Results.
+
+37. Executed instruction coverage
+   Area: Contest. Verify: Contest → Results.
+
+38. Actual machine-code listing for each test
+   Area: Contest. Verify: Contest → Results.
+
+39. Transparent test pass percentage with blocked/fail states
+   Area: Contest. Verify: Contest → Results.
+
+40. Executable-template regression runner
+   Area: Contest. Verify: Contest → Verify Templates.
+
+41. SHA-256 execution-input fingerprint
+   Area: Evidence. Verify: Contest → Results / submission.
+
+42. SHA-256 test-suite fingerprint
+   Area: Evidence. Verify: Contest → Results / submission.
+
+43. Versioned design, source, tests, results and hash bundle
+   Area: Evidence. Verify: Contest → Export Submission.
+
+44. Judge package verification and independent rerun
+   Area: Evidence. Verify: Contest → Judge Verification.
+
+45. Stale/incomplete result detection before export
+   Area: Evidence. Verify: Contest → Export Submission.
+
+46. CSV result export
+   Area: Evidence. Verify: Contest → Results.
+
+47. Full trace JSON export
+   Area: Evidence. Verify: Contest → Results.
+
+48. Component inventory and typed-port netlist export
+   Area: Evidence. Verify: Contest → Export Netlist.
+
+49. Capability matrix with primary learning references
+   Area: Evidence. Verify: Contest → Model & Enhancements.
+
+50. Printable judge report and indexed 50-item change list
+   Area: Evidence. Verify: Contest → Print / Model & Enhancements.
+
+VERIFICATION
+
+90 targeted tests pass across contest, project/simulator, Blocks, arithmetic and architecture suites. TypeScript and production build are also checked. A broader part4 test still has its existing failure for 18 mobile/desktop curriculum routes, outside this CPU change.
+
+Browser smoke test: the current 16-bit project passed 13/13 generated challenges; export → judge import → independent rerun reproduced the report exactly. All five executable template samples passed their documented result-of-12 assertions. Screenshots, a labeled verification-fixture submission and replayed report are retained alongside this file. The fixture is a software verification example, not a contest participant.
+
+Hashes detect disagreement with the supplied manifest. They are not author signatures; a malicious person can recompute hashes. Judges should rerun packages with their own test suite and assess originality separately. The studio has no server registration, identity verification, private test server or public leaderboard.
+
+RECOMMENDED CONTEST FLOW
+
+1. Publish the permitted model capabilities and one common functional test contract before entries open.
+2. Require a submission bundle, design notes, attribution and a short live explanation of the datapath.
+3. Have judges rerun the imported design against the supplied suite and a separate organizer-authored suite. Import the project through the normal Project menu before running a different suite.
+4. Judge correctness using actual expected-state assertions; assess originality and explanation manually. Use cycle counts only within comparable ISA/test/memory contracts. Do not award hardware-frequency, area, pipeline or power points for unmodeled behavior.
+5. Archive the exact package and judge replay so disputed outcomes can be reproduced.
+
+PRIMARY LEARNING REFERENCES
+
+https://www.nand2tetris.org/project05 — educational CPU construction and supplied test programs.
+https://www.ti.com/product/SN74HC157 — physical multiplexer documentation; no equivalence claim for the generic simulator MUX.
+https://www.ti.com/product/SN74HC595 — physical serial shift-register documentation; generic parallel registers are not this part.
+
+IMPLEMENTATION
+
+src/engines/builder/contest.ts — test suite, independent reference, execution, hashes and judge verification.
+src/engines/builder/componentContract.ts — behavior contracts and actual graph bench.
+src/engines/builder/engineeringValidation.ts / validate.ts / isa.ts — structural and encoding checks.
+src/studios/builder/ContestLab.tsx / ComponentWorkbench.tsx — contest and component interfaces.
+src/engines/builder/contest.test.ts — independent regression cases including deliberately wrong graphs.
+src/engines/digital/arithmetic.ts — logical shift at/above width corrected; rotations still wrap.

@@ -196,8 +196,12 @@ export type ShiftKind = "logical-left" | "logical-right" | "arithmetic-right" | 
 
 export function shiftVector(vector: LogicVector, kind: ShiftKind, amount: number): { result: LogicVector; shiftedOut: LogicBit } {
   const width = vector.length;
-  const steps = ((amount % width) + width) % width;
-  if (!bitsOrNull(vector) || steps === 0) return { result: [...vector], shiftedOut: 0 };
+  if(!width)return {result:[],shiftedOut:0};
+  const rotate=kind==="rotate-left"||kind==="rotate-right";
+  const count=Math.max(0,Math.trunc(Number.isFinite(amount)?amount:0));
+  const rotation=Number.isFinite(amount)?Math.trunc(amount):0;
+  const steps = rotate ? ((rotation % width) + width) % width : Math.min(count,width);
+  if (steps === 0) return { result: [...vector], shiftedOut: 0 };
   if (kind === "rotate-left") {
     return { result: [...vector.slice(steps), ...vector.slice(0, steps)], shiftedOut: vector[steps - 1] ?? 0 };
   }
@@ -205,11 +209,11 @@ export function shiftVector(vector: LogicVector, kind: ShiftKind, amount: number
     return { result: [...vector.slice(width - steps), ...vector.slice(0, width - steps)], shiftedOut: vector[width - steps] ?? 0 };
   }
   if (kind === "logical-left") {
-    const out = vector[steps - 1] ?? 0;
+    const out = count>width?0:vector[steps - 1] ?? 0;
     return { result: [...vector.slice(steps), ...zeros(steps)], shiftedOut: out };
   }
-  const fill = kind === "arithmetic-right" && vector[0] === 1 ? 1 : 0;
-  const out = vector[width - steps] ?? 0;
+  const fill:LogicBit = kind === "arithmetic-right" ? vector[0]??0 : 0;
+  const out = count>width?fill:vector[width - steps] ?? 0;
   return { result: [...Array.from({ length: steps }, () => fill), ...vector.slice(0, width - steps)], shiftedOut: out };
 }
 

@@ -1,0 +1,30 @@
+[
+  {
+    "lab": "library",
+    "label": "Component Library",
+    "heading": "Component Library",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "lab": "wires",
+    "label": "Wire & Bus System",
+    "heading": "Wire & Bus System",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "lab": "editor",
+    "label": "Program Editor",
+    "heading": "Program Editor",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "lab": "debug",
+    "label": "Execution Debugger",
+    "heading": "Execution Debugger",
+    "scrollWidth": 382,
+    "width": 390
+  }
+]

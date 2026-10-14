@@ -1,0 +1,552 @@
+{
+  "tool": "Built-in image_gen",
+  "transparentBackground": true,
+  "assets": [
+    {
+      "src": "/devices/parts/generated/air-filter.png",
+      "kind": "illustration",
+      "caption": "Representative air filter illustration",
+      "prompt": "Create one isolated realistic educational hardware illustration of a Air filter. Pleated rectangular air filter cartridge, mesh support and rubber perimeter seal. Three-quarter view, complete part centered, transparent background, realistic engineering construction, no labels, no text, no branding. It is a representative example for component anatomy, not an exact vendor part."
+    },
+    {
+      "src": "/devices/parts/generated/aircraft-control-surface.png",
+      "kind": "illustration",
+      "caption": "Representative aircraft control surface illustration",
+      "prompt": "A single realistic educational engineering illustration of one Aircraft control surface, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/aircraft-joystick.png",
+      "kind": "illustration",
+      "caption": "Representative aircraft joystick illustration",
+      "prompt": "A single realistic educational engineering illustration of one Aircraft joystick, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/anemometer-wind-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative anemometer wind sensor illustration",
+      "prompt": "One isolated representative educational engineering illustration of a Anemometer wind sensor. A three-cup rotating wind speed sensor, short central spindle, balanced radial arms and lower cylindrical encoder body, mounting base and signal cable. Physically plausible construction, complete component centered in three-quarter view, transparent background. No text or branding. No whole device or collage."
+    },
+    {
+      "src": "/devices/parts/generated/anesthesia-machine-vaporizer.png",
+      "kind": "illustration",
+      "caption": "Representative anesthesia machine vaporizer illustration",
+      "prompt": "A single realistic educational engineering illustration of one Anesthesia machine vaporizer, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/ball-bearing.png",
+      "kind": "illustration",
+      "caption": "Representative ball bearing illustration",
+      "prompt": "A single realistic educational engineering illustration of one Ball bearing, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/battery-holder.png",
+      "kind": "illustration",
+      "caption": "Representative battery holder illustration",
+      "prompt": "One representative isolated educational component illustration of a Battery holder. A black plastic two-cell battery holder, empty, with clearly visible metal spring contacts, flat terminals and red/black leads. No cells inserted. Physically plausible construction, entire component visible, three-quarter view, transparent background. No brand, no text, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/battery-management-board.png",
+      "kind": "illustration",
+      "caption": "Representative battery management board illustration",
+      "prompt": "A single realistic educational engineering illustration of one Battery management board, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/blood-pressure-cuff.png",
+      "kind": "illustration",
+      "caption": "Representative blood pressure cuff illustration",
+      "prompt": "A single realistic educational engineering illustration of one Blood pressure cuff, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/breadboard.png",
+      "kind": "illustration",
+      "caption": "Representative breadboard illustration",
+      "prompt": "A single realistic educational engineering illustration of one Breadboard, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/camera-shutter.png",
+      "kind": "illustration",
+      "caption": "Representative camera shutter illustration",
+      "prompt": "A single realistic educational engineering illustration of one Camera shutter, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop. Mechanical focal-plane camera shutter assembly, black overlapping thin metal shutter blades within rectangular support frame; absolutely no window or building. This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/capacitor.png",
+      "kind": "illustration",
+      "caption": "Representative capacitor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Capacitor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/centrifuge-rotor.png",
+      "kind": "illustration",
+      "caption": "Representative centrifuge rotor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Centrifuge rotor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/cmos-image-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative cmos image sensor illustration",
+      "prompt": "One isolated educational hardware illustration of a CMOS image sensor. Show a single CMOS camera image sensor package with rectangular iridescent light-sensitive silicon, ceramic support, gold leads. No complete camera. Physically plausible scientific product illustration, three-quarter view, transparent background, entire component visible, no text, no branding, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/coaxial-cable-connector.png",
+      "kind": "illustration",
+      "caption": "Representative coaxial cable connector illustration",
+      "prompt": "A single realistic educational engineering illustration of one Coaxial cable connector, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/control-panel.png",
+      "kind": "illustration",
+      "caption": "Representative control panel illustration",
+      "prompt": "A single realistic educational engineering illustration of one Control panel, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/conveyor-belt.png",
+      "kind": "illustration",
+      "caption": "Representative conveyor belt illustration",
+      "prompt": "A single realistic educational engineering illustration of one Conveyor belt, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/cryostat.png",
+      "kind": "illustration",
+      "caption": "Representative cryostat illustration",
+      "prompt": "A single realistic educational engineering illustration of one Cryostat, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/ct-scanner-gantry.png",
+      "kind": "illustration",
+      "caption": "Representative ct scanner gantry illustration",
+      "prompt": "A single realistic educational engineering illustration of one CT scanner gantry, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/cuvette.png",
+      "kind": "illustration",
+      "caption": "Representative cuvette illustration",
+      "prompt": "A single realistic educational engineering illustration of one Cuvette, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/dialyzer.png",
+      "kind": "illustration",
+      "caption": "Representative dialyzer illustration",
+      "prompt": "One isolated educational hardware illustration of a Dialyzer. Show a transparent cylindrical hollow-fiber hemodialysis filter cartridge with dense parallel fibers, blood and dialysate ports and two endcaps. Physically plausible scientific product illustration, three-quarter view, transparent background, entire component visible, no text, no branding, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/electric-door-lock.png",
+      "kind": "illustration",
+      "caption": "Representative electric door lock illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electric door lock, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/electric-pump.png",
+      "kind": "illustration",
+      "caption": "Representative electric pump illustration",
+      "prompt": "Create one isolated realistic educational hardware illustration of a Electric pump. Small DC diaphragm pump with electric motor and two hose ports. Three-quarter view, complete part centered, transparent background, realistic engineering construction, no labels, no text, no branding. It is a representative example for component anatomy, not an exact vendor part."
+    },
+    {
+      "src": "/devices/parts/generated/electrical-connector.png",
+      "kind": "illustration",
+      "caption": "Representative electrical connector illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electrical connector, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop. An isolated inline male and female circular electrical cable connector pair, metal contacts visible, absolutely no whole appliance. This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/electrocardiography-electrodes.png",
+      "kind": "illustration",
+      "caption": "Representative electrocardiography electrodes illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electrocardiography electrodes, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/electroencephalography-electrode-cap.png",
+      "kind": "illustration",
+      "caption": "Representative electroencephalography electrode cap illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electroencephalography electrode cap, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/electromagnetic-coil.png",
+      "kind": "illustration",
+      "caption": "Representative electromagnetic coil illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electromagnetic coil, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/electronic-fuse-protection.png",
+      "kind": "illustration",
+      "caption": "Representative electronic fuse protection illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electronic fuse protection, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/electronics-hand-tools.png",
+      "kind": "illustration",
+      "caption": "Representative electronics hand tools illustration",
+      "prompt": "A single realistic educational engineering illustration of one Electronics hand tools, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/eyepiece.png",
+      "kind": "illustration",
+      "caption": "Representative eyepiece illustration",
+      "prompt": "A single realistic educational engineering illustration of one Eyepiece, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/fingerprint-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative fingerprint sensor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Fingerprint sensor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/flexible-tubing.png",
+      "kind": "illustration",
+      "caption": "Representative flexible tubing illustration",
+      "prompt": "A single realistic educational engineering illustration of one Flexible tubing, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/flow-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative flow sensor illustration",
+      "prompt": "Create one isolated realistic educational hardware illustration of a Flow sensor. Compact inline turbine water flow sensor, threaded inlet and outlet, three wire cable. Three-quarter view, complete part centered, transparent background, realistic engineering construction, no labels, no text, no branding. It is a representative example for component anatomy, not an exact vendor part."
+    },
+    {
+      "src": "/devices/parts/generated/gas-pressure-regulator.png",
+      "kind": "illustration",
+      "caption": "Representative gas pressure regulator illustration",
+      "prompt": "A single realistic educational engineering illustration of one Gas pressure regulator, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/gearbox.png",
+      "kind": "illustration",
+      "caption": "Representative gearbox illustration",
+      "prompt": "A single realistic educational engineering illustration of one Gearbox, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/glucose-test-strip.png",
+      "kind": "illustration",
+      "caption": "Representative glucose test strip illustration",
+      "prompt": "A single realistic educational engineering illustration of one Glucose test strip, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/gps-antenna.png",
+      "kind": "illustration",
+      "caption": "Representative gps antenna illustration",
+      "prompt": "A single realistic educational engineering illustration of one GPS antenna, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/gps-receiver-module.png",
+      "kind": "illustration",
+      "caption": "Representative gps receiver module illustration",
+      "prompt": "A single realistic educational engineering illustration of one GPS receiver module, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/headphones.png",
+      "kind": "illustration",
+      "caption": "Representative headphones illustration",
+      "prompt": "A single realistic educational engineering illustration of one Headphones, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/hearing-aid-receiver.png",
+      "kind": "illustration",
+      "caption": "Representative hearing aid receiver illustration",
+      "prompt": "A single realistic educational engineering illustration of one Hearing aid receiver, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/heat-sink.png",
+      "kind": "illustration",
+      "caption": "Representative heat sink illustration",
+      "prompt": "A single realistic educational engineering illustration of one Heat sink, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/heating-element.png",
+      "kind": "illustration",
+      "caption": "Representative heating element illustration",
+      "prompt": "A single realistic educational engineering illustration of one Heating element, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/image-intensifier.png",
+      "kind": "illustration",
+      "caption": "Representative image intensifier illustration",
+      "prompt": "A single realistic educational engineering illustration of one Image intensifier, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/infrared-led.png",
+      "kind": "illustration",
+      "caption": "Representative infrared led illustration",
+      "prompt": "A single realistic educational engineering illustration of one Infrared LED, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/infrared-receiver.png",
+      "kind": "illustration",
+      "caption": "Representative infrared receiver illustration",
+      "prompt": "A single realistic educational engineering illustration of one Infrared receiver, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/infrared-reflectance-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative infrared reflectance sensor illustration",
+      "prompt": "One isolated representative educational engineering illustration of a Infrared reflectance sensor. A small PCB linear array with eight downward-facing infrared LED and phototransistor pairs, mounting holes and connector pins. It is a line-following reflectance sensor, absolutely not a PIR sensor dome. Physically plausible construction, complete component centered in three-quarter view, transparent background. No text or branding. No whole device or collage."
+    },
+    {
+      "src": "/devices/parts/generated/laboratory-pipette.png",
+      "kind": "illustration",
+      "caption": "Representative laboratory pipette illustration",
+      "prompt": "A single realistic educational engineering illustration of one Laboratory pipette, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/laboratory-reagent-bottle.png",
+      "kind": "illustration",
+      "caption": "Representative laboratory reagent bottle illustration",
+      "prompt": "A single realistic educational engineering illustration of one Laboratory reagent bottle, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/laptop-computer.png",
+      "kind": "illustration",
+      "caption": "Representative laptop computer illustration",
+      "prompt": "One representative isolated educational hardware illustration of a Laptop computer. A simple open laptop computer, screen showing a plain teal text editor with a few coloured code lines but no legible text, keyboard and trackpad visible. Physically plausible, entire object centered, three-quarter view, transparent background, no brands or labels, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/laser-diode.png",
+      "kind": "illustration",
+      "caption": "Representative laser diode illustration",
+      "prompt": "A single realistic educational engineering illustration of one Laser diode, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/lcd-display-module.png",
+      "kind": "illustration",
+      "caption": "Representative lcd display module illustration",
+      "prompt": "A single realistic educational engineering illustration of one LCD display module, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/lead-screw.png",
+      "kind": "illustration",
+      "caption": "Representative lead screw illustration",
+      "prompt": "A single realistic educational engineering illustration of one Lead screw, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/lithium-polymer-battery.png",
+      "kind": "illustration",
+      "caption": "Representative lithium polymer battery illustration",
+      "prompt": "One representative isolated educational component illustration of a Lithium polymer battery. A rectangular silver foil lithium-polymer battery pouch with sealed edges, small top protection board, red and black leads and a small two-pin connector. No cylindrical AA cells. Physically plausible construction, entire component visible, three-quarter view, transparent background. No brand, no text, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/load-cell.png",
+      "kind": "illustration",
+      "caption": "Representative load cell illustration",
+      "prompt": "A single realistic educational engineering illustration of one Load cell, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/loudspeaker.png",
+      "kind": "illustration",
+      "caption": "Representative loudspeaker illustration",
+      "prompt": "One isolated educational hardware illustration of a Loudspeaker. Show one round loudspeaker driver, cone, central dust cap, rubber surround, basket, rear magnet and two terminals. No speaker cabinet. Physically plausible scientific product illustration, three-quarter view, transparent background, entire component visible, no text, no branding, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/magnetometer.png",
+      "kind": "illustration",
+      "caption": "Representative magnetometer illustration",
+      "prompt": "A single realistic educational engineering illustration of one Magnetometer, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/microphone.png",
+      "kind": "illustration",
+      "caption": "Representative microphone illustration",
+      "prompt": "Create one isolated realistic educational hardware illustration of a Microphone. Small cylindrical electret microphone capsule with two leads. Three-quarter view, complete part centered, transparent background, realistic engineering construction, no labels, no text, no branding. It is a representative example for component anatomy, not an exact vendor part."
+    },
+    {
+      "src": "/devices/parts/generated/microscope-stage.png",
+      "kind": "illustration",
+      "caption": "Representative microscope stage illustration",
+      "prompt": "A single realistic educational engineering illustration of one Microscope stage, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/microswitch.png",
+      "kind": "illustration",
+      "caption": "Representative microswitch illustration",
+      "prompt": "A single realistic educational engineering illustration of one Microswitch, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/mri-magnet.png",
+      "kind": "illustration",
+      "caption": "Representative mri magnet illustration",
+      "prompt": "A single realistic educational engineering illustration of one MRI magnet, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/optical-fiber.png",
+      "kind": "illustration",
+      "caption": "Representative optical fiber illustration",
+      "prompt": "A single realistic educational engineering illustration of one Optical fiber, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/optical-filter.png",
+      "kind": "illustration",
+      "caption": "Representative optical filter illustration",
+      "prompt": "A single realistic educational engineering illustration of one Optical filter, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/oxygen-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative oxygen sensor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Oxygen sensor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/photomultiplier-tube.png",
+      "kind": "illustration",
+      "caption": "Representative photomultiplier tube illustration",
+      "prompt": "A single realistic educational engineering illustration of one Photomultiplier tube, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/piezoelectric-vibration-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative piezoelectric vibration sensor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Piezoelectric vibration sensor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/pir-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative pir sensor illustration",
+      "prompt": "A single realistic educational engineering illustration of one PIR sensor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/printed-circuit-board.png",
+      "kind": "illustration",
+      "caption": "Representative printed circuit board illustration",
+      "prompt": "A single realistic educational engineering illustration of one Printed circuit board, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/pulse-oximeter-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative pulse oximeter sensor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Pulse oximeter sensor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/radio-frequency-shielding.png",
+      "kind": "illustration",
+      "caption": "Representative radio frequency shielding illustration",
+      "prompt": "A single realistic educational engineering illustration of one Radio frequency shielding, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/radome.png",
+      "kind": "illustration",
+      "caption": "Representative radome illustration",
+      "prompt": "A single realistic educational engineering illustration of one Radome, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/reaction-wheel.png",
+      "kind": "illustration",
+      "caption": "Representative reaction wheel illustration",
+      "prompt": "A single realistic educational engineering illustration of one Reaction wheel, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/rf-front-end-circuit.png",
+      "kind": "illustration",
+      "caption": "Representative rf front end circuit illustration",
+      "prompt": "A single realistic educational engineering illustration of one RF front end circuit, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/rfid-tag.png",
+      "kind": "illustration",
+      "caption": "Representative rfid tag illustration",
+      "prompt": "A single realistic educational engineering illustration of one RFID tag, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/robot-joint.png",
+      "kind": "illustration",
+      "caption": "Representative robot joint illustration",
+      "prompt": "Create one isolated realistic educational hardware illustration of a Robot joint. Industrial robot rotary joint assembly with bearing ring, electric motor and reduction gearing visible. Three-quarter view, complete part centered, transparent background, realistic engineering construction, no labels, no text, no branding. It is a representative example for component anatomy, not an exact vendor part."
+    },
+    {
+      "src": "/devices/parts/generated/robot-wheel.png",
+      "kind": "illustration",
+      "caption": "Representative robot wheel illustration",
+      "prompt": "A single realistic educational engineering illustration of one Robot wheel, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/scintillation-detector.png",
+      "kind": "illustration",
+      "caption": "Representative scintillation detector illustration",
+      "prompt": "One isolated educational hardware illustration of a Scintillation detector. Show a cylindrical scintillation crystal in a metal light-tight housing coupled to a photomultiplier tube, with electrical signal connector. Physically plausible scientific product illustration, three-quarter view, transparent background, entire component visible, no text, no branding, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/slip-ring.png",
+      "kind": "illustration",
+      "caption": "Representative slip ring illustration",
+      "prompt": "A single realistic educational engineering illustration of one Slip ring, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/stepper-motor.png",
+      "kind": "illustration",
+      "caption": "Representative stepper motor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Stepper motor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/syringe-pump.png",
+      "kind": "illustration",
+      "caption": "Representative syringe pump illustration",
+      "prompt": "A single realistic educational engineering illustration of one Syringe pump, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/thermal-imaging-camera.png",
+      "kind": "illustration",
+      "caption": "Representative thermal imaging camera illustration",
+      "prompt": "A single realistic educational engineering illustration of one Thermal imaging camera, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/thermal-insulation-material.png",
+      "kind": "illustration",
+      "caption": "Representative thermal insulation material illustration",
+      "prompt": "A single realistic educational engineering illustration of one Thermal insulation material, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/thermal-printer.png",
+      "kind": "illustration",
+      "caption": "Representative thermal printer illustration",
+      "prompt": "A single realistic educational engineering illustration of one Thermal printer, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/thermistor.png",
+      "kind": "illustration",
+      "caption": "Representative thermistor illustration",
+      "prompt": "A single realistic educational engineering illustration of one Thermistor, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/thermoelectric-cooler.png",
+      "kind": "illustration",
+      "caption": "Representative thermoelectric cooler illustration",
+      "prompt": "A single realistic educational engineering illustration of one Thermoelectric cooler, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/thermopile.png",
+      "kind": "illustration",
+      "caption": "Representative thermopile illustration",
+      "prompt": "A single realistic educational engineering illustration of one Thermopile, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/tmp36-temperature-sensor.png",
+      "kind": "illustration",
+      "caption": "Representative tmp36 temperature sensor illustration",
+      "prompt": "One representative isolated educational hardware illustration of a TMP36 temperature sensor. A black TO-92 semiconductor temperature sensor package, flat front and rounded back, three straight thin metal leads in one row. No circuit board, no humidity sensor, no thermistor bead. Physically plausible, entire object centered, three-quarter view, transparent background, no brands or labels, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/underwater-locator-beacon.png",
+      "kind": "illustration",
+      "caption": "Representative underwater locator beacon illustration",
+      "prompt": "A single realistic educational engineering illustration of one underwater locator beacon, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/usb-type-a-to-type-b-cable.png",
+      "kind": "illustration",
+      "caption": "Representative usb type a to type b cable illustration",
+      "prompt": "One representative isolated educational hardware illustration of a USB Type A to Type B cable. A black USB cable coiled once, male rectangular USB-A connector at one end and standard square USB-B connector at the other, metal plugs clearly visible. Absolutely no USB-C connectors. Physically plausible, entire object centered, three-quarter view, transparent background, no brands or labels, no collage."
+    },
+    {
+      "src": "/devices/parts/generated/waveguide.png",
+      "kind": "illustration",
+      "caption": "Representative waveguide illustration",
+      "prompt": "A single realistic educational engineering illustration of one Waveguide, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/x-ray-collimator.png",
+      "kind": "illustration",
+      "caption": "Representative x-ray collimator illustration",
+      "prompt": "A single realistic educational engineering illustration of one X-ray collimator, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    },
+    {
+      "src": "/devices/parts/generated/x-ray-tube.png",
+      "kind": "illustration",
+      "caption": "Representative x-ray tube illustration",
+      "prompt": "A single realistic educational engineering illustration of one X-ray tube, isolated on a transparent background. Show its characteristic physical construction clearly in a three-quarter product view, with clean materials and plausible proportions. Entire component visible, generous margins, no crop.  This is a representative hardware example, not a branded product or a shopping specification. No text, no words, no logo, no watermark. Premium crisp scientific component illustration for an educational anatomy card. Only this one component family; no contact sheet or collage."
+    }
+  ]
+}

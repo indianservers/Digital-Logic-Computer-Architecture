@@ -1,0 +1,19 @@
+{
+  "engine": "aimer-cpu-contest-2",
+  "designHash": "6bb95c5bf0e19913ca2a8e3f4bb1ad3827ceb3ba4cc5da7feaf848e1beb3a8a8",
+  "suiteHash": "7b8c86fbdcb7af134da453e17e3bcad4b74307c4270d2d6617ee5266a8f097eb",
+  "rules": {
+    "name": "Build Your Own CPU",
+    "requiredTests": [],
+    "tieBreak": "cycles"
+  },
+  "measured": {
+    "eligible": true,
+    "disqualification": [],
+    "correctness": 100,
+    "cyclesOnPassedTests": 51,
+    "components": 16,
+    "tieBreak": "cycles",
+    "comparison": "Compare eligible entries on the same engine and suite: higher correctness first; ties use lower chosen metric. Performance comparisons require the same passed tests. No physical speed or area claim."
+  }
+}
