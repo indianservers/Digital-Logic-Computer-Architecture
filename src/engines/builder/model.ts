@@ -35,6 +35,10 @@ export interface ArchNode {
   inputWidth?: Width;
   operations?: AluOp[];
   signed?: boolean;
+  registerCount?: number;
+  rotation?: 0 | 90 | 180 | 270;
+  behavior?: import("./construction").BlockBehavior;
+  circuit?: import("./construction").CircuitModule;
 }
 
 export interface ArchWire {
@@ -115,7 +119,10 @@ export function snap(value: number): number {
 }
 
 export function portsOf(node: ArchNode): PortDef[] {
+  if(node.circuit)return node.circuit.ports.map(({endpoint,...port})=>port);
+  if(node.behavior)return node.behavior.ports;
   const w = node.width;
+  const registerBits=Math.max(1,Math.ceil(Math.log2(node.registerCount??(node.kind==="regfile"?node.values.length||8:8))));
   switch (node.kind) {
     case "pc":
     case "acc":
@@ -144,9 +151,9 @@ export function portsOf(node: ArchNode): PortDef[] {
       ];
     case "regfile":
       return [
-        { id: "ra", name: "A addr", dir: "in", width: 3, role: "data" },
-        { id: "rb", name: "B addr", dir: "in", width: 3, role: "data" },
-        { id: "rd", name: "W addr", dir: "in", width: 3, role: "data" },
+        { id: "ra", name: "A addr", dir: "in", width: registerBits, role: "data" },
+        { id: "rb", name: "B addr", dir: "in", width: registerBits, role: "data" },
+        { id: "rd", name: "W addr", dir: "in", width: registerBits, role: "data" },
         { id: "d", name: "W data", dir: "in", width: w, role: "data" },
         { id: "we", name: "WE", dir: "in", width: 1, role: "control" },
         { id: "clk", name: "CLK", dir: "in", width: 1, role: "clock" },
@@ -230,9 +237,9 @@ export function portsOf(node: ArchNode): PortDef[] {
         { id: "memtoreg", name: "MemToReg", dir: "out", width: 1, role: "control" },
         { id: "branch", name: "Branch", dir: "out", width: 1, role: "control" },
         { id: "aluop", name: "ALUOp", dir: "out", width: 4, role: "control" },
-        { id: "ra", name: "rs1", dir: "out", width: 3, role: "data" },
-        { id: "rb", name: "rs2", dir: "out", width: 3, role: "data" },
-        { id: "rd", name: "rd", dir: "out", width: 3, role: "data" },
+        { id: "ra", name: "rs1", dir: "out", width: registerBits, role: "data" },
+        { id: "rb", name: "rs2", dir: "out", width: registerBits, role: "data" },
+        { id: "rd", name: "rd", dir: "out", width: registerBits, role: "data" },
         { id: "imm", name: "Immediate", dir: "out", width: node.inputWidth ?? node.width, role: "data" },
         { id: "azero", name: "A=0", dir: "out", width: 1, role: "control" },
         { id: "pcnext", name: "Next PC", dir: "out", width: node.width, role: "data" },
@@ -442,11 +449,12 @@ export function deleteNodes(design: CpuDesign, ids: string[]): CpuDesign {
     ...design,
     nodes: design.nodes.filter((node) => !drop.has(node.id)),
     wires: design.wires.filter((wire) => !drop.has(wire.from) && !drop.has(wire.to)),
+    engineering:design.engineering?{...design.engineering,construction:design.engineering.construction?{...design.engineering.construction,nets:design.engineering.construction.nets?.filter(n=>!drop.has(n.from)).map(n=>({...n,targets:n.targets.filter(t=>!drop.has(t.node))}))}:undefined}:undefined,
   };
 }
 
 export function connect(design: CpuDesign, from: string, fromPort: string, to: string, toPort: string): { design: CpuDesign; error: string | null } {
-  if (from === to) return { design, error: "A port cannot connect to itself." };
+  if (from === to && fromPort === toPort) return { design, error: "A port cannot connect to itself." };
   const src = design.nodes.find((node) => node.id === from);
   const dst = design.nodes.find((node) => node.id === to);
   if (!src || !dst) return { design, error: "Missing component." };
@@ -460,6 +468,7 @@ export function connect(design: CpuDesign, from: string, fromPort: string, to: s
   if (design.wires.some((wire) => wire.to === to && wire.toPort === toPort)) {
     return { design, error: `Input ${dst.name}.${inn.name} already has a driver.` };
   }
+  if(design.engineering?.construction?.nets?.some(n=>n.targets.some(t=>t.node===to&&t.port===toPort)))return {design,error:"This input is already driven by a named net."};
   const id = `w${design.nextId}`;
   return { design: { ...design, nextId: design.nextId + 1, wires: [...design.wires, { id, from, fromPort, to, toPort }] }, error: null };
 }
@@ -478,7 +487,7 @@ export function duplicateNodes(design: CpuDesign, ids: string[]): CpuDesign {
     const added = next.nodes[next.nodes.length - 1];
     if (!added) continue;
     map.set(id, added.id);
-    next = patchNode(next, added.id, { name: `${node.name} copy`, value: node.value, op: node.op });
+    next = patchNode(next, added.id, { ...structuredClone(node),id:added.id,x:node.x+32,y:node.y+32,name: `${node.name} copy` });
   }
   for (const wire of design.wires) {
     const from = map.get(wire.from);

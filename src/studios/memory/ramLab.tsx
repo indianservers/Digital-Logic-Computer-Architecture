@@ -19,6 +19,7 @@ import {
   type PreloadKind,
 } from "../../engines/memory/fundamentals";
 import { BitButton, Field, LabGuide } from "./guide";
+import "./ramLab.css";
 
 gsap.registerPlugin(useGSAP);
 
@@ -181,7 +182,7 @@ export function RamLab() {
   const columns = words >= 8 ? 8 : words;
 
   return (
-    <div ref={scope}>
+    <div ref={scope} className="memx-ram">
       <LabGuide
         aim="See one address select one cell, then watch a byte move on the data bus."
         concept="An n-bit address names 2ⁿ locations. CE, OE, and WE decide whether that location is read or written."

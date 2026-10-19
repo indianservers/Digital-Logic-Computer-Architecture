@@ -1,5 +1,6 @@
 import { portOf, portsOf, type ArchNode, type CpuDesign } from "./model";
 import { validateIsa } from "./isa";
+import { flattenCircuit } from "./construction";
 
 export interface Issue {
   level: "error" | "warning";
@@ -17,6 +18,7 @@ export function combinationalLoops(design: CpuDesign): string[][] {
   const vertices=new Map<string,string>();
   const key=(id:string,port:string)=>JSON.stringify([id,port]);
   const inputs=(node:ArchNode,output:string):string[]=>{
+    if(node.behavior){const formula=node.behavior.outputs[output]??"";return portsOf(node).filter(p=>p.dir==="in"&&new RegExp(`\\b${p.id}\\b`).test(formula)).map(p=>p.id);}
     if(["pc","acc","gpr","ir","mar","mdr","sp","flags","dff","counter","clock","const","cache","core"].includes(node.kind))return [];
     if(node.kind==="regfile")return [output==="a"?"ra":"rb"];
     if(["imem","umem"].includes(node.kind))return ["addr"];
@@ -55,8 +57,9 @@ export function combinationalLoops(design: CpuDesign): string[][] {
 }
 
 export function validateDesign(design: CpuDesign): Issue[] {
+  if(design.nodes.some(n=>n.circuit)||design.engineering?.construction?.nets?.length){try{return validateDesign(flattenCircuit(design).design);}catch(e){return [{level:"error",message:String(e)}];}}
   const issues: Issue[] = [];
-  issues.push(...validateIsa(design.isa).map((item) => ({ level: item.level, message: item.message })));
+  if(design.engineering?.construction?.execution!=="circuit")issues.push(...validateIsa(design.isa).map((item) => ({ level: item.level, message: item.message })));
   const drivers = new Map<string, string[]>();
   const nodeIds=new Set<string>();const wireIds=new Set<string>();
   for(const node of design.nodes){if(nodeIds.has(node.id))issues.push({level:"error",message:`Duplicate component identifier ${node.id}.`,nodeId:node.id});nodeIds.add(node.id);}
@@ -107,6 +110,9 @@ export function validateDesign(design: CpuDesign): Issue[] {
     if ((node.kind === "regfile" || node.kind === "acc" || node.kind === "gpr") && !design.wires.some((wire) => wire.to === node.id && wire.toPort === "d")) {
       issues.push({ level: "warning", message: `Register ${node.name} is never written by any instruction path.`, nodeId: node.id });
     }
+  }
+  if(design.engineering?.construction?.execution==="circuit"){
+    for(const cycle of combinationalLoops(design))issues.push({level:"error",message:`Combinational loop: ${cycle.join(" → ")}`,nodeId:cycle[0]});return issues;
   }
   const pc = nodeNamed(design, "pc");
   const imem = nodeNamed(design, "imem") ?? nodeNamed(design, "umem");

@@ -10,6 +10,7 @@ import { ErrorBoundary } from "./ErrorBoundary";
 const LINKS = [
   { to: "/", label: "Home", icon: "home" as const, end: true },
   { to: "/learn", label: "Learning Path", icon: "path" as const, end: false },
+  { to: "/encyclopedia", label: "Encyclopedia", icon: "sheet" as const, end: false },
   { to: "/studios", label: "Studios", icon: "grid" as const, end: false },
   { to: "/practice", label: "Practice", icon: "practice" as const, end: false },
   { to: "/projects", label: "Projects", icon: "project" as const, end: false },
@@ -107,6 +108,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }, [location.pathname, location.search, noteVisit]);
 
   if (location.pathname.startsWith("/architecture/builder")) return <div className="cpu-engineering-shell"><ErrorBoundary>{children}</ErrorBoundary></div>;
+  if (location.pathname.startsWith("/studios/kmap") || location.pathname.startsWith("/studios/number-systems") || location.pathname.startsWith("/studios/combinational") || location.pathname.startsWith("/studios/interrupts")) return <ErrorBoundary>{children}</ErrorBoundary>;
   if (deviceLab) return <div className="hdw-lab-shell"><ErrorBoundary>{children}</ErrorBoundary></div>;
   if (aca) {
     return (

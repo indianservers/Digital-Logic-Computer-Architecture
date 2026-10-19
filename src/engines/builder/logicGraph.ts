@@ -2,6 +2,7 @@ import type { LogicBit, LogicVector } from "../../types/logic";
 import { fromUnsigned, toUnsigned } from "../digital/vector";
 import { portsOf, type CpuDesign, type ArchNode } from "./model";
 import { evaluateGraph, aluNum } from "./sim";
+import { behaviorValues, flattenCircuit } from "./construction";
 export interface LogicGraph { values: Map<string, LogicVector>; diagnostics: string[]; events: number; }
 const vec = (bit: LogicBit, width: number): LogicVector => Array.from({ length: width }, () => bit);
 const known = (v: LogicVector) => toUnsigned(v);
@@ -11,6 +12,7 @@ function gate(a: LogicBit, b: LogicBit, op: string): LogicBit {
   return typeof a === "number" && typeof b === "number" ? (a ^ b) as 0 | 1 : "X";
 }
 export function evaluateLogicGraph(design: CpuDesign, overrides?:Record<string,0|1|"instruction">): LogicGraph {
+  if(design.nodes.some(n=>n.circuit)||design.engineering?.construction?.nets?.length){const flat=flattenCircuit(design);const view=evaluateLogicGraph(flat.design,overrides);for(const [key,value] of flat.aliases)view.values.set(key,view.values.get(value)??[]);return view;}
   const values = new Map<string, LogicVector>(); const diagnostics: string[] = []; const numeric = evaluateGraph(design,overrides);
   const output = (n: ArchNode, port: string, v: LogicVector) => { values.set(`${n.id}:${port}`, v); };
   const input = (n: ArchNode, port: string): LogicVector => {
@@ -26,7 +28,8 @@ export function evaluateLogicGraph(design: CpuDesign, overrides?:Record<string,0
     const n = queue.shift()!; queued.delete(n.id); if (sequential.has(n.kind) || n.kind === "const" || n.kind === "clock") continue;
     const before = portsOf(n).filter(p => p.dir === "out").map(p => (values.get(`${n.id}:${p.id}`) ?? []).join("")).join("|");
     const a = input(n, "a"); const b = input(n, "b"); const an = known(a); const bn = known(b); const writeNumber = (port: string, v: number | null) => { const width = portsOf(n).find(p => p.id === port)?.width ?? n.width; output(n, port, v === null ? vec("X", width) : fromUnsigned(v >>> 0, width)); };
-    if (n.kind === "bus") { const en = known(input(n, "en")); output(n, "y", en === 0 ? vec("Z", n.width) : en === 1 ? a : vec("X", n.width)); }
+    if(n.behavior){try{const outputs=behaviorValues(n,port=>known(input(n,port))??NaN);for(const [port,value] of Object.entries(outputs))writeNumber(port,value);}catch{for(const p of portsOf(n).filter(p=>p.dir==="out"))output(n,p.id,vec("X",p.width));}}
+    else if (n.kind === "bus") { const en = known(input(n, "en")); output(n, "y", en === 0 ? vec("Z", n.width) : en === 1 ? a : vec("X", n.width)); }
     else if (n.kind === "mux") { const select = known(input(n, "s")); output(n, "y", select === 0 ? input(n, "i0") : select === 1 ? input(n, "i1") : vec("X", n.width)); }
     else if (["and", "or", "xor", "nand"].includes(n.kind)) { const bit = gate(a[0] ?? "X", b[0] ?? "X", n.kind === "nand" ? "and" : n.kind); output(n, "y", [n.kind === "nand" ? bit === 0 ? 1 : bit === 1 ? 0 : "X" : bit]); }
     else if (n.kind === "not") output(n, "y", [a[0] === 0 ? 1 : a[0] === 1 ? 0 : "X"]);

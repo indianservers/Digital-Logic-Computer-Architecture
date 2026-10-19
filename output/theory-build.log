@@ -1,0 +1,89 @@
+vite v6.4.3 building for production...
+transforming...
+✓ 756 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/manifest.webmanifest                                               0.39 kB
+dist/index.html                                                         1.42 kB │ gzip:   0.73 kB
+dist/assets/plus-jakarta-sans-vietnamese-400-normal-Cg2kxhWu.woff2      4.10 kB
+dist/assets/plus-jakarta-sans-vietnamese-600-normal-Y4VTTRme.woff2      4.20 kB
+dist/assets/plus-jakarta-sans-vietnamese-700-normal-CV6qDkkj.woff2      4.27 kB
+dist/assets/plus-jakarta-sans-vietnamese-500-normal-DiU8zqi-.woff2      4.28 kB
+dist/assets/plus-jakarta-sans-vietnamese-400-normal-B8TCSmUq.woff       5.60 kB
+dist/assets/plus-jakarta-sans-vietnamese-600-normal-5YsyKbU1.woff       5.74 kB
+dist/assets/plus-jakarta-sans-vietnamese-700-normal-BCh_uG_5.woff       5.78 kB
+dist/assets/plus-jakarta-sans-vietnamese-500-normal-CvE5C8T-.woff       5.79 kB
+dist/assets/plus-jakarta-sans-latin-ext-400-normal-D127hM_v.woff2      10.59 kB
+dist/assets/plus-jakarta-sans-latin-ext-500-normal-9VZagAe1.woff2      10.86 kB
+dist/assets/plus-jakarta-sans-latin-ext-600-normal-DQgPU_Cg.woff2      10.90 kB
+dist/assets/plus-jakarta-sans-latin-ext-700-normal-BajbvANd.woff2      11.01 kB
+dist/assets/plus-jakarta-sans-latin-400-normal-Dhut76fR.woff2          11.82 kB
+dist/assets/plus-jakarta-sans-latin-600-normal-DLTa1BUW.woff2          12.19 kB
+dist/assets/plus-jakarta-sans-latin-700-normal-CfpNZvy6.woff2          12.24 kB
+dist/assets/plus-jakarta-sans-latin-500-normal-Bf-nb4oT.woff2          12.31 kB
+dist/assets/plus-jakarta-sans-latin-ext-400-normal-2ppkqaOR.woff       15.31 kB
+dist/assets/plus-jakarta-sans-latin-ext-600-normal-B0WRRYJ1.woff       15.61 kB
+dist/assets/plus-jakarta-sans-latin-ext-700-normal-8-d-IyIQ.woff       15.62 kB
+dist/assets/plus-jakarta-sans-latin-ext-500-normal-CqEEAICU.woff       15.62 kB
+dist/assets/plus-jakarta-sans-latin-400-normal-BDKaGhyp.woff           15.73 kB
+dist/assets/plus-jakarta-sans-latin-600-normal-BR_Ojra4.woff           16.08 kB
+dist/assets/plus-jakarta-sans-latin-500-normal-DYtqi0QS.woff           16.12 kB
+dist/assets/plus-jakarta-sans-latin-700-normal-DqEcQeE5.woff           16.14 kB
+dist/assets/g2-C_jZnTSi.css                                            30.79 kB │ gzip:   5.49 kB
+dist/assets/NumberSystemsStudio-CWAeBkYm.css                           34.11 kB │ gzip:   7.46 kB
+dist/assets/InterruptStudio-BdZbLrxR.css                               39.86 kB │ gzip:   8.66 kB
+dist/assets/Group4-DkSfwWKF.css                                        46.00 kB │ gzip:   7.78 kB
+dist/assets/BuilderStudio-Dy4ZQgXu.css                                 49.01 kB │ gzip:  11.29 kB
+dist/assets/Group1-CN_kHfCS.css                                        49.59 kB │ gzip:   9.06 kB
+dist/assets/Group3-D7eZjJX6.css                                        62.63 kB │ gzip:   9.02 kB
+dist/assets/HowDevicesWorkStudio-B6f1yfUW.css                          67.85 kB │ gzip:  12.17 kB
+dist/assets/AdvancedLabPage-BBeVIjpL.css                              245.94 kB │ gzip:  38.57 kB
+dist/assets/index-CzJ9Qay3.css                                        390.27 kB │ gzip:  80.83 kB
+dist/assets/DeviceExamples-CR2bjw3O.js                                  1.42 kB │ gzip:   0.78 kB
+dist/assets/ArchitectureFrame-28S-lpYZ.js                               3.85 kB │ gzip:   1.38 kB
+dist/assets/SocStudio-B6ZITYhI.js                                       4.67 kB │ gzip:   1.85 kB
+dist/assets/SandboxStudio-D0LH5-Hv.js                                   4.78 kB │ gzip:   1.92 kB
+dist/assets/workbox-window.prod.es5-BBnX5xw4.js                         5.75 kB │ gzip:   2.36 kB
+dist/assets/Cpu8Studio-syVmjhug.js                                      6.72 kB │ gzip:   2.37 kB
+dist/assets/x86-wnllgwf5.js                                             6.85 kB │ gzip:   3.00 kB
+dist/assets/RegisterView-VyRlig7Q.js                                    8.55 kB │ gzip:   3.35 kB
+dist/assets/HeteroStudio-8_R2ClPw.js                                    9.95 kB │ gzip:   3.58 kB
+dist/assets/Cpu16Studio-DIMCtwc-.js                                    10.22 kB │ gzip:   3.50 kB
+dist/assets/AcceleratorStudio-D-z9Vbve.js                              15.57 kB │ gzip:   5.36 kB
+dist/assets/thumb-M0aywJ90.js                                          23.74 kB │ gzip:   8.24 kB
+dist/assets/conceptNotes-CSQYGpi0.js                                   29.13 kB │ gzip:  11.32 kB
+dist/assets/MobileStudio-CFW-x0jh.js                                   29.71 kB │ gzip:   9.81 kB
+dist/assets/InterruptStudio-C3cmCD68.js                                33.05 kB │ gzip:  10.17 kB
+dist/assets/X86Studio-DZFPirrB.js                                      41.24 kB │ gzip:  12.75 kB
+dist/assets/DesktopStudio-4ai-dJ9C.js                                  43.71 kB │ gzip:  12.80 kB
+dist/assets/CompareStudio-Disq79uG.js                                  44.93 kB │ gzip:  13.30 kB
+dist/assets/RiscvStudio-CGMOu1YB.js                                    52.19 kB │ gzip:  13.44 kB
+dist/assets/MipsStudio-hXeA2AVq.js                                     53.93 kB │ gzip:  17.02 kB
+dist/assets/ArmStudio-BRqCikdT.js                                      55.47 kB │ gzip:  17.90 kB
+dist/assets/NumberSystemsStudio-BJg9s5yQ.js                            62.96 kB │ gzip:  20.28 kB
+dist/assets/engine-BJqOnVLi.js                                         77.42 kB │ gzip:  28.64 kB
+dist/assets/ArchCanvas-Bu42zHoD.js                                     95.81 kB │ gzip:  30.61 kB
+dist/assets/Group2-DyFzTwKj.js                                        161.37 kB │ gzip:  51.91 kB
+dist/assets/TheoryReader-CZ0dTP2Y.js                                  164.85 kB │ gzip:  59.60 kB
+dist/assets/Scope-DD_zQXQk.js                                         176.41 kB │ gzip:  59.61 kB
+dist/assets/BuilderStudio-CnpJ5dXc.js                                 212.67 kB │ gzip:  64.92 kB
+dist/assets/Group1-BfQ_kzIf.js                                        236.26 kB │ gzip:  77.61 kB
+dist/assets/data-tyf_eWk1.js                                          244.61 kB │ gzip:  80.51 kB
+dist/assets/Group3-5puB9Mwr.js                                        280.23 kB │ gzip:  90.05 kB
+dist/assets/Group4-Du4Losdu.js                                        378.59 kB │ gzip: 134.22 kB
+dist/assets/AdvancedLabPage-BNfXw3dx.js                               539.11 kB │ gzip: 159.30 kB
+dist/assets/HowDevicesWorkStudio-CjXBOALy.js                          830.84 kB │ gzip: 146.39 kB
+dist/assets/index-T_EKS-9Q.js                                       3,116.02 kB │ gzip: 891.66 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 22.71s
+
+PWA v1.3.0
+mode      generateSW
+precache  286 entries (97102.05 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-835c8c05.js

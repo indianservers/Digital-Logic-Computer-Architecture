@@ -5,6 +5,7 @@ import { BusPanel } from "./bus";
 import { TransferPanel } from "./transfer";
 import { Mark } from "./ui";
 import { WordPanel } from "./word";
+import "./rtl.css";
 
 const TABS = [
   { id: "transfer", label: "Transfer" },
@@ -38,9 +39,9 @@ const PAGE: Record<string, { guide: string[]; takeaways: string[]; quote: string
     takeaways: ["A control word drives the datapath.", "Each field selects a specific function.", "The ALU operation is encoded.", "Register write happens on the clock edge."],
     quote: "Simplicity is the ultimate sophistication.",
     by: "Leonardo da Vinci",
-    next: "Apply what you learned on a transfer.",
-    nextTab: "transfer",
-    nextLabel: "Back to Transfer",
+    next: "See how the control word drives the bus and registers.",
+    nextTab: "bus",
+    nextLabel: "Bus operations",
   },
 };
 
@@ -63,14 +64,14 @@ export function RtlStudio() {
     <div className="rtx">
       <header className="rtx-head">
         <div>
-          <h1><Mark kind="file" /> Register Transfer</h1>
+          <h1><Mark kind="chip" /> Register Transfer</h1>
           <p>Move a value from registers through the ALU and back. A shared bus accepts one driver.</p>
         </div>
         <Link className="rtx-back" to="/"><Icon name="back" size={14} /> Back to Path</Link>
       </header>
       <div className="rtx-tabs" role="tablist" aria-label="Register transfer">
         {TABS.map((item) => (
-          <button key={item.id} type="button" role="tab" aria-selected={tab === item.id} className={tab === item.id ? "on" : ""} onClick={() => setTab(item.id)}>{item.label}</button>
+          <button key={item.id} type="button" role="tab" aria-selected={tab === item.id} className={tab === item.id ? "on" : ""} onClick={() => setTab(item.id)}><Mark kind={item.id === "transfer" ? "transfer" : item.id === "bus" ? "bus" : "file"}/>{item.label}</button>
         ))}
       </div>
       <div className="rtx-grid">

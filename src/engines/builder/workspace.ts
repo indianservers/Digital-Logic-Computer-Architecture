@@ -2,6 +2,8 @@ import { portsOf, type CpuDesign } from "./model";
 import { evaluateLogicGraph } from "./logicGraph";
 import { designJson, parseDesignJson, type ExecTrace, type WaveSample } from "./sim";
 import { stableStringify } from "./contest";
+import { expression as integerExpression, flattenCircuit } from "./construction";
+import { signalNumber } from "./constructionTools";
 
 export function signalDisplay(bits:string,role="data") {
   if(!/^[01]+$/.test(bits))return {binary:bits,hex:"—",unsigned:"—",signed:"—",state:bits.includes("X")?"Unknown (X)":"Disconnected (Z)"};
@@ -12,10 +14,12 @@ export function signalsOf(design:CpuDesign) {
   return design.wires.map(w=>{const n=design.nodes.find(n=>n.id===w.from);const to=design.nodes.find(n=>n.id===w.to);const port=n&&portsOf(n).find(p=>p.id===w.fromPort);const bits=(graph.values.get(`${w.from}:${w.fromPort}`)??[]).join("");return {...w,label:`${n?.name??w.from}.${w.fromPort} → ${to?.name??w.to}.${w.toPort}`,width:port?.width??1,role:port?.role??"data",...signalDisplay(bits,port?.role)};});
 }
 export function stateChanges(before:CpuDesign,after:CpuDesign) {
+  if(before.nodes.some(n=>n.circuit)||after.nodes.some(n=>n.circuit)){before=flattenCircuit(before).design;after=flattenCircuit(after).design;}
   const changes:{component:string;field:string;before:number;after:number}[]=[];
   for(const n of after.nodes){const old=before.nodes.find(v=>v.id===n.id);if(!old)continue;
     if(n.value!==old.value)changes.push({component:n.name,field:"value",before:old.value,after:n.value});
     for(const field of ["values","mem"] as const)n[field].forEach((v,i)=>{if(v!==old[field][i])changes.push({component:n.name,field:`${field==="mem"?"MEM":"R"}[${i}]`,before:old[field][i]??0,after:v});});
+    for(const [field,value] of Object.entries(n.behavior?.registers??{}))if(value!==old.behavior?.registers?.[field])changes.push({component:n.name,field,before:old.behavior?.registers?.[field]??0,after:value});
   }return changes;
 }
 export function designChanges(before:CpuDesign,after:CpuDesign) {
@@ -29,6 +33,7 @@ export function saveVersion(design:CpuDesign,name:string):SavedVersion[]{const n
 
 // Deliberately small grammar. No JavaScript execution, property access or eval.
 export function conditionMatches(expression:string,design:CpuDesign,trace:ExecTrace|null):boolean {
+  if(design.engineering?.construction?.execution==="circuit")return integerExpression(expression,reference=>signalNumber(design,reference))!==0;
   const match=/^\s*(PC|R\d+|MEM\[(?:0x[\da-f]+|\d+)\]|[ZNCV])\s*(==|!=|>=|<=|>|<)\s*(-?(?:0x[\da-f]+|\d+))\s*$/i.exec(expression);
   if(!match)throw new Error("Use PC, Rn, MEM[address] or Z/N/C/V followed by ==, !=, >=, <=, > or < and an integer.");
   const key=match[1]!.toUpperCase();const rf=design.nodes.find(n=>n.kind==="regfile"||n.kind==="acc");let value:number|undefined;

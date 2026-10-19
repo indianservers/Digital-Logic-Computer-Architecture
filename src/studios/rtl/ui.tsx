@@ -1,5 +1,9 @@
 export function Mark({ kind }: { kind: string }) {
   const p = { width: 16, height: 16, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  if (kind === "chip") return <svg {...p}><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="8" y="8" width="8" height="8"/>{[8,12,16].map(n=><path key={n} d={`M${n} 2v3M${n} 19v3M2 ${n}h3M19 ${n}h3`}/>)}</svg>;
+  if (kind === "transfer") return <svg {...p}><path d="M3 7h17l-4-4M21 17H4l4 4M20 7l-4 4M4 17l4-4"/></svg>;
+  if (kind === "chart") return <svg {...p}><path d="M4 20V10h3v10M11 20V4h3v16M18 20v-8h3v8" fill="currentColor"/></svg>;
+  if (kind === "memory") return <svg {...p}><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg>;
   if (kind === "file") return <svg {...p}><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h8M8 12h8M8 16h5" /></svg>;
   if (kind === "play") return <svg {...p}><path d="M8 6l10 6-10 6z" fill="currentColor" stroke="none" /></svg>;
   if (kind === "reset") return <svg {...p}><path d="M4 12a8 8 0 1 0 2.3-5.7" /><path d="M4 4v5h5" /></svg>;

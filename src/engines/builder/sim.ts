@@ -7,6 +7,7 @@ import { fieldsOf, maskBits, patchNode, portsOf, type ArchNode, type CpuDesign }
 import { canonicalJson, migrateProject, engineeringOf } from "./project";
 import { evaluateLogicGraph } from "./logicGraph";
 import { combinationalLoops, validateDesign } from "./validate";
+import { behaviorValues, expression, flattenCircuit } from "./construction";
 
 export const HISTORY = 64;
 const ALU_CODE: AluOp[] = ["ADD", "SUB", "AND", "OR", "XOR", "NOT", "SHL", "SHR", "CMP", "INC", "DEC"];
@@ -103,6 +104,7 @@ export function controlsOf(mnemonic: string, isa: CpuDesign["isa"]): Controls {
 }
 
 export function evaluateGraph(design: CpuDesign, controlOverrides?: Record<string, 0 | 1 | "instruction">): GraphView {
+  if(design.nodes.some(n=>n.circuit)||design.engineering?.construction?.nets?.length){const flat=flattenCircuit(design);const view=evaluateGraph(flat.design,controlOverrides);for(const [key,value] of flat.aliases)view.values.set(key,view.values.get(value)??0);return view;}
   const values = new Map<string, number>();
   const loops = combinationalLoops(design);
   for (const node of design.nodes) {
@@ -135,6 +137,7 @@ export function evaluateGraph(design: CpuDesign, controlOverrides?: Record<strin
           changed = true;
         }
       };
+      if(node.behavior){try{for(const [port,value] of Object.entries(behaviorValues(node,port=>inputOf(node.id,port))))write(port,value);}catch{/* Four-state inspection reports invalid/unknown custom outputs. */}continue;}
       if (node.kind === "regfile") {
         write("a", node.values[inputOf(node.id, "ra")] ?? 0); write("b", node.values[inputOf(node.id, "rb")] ?? 0);
       }
@@ -233,6 +236,9 @@ function wiredInput(design: CpuDesign, view: GraphView, node: ArchNode, port: st
   const wire = wires[0]!; return view.values.get(`${wire.from}:${wire.fromPort}`);
 }
 export function stepInstruction(design: CpuDesign, cycle: number): { design: CpuDesign; trace: ExecTrace } {
+  if(engineeringOf(design).construction?.execution==="circuit"){
+    let current=design;for(let i=0;i<1024;i++){const result=stepMicroCycle(current,engineeringOf(current).cycle+1);current=result.design;const config=engineeringOf(current).construction;if(result.trace.halt||!config?.useMicrocode||result.trace.reason.includes("Instruction boundary"))return result;}return faultTrace(current,cycle,"No instruction boundary within 1024 circuit cycles.");
+  }
   if (engineeringOf(design).mode === "multi") {
     let current = design;
     for (let i = 0; i < 64; i++) { const committing=engineeringOf(current).control.find(s=>s.id===engineeringOf(current).state)?.action==="writeback";const result = stepMicroCycle(current, engineeringOf(current).cycle + 1); current = result.design; if (result.trace.halt || committing) return result; }
@@ -311,6 +317,7 @@ function executeWiredInstruction(design: CpuDesign, cycle: number, overrides?: R
 }
 export function stepMicroCycle(design: CpuDesign, cycle: number): { design: CpuDesign; trace: ExecTrace } {
   const config = engineeringOf(design);
+  if(config.construction?.execution==="circuit")return circuitCycle(design,cycle);
   if (config.mode === "single") return executeWiredInstruction(design, cycle);
   const state = config.control.find(s => s.id === config.state);
   if (!state || !state.guard&&!config.control.some(s => s.id === state.next)) return faultTrace(design, cycle, "Control state has an undefined transition.");
@@ -334,14 +341,53 @@ export function stepMicroCycle(design: CpuDesign, cycle: number): { design: CpuD
   return { design: next, trace: { cycle, pc: pc.value, ir: word, mnemonic: decoded.instr?.mnemonic ?? "FETCH", opcode: decoded.fields.opcode ?? 0, aluA: a, aluB: b, aluY: arithmetic.y, flags: arithmetic, memOp: "none", controls, halt: false, reason: `${state.name}: ${state.action} → ${engineeringOf(next).state}` } };
 }
 
+function circuitCycle(design:CpuDesign,cycle:number):{design:CpuDesign;trace:ExecTrace} {
+  try {
+    const construction=engineeringOf(design).construction!;const flat=flattenCircuit(design);let prepared=flat.design;
+    const word=construction.useMicrocode?construction.microcode?.[construction.microPc??0]:undefined;
+    if(construction.useMicrocode&&!word)return faultTrace(design,cycle,"Microprogram counter is outside control ROM.");
+    const before=evaluateGraph(prepared);const logic=evaluateLogicGraph(prepared);
+    const resolve=(reference:string,input:boolean)=>{const cut=reference.lastIndexOf(".");const name=reference.slice(0,cut),port=reference.slice(cut+1);const root=design.nodes.find(n=>n.id===name||n.name===name);const exposed=root?.circuit?.ports.find(p=>p.id===port);const id=root?.circuit?`${root.id}::${port}`:root?.id??name;const n=root?.circuit&&exposed?.dir!==(input?"in":"out")?undefined:prepared.nodes.find(n=>n.id===id)??(!root?prepared.nodes.find(n=>n.name===name):undefined);return {n,port:root?.circuit?(input?"a":"y"):port};};
+    const read=(reference:string)=>{const {n,port}=resolve(reference,false);const bits=n&&logic.values.get(`${n.id}:${port}`);if(!n||!bits||bits.some(b=>b==="X"||b==="Z"))throw new Error(`Unknown signal ${reference}.`);return before.values.get(`${n.id}:${port}`)??NaN;};
+    const targets=new Set<string>();
+    for(const [i,drive] of (word?.drives??[]).entries()){
+      const resolved=resolve(drive.target,true);const n=resolved.n;const port=n&&portsOf(n).find(p=>p.id===resolved.port&&p.dir==="in");
+      if(!n||!port)throw new Error(`Micro-operation target ${drive.target} must be an input port.`);
+      const key=`${n.id}:${port.id}`;if(targets.has(key))throw new Error(`Duplicate micro-operation target ${drive.target}.`);targets.add(key);
+      const value=expression(drive.expression,read);const driver:ArchNode={...n,id:`$micro${i}`,kind:"const",circuit:undefined,behavior:undefined,width:port.width as ArchNode["width"],value,mem:[],values:[]};
+      prepared={...prepared,nodes:[...prepared.nodes,driver],wires:[...prepared.wires.filter(w=>w.to!==n.id||w.toPort!==port.id),{id:`$drive${i}`,from:driver.id,fromPort:"y",to:n.id,toPort:port.id}]};
+    }
+    const structural=validateDesign(prepared).filter(issue=>issue.level==="error");
+    if(structural.length)throw new Error(structural.slice(0,3).map(i=>i.message).join(" "));
+    if(evaluateGraph(prepared).loop)throw new Error("Combinational loop prevents a deterministic circuit clock.");
+    const low=stepClock(prepared,0,1);
+    const high={...low,nodes:low.nodes.map(n=>n.kind==="clock"?{...n,value:1}:n)};const highLogic=evaluateLogicGraph(high);
+    if(engineeringOf(design).unknown==="strict")for(const n of high.nodes){const clk= n.behavior?.clock??"clk";const clockWire=high.wires.find(w=>w.to===n.id&&w.toPort===clk);if(!clockWire)continue;const clockBits=highLogic.values.get(`${clockWire.from}:${clockWire.fromPort}`);if(clockBits?.join("")!=="1")continue;
+      const ports=n.behavior?portsOf(n).filter(p=>p.dir==="in").map(p=>p.id):["counter"].includes(n.kind)?["clk"]:n.kind==="dff"?["clk","d"]:n.kind==="flags"?["clk","z","n","c","v"]:["clk","we",...(high.wires.some(w=>w.to===n.id&&w.toPort==="we"&&highLogic.values.get(`${w.from}:${w.fromPort}`)?.join("")!=="0")?["d",...(n.kind==="regfile"?["rd"]:["dmem","umem"].includes(n.kind)?["addr"]:[])]:[])];
+      for(const port of ports){const w=high.wires.find(w=>w.to===n.id&&w.toPort===port);const bits=w&&highLogic.values.get(`${w.from}:${w.fromPort}`);if(!bits||bits.some(b=>b==="X"||b==="Z"))throw new Error(`${n.name}.${port}: unknown or disconnected active storage input.`);}
+    }
+    const captured=stepClock(low,1,0);let next=flat.restore(captured.nodes);
+    const nextAddress=word?(word.condition&&readExpression(word.condition,read)?word.alternate??word.next:word.next):construction.microPc??0;
+    next={...next,engineering:{...engineeringOf(next),cycle,construction:{...construction,microPc:nextAddress}}};
+    const view=evaluateGraph(next);const halted=!!word?.halt||next.nodes.some(n=>n.name.toUpperCase()==="HALT"&&view.values.get(`${n.id}:a`)===1||portsOf(n).some(p=>p.dir==="out"&&p.id==="halted"&&p.width===1&&view.values.get(`${n.id}:${p.id}`)===1));
+    return {design:next,trace:{cycle,pc:findKind(next,"pc")?.value??0,ir:findKind(next,"ir")?.value??0,mnemonic:word?.name??"CIRCUIT",opcode:0,aluA:0,aluB:0,aluY:0,flags:{z:0,n:0,c:0,v:0},controls:controlsOf("",next.isa),memOp:"Clocked circuit state",halt:halted,reason:`${word?.commit?"Instruction boundary · ":""}${word?.name??"Circuit"}: all enabled storage captured the same rising-edge snapshot${halted?" · HALT":""}.`}};
+  } catch(e){return faultTrace(design,cycle,e instanceof Error?e.message:String(e));}
+}
+function readExpression(source:string,read:(name:string)=>number){return expression(source,read)!==0;}
+
 export function stepClock(design: CpuDesign, clock: 0 | 1, prev: 0 | 1): CpuDesign {
+  if(design.nodes.some(n=>n.circuit)||design.engineering?.construction?.nets?.length){const flat=flattenCircuit(design);return flat.restore(stepClock(flat.design,clock,prev).nodes);}
   let next={...design,nodes:design.nodes.map(n=>n.kind==="clock"?{...n,value:clock}:n)};
-  if (!(prev===0&&clock===1)) return next;
   const view=evaluateGraph(next);
   const logical=engineeringOf(next).unknown==="strict"?evaluateLogicGraph(next):null;
   const prior=evaluateGraph({...design,nodes:design.nodes.map(n=>n.kind==="clock"?{...n,value:prev}:n)});
   for(const node of design.nodes){
     const din=(port:string)=>wiredInput(next,view,node,port);
+    if(node.behavior){const b=node.behavior;const read=(key:string)=>key in (b.registers??{})?b.registers![key]!:key==="value"?node.value:din(key)??NaN;const cw=b.clock&&next.wires.find(w=>w.to===node.id&&w.toPort===b.clock);if(!cw||prior.values.get(`${cw.from}:${cw.fromPort}`)!==0||view.values.get(`${cw.from}:${cw.fromPort}`)!==1)continue;
+      const registers={...b.registers};for(const [key,formula] of Object.entries(b.next??{}))registers[key]=b.reset&&din(b.reset)?b.initial?.[key]??0:expression(formula,read,node.mem);
+      let mem=node.mem;let text=b.text??"";if(b.write&&expression(b.write.enable,read,node.mem)){const addr=expression(b.write.address,read,node.mem),data=expression(b.write.data,read,node.mem);if(b.device==="terminal")text+=String.fromCharCode(data&255);else {if(addr>=mem.length)throw new Error(`${node.name}: write address ${addr} exceeds memory capacity.`);mem=mem.slice();mem[addr]=data;}}
+      next=patchNode(next,node.id,{behavior:{...b,registers,text},mem});continue;
+    }
     const clockWire=next.wires.find(w=>w.to===node.id&&w.toPort==="clk"); if(!clockWire||prior.values.get(`${clockWire.from}:${clockWire.fromPort}`)!==0||view.values.get(`${clockWire.from}:${clockWire.fromPort}`)!==1)continue;
     const required=["clk",...(node.kind==="counter"?[]:node.kind==="flags"?["z","n","c","v"]:node.kind==="dff"?["d"]:["we",...(din("we")?["d",...(node.kind==="regfile"?["rd"]:["dmem","umem"].includes(node.kind)?["addr"]:[])]:[])])];
     if(logical&&required.some(port=>{const wire=next.wires.find(w=>w.to===node.id&&w.toPort===port);const bits=wire&&logical.values.get(`${wire.from}:${wire.fromPort}`);return !bits||bits.some(b=>b==="X"||b==="Z");}))continue;

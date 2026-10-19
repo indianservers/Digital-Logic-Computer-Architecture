@@ -1,59 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Button, Card, ExplainBar, Segmented } from "../../design-system/ui";
 import { hardwired, MICROPROGRAM, stepMicro } from "../../engines/isa/rtl";
 import { OP } from "../../engines/isa/spec";
-import { StudioFrame } from "../../layout/StudioFrame";
 import { CONTROL_LESSONS, lessonOf } from "../../data/studioLessons";
+import { Icon, type IconName } from "../../design-system/icons";
 import { usePrefs } from "../../store/prefs";
+import "./control.css";
 
-const TABS = [
-  { id: "hardwired", label: "Hardwired" },
-  { id: "micro", label: "Microprogram" },
-  { id: "compare", label: "Horizontal / Vertical" },
-];
+const TABS = [{id:"hardwired",label:"Hardwired"},{id:"micro",label:"Microprogram"},{id:"compare",label:"Horizontal / Vertical"}];
+const SIGNALS=["MARWrite","MemRead","IRWrite","PCWrite","ALUWrite","RegWrite","MemToReg","Seq"];
+const OPERATIONS=[...new Set(MICROPROGRAM.map(w=>w.horizontal))];
+const bits=(n:number,width:number)=>n.toString(2).padStart(width,"0");
+function Chip({size=28}:{size?:number}) {return <svg width={size} height={size} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2"><rect x="7" y="7" width="18" height="18" rx="3"/><rect x="12" y="12" width="8" height="8" rx="1"/>{[10,16,22].map(p=><path key={p} d={`M${p} 2v5M${p} 25v5M2 ${p}h5M25 ${p}h5`}/>)}</svg>;}
+function Mark({icon="grid",purple=false}:{icon?:IconName;purple?:boolean}) {return <span className={`cux-mark ${purple?"purple":""}`}><Icon name={icon} size={24}/></span>;}
+function Panel({title,icon="grid",children,className=""}:{title:string;icon?:IconName;children:ReactNode;className?:string}) {return <section className={`cux-card ${className}`}><h2><Mark icon={icon}/>{title}</h2>{children}</section>;}
+function BitStrip({values,labels,purple=false}:{values:string[];labels?:string[];purple?:boolean}) {return <div className={`cux-bitstrip ${purple?"purple":""}`}>{values.map((v,i)=><div key={i} title={labels?.[i]}>{labels&&<small>{labels[i]}</small>}<b className={v==="1"?"on":""}>{v}</b></div>)}</div>;}
+function WireDiagram({signals,opcode,mnemonic}:{signals:Record<string,string>;opcode:string;mnemonic:string}) {return <div className="cux-wiring"><div className="cux-instruction"><small>Instruction<br/>(opcode)</small><b>{opcode}</b><span>({mnemonic})</span></div><span className="cux-arrow">⟶</span><div className="cux-decoder"><Chip/><strong>Opcode<br/>Decoder</strong></div><svg className="cux-fan" viewBox="0 0 80 190" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cux-arrow-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#176bff"/></marker></defs>{Object.keys(signals).map((_,i)=><path key={i} d={`M0 ${95+(i-2)*6}H22Q35 ${95+(i-2)*6} 35 ${20+i*37}H76`} fill="none" stroke="#176bff" strokeWidth="1.7" markerEnd="url(#cux-arrow-head)"/>)}</svg><div className="cux-signal-list"><h4>Control signals</h4>{Object.entries(signals).map(([key,value])=><div key={key}><span>{key}</span><b className={value==="1"?"high":value==="0"?"low":"operation"}>{value}</b></div>)}</div></div>;}
 
 export function ControlStudio() {
-  const [tab, setTab] = useStudioTab(TABS, "hardwired");
-  const [mnemonic, setMnemonic] = useState("ADD");
-  const [addr, setAddr] = useState(0);
-  const [opcode, setOpcode] = useState<number>(OP.ALU);
-  const { prefs } = usePrefs();
-  const signals = hardwired(mnemonic);
-  const word = MICROPROGRAM.find((item) => item.addr === addr) ?? MICROPROGRAM[0];
-  const lesson = lessonOf(CONTROL_LESSONS, tab, "hardwired");
-
-  return (
-    <StudioFrame icon="gate" title="Control Unit" description="Hardwired control decodes the opcode into signals. Microprogrammed control reads the next control word from a small control store." tabs={TABS} tab={tab} onTab={setTab} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
-      {prefs.explain ? <ExplainBar what={`${mnemonic}: RegWrite ${signals.RegWrite}, MemRead ${signals.MemRead}, MemWrite ${signals.MemWrite}.`} why={word ? `${word.name}: ${word.signals}` : "Control store"} notice="Neither style is universally smaller or faster. Width and decoding trade off." /> : null}
-      {tab === "hardwired" ? (
-        <Card title="Opcode to signals">
-          <Segmented options={["ADD", "LOAD", "STORE", "BEQ"]} value={mnemonic} onChange={setMnemonic} />
-          {Object.entries(signals).map(([name, value]) => <div key={name} className="spread"><span>{name}</span><strong>{value}</strong></div>)}
-        </Card>
-      ) : null}
-      {tab === "micro" && word ? (
-        <Card title="Control memory">
-          <p>µPC {word.addr} · {word.name}</p>
-          <p>{word.signals}</p>
-          <p>Next {String(word.next)}</p>
-          <div className="row">
-            <Button onClick={() => setOpcode(OP.ALU)}>Dispatch ADD</Button>
-            <Button onClick={() => setOpcode(OP.LOAD)}>Dispatch LOAD</Button>
-            <Button variant="primary" onClick={() => setAddr(stepMicro(addr, opcode))}>Step microinstruction</Button>
-          </div>
-          <table className="data">
-            <thead><tr><th>µAddr</th><th>Name</th><th>Next</th></tr></thead>
-            <tbody>{MICROPROGRAM.map((item) => <tr key={item.addr} className={item.addr === addr ? "active" : ""}><td>{item.addr}</td><td>{item.name}</td><td>{String(item.next)}</td></tr>)}</tbody>
-          </table>
-        </Card>
-      ) : null}
-      {tab === "compare" && word ? (
-        <div className="grid cards-2">
-          <Card title="Horizontal"><p className="mono">{word.horizontal}</p><p>Each bit can drive a control point directly. The word is wider, and the control store stores more bits per step.</p></Card>
-          <Card title="Vertical"><p className="mono">{word.vertical}</p><p>The field names an operation. A decoder expands it into the same signals. The word is narrower.</p></Card>
-        </div>
-      ) : null}
-    </StudioFrame>
-  );
+  const [tab,setTab]=useStudioTab(TABS,"hardwired");
+  const [mnemonic,setMnemonic]=useState("ADD");
+  const [addr,setAddr]=useState(0);
+  const [opcode,setOpcode]=useState<number>(OP.ALU);
+  const [running,setRunning]=useState(false);
+  const [guideOpen,setGuideOpen]=useState(true);
+  const {prefs}=usePrefs();
+  const word=MICROPROGRAM.find(w=>w.addr===addr) ?? MICROPROGRAM[0]!;
+  const rawSignals=hardwired(mnemonic);
+  const signals:Record<string,string>={...rawSignals,ALUSrc:rawSignals.ALUSrc==="imm"?"1":"0"};
+  const lesson=lessonOf(CONTROL_LESSONS,tab,"hardwired");
+  const opcodeValue=mnemonic==="LOAD"?OP.LOAD:mnemonic==="STORE"?OP.STORE:mnemonic==="BEQ"?OP.BEQ:OP.ALU;
+  const horizontal=word.horizontal.split(" ");
+  const verticalCode=bits(OPERATIONS.indexOf(word.horizontal),3);
+  const nextCode=bits(word.next==="dispatch"?9:word.next,4);
+  useEffect(()=>{setRunning(false);},[tab]);
+  useEffect(()=>{if(!running)return;const timer=window.setInterval(()=>setAddr(a=>stepMicro(a,opcode)),850);return()=>window.clearInterval(timer);},[running,opcode]);
+  const chooseAddress=(address:number)=>{setAddr(address);setRunning(false);};
+  const controls=<div className="cux-sequencer"><div className="cux-dispatch"><span>Dispatch instruction</span><button className={opcode===OP.ALU?"selected":""} onClick={()=>setOpcode(OP.ALU)}>ADD</button><button className={opcode===OP.LOAD?"selected":""} onClick={()=>setOpcode(OP.LOAD)}>LOAD</button></div><div className="cux-step-controls"><button className="primary" onClick={()=>{setRunning(false);setAddr(stepMicro(addr,opcode));}}><Icon name="step" size={15}/>Step microinstruction</button><button onClick={()=>setRunning(!running)}><Icon name={running?"pause":"play"} size={14}/>{running?"Pause":"Auto"}</button><button onClick={()=>{setRunning(false);setAddr(0);}}>↺ Reset</button></div></div>;
+  const store=(vertical=false)=><div className={`cux-store ${vertical?"purple":""}`}><header><span className="cux-upc">µPC <b>{word.addr}</b></span><span className="cux-arrow">→</span><h3>Control Store ({vertical?"Vertical":"Horizontal"})</h3></header><div className="cux-table-scroll"><table><thead><tr><th>Addr</th>{vertical?<><th>Operation</th><th>Code</th><th>Next</th></>:SIGNALS.map(s=><th key={s} title={s}>{s}</th>)}</tr></thead><tbody>{MICROPROGRAM.map(w=><tr key={w.addr} className={w.addr===addr?"active":""} onClick={()=>chooseAddress(w.addr)}><td><button aria-label={`Select ${vertical?"vertical":"horizontal"} microinstruction ${w.addr}: ${w.name}`} onClick={()=>chooseAddress(w.addr)}>{w.addr}</button></td>{vertical?<><td>{w.name}</td><td className="mono">{bits(OPERATIONS.indexOf(w.horizontal),3)}</td><td>{w.next}</td></>:w.horizontal.split(" ").map((v,i)=><td key={i}>{v}</td>)}</tr>)}</tbody></table></div></div>;
+  return <div className={`cux cux-${tab}`}>
+    <header className="cux-hero"><div className="cux-heading"><span className="cux-hero-icon"><Chip size={42}/></span><div><h1>Control Unit</h1><p>Hardwired control decodes the opcode into signals. Microprogrammed control reads the next control word<br className="cux-wide-break"/> from a small control store.</p></div></div><div className="cux-hero-art" aria-hidden="true"><span>Opcode in</span><div className="cux-silicon"><Chip size={65}/></div><div className="cux-art-arrows">⟶<br/>⟶<br/>⟶</div><span>Control signals out</span></div></header>
+    <div className="cux-layout"><main className="cux-main"><div className="cux-tabbar"><nav role="tablist" aria-label="Control Unit">{TABS.map((t,i)=><button key={t.id} type="button" role="tab" aria-selected={tab===t.id} className={tab===t.id?"active":""} onClick={()=>setTab(t.id)}><Icon name={i===0?"gate":i===1?"sheet":"reset"} size={20}/>{t.label}</button>)}</nav>{tab!=="hardwired"&&<Link to="/learn" className="cux-back">‹　Back to Path</Link>}</div>
+      <section className="cux-card cux-intro"><div className="cux-intro-top"><Mark icon={tab==="hardwired"?"info":"sheet"}/><div><h2>{tab==="compare"?"Horizontal vs Vertical Microprogramming":lesson.theory.title}</h2><p>{lesson.theory.body}</p></div>{tab==="hardwired"&&<div className="cux-mini-flow"><span>Opcode<br/><small>(from instruction)</small></span><b>→</b><strong>Decoder<small>(combinational logic)</small></strong><b>→</b><div>{Object.keys(signals).map(s=><span key={s}>{s}</span>)}</div></div>}</div>{prefs.explain&&tab==="hardwired"&&<div className="cux-explain"><div><i>⚙</i><section><h3>What changed?</h3><p>{mnemonic}: RegWrite {signals.RegWrite}, MemRead {signals.MemRead}, MemWrite {signals.MemWrite}.</p></section></div><div><i>◎</i><section><h3>Why?</h3><p>{word.name}: {word.signals}</p></section></div><div><i>i</i><section><h3>Notice</h3><p>Neither style is universally smaller or faster. Width and decoding trade off.</p></section></div></div>}</section>
+      {tab==="hardwired"&&<Panel title="Opcode to signals" icon="table" className="cux-hardwired"><div className="cux-hardwired-grid"><div><div className="cux-opcodes">{["ADD","LOAD","STORE","BEQ"].map(op=><button key={op} className={op===mnemonic?"active":""} onClick={()=>setMnemonic(op)}>{op}</button>)}</div><table><thead><tr><th>Signal</th><th>Value ({mnemonic})</th></tr></thead><tbody>{Object.entries(signals).map(([name,value])=><tr key={name}><td>{name}</td><td className={value==="1"?"high":value==="0"?"low":"operation"}>{value}</td></tr>)}</tbody></table><p className="cux-caption">ALUSrc: 0 = register · 1 = immediate. Signals show the teaching ISA’s decoded instruction controls.</p></div><div className="cux-concept"><h3><Chip size={19}/>How it works conceptually</h3><WireDiagram signals={signals} opcode={bits(opcodeValue,4)} mnemonic={mnemonic}/><p>The opcode is decoded into the control points used by the datapath. For a multi-cycle instruction, the current stage determines when each point is asserted.</p></div></div></Panel>}
+      {tab==="micro"&&<><Panel title="Microinstruction sequencer" icon="play"><div className="cux-micro-live"><div className="cux-counter">µPC<b>{addr}</b></div><span className="cux-arrow">→</span><div className="cux-live-operation"><small>CURRENT MICROINSTRUCTION</small><h3>{word.name}</h3><p>{word.signals}</p></div><span className="cux-arrow">→</span><div className="cux-next"><small>NEXT ADDRESS</small><b>{word.next}</b></div></div>{controls}</Panel><Panel title="Control memory" icon="table"><div className="cux-micro-table"><table><thead><tr><th>µAddr</th><th>Microinstruction</th><th>Register transfer</th><th>Horizontal word</th><th>Next</th></tr></thead><tbody>{MICROPROGRAM.map(w=><tr key={w.addr} className={w.addr===addr?"active":""} onClick={()=>chooseAddress(w.addr)}><td><button aria-label={`Go to ${w.name}`} onClick={()=>chooseAddress(w.addr)}>{w.addr}</button></td><td>{w.name}</td><td>{w.signals}</td><td className="mono">{w.horizontal}</td><td>{w.next}</td></tr>)}</tbody></table></div></Panel></>}
+      {tab==="compare"&&<><div className="cux-comparison"><section className="cux-card cux-horizontal"><header><Mark icon="sheet"/><div><h2>Horizontal Microprogram</h2><span className="cux-pill">Wider & direct</span></div></header><p>Each control point has a dedicated bit. The word directly drives micro-operations, with more bits stored per step.</p><div className="cux-word"><BitStrip values={horizontal} labels={SIGNALS}/><strong>Control word ({horizontal.length} bits)</strong><small>■ 1 = Asserted　　<span>■ 0 = Deasserted</span></small></div>{store()}<div className="cux-tradeoffs"><div><b>Advantages</b><span>Direct control outputs<br/>Simple control decoding</span></div><div><b>Tradeoff</b><span>Wider control word<br/>More storage bits per entry</span></div></div></section><section className="cux-card cux-vertical"><header><Mark icon="sheet" purple/><div><h2>Vertical Microprogram</h2><span className="cux-pill purple">Compact & encoded</span></div></header><p>An encoded operation is expanded into the same control signals. This illustrative format trades word width for a decoder.</p><div className="cux-encoded"><div><small>Operation (3 bits)</small><strong>{word.name}</strong><BitStrip values={verticalCode.split("")} purple/></div><span>+</span><div><small>Next address (4 bits)</small><strong>{word.next}</strong><BitStrip values={nextCode.split("")} purple/></div></div><div className="cux-vertical-decode"><div className="cux-decode-box"><span>↓</span><Chip/><strong>Decoder</strong><small>Expands operation<br/>to control signals</small></div><div className="cux-decoded-signals">{SIGNALS.map((s,i)=><div key={s}><span>⟶　{s}</span><b className={horizontal[i]==="1"?"high":""}>{horizontal[i]}</b></div>)}</div></div>{store(true)}<p className="cux-caption">Seven control patterns use 3-bit codes; next = 1001 means dispatch. This illustrative 7-bit format is compared with the existing 8-bit horizontal word. Width and decoding depend on the chosen encoding.</p></section></div>{controls}</>}
+    </main><aside className="cux-sidebar"><section className="cux-card cux-guide"><button className="cux-guide-title" onClick={()=>setGuideOpen(!guideOpen)} aria-expanded={guideOpen}><Icon name="book" size={23}/><h2>Studio Guide</h2><span>{guideOpen?"⌃":"⌄"}</span></button>{guideOpen&&<ol>{lesson.guide.map((g,i)=><li key={g}><span>{i+1}</span>{g}</li>)}</ol>}</section><section className="cux-card cux-takeaways"><h2><Icon name="bolt" size={24}/>Key Takeaways</h2><ul>{lesson.takeaways.map(t=><li key={t}><span>✓</span>{t}</li>)}</ul></section><section className="cux-card cux-quote"><b>“</b><p>“Numbers are the language in which the universe is written.”<small>— Galileo</small></p></section>{tab!=="hardwired"&&<section className="cux-card cux-related"><h2><Icon name="path" size={20}/>Related Topics</h2><Link to="/studios/fde">Fetch–Decode–Execute <span>›</span></Link><Link to="/studios/rtl?tab=word">Control words <span>›</span></Link><button onClick={()=>setTab(tab==="compare"?"micro":"compare")}>{tab==="compare"?"Microprogram sequencer":"Compare encodings"}<span>›</span></button></section>}</aside></div>
+  </div>;
 }

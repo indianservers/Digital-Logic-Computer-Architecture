@@ -1,0 +1,62 @@
+/* The older memory grid's array/cycle spans must not create implicit tracks here. */
+.memx-ram .memx-lab {
+  grid-template-columns: minmax(280px, 340px) minmax(350px, 420px) minmax(400px, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.memx-ram .memx-array {
+  grid-column: 1;
+  grid-row: 1;
+}
+.memx-ram .memx-cpu { grid-column: 2; grid-row: 1; }
+.memx-ram .memx-side {
+  grid-column: 3;
+  grid-row: 1;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.memx-ram .memx-side > .memx-cycle { grid-column: 1 / -1; }
+.memx-ram .lgx-card { padding: 12px; }
+.memx-ram .lgx-card h3 { margin-bottom: 8px; }
+.memx-ram .lgx-card-bar { align-items: start; flex-wrap: wrap; }
+.memx-ram .lgx-card-bar .fsmx-quick { gap: 4px; }
+.memx-ram .memx-bits { gap: 4px; }
+.memx-ram .memx-bit { width: 34px; min-height: 34px; }
+.memx-ram .memx-hex { margin: 8px 0 12px; }
+.memx-ram .memx-decoder { min-height: 58px; margin-bottom: 8px; }
+.memx-ram .memx-controls { gap: 6px 8px; }
+.memx-ram .memx-controls + .memx-controls { margin-top: 6px; }
+.memx-ram .memx-map { padding: 5px 6px; font-size: 12px; line-height: 1.5; }
+.memx-ram .memx-map small { font-size: 11px; }
+.memx-ram .memx-side p:has(> span) { font-size: 11px; line-height: 1.6; }
+.memx-ram .memx-side p > b { overflow-wrap: anywhere; text-align: right; }
+.memx-ram .memx-cycle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 1fr);
+  gap: 8px 16px;
+}
+.memx-ram .memx-cycle .lgx-card-bar,
+.memx-ram .memx-cycle > .tiny { grid-column: 1 / -1; }
+.memx-ram .memx-cycle .lgx-card-bar h3 { margin: 0; }
+.memx-ram .memx-steps { font-size: 12px; line-height: 1.8; }
+.memx-ram .memx-wave { align-self: center; height: auto; min-height: 90px; }
+.memx-ram .memx-lower { margin-top: 12px; align-items: start; gap: 12px; }
+.memx-ram .memx-lower details.lgx-card { margin: 0; }
+.memx-ram .memx-lower .data { margin-top: 8px; }
+@media (max-width: 1250px) {
+  .memx-ram .memx-lab { grid-template-columns: minmax(280px, .85fr) minmax(350px, 1.15fr); }
+  .memx-ram .memx-side { grid-column: 1 / -1; grid-row: 2; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr); }
+  .memx-ram .memx-side > .memx-cycle { grid-column: 3; }
+  .memx-ram .memx-cycle { display: block; }
+  .memx-ram .memx-cycle .lgx-card-bar { margin-bottom: 8px; }
+  .memx-ram .memx-wave { height: 90px; }
+}
+@media (max-width: 720px) {
+  .memx-ram .memx-lab { grid-template-columns: minmax(0, 1fr); }
+  .memx-ram .memx-cpu { grid-column: 1; grid-row: 2; }
+  .memx-ram .memx-side { grid-column: 1; grid-row: 3; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .memx-ram .memx-side > .memx-cycle { grid-column: 1 / -1; }
+  .memx-ram .memx-lower { grid-template-columns: minmax(0, 1fr); }
+  .memx-ram .memx-cells .mem-cell { padding: 6px 2px; }
+}

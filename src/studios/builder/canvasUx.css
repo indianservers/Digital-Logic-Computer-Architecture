@@ -1,0 +1,30 @@
+.cpu-canvas-panel { position:relative; }
+.arch-canvas-surface { position:relative; min-height:0; overflow:hidden; }
+.cpu-canvas-panel:fullscreen .arch-canvas-surface { flex:1; display:flex; }
+.cpu-canvas-panel:fullscreen .arch-canvas-surface .arch-canvas { height:100%!important; }
+.ux-rail { display:flex; flex-wrap:wrap; align-items:center; gap:4px; padding:5px 8px; background:#fff; border-bottom:1px solid #dde6f5; flex-shrink:0; }
+.ux-rail button,.ux-drawer button,.ux-selection button,.ux-context button,.ux-preview button { font:inherit; font-size:11px; border:1px solid #cedcf2; color:#234b82; background:white; border-radius:6px; padding:6px 8px; cursor:pointer; }
+.ux-rail button[aria-expanded=true] { background:#e4efff; border-color:#3772d4; }
+.ux-status { font-size:10px; color:#4b617f; margin-left:auto; }
+.ux-drawer { position:absolute; z-index:12; right:10px; top:140px; width:min(290px,calc(100% - 20px)); max-height:calc(100% - 160px); overflow:auto; background:#fffffff5; border:1px solid #bfd0ec; border-radius:10px; padding:12px; box-shadow:0 8px 30px #17335a22; color:#233c61; font-size:12px; resize:horizontal; }
+.ux-drawer header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.ux-drawer input,.ux-drawer select,.ux-drawer textarea { box-sizing:border-box; width:100%; min-width:0; border:1px solid #c9d8ed; border-radius:5px; padding:7px; font:inherit; }
+.ux-drawer label { display:grid; gap:4px; margin:8px 0; }
+.ux-drawer dt { font-weight:700; margin-top:10px; }.ux-drawer dd { margin:2px 0; }
+.ux-parts { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:10px; }
+.ux-result { display:block; width:100%; text-align:left; margin:6px 0; }.ux-result small { display:block; color:#60728a; margin:3px 0; }
+.ux-selection,.ux-context { position:absolute; z-index:10; display:flex; flex-wrap:wrap; gap:3px; max-width:210px; padding:6px; border:1px solid #bbcef0; border-radius:8px; background:#fff; box-shadow:0 4px 14px #14305c22; }
+.ux-selection strong { font-size:11px; width:100%; }.ux-context { width:170px; z-index:20; }.ux-context button { width:100%; text-align:left; }
+.ux-preview { position:absolute; z-index:22; top:140px; left:12px; display:flex; gap:8px; align-items:center; padding:10px; background:#fff4cb; border:1px solid #cc9d30; border-radius:8px; font-size:12px; }
+.ux-error { padding:5px 10px; color:#a1222a; background:#fff0f0; font-size:12px; flex-shrink:0; }
+.ux-bookmark { display:flex; margin-top:7px; }.ux-bookmark button:first-child { flex:1; text-align:left; }
+.arch-wire-hint { position:absolute; bottom:12px; left:12px; max-width:80%; padding:8px 12px; border-radius:8px; background:#102d51; color:white; font-size:12px; pointer-events:none; }
+.ux-command-group { position:relative; }.ux-command-group summary { cursor:pointer; padding:7px 12px; font-size:12px; color:#284878; border:1px solid #d1dff3; border-radius:7px; }
+.ux-command-menu { position:absolute; z-index:30; top:100%; left:0; min-width:190px; padding:8px; background:white; border:1px solid #c7d7ef; border-radius:8px; box-shadow:0 5px 20px #17335a22; display:grid; gap:4px; }
+.ux-command-menu md-outlined-button { width:100%; }.cpu-toolbar .ux-group-label { font-size:10px; color:#667b99; margin-left:8px; }
+.cpu-workspace .palette { resize:horizontal; overflow:auto; min-width:160px; max-width:420px; }
+.cpu-workspace .cpu-inspector { resize:horizontal; overflow:auto; min-width:180px; max-width:450px; }
+.ux-sidebar-toggle { width:100%; margin-bottom:6px; font-size:11px; border:1px solid #d4e1f4; background:#fff; padding:6px; border-radius:6px; cursor:pointer; color:#294d80; }
+.ux-device-bar { display:flex; gap:8px; flex-wrap:wrap; padding:6px 10px; font-size:11px; background:#f4f8ff; }.ux-device-bar input { width:70px; }.ux-device-bar pre { max-height:70px; overflow:auto; margin:0; }
+.ux-micro-row { border:1px solid #d0ddef; border-radius:8px; padding:12px; margin:8px 0; }.ux-micro-row .build-fields input { min-width:80px; }
+@media(max-width:700px){.ux-status{width:100%;margin:2px 0}.ux-selection{max-width:160px}.ux-drawer{top:180px;max-height:calc(100% - 195px)}}

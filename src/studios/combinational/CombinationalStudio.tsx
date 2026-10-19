@@ -1,12 +1,15 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CircuitCanvas, Glyph } from "../../components/circuit/CircuitPanels";
 import { muxChallengeBoard, patchNode, serialize, signalOf, starterAbPlusC, truthTable } from "../../components/circuit/engine";
-import { getComponent } from "../../components/circuit/registry";
+import { getComponent, nodeFrame } from "../../components/circuit/registry";
 import type { Bit, CircuitDoc } from "../../components/circuit/types";
 import { useCircuit } from "../../components/circuit/useCircuit";
 import { Icon } from "../../design-system/icons";
 import { Toggle } from "../../design-system/ui";
-import { useStudioTab } from "../../layout/useStudioTab";
+import { Link, useNavigate } from "react-router-dom";
+import { searchStudios } from "../../data/curriculum";
+import { Mark } from "../rtl/ui";
+import "./combinational.css";
 
 const TABS = [
   { id: "basic", label: "Basic Gates", icon: "gate" as const },
@@ -100,7 +103,10 @@ const OPS = [
 ];
 
 export function CombinationalStudio() {
-  const [tab, setTab] = useStudioTab(TABS, "basic");
+  const [tab, setTab] = useState("basic");
+  const [pan, setPan] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { const gate = circuit.doc.nodes.find(node => node.type === "and") ?? circuit.doc.nodes[0]; if (gate) circuit.setSelected([gate.id]); fitCanvas(); }, []);
   const view = tab === "canvas" ? "basic" : tab;
   const circuit = useCircuit({ storage: "logiclab.circuit.combinational.v1", starter: starterAbPlusC });
   const [query, setQuery] = useState("");
@@ -119,6 +125,18 @@ export function CombinationalStudio() {
   const parts = (PALETTE[view] ?? BASIC).filter((part) => part.label.toLowerCase().includes(query.trim().toLowerCase()));
   const shownParts = more ? parts : parts.slice(0, 12);
 
+  function fitCanvas() {
+    const canvas = shellRef.current?.querySelector(".cwb-svg");
+    if (!canvas || circuit.doc.nodes.length === 0) return;
+    const bounds = circuit.doc.nodes.map(nodeFrame);
+    const left = Math.min(...bounds.map(b=>b.x));
+    const top = Math.min(...bounds.map(b=>b.y));
+    const right = Math.max(...bounds.map(b=>b.x+b.width));
+    const bottom = Math.max(...bounds.map(b=>b.y+b.height));
+    const zoom = Math.max(.1,Math.min(1.4,(canvas.clientWidth-140)/(right-left),(canvas.clientHeight-90)/(bottom-top)));
+    circuit.setView({x:70-left*zoom,y:40-top*zoom,zoom});
+  }
+
   function download() {
     const blob = new Blob([JSON.stringify(circuit.doc, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -134,29 +152,22 @@ export function CombinationalStudio() {
   }
 
   return (
-    <div className="cmb">
+    <div className="cmb-shell" ref={shellRef}><CombinationalNav/><div className="cmb-crumb"><Link to="/">Home</Link>　›　<Link to="/studios">Studios</Link>　›　<b>Combinational Circuits</b></div><div className="cmb">
       <header className="cmb-head">
         <div className="cmb-title">
-          <span className="cmb-mark" aria-hidden="true"><Icon name="gate" size={22} /></span>
+          <span className="cmb-mark" aria-hidden="true"><Mark kind="chip"/></span>
           <div>
             <h1>Combinational Circuit Design</h1>
             <p>Design, simulate, and analyze combinational logic circuits. Combine logic gates to create circuits, verify with truth tables, and explore real-world applications.</p>
           </div>
         </div>
         <div className="cmb-actions">
-          <button className="cmb-ghost" onClick={() => { localStorage.setItem("logiclab.circuit.combinational.v1", serialize(circuit.doc)); setSaved("Saved on this device"); }}>Save</button>
-          <button className="cmb-ghost" onClick={download}>Download</button>
-          <button className="cmb-share" onClick={() => void navigator.clipboard?.writeText(window.location.href)}>Share</button>
+          <button className="cmb-ghost" onClick={() => { localStorage.setItem("logiclab.circuit.combinational.v1", serialize(circuit.doc)); setSaved("Saved on this device"); }}><Icon name="sheet" size={14}/> Save</button>
+          <button className="cmb-ghost" onClick={download}><span>⇩</span> Download</button>
+          <button className="cmb-share" onClick={() => void navigator.clipboard?.writeText(window.location.href)}><span>♧</span> Share</button>
         </div>
       </header>
       {saved ? <p className="tiny">{saved}</p> : null}
-      <div className="cmb-tabs" role="tablist" aria-label="Circuit families">
-        {TABS.filter((item) => item.id !== "canvas").map((item) => (
-          <button key={item.id} role="tab" aria-selected={view === item.id} className={view === item.id ? "on" : ""} onClick={() => setTab(item.id)}>
-            <Icon name={item.icon} size={14} /> {item.label}
-          </button>
-        ))}
-      </div>
       <div className="cmb-grid">
         <section className="cmb-card">
           <h2>Components</h2>
@@ -173,7 +184,7 @@ export function CombinationalStudio() {
             {shownParts.map((part) => (
               <button
                 key={`${part.type}-${part.label}`}
-                className={circuit.armed === part.type ? "on" : ""}
+                className={circuit.armed === part.type || (!circuit.armed && circuit.doc.nodes.some(node=>circuit.selected.includes(node.id)&&node.type===part.type)) ? "on" : ""}
                 draggable
                 title={`Drag ${part.label} onto the canvas, or click it and then click the canvas.`}
                 onDragStart={(event) => {
@@ -197,31 +208,31 @@ export function CombinationalStudio() {
             <span className="tiny">{circuit.armed ? `Click the canvas to place ${getComponent(circuit.armed)?.displayName ?? "the part"}` : "Drag a part onto the canvas"}</span>
           </div>
           <div className="cmb-tools" role="toolbar" aria-label="Canvas tools">
-            <button className={circuit.armed ? "" : "on"} title="Select" aria-label="Select" onClick={() => circuit.arm(null)}>▣</button>
-            <button title="Delete selection" aria-label="Delete selection" onClick={circuit.removeSelection}>⌫</button>
+            <button className={!circuit.armed && !pan ? "on" : ""} title="Select" aria-label="Select" onClick={() => {circuit.arm(null);setPan(false)}}>⌁</button>
+            <button title="Pan canvas" aria-label="Pan canvas" aria-pressed={pan} className={pan?"on":""} onClick={()=>{circuit.arm(null);setPan(!pan)}}>♧</button><button title="Delete selection" aria-label="Delete selection" onClick={circuit.removeSelection}>⌫</button>
             <button title="Undo" aria-label="Undo" onClick={circuit.undo} disabled={!circuit.canUndo}>↩</button>
             <button title="Redo" aria-label="Redo" onClick={circuit.redo} disabled={!circuit.canRedo}>↪</button>
             <button title="Zoom out" aria-label="Zoom out" onClick={() => circuit.setView({ ...circuit.view, zoom: Math.max(0.1, circuit.view.zoom - 0.1) })}>−</button>
             <button title="Zoom in" aria-label="Zoom in" onClick={() => circuit.setView({ ...circuit.view, zoom: Math.min(4, circuit.view.zoom + 0.1) })}>+</button>
             <span className="cmb-zoom">{Math.round(circuit.view.zoom * 100)}%</span>
-            <button onClick={() => circuit.setView({ x: 16, y: 12, zoom: 1 })}>Fit</button>
+            <button className="cmb-fit" onClick={fitCanvas}>Fit</button><button aria-label="Fullscreen workspace" className="cmb-fullscreen" onClick={()=>{if(document.fullscreenElement)void document.exitFullscreen();else void shellRef.current?.requestFullscreen()}}>⛶</button>
             <button className={circuit.snap ? "on" : ""} aria-pressed={circuit.snap} title="Snap to grid" onClick={() => circuit.setSnap(!circuit.snap)}>▦</button>
           </div>
-          <CircuitCanvas circuit={circuit} dockProperties propertiesHost={propsHost} />
+          <CircuitCanvas circuit={circuit} panMode={pan} dockProperties propertiesHost={propsHost} />
         </section>
 
         <section className="cmb-card cmb-props-card">
           <h2>Properties</h2>
-          <div ref={setPropsHost} className="cmb-props-host" />
+          <div className="cmb-inspector-glyph"><Glyph type={circuit.doc.nodes.find(node=>circuit.selected.includes(node.id))?.type??"and"}/></div><div ref={setPropsHost} className="cmb-props-host" />
         </section>
       </div>
 
       <div className="cmb-bottom">
         <section className="cmb-card">
           <div className="cmb-bar"><h2>Output Analysis</h2><span className="cmb-live">Live</span></div>
-            <div className="cmb-seg" role="tablist">
+            <div className="cmb-seg" role="group" aria-label="Output analysis">
               {(["value", "timing", "expr"] as const).map((id) => (
-                <button key={id} className={analysis === id ? "on" : ""} aria-selected={analysis === id} onClick={() => setAnalysis(id)}>
+                <button key={id} className={analysis === id ? "on" : ""} aria-pressed={analysis === id} onClick={() => setAnalysis(id)}>
                   {id === "value" ? "Output Value" : id === "timing" ? "Timing" : "Logic Expression"}
                 </button>
               ))}
@@ -246,8 +257,8 @@ export function CombinationalStudio() {
         <section className="cmb-card">
             <div className="cmb-bar"><h2>Simulation Monitor</h2><span className="tiny">Step</span></div>
             <div className="cmb-run">
-              <button className="cmb-run-btn" onClick={() => circuit.setPlaying(true)}><Icon name="play" size={14} /> Run</button>
-              <button onClick={() => circuit.commit({ ...circuit.doc, nodes: circuit.doc.nodes.map((node) => node.type === "clock" ? { ...node, params: { ...node.params, level: node.params.level === 1 ? 0 : 1 } } : node) })}>Step</button>
+              <button className="cmb-run-btn" onClick={() => circuit.setPlaying(!circuit.playing)}><Icon name={circuit.playing?"pause":"play"} size={14}/>{circuit.playing?"Pause":"Run"}</button>
+              <button onClick={() => {circuit.setPlaying(false);if(circuit.doc.nodes.some(node=>node.type==="clock")){circuit.commit({...circuit.doc,nodes:circuit.doc.nodes.map(node=>node.type==="clock"?{...node,params:{...node.params,level:node.params.level===1?0:1}}:node)});}else{circuit.setFrame((circuit.frame+1)%Math.max(1,circuit.sim.frames.length));}}}>Step</button>
               <button onClick={circuit.reset}>Reset</button>
               <select aria-label="Simulation speed" value={String(circuit.speed)} onChange={(event) => circuit.setSpeed(Number(event.target.value))}>
                 {[0.25, 0.5, 1, 2, 4, 8].map((value) => <option key={value} value={value}>{value}×</option>)}
@@ -335,7 +346,7 @@ export function CombinationalStudio() {
           </ul>
         </section>
       </div>
-    </div>
+    </div></div>
   );
 }
 
@@ -377,4 +388,9 @@ function muxVerdict(doc: CircuitDoc): string {
     if (y !== expect) return `When A=${a} B=${b} S=${s}, Y is ${y}. A 2-to-1 mux gives ${expect}.`;
   }
   return "Correct. Y follows A when S is 0 and B when S is 1.";
+}
+
+function CombinationalNav() {
+ const navigate=useNavigate();
+ return <header className="cmb-nav"><Link to="/" className="cmb-brand"><span><Icon name="project" size={24}/></span><div><b>LogicLab</b><small>Digital Electronics Studio</small></div></Link><nav><Link to="/"><Icon name="home" size={15}/>Home</Link><Link className="on" to="/studios"><Icon name="grid" size={15}/>Studios</Link><Link to="/learn"><Icon name="book" size={15}/>Learning</Link><Link to="/projects"><Icon name="practice" size={15}/>Examples</Link><Link to="/notes"><Icon name="people" size={15}/>Community</Link></nav><label className="cmb-topic-search"><Icon name="search" size={17}/><input aria-label="Search topics" placeholder={'Search topics, e.g. "multiplexer" or "Boolean algebra" ...'} onKeyDown={e=>{if(e.key==='Enter'){const hit=searchStudios(e.currentTarget.value).find(s=>s.active);if(hit)navigate(hit.path)}}}/></label><span className="cmb-ready">●　Offline Ready</span><button aria-label="Local workspace information" title="Your circuits are saved on this device" onClick={()=>window.alert('Circuits and preferences are saved locally on this device.')}><Icon name="bell" size={18}/></button><span className="cmb-avatar">S</span></header>;
 }

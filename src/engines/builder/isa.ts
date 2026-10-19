@@ -55,7 +55,7 @@ export function validateIsa(isa: IsaSpec): FormatIssue[] {
   const maxOp = fieldMask(opcodeBits);
   const used = new Map<number, string>();
   const names = new Set<string>();
-  if(![1,4,8,16,32].includes(isa.dataWidth)||!Number.isInteger(isa.regs)||isa.regs<1||isa.regs>8)issues.push({level:"error",message:"ISA requires a supported data width and 1–8 registers."});
+  if(![1,4,8,16,32].includes(isa.dataWidth)||!Number.isInteger(isa.regs)||isa.regs<1||isa.regs>32)issues.push({level:"error",message:"ISA requires a supported data width and 1–32 registers."});
   for (const instr of isa.instructions) {
     if(!["ADD","SUB","AND","OR","XOR","NOT","SHL","SHR","CMP","INC","DEC"].includes(instr.aluOp)||typeof instr.regWrite!=="boolean"||typeof instr.memToReg!=="boolean"||!['inc','branchEq','branchNe','jump','halt'].includes(instr.pc)||!['none','load','store'].includes(instr.mem)||!['reg','imm'].includes(instr.aluSrc))issues.push({level:"error",message:`${instr.mnemonic}: unsupported or invalid declarative semantics.`});
     const key = instr.mnemonic.toUpperCase();

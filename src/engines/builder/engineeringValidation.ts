@@ -2,12 +2,19 @@ import { portsOf, type CpuDesign } from "./model";
 import { validateDesign } from "./validate";
 import { assemble } from "./isa";
 import { engineeringOf } from "./project";
+import { flattenCircuit, validateBehavior } from "./construction";
 export interface Finding { id: string; level: "error" | "warning" | "info"; category: string; message: string; fix: string; nodeId?: string; wireId?: string; route: string; }
 export function engineeringFindings(design: CpuDesign): Finding[] {
   const config = engineeringOf(design);
   const ruleHash=(s:string)=>{let h=2166136261;for(const c of s)h=Math.imul(h^c.charCodeAt(0),16777619);return (h>>>0).toString(16);};const counts=new Map<string,number>();
   const rows: Finding[] = validateDesign(design).map(i => {const key=ruleHash(`${i.nodeId??""}|${i.wireId??""}|${i.message}`);const occurrence=(counts.get(key)??0)+1;counts.set(key,occurrence);return { ...i, id:`GRAPH-${key}-${occurrence}`, category:i.nodeId || i.wireId ? "Connections" : "ISA", fix:i.nodeId || i.wireId ? "Inspect the affected component and reconnect compatible typed ports." : "Open the instruction definition and correct the conflicting encoding.", route:i.nodeId || i.wireId ? "wires" : "isa" };});
   const add = (id: string, level: Finding["level"], category: string, message: string, fix: string, route: string, nodeId?: string) => rows.push({ id, level, category, message, fix, route, nodeId });
+  if(config.construction?.execution==="circuit"){
+    try{const graph=flattenCircuit(design).design;for(const n of graph.nodes){try{validateBehavior(n);}catch(e){add(`BLOCK-${n.id}`,"error","Components",`${n.name}: ${String(e)}`,"Open the custom block editor and correct its ports or expressions.","builder",n.id.split("/")[0]);}
+      if(["cache","core"].includes(n.kind)&&!n.behavior)add(`MODEL-${n.id}`,"error","Model Scope",`${n.name} has no circuit implementation.`,"Replace it with a custom block or gate-level module.","builder",n.id);
+      for(const p of portsOf(n).filter(p=>p.dir==="in"))if(!graph.wires.some(w=>w.to===n.id&&w.toPort===p.id))add(`FLOAT-${n.id}-${p.id}`,"warning","Connections",`${n.name}.${p.name} is disconnected (Z).`,"Wire a compatible source or defined constant; active unknown inputs stop circuit clocks.","builder",n.id.split("/")[0]);
+    }}catch(e){add("CIRCUIT","error","Components",String(e),"Inspect module definitions and interface connections.","builder");}return rows;
+  }
   for (const n of design.nodes) {
     if(["split","join"].includes(n.kind)&&n.width===1)add(`WIDTH-${n.id}`,"error","Components",`${n.name}: a one-bit word cannot be divided into two nonempty equal fields.`,"Choose width 4, 8, 16 or 32.","library",n.id);
     if(n.kind==="sext"&&(!n.inputWidth||![1,4,8,16,32].includes(n.inputWidth)||n.inputWidth>n.width))add(`EXT-${n.id}`,"error","Components",`${n.name}: sign-extension input width must be explicit, supported and no larger than the output.`,"Set the narrow input width.","library",n.id);

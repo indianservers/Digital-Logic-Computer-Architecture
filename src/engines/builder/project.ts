@@ -1,8 +1,10 @@
 import { PALETTE, GATE_PALETTE, connect, type CpuDesign, type ArchNode, type ArchWire, type NodeKind, type Width } from "./model";
 import { parseTestSuite, type ContestConfig } from "./contest";
+import { expression, flattenCircuit, validateBehavior } from "./construction";
 export interface ControlState { id: string; name: string; action: "fetch" | "decode" | "execute" | "memory" | "writeback"; next: string; signals: Record<string, 0 | 1 | "instruction">; guard?: { kind: "memory" | "zero" | "opcode"; equals: number; whenTrue: string; whenFalse: string }; }
 export interface MemoryRegion { id: string; name: string; nodeId: string; start: number; length: number; permission: "rw" | "r"; kind: "ram" | "rom" | "stack" | "heap" | "io"; latency: number; }
 export interface EngineeringConfig {
+  construction?: import("./construction").ConstructionConfig;
   schema: 2; id: string; description: string; mode: "single" | "multi"; unknown: "strict" | "zero";
   endianness: "little" | "big"; addressWidth: Width; control: ControlState[]; startState: string;
   state: string; cycle: number; pendingSignals?: Record<string, 0 | 1 | "instruction">; phaseAlu?: { a: number; b: number; y: number; z: 0 | 1; n: 0 | 1; c: 0 | 1; v: 0 | 1 }; instructionPc?: number;
@@ -54,10 +56,22 @@ export function migrateProject(raw: unknown): CpuDesign {
   for (const n of d.nodes) {
     if (!n || !kinds.has(n.kind) || typeof n.name !== "string" || typeof n.note !== "string" || !Number.isFinite(n.value) || typeof n.id !== "string" || ids.has(n.id) || ![1, 4, 8, 16, 32].includes(n.width) || !Number.isFinite(n.x) || !Number.isFinite(n.y) || !Array.isArray(n.mem) || !Array.isArray(n.values) || n.mem.length > 65536 || n.mem.some(v => !Number.isFinite(v))) throw new Error("Invalid component configuration or duplicate identifier.");
     ids.add(n.id);
+    validateBehavior(n);
+  }
+  if(d.nodes.some(n=>n.circuit)){
+    const expanded=flattenCircuit(d).design;for(const n of expanded.nodes)validateBehavior(n);
+    for(const n of d.nodes.filter(n=>n.circuit))for(const p of n.circuit!.ports){if(!p||typeof p.id!=="string"||!Number.isInteger(p.width)||p.width<1||p.width>32||!["in","out"].includes(p.dir)||!p.endpoint)throw new Error("Invalid module interface port.");}
+  }
+  if(d.engineering?.construction){const c=d.engineering.construction;if(!["legacy","circuit"].includes(c.execution)||c.useMicrocode!==undefined&&typeof c.useMicrocode!=="boolean")throw new Error("Invalid circuit execution configuration.");
+    if(c.microcode){if(!Array.isArray(c.microcode)||c.microcode.length>1024)throw new Error("Control ROM exceeds 1024 microinstructions.");for(const w of c.microcode){if(!w||typeof w.name!=="string"||!Array.isArray(w.drives)||w.drives.length>256||!Number.isInteger(w.next)||w.next<0||w.next>=c.microcode.length||w.alternate!==undefined&&(!Number.isInteger(w.alternate)||w.alternate<0||w.alternate>=c.microcode.length))throw new Error("Invalid microinstruction or sequencer address.");for(const op of w.drives){if(typeof op.target!=="string"||typeof op.expression!=="string")throw new Error("Invalid micro-operation.");expression(op.expression,()=>0);}if(w.condition!==undefined){if(typeof w.condition!=="string")throw new Error("Invalid microbranch condition.");expression(w.condition,()=>0);}}}
+    if(c.microPc!==undefined&&(!Number.isInteger(c.microPc)||c.microPc<0||c.microPc>=Math.max(1,c.microcode?.length??1)))throw new Error("Invalid microprogram counter.");
+    if(c.nets){if(!Array.isArray(c.nets)||c.nets.length>1000)throw new Error("Too many named nets.");const targets=new Set<string>();for(const net of c.nets){if(typeof net.name!=="string"||typeof net.from!=="string"||typeof net.port!=="string"||!Array.isArray(net.targets)||net.targets.length>2000)throw new Error("Invalid named net.");for(const t of net.targets){if(typeof t.node!=="string"||typeof t.port!=="string"||targets.has(`${t.node}:${t.port}`))throw new Error("Named-net destination has more than one driver.");targets.add(`${t.node}:${t.port}`);}}}
+    if(c.tests&&(!Array.isArray(c.tests)||c.tests.length>100||c.tests.some(t=>!t||typeof t.name!=="string"||!Number.isInteger(t.cycles)||t.cycles<0||t.cycles>10000||!t.inputs||!t.expect||Object.values({...t.inputs,...t.expect}).some(v=>!Number.isSafeInteger(v)))))throw new Error("Invalid circuit testbench.");
+    if(c.modules){if(!Array.isArray(c.modules)||c.modules.length>100)throw new Error("Module library exceeds 100 definitions.");for(const m of c.modules){if(!m||typeof m.name!=="string"||typeof m.id!=="string"||!Array.isArray(m.nodes)||!Array.isArray(m.wires)||!Array.isArray(m.ports))throw new Error("Invalid module definition.");flattenCircuit({...d,nodes:[{...d.nodes[0],id:"validate_module",kind:"buf",name:m.name,x:0,y:0,width:16,value:0,values:[],mem:[],we:false,op:"ADD",sel:0,note:"",behavior:undefined,circuit:m}],wires:[]});}}
   }
   if (d.wires.some(w => !ids.has(w.from) || !ids.has(w.to))) throw new Error("A connection references a missing component.");
   const wireIds=new Set<string>();for(const w of d.wires){if(typeof w.id!=="string"||!w.id||wireIds.has(w.id)||typeof w.fromPort!=="string"||typeof w.toPort!=="string")throw new Error("Invalid connection or duplicate wire identifier.");wireIds.add(w.id);}
-  if (!Number.isInteger(d.isa.instrWidth) || d.isa.instrWidth < 4 || d.isa.instrWidth > 32 || !Number.isInteger(d.isa.regs) || d.isa.regs < 1 || d.isa.regs > 8) throw new Error("Invalid instruction width or register architecture.");
+  if (!Number.isInteger(d.isa.instrWidth) || d.isa.instrWidth < 4 || d.isa.instrWidth > 32 || !Number.isInteger(d.isa.regs) || d.isa.regs < 1 || d.isa.regs > 32) throw new Error("Invalid instruction width or register architecture.");
   for (const key of ["fieldsR", "fieldsI", "fieldsB", "fieldsJ"] as const) if (!Array.isArray(d.isa[key])) throw new Error("Missing instruction formats.");
   if(![1,4,8,16,32].includes(d.isa.dataWidth))throw new Error("Invalid ISA data width.");
   const operands=["rd","rs1","rs2","imm"];const operations=["ADD","SUB","AND","OR","XOR","NOT","SHL","SHR","CMP","INC","DEC"];

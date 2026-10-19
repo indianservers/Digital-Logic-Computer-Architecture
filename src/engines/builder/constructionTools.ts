@@ -1,0 +1,23 @@
+import { portsOf, type CpuDesign } from "./model";
+import { flattenCircuit, type CircuitTest } from "./construction";
+import { evaluateGraph,stepMicroCycle } from "./sim";
+import { engineeringOf } from "./project";
+export function signalNumber(design:CpuDesign,reference:string):number {
+  const cut=reference.lastIndexOf(".");const n=design.nodes.find(n=>n.id===reference.slice(0,cut)||n.name===reference.slice(0,cut));if(!n)throw new Error(`Unknown component in ${reference}.`);const port=reference.slice(cut+1);const reg=n.behavior?.registers?.[port];if(reg!==undefined)return reg;const v=evaluateGraph(design).values.get(`${n.id}:${port}`);if(v===undefined)throw new Error(`Unknown signal ${reference}.`);return v;
+}
+export function resetCircuit(design:CpuDesign):CpuDesign {
+  const flat=flattenCircuit(design);const nodes=flat.design.nodes.map(n=>{if(n.behavior)return {...n,behavior:{...n.behavior,registers:Object.fromEntries(Object.entries(n.behavior.registers??{}).map(([key])=>[key,n.behavior!.initial?.[key]??0])),text:""},mem:n.behavior.write&&!n.behavior.device?n.mem.map(()=>0):n.mem};if(["const","imem"].includes(n.kind))return n;return {...n,value:0,values:n.values.map(()=>0),mem:["dmem","umem"].includes(n.kind)?n.mem.map(()=>0):n.mem};});return {...flat.restore(nodes),engineering:{...engineeringOf(design),cycle:0,construction:{...engineeringOf(design).construction,execution:engineeringOf(design).construction?.execution??"circuit",microPc:0}}};
+}
+export function runCircuitTest(original:CpuDesign,test:CircuitTest){
+  if(!Number.isInteger(test.cycles)||test.cycles<0||test.cycles>10000)throw new Error("Test cycles must be 0–10000.");let design=resetCircuit(structuredClone(original));const failures:string[]=[];
+  const apply=(inputs:Record<string,number>)=>{for(const [reference,value] of Object.entries(inputs)){if(!Number.isSafeInteger(value))throw new Error(`Invalid test input ${reference}.`);const cut=reference.lastIndexOf(".");const n=design.nodes.find(n=>n.id===reference.slice(0,cut)||n.name===reference.slice(0,cut));const port=reference.slice(cut+1);if(!n)throw new Error(`Unknown test input ${reference}.`);if((n.kind==="const"||n.behavior?.device==="switch")&&(port==="y"||port==="value")){design={...design,nodes:design.nodes.map(v=>v.id===n.id?{...v,value}:v)};continue;}const p=portsOf(n).find(p=>p.id===port&&p.dir==="in");if(!p)throw new Error(`Test input ${reference} must be an input port or switch.`);const id=`$test${design.nextId}`;design={...design,nextId:design.nextId+1,nodes:[...design.nodes,{id,kind:p.role==="clock"?"clock":"const",name:id,x:0,y:0,width:p.width as 1|4|8|16|32,value,values:[],mem:[],we:false,op:"ADD",sel:0,note:""}],wires:[...design.wires.filter(w=>w.to!==n.id||w.toPort!==p.id),{id:id+"wire",from:id,fromPort:"y",to:n.id,toPort:p.id}]};}};
+  apply(test.inputs);if(test.steps&&!Array.isArray(test.steps))throw new Error("Test steps must be an array.");
+  let cycles=0;for(;cycles<test.cycles;cycles++){for(const step of test.steps?.filter(s=>s.cycle===cycles+1)??[])if(step.inputs)apply(step.inputs);const result=stepMicroCycle(design,cycles+1);design=result.design;if(result.trace.mnemonic==="FAULT"){failures.push(result.trace.reason);break;}for(const step of test.steps?.filter(s=>s.cycle===cycles+1)??[])for(const [ref,wanted] of Object.entries(step.expect??{})){const got=signalNumber(design,ref);if(got!==wanted)failures.push(`Cycle ${cycles+1} · ${ref}: expected ${wanted}, got ${got}.`);}}
+  const actual:Record<string,number>={};for(const [reference,expected] of Object.entries(test.expect)){try{actual[reference]=signalNumber(design,reference);if(actual[reference]!==expected)failures.push(`${reference}: expected ${expected}, got ${actual[reference]}.`);}catch(e){failures.push(String(e));}}
+  return {name:test.name,passed:failures.length===0,cycles,actual,failures};
+}
+export function arrangeCircuit(design:CpuDesign):CpuDesign {
+  const levels=new Map<string,number>();for(const n of design.nodes)levels.set(n.id,0);
+  for(let pass=0;pass<Math.min(12,design.nodes.length);pass++){let changed=false;for(const n of design.nodes){if(n.locked||["const","clock","pc","gpr","acc","ir","regfile","dff","counter"].includes(n.kind)||n.behavior?.clock)continue;const drivers=design.wires.filter(w=>w.to===n.id&&w.from!==n.id).map(w=>levels.get(w.from)??0);const level=drivers.length?Math.min(10,Math.max(...drivers)+1):0;if(level!==(levels.get(n.id)??0)){levels.set(n.id,level);changed=true;}}if(!changed)break;}
+  const rows=new Map<number,number>();return {...design,nodes:design.nodes.map(n=>{if(n.locked)return n;const level=levels.get(n.id)??0;const row=rows.get(level)??0;rows.set(level,row+1);return {...n,x:40+level*240,y:40+row*240};})};
+}

@@ -7,6 +7,7 @@ import { OrganizationLab } from "./organizationLab";
 import { RamLab } from "./ramLab";
 import { RomLab } from "./romLab";
 import { SramLab } from "./sramLab";
+import "./memoryCompact.css";
 
 /**
  * Memory Fundamentals checklist:
@@ -42,7 +43,7 @@ export function MemoryFundamentals() {
   }
 
   return (
-    <div className="memx">
+    <div className="memx memx-compact">
       <div className="lgx-tabs" role="tablist" aria-label="Memory Fundamentals">
         {CHIPS.map((item) => (
           <button key={item.id} type="button" role="tab" id={`memory-tab-${item.id}`} aria-selected={chip === item.id} aria-controls={`memory-panel-${item.id}`} className={chip === item.id ? "on" : ""} onClick={() => select(item.id)}>{item.label}</button>

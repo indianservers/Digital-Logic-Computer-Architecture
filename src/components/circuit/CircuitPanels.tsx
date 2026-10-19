@@ -77,11 +77,11 @@ function routesOverlap(a: { x1: number; y1: number; x2: number; y2: number }, b:
   return vertical || top || bottom;
 }
 
-export function CircuitCanvas({ circuit, dockProperties = false, propertiesHost = null }: { circuit: CircuitSession; dockProperties?: boolean; propertiesHost?: HTMLElement | null }) {
-  return <SandboxPanel circuit={circuit} bare dockProperties={dockProperties} propertiesHost={propertiesHost} />;
+export function CircuitCanvas({ circuit, dockProperties = false, propertiesHost = null, panMode = false }: { circuit: CircuitSession; dockProperties?: boolean; propertiesHost?: HTMLElement | null; panMode?: boolean }) {
+  return <SandboxPanel circuit={circuit} bare dockProperties={dockProperties} propertiesHost={propertiesHost} panMode={panMode} />;
 }
 
-export function SandboxPanel({ circuit, bare = false, dockProperties = false, propertiesHost = null }: { circuit: CircuitSession; bare?: boolean; dockProperties?: boolean; propertiesHost?: HTMLElement | null }) {
+export function SandboxPanel({ circuit, bare = false, dockProperties = false, propertiesHost = null, panMode = false }: { circuit: CircuitSession; bare?: boolean; dockProperties?: boolean; propertiesHost?: HTMLElement | null; panMode?: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const gestureRef = useRef<Gesture | null>(null);
   const [gesture, setGesture] = useState<Gesture | null>(null);
@@ -373,7 +373,7 @@ export function SandboxPanel({ circuit, bare = false, dockProperties = false, pr
     const node = target.closest("[data-node]");
     const wireHit = target.closest("[data-wire]");
     try { svgRef.current?.setPointerCapture(event.pointerId); } catch { /* pointer already released */ }
-    if (spaceRef.current || event.button === 1) {
+    if (panMode || spaceRef.current || event.button === 1) {
       if (event.button === 1) event.preventDefault();
       setMenu(null);
       setG({ kind: "pan", sx: event.clientX, sy: event.clientY, vx: circuit.view.x, vy: circuit.view.y });

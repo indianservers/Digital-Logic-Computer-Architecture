@@ -162,7 +162,7 @@ export function useCircuit(options?: { storage?: string; starter?: () => Circuit
   }
 
   return {
-    doc, sim, shown, frame, showProp, setShowProp, speed, setSpeed, playing, setPlaying,
+    doc, sim, shown, frame, setFrame, showProp, setShowProp, speed, setSpeed, playing, setPlaying,
     selected, setSelected, armed, setArmed, error, setError, snap, setSnap, favorites, recent, repeat, view, setView,
     canUndo: past.length > 0, canRedo: future.length > 0,
     commit, update, undo, redo, place, setRepeat,

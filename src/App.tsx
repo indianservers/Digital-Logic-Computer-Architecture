@@ -1,15 +1,17 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import { AppShell } from "./layout/AppShell";
+import { StudioLearningLayout } from "./theory/TheoryEntry";
+const TheoryReader = lazy(() => import("./theory/TheoryReader").then(module => ({ default: module.TheoryReader })));
 import { CheatPage, HomePage, LearnPage, NotesPage, PracticePage, ProjectsPage, StudiosPage, UpcomingPage } from "./pages/HomePages";
 import { AdderStudio } from "./studios/adders/AdderStudio";
 import { AssemblyStudio } from "./studios/assembly/AssemblyStudio";
-import { ControlStudio } from "./studios/control/ControlStudio";
+const ControlStudio = lazy(() => import("./studios/control/ControlStudio").then(module => ({ default: module.ControlStudio })));
 import { FdeStudio } from "./studios/fde/FdeStudio";
 import { BusStudio } from "./studios/bus/BusStudio";
 import { HazardStudio } from "./studios/hazards/HazardStudio";
 import { HierarchyStudio } from "./studios/hierarchy/HierarchyStudio";
-import { InterruptStudio } from "./studios/interrupts/InterruptStudio";
+const InterruptStudio = lazy(() => import("./studios/interrupts/InterruptStudio").then(module => ({ default: module.InterruptStudio })));
 import { IoStudio } from "./studios/io/IoStudio";
 import { MulticoreStudio } from "./studios/multicore/MulticoreStudio";
 import { AcaStudio } from "./studios/aca/AcaStudio";
@@ -28,7 +30,7 @@ import { MemoryStudio } from "./studios/memory/MemoryStudio";
 import { FlipFlopStudio } from "./studios/flip-flops/FlipFlopStudio";
 import { KmapStudio } from "./studios/kmap/KmapStudio";
 import { LogicGatesStudio } from "./studios/logic-gates/LogicGatesStudio";
-import { NumberSystemsStudio } from "./studios/number-systems/NumberSystemsStudio";
+const NumberSystemsStudio = lazy(() => import("./studios/number-systems/NumberSystemsStudio").then(module => ({ default: module.NumberSystemsStudio })));
 import { RegisterStudio } from "./studios/registers/RegisterStudio";
 import { RoutingStudio } from "./studios/routing/RoutingStudio";
 import { TimingStudio } from "./studios/timing/TimingStudio";
@@ -68,7 +70,8 @@ function Suspend({ children }: { children: ReactNode }) {
 export function App() {
   return (
     <AppShell>
-      <Routes>
+      <StudioLearningLayout><Routes>
+        <Route path="/encyclopedia" element={<Suspend><TheoryReader /></Suspend>} />
         <Route path="/" element={<HomePage />} />
         <Route path="/learn" element={<LearnPage />} />
         <Route path="/studios" element={<StudiosPage />} />
@@ -79,7 +82,7 @@ export function App() {
         <Route path="/studios/microcontroller" element={<MicrocontrollerStudio />} />
         <Route path="/studios/microcontroller/project/:slug" element={<MicrocontrollerProjectLab />} />
         <Route path="/studios/microcontroller/lab/:slug" element={<MicrocontrollerLabRoute />} />
-        <Route path="/studios/number-systems" element={<NumberSystemsStudio />} />
+        <Route path="/studios/number-systems" element={<Suspend><NumberSystemsStudio /></Suspend>} />
         <Route path="/studios/boolean-algebra" element={<BooleanStudio />} />
         <Route path="/studios/logic-gates" element={<LogicGatesStudio />} />
         <Route path="/studios/truth-tables" element={<TruthStudio />} />
@@ -99,13 +102,13 @@ export function App() {
         <Route path="/studios/assembly" element={<AssemblyStudio />} />
         <Route path="/studios/fde" element={<FdeStudio />} />
         <Route path="/studios/rtl" element={<RtlStudio />} />
-        <Route path="/studios/control" element={<ControlStudio />} />
+        <Route path="/studios/control" element={<Suspend><ControlStudio /></Suspend>} />
         <Route path="/studios/pipeline" element={<PipelineStudio />} />
         <Route path="/studios/hazards" element={<HazardStudio />} />
         <Route path="/studios/hierarchy" element={<HierarchyStudio />} />
         <Route path="/studios/vm" element={<VmStudio />} />
         <Route path="/studios/io" element={<IoStudio />} />
-        <Route path="/studios/interrupts" element={<InterruptStudio />} />
+        <Route path="/studios/interrupts" element={<Suspend><InterruptStudio /></Suspend>} />
         <Route path="/studios/bus" element={<BusStudio />} />
         <Route path="/studios/parallel" element={<ParallelStudio />} />
         <Route path="/studios/multicore" element={<MulticoreStudio />} />
@@ -148,7 +151,7 @@ export function App() {
         <Route path="/upcoming/alu" element={<AluStudio />} />
         <Route path="/upcoming/:id" element={<UpcomingRoute />} />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      </Routes></StudioLearningLayout>
     </AppShell>
   );
 }

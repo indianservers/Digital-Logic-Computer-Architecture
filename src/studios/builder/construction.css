@@ -1,0 +1,24 @@
+.build-tools { margin:10px 0; border:1px solid #d5e3f8; border-radius:10px; background:white; }
+.build-tools>summary { padding:10px 12px; cursor:pointer; font-weight:700; }
+.build-tabs { display:flex; gap:4px; flex-wrap:wrap; padding:8px; border-top:1px solid #e4ebf6; border-bottom:1px solid #e4ebf6; }
+.build-tabs button { background:#f4f8ff; border:1px solid #d7e3f5; border-radius:6px; padding:7px 11px; color:#254783; }
+.build-tabs button.active { background:#145fd7; color:white; }
+.build-tool-body { padding:12px; }
+.build-fields,.build-actions { display:flex; gap:10px; align-items:end; flex-wrap:wrap; margin:8px 0; }
+.build-fields label,.build-dialog label { display:flex; flex-direction:column; gap:5px; }
+.build-fields input,.build-fields select,.build-dialog select,.build-dialog input { padding:6px 8px; border:1px solid #c8d8ef; border-radius:6px; max-width:100%; }
+.build-code { display:block; width:100%; font:12px/1.6 Consolas,monospace!important; tab-size:2; padding:12px; color:#15375e; background:#f6f9fd; border:1px solid #cad8ed; border-radius:8px; resize:vertical; }
+.build-trace { max-height:260px; overflow:auto; background:#f6f9fd; padding:12px; white-space:pre-wrap; }
+.build-module { display:flex; gap:12px; align-items:center; flex-wrap:wrap; padding:10px; margin:8px 0; border:1px solid #dce5f3; border-radius:8px; }
+.build-message { padding:10px; background:#edf5ff; border-left:3px solid #2965be; white-space:pre-wrap; }
+.build-dialog-backdrop { position:fixed; inset:0; background:#10234580; z-index:110; display:flex; align-items:flex-start; justify-content:center; padding:20px; overflow:hidden; }
+.build-dialog { box-sizing:border-box; background:white; color:#15375e; font:13px/1.5 "Segoe UI",sans-serif; width:min(1200px,96vw); max-height:calc(100dvh - 40px); overflow:auto; padding:18px; border:1px solid #b7cbe7; border-radius:12px; box-shadow:0 20px 80px #11234444; }
+.build-dialog header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; position:sticky; top:-18px; padding:8px 0; background:white; z-index:2; }
+.build-dialog h2 { margin:0; font-size:18px; }
+.build-module-canvas { height:460px; background:radial-gradient(circle,#b8c9e4 .8px,transparent .8px) 0 0/16px 16px,#f7faff; border:1px solid #d4e1f3; }
+.build-module-canvas svg { width:100%; height:100%; }
+.build-wave { width:100%; max-height:130px; background:#f6faff; }
+.build-devices { display:flex; gap:12px; flex-wrap:wrap; }
+.build-devices>div { border:1px solid #cbdcf2; padding:12px; border-radius:8px; }
+.build-check { display:flex; align-items:center; gap:6px; }
+@media(max-width:760px) { .build-dialog-backdrop { padding:5px; } .build-dialog { width:100%; padding:10px; } .build-module-canvas { height:330px; } }
