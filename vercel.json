@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {"source":"/:path*/theory.md","headers":[{"key":"Content-Type","value":"text/markdown; charset=utf-8"},{"key":"X-Content-Type-Options","value":"nosniff"}]}
+  ],
+  "proxy": {
+    "entrypoint": "src/seo/proxy.ts",
+    "matcher": ["/", "/studios/:path*", "/architecture/:path*", "/encyclopedia", "/textbook/:path*"]
+  },
+  "functions": {
+    "api/resolve.js": { "includeFiles": "src/seo/*.json" }
+  },
+  "rewrites": [
+    { "source": "/:path*", "destination": "/api/resolve?__path=:path*" }
+  ]
+}

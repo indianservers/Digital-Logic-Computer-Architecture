@@ -37,7 +37,7 @@ function parse(spec: string): CircuitDoc {
       parts.push({ type: "input", x: 24, y: 24 + inputs * 64, label, params: { value: Number(token[2] ?? 0) } });
       inputs += 1;
     } else if (kind === "high" || kind === "low") {
-      parts.push({ type: kind, x: 24, y: 24 + inputs * 64, label });
+      parts.push({ type: "const", x: 24, y: 24 + inputs * 64, label, params: { value: kind === "high" ? 1 : 0 } });
       inputs += 1;
     } else if (kind === "clock" || kind === "button") {
       parts.push({ type: kind, x: 24, y: 24 + inputs * 64, label });

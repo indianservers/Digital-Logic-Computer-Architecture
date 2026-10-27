@@ -3579,7 +3579,7 @@
     "route": "/studios/microcontroller",
     "url": "/studios/microcontroller",
     "title": "Microcontroller Studio",
-    "description": "Browse 72 planned labs covering MCU architecture, GPIO, peripherals, firmware, and embedded projects.",
+    "description": "Simulate MCU peripherals, firmware, RTOS scheduling, debugging, instruments, and six MCU family profiles in open core and project labs.",
     "id": "studios/microcontroller",
     "studio": "Microcontroller Studio"
   },
@@ -3595,7 +3595,7 @@
     "route": "/studios/microcontroller/lab/8051-microcontroller-lab",
     "url": "/studios/microcontroller/lab/8051-microcontroller-lab",
     "title": "8051 Microcontroller Lab | Microcontrollers & Embedded Systems",
-    "description": "Study 8051 microcontroller lab in the context of mcu families. Read the underlying mechanism, predict the result, and compare it with the lab’s state and…",
+    "description": "Configure SFRs and execute an interrupt-driven 16-bit timer reload.",
     "id": "studios/microcontroller/lab/8051-microcontroller-lab",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3627,7 +3627,7 @@
     "route": "/studios/microcontroller/lab/arduino-atmega328p-explorer",
     "url": "/studios/microcontroller/lab/arduino-atmega328p-explorer",
     "title": "Arduino / ATmega328P Explorer | Microcontrollers & Embedded Systems",
-    "description": "Study arduino / atmega328p explorer in the context of mcu families. Read the underlying mechanism, predict the result, and compare it with the lab’s state…",
+    "description": "Edit Arduino C, sample A0, and drive a simulated PWM output.",
     "id": "studios/microcontroller/lab/arduino-atmega328p-explorer",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3643,7 +3643,7 @@
     "route": "/studios/microcontroller/lab/avr-microcontroller-lab",
     "url": "/studios/microcontroller/lab/avr-microcontroller-lab",
     "title": "AVR Microcontroller Lab | Microcontrollers & Embedded Systems",
-    "description": "Study avr microcontroller lab in the context of mcu families. Read the underlying mechanism, predict the result, and compare it with the lab’s state and…",
+    "description": "Set DDR and Timer1 registers, then measure compare-match interrupts.",
     "id": "studios/microcontroller/lab/avr-microcontroller-lab",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3659,7 +3659,7 @@
     "route": "/studios/microcontroller/lab/bootloader-and-firmware-update",
     "url": "/studios/microcontroller/lab/bootloader-and-firmware-update",
     "title": "Bootloader & Firmware Update | Microcontrollers & Embedded Systems",
-    "description": "Study bootloader & firmware update in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the…",
+    "description": "Complete a CRC-checked dual-bank update and preserve the old application after a power cut.",
     "id": "studios/microcontroller/lab/bootloader-and-firmware-update",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3667,7 +3667,7 @@
     "route": "/studios/microcontroller/lab/brown-out-and-reset-circuitry",
     "url": "/studios/microcontroller/lab/brown-out-and-reset-circuitry",
     "title": "Brown-Out & Reset Circuitry | Microcontrollers & Embedded Systems",
-    "description": "Study brown-out & reset circuitry in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the…",
+    "description": "Observe filtered assertion, hysteretic release, and SRAM initialization.",
     "id": "studios/microcontroller/lab/brown-out-and-reset-circuitry",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3747,7 +3747,7 @@
     "route": "/studios/microcontroller/lab/dma-lab",
     "url": "/studios/microcontroller/lab/dma-lab",
     "title": "DMA Lab | Microcontrollers & Embedded Systems",
-    "description": "Study dma lab in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s state and trace.",
+    "description": "Observe DMA requests, destination addressing, half/full flags, and circular operation.",
     "id": "studios/microcontroller/lab/dma-lab",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3763,7 +3763,7 @@
     "route": "/studios/microcontroller/lab/esp32-lab",
     "url": "/studios/microcontroller/lab/esp32-lab",
     "title": "ESP32 Lab | Microcontrollers & Embedded Systems",
-    "description": "Study esp32 lab in the context of mcu families. Read the underlying mechanism, predict the result, and compare it with the lab’s state and trace.",
+    "description": "Sample GPIO36 and drive LEDC PWM while inspecting external GPIO input.",
     "id": "studios/microcontroller/lab/esp32-lab",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3779,7 +3779,7 @@
     "route": "/studios/microcontroller/lab/finite-state-machines-on-mcu",
     "url": "/studios/microcontroller/lab/finite-state-machines-on-mcu",
     "title": "Finite-State Machines on MCU | Microcontrollers & Embedded Systems",
-    "description": "Study finite-state machines on mcu in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the…",
+    "description": "Sequence safe traffic phases, latch pedestrian demand, and inject an interlock fault.",
     "id": "studios/microcontroller/lab/finite-state-machines-on-mcu",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3787,7 +3787,7 @@
     "route": "/studios/microcontroller/lab/firmware-debugger",
     "url": "/studios/microcontroller/lab/firmware-debugger",
     "title": "Firmware Debugger | Microcontrollers & Embedded Systems",
-    "description": "Study firmware debugger in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s…",
+    "description": "Compile editable C, stop at a source breakpoint, step into a function, and inspect its return value.",
     "id": "studios/microcontroller/lab/firmware-debugger",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3899,7 +3899,7 @@
     "route": "/studios/microcontroller/lab/logic-analyzer",
     "url": "/studios/microcontroller/lab/logic-analyzer",
     "title": "Logic Analyzer | Microcontrollers & Embedded Systems",
-    "description": "Study logic analyzer in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s state…",
+    "description": "Capture a complete 8N1 frame and expose aliasing, framing errors, and memory-depth limits.",
     "id": "studios/microcontroller/lab/logic-analyzer",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3939,7 +3939,7 @@
     "route": "/studios/microcontroller/lab/pic-microcontroller-lab",
     "url": "/studios/microcontroller/lab/pic-microcontroller-lab",
     "title": "PIC Microcontroller Lab | Microcontrollers & Embedded Systems",
-    "description": "Study pic microcontroller lab in the context of mcu families. Read the underlying mechanism, predict the result, and compare it with the lab’s state and…",
+    "description": "Change external input edges and follow the ISR into output latch bits.",
     "id": "studios/microcontroller/lab/pic-microcontroller-lab",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3955,7 +3955,7 @@
     "route": "/studios/microcontroller/lab/polling-vs-interrupts",
     "url": "/studios/microcontroller/lab/polling-vs-interrupts",
     "title": "Polling vs Interrupts | Microcontrollers & Embedded Systems",
-    "description": "Study polling vs interrupts in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s…",
+    "description": "Measure missed pulses, interrupt latency, and CPU work on the same event stream.",
     "id": "studios/microcontroller/lab/polling-vs-interrupts",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3963,7 +3963,7 @@
     "route": "/studios/microcontroller/lab/power-and-sleep-modes",
     "url": "/studios/microcontroller/lab/power-and-sleep-modes",
     "title": "Power & Sleep Modes | Microcontrollers & Embedded Systems",
-    "description": "Study power & sleep modes in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s…",
+    "description": "Measure integrated charge and compare retained sleep with reset-on-wake standby.",
     "id": "studios/microcontroller/lab/power-and-sleep-modes",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3971,7 +3971,7 @@
     "route": "/studios/microcontroller/lab/power-analyzer",
     "url": "/studios/microcontroller/lab/power-analyzer",
     "title": "Power Analyzer | Microcontrollers & Embedded Systems",
-    "description": "Study power analyzer in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s state…",
+    "description": "Capture active and radio bursts, detect front-end clipping, and measure charge rather than averaging display snapshots.",
     "id": "studios/microcontroller/lab/power-analyzer",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -3995,7 +3995,7 @@
     "route": "/studios/microcontroller/lab/real-time-clock",
     "url": "/studios/microcontroller/lab/real-time-clock",
     "title": "Real-Time Clock | Microcontrollers & Embedded Systems",
-    "description": "Study real-time clock in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s state…",
+    "description": "Prescale a clock, latch an alarm, and quantify drift against an ideal reference.",
     "id": "studios/microcontroller/lab/real-time-clock",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4011,7 +4011,7 @@
     "route": "/studios/microcontroller/lab/rtos-fundamentals",
     "url": "/studios/microcontroller/lab/rtos-fundamentals",
     "title": "RTOS Fundamentals | Microcontrollers & Embedded Systems",
-    "description": "Study rtos fundamentals in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s…",
+    "description": "Measure execution budgets, response times, deadline misses, and scheduling decisions.",
     "id": "studios/microcontroller/lab/rtos-fundamentals",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4019,7 +4019,7 @@
     "route": "/studios/microcontroller/lab/rtos-synchronization",
     "url": "/studios/microcontroller/lab/rtos-synchronization",
     "title": "RTOS Synchronization | Microcontrollers & Embedded Systems",
-    "description": "Study rtos synchronization in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s…",
+    "description": "Reproduce lost updates, then serialize access with a mutex or binary semaphore.",
     "id": "studios/microcontroller/lab/rtos-synchronization",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4027,7 +4027,7 @@
     "route": "/studios/microcontroller/lab/rtos-timing-and-priority-inversion",
     "url": "/studios/microcontroller/lab/rtos-timing-and-priority-inversion",
     "title": "RTOS Timing & Priority Inversion | Microcontrollers & Embedded Systems",
-    "description": "Study rtos timing & priority inversion in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with…",
+    "description": "Measure high-priority response with and without priority inheritance.",
     "id": "studios/microcontroller/lab/rtos-timing-and-priority-inversion",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4083,7 +4083,7 @@
     "route": "/studios/microcontroller/lab/stm32-arm-cortex-m-lab",
     "url": "/studios/microcontroller/lab/stm32-arm-cortex-m-lab",
     "title": "STM32 / ARM Cortex-M Lab | Microcontrollers & Embedded Systems",
-    "description": "Study stm32 / arm cortex-m lab in the context of mcu families. Read the underlying mechanism, predict the result, and compare it with the lab’s state and…",
+    "description": "Execute HAL C against GPIOA, TIM2, and the interrupt controller.",
     "id": "studios/microcontroller/lab/stm32-arm-cortex-m-lab",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4091,7 +4091,7 @@
     "route": "/studios/microcontroller/lab/task-scheduler",
     "url": "/studios/microcontroller/lab/task-scheduler",
     "title": "Task Scheduler | Microcontrollers & Embedded Systems",
-    "description": "Study task scheduler in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s state…",
+    "description": "Measure execution budgets, response times, deadline misses, and scheduling decisions.",
     "id": "studios/microcontroller/lab/task-scheduler",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4139,7 +4139,7 @@
     "route": "/studios/microcontroller/lab/virtual-oscilloscope",
     "url": "/studios/microcontroller/lab/virtual-oscilloscope",
     "title": "Virtual Oscilloscope | Microcontrollers & Embedded Systems",
-    "description": "Study virtual oscilloscope in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s…",
+    "description": "Measure amplitude, RMS, frequency, clipping, and cursor deltas from acquired samples.",
     "id": "studios/microcontroller/lab/virtual-oscilloscope",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4147,7 +4147,7 @@
     "route": "/studios/microcontroller/lab/watchdog-timer",
     "url": "/studios/microcontroller/lab/watchdog-timer",
     "title": "Watchdog Timer | Microcontrollers & Embedded Systems",
-    "description": "Study watchdog timer in the context of firmware & system control. Read the underlying mechanism, predict the result, and compare it with the lab’s state…",
+    "description": "Cause a watchdog reset and repair an insufficient refresh budget.",
     "id": "studios/microcontroller/lab/watchdog-timer",
     "studio": "Microcontrollers & Embedded Systems"
   },
@@ -4248,14 +4248,6 @@
     "studio": "MIPS Architecture Explorer"
   },
   {
-    "route": "/architecture/desktop/boost",
-    "url": "/architecture/desktop/boost",
-    "title": "boost | Modern Desktop CPU Explorer",
-    "description": "Explore boost with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/boost",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
     "route": "/architecture/desktop/boost-power",
     "url": "/architecture/desktop/boost-power",
     "title": "Boost & Power | Modern Desktop CPU Explorer",
@@ -4285,46 +4277,6 @@
     "title": "CPU Package | Modern Desktop CPU Explorer",
     "description": "The heat spreader, die, and substrate are different layers. P-cores, E-cores, cache, memory, and PCIe are logical blocks. Not every desktop CPU has both…",
     "id": "architecture/desktop/package",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
-    "route": "/architecture/desktop/ddr",
-    "url": "/architecture/desktop/ddr",
-    "title": "ddr | Modern Desktop CPU Explorer",
-    "description": "Explore ddr with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/ddr",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
-    "route": "/architecture/desktop/igpu",
-    "url": "/architecture/desktop/igpu",
-    "title": "igpu | Modern Desktop CPU Explorer",
-    "description": "Explore igpu with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/igpu",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
-    "route": "/architecture/desktop/interconnect",
-    "url": "/architecture/desktop/interconnect",
-    "title": "interconnect | Modern Desktop CPU Explorer",
-    "description": "Explore interconnect with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/interconnect",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
-    "route": "/architecture/desktop/internals",
-    "url": "/architecture/desktop/internals",
-    "title": "internals | Modern Desktop CPU Explorer",
-    "description": "Explore internals with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/internals",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
-    "route": "/architecture/desktop/mc",
-    "url": "/architecture/desktop/mc",
-    "title": "mc | Modern Desktop CPU Explorer",
-    "description": "Explore mc with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/mc",
     "studio": "Modern Desktop CPU Explorer"
   },
   {
@@ -4384,38 +4336,6 @@
     "studio": "Modern Desktop CPU Explorer"
   },
   {
-    "route": "/architecture/desktop/threads",
-    "url": "/architecture/desktop/threads",
-    "title": "threads | Modern Desktop CPU Explorer",
-    "description": "Explore threads with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/desktop/threads",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
-    "route": "/architecture/mobile/camera",
-    "url": "/architecture/mobile/camera",
-    "title": "camera | Modern Mobile SoC Explorer",
-    "description": "Explore camera with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/camera",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
-    "route": "/architecture/mobile/cluster",
-    "url": "/architecture/mobile/cluster",
-    "title": "cluster | Modern Mobile SoC Explorer",
-    "description": "Explore cluster with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/cluster",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
-    "route": "/architecture/mobile/cores",
-    "url": "/architecture/mobile/cores",
-    "title": "cores | Modern Mobile SoC Explorer",
-    "description": "Explore cores with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/cores",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
     "route": "/architecture/mobile/cpu-cores",
     "url": "/architecture/mobile/cpu-cores",
     "title": "CPU: P/E Cores | Modern Mobile SoC Explorer",
@@ -4424,11 +4344,11 @@
     "studio": "Modern Mobile SoC Explorer"
   },
   {
-    "route": "/architecture/mobile/floorplan",
-    "url": "/architecture/mobile/floorplan",
+    "route": "/architecture/mobile/overview",
+    "url": "/architecture/mobile/overview",
     "title": "floorplan | Modern Mobile SoC Explorer",
     "description": "Explore floorplan with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/floorplan",
+    "id": "architecture/mobile/overview",
     "studio": "Modern Mobile SoC Explorer"
   },
   {
@@ -4448,27 +4368,11 @@
     "studio": "Modern Mobile SoC Explorer"
   },
   {
-    "route": "/architecture/mobile/media",
-    "url": "/architecture/mobile/media",
-    "title": "media | Modern Mobile SoC Explorer",
-    "description": "Explore media with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/media",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
     "route": "/architecture/mobile/memory",
     "url": "/architecture/mobile/memory",
     "title": "Memory & Interconnect | Modern Mobile SoC Explorer",
     "description": "Registers and L1 are private and fast. A shared cache sits in front of LPDDR. Sequential and streaming patterns reuse lines. Random and multi-engine…",
     "id": "architecture/mobile/memory",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
-    "route": "/architecture/mobile/modem",
-    "url": "/architecture/mobile/modem",
-    "title": "modem | Modern Mobile SoC Explorer",
-    "description": "Explore modem with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/modem",
     "studio": "Modern Mobile SoC Explorer"
   },
   {
@@ -4496,27 +4400,11 @@
     "studio": "Modern Mobile SoC Explorer"
   },
   {
-    "route": "/architecture/mobile/power",
-    "url": "/architecture/mobile/power",
-    "title": "power | Modern Mobile SoC Explorer",
-    "description": "Explore power with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/power",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
     "route": "/architecture/mobile/power-thermal",
     "url": "/architecture/mobile/power-thermal",
     "title": "Power, Thermal & DVFS | Modern Mobile SoC Explorer",
-    "description": "DVFS lowers frequency and voltage together in the teaching model. Idle domains can be power-gated. Crossing the thermal limit reduces frequency. Heavy CPU…",
+    "description": "Thermal capacity delays temperature changes. Lower case-to-air resistance improves sustained cooling. Throttling reduces dynamic power; hysteresis…",
     "id": "architecture/mobile/power-thermal",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
-    "route": "/architecture/mobile/scheduler",
-    "url": "/architecture/mobile/scheduler",
-    "title": "scheduler | Modern Mobile SoC Explorer",
-    "description": "Explore scheduler with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/scheduler",
     "studio": "Modern Mobile SoC Explorer"
   },
   {
@@ -4533,14 +4421,6 @@
     "title": "System Integration | Modern Mobile SoC Explorer",
     "description": "A photo wakes the ISP, memory, NPU, and storage. A game wakes CPU, GPU, memory, and display. A call adds the modem. The package power is the sum of the…",
     "id": "architecture/mobile/integration",
-    "studio": "Modern Mobile SoC Explorer"
-  },
-  {
-    "route": "/architecture/mobile/thermal",
-    "url": "/architecture/mobile/thermal",
-    "title": "thermal | Modern Mobile SoC Explorer",
-    "description": "Explore thermal with interactive diagrams, worked examples, and practice questions.",
-    "id": "architecture/mobile/thermal",
     "studio": "Modern Mobile SoC Explorer"
   },
   {

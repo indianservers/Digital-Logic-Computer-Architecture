@@ -4,6 +4,7 @@ import type { IconName } from "../design-system/icons";
 import { Icon } from "../design-system/icons";
 import { Button, Tabs, Theory, Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
+import { LabSequence } from "./LabSequence";
 
 export function StudioFrame({
   icon, title, description, tabs, tab, onTab, onReset, guide, takeaways, theory, children,
@@ -39,7 +40,8 @@ export function StudioFrame({
           </div>
         </div>
         <Tabs tabs={tabs} value={tab} onChange={onTab} />
-        {theory ? <Theory title={theory.title}>{theory.body}</Theory> : null}
+        <LabSequence items={tabs} current={tab} onSelect={onTab} />
+        {theory ? <details className="studio-model-notes"><summary>Model notes · {theory.title}</summary><Theory title={theory.title}>{theory.body}</Theory></details> : null}
         {children}
       </div>
       <aside className="guide">
@@ -57,7 +59,6 @@ export function StudioFrame({
             {takeaways.map((item) => <li key={item}>{item}</li>)}
           </ul>
         </section>
-        <section className="card quote">“Numbers are the language in which the universe is written.”<b>— Galileo</b></section>
       </aside>
     </div>
   );

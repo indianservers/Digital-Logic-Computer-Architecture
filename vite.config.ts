@@ -23,9 +23,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,svg,png,woff2,woff}"],
+        globPatterns: ["**/*.{js,css,html,svg,woff2}"],
         // Anatomy originals are downloaded on demand, rather than at app installation.
-        globIgnores: ["**/devices/parts/**"],
+        globIgnores: ["**/devices/**"],
         runtimeCaching: [{
           urlPattern: /\/devices\/parts\/previews\/.*\.webp$/,
           handler: "CacheFirst",
@@ -34,6 +34,10 @@ export default defineConfig({
             expiration: {maxEntries:250,maxAgeSeconds:30*24*60*60},
             cacheableResponse: {statuses:[0,200]},
           },
+        }, {
+          urlPattern: /\.(?:png|webp|jpe?g)$/i,
+          handler: "StaleWhileRevalidate",
+          options: {cacheName:"lesson-images",expiration:{maxEntries:64,maxAgeSeconds:30*24*60*60},cacheableResponse:{statuses:[200]}},
         }],
         navigateFallback: "index.html",
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,

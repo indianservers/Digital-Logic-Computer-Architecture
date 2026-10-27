@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
@@ -77,10 +78,12 @@ export function AddressingPanel({ explain }: { explain: boolean }) {
   const state = states[mode];
   const view = viewAddr(mode, state);
   const index = ADDR_MODES.indexOf(mode);
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!pulse || reducedMotion()) return;
     gsap.fromTo(".amx-hot", { scale: 1.04 }, { scale: 1, duration: 0.35, clearProps: "scale" });
-  }, { scope: root, dependencies: [pulse, stage] });
+  }, { scope: root, dependencies: [pulse, stage, motionEnabled] , revertOnUpdate: true});
 
   function setMode(next: AddrMode) {
     const query = new URLSearchParams(params);

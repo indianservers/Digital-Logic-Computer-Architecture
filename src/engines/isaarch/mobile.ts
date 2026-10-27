@@ -48,3 +48,40 @@ export function thermal(cpu: number, gpu: number, npu: number, ambient: number):
 
 export const CAMERA_FLOW = ["Sensor", "ISP", "Memory", "NPU", "GPU / Display"];
 export const MEMORY_CLIENTS = ["CPU", "GPU", "NPU", "ISP"] as const;
+
+export interface ThermalParameters {
+  ambient: number; junctionCapacity: number; caseCapacity: number;
+  junctionResistance: number; ambientResistance: number; limit: number; hysteresis: number;
+}
+export interface ThermalState { time: number; junction: number; enclosure: number; power: number; energy: number; throttle: boolean; frequency: number }
+export interface ThermalLoad { cpu: number; gpu: number; npu: number }
+export type ThermalProfile = "sustained" | "burst" | "cooldown";
+export const THERMAL_DEFAULTS: ThermalParameters = { ambient: 25, junctionCapacity: 8, caseCapacity: 45, junctionResistance: 3, ambientResistance: 7, limit: 80, hysteresis: 5 };
+export const initialThermal = (ambient: number): ThermalState => ({ time: 0, junction: ambient, enclosure: ambient, power: 0, energy: 0, throttle: false, frequency: 1 });
+export function profileLoad(load: ThermalLoad, time: number, profile: ThermalProfile): ThermalLoad {
+  const scale = profile === "burst" ? (time % 60 < 15 ? 1 : 0.05) : profile === "cooldown" && time >= 120 ? 0 : 1;
+  return { cpu: load.cpu * scale, gpu: load.gpu * scale, npu: load.npu * scale };
+}
+/** Two lumped heat capacities: Cj dTj/dt=P-(Tj-Tc)/Rjc; Cc dTc/dt=(Tj-Tc)/Rjc-(Tc-Ta)/Rca.
+ * Generic assumed coefficients, not calibrated to a handset. Small substeps keep integration stable.
+ */
+export function stepThermal(state: ThermalState, load: ThermalLoad, parameters: ThermalParameters, seconds = 1, profile: ThermalProfile = "sustained"): ThermalState {
+  if (!Number.isFinite(seconds) || seconds < 0 || seconds > 3600 || !Object.values(parameters).every(Number.isFinite)
+    || parameters.junctionCapacity <= 0 || parameters.caseCapacity <= 0 || parameters.junctionResistance <= 0 || parameters.ambientResistance <= 0 || parameters.hysteresis < 0) throw new RangeError("Invalid thermal parameters or time step");
+  let next = { ...state };
+  const steps = Math.ceil(seconds / Math.min(0.1, parameters.junctionCapacity * parameters.junctionResistance / 10, parameters.caseCapacity * parameters.ambientResistance / 10));
+  const dt = seconds / Math.max(1, steps);
+  for (let i = 0; i < steps; i++) {
+    const active = profileLoad(load, next.time, profile);
+    const throttle = next.throttle ? next.junction > parameters.limit - parameters.hysteresis : next.junction >= parameters.limit;
+    const frequency = throttle ? 0.55 : 1;
+    const utilization = (value: number) => Math.min(100, Math.max(0, value)) / 100;
+    const dynamic = 5 * utilization(active.cpu) + 6 * utilization(active.gpu) + 3 * utilization(active.npu);
+    const power = 0.4 + dynamic * frequency ** 3;
+    const toCase = (next.junction - next.enclosure) / parameters.junctionResistance;
+    const toAir = (next.enclosure - parameters.ambient) / parameters.ambientResistance;
+    next = { time: next.time + dt, junction: next.junction + (power - toCase) * dt / parameters.junctionCapacity,
+      enclosure: next.enclosure + (toCase - toAir) * dt / parameters.caseCapacity, power, energy: next.energy + power * dt, throttle, frequency };
+  }
+  return next;
+}

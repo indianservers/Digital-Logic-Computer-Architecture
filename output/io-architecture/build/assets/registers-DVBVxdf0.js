@@ -1,0 +1,1 @@
+function e(n=16,r=4){return{width:n,pc:0,pcStep:r,ir:0,mar:0,mdr:0,mdrDirection:"read",sp:256,stackBase:256,flags:{z:1,n:0,c:0,v:0}}}function a(n){return n>=31?2147483647:(1<<n)-1}function o(n,r,c=0){const t=a(n.width);return{...n,pc:n.pc+n.pcStep&t}}export{e as c,a as m,o as s};

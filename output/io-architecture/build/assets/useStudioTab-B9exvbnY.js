@@ -1,0 +1,1 @@
+import{a as m,r as b}from"./index-BDEkKh_l.js";function f(e,r,t){return e&&r.includes(e)?e:t}function l(e,r){const[t,c]=m(),u=e.map(a=>a.id),s=t.get("tab"),n=f(s,u,r);b.useEffect(()=>{if(s!==null&&s!==n){const a=new URLSearchParams(t);a.set("tab",n),c(a,{replace:!0})}},[t,s,c,n]);function i(a){const o=new URLSearchParams(t);o.set("tab",a),c(o)}return[n,i]}export{l as u};

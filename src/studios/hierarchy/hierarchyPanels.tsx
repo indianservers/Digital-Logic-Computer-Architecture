@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -154,10 +155,12 @@ export function AccessPanel({ explain, latencies }: { explain: boolean; latencie
   const flowRef = useRef<HTMLDivElement>(null);
   const amat = hierarchyAmat(latencies, rates);
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!flowRef.current || reducedMotion()) return;
     gsap.fromTo(flowRef.current.querySelectorAll(".hot"), { y: 6 }, { y: 0, duration: 0.25, stagger: 0.05 });
-  }, { dependencies: [cursor, result?.address], scope: flowRef });
+  }, { dependencies: [cursor, result?.address, motionEnabled], scope: flowRef , revertOnUpdate: true});
 
   useEffect(() => {
     if (!running || !result) return undefined;
@@ -379,10 +382,12 @@ export function CachePanel({ explain }: { explain: boolean }) {
   const visualRef = useRef<HTMLDivElement>(null);
   const current = history.at(-1) ?? null;
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!visualRef.current || reducedMotion() || !current) return;
     gsap.fromTo(visualRef.current.querySelectorAll(".now"), { scale: 0.96 }, { scale: 1, duration: 0.25 });
-  }, { dependencies: [current?.address, current?.kind], scope: visualRef });
+  }, { dependencies: [current?.address, current?.kind, motionEnabled], scope: visualRef , revertOnUpdate: true});
 
   function addresses(): number[] | null {
     const parts = sequence.split(/[\s,]+/).filter(Boolean);

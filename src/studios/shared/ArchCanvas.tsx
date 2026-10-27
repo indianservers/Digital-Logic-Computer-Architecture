@@ -4,6 +4,7 @@ import {
 } from "../../engines/builder/model";
 import { evaluateGraph } from "../../engines/builder/sim";
 import { connect } from "../../engines/builder/model";
+import { useLabMotion } from "../../design-system/LabMotion";
 import { evaluateLogicGraph } from "../../engines/builder/logicGraph";
 import { routeWire, wirePath, tracedWires, type Point } from "../../engines/builder/canvasUx";
 
@@ -75,6 +76,7 @@ export function ArchCanvas({
   onContext?:(id:string,x:number,y:number)=>void;
   onReconnect?:(id:string,from:string,fp:string,to:string,tp:string)=>void;
 }) {
+  const {enabled:motionEnabled}=useLabMotion();
   const [draft, setDraft] = useState<{ from: string; port: string; x: number; y: number; tx?: number; ty?: number; wire?:string; side?:"from"|"to"; to?:string; toPort?:string } | null>(null);
   const [wireHint,setWireHint]=useState("");
   const [hoveredWire,setHoveredWire]=useState("");
@@ -203,6 +205,7 @@ export function ArchCanvas({
                 strokeWidth={selectedWire===wire.id?5:control ? 1.6 : Math.min(5, 2 + out.width / 8)}
                 strokeDasharray={unknown?"2 3":out.role==="clock"?"8 3 2 3":control ? "5 4" : undefined}
               />
+              {motionEnabled&&previousView&&previousView.values.get(`${src.id}:${out.id}`)!==value&&!unknown&&<path key={`transfer-${design.engineering?.cycle??0}`} className="lab-signal-transfer" d={path} fill="none" stroke="#60a5fa" strokeWidth={5} aria-hidden="true"/>}
               {design.engineering?.signalLabels !== false && (!quietLabels||selectedWire===wire.id||hoveredWire===wire.id) && <text x={mid} y={(a.y + b.y) / 2 - 4} fontSize={9} fill="var(--text-secondary)">{out.role} · {out.width}b · {unknown?bits:hexLabel(value, out.width)}</text>}
 
               {selectedWire===wire.id&&onBend&&<circle cx={mid} cy={(a.y+b.y)/2} r="9" fill="white" stroke="#1456c0" strokeWidth="3" role="button" tabIndex={0} aria-label={`Adjust bend for ${wire.id}`} onKeyDown={e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight"){e.preventDefault();e.stopPropagation();onBend(wire.id,mid+(e.key==="ArrowLeft"?-16:16));}}} onPointerDown={e=>{e.stopPropagation();const svg=e.currentTarget.ownerSVGElement;const scale=svg?.getScreenCTM()?.a??1;const origin=e.clientX;const move=(event:PointerEvent)=>onBend(wire.id,mid+(event.clientX-origin)/(pan.k*scale));const up=()=>{window.removeEventListener("pointermove",move);window.removeEventListener("pointerup",up);};window.addEventListener("pointermove",move);window.addEventListener("pointerup",up);}}/>}

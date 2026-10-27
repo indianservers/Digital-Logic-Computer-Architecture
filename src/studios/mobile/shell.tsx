@@ -26,7 +26,7 @@ const HEADS: Record<string, { title: string; sub: string; quote: string }> = {
   isp: { title: "ISP & Camera Pipeline", sub: "Turn a sensor-style image into a display image, stage by stage.", quote: "The photograph is a pipeline, not a single filter." },
   memory: { title: "Memory & Interconnect", sub: "Follow a request from an engine through cache toward LPDDR.", quote: "Most of the energy is moving the bytes." },
   connectivity: { title: "Modem & Connectivity", sub: "An illustrative radio path. Not a measured network.", quote: "The modem is another client of memory." },
-  "power-thermal": { title: "Power, Thermal & DVFS", sub: "Simplified educational thermal model. Not a vendor governor.", quote: "Frequency follows the thermal budget." },
+  "power-thermal": { title: "Power, Thermal & DVFS", sub: "Transient heat flow, workload profiles, and governor recovery in a two-node thermal model.", quote: "Frequency follows the thermal budget." },
   integration: { title: "System Integration", sub: "One scenario wakes several blocks. Step the timeline.", quote: "A feature is a path across the SoC." },
 };
 
@@ -45,7 +45,7 @@ export function MobileShell({ lab, onReset, children }: { lab: string; onReset: 
   const { prefs, update } = usePrefs();
   if (!studio || !current || !head) return null;
   return (
-    <div className={`rvx mob${prefs.explain ? "" : " explain-off"}`}>
+    <div className={`rvx mob${lab === "power-thermal" ? " mob-thermal-workbench" : ""}${prefs.explain ? "" : " explain-off"}`}>
       <nav className="rvx-nav" aria-label="Modern Mobile SoC Explorer">
         <p className="cmp-nav-kicker">Mobile SoC</p>
         {studio.labs.map((item) => {

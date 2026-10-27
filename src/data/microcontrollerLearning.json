@@ -1,0 +1,1992 @@
+[
+  {
+    "number": 39,
+    "route": "/studios/microcontroller/lab/polling-vs-interrupts",
+    "objective": "Measure missed pulses, interrupt latency, and CPU work on the same event stream.",
+    "guide": [
+      "Run 100 steps with the default slow poll.",
+      "Compare generated, polled, and ISR counts.",
+      "Reset with polling at 1 ms and repeat.",
+      "Mask interrupts, advance several periods, then unmask."
+    ],
+    "expected": "Short pulses between polls are missed. An unmasked edge interrupt services each edge; masked edges may coalesce.",
+    "equation": "Polling work = polls × 0.05 ms; ISR work = serviced IRQs × 0.2 ms",
+    "limitation": "Deterministic single-source acquisition with illustrative service costs. NVIC nesting is covered by earlier labs.",
+    "flow": [
+      "Physical pulse",
+      "Polling sample",
+      "Pending edge / ISR",
+      "Count and latency"
+    ],
+    "before": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "Generated",
+          "value": 5
+        },
+        {
+          "label": "Polling handled",
+          "value": 0
+        },
+        {
+          "label": "ISR handled",
+          "value": 5
+        },
+        {
+          "label": "Polling missed",
+          "value": 5
+        },
+        {
+          "label": "Max ISR latency",
+          "value": 0,
+          "unit": "ms"
+        },
+        {
+          "label": "Polling / ISR work",
+          "value": "0.50 / 1.00",
+          "unit": "ms"
+        }
+      ],
+      "phase": "Waiting for input"
+    },
+    "after": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "Generated",
+          "value": 5
+        },
+        {
+          "label": "Polling handled",
+          "value": 5
+        },
+        {
+          "label": "ISR handled",
+          "value": 5
+        },
+        {
+          "label": "Polling missed",
+          "value": 0
+        },
+        {
+          "label": "Max ISR latency",
+          "value": 0,
+          "unit": "ms"
+        },
+        {
+          "label": "Polling / ISR work",
+          "value": "5.00 / 1.00",
+          "unit": "ms"
+        }
+      ],
+      "phase": "Waiting for input"
+    },
+    "configuration": "period=20, pulse=2, poll=10, masked=false",
+    "baseline": {
+      "period": 20,
+      "pulse": 2,
+      "poll": 10,
+      "masked": false
+    },
+    "comparison": {
+      "period": 20,
+      "pulse": 2,
+      "poll": 1,
+      "masked": false
+    },
+    "budgetMs": 100,
+    "example": [
+      "Reset with period=20, pulse=2, poll=10, masked=false. Start with the stated configuration and no additional action.",
+      "Advance up to 100 ms of model time; acquisition or program completion can stop earlier. The baseline reports Generated = 5; Polling handled = 0; ISR handled = 5; Polling missed = 5; Max ISR latency = 0 ms; Polling / ISR work = 0.50 / 1.00 ms.",
+      "Compare with preset “Capture every pulse”: period=20, pulse=2, poll=1, masked=false.",
+      "The same evaluation budget gives Generated = 5; Polling handled = 5; ISR handled = 5; Polling missed = 0; Max ISR latency = 0 ms; Polling / ISR work = 5.00 / 1.00 ms. Explain the changed state using this mechanism: Short pulses between polls are missed. An unmasked edge interrupt services each edge; masked edges may coalesce."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Polling vs Interrupts experiment produce?",
+        "answer": "Generated = 5; Polling handled = 0; ISR handled = 5; Polling missed = 5; Max ISR latency = 0 ms; Polling / ISR work = 0.50 / 1.00 ms. Short pulses between polls are missed. An unmasked edge interrupt services each edge; masked edges may coalesce."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Generated = 5; Polling handled = 5; ISR handled = 5; Polling missed = 0; Max ISR latency = 0 ms; Polling / ISR work = 5.00 / 1.00 ms. The model assumes: Deterministic single-source acquisition with illustrative service costs. NVIC nesting is covered by earlier labs."
+      }
+    ]
+  },
+  {
+    "number": 40,
+    "route": "/studios/microcontroller/lab/dma-lab",
+    "objective": "Observe DMA requests, destination addressing, half/full flags, and circular operation.",
+    "guide": [
+      "Step requests while NDTR counts down.",
+      "Inspect SRAM at half and full completion.",
+      "Disable destination increment and compare.",
+      "Enable circular mode and watch NDTR reload."
+    ],
+    "expected": "One byte is transferred per request. Destination increment preserves the sequence; circular mode reloads NDTR.",
+    "equation": "NDTR = configured count − serviced requests",
+    "limitation": "One request per millisecond. Cache maintenance and bus contention are outside this reduced model.",
+    "flow": [
+      "Peripheral request",
+      "DMA channel",
+      "NDTR and destination",
+      "SRAM buffer"
+    ],
+    "before": {
+      "timeMs": 9,
+      "metrics": [
+        {
+          "label": "Remaining NDTR",
+          "value": 0
+        },
+        {
+          "label": "Transferred",
+          "value": 8
+        },
+        {
+          "label": "Half / full flags",
+          "value": "1 / 1"
+        },
+        {
+          "label": "Completion IRQs",
+          "value": 1
+        },
+        {
+          "label": "CPU free / copy slots",
+          "value": "8 / 0"
+        }
+      ],
+      "phase": "Transfer complete"
+    },
+    "after": {
+      "timeMs": 10,
+      "metrics": [
+        {
+          "label": "Remaining NDTR",
+          "value": 6
+        },
+        {
+          "label": "Transferred",
+          "value": 10
+        },
+        {
+          "label": "Half / full flags",
+          "value": "1 / 1"
+        },
+        {
+          "label": "Completion IRQs",
+          "value": 1
+        },
+        {
+          "label": "CPU free / copy slots",
+          "value": "10 / 0"
+        }
+      ],
+      "phase": "SRAM[1] ← 0x58"
+    },
+    "configuration": "length=8, increment=true, circular=false, enabled=true, irq=true, mode=DMA",
+    "baseline": {
+      "length": "8",
+      "increment": true,
+      "circular": false,
+      "enabled": true,
+      "irq": true,
+      "mode": "DMA"
+    },
+    "comparison": {
+      "length": "8",
+      "increment": true,
+      "circular": true,
+      "enabled": true,
+      "irq": true,
+      "mode": "DMA"
+    },
+    "budgetMs": 10,
+    "example": [
+      "Reset with length=8, increment=true, circular=false, enabled=true, irq=true, mode=DMA. Start with the stated configuration and no additional action.",
+      "Advance up to 10 ms of model time; acquisition or program completion can stop earlier. The baseline reports Remaining NDTR = 0; Transferred = 8; Half / full flags = 1 / 1; Completion IRQs = 1; CPU free / copy slots = 8 / 0.",
+      "Compare with preset “Circular”: length=8, increment=true, circular=true, enabled=true, irq=true, mode=DMA.",
+      "The same evaluation budget gives Remaining NDTR = 6; Transferred = 10; Half / full flags = 1 / 1; Completion IRQs = 1; CPU free / copy slots = 10 / 0. Explain the changed state using this mechanism: One byte is transferred per request. Destination increment preserves the sequence; circular mode reloads NDTR."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline DMA Lab experiment produce?",
+        "answer": "Remaining NDTR = 0; Transferred = 8; Half / full flags = 1 / 1; Completion IRQs = 1; CPU free / copy slots = 8 / 0. One byte is transferred per request. Destination increment preserves the sequence; circular mode reloads NDTR."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Remaining NDTR = 6; Transferred = 10; Half / full flags = 1 / 1; Completion IRQs = 1; CPU free / copy slots = 10 / 0. The model assumes: One request per millisecond. Cache maintenance and bus contention are outside this reduced model."
+      }
+    ]
+  },
+  {
+    "number": 41,
+    "route": "/studios/microcontroller/lab/watchdog-timer",
+    "objective": "Cause a watchdog reset and repair an insufficient refresh budget.",
+    "guide": [
+      "Run with timeout 100 ms and refresh 40 ms.",
+      "Watch refreshes stop at 250 ms uptime.",
+      "Continue until IWDG RESET appears.",
+      "Set refresh longer than timeout to create a reset loop."
+    ],
+    "expected": "The watchdog resets firmware after refreshes stop. Refresh at expiry is too late in this model.",
+    "equation": "Healthy refresh interval < watchdog timeout",
+    "limitation": "Configured millisecond timing; oscillator tolerance and window-watchdog early-refresh rules are not included.",
+    "flow": [
+      "Firmware progress",
+      "Refresh request",
+      "Independent countdown",
+      "System reset"
+    ],
+    "before": {
+      "timeMs": 350,
+      "metrics": [
+        {
+          "label": "Remaining",
+          "value": 90,
+          "unit": "ms"
+        },
+        {
+          "label": "Uptime",
+          "value": 10,
+          "unit": "ms"
+        },
+        {
+          "label": "Resets",
+          "value": 1
+        },
+        {
+          "label": "Refreshes",
+          "value": 6
+        },
+        {
+          "label": "Last reset",
+          "value": 340,
+          "unit": "ms"
+        }
+      ],
+      "phase": "Firmware executing"
+    },
+    "after": {
+      "timeMs": 350,
+      "metrics": [
+        {
+          "label": "Remaining",
+          "value": 50,
+          "unit": "ms"
+        },
+        {
+          "label": "Uptime",
+          "value": 0,
+          "unit": "ms"
+        },
+        {
+          "label": "Resets",
+          "value": 7
+        },
+        {
+          "label": "Refreshes",
+          "value": 0
+        },
+        {
+          "label": "Last reset",
+          "value": 350,
+          "unit": "ms"
+        }
+      ],
+      "phase": "Firmware executing"
+    },
+    "configuration": "timeout=100, refresh=40, hang=250, feeding=true",
+    "baseline": {
+      "timeout": 100,
+      "refresh": 40,
+      "hang": 250,
+      "feeding": true
+    },
+    "comparison": {
+      "timeout": 50,
+      "refresh": 100,
+      "hang": 250,
+      "feeding": true
+    },
+    "budgetMs": 350,
+    "example": [
+      "Reset with timeout=100, refresh=40, hang=250, feeding=true. Start with the stated configuration and no additional action.",
+      "Advance up to 350 ms of model time; acquisition or program completion can stop earlier. The baseline reports Remaining = 90 ms; Uptime = 10 ms; Resets = 1; Refreshes = 6; Last reset = 340 ms.",
+      "Compare with preset “Reset loop”: timeout=50, refresh=100, hang=250, feeding=true.",
+      "The same evaluation budget gives Remaining = 50 ms; Uptime = 0 ms; Resets = 7; Refreshes = 0; Last reset = 350 ms. Explain the changed state using this mechanism: The watchdog resets firmware after refreshes stop. Refresh at expiry is too late in this model."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Watchdog Timer experiment produce?",
+        "answer": "Remaining = 90 ms; Uptime = 10 ms; Resets = 1; Refreshes = 6; Last reset = 340 ms. The watchdog resets firmware after refreshes stop. Refresh at expiry is too late in this model."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Remaining = 50 ms; Uptime = 0 ms; Resets = 7; Refreshes = 0; Last reset = 350 ms. The model assumes: Configured millisecond timing; oscillator tolerance and window-watchdog early-refresh rules are not included."
+      }
+    ]
+  },
+  {
+    "number": 42,
+    "route": "/studios/microcontroller/lab/power-and-sleep-modes",
+    "objective": "Measure integrated charge and compare retained sleep with reset-on-wake standby.",
+    "guide": [
+      "Run Stop + RTC for three wake periods.",
+      "Compare charge against Run mode.",
+      "Select APB timer in Stop and inspect missed wakes.",
+      "Select Standby and inspect reset counts."
+    ],
+    "expected": "RTC wakes the stopped system; an ordinary APB timer cannot. Standby wakes by rebooting.",
+    "equation": "Charge (µC) = Σ current (mA) × Δt (ms)",
+    "limitation": "Illustrative current and wake-latency profiles, not chip datasheet measurements. RTC has an independent retained clock.",
+    "flow": [
+      "Wake clock",
+      "Clock-domain gates",
+      "Sleep / resume / reboot",
+      "Integrated charge"
+    ],
+    "before": {
+      "timeMs": 300,
+      "metrics": [
+        {
+          "label": "Wakes",
+          "value": 2
+        },
+        {
+          "label": "Standby reboots",
+          "value": 0
+        },
+        {
+          "label": "Average current",
+          "value": "0.554",
+          "unit": "mA"
+        },
+        {
+          "label": "Charge",
+          "value": "166.05",
+          "unit": "µC"
+        },
+        {
+          "label": "Unavailable wakes",
+          "value": 0
+        }
+      ],
+      "phase": "Stop: waiting for wake"
+    },
+    "after": {
+      "timeMs": 300,
+      "metrics": [
+        {
+          "label": "Wakes",
+          "value": 2
+        },
+        {
+          "label": "Standby reboots",
+          "value": 0
+        },
+        {
+          "label": "Average current",
+          "value": "8.000",
+          "unit": "mA"
+        },
+        {
+          "label": "Charge",
+          "value": "2400.00",
+          "unit": "µC"
+        },
+        {
+          "label": "Unavailable wakes",
+          "value": 0
+        }
+      ],
+      "phase": "Active work"
+    },
+    "configuration": "mode=Stop, wake=RTC, period=100, work=5, enabled=true",
+    "baseline": {
+      "mode": "Stop",
+      "wake": "RTC",
+      "period": 100,
+      "work": 5,
+      "enabled": true
+    },
+    "comparison": {
+      "mode": "Run",
+      "wake": "RTC",
+      "period": 100,
+      "work": 5,
+      "enabled": true
+    },
+    "budgetMs": 300,
+    "example": [
+      "Reset with mode=Stop, wake=RTC, period=100, work=5, enabled=true. Start with the stated configuration and no additional action.",
+      "Advance up to 300 ms of model time; acquisition or program completion can stop earlier. The baseline reports Wakes = 2; Standby reboots = 0; Average current = 0.554 mA; Charge = 166.05 µC; Unavailable wakes = 0.",
+      "Compare with preset “Always running”: mode=Run, wake=RTC, period=100, work=5, enabled=true.",
+      "The same evaluation budget gives Wakes = 2; Standby reboots = 0; Average current = 8.000 mA; Charge = 2400.00 µC; Unavailable wakes = 0. Explain the changed state using this mechanism: RTC wakes the stopped system; an ordinary APB timer cannot. Standby wakes by rebooting."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Power & Sleep Modes experiment produce?",
+        "answer": "Wakes = 2; Standby reboots = 0; Average current = 0.554 mA; Charge = 166.05 µC; Unavailable wakes = 0. RTC wakes the stopped system; an ordinary APB timer cannot. Standby wakes by rebooting."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Wakes = 2; Standby reboots = 0; Average current = 8.000 mA; Charge = 2400.00 µC; Unavailable wakes = 0. The model assumes: Illustrative current and wake-latency profiles, not chip datasheet measurements. RTC has an independent retained clock."
+      }
+    ]
+  },
+  {
+    "number": 43,
+    "route": "/studios/microcontroller/lab/brown-out-and-reset-circuitry",
+    "objective": "Observe filtered assertion, hysteretic release, and SRAM initialization.",
+    "guide": [
+      "Inject a 10 ms dip with the 3 ms filter.",
+      "Step through assertion, reset hold, and release.",
+      "Hold supply between assertion and release voltages.",
+      "Disable BOR and compare unsafe writes."
+    ],
+    "expected": "A sustained dip asserts reset once. Hysteresis prevents premature release.",
+    "equation": "Release VDD = threshold + hysteresis",
+    "limitation": "An illustrative supervisor, with a chosen 2 V execution floor and deterministic corruption marker; not a transistor-level model.",
+    "flow": [
+      "Supply voltage",
+      "Low-voltage filter",
+      "Reset latch",
+      "Hysteretic release"
+    ],
+    "before": {
+      "timeMs": 20,
+      "metrics": [
+        {
+          "label": "VDD",
+          "value": "3.30",
+          "unit": "V"
+        },
+        {
+          "label": "BOR resets",
+          "value": 1
+        },
+        {
+          "label": "Reset held",
+          "value": "No"
+        },
+        {
+          "label": "Unsafe writes",
+          "value": 2
+        },
+        {
+          "label": "SRAM[0]",
+          "value": "0x07"
+        }
+      ],
+      "phase": "Firmware executing"
+    },
+    "after": {
+      "timeMs": 20,
+      "metrics": [
+        {
+          "label": "VDD",
+          "value": "3.30",
+          "unit": "V"
+        },
+        {
+          "label": "BOR resets",
+          "value": 0
+        },
+        {
+          "label": "Reset held",
+          "value": "No"
+        },
+        {
+          "label": "Unsafe writes",
+          "value": 10
+        },
+        {
+          "label": "SRAM[0]",
+          "value": "0x14"
+        }
+      ],
+      "phase": "Firmware executing"
+    },
+    "configuration": "supply=3.3, threshold=2.7, hysteresis=0.15, filter=3, enabled=true, dip=10",
+    "baseline": {
+      "supply": 3.3,
+      "threshold": 2.7,
+      "hysteresis": 0.15,
+      "filter": 3,
+      "enabled": true,
+      "dip": 10
+    },
+    "comparison": {
+      "supply": 3.3,
+      "threshold": 2.7,
+      "hysteresis": 0.15,
+      "filter": 3,
+      "enabled": false,
+      "dip": 10
+    },
+    "budgetMs": 20,
+    "example": [
+      "Reset with supply=3.3, threshold=2.7, hysteresis=0.15, filter=3, enabled=true, dip=10. Use the lab action to inject the dip, request a crossing, or begin the update before advancing.",
+      "Advance up to 20 ms of model time; acquisition or program completion can stop earlier. The baseline reports VDD = 3.30 V; BOR resets = 1; Reset held = No; Unsafe writes = 2; SRAM[0] = 0x07.",
+      "Compare with preset “Missing supervisor”: supply=3.3, threshold=2.7, hysteresis=0.15, filter=3, enabled=false, dip=10.",
+      "The same evaluation budget gives VDD = 3.30 V; BOR resets = 0; Reset held = No; Unsafe writes = 10; SRAM[0] = 0x14. Explain the changed state using this mechanism: A sustained dip asserts reset once. Hysteresis prevents premature release."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Brown-Out & Reset Circuitry experiment produce?",
+        "answer": "VDD = 3.30 V; BOR resets = 1; Reset held = No; Unsafe writes = 2; SRAM[0] = 0x07. A sustained dip asserts reset once. Hysteresis prevents premature release."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "VDD = 3.30 V; BOR resets = 0; Reset held = No; Unsafe writes = 10; SRAM[0] = 0x14. The model assumes: An illustrative supervisor, with a chosen 2 V execution floor and deterministic corruption marker; not a transistor-level model."
+      }
+    ]
+  },
+  {
+    "number": 44,
+    "route": "/studios/microcontroller/lab/real-time-clock",
+    "objective": "Prescale a clock, latch an alarm, and quantify drift against an ideal reference.",
+    "guide": [
+      "Advance until the 5 second alarm latches.",
+      "Advance a minute and inspect drift.",
+      "Disconnect main power and verify retention.",
+      "Remove backup power and observe domain loss."
+    ],
+    "expected": "A divider of 32768 yields one nominal second from a 32768 Hz source. Backup power preserves RTC operation.",
+    "equation": "RTC rate = oscillator / (reload + 1) × (1 + ppm / 10⁶)",
+    "limitation": "Time-of-day counter rather than a Gregorian calendar; no temperature model or battery chemistry.",
+    "flow": [
+      "Backup oscillator",
+      "Prescaler",
+      "Calendar seconds",
+      "Alarm comparison"
+    ],
+    "before": {
+      "timeMs": 60000,
+      "metrics": [
+        {
+          "label": "Calendar",
+          "value": "12:01:00"
+        },
+        {
+          "label": "RTC elapsed",
+          "value": "60.001200",
+          "unit": "s"
+        },
+        {
+          "label": "Drift",
+          "value": "1.200",
+          "unit": "ms"
+        },
+        {
+          "label": "Alarm",
+          "value": "Latched"
+        },
+        {
+          "label": "Backup losses",
+          "value": 0
+        }
+      ],
+      "phase": "Calendar running"
+    },
+    "after": {
+      "timeMs": 60000,
+      "metrics": [
+        {
+          "label": "Calendar",
+          "value": "12:01:01"
+        },
+        {
+          "label": "RTC elapsed",
+          "value": "61.441229",
+          "unit": "s"
+        },
+        {
+          "label": "Drift",
+          "value": "1441.229",
+          "unit": "ms"
+        },
+        {
+          "label": "Alarm",
+          "value": "Latched"
+        },
+        {
+          "label": "Backup losses",
+          "value": 0
+        }
+      ],
+      "phase": "Calendar running"
+    },
+    "configuration": "frequency=32768, prescaler=32767, ppm=20, alarm=5, main=true, battery=true",
+    "baseline": {
+      "frequency": 32768,
+      "prescaler": 32767,
+      "ppm": 20,
+      "alarm": 5,
+      "main": true,
+      "battery": true
+    },
+    "comparison": {
+      "frequency": 32768,
+      "prescaler": 31999,
+      "ppm": 20,
+      "alarm": 5,
+      "main": true,
+      "battery": true
+    },
+    "budgetMs": 60000,
+    "example": [
+      "Reset with frequency=32768, prescaler=32767, ppm=20, alarm=5, main=true, battery=true. Start with the stated configuration and no additional action.",
+      "Advance up to 60000 ms of model time; acquisition or program completion can stop earlier. The baseline reports Calendar = 12:01:00; RTC elapsed = 60.001200 s; Drift = 1.200 ms; Alarm = Latched; Backup losses = 0.",
+      "Compare with preset “Wrong divider”: frequency=32768, prescaler=31999, ppm=20, alarm=5, main=true, battery=true.",
+      "The same evaluation budget gives Calendar = 12:01:01; RTC elapsed = 61.441229 s; Drift = 1441.229 ms; Alarm = Latched; Backup losses = 0. Explain the changed state using this mechanism: A divider of 32768 yields one nominal second from a 32768 Hz source. Backup power preserves RTC operation."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Real-Time Clock experiment produce?",
+        "answer": "Calendar = 12:01:00; RTC elapsed = 60.001200 s; Drift = 1.200 ms; Alarm = Latched; Backup losses = 0. A divider of 32768 yields one nominal second from a 32768 Hz source. Backup power preserves RTC operation."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Calendar = 12:01:01; RTC elapsed = 61.441229 s; Drift = 1441.229 ms; Alarm = Latched; Backup losses = 0. The model assumes: Time-of-day counter rather than a Gregorian calendar; no temperature model or battery chemistry."
+      }
+    ]
+  },
+  {
+    "number": 45,
+    "route": "/studios/microcontroller/lab/finite-state-machines-on-mcu",
+    "objective": "Sequence safe traffic phases, latch pedestrian demand, and inject an interlock fault.",
+    "guide": [
+      "Observe GPIO transitions through a full cycle.",
+      "Request a crossing during green.",
+      "Assert emergency and confirm both green outputs drop.",
+      "Reset without the interlock and measure overlap."
+    ],
+    "expected": "One approach is green at a time; requests wait for all-red clearance; emergency forces all-red.",
+    "equation": "Invariant: NOT (NS_GREEN AND EW_GREEN)",
+    "limitation": "Teaching controller only. Disabling the interlock deliberately injects 20 ms conflicting outputs at green transitions.",
+    "flow": [
+      "External demand",
+      "Firmware state",
+      "Output interlock",
+      "GPIO signals"
+    ],
+    "before": {
+      "timeMs": 4000,
+      "metrics": [
+        {
+          "label": "State",
+          "value": "NS GREEN"
+        },
+        {
+          "label": "Full cycles",
+          "value": 1
+        },
+        {
+          "label": "Demand served",
+          "value": 1
+        },
+        {
+          "label": "Unsafe overlap",
+          "value": 0,
+          "unit": "ms"
+        },
+        {
+          "label": "NS / EW green",
+          "value": "1 / 0"
+        }
+      ],
+      "phase": "NS GREEN"
+    },
+    "after": {
+      "timeMs": 4000,
+      "metrics": [
+        {
+          "label": "State",
+          "value": "NS GREEN"
+        },
+        {
+          "label": "Full cycles",
+          "value": 1
+        },
+        {
+          "label": "Demand served",
+          "value": 1
+        },
+        {
+          "label": "Unsafe overlap",
+          "value": 60,
+          "unit": "ms"
+        },
+        {
+          "label": "NS / EW green",
+          "value": "1 / 0"
+        }
+      ],
+      "phase": "NS GREEN"
+    },
+    "configuration": "green=1000, yellow=300, clearance=200, emergency=false, interlock=true",
+    "baseline": {
+      "green": 1000,
+      "yellow": 300,
+      "clearance": 200,
+      "emergency": false,
+      "interlock": true
+    },
+    "comparison": {
+      "green": 1000,
+      "yellow": 300,
+      "clearance": 200,
+      "emergency": false,
+      "interlock": false
+    },
+    "budgetMs": 4000,
+    "example": [
+      "Reset with green=1000, yellow=300, clearance=200, emergency=false, interlock=true. Use the lab action to inject the dip, request a crossing, or begin the update before advancing.",
+      "Advance up to 4000 ms of model time; acquisition or program completion can stop earlier. The baseline reports State = NS GREEN; Full cycles = 1; Demand served = 1; Unsafe overlap = 0 ms; NS / EW green = 1 / 0.",
+      "Compare with preset “Interlock fault”: green=1000, yellow=300, clearance=200, emergency=false, interlock=false.",
+      "The same evaluation budget gives State = NS GREEN; Full cycles = 1; Demand served = 1; Unsafe overlap = 60 ms; NS / EW green = 1 / 0. Explain the changed state using this mechanism: One approach is green at a time; requests wait for all-red clearance; emergency forces all-red."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Finite-State Machines on MCU experiment produce?",
+        "answer": "State = NS GREEN; Full cycles = 1; Demand served = 1; Unsafe overlap = 0 ms; NS / EW green = 1 / 0. One approach is green at a time; requests wait for all-red clearance; emergency forces all-red."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "State = NS GREEN; Full cycles = 1; Demand served = 1; Unsafe overlap = 60 ms; NS / EW green = 1 / 0. The model assumes: Teaching controller only. Disabling the interlock deliberately injects 20 ms conflicting outputs at green transitions."
+      }
+    ]
+  },
+  {
+    "number": 46,
+    "route": "/studios/microcontroller/lab/task-scheduler",
+    "objective": "Measure execution budgets, response times, deadline misses, and scheduling decisions.",
+    "guide": [
+      "Step through release, selection, and completion.",
+      "Run 100 ms and inspect response times.",
+      "Increase T2 execution cost to create overload.",
+      "Observe a long cooperative job delaying newly ready work."
+    ],
+    "expected": "A cooperative job completes before another can run. Long jobs block shorter-period work.",
+    "equation": "CPU demand U = Σ execution time / period",
+    "limitation": "One CPU, 1 ms tick, zero switch overhead, implicit deadlines, bounded 200-job queue. These are scheduler models, not an RTOS binary.",
+    "flow": [
+      "Periodic release",
+      "Cooperative selection",
+      "Run to completion",
+      "Deadline check"
+    ],
+    "before": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "CPU demand",
+          "value": "48.0",
+          "unit": "%"
+        },
+        {
+          "label": "Completed jobs",
+          "value": 17
+        },
+        {
+          "label": "Deadline misses",
+          "value": 0
+        },
+        {
+          "label": "Max response",
+          "value": 9,
+          "unit": "ms"
+        },
+        {
+          "label": "Preemptions",
+          "value": 0
+        },
+        {
+          "label": "Pending jobs",
+          "value": 0
+        }
+      ],
+      "phase": "Idle"
+    },
+    "after": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "CPU demand",
+          "value": "168.0",
+          "unit": "%"
+        },
+        {
+          "label": "Completed jobs",
+          "value": 11
+        },
+        {
+          "label": "Deadline misses",
+          "value": 10
+        },
+        {
+          "label": "Max response",
+          "value": 50,
+          "unit": "ms"
+        },
+        {
+          "label": "Preemptions",
+          "value": 0
+        },
+        {
+          "label": "Pending jobs",
+          "value": 6
+        }
+      ],
+      "phase": "T2 executing"
+    },
+    "configuration": "period=10, cost=3, policy=Fixed priority, quantum=2",
+    "baseline": {
+      "period": 10,
+      "cost": 3,
+      "policy": "Fixed priority",
+      "quantum": 2
+    },
+    "comparison": {
+      "period": 10,
+      "cost": 15,
+      "policy": "Fixed priority",
+      "quantum": 2
+    },
+    "budgetMs": 100,
+    "example": [
+      "Reset with period=10, cost=3, policy=Fixed priority, quantum=2. Start with the stated configuration and no additional action.",
+      "Advance up to 100 ms of model time; acquisition or program completion can stop earlier. The baseline reports CPU demand = 48.0 %; Completed jobs = 17; Deadline misses = 0; Max response = 9 ms; Preemptions = 0; Pending jobs = 0.",
+      "Compare with preset “Overloaded”: period=10, cost=15, policy=Fixed priority, quantum=2.",
+      "The same evaluation budget gives CPU demand = 168.0 %; Completed jobs = 11; Deadline misses = 10; Max response = 50 ms; Preemptions = 0; Pending jobs = 6. Explain the changed state using this mechanism: A cooperative job completes before another can run. Long jobs block shorter-period work."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Task Scheduler experiment produce?",
+        "answer": "CPU demand = 48.0 %; Completed jobs = 17; Deadline misses = 0; Max response = 9 ms; Preemptions = 0; Pending jobs = 0. A cooperative job completes before another can run. Long jobs block shorter-period work."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "CPU demand = 168.0 %; Completed jobs = 11; Deadline misses = 10; Max response = 50 ms; Preemptions = 0; Pending jobs = 6. The model assumes: One CPU, 1 ms tick, zero switch overhead, implicit deadlines, bounded 200-job queue. These are scheduler models, not an RTOS binary."
+      }
+    ]
+  },
+  {
+    "number": 47,
+    "route": "/studios/microcontroller/lab/rtos-fundamentals",
+    "objective": "Measure execution budgets, response times, deadline misses, and scheduling decisions.",
+    "guide": [
+      "Step through release, selection, and completion.",
+      "Run 100 ms and inspect response times.",
+      "Increase T2 execution cost to create overload.",
+      "Compare fixed priority with round-robin slices."
+    ],
+    "expected": "T1 has highest priority; ready higher-priority work preempts lower-priority work. Round-robin rotates ready tasks.",
+    "equation": "CPU demand U = Σ execution time / period",
+    "limitation": "One CPU, 1 ms tick, zero switch overhead, implicit deadlines, bounded 200-job queue. These are scheduler models, not an RTOS binary.",
+    "flow": [
+      "Tick / task release",
+      "Ready queue",
+      "Preemption or time slice",
+      "Response and deadline"
+    ],
+    "before": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "CPU demand",
+          "value": "48.0",
+          "unit": "%"
+        },
+        {
+          "label": "Completed jobs",
+          "value": 17
+        },
+        {
+          "label": "Deadline misses",
+          "value": 0
+        },
+        {
+          "label": "Max response",
+          "value": 9,
+          "unit": "ms"
+        },
+        {
+          "label": "Preemptions",
+          "value": 0
+        },
+        {
+          "label": "Pending jobs",
+          "value": 0
+        }
+      ],
+      "phase": "Idle"
+    },
+    "after": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "CPU demand",
+          "value": "168.0",
+          "unit": "%"
+        },
+        {
+          "label": "Completed jobs",
+          "value": 11
+        },
+        {
+          "label": "Deadline misses",
+          "value": 10
+        },
+        {
+          "label": "Max response",
+          "value": 50,
+          "unit": "ms"
+        },
+        {
+          "label": "Preemptions",
+          "value": 4
+        },
+        {
+          "label": "Pending jobs",
+          "value": 6
+        }
+      ],
+      "phase": "T2 executing"
+    },
+    "configuration": "period=10, cost=3, policy=Fixed priority, quantum=2",
+    "baseline": {
+      "period": 10,
+      "cost": 3,
+      "policy": "Fixed priority",
+      "quantum": 2
+    },
+    "comparison": {
+      "period": 10,
+      "cost": 15,
+      "policy": "Fixed priority",
+      "quantum": 2
+    },
+    "budgetMs": 100,
+    "example": [
+      "Reset with period=10, cost=3, policy=Fixed priority, quantum=2. Start with the stated configuration and no additional action.",
+      "Advance up to 100 ms of model time; acquisition or program completion can stop earlier. The baseline reports CPU demand = 48.0 %; Completed jobs = 17; Deadline misses = 0; Max response = 9 ms; Preemptions = 0; Pending jobs = 0.",
+      "Compare with preset “Overloaded”: period=10, cost=15, policy=Fixed priority, quantum=2.",
+      "The same evaluation budget gives CPU demand = 168.0 %; Completed jobs = 11; Deadline misses = 10; Max response = 50 ms; Preemptions = 4; Pending jobs = 6. Explain the changed state using this mechanism: T1 has highest priority; ready higher-priority work preempts lower-priority work. Round-robin rotates ready tasks."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline RTOS Fundamentals experiment produce?",
+        "answer": "CPU demand = 48.0 %; Completed jobs = 17; Deadline misses = 0; Max response = 9 ms; Preemptions = 0; Pending jobs = 0. T1 has highest priority; ready higher-priority work preempts lower-priority work. Round-robin rotates ready tasks."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "CPU demand = 168.0 %; Completed jobs = 11; Deadline misses = 10; Max response = 50 ms; Preemptions = 4; Pending jobs = 6. The model assumes: One CPU, 1 ms tick, zero switch overhead, implicit deadlines, bounded 200-job queue. These are scheduler models, not an RTOS binary."
+      }
+    ]
+  },
+  {
+    "number": 48,
+    "route": "/studios/microcontroller/lab/rtos-synchronization",
+    "objective": "Reproduce lost updates, then serialize access with a mutex or binary semaphore.",
+    "guide": [
+      "Run without synchronization; inspect interleaved reads and writes.",
+      "Compare operation count with the counter.",
+      "Reset with a mutex and repeat.",
+      "Try semaphore capacity 2, then disable release."
+    ],
+    "expected": "Interleaved reads lose increments. A mutex or capacity-1 semaphore serializes the critical section.",
+    "equation": "Lost updates = completed increments − final counter",
+    "limitation": "Two deterministic workers and a round-robin instruction schedule, with one shared resource.",
+    "flow": [
+      "Shared read",
+      "Resource acquisition",
+      "Modify and write",
+      "Release resource"
+    ],
+    "before": {
+      "timeMs": 17,
+      "metrics": [
+        {
+          "label": "Shared counter",
+          "value": 4
+        },
+        {
+          "label": "Completed increments",
+          "value": 8
+        },
+        {
+          "label": "Lost updates",
+          "value": 4
+        },
+        {
+          "label": "A / B completed",
+          "value": "4 / 4"
+        },
+        {
+          "label": "Resource occupied",
+          "value": 0
+        }
+      ],
+      "phase": "Both workers complete"
+    },
+    "after": {
+      "timeMs": 5,
+      "metrics": [
+        {
+          "label": "Shared counter",
+          "value": 1
+        },
+        {
+          "label": "Completed increments",
+          "value": 1
+        },
+        {
+          "label": "Lost updates",
+          "value": 0
+        },
+        {
+          "label": "A / B completed",
+          "value": "1 / 0"
+        },
+        {
+          "label": "Resource occupied",
+          "value": 1
+        }
+      ],
+      "phase": "Blocked: resource not released"
+    },
+    "configuration": "primitive=None, iterations=4, capacity=1, release=true",
+    "baseline": {
+      "primitive": "None",
+      "iterations": 4,
+      "capacity": 1,
+      "release": true
+    },
+    "comparison": {
+      "primitive": "Mutex",
+      "iterations": 4,
+      "capacity": 1,
+      "release": false
+    },
+    "budgetMs": 40,
+    "example": [
+      "Reset with primitive=None, iterations=4, capacity=1, release=true. Start with the stated configuration and no additional action.",
+      "Advance up to 40 ms of model time; acquisition or program completion can stop earlier. The baseline reports Shared counter = 4; Completed increments = 8; Lost updates = 4; A / B completed = 4 / 4; Resource occupied = 0.",
+      "Compare with preset “Missing release”: primitive=Mutex, iterations=4, capacity=1, release=false.",
+      "The same evaluation budget gives Shared counter = 1; Completed increments = 1; Lost updates = 0; A / B completed = 1 / 0; Resource occupied = 1. Explain the changed state using this mechanism: Interleaved reads lose increments. A mutex or capacity-1 semaphore serializes the critical section."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline RTOS Synchronization experiment produce?",
+        "answer": "Shared counter = 4; Completed increments = 8; Lost updates = 4; A / B completed = 4 / 4; Resource occupied = 0. Interleaved reads lose increments. A mutex or capacity-1 semaphore serializes the critical section."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Shared counter = 1; Completed increments = 1; Lost updates = 0; A / B completed = 1 / 0; Resource occupied = 1. The model assumes: Two deterministic workers and a round-robin instruction schedule, with one shared resource."
+      }
+    ]
+  },
+  {
+    "number": 49,
+    "route": "/studios/microcontroller/lab/rtos-timing-and-priority-inversion",
+    "objective": "Measure high-priority response with and without priority inheritance.",
+    "guide": [
+      "Run without inheritance; record H response.",
+      "Reset with inheritance enabled.",
+      "Inspect donation and mutex release.",
+      "Increase M burst; compare both runs."
+    ],
+    "expected": "Without inheritance M preempts L. With inheritance L runs at H priority until unlock.",
+    "equation": "H response = completion timestamp − 2 ms release",
+    "limitation": "One mutex, three scripted jobs, zero context-switch cost; not a multi-lock kernel.",
+    "flow": [
+      "High task blocks",
+      "Priority donation",
+      "Lock owner executes",
+      "Unlock and resume"
+    ],
+    "before": {
+      "timeMs": 16,
+      "metrics": [
+        {
+          "label": "H response",
+          "value": 13,
+          "unit": "ms"
+        },
+        {
+          "label": "H blocked",
+          "value": 12,
+          "unit": "ms"
+        },
+        {
+          "label": "L / M work left",
+          "value": "0 / 0",
+          "unit": "ms"
+        },
+        {
+          "label": "Effective L priority",
+          "value": "Base low"
+        }
+      ],
+      "phase": "All work complete"
+    },
+    "after": {
+      "timeMs": 16,
+      "metrics": [
+        {
+          "label": "H response",
+          "value": 5,
+          "unit": "ms"
+        },
+        {
+          "label": "H blocked",
+          "value": 4,
+          "unit": "ms"
+        },
+        {
+          "label": "L / M work left",
+          "value": "0 / 0",
+          "unit": "ms"
+        },
+        {
+          "label": "Effective L priority",
+          "value": "Base low"
+        }
+      ],
+      "phase": "All work complete"
+    },
+    "configuration": "inheritance=false, medium=8, hold=6",
+    "baseline": {
+      "inheritance": false,
+      "medium": 8,
+      "hold": 6
+    },
+    "comparison": {
+      "inheritance": true,
+      "medium": 8,
+      "hold": 6
+    },
+    "budgetMs": 40,
+    "example": [
+      "Reset with inheritance=false, medium=8, hold=6. Start with the stated configuration and no additional action.",
+      "Advance up to 40 ms of model time; acquisition or program completion can stop earlier. The baseline reports H response = 13 ms; H blocked = 12 ms; L / M work left = 0 / 0 ms; Effective L priority = Base low.",
+      "Compare with preset “Inheritance repair”: inheritance=true, medium=8, hold=6.",
+      "The same evaluation budget gives H response = 5 ms; H blocked = 4 ms; L / M work left = 0 / 0 ms; Effective L priority = Base low. Explain the changed state using this mechanism: Without inheritance M preempts L. With inheritance L runs at H priority until unlock."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline RTOS Timing & Priority Inversion experiment produce?",
+        "answer": "H response = 13 ms; H blocked = 12 ms; L / M work left = 0 / 0 ms; Effective L priority = Base low. Without inheritance M preempts L. With inheritance L runs at H priority until unlock."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "H response = 5 ms; H blocked = 4 ms; L / M work left = 0 / 0 ms; Effective L priority = Base low. The model assumes: One mutex, three scripted jobs, zero context-switch cost; not a multi-lock kernel."
+      }
+    ]
+  },
+  {
+    "number": 50,
+    "route": "/studios/microcontroller/lab/bootloader-and-firmware-update",
+    "objective": "Complete a CRC-checked dual-bank update and preserve the old application after a power cut.",
+    "guide": [
+      "Begin an update; step one four-byte packet.",
+      "Cut power before verification; inspect the active bank.",
+      "Complete a corrupted image and verify rejection.",
+      "Reset without corruption; complete a valid update."
+    ],
+    "expected": "Flash programming only clears bits. Verification precedes an atomic boot-bank switch; incomplete images never become active.",
+    "equation": "CRC32: reflected polynomial 0xEDB88320; initial/final XOR 0xFFFFFFFF",
+    "limitation": "32-byte teaching slots and an atomic metadata commit. CRC detects corruption, not authenticity; cryptographic signatures, rollback protection, and flash wear leveling are not implemented.",
+    "flow": [
+      "Incoming image",
+      "Inactive flash bank",
+      "CRC and vectors",
+      "Atomic boot commit"
+    ],
+    "before": {
+      "timeMs": 8,
+      "metrics": [
+        {
+          "label": "Active version",
+          "value": 2
+        },
+        {
+          "label": "Active bank",
+          "value": "B"
+        },
+        {
+          "label": "Written",
+          "value": 32,
+          "unit": "/32 bytes"
+        },
+        {
+          "label": "Expected CRC32",
+          "value": "0xCD938FB1"
+        },
+        {
+          "label": "Actual CRC32",
+          "value": "0xCD938FB1"
+        },
+        {
+          "label": "Accepted / rejected",
+          "value": "1 / 0"
+        }
+      ],
+      "phase": "Verified image committed atomically"
+    },
+    "after": {
+      "timeMs": 8,
+      "metrics": [
+        {
+          "label": "Active version",
+          "value": 1
+        },
+        {
+          "label": "Active bank",
+          "value": "A"
+        },
+        {
+          "label": "Written",
+          "value": 32,
+          "unit": "/32 bytes"
+        },
+        {
+          "label": "Expected CRC32",
+          "value": "0x1CFF8F9B"
+        },
+        {
+          "label": "Actual CRC32",
+          "value": "0x1CFF8F9B"
+        },
+        {
+          "label": "Accepted / rejected",
+          "value": "0 / 1"
+        }
+      ],
+      "phase": "Image rejected; old application retained"
+    },
+    "configuration": "version=2, corrupt=false, vectors=true",
+    "baseline": {
+      "version": 2,
+      "corrupt": false,
+      "vectors": true
+    },
+    "comparison": {
+      "version": 2,
+      "corrupt": false,
+      "vectors": false
+    },
+    "budgetMs": 8,
+    "example": [
+      "Reset with version=2, corrupt=false, vectors=true. Use the lab action to inject the dip, request a crossing, or begin the update before advancing.",
+      "Advance up to 8 ms of model time; acquisition or program completion can stop earlier. The baseline reports Active version = 2; Active bank = B; Written = 32 /32 bytes; Expected CRC32 = 0xCD938FB1; Actual CRC32 = 0xCD938FB1; Accepted / rejected = 1 / 0.",
+      "Compare with preset “Invalid vectors”: version=2, corrupt=false, vectors=false.",
+      "The same evaluation budget gives Active version = 1; Active bank = A; Written = 32 /32 bytes; Expected CRC32 = 0x1CFF8F9B; Actual CRC32 = 0x1CFF8F9B; Accepted / rejected = 0 / 1. Explain the changed state using this mechanism: Flash programming only clears bits. Verification precedes an atomic boot-bank switch; incomplete images never become active."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Bootloader & Firmware Update experiment produce?",
+        "answer": "Active version = 2; Active bank = B; Written = 32 /32 bytes; Expected CRC32 = 0xCD938FB1; Actual CRC32 = 0xCD938FB1; Accepted / rejected = 1 / 0. Flash programming only clears bits. Verification precedes an atomic boot-bank switch; incomplete images never become active."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Active version = 1; Active bank = A; Written = 32 /32 bytes; Expected CRC32 = 0x1CFF8F9B; Actual CRC32 = 0x1CFF8F9B; Accepted / rejected = 0 / 1. The model assumes: 32-byte teaching slots and an atomic metadata commit. CRC detects corruption, not authenticity; cryptographic signatures, rollback protection, and flash wear leveling are not implemented."
+      }
+    ]
+  },
+  {
+    "number": 51,
+    "route": "/studios/microcontroller/lab/firmware-debugger",
+    "objective": "Compile editable C, stop at a source breakpoint, step into a function, and inspect its return value.",
+    "guide": [
+      "Compile the C example and inspect its generated disassembly.",
+      "Run to line 6; examine PC, SP, and call depth.",
+      "Step into twice and inspect register changes.",
+      "Change the input from 3 to 4, rebuild, and verify return value 8."
+    ],
+    "expected": "PC follows actual executed instructions, calls change LR/SP, and the default program returns 6 in R0.",
+    "equation": "twice(3) = 6; PC follows instruction sizes and branch targets",
+    "limitation": "The existing educational C-to-Thumb subset, not a production compiler or full ARM ISA. Instruction timing is stepped for inspection rather than a hardware frequency claim.",
+    "flow": [
+      "C compilation",
+      "PC / instruction fetch",
+      "Register operations",
+      "Stack and return"
+    ],
+    "before": {
+      "timeMs": 22,
+      "metrics": [
+        {
+          "label": "PC",
+          "value": "0x00000004"
+        },
+        {
+          "label": "R0",
+          "value": 6
+        },
+        {
+          "label": "SP",
+          "value": "0x20000400"
+        },
+        {
+          "label": "Instructions",
+          "value": 21
+        },
+        {
+          "label": "Call depth",
+          "value": 0
+        },
+        {
+          "label": "Breakpoints hit",
+          "value": 0
+        }
+      ],
+      "phase": "main() returned"
+    },
+    "after": {
+      "timeMs": 22,
+      "metrics": [
+        {
+          "label": "PC",
+          "value": "0x00000004"
+        },
+        {
+          "label": "R0",
+          "value": 6
+        },
+        {
+          "label": "SP",
+          "value": "0x20000400"
+        },
+        {
+          "label": "Instructions",
+          "value": 21
+        },
+        {
+          "label": "Call depth",
+          "value": 0
+        },
+        {
+          "label": "Breakpoints hit",
+          "value": 0
+        }
+      ],
+      "phase": "main() returned"
+    },
+    "configuration": "breakpoint=6, breakEnabled=false",
+    "baseline": {
+      "breakpoint": 6,
+      "breakEnabled": false
+    },
+    "comparison": {
+      "breakpoint": 6,
+      "breakEnabled": false
+    },
+    "budgetMs": 1000,
+    "example": [
+      "Reset with breakpoint=6, breakEnabled=false. Disable breakpoints for this run to reach program completion.",
+      "Advance up to 1000 ms of model time; acquisition or program completion can stop earlier. The baseline reports PC = 0x00000004; R0 = 6; SP = 0x20000400; Instructions = 21; Call depth = 0; Breakpoints hit = 0.",
+      "Compare with preset “Run to completion”: breakpoint=6, breakEnabled=false.",
+      "The same evaluation budget gives PC = 0x00000004; R0 = 6; SP = 0x20000400; Instructions = 21; Call depth = 0; Breakpoints hit = 0. Explain the changed state using this mechanism: PC follows actual executed instructions, calls change LR/SP, and the default program returns 6 in R0."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Firmware Debugger experiment produce?",
+        "answer": "PC = 0x00000004; R0 = 6; SP = 0x20000400; Instructions = 21; Call depth = 0; Breakpoints hit = 0. PC follows actual executed instructions, calls change LR/SP, and the default program returns 6 in R0."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "PC = 0x00000004; R0 = 6; SP = 0x20000400; Instructions = 21; Call depth = 0; Breakpoints hit = 0. The model assumes: The existing educational C-to-Thumb subset, not a production compiler or full ARM ISA. Instruction timing is stepped for inspection rather than a hardware frequency claim."
+      }
+    ]
+  },
+  {
+    "number": 52,
+    "route": "/studios/microcontroller/lab/logic-analyzer",
+    "objective": "Capture a complete 8N1 frame and expose aliasing, framing errors, and memory-depth limits.",
+    "guide": [
+      "Run the default 0x55 frame to capture alternating data bits.",
+      "Change the byte and verify the decoder follows.",
+      "Lower sample rate and compare aliasing.",
+      "Increase rate without increasing memory depth; inspect an incomplete frame."
+    ],
+    "expected": "Sampled edge timing controls decode quality. A finite memory buffer trades time span for time resolution.",
+    "equation": "Capture span = sample depth / sample rate; frame time = 10 / baud",
+    "limitation": "One deterministic UART source with 8N1 framing and a falling-edge trigger; no vendor instrument driver or external hardware connection.",
+    "flow": [
+      "Digital UART source",
+      "Sample clock",
+      "Triggered buffer",
+      "8N1 decoder"
+    ],
+    "before": {
+      "timeMs": 2.7499999999999853,
+      "metrics": [
+        {
+          "label": "Captured samples",
+          "value": 256
+        },
+        {
+          "label": "Sample interval",
+          "value": "10.00",
+          "unit": "µs"
+        },
+        {
+          "label": "Samples per bit",
+          "value": "10.42"
+        },
+        {
+          "label": "Decoded",
+          "value": "0x55"
+        },
+        {
+          "label": "Frame",
+          "value": "8N1 valid"
+        }
+      ],
+      "phase": "Frame decoded"
+    },
+    "after": {
+      "timeMs": 2.7499999999999853,
+      "metrics": [
+        {
+          "label": "Captured samples",
+          "value": 256
+        },
+        {
+          "label": "Sample interval",
+          "value": "10.00",
+          "unit": "µs"
+        },
+        {
+          "label": "Samples per bit",
+          "value": "10.42"
+        },
+        {
+          "label": "Decoded",
+          "value": "0x55"
+        },
+        {
+          "label": "Frame",
+          "value": "Invalid stop/start"
+        }
+      ],
+      "phase": "Framing error"
+    },
+    "configuration": "baud=9600, rate=100000, byte=85, depth=256, stop=true",
+    "baseline": {
+      "baud": 9600,
+      "rate": 100000,
+      "byte": 85,
+      "depth": "256",
+      "stop": true
+    },
+    "comparison": {
+      "baud": 9600,
+      "rate": 100000,
+      "byte": 85,
+      "depth": "256",
+      "stop": false
+    },
+    "budgetMs": 20,
+    "example": [
+      "Reset with baud=9600, rate=100000, byte=85, depth=256, stop=true. Start with the stated configuration and no additional action.",
+      "Advance up to 20 ms of model time; acquisition or program completion can stop earlier. The baseline reports Captured samples = 256; Sample interval = 10.00 µs; Samples per bit = 10.42; Decoded = 0x55; Frame = 8N1 valid.",
+      "Compare with preset “Framing fault”: baud=9600, rate=100000, byte=85, depth=256, stop=false.",
+      "The same evaluation budget gives Captured samples = 256; Sample interval = 10.00 µs; Samples per bit = 10.42; Decoded = 0x55; Frame = Invalid stop/start. Explain the changed state using this mechanism: Sampled edge timing controls decode quality. A finite memory buffer trades time span for time resolution."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Logic Analyzer experiment produce?",
+        "answer": "Captured samples = 256; Sample interval = 10.00 µs; Samples per bit = 10.42; Decoded = 0x55; Frame = 8N1 valid. Sampled edge timing controls decode quality. A finite memory buffer trades time span for time resolution."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Captured samples = 256; Sample interval = 10.00 µs; Samples per bit = 10.42; Decoded = 0x55; Frame = Invalid stop/start. The model assumes: One deterministic UART source with 8N1 framing and a falling-edge trigger; no vendor instrument driver or external hardware connection."
+      }
+    ]
+  },
+  {
+    "number": 53,
+    "route": "/studios/microcontroller/lab/virtual-oscilloscope",
+    "objective": "Measure amplitude, RMS, frequency, clipping, and cursor deltas from acquired samples.",
+    "guide": [
+      "Acquire the default sine wave and inspect RC attenuation.",
+      "Compare AC RMS with peak-to-peak amplitude.",
+      "Move both measurement cursors across the trace.",
+      "Increase amplitude to clip, then lower sample rate to demonstrate aliasing."
+    ],
+    "expected": "RC filtering attenuates fast signals. The ADC clips outside its range; sampled crossings determine measured frequency.",
+    "equation": "y[n] = y[n−1] + (x[n]−y[n−1]) × (1−exp(−Δt/RC))",
+    "limitation": "First-order zero-order-held RC integration and an ideal 12-bit ADC; no probe loading, analog noise, or bandwidth beyond this RC model.",
+    "flow": [
+      "Analog source",
+      "RC response",
+      "ADC and trigger",
+      "Sample measurements"
+    ],
+    "before": {
+      "timeMs": 3.6399999999999664,
+      "metrics": [
+        {
+          "label": "Peak-to-peak",
+          "value": "1.693",
+          "unit": "V"
+        },
+        {
+          "label": "AC RMS",
+          "value": "0.584",
+          "unit": "V"
+        },
+        {
+          "label": "Measured frequency",
+          "value": "1000.0",
+          "unit": "Hz"
+        },
+        {
+          "label": "Clipped samples",
+          "value": 0
+        },
+        {
+          "label": "Cursor Δt",
+          "value": "1000.00",
+          "unit": "µs"
+        },
+        {
+          "label": "Cursor ΔV",
+          "value": "0.000",
+          "unit": "V"
+        }
+      ],
+      "phase": "256-sample acquisition complete"
+    },
+    "after": {
+      "timeMs": 20,
+      "metrics": [
+        {
+          "label": "Peak-to-peak",
+          "value": "1.686",
+          "unit": "V"
+        },
+        {
+          "label": "AC RMS",
+          "value": "0.633",
+          "unit": "V"
+        },
+        {
+          "label": "Measured frequency",
+          "value": "1000.0",
+          "unit": "Hz"
+        },
+        {
+          "label": "Clipped samples",
+          "value": 0
+        },
+        {
+          "label": "Cursor Δt",
+          "value": "Capture first",
+          "unit": "µs"
+        },
+        {
+          "label": "Cursor ΔV",
+          "value": "Capture first",
+          "unit": "V"
+        }
+      ],
+      "phase": "Acquiring"
+    },
+    "configuration": "frequency=1000, amplitude=1, offset=1.65, rate=100000, tau=0.1, wave=Sine, cursorA=20, cursorB=120",
+    "baseline": {
+      "frequency": 1000,
+      "amplitude": 1,
+      "offset": 1.65,
+      "rate": 100000,
+      "tau": 0.1,
+      "wave": "Sine",
+      "cursorA": 20,
+      "cursorB": 120
+    },
+    "comparison": {
+      "frequency": 9000,
+      "amplitude": 1,
+      "offset": 1.65,
+      "rate": 5000,
+      "tau": 0.1,
+      "wave": "Sine",
+      "cursorA": 20,
+      "cursorB": 120
+    },
+    "budgetMs": 20,
+    "example": [
+      "Reset with frequency=1000, amplitude=1, offset=1.65, rate=100000, tau=0.1, wave=Sine, cursorA=20, cursorB=120. Start with the stated configuration and no additional action.",
+      "Advance up to 20 ms of model time; acquisition or program completion can stop earlier. The baseline reports Peak-to-peak = 1.693 V; AC RMS = 0.584 V; Measured frequency = 1000.0 Hz; Clipped samples = 0; Cursor Δt = 1000.00 µs; Cursor ΔV = 0.000 V.",
+      "Compare with preset “Aliasing”: frequency=9000, amplitude=1, offset=1.65, rate=5000, tau=0.1, wave=Sine, cursorA=20, cursorB=120.",
+      "The same evaluation budget gives Peak-to-peak = 1.686 V; AC RMS = 0.633 V; Measured frequency = 1000.0 Hz; Clipped samples = 0; Cursor Δt = Capture first µs; Cursor ΔV = Capture first V. Explain the changed state using this mechanism: RC filtering attenuates fast signals. The ADC clips outside its range; sampled crossings determine measured frequency."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Virtual Oscilloscope experiment produce?",
+        "answer": "Peak-to-peak = 1.693 V; AC RMS = 0.584 V; Measured frequency = 1000.0 Hz; Clipped samples = 0; Cursor Δt = 1000.00 µs; Cursor ΔV = 0.000 V. RC filtering attenuates fast signals. The ADC clips outside its range; sampled crossings determine measured frequency."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Peak-to-peak = 1.686 V; AC RMS = 0.633 V; Measured frequency = 1000.0 Hz; Clipped samples = 0; Cursor Δt = Capture first µs; Cursor ΔV = Capture first V. The model assumes: First-order zero-order-held RC integration and an ideal 12-bit ADC; no probe loading, analog noise, or bandwidth beyond this RC model."
+      }
+    ]
+  },
+  {
+    "number": 54,
+    "route": "/studios/microcontroller/lab/power-analyzer",
+    "objective": "Capture active and radio bursts, detect front-end clipping, and measure charge rather than averaging display snapshots.",
+    "guide": [
+      "Run a full workload period and inspect transmit bursts.",
+      "Compare actual and quantized shunt measurements.",
+      "Raise shunt resistance to clip the amplifier.",
+      "Repair gain and compare integrated charge."
+    ],
+    "expected": "Brief high-current bursts contribute to total charge. Clipping or bypassed shunts under-report consumption.",
+    "equation": "I = ADCvolts / (Rshunt × gain); Q = Σ IΔt; E = VQ",
+    "limitation": "Illustrative component currents and ideal battery-capacity arithmetic; no discharge curve, converter efficiency, or temperature model.",
+    "flow": [
+      "Timed workload",
+      "Shunt and amplifier",
+      "ADC conversion",
+      "Charge and energy"
+    ],
+    "before": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "Average measured",
+          "value": "2.839",
+          "unit": "mA"
+        },
+        {
+          "label": "Actual / measured",
+          "value": "0.05 / 0.04",
+          "unit": "mA"
+        },
+        {
+          "label": "Charge",
+          "value": "283.86",
+          "unit": "µC"
+        },
+        {
+          "label": "Energy",
+          "value": "936.75",
+          "unit": "µJ"
+        },
+        {
+          "label": "Ideal battery estimate",
+          "value": "77.5",
+          "unit": "h"
+        },
+        {
+          "label": "Clipped samples",
+          "value": 0
+        }
+      ],
+      "phase": "Low-power idle"
+    },
+    "after": {
+      "timeMs": 100,
+      "metrics": [
+        {
+          "label": "Average measured",
+          "value": "0.000",
+          "unit": "mA"
+        },
+        {
+          "label": "Actual / measured",
+          "value": "0.05 / 0.00",
+          "unit": "mA"
+        },
+        {
+          "label": "Charge",
+          "value": "0.00",
+          "unit": "µC"
+        },
+        {
+          "label": "Energy",
+          "value": "0.00",
+          "unit": "µJ"
+        },
+        {
+          "label": "Ideal battery estimate",
+          "value": "Unavailable",
+          "unit": "h"
+        },
+        {
+          "label": "Clipped samples",
+          "value": 0
+        }
+      ],
+      "phase": "Low-power idle"
+    },
+    "configuration": "period=100, work=10, burst=5, radio=true, shunt=1, gain=20, voltage=3.3, capacity=220, bypass=false",
+    "baseline": {
+      "period": 100,
+      "work": 10,
+      "burst": 5,
+      "radio": true,
+      "shunt": 1,
+      "gain": 20,
+      "voltage": 3.3,
+      "capacity": 220,
+      "bypass": false
+    },
+    "comparison": {
+      "period": 100,
+      "work": 10,
+      "burst": 5,
+      "radio": true,
+      "shunt": 1,
+      "gain": 20,
+      "voltage": 3.3,
+      "capacity": 220,
+      "bypass": true
+    },
+    "budgetMs": 100,
+    "example": [
+      "Reset with period=100, work=10, burst=5, radio=true, shunt=1, gain=20, voltage=3.3, capacity=220, bypass=false. Start with the stated configuration and no additional action.",
+      "Advance up to 100 ms of model time; acquisition or program completion can stop earlier. The baseline reports Average measured = 2.839 mA; Actual / measured = 0.05 / 0.04 mA; Charge = 283.86 µC; Energy = 936.75 µJ; Ideal battery estimate = 77.5 h; Clipped samples = 0.",
+      "Compare with preset “Bypassed shunt”: period=100, work=10, burst=5, radio=true, shunt=1, gain=20, voltage=3.3, capacity=220, bypass=true.",
+      "The same evaluation budget gives Average measured = 0.000 mA; Actual / measured = 0.05 / 0.00 mA; Charge = 0.00 µC; Energy = 0.00 µJ; Ideal battery estimate = Unavailable h; Clipped samples = 0. Explain the changed state using this mechanism: Brief high-current bursts contribute to total charge. Clipping or bypassed shunts under-report consumption."
+    ],
+    "questions": [
+      {
+        "question": "What results should the baseline Power Analyzer experiment produce?",
+        "answer": "Average measured = 2.839 mA; Actual / measured = 0.05 / 0.04 mA; Charge = 283.86 µC; Energy = 936.75 µJ; Ideal battery estimate = 77.5 h; Clipped samples = 0. Brief high-current bursts contribute to total charge. Clipping or bypassed shunts under-report consumption."
+      },
+      {
+        "question": "What changes in the comparison experiment?",
+        "answer": "Average measured = 0.000 mA; Actual / measured = 0.05 / 0.00 mA; Charge = 0.00 µC; Energy = 0.00 µJ; Ideal battery estimate = Unavailable h; Clipped samples = 0. The model assumes: Illustrative component currents and ideal battery-capacity arithmetic; no discharge curve, converter efficiency, or temperature model."
+      }
+    ]
+  },
+  {
+    "number": 55,
+    "route": "/studios/microcontroller/lab/arduino-atmega328p-explorer",
+    "objective": "Edit Arduino C, sample A0, and drive a simulated PWM output.",
+    "guide": [
+      "Advance the default firmware and inspect register configuration.",
+      "A0 voltage determines the 10-bit ADC result and PWM duty. The active-low D2 button controls the D13 LED.",
+      "Edit the firmware and Run to rebuild; compare the changed output.",
+      "Hold reset and confirm execution stops."
+    ],
+    "expected": "A0 voltage determines the 10-bit ADC result and PWM duty. The active-low D2 button controls the D13 LED.",
+    "equation": "ADC code = round(Vinput / Vref × (2^resolution − 1))",
+    "limitation": "Interpreted Arduino-style C, ideal ADC, and analytic analogWrite PWM at nominal frequency. Arduino PWM frequency does not track oscillator changes in this API model; use the register-level AVR lab for clock-divider experiments. No USB bridge or full AVR ISA.",
+    "flow": [
+      "Arduino firmware",
+      "ADC / GPIO input",
+      "Timer PWM",
+      "Output pin"
+    ],
+    "configuration": "Default firmware; clock 16 MHz; input 2.5 V",
+    "example": [
+      "Build the default editable firmware for ATmega328P · Arduino API.",
+      "Set analog input to half reference where available; leave external input released.",
+      "Advance 30 ms: ADC raw = 512; PWM duty = 50.20%.",
+      "Change an input or timer reload in firmware, rebuild, and compare the pin traces. A0 voltage determines the 10-bit ADC result and PWM duty. The active-low D2 button controls the D13 LED."
+    ],
+    "questions": [
+      {
+        "question": "What does the default ATmega328P · Arduino API firmware demonstrate?",
+        "answer": "A0 voltage determines the 10-bit ADC result and PWM duty. The active-low D2 button controls the D13 LED. The reference run reports ADC raw = 512; PWM duty = 50.20%."
+      },
+      {
+        "question": "What are the boundaries of this family simulation?",
+        "answer": "Interpreted Arduino-style C, ideal ADC, and analytic analogWrite PWM at nominal frequency. Arduino PWM frequency does not track oscillator changes in this API model; use the register-level AVR lab for clock-divider experiments. No USB bridge or full AVR ISA."
+      }
+    ]
+  },
+  {
+    "number": 56,
+    "route": "/studios/microcontroller/lab/8051-microcontroller-lab",
+    "objective": "Configure SFRs and execute an interrupt-driven 16-bit timer reload.",
+    "guide": [
+      "Advance the default firmware and inspect register configuration.",
+      "Timer 0 counts machine cycles. The 0x4C00 reload produces approximately 50 ms interrupts at 11.0592 MHz / 12; each IRQ toggles P1.0.",
+      "Edit the firmware and Run to rebuild; compare the changed output.",
+      "Hold reset and confirm execution stops."
+    ],
+    "expected": "Timer 0 counts machine cycles. The 0x4C00 reload produces approximately 50 ms interrupts at 11.0592 MHz / 12; each IRQ toggles P1.0.",
+    "equation": "Timer rate and interrupt behavior follow the configured family registers.",
+    "limitation": "Classic 12-clock 8051 teaching timer and SFR model. This profile has no built-in ADC; it does not represent modern single-cycle derivatives.",
+    "flow": [
+      "Oscillator / 12",
+      "Timer 0 reload",
+      "Interrupt enable / ISR",
+      "P1.0 latch"
+    ],
+    "configuration": "Default firmware; clock 11.0592 MHz; input 2.5 V",
+    "example": [
+      "Build the default editable firmware for Classic 8051 · Timer 0.",
+      "Set analog input to half reference where available; leave external input released.",
+      "Advance one second: interrupt count = 19.",
+      "Change an input or timer reload in firmware, rebuild, and compare the pin traces. Timer 0 counts machine cycles. The 0x4C00 reload produces approximately 50 ms interrupts at 11.0592 MHz / 12; each IRQ toggles P1.0."
+    ],
+    "questions": [
+      {
+        "question": "What does the default Classic 8051 · Timer 0 firmware demonstrate?",
+        "answer": "Timer 0 counts machine cycles. The 0x4C00 reload produces approximately 50 ms interrupts at 11.0592 MHz / 12; each IRQ toggles P1.0. The reference run reports interrupt count = 19."
+      },
+      {
+        "question": "What are the boundaries of this family simulation?",
+        "answer": "Classic 12-clock 8051 teaching timer and SFR model. This profile has no built-in ADC; it does not represent modern single-cycle derivatives."
+      }
+    ]
+  },
+  {
+    "number": 57,
+    "route": "/studios/microcontroller/lab/pic-microcontroller-lab",
+    "objective": "Change external input edges and follow the ISR into output latch bits.",
+    "guide": [
+      "Advance the default firmware and inspect register configuration.",
+      "Each RB0 rising edge enters the ISR. The binary hit count is written to LATC; RC0 is its least-significant bit.",
+      "Edit the firmware and Run to rebuild; compare the changed output.",
+      "Hold reset and confirm execution stops."
+    ],
+    "expected": "Each RB0 rising edge enters the ISR. The binary hit count is written to LATC; RC0 is its least-significant bit.",
+    "equation": "Timer rate and interrupt behavior follow the configured family registers.",
+    "limitation": "A deliberately generic PIC peripheral subset mixing common register conventions; not a claim to emulate a specific PIC device or its full instruction set.",
+    "flow": [
+      "RB0 edge",
+      "INTF pending flag",
+      "ISR and flag clear",
+      "LATC output"
+    ],
+    "configuration": "Default firmware; clock 20 MHz; input 2.5 V",
+    "example": [
+      "Build the default editable firmware for PIC · TRIS/LAT/INTCON subset.",
+      "Set analog input to half reference where available; leave external input released.",
+      "Advance one second: interrupt count = 0.",
+      "Change an input or timer reload in firmware, rebuild, and compare the pin traces. Each RB0 rising edge enters the ISR. The binary hit count is written to LATC; RC0 is its least-significant bit."
+    ],
+    "questions": [
+      {
+        "question": "What does the default PIC · TRIS/LAT/INTCON subset firmware demonstrate?",
+        "answer": "Each RB0 rising edge enters the ISR. The binary hit count is written to LATC; RC0 is its least-significant bit. The reference run reports interrupt count = 0."
+      },
+      {
+        "question": "What are the boundaries of this family simulation?",
+        "answer": "A deliberately generic PIC peripheral subset mixing common register conventions; not a claim to emulate a specific PIC device or its full instruction set."
+      }
+    ]
+  },
+  {
+    "number": 58,
+    "route": "/studios/microcontroller/lab/avr-microcontroller-lab",
+    "objective": "Set DDR and Timer1 registers, then measure compare-match interrupts.",
+    "guide": [
+      "Advance the default firmware and inspect register configuration.",
+      "Timer1 CTC uses the selected prescaler and OCR1A. At 16 MHz / 256 / 6250 the compare IRQ is 10 Hz, so the LED square wave is 5 Hz.",
+      "Edit the firmware and Run to rebuild; compare the changed output.",
+      "Hold reset and confirm execution stops."
+    ],
+    "expected": "Timer1 CTC uses the selected prescaler and OCR1A. At 16 MHz / 256 / 6250 the compare IRQ is 10 Hz, so the LED square wave is 5 Hz.",
+    "equation": "Timer rate and interrupt behavior follow the configured family registers.",
+    "limitation": "Register effects and interpreted ISR execution are simulated. C statements are not a cycle-exact AVR instruction stream.",
+    "flow": [
+      "Clock / prescaler",
+      "OCR1A comparison",
+      "Timer ISR",
+      "PORTB output"
+    ],
+    "configuration": "Default firmware; clock 16 MHz; input 2.5 V",
+    "example": [
+      "Build the default editable firmware for ATmega328P · register-level C.",
+      "Set analog input to half reference where available; leave external input released.",
+      "Advance one second: interrupt count = 9.",
+      "Change an input or timer reload in firmware, rebuild, and compare the pin traces. Timer1 CTC uses the selected prescaler and OCR1A. At 16 MHz / 256 / 6250 the compare IRQ is 10 Hz, so the LED square wave is 5 Hz."
+    ],
+    "questions": [
+      {
+        "question": "What does the default ATmega328P · register-level C firmware demonstrate?",
+        "answer": "Timer1 CTC uses the selected prescaler and OCR1A. At 16 MHz / 256 / 6250 the compare IRQ is 10 Hz, so the LED square wave is 5 Hz. The reference run reports interrupt count = 9."
+      },
+      {
+        "question": "What are the boundaries of this family simulation?",
+        "answer": "Register effects and interpreted ISR execution are simulated. C statements are not a cycle-exact AVR instruction stream."
+      }
+    ]
+  },
+  {
+    "number": 59,
+    "route": "/studios/microcontroller/lab/stm32-arm-cortex-m-lab",
+    "objective": "Execute HAL C against GPIOA, TIM2, and the interrupt controller.",
+    "guide": [
+      "Advance the default firmware and inspect register configuration.",
+      "TIM2 updates at 100 Hz; every tenth callback toggles PA5. WFI suspends firmware until an interrupt wakes it.",
+      "Edit the firmware and Run to rebuild; compare the changed output.",
+      "Hold reset and confirm execution stops."
+    ],
+    "expected": "TIM2 updates at 100 Hz; every tenth callback toggles PA5. WFI suspends firmware until an interrupt wakes it.",
+    "equation": "Timer rate and interrupt behavior follow the configured family registers.",
+    "limitation": "Selected STM32F401 peripherals and interpreted HAL C. The simulator does not implement the complete Cortex-M exception architecture, DMA bus fabric, or FPU.",
+    "flow": [
+      "TIM2 clock",
+      "PSC / ARR divider",
+      "HAL callback",
+      "PA5 GPIO"
+    ],
+    "configuration": "Default firmware; clock 84 MHz; input 1.65 V",
+    "example": [
+      "Build the default editable firmware for STM32F401 · Cortex-M4 peripherals.",
+      "Set analog input to half reference where available; leave external input released.",
+      "Advance one second: interrupt count = 99.",
+      "Change an input or timer reload in firmware, rebuild, and compare the pin traces. TIM2 updates at 100 Hz; every tenth callback toggles PA5. WFI suspends firmware until an interrupt wakes it."
+    ],
+    "questions": [
+      {
+        "question": "What does the default STM32F401 · Cortex-M4 peripherals firmware demonstrate?",
+        "answer": "TIM2 updates at 100 Hz; every tenth callback toggles PA5. WFI suspends firmware until an interrupt wakes it. The reference run reports interrupt count = 99."
+      },
+      {
+        "question": "What are the boundaries of this family simulation?",
+        "answer": "Selected STM32F401 peripherals and interpreted HAL C. The simulator does not implement the complete Cortex-M exception architecture, DMA bus fabric, or FPU."
+      }
+    ]
+  },
+  {
+    "number": 60,
+    "route": "/studios/microcontroller/lab/esp32-lab",
+    "objective": "Sample GPIO36 and drive LEDC PWM while inspecting external GPIO input.",
+    "guide": [
+      "Advance the default firmware and inspect register configuration.",
+      "GPIO36's ideal 12-bit reading determines the 8-bit LEDC duty on GPIO18. GPIO4 is active-low and controls the GPIO2 LED.",
+      "Edit the firmware and Run to rebuild; compare the changed output.",
+      "Hold reset and confirm execution stops."
+    ],
+    "expected": "GPIO36's ideal 12-bit reading determines the 8-bit LEDC duty on GPIO18. GPIO4 is active-low and controls the GPIO2 LED.",
+    "equation": "ADC code = round(Vinput / Vref × (2^resolution − 1))",
+    "limitation": "An ideal linear ADC and a retained Arduino-style LEDC teaching API. No Wi-Fi stack, radio PHY, second core, vendor ADC calibration, or full Xtensa ISA.",
+    "flow": [
+      "GPIO36 ADC",
+      "Firmware loop",
+      "LEDC duty register",
+      "GPIO18 PWM"
+    ],
+    "configuration": "Default firmware; clock 240 MHz; input 1.65 V",
+    "example": [
+      "Build the default editable firmware for ESP32 · GPIO/ADC/LEDC subset.",
+      "Set analog input to half reference where available; leave external input released.",
+      "Advance 30 ms: ADC raw = 2048; PWM duty = 50.20%.",
+      "Change an input or timer reload in firmware, rebuild, and compare the pin traces. GPIO36's ideal 12-bit reading determines the 8-bit LEDC duty on GPIO18. GPIO4 is active-low and controls the GPIO2 LED."
+    ],
+    "questions": [
+      {
+        "question": "What does the default ESP32 · GPIO/ADC/LEDC subset firmware demonstrate?",
+        "answer": "GPIO36's ideal 12-bit reading determines the 8-bit LEDC duty on GPIO18. GPIO4 is active-low and controls the GPIO2 LED. The reference run reports ADC raw = 2048; PWM duty = 50.20%."
+      },
+      {
+        "question": "What are the boundaries of this family simulation?",
+        "answer": "An ideal linear ADC and a retained Arduino-style LEDC teaching API. No Wi-Fi stack, radio PHY, second core, vendor ADC calibration, or full Xtensa ISA."
+      }
+    ]
+  }
+]

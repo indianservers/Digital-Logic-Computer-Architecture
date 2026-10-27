@@ -4,6 +4,7 @@ import { archLab, archStudio, labTheory } from "../data/architecture";
 import { Icon } from "../design-system/icons";
 import { Button, Card, Theory, Toggle } from "../design-system/ui";
 import { usePrefs } from "../store/prefs";
+import { LabSequence } from "./LabSequence";
 
 export function ArchitectureFrame({ studioId, onReset, children }: { studioId: string; onReset?: () => void; children: ReactNode }) {
   const { labId } = useParams();
@@ -62,7 +63,8 @@ export function ArchitectureFrame({ studioId, onReset, children }: { studioId: s
             {onReset ? <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button> : null}
           </div>
         </div>
-        <Theory title={lab.title}>{labTheory(studio, lab)}</Theory>
+        <LabSequence items={studio.labs.map((item) => ({ id: item.id, label: item.title, to: item.id === "overview" ? studio.path : `${studio.path}/${item.id}` }))} current={requested} />
+        <details className="studio-model-notes"><summary>Model notes · {lab.title}</summary><Theory title={lab.title}>{labTheory(studio, lab)}</Theory></details>
         {children}
       </div>
       <aside className="guide">
@@ -97,10 +99,12 @@ export function ArchitectureLanding({ studioId }: { studioId: string }) {
   }
   return (
     <div className="grid cards-3">
-      {studio.labs.filter((item) => item.id !== "overview").map((lab) => (
+      {studio.labs.filter((item) => item.id !== "overview").map((lab, index) => (
         <Link key={lab.id} to={`${studio.path}/${lab.id}`} className="card studio-card">
+          <span className="studio-card-index">{String(index + 1).padStart(2, "0")}</span>
           <strong>{lab.title}</strong>
           <p className="muted" style={{ margin: 0 }}>{lab.takeaways[0]}</p>
+          <span className="studio-card-action">Open experiment →</span>
         </Link>
       ))}
     </div>

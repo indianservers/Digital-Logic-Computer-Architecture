@@ -8,9 +8,11 @@ import L35 from "../g4/L35";
 import L36 from "../g4/L36";
 import L37 from "../g4/L37";
 import L38 from "../g4/L38";
+import L39 from "../g4/L39";
+import L40 from "../g4/L40";
 import "../g4/g4.css";
 
-const LABS: Record<number, ComponentType<{ meta: LabMeta }>> = { 31: L31, 32: L32, 33: L33, 34: L34, 35: L35, 36: L36, 37: L37, 38: L38 };
+const LABS: Record<number, ComponentType<{ meta: LabMeta }>> = { 31: L31, 32: L32, 33: L33, 34: L34, 35: L35, 36: L36, 37: L37, 38: L38, 39: L39, 40: L40 };
 
 export default function Group4({ meta }: { meta: LabMeta }) {
   const Lab = LABS[meta.n];

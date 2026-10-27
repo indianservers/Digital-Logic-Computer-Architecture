@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -20,10 +21,12 @@ export function TransferPanel({ explain }: { explain: boolean }) {
   const preview = previewRtl(regs, line);
   const error = "error" in parsed ? parsed.error : null;
   const plan = "error" in parsed ? [] : stagesFor(parsed.op);
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!pulse || reducedMotion()) return;
     gsap.fromTo(".rtx-hot", { scale: 1.05 }, { scale: 1, duration: 0.35, clearProps: "scale" });
-  }, { scope: root, dependencies: [pulse] });
+  }, { scope: root, dependencies: [pulse, motionEnabled] , revertOnUpdate: true});
 
   function edit(index: number, text: string) {
     if (text.trim() === "" || !Number.isFinite(Number(text))) return;

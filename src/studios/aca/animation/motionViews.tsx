@@ -2,16 +2,18 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { AcaIcon, type AcaIconName } from "../icons/AcaIcon";
+import { useLabMotion } from "../../../design-system/LabMotion";
 import { motionDuration, useStepMotion } from "./acaMotion";
 
 export function SmoothNumber({ value, speed, digits = 0 }: { value: number; speed: number; digits?: number }) {
   const ref = useRef<HTMLElement>(null);
   const shown = useRef(value);
+  const {enabled}=useLabMotion();
   useGSAP(() => {
     const state = { n: shown.current };
     gsap.to(state, {
       n: value,
-      duration: motionDuration(speed),
+      duration: enabled?motionDuration(speed):0,
       ease: "power1.out",
       overwrite: "auto",
       onUpdate: () => {
@@ -19,7 +21,7 @@ export function SmoothNumber({ value, speed, digits = 0 }: { value: number; spee
         if (ref.current) ref.current.textContent = state.n.toFixed(digits);
       },
     });
-  }, { dependencies: [value, speed, digits], revertOnUpdate: true });
+  }, { dependencies: [value, speed, digits, enabled], revertOnUpdate: true });
   return <strong ref={ref}>{value.toFixed(digits)}</strong>;
 }
 

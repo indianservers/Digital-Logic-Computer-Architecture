@@ -19,7 +19,12 @@ export function seoPlugin():Plugin {
     server.middlewares.use(async(req,res,next)=>{
       if(req.method!=='GET'&&req.method!=='HEAD')return next();
       const meta=metadataFor(req.url??'/');
-      if(!meta.record&&!SITE_PAGES[meta.path])return next();
+      if(!meta.record&&!SITE_PAGES[meta.path]){
+        if(!/\.[a-z0-9]+$/i.test(meta.path)){
+          try{const html=await readFile(resolve(server.config.root,server.config.build.outDir,'404.html'),'utf8');res.statusCode=404;res.setHeader('Content-Type','text/html; charset=utf-8');res.setHeader('X-Robots-Tag','noindex, follow');res.end(req.method==='HEAD'?'':html);return;}catch{return next();}
+        }
+        return next();
+      }
       try {
         const html=await readFile(resolve(server.config.root,server.config.build.outDir,meta.path.slice(1),'index.html'),'utf8');
         res.statusCode=200;res.setHeader('Content-Type','text/html; charset=utf-8');

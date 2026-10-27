@@ -52,8 +52,25 @@ Use input port IDs and internal register names, integer literals, `+ - * %`, bit
 
 Microprogram expressions use `componentID.port` or `componentName.port`. Names containing whitespace should be referenced by ID. A microinstruction's `condition` selects `alternate` when true and `next` otherwise. `commit` marks a boundary for instruction stepping; it does not introduce an extra storage write. Each enabled storage element still captures on its actual rising clock edge.
 
+For a hardwired CPU, expose a one-bit output with the **port ID `halted`** from the controller. A value of 1 stops Run, including when the controller is inside nested modules. The output's display name can differ; the ID is the simulator contract. Microprogrammed CPUs can instead mark their terminating row as Halt.
+
 The terminal is a simulator device and cannot be exported directly to Verilog. The fixed built-in decoder/control-unit and native ALU/register-file/flag blocks currently require replacement by custom expressions or gate-level modules for HDL export. Microcode simulator input overrides must similarly be lowered to a circuit ROM and sequencer before HDL export. Unsupported unsigned-shift expressions receive a diagnostic rather than an incomplete export.
 
 ## Verification
 
 Automated tests exercise a full wired CPU, module state, simultaneous register updates, microcode, instruction-memory assembly, pipeline hazards/forwarding/flush, timed RAM, interrupts, named nets, test sequences and HDL generation. Generated HDL and its testbench still need an external HDL simulator and target synthesis tools; generation tests do not establish hardware equivalence or timing closure.
+
+### Complete studio flow checked on 2026-10-28
+
+Started with New Scratch CPU, rather than opening a CPU template. Added PC, instruction memory, accumulator, clock, and a custom combinational controller through the UI, then connected ten wires through the canvas ports. Defined opcode 2 as an immediate-add instruction (`ADDI imm`) in Custom ISA Designer and wrote the program in Program Editor.
+
+| Studio check | Result |
+|---|---|
+| Assemble and step `LOADI R0, 5; ADDI 7; HALT` | Accumulator 5 after the first edge, 12 after the second; Run halts. |
+| Reverse, reset, and run again | Reverse restores 5; reset/run reproduces 12. |
+| Local save, browser reload, Open Local, export/import | Circuit mode, custom ports/expressions, ISA, source, memory and state survive. |
+| Independent circuit testbench | PASS for ACC=12 and PC=2, including an intermediate ACC=5 assertion. |
+| Encapsulate the whole CPU, change source to 9+4, assemble and run | Nested instruction memory receives new words; accumulator=13 and HALT stops Run after two edges. |
+| Unified instruction/data memory, repeated reset/run | Program words reload after reset; accumulator=12 on each run. |
+
+The last two checks exposed and fixed nested-memory assembly, nested HALT detection, and erased unified-memory program bugs. Regression coverage also checks two module levels and project serialization. The UI-authored project is retained at `src/engines/builder/fixtures/scratch-accumulator.cpu.json`; import it and Reset before running. Screenshots are in `output/cpu-flow/`. The original project was restored after testing.

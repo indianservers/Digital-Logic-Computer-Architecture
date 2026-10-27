@@ -11,12 +11,13 @@
     "typecheck": "tsc --noEmit",
     "seo:routes": "node scripts/seo/generate-routes.mjs",
     "prebuild": "npm run seo:routes",
-    "seo:verify": "node scripts/seo/verify-pages.mjs"
+    "seo:verify": "node scripts/seo/verify-pages.mjs && node --test scripts/seo/resolve.test.mjs"
   },
   "dependencies": {
     "@fontsource/plus-jakarta-sans": "^5.2.5",
     "@gsap/react": "^2.1.2",
     "@material/web": "^2.5.0",
+    "@vercel/functions": "^3.10.4",
     "gsap": "^3.15.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

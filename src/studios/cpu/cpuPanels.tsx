@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -54,10 +55,12 @@ export function OverviewPanel({ explain, cpu, onReset }: { explain: boolean; cpu
   const [pulse, setPulse] = useState(0);
   const copy = BLOCK_COPY[selected] ?? BLOCK_COPY.PC;
   const live = selected === "PC" ? toHex(cpu.pc) : selected === "IR" ? toHex(cpu.ir) : selected === "MAR" ? toHex(cpu.mar) : selected === "MDR" ? toHex(cpu.mdr) : selected === "Registers" ? `R0 ${toHex(cpu.regs[0] ?? 0)}` : selected === "ALU" ? `Z${cpu.z} N${cpu.n} C${cpu.c} V${cpu.v}` : "PC_OUT, MAR_LOAD";
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (reducedMotion() || pulse === 0) return;
     gsap.fromTo(".cpx-block.on", { scale: 1 }, { scale: 1.04, yoyo: true, repeat: 1, duration: 0.18 });
-  }, [pulse, selected]);
+  }, {dependencies:[pulse, selected, motionEnabled],revertOnUpdate:true});
   return (
     <div>
       <section className="cpx-intro"><h2>CPU blocks</h2><p>PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch–decode–execute loop will use. This studio does not run a program; it lets you inspect each box.</p></section>

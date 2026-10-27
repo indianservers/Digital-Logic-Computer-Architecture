@@ -269,7 +269,7 @@ function StageRow({ frame, lines, highlight, forwardOn, canvas }: { frame: PipeS
         return (
           <article key={stage.id} className={`pipe-stage ${stage.tone}${hazard ? " hazard" : ""}`}>
             <b>{stage.title}</b>
-            <span>{slot.kind === "inst" ? labelFor(`${slot.text} @${slot.pc}`, lines) : slot.kind === "bubble" ? "BUBBLE" : "—"}</span>
+            <span key={`${slot.kind}:${slot.pc}:${slot.mark}`} className={slot.kind==="inst"?"lab-pipeline-token":undefined} data-lab-value={`${slot.pc}:${slot.mark}`}>{slot.kind === "inst" ? labelFor(`${slot.text} @${slot.pc}`, lines) : slot.kind === "bubble" ? "BUBBLE" : "—"}</span>
             <small>{stage.note}{forwardOn && slot.mark.startsWith("EX") || forwardOn && slot.mark.startsWith("MEM") ? ` · forward ${slot.mark}` : ""}</small>
           </article>
         );

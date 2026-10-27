@@ -7,11 +7,12 @@ import partIdentities from './part-identities.json';
 import {anatomySupplements,BUILD_PLANNING_FIELDS} from './anatomy-supplements';
 import {BUILD_REFERENCES} from './build-references';
 import {partImage} from './part-images';
+import {HardwareIdentityPanel} from './HardwareIdentityPanel';
 
 function BuildPartImage({deviceId,name}:{deviceId:string;name:string}){
  const art=partImage(deviceId,name);
  if(!art)return null;
- return <figure className="hdw-build-part-image"><a href={art.src} target="_blank" rel="noreferrer"><img src={art.thumbnail??art.src} alt={art.caption} loading="lazy" decoding="async"/></a><figcaption>{art.caption}{art.sourceUrl&&<><br/><a href={art.sourceUrl} target="_blank" rel="noreferrer">{art.attribution} · {art.license}</a></>}</figcaption></figure>;
+ return <figure className="hdw-build-part-image"><a href={art.src} target="_blank" rel="noreferrer"><img src={art.thumbnail??art.src} alt={art.caption} loading="lazy" decoding="async"/></a><figcaption>{art.caption}{art.sourceUrl&&<><br/><a href={art.sourceUrl} target="_blank" rel="noreferrer">{art.attribution} · {art.license}</a></>}</figcaption><details><summary>Hardware identity & pinout</summary><HardwareIdentityPanel art={art}/></details></figure>;
 }
 
 function SupportingParts({lab}:{lab:Lab|AdvancedLab}){
@@ -30,7 +31,7 @@ export default function PartsAnatomyCards({lab}:{lab:Lab|AdvancedLab}){
  return <><section className="hdw-course-card hdw-anatomy-cards"><h2>Parts Anatomy — {lab.device.name}</h2><p>Expand a component to learn why it is used and its purpose in this device. Open several cards to compare their roles.</p><p>Images are representative component-family examples. The caption identifies the pictured hardware; functions can be integrated into a shared board, and actual hardware depends on the device model.</p><div className="hdw-anatomy-grid">{lab.parts.map((part,i)=>{
   const purpose='steps' in lab?lab.partFunctions?.[part]:componentDescription(lab,part);
   const art=partImage(lab.device.id,part);
-  const src=GENERATED_PART_ART[lab.number]?.[part]??art?.src;
+  const src=art?.src??GENERATED_PART_ART[lab.number]?.[part];
   const partId=(partIdentities as Record<string,string>)[`${lab.device.id}::${part}`];
   return <details key={part} className="hdw-anatomy-card" data-part-id={partId}><summary><span className="hdw-anatomy-number">{i+1}</span><span>{part}</span>{src&&<img className="hdw-anatomy-thumb" src={art?.thumbnail??src} alt="" loading="lazy" decoding="async"/>}<span className="hdw-anatomy-toggle" aria-hidden="true"/></summary><div className="hdw-anatomy-content"><h3>Why it is used in {lab.device.name}</h3><p>{purpose||`${part} is part of this device’s hardware chain. Its exact implementation depends on the design; refer to the original component controls below for the illustrated arrangement.`}</p>{src&&<GeneratedPartView name={part} src={src} art={art}/>}</div></details>;
  })}</div></section><SupportingParts lab={lab}/></>;

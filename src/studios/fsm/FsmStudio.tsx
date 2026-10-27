@@ -525,7 +525,7 @@ function Diagram({ machine, current, selected, zoom, onSelect, onMove }: {
         );
       })}
       {machine.states.map((state) => (
-        <g key={state.id} onPointerDown={(event) => {
+        <g key={state.id} data-lab-active={state.id===current} onPointerDown={(event) => {
           const svg = event.currentTarget.ownerSVGElement;
           if (!svg) return;
           const rect = svg.getBoundingClientRect();

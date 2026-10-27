@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
@@ -124,10 +125,12 @@ export function AssemblyStudio() {
   const [error, setError] = useState("");
   const [autoFetch, setAutoFetch] = useState(false);
   const built = useMemo(() => assemble(source), [source]);
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!tick || reducedMotion()) return;
     gsap.fromTo(".ax-hot", { scale: 1.03 }, { scale: 1, duration: 0.35, clearProps: "scale" });
-  }, { scope: root, dependencies: [tick] });
+  }, { scope: root, dependencies: [tick, motionEnabled] , revertOnUpdate: true});
 
   useEffect(() => {
     if (!autoFetch) {

@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -43,10 +44,12 @@ export function BasicsPanel({ explain }: { explain: boolean }) {
   const spec = COPY[op];
   const preview = executeTeach({ regs, mem }, op, spec.rd, spec.rs1, spec.rs2, spec.imm);
   const shown = [0, 1, 2, 3].map((index) => ({ index, value: regs[index] ?? 0, next: preview.next.regs[index] ?? 0 }));
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!pulse || reducedMotion()) return;
     gsap.fromTo(".isx-pop", { scale: 1.06 }, { scale: 1, duration: 0.35, clearProps: "scale" });
-  }, { scope: root, dependencies: [pulse] });
+  }, { scope: root, dependencies: [pulse, motionEnabled] , revertOnUpdate: true});
 
   function edit(index: number, text: string) {
     const value = Number(text);

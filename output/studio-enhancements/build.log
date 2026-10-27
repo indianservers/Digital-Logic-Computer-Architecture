@@ -1,0 +1,223 @@
+
+> digital-electronics-computing-lab@1.0.0 prebuild
+> npm run seo:routes
+
+
+> digital-electronics-computing-lab@1.0.0 seo:routes
+> node scripts/seo/generate-routes.mjs
+
+Generated SEO routes for 749 labs and studios.
+
+> digital-electronics-computing-lab@1.0.0 build
+> tsc --noEmit && vite build && node scripts/seo/build-pages.mjs && npm run seo:verify
+
+vite v6.4.3 building for production...
+transforming...
+✓ 807 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/manifest.webmanifest                                             0.39 kB
+dist/index.html                                                       1.48 kB │ gzip:   0.76 kB
+dist/assets/plus-jakarta-sans-vietnamese-400-normal-Cg2kxhWu.woff2    4.10 kB
+dist/assets/plus-jakarta-sans-vietnamese-600-normal-Y4VTTRme.woff2    4.20 kB
+dist/assets/plus-jakarta-sans-vietnamese-700-normal-CV6qDkkj.woff2    4.27 kB
+dist/assets/plus-jakarta-sans-vietnamese-500-normal-DiU8zqi-.woff2    4.28 kB
+dist/assets/plus-jakarta-sans-vietnamese-400-normal-B8TCSmUq.woff     5.60 kB
+dist/assets/plus-jakarta-sans-vietnamese-600-normal-5YsyKbU1.woff     5.74 kB
+dist/assets/plus-jakarta-sans-vietnamese-700-normal-BCh_uG_5.woff     5.78 kB
+dist/assets/plus-jakarta-sans-vietnamese-500-normal-CvE5C8T-.woff     5.79 kB
+dist/assets/plus-jakarta-sans-latin-ext-400-normal-D127hM_v.woff2    10.59 kB
+dist/assets/plus-jakarta-sans-latin-ext-500-normal-9VZagAe1.woff2    10.86 kB
+dist/assets/plus-jakarta-sans-latin-ext-600-normal-DQgPU_Cg.woff2    10.90 kB
+dist/assets/plus-jakarta-sans-latin-ext-700-normal-BajbvANd.woff2    11.01 kB
+dist/assets/plus-jakarta-sans-latin-400-normal-Dhut76fR.woff2        11.82 kB
+dist/assets/plus-jakarta-sans-latin-600-normal-DLTa1BUW.woff2        12.19 kB
+dist/assets/plus-jakarta-sans-latin-700-normal-CfpNZvy6.woff2        12.24 kB
+dist/assets/plus-jakarta-sans-latin-500-normal-Bf-nb4oT.woff2        12.31 kB
+dist/assets/plus-jakarta-sans-latin-ext-400-normal-2ppkqaOR.woff     15.31 kB
+dist/assets/plus-jakarta-sans-latin-ext-600-normal-B0WRRYJ1.woff     15.61 kB
+dist/assets/plus-jakarta-sans-latin-ext-700-normal-8-d-IyIQ.woff     15.62 kB
+dist/assets/plus-jakarta-sans-latin-ext-500-normal-CqEEAICU.woff     15.62 kB
+dist/assets/plus-jakarta-sans-latin-400-normal-BDKaGhyp.woff         15.73 kB
+dist/assets/plus-jakarta-sans-latin-600-normal-BR_Ojra4.woff         16.08 kB
+dist/assets/plus-jakarta-sans-latin-500-normal-DYtqi0QS.woff         16.12 kB
+dist/assets/plus-jakarta-sans-latin-700-normal-DqEcQeE5.woff         16.14 kB
+dist/assets/ExperimentNotebook-CqcXSLgO.css                           5.29 kB │ gzip:   1.55 kB
+dist/assets/MicrocontrollerStudio-D3LexhgB.css                        6.06 kB │ gzip:   1.76 kB
+dist/assets/MemoryStudio-CBPbt2h7.css                                 6.80 kB │ gzip:   1.19 kB
+dist/assets/KmapStudio-D3JxGaZ9.css                                  10.00 kB │ gzip:   2.66 kB
+dist/assets/CombinationalStudio-taw8g5c1.css                         17.88 kB │ gzip:   4.08 kB
+dist/assets/TimingStudio-BBQkjCBr.css                                18.42 kB │ gzip:   4.42 kB
+dist/assets/FdeStudio-wkEY5IWr.css                                   19.05 kB │ gzip:   4.86 kB
+dist/assets/ControlStudio-OB7pgHBr.css                               21.43 kB │ gzip:   5.30 kB
+dist/assets/MicrocontrollerProjectLab-CGlZ5-ta.css                   24.87 kB │ gzip:   6.15 kB
+dist/assets/LabRoute-DikS_cTx.css                                    26.27 kB │ gzip:   5.64 kB
+dist/assets/RtlStudio-DqqmVgkP.css                                   28.19 kB │ gzip:   5.96 kB
+dist/assets/g2-C_jZnTSi.css                                          30.79 kB │ gzip:   5.49 kB
+dist/assets/VlsiStudio-CAsiBQbG.css                                  31.61 kB │ gzip:   6.84 kB
+dist/assets/NumberSystemsStudio-CWAeBkYm.css                         34.11 kB │ gzip:   7.46 kB
+dist/assets/InterruptStudio-BdZbLrxR.css                             39.86 kB │ gzip:   8.66 kB
+dist/assets/Group4-DkSfwWKF.css                                      46.00 kB │ gzip:   7.78 kB
+dist/assets/Group1-CN_kHfCS.css                                      49.59 kB │ gzip:   9.06 kB
+dist/assets/BuilderStudio-fYkF-iB9.css                               58.65 kB │ gzip:  13.16 kB
+dist/assets/Group3-D7eZjJX6.css                                      62.63 kB │ gzip:   9.02 kB
+dist/assets/IoStudio-24N8K0R_.css                                    63.21 kB │ gzip:  13.51 kB
+dist/assets/HowDevicesWorkStudio-B6f1yfUW.css                        67.85 kB │ gzip:  12.17 kB
+dist/assets/AdvancedLabPage-BBeVIjpL.css                            245.94 kB │ gzip:  38.57 kB
+dist/assets/index-CRLYzEb7.css                                      261.35 kB │ gzip:  55.90 kB
+dist/assets/index-Y5JVHbzP.js                                         0.07 kB │ gzip:   0.08 kB
+dist/assets/assert-MUYVpnQP.js                                        0.09 kB │ gzip:   0.10 kB
+dist/assets/registers-DVBVxdf0.js                                     0.28 kB │ gzip:   0.22 kB
+dist/assets/hierarchy-DxIs9g30.js                                     0.29 kB │ gzip:   0.24 kB
+dist/assets/useStudioTab-D9kj--jb.js                                  0.37 kB │ gzip:   0.27 kB
+dist/assets/bits-D9HIgDgE.js                                          0.52 kB │ gzip:   0.30 kB
+dist/assets/buses-D8ymnt-w.js                                         0.53 kB │ gzip:   0.30 kB
+dist/assets/acaMotion-Bqr6YNTu.js                                     0.54 kB │ gzip:   0.38 kB
+dist/assets/LabChallenge-DmobQ1kg.js                                  0.62 kB │ gzip:   0.39 kB
+dist/assets/LessonFAQ-DdvPZ-fv.js                                     0.77 kB │ gzip:   0.43 kB
+dist/assets/LabSequence-dRqrX1HG.js                                   0.77 kB │ gzip:   0.47 kB
+dist/assets/gates-D1nSapJy.js                                         0.80 kB │ gzip:   0.38 kB
+dist/assets/projects-pkR00DCg.js                                      0.86 kB │ gzip:   0.43 kB
+dist/assets/vector-CNY1gYQx.js                                        1.00 kB │ gzip:   0.51 kB
+dist/assets/encoding-C7pRjmth.js                                      1.02 kB │ gzip:   0.54 kB
+dist/assets/routing-CVaBfApn.js                                       1.35 kB │ gzip:   0.66 kB
+dist/assets/DeviceExamples-mtg2OX60.js                                1.42 kB │ gzip:   0.78 kB
+dist/assets/StudioFrame-CF_VxpnK.js                                   1.69 kB │ gzip:   0.72 kB
+dist/assets/parallel-nPlSzrW9.js                                      1.70 kB │ gzip:   0.82 kB
+dist/assets/pageData-UrFktI5w.js                                      1.75 kB │ gzip:   0.89 kB
+dist/assets/table-Cqp7lc74.js                                         1.82 kB │ gzip:   0.78 kB
+dist/assets/coherence-DoxmzNjX.js                                     1.82 kB │ gzip:   0.83 kB
+dist/assets/ui-CtPTVQg-.js                                            2.05 kB │ gzip:   0.75 kB
+dist/assets/faqs-DIBhqepk.js                                          2.05 kB │ gzip:   1.09 kB
+dist/assets/rtl-DGcR99D-.js                                           2.31 kB │ gzip:   1.07 kB
+dist/assets/LabOverview-m4SXmTJY.js                                   2.31 kB │ gzip:   1.07 kB
+dist/assets/map-BUDI0jnX.js                                           2.39 kB │ gzip:   1.08 kB
+dist/assets/simplify-CF-xrc57.js                                      2.89 kB │ gzip:   0.90 kB
+dist/assets/LabRoute-DJrgc4Q4.js                                      2.91 kB │ gzip:   1.21 kB
+dist/assets/registry-fmT9wY1C.js                                      3.01 kB │ gzip:   1.50 kB
+dist/assets/SeoRouter-D1XlO6pH.js                                     3.04 kB │ gzip:   1.37 kB
+dist/assets/soc-BvLiI1_x.js                                           3.19 kB │ gzip:   1.47 kB
+dist/assets/ParallelStudio-CoingkYg.js                                3.57 kB │ gzip:   1.65 kB
+dist/assets/quine-CmdVAejQ.js                                         3.79 kB │ gzip:   1.74 kB
+dist/assets/cache-BIh54fpr.js                                         3.83 kB │ gzip:   1.67 kB
+dist/assets/sequential-L-VI-7hQ.js                                    3.94 kB │ gzip:   1.59 kB
+dist/assets/HazardStudio-Dg2jnMQx.js                                  3.96 kB │ gzip:   1.82 kB
+dist/assets/RegisterStudio-BZo87vON.js                                4.05 kB │ gzip:   1.79 kB
+dist/assets/widgets-BBn65H66.js                                       4.13 kB │ gzip:   1.80 kB
+dist/assets/ArchitectureFrame-Dm768wBw.js                             4.29 kB │ gzip:   1.53 kB
+dist/assets/SocStudio-Cfy_DuA1.js                                     4.78 kB │ gzip:   1.90 kB
+dist/assets/MicrocontrollerStudio-BS-U6ngZ.js                         4.82 kB │ gzip:   1.80 kB
+dist/assets/SandboxStudio-C-7cMWOU.js                                 4.93 kB │ gzip:   2.00 kB
+dist/assets/LessonDiagram-D4IJ76aC.js                                 5.60 kB │ gzip:   2.20 kB
+dist/assets/arithmetic-BpF51HLJ.js                                    5.62 kB │ gzip:   2.28 kB
+dist/assets/workbox-window.prod.es5-BBnX5xw4.js                       5.75 kB │ gzip:   2.36 kB
+dist/assets/ast-Z7EIHWN2.js                                           5.95 kB │ gzip:   2.10 kB
+dist/assets/pipeline-CWwwk1NG.js                                      6.24 kB │ gzip:   2.57 kB
+dist/assets/MulticoreStudio-BUXyVeTU.js                               6.58 kB │ gzip:   2.65 kB
+dist/assets/Cpu8Studio-DJBeLMMG.js                                    6.85 kB │ gzip:   2.43 kB
+dist/assets/x86-wnllgwf5.js                                           6.85 kB │ gzip:   3.00 kB
+dist/assets/spec-C0WpCJpg.js                                          7.25 kB │ gzip:   2.25 kB
+dist/assets/cpu-B1RrDELA.js                                           8.04 kB │ gzip:   3.15 kB
+dist/assets/addressDecoder-DPQ-YaEz.js                                8.08 kB │ gzip:   3.34 kB
+dist/assets/ExperimentNotebook-Bw2XsmeD.js                            8.63 kB │ gzip:   3.21 kB
+dist/assets/RegisterView-CUE0H3c2.js                                  8.65 kB │ gzip:   3.40 kB
+dist/assets/BusStudio-1aJyfv0u.js                                     8.77 kB │ gzip:   3.50 kB
+dist/assets/HeteroStudio-B6eoDMrV.js                                  9.98 kB │ gzip:   3.60 kB
+dist/assets/Cpu16Studio-Dwhb06Eu.js                                  10.39 kB │ gzip:   3.58 kB
+dist/assets/projectData-CY5emZw_.js                                  12.54 kB │ gzip:   4.25 kB
+dist/assets/riscv-CZIBgUXO.js                                        13.10 kB │ gzip:   4.54 kB
+dist/assets/CounterStudio-DLUuBAnY.js                                14.44 kB │ gzip:   4.82 kB
+dist/assets/ControlStudio-C4YkNa5f.js                                14.63 kB │ gzip:   4.37 kB
+dist/assets/FdeStudio-DfEIQwvK.js                                    14.72 kB │ gzip:   5.06 kB
+dist/assets/LogicGatesStudio-D5l69V90.js                             15.45 kB │ gzip:   5.35 kB
+dist/assets/AcceleratorStudio-CPG21wlD.js                            15.60 kB │ gzip:   5.38 kB
+dist/assets/KmapStudio-B5rr4Tne.js                                   15.69 kB │ gzip:   5.89 kB
+dist/assets/AluStudio-BcV2S-Xs.js                                    15.89 kB │ gzip:   5.27 kB
+dist/assets/PipelineStudio-B4fGKgJQ.js                               16.05 kB │ gzip:   5.11 kB
+dist/assets/AdderStudio-Cf8HItTv.js                                  16.13 kB │ gzip:   5.62 kB
+dist/assets/CombinationalStudio-BF9e_guj.js                          18.55 kB │ gzip:   6.20 kB
+dist/assets/TheoryReader-Bqtm4SlS.js                                 18.66 kB │ gzip:   6.69 kB
+dist/assets/FlipFlopStudio-D4CAy5Be.js                               22.72 kB │ gzip:   7.46 kB
+dist/assets/RoutingStudio-rRjL2T3A.js                                22.83 kB │ gzip:   7.28 kB
+dist/assets/thumb-c2VuuD6i.js                                        23.74 kB │ gzip:   8.24 kB
+dist/assets/TimingStudio-yYZEoJYh.js                                 24.13 kB │ gzip:   8.42 kB
+dist/assets/content-D76ucGm7.js                                      24.27 kB │ gzip:   8.92 kB
+dist/assets/RtlStudio-Cki6rfhe.js                                    25.57 kB │ gzip:   7.55 kB
+dist/assets/conceptNotes-D8KwqtvR.js                                 29.13 kB │ gzip:  11.31 kB
+dist/assets/CpuStudio-DlWpKIwl.js                                    29.27 kB │ gzip:   8.67 kB
+dist/assets/MobileStudio-CFpiSgWr.js                                 29.70 kB │ gzip:   9.81 kB
+dist/assets/HierarchyStudio-BGt53GoK.js                              32.29 kB │ gzip:   9.67 kB
+dist/assets/FsmStudio-Dxh2Dmtb.js                                    34.10 kB │ gzip:  10.18 kB
+dist/assets/InterruptStudio-ZD27OjP6.js                              34.41 kB │ gzip:  10.67 kB
+dist/assets/TruthStudio-5SWHN4LH.js                                  36.52 kB │ gzip:  12.11 kB
+dist/assets/BooleanStudio-CAY4MGh4.js                                36.89 kB │ gzip:  10.33 kB
+dist/assets/X86Studio-9U7ceVpU.js                                    41.23 kB │ gzip:  12.75 kB
+dist/assets/DesktopStudio-DI0u5yKG.js                                43.71 kB │ gzip:  12.80 kB
+dist/assets/AssemblyStudio-D9sN5B_n.js                               44.21 kB │ gzip:  11.80 kB
+dist/assets/CacheStudio-8eJEa-Gl.js                                  44.70 kB │ gzip:  11.23 kB
+dist/assets/CompareStudio-DwJUI1f5.js                                44.93 kB │ gzip:  13.29 kB
+dist/assets/VmStudio-ChNZK_Hn.js                                     50.65 kB │ gzip:  13.98 kB
+dist/assets/RiscvStudio-Czx51Tn8.js                                  52.24 kB │ gzip:  13.45 kB
+dist/assets/MipsStudio-BzGT27-z.js                                   53.95 kB │ gzip:  17.03 kB
+dist/assets/ArmStudio-BZ05mjgH.js                                    55.50 kB │ gzip:  17.91 kB
+dist/assets/studioLessons-w89M46ys.js                                59.73 kB │ gzip:  19.59 kB
+dist/assets/IoStudio-Bv9cC2dY.js                                     61.16 kB │ gzip:  19.79 kB
+dist/assets/NumberSystemsStudio-DeriBcpa.js                          63.03 kB │ gzip:  20.31 kB
+dist/assets/useCircuit-CuQ4-FKS.js                                   64.27 kB │ gzip:  17.73 kB
+dist/assets/focus-ckC54kNX.js                                        66.00 kB │ gzip:  23.22 kB
+dist/assets/index-pu9r-Q0w.js                                        71.51 kB │ gzip:  28.25 kB
+dist/assets/engine-ocMAUyAi.js                                       77.42 kB │ gzip:  28.64 kB
+dist/assets/IsaStudio-MXE26XjG.js                                    77.79 kB │ gzip:  21.46 kB
+dist/assets/MicrocontrollerProjectLab-D3B6nWxW.js                    81.10 kB │ gzip:  28.06 kB
+dist/assets/CircuitPanels-CAi1dbMG.js                                91.47 kB │ gzip:  31.42 kB
+dist/assets/MemoryStudio-BiYy0AI1.js                                 91.75 kB │ gzip:  25.64 kB
+dist/assets/ArchCanvas-C9YpfL93.js                                  126.15 kB │ gzip:  40.67 kB
+dist/assets/Group2-BEV3z7DS.js                                      161.40 kB │ gzip:  51.93 kB
+dist/assets/Scope-zHEnVCYw.js                                       176.37 kB │ gzip:  59.60 kB
+dist/assets/Group1-CuhcsMFY.js                                      236.29 kB │ gzip:  77.62 kB
+dist/assets/data-C3P1AmL7.js                                        244.61 kB │ gzip:  80.51 kB
+dist/assets/site-DvEGffIL.js                                        265.87 kB │ gzip:  51.38 kB
+dist/assets/Group3-BjX1WRv0.js                                      280.26 kB │ gzip:  90.07 kB
+dist/assets/BuilderStudio-BRZpACTs.js                               284.41 kB │ gzip:  87.52 kB
+dist/assets/VlsiStudio-DOSqyMiZ.js                                  373.91 kB │ gzip: 112.83 kB
+dist/assets/Group4-ghTiNtvk.js                                      378.62 kB │ gzip: 134.23 kB
+dist/assets/AdvancedLabPage-w4cNy3sK.js                             539.11 kB │ gzip: 159.30 kB
+dist/assets/lessonPlans-DeigTJqG.js                                 552.05 kB │ gzip: 155.93 kB
+dist/assets/index-Bf1Jz4M-.js                                       711.75 kB │ gzip: 185.67 kB
+dist/assets/HowDevicesWorkStudio-CntvDU9O.js                        830.83 kB │ gzip: 146.38 kB
+dist/assets/AcaStudio-By3kTdQs.js                                   839.26 kB │ gzip: 232.36 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 12.51s
+
+PWA v1.3.0
+mode      generateSW
+precache  163 entries (9374.72 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-4e9e9954.js
+Generated 1507 SEO HTML pages, including full textbook lesson content.
+
+> digital-electronics-computing-lab@1.0.0 seo:verify
+> node scripts/seo/verify-pages.mjs && node --test scripts/seo/resolve.test.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: /studios/adders canonical matches its page
+    at verify (file:///C:/Indian%20Servers/Digital%20Logic%20Architecture/scripts/seo/verify-pages.mjs:25:10)
+    at async Promise.all (index 0)
+    at async file:///C:/Indian%20Servers/Digital%20Logic%20Architecture/scripts/seo/verify-pages.mjs:48:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.13.1

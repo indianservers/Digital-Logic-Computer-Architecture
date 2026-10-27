@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -59,11 +60,13 @@ export function SimulatorTab({ explain, guide, takeaways }: { explain: boolean; 
   const summary = configSummary(config);
   const geo = geometryOf(config);
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     const node = scope.current?.querySelector(".cx-pulse");
     if (!node) return;
     gsap.fromTo(node, { scale: reducedMotion() ? 1 : 0.97 }, { scale: 1, duration: reducedMotion() ? 0 : 0.28, ease: "power2.out" });
-  }, { scope, dependencies: [cursor, stage], revertOnUpdate: true });
+  }, { scope, dependencies: [cursor, stage, motionEnabled], revertOnUpdate: true });
 
   useEffect(() => {
     if (!playing) return;

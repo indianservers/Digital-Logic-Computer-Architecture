@@ -1,0 +1,15 @@
+
+> digital-electronics-computing-lab@1.0.0 prebuild
+> npm run seo:routes
+
+
+> digital-electronics-computing-lab@1.0.0 seo:routes
+> node scripts/seo/generate-routes.mjs
+
+Generated SEO routes for 749 labs and studios.
+
+> digital-electronics-computing-lab@1.0.0 build
+> tsc --noEmit && vite build && node scripts/seo/build-pages.mjs && npm run seo:verify
+
+src/studios/sandbox/CpuViews.tsx(7,3): error TS6133: 'Led' is declared but its value is never read.
+src/studios/sandbox/SandboxStudio.tsx(546,13): error TS2367: This comparison appears to be unintentional because the types '"memory" | "multicore" | "datapath" | "cpu" | "probes" | "breaks" | "history"' and '"circuit"' have no overlap.

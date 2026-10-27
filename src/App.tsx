@@ -1,45 +1,46 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import { AppShell } from "./layout/AppShell";
+import { LabMotionBoundary } from "./design-system/LabMotion";
 import { StudioLearningLayout } from "./theory/TheoryEntry";
 const TheoryReader = lazy(() => import("./theory/TheoryReader").then(module => ({ default: module.TheoryReader })));
 import { CheatPage, HomePage, LearnPage, NotesPage, PracticePage, ProjectsPage, StudiosPage, UpcomingPage } from "./pages/HomePages";
-import { AdderStudio } from "./studios/adders/AdderStudio";
-import { AssemblyStudio } from "./studios/assembly/AssemblyStudio";
+const AdderStudio = lazy(() => import("./studios/adders/AdderStudio").then(module => ({ default: module.AdderStudio })));
+const AssemblyStudio = lazy(() => import("./studios/assembly/AssemblyStudio").then(module => ({ default: module.AssemblyStudio })));
 const ControlStudio = lazy(() => import("./studios/control/ControlStudio").then(module => ({ default: module.ControlStudio })));
-import { FdeStudio } from "./studios/fde/FdeStudio";
-import { BusStudio } from "./studios/bus/BusStudio";
-import { HazardStudio } from "./studios/hazards/HazardStudio";
-import { HierarchyStudio } from "./studios/hierarchy/HierarchyStudio";
+const FdeStudio = lazy(() => import("./studios/fde/FdeStudio").then(module => ({ default: module.FdeStudio })));
+const BusStudio = lazy(() => import("./studios/bus/BusStudio").then(module => ({ default: module.BusStudio })));
+const HazardStudio = lazy(() => import("./studios/hazards/HazardStudio").then(module => ({ default: module.HazardStudio })));
+const HierarchyStudio = lazy(() => import("./studios/hierarchy/HierarchyStudio").then(module => ({ default: module.HierarchyStudio })));
 const InterruptStudio = lazy(() => import("./studios/interrupts/InterruptStudio").then(module => ({ default: module.InterruptStudio })));
-import { IoStudio } from "./studios/io/IoStudio";
-import { MulticoreStudio } from "./studios/multicore/MulticoreStudio";
-import { AcaStudio } from "./studios/aca/AcaStudio";
-import { ParallelStudio } from "./studios/parallel/ParallelStudio";
-import { IsaStudio } from "./studios/isa/IsaStudio";
-import { PipelineStudio } from "./studios/pipeline/PipelineStudio";
-import { AluStudio } from "./studios/alu/AluStudio";
-import { RtlStudio } from "./studios/rtl/RtlStudio";
-import { BooleanStudio } from "./studios/boolean-algebra/BooleanStudio";
-import { CombinationalStudio } from "./studios/combinational/CombinationalStudio";
-import { CacheStudio } from "./studios/cache/CacheStudio";
-import { CounterStudio } from "./studios/counters/CounterStudio";
-import { CpuStudio } from "./studios/cpu/CpuStudio";
-import { FsmStudio } from "./studios/fsm/FsmStudio";
-import { MemoryStudio } from "./studios/memory/MemoryStudio";
-import { FlipFlopStudio } from "./studios/flip-flops/FlipFlopStudio";
-import { KmapStudio } from "./studios/kmap/KmapStudio";
-import { LogicGatesStudio } from "./studios/logic-gates/LogicGatesStudio";
+const IoStudio = lazy(() => import("./studios/io/IoStudio").then(module => ({ default: module.IoStudio })));
+const MulticoreStudio = lazy(() => import("./studios/multicore/MulticoreStudio").then(module => ({ default: module.MulticoreStudio })));
+const AcaStudio = lazy(() => import("./studios/aca/AcaStudio").then(module => ({ default: module.AcaStudio })));
+const ParallelStudio = lazy(() => import("./studios/parallel/ParallelStudio").then(module => ({ default: module.ParallelStudio })));
+const IsaStudio = lazy(() => import("./studios/isa/IsaStudio").then(module => ({ default: module.IsaStudio })));
+const PipelineStudio = lazy(() => import("./studios/pipeline/PipelineStudio").then(module => ({ default: module.PipelineStudio })));
+const AluStudio = lazy(() => import("./studios/alu/AluStudio").then(module => ({ default: module.AluStudio })));
+const RtlStudio = lazy(() => import("./studios/rtl/RtlStudio").then(module => ({ default: module.RtlStudio })));
+const BooleanStudio = lazy(() => import("./studios/boolean-algebra/BooleanStudio").then(module => ({ default: module.BooleanStudio })));
+const CombinationalStudio = lazy(() => import("./studios/combinational/CombinationalStudio").then(module => ({ default: module.CombinationalStudio })));
+const CacheStudio = lazy(() => import("./studios/cache/CacheStudio").then(module => ({ default: module.CacheStudio })));
+const CounterStudio = lazy(() => import("./studios/counters/CounterStudio").then(module => ({ default: module.CounterStudio })));
+const CpuStudio = lazy(() => import("./studios/cpu/CpuStudio").then(module => ({ default: module.CpuStudio })));
+const FsmStudio = lazy(() => import("./studios/fsm/FsmStudio").then(module => ({ default: module.FsmStudio })));
+const MemoryStudio = lazy(() => import("./studios/memory/MemoryStudio").then(module => ({ default: module.MemoryStudio })));
+const FlipFlopStudio = lazy(() => import("./studios/flip-flops/FlipFlopStudio").then(module => ({ default: module.FlipFlopStudio })));
+const KmapStudio = lazy(() => import("./studios/kmap/KmapStudio").then(module => ({ default: module.KmapStudio })));
+const LogicGatesStudio = lazy(() => import("./studios/logic-gates/LogicGatesStudio").then(module => ({ default: module.LogicGatesStudio })));
 const NumberSystemsStudio = lazy(() => import("./studios/number-systems/NumberSystemsStudio").then(module => ({ default: module.NumberSystemsStudio })));
-import { RegisterStudio } from "./studios/registers/RegisterStudio";
-import { RoutingStudio } from "./studios/routing/RoutingStudio";
-import { TimingStudio } from "./studios/timing/TimingStudio";
-import { TruthStudio } from "./studios/truth-tables/TruthStudio";
-import { VmStudio } from "./studios/vm/VmStudio";
-import { VlsiStudio } from "./studios/vlsi/VlsiStudio";
-import { MicrocontrollerStudio } from "./studios/microcontroller/MicrocontrollerStudio";
-import { MicrocontrollerProjectLab } from "./studios/microcontroller/MicrocontrollerProjectLab";
-import { MicrocontrollerLabRoute } from "./studios/microcontroller/labs/LabRoute";
+const RegisterStudio = lazy(() => import("./studios/registers/RegisterStudio").then(module => ({ default: module.RegisterStudio })));
+const RoutingStudio = lazy(() => import("./studios/routing/RoutingStudio").then(module => ({ default: module.RoutingStudio })));
+const TimingStudio = lazy(() => import("./studios/timing/TimingStudio").then(module => ({ default: module.TimingStudio })));
+const TruthStudio = lazy(() => import("./studios/truth-tables/TruthStudio").then(module => ({ default: module.TruthStudio })));
+const VmStudio = lazy(() => import("./studios/vm/VmStudio").then(module => ({ default: module.VmStudio })));
+const VlsiStudio = lazy(() => import("./studios/vlsi/VlsiStudio").then(module => ({ default: module.VlsiStudio })));
+const MicrocontrollerStudio = lazy(() => import("./studios/microcontroller/MicrocontrollerStudio").then(module => ({ default: module.MicrocontrollerStudio })));
+const MicrocontrollerProjectLab = lazy(() => import("./studios/microcontroller/MicrocontrollerProjectLab").then(module => ({ default: module.MicrocontrollerProjectLab })));
+const MicrocontrollerLabRoute = lazy(() => import("./studios/microcontroller/labs/LabRoute").then(module => ({ default: module.MicrocontrollerLabRoute })));
 
 const AcceleratorStudio = lazy(() => import("./studios/accelerator/AcceleratorStudio"));
 const HeteroStudio = lazy(() => import("./studios/hetero/HeteroStudio"));
@@ -70,7 +71,7 @@ function Suspend({ children }: { children: ReactNode }) {
 export function App() {
   return (
     <AppShell>
-      <StudioLearningLayout><Routes>
+      <LabMotionBoundary><StudioLearningLayout><Suspend><Routes>
         <Route path="/encyclopedia" element={<Suspend><TheoryReader /></Suspend>} />
         <Route path="/" element={<HomePage />} />
         <Route path="/learn" element={<LearnPage />} />
@@ -150,8 +151,8 @@ export function App() {
         <Route path="/studios/alu" element={<AluStudio />} />
         <Route path="/upcoming/alu" element={<AluStudio />} />
         <Route path="/upcoming/:id" element={<UpcomingRoute />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes></StudioLearningLayout>
+        <Route path="*" element={<main className="card"><h1>Page not found</h1><p>This address does not identify a published lesson.</p><a href="/studios">Browse studios</a> · <a href="/textbook">Open the textbook</a></main>} />
+      </Routes></Suspend></StudioLearningLayout></LabMotionBoundary>
     </AppShell>
   );
 }

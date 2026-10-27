@@ -1,16 +1,8 @@
-import { Component, Suspense, lazy, type ComponentType, type LazyExoticComponent, type ReactNode } from "react";
+import { Component, Suspense, useEffect, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
-import { labBySlug, type LabMeta } from "./registry";
+import { CORE_LAB_GROUPS, labBySlug, plannedLabBySlug } from "./registry";
 import "./labs.css";
 
-type GroupComponent = LazyExoticComponent<ComponentType<{ meta: LabMeta }>>;
-
-const GROUPS: Record<number, GroupComponent> = {
-  1: lazy(() => import("./groups/Group1")),
-  2: lazy(() => import("./groups/Group2")),
-  3: lazy(() => import("./groups/Group3")),
-  4: lazy(() => import("./groups/Group4")),
-};
 
 class LabBoundary extends Component<{ children: ReactNode; slug: string }, { error: Error | null }> {
   state = { error: null as Error | null };
@@ -35,12 +27,15 @@ class LabBoundary extends Component<{ children: ReactNode; slug: string }, { err
 
 export function MicrocontrollerLabRoute() {
   const { slug = "" } = useParams();
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }); }, [slug]);
   const meta = labBySlug(slug);
-  const Group = meta ? GROUPS[meta.group] : undefined;
+  const planned = plannedLabBySlug(slug);
+  const Group = meta ? CORE_LAB_GROUPS.find(group => group.id === meta.group)?.component : undefined;
   if (!meta || !Group) {
     return (
       <div className="mcl-root mcl-pro"><div className="mcl-main"><div className="mcl-panel">
-        <h2>Lab not found</h2>
+        <h2>{planned ? `${planned.n}. ${planned.title}` : "Lab not found"}</h2>
+        <p>{planned ? "This lab is planned. Its simulator is not available yet. Choose an open core or project lab from the studio." : "This address does not match a Microcontroller lab. Browse the studio to choose a lab."}</p>
         <Link to="/studios/microcontroller">Return to Microcontroller Studio</Link>
       </div></div></div>
     );

@@ -1,129 +1,56 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
-import { Card, ExplainBar } from "../../design-system/ui";
-import { capture, clockSamples, delayedTransition, edges, frequencyMHz, holdViolated, metastableNote, periodNs, setupViolated } from "../../engines/digital/timing";
-import { StudioFrame } from "../../layout/StudioFrame";
-import { usePrefs } from "../../store/prefs";
-import { Waveform } from "../shared/widgets";
-
-const TABS = [
-  { id: "clock", label: "Clock" },
-  { id: "edge", label: "Edges" },
-  { id: "setup", label: "Setup" },
-  { id: "hold", label: "Hold" },
-  { id: "delay", label: "Propagation" },
-  { id: "meta", label: "Metastability" },
-];
-
-const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { title: string; body: string } }> = {
-  clock: {
-    theory: { title: "Clock frequency and duty", body: "Period is 1 / frequency. Duty cycle is high time over period. This waveform is simulated time so you can mark edges; it is not a lab oscillator." },
-    guide: ["Set frequency and read the period.", "Change duty and see the high pulse width.", "Move the cursor along the samples.", "Open Edges to name rise versus fall."],
-    takeaways: ["Period is the reciprocal of frequency.", "Duty cycle is high time over period.", "Simulated nanoseconds, not a wall-clock wait."],
-  },
-  edge: {
-    theory: { title: "Clock edges", body: "A rising edge is 0→1. A falling edge is 1→0. Flip-flops in this curriculum sample on an edge you choose. The event is the transition, not the level that follows." },
-    guide: ["Mark a rising edge on the waveform.", "Compare rise and fall lists.", "Move phase and see edges slide.", "Remember: capture happens at the edge, not during the high pulse."],
-    takeaways: ["Rise is 0→1; fall is 1→0.", "Edge-triggered storage ignores the level between edges.", "Phase slides the whole pattern."],
-  },
-  setup: {
-    theory: { title: "Setup time", body: "Setup is how long D must be stable before the capturing edge. If D arrives too late, the sampled value is uncertain (X in this lab). Setup is a before-the-edge window." },
-    guide: ["Place D so it settles before the edge.", "Move D later until the capture is X.", "Read the setup window on the waveform.", "Compare with the hold tab: that window is after the edge."],
-    takeaways: ["Setup is before the capturing edge.", "A late D makes the capture uncertain.", "X here means uncertain, not a transistor waveform."],
-  },
-  hold: {
-    theory: { title: "Hold time", body: "Hold is how long D must remain stable after the capturing edge. Changing D too soon can corrupt the new state. Hold is an after-the-edge window." },
-    guide: ["Keep D stable past the edge.", "Pull D back too early and read X.", "Contrast with setup on the previous tab.", "Think of hold as 'don't let go yet'."],
-    takeaways: ["Hold is after the capturing edge.", "An early D change makes the capture uncertain.", "Setup and hold together are the aperture around the edge."],
-  },
-  delay: {
-    theory: { title: "Propagation through combinational logic", body: "The next flip-flop must not sample until the combinational path from the previous edge has settled. That path delay plus setup must fit in one period." },
-    guide: ["Change the delay and watch when Y becomes valid.", "See the next edge arrive before Y settles — a teaching setup fail.", "Relate period ≥ delay + setup.", "This is the same delay idea as the gate studio, now next to a clock."],
-    takeaways: ["Period must cover logic delay plus setup.", "A too-fast clock samples stale or uncertain data.", "Delay here is a teaching number, not a cell library."],
-  },
-  meta: {
-    theory: { title: "Metastability", body: "If D is changing inside the aperture, the flip-flop can sit between 0 and 1 for a while. This lab shows that as X and a note — it is not a SPICE tail. Synchronizers are extra stages to make that rare." },
-    guide: ["Aim D at the edge and read the metastable note.", "Move D clearly before or after to get a clean 0 or 1.", "Treat X as 'do not trust this sample'.", "Two stages (a synchronizer) are the usual teaching fix."],
-    takeaways: ["Sampling a moving D can be metastable.", "X means the value is not a legal 0 or 1 yet.", "This is a concept demo, not a MTBF calculator."],
-  },
-};
-
-export function TimingStudio() {
-  const [tab, setTab] = useStudioTab(TABS, "clock");
-  const [resetKey, setResetKey] = useState(0);
-  const lesson = LESSONS[tab] ?? LESSONS.clock!;
-  return (
-    <StudioFrame icon="bolt" title="Digital Timing & Clocking" description="Frequency, duty, and the windows around a clock edge. Simulated time, not a wall-clock wait." tabs={TABS} tab={tab} onTab={setTab} onReset={() => setResetKey((n) => n + 1)} guide={lesson.guide} takeaways={lesson.takeaways} theory={lesson.theory}>
-      <div key={`${tab}-${resetKey}`}>{tab === "clock" || tab === "edge" ? <ClockLab edgesOnly={tab === "edge"} /> : null}{tab === "setup" ? <WindowLab kind="setup" /> : null}{tab === "hold" ? <WindowLab kind="hold" /> : null}{tab === "delay" ? <DelayLab /> : null}{tab === "meta" ? <MetaLab /> : null}</div>
-    </StudioFrame>
-  );
+import "./timing.css";
+const tabs=[{id:"clock",label:"Clock"},{id:"edge",label:"Edges"},{id:"setup",label:"Setup"},{id:"hold",label:"Hold"},{id:"delay",label:"Propagation"},{id:"meta",label:"Metastability"}];
+function TimingIcon({index}:{index:number}){const paths=["M2 20H10V6H20V20H29","M2 24H10V16H18V7H28","M2 10H28M2 21H28M14 2V29","M2 12H28M2 18H28M10 3V10M20 3V10M10 20V28M20 20V28","M2 15H28M20 7L28 15L20 23","M1 17Q5 0 9 16T17 16T25 16H30"];return <svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinejoin="round">{<path d={paths[index]}/>}</svg>}
+const titles=["Clock Lab","Edge Explorer","Setup Time Lab","Hold Time Lab","Propagation Delay Lab","Metastability Lab"];
+const descriptions=["Explore clock signals and their timing characteristics.","Explore rising and falling edges, slew rate, and timing thresholds in digital signals.","Explore how setup time ensures correct data capture in a D flip-flop.","Explore how long data must remain stable after the clock edge.","Explore how flip-flop and logic delays determine the total path delay.","Explore what happens when data changes near the capture edge."];
+function Panel({title,children}:{title:string;children:ReactNode}){return <section className="tm-panel"><h3>{title}</h3>{children}</section>}
+function Slider({label,value,onChange,min=0,max=100,unit="ns",color=""}:{label:string;value:number;onChange:(v:number)=>void;min?:number;max?:number;unit?:string;color?:string}){return <div className={`tm-control ${color}`}><label>{label}<span><input aria-label={label} type="number" min={min} max={max} value={value} onChange={e=>onChange(Math.min(max,Math.max(min,Number(e.target.value))))}/>{unit}</span></label><input aria-label={`${label} slider`} type="range" min={min} max={max} value={value} onChange={e=>onChange(+e.target.value)}/><div className="tm-limits"><span>{min} {unit}</span><span>{max} {unit}</span></div></div>}
+function Rows({items}:{items:[string,string][]}){return <div className="tm-rows">{items.map(([a,b])=><div key={a}><span>{a}</span><strong>{b}</strong></div>)}</div>}
+function Circuit({delay=false}:{delay?:boolean}){return <svg className="tm-circuit" viewBox={delay?"0 0 900 190":"0 0 260 150"}><g fill="none" stroke={delay?"#b8cbef":"#172645"} strokeWidth="2"><path d={delay?"M30 65H185M285 65H400M450 65H600M675 65H850":"M25 50H85M165 50H220M25 105H85"}/><rect x={delay?185:85} y={delay?35:22} width={delay?100:80} height={delay?95:100}/><path d={delay?"M185 98l14 9-14 9M400 40l50 25-50 25zM600 40h35a25 25 0 010 50h-35z":"M85 95l12 10-12 10"}/></g><g fill={delay?"#e1eaff":"#132040"} fontSize="16"><text x={delay?8:4} y="54">D</text><text x={delay?197:93} y="54">D</text><text x={delay?260:147} y="54">Q</text><text x={delay?853:225} y="54">{delay?"OUT":"Q"}</text><text x="5" y="115">CLK</text>{delay&&<><text x="330" y="30">tCQ</text><text x="410" y="125">Inverter</text><text x="605" y="125">AND Gate</text><text x="460" y="170">Logic delay</text></>}</g>{delay&&<path d="M285 66H400M450 66H600M675 66H840" fill="none" stroke="#b079ff" strokeWidth="4"/>}</svg>}
+export function TimingStudio(){
+ const [tab,setTab]=useStudioTab(tabs,"clock");const index=tabs.findIndex(t=>t.id===tab);
+ const [frequency,setFrequency]=useState(10),[duty,setDuty]=useState(50),[phase,setPhase]=useState(0),[offset,setOffset]=useState(45),[compare,setCompare]=useState(true);
+ const [change,setChange]=useState(35),[setup,setSetup]=useState(10),[hold,setHold]=useState(8),[cq,setCq]=useState(4),[logic,setLogic]=useState(8),[wire,setWire]=useState(0),[rise,setRise]=useState(2),[fall,setFall]=useState(3);
+ const [playing,setPlaying]=useState(false),[tick,setTick]=useState(0),[speed,setSpeed]=useState(1),[zoom,setZoom]=useState(50),[edgeView,setEdgeView]=useState("Both"),[answer,setAnswer]=useState("52.0"),[checked,setChecked]=useState(false),[edge,setEdge]=useState(1);
+ useEffect(()=>{if(!playing)return;const timer=window.setInterval(()=>setTick(t=>t+1),400/speed);return()=>clearInterval(timer)},[playing,speed]);
+ useEffect(()=>{setChange(tab==="hold"?62:tab==="meta"?49:35);setPlaying(false);setTick(0);setZoom(tab==="clock"?50:tab==="delay"?5:10)},[tab]);
+ const period=1000/frequency,total=cq+logic+wire,slack=tab==="hold"?change-50-hold:50-change-setup,pass=slack>=0;
+ const reset=()=>{setFrequency(10);setDuty(50);setPhase(0);setOffset(45);setCompare(true);setChange(tab==="hold"?62:tab==="meta"?49:35);setSetup(10);setHold(8);setCq(4);setLogic(8);setWire(0);setRise(2);setFall(3);setTick(0);setPlaying(false);setChecked(false)};
+ const measurements:[string,string][]=[["Period (T)",`${period.toFixed(0)} ns`],["High Time (Tₕ)",`${(period*duty/100).toFixed(0)} ns`],["Low Time (Tₗ)",`${(period*(100-duty)/100).toFixed(0)} ns`],["Frequency (f)",`${frequency} MHz`],["Duty Cycle",`${duty}%`]];
+ const timingRows:[string,string][]=[["Capture Edge (CLK ↑)","50 ns"],["D Transition",`${change} ns`],[tab==="hold"?"Hold Window":"Setup window",tab==="hold"?`50 – ${50+hold} ns`:`${50-setup} – 50 ns`],["Required "+(tab==="hold"?"Hold":"Setup")+" Time",`${tab==="hold"?hold:setup} ns`],["Available "+(tab==="hold"?"Hold":"Setup")+" Time",`${tab==="hold"?change-50:50-change} ns`],["Slack",`${slack>=0?"+":""}${slack} ns`]];
+ return <div className={`timing-app tm-${tab}`}><header className="tm-top"><Link to="/" className="tm-brand"><b>AIMER</b> Digital</Link><span className="tm-breadcrumb"><Link to="/studios">Studios</Link><i>/</i> Digital Timing</span><input className="tm-search" aria-label="Search timing topics" placeholder="⌕   Search topics, labs, or components..." onKeyDown={e=>{if(e.key!=="Enter")return;const query=e.currentTarget.value.trim().toLowerCase();const match=tabs.find(t=>t.label.toLowerCase().includes(query));if(query&&match){setTab(match.id);e.currentTarget.value=""}}}/><div className="tm-progress"><span>Lab Progress</span><div><i style={{width:`${(index+1)/6*100}%`}}/></div><small>{index+1} / 6</small></div><button className="tm-avatar" title="Learner profile">JD</button></header>
+ <div className="tm-heading"><div className="tm-title"><span className="tm-title-icon"><TimingIcon index={index}/></span><div><h1>{titles[index]}</h1><p>{descriptions[index]}</p></div></div><nav aria-label="Timing labs">{tabs.map((t,i)=><button key={t.id} className={tab===t.id?"active":""} onClick={()=>setTab(t.id)}><TimingIcon index={i}/>{t.label}</button>)}</nav></div>
+ <main className="tm-workbench"><aside className="tm-left">
+ {tab==="clock"?<Panel title="Signal Controls"><Slider label="Frequency (f)" value={frequency} onChange={setFrequency} min={1} max={100} unit="MHz"/><Rows items={[["Period (T)",`${period.toFixed(0)} ns`]]}/><hr/><Slider label="Duty Cycle" value={duty} onChange={setDuty} min={5} max={95} unit="%"/><Slider label="Phase" value={phase} onChange={setPhase} min={-180} max={180} unit="°"/><hr/><label className="tm-check"><b>Compare Signal (CH2)</b><input type="checkbox" checked={compare} onChange={e=>setCompare(e.target.checked)}/></label><Slider label="Phase Offset" value={offset} onChange={setOffset} min={-180} max={180} unit="°" color="purple"/></Panel>:
+ tab==="edge"?<Panel title="Signal Controls"><h4>Edge View</h4><div className="tm-segments">{["Rising","Falling","Both"].map(s=><button className={edgeView===s?"active":""} onClick={()=>setEdgeView(s)} key={s}>{s==="Rising"?"↑":s==="Falling"?"↓":"⇅"} {s}</button>)}</div><hr/><h4>Slew Rate</h4><Slider label="Rise Time (tᵣ)" value={rise} onChange={setRise} min={1} max={10}/><Slider label="Fall Time (tբ)" value={fall} onChange={setFall} min={1} max={10} color="purple"/><hr/><h4>Trigger</h4><label>Triggered Edge<select><option>↑ Rising</option><option>↓ Falling</option></select></label><label>Threshold Level<select><option>50% (2.5 V)</option><option>10% (0.5 V)</option><option>90% (4.5 V)</option></select></label><hr/><h4>Display</h4>{["Show Thresholds (10% / 90%)","Show Rise/Fall Time (tᵣ / tբ)","Show Measurement Cursors","Show Edge Markers"].map((s,i)=><label className="tm-check" key={s}><input type="checkbox" defaultChecked={i!==2}/>{s}</label>)}</Panel>:
+ tab==="delay"?<><Panel title="Delay Parameters"><Slider label="Clock-to-Q delay (tCQ)" value={cq} onChange={setCq} min={1} max={10}/><Slider label="Logic gate delay" value={logic} onChange={setLogic} min={1} max={20} color="purple"/><Slider label="Wire delay" value={wire} onChange={setWire} max={10}/></Panel><Panel title="Circuit Elements">{["D Flip-Flop (D)","Inverter (NOT)","AND Gate (2-input)"].map((s,i)=><div className="tm-element" key={s}><span>{["▣","▷","⊓"][i]}</span><div>{s}<small>t{ i?"pd":"CQ"} = {i?logic/2:cq} ns</small></div><span>⚙</span></div>)}</Panel><Panel title="Measurement Cursors"><Rows items={[["🔵 Cursor A","20 ns"],["🟣 Cursor B",`${20+total} ns`],["Δt (A → B)",`${total} ns`]]}/></Panel></>:
+ <><Panel title={tab==="hold"?"Circuit & Controls":"Circuit"}><Circuit/>{tab==="hold"&&<><hr/><Slider label="Hold Requirement" value={hold} onChange={setHold} max={20}/><Slider label="Clock to Q Delay (tCQ)" value={cq} onChange={setCq} max={10}/><Slider label="Input Transition (D)" value={change} onChange={setChange} min={20} max={80}/></>}</Panel>{tab!=="hold"&&<Panel title={tab==="meta"?"Data Control":"Setup Control"}><Slider label="Data transition time (D)" value={change} onChange={setChange} max={90}/><Slider label="Setup requirement (tSU)" value={setup} onChange={setSetup} max={30}/><Rows items={timingRows.slice(0,4)}/></Panel>}</>}
+ </aside><section className="tm-center">{tab==="delay"&&<div className="tm-scope tm-circuit-panel"><h3>Circuit <small>(selected path highlighted)</small><label><input type="checkbox" defaultChecked/> Signal flow</label></h3><Circuit delay/></div>}<div className="tm-scope">{tab==="clock"?<div className="tm-metrics">{measurements.map(([a,b],i)=><div key={a} style={{borderLeftColor:["#bd65ed","#00e5ff","#9bafcc","#9bafcc","#68cfff"][i]}}><small>{a}</small><strong>{b}</strong></div>)}</div>:<h3>{tab==="edge"?"V (V)":tab==="delay"?"Timing Waveforms":"Waveforms"}<span className="tm-legend">{tab==="hold"?"🟦 Hold Window　 ┄ Capture Edge　 ▪ Data Edge (draggable)":"☑ CLK　 🟪 D　 ☑ Q"}</span></h3>}
+ <TimingPlot tab={tab} period={period} duty={duty} phase={phase+tick*3} offset={offset} compare={compare} setDuty={setDuty} change={change} setChange={setChange} requirement={tab==="hold"?hold:setup} cq={cq} total={total} edgeView={edgeView} rise={rise} fall={fall} selectedEdge={edge} zoom={zoom} tick={tick}/></div>{tab==="setup"&&<div className="tm-summary">{[["Clock edge (↑)","50.0 ns"],["Setup requirement (tSU)",`${setup}.0 ns`],["Data last change",`${change}.0 ns`],["Available setup time",`${50-change}.0 ns`],["Setup slack",`${slack>=0?"+":""}${slack}.0 ns`]].map(([a,b])=><div key={a}><small>{a}</small><b className={a==="Setup slack"&&slack<0?"tm-negative":""}>{b}</b></div>)}</div>}</section>
+ <aside className="tm-right"><Panel title={tab==="delay"?"◎  Challenge":"◎  Guided Challenge"}>
+ {tab==="clock"?<><h4>Set the duty cycle to 25%.</h4><p>Adjust the duty cycle using the slider or drag the falling edge, and match the target value.</p><div className="tm-goal">{duty===25?"✅":"◯"}　Duty cycle = 25%</div><div className="tm-hint"><b>♧ Hint</b><p>Duty cycle is the fraction of the period that the signal is high:<br/>Duty = Tₕ / T × 100%.</p></div><hr/><h4>Live Measurements (CH1)</h4><Rows items={measurements}/></>:
+ tab==="edge"?<><div className="tm-hint blue"><h4>Find the next rising edge</h4><p>Starting from the selected edge at {12+edge*20}.0 ns, find the time of the next rising edge on CLK_A.</p><small>💡 Hint: Rising edges are low-to-high crossings at the 50% threshold (2.5 V). Use the edge controls or step forward.</small></div><h4>Your Answer</h4><div className="tm-answer"><input aria-label="Your answer" value={answer} onChange={e=>{setAnswer(e.target.value);setChecked(false)}}/><span>ns</span></div><button className="tm-primary tm-wide" onClick={()=>setChecked(true)}>● Check Answer</button>{checked&&<p role="status">{+answer===32+edge*20?"Correct!":"Try again. Add one period (20 ns)."}</p>}<hr/><h4>ϟ Edge Counter (CLK_A)</h4><Rows items={[["↑ Rising Edges","5"],["↓ Falling Edges","5"],["Total Edges","10"]]}/><hr/><h4>Edge Navigation</h4><div className="tm-edge-nav"><button onClick={()=>setEdge(Math.max(0,edge-1))}>❮</button><span>Edge {edge+1} of 5<br/>(Rising)</span><button onClick={()=>setEdge(Math.min(4,edge+1))}>❯</button></div></>:
+ tab==="delay"?<><h4>Reduce path delay below 10 ns</h4><p>Adjust the flip-flop and logic delays to meet the target. Keep the circuit function the same (inverting path).</p><div className={`tm-result ${total<10?"pass":"fail"}`}>Total path delay<strong>{total} ns</strong>Target: &lt; 10 ns</div></>:
+ <><p>{tab==="meta"?"Move D inside the capture window to observe an uncertain output. A synchronizer allows extra time for the signal to settle.":tab==="hold"?"Drag the data edge into the hold window.":"Move the data transition closer to the clock edge until setup fails."}</p><div className={`tm-result ${pass?"pass":"fail"}`}><strong>{pass?"✓  PASS":tab==="meta"?"⚠  METASTABLE":"✕  VIOLATION"}</strong><p>{pass?`Data is stable for the required ${tab==="hold"?"hold time after":"setup time before"} the clock edge.`:"The data changes inside the capture window. Q is uncertain."}</p></div><Rows items={timingRows}/>{tab==="setup"&&<div className="tm-hint green"><b>{pass?"✓　Why this works":"✕　Why capture fails"}</b><p>The D input is stable for {50-change}.0 ns before the active clock edge, {pass?"which is greater than":"which is less than"} the {setup}.0 ns setup requirement. {pass?"The flip-flop captures the correct value and Q updates just after the clock edge.":"The captured value cannot be trusted."}</p></div>}</>}
+ </Panel>{tab==="delay"&&<><Panel title="Timing Budget">{[["Clock-to-Q (tCQ)",cq],["Logic delay (inverter + AND)",logic],["Wire delay",wire],["Total path delay",total]].map(([a,b])=><div className="tm-budget" key={a}><label>{a}</label><div><i style={{width:`${Number(b)/30*100}%`}}/></div><b>{b} ns</b></div>)}</Panel><Panel title="Current Path"><p>🟠 Q → Inverter → AND → OUT</p><Rows items={[["tCQ (flip-flop)",`${cq} ns`],["Inverter tpd",`${logic/2} ns`],["AND tpd",`${logic/2} ns`],["Wire delay",`${wire} ns`],["Total",`${total} ns`]]}/></Panel></>}</aside></main>
+ <footer className="tm-toolbar"><button className="tm-primary" onClick={()=>setPlaying(!playing)}>{playing?"Ⅱ":"▶"}　{playing?"Pause":"Play"}</button><button onClick={()=>{setPlaying(false);setTick(t=>t+1);if(tab==="edge")setEdge(e=>(e+1)%5)}}>▸Ⅰ　 Step</button><button onClick={reset}>⟲　 Reset</button><div className="tm-toolgroup"><span>Simulation Speed</span><input aria-label="Simulation speed" type="range" min={1} max={4} value={speed} onChange={e=>setSpeed(+e.target.value)}/><select aria-label="Speed" value={speed} onChange={e=>setSpeed(+e.target.value)}>{[1,2,3,4].map(n=><option key={n} value={n}>{n}×</option>)}</select></div><div className="tm-toolgroup"><span>{tab==="hold"?"Time Zoom":"Time Scale"}</span><span>⊖</span><input aria-label="Time scale" type="range" min={5} max={100} value={zoom} onChange={e=>setZoom(+e.target.value)}/><select aria-label="Time division" value={zoom} onChange={e=>setZoom(+e.target.value)}>{[5,10,20,50,100].map(n=><option key={n} value={n}>{n} ns/div</option>)}</select></div><button aria-label="Fullscreen" onClick={()=>{if(document.fullscreenElement)void document.exitFullscreen();else void document.querySelector('.timing-app')?.requestFullscreen()}}>⛶</button></footer></div>
 }
-
-function ClockLab({ edgesOnly }: { edgesOnly: boolean }) {
-  const [mhz, setMhz] = useState(10);
-  const [duty, setDuty] = useState(50);
-  const [phase, setPhase] = useState(0);
-  const [cursor, setCursor] = useState<number | null>(4);
-  const period = periodNs(mhz);
-  const samples = useMemo(() => clockSamples(Math.max(4, Math.round(period)), duty, phase, 40), [period, duty, phase]);
-  const rises = edges(samples, "rise");
-  const falls = edges(samples, "fall");
-  return (
-    <Card title="Clock generator">
-      <label className="field">Frequency {mhz} MHz<input aria-label="Frequency" type="range" min={1} max={100} value={mhz} onChange={(event) => setMhz(Number(event.target.value))} /></label>
-      <label className="field">Duty {duty}%<input aria-label="Duty cycle" type="range" min={10} max={90} value={duty} onChange={(event) => setDuty(Number(event.target.value))} /></label>
-      <label className="field">Phase {phase}°<input aria-label="Phase" type="range" min={0} max={360} value={phase} onChange={(event) => setPhase(Number(event.target.value))} /></label>
-      <p className="mono">T = {period.toFixed(2)} ns · f = {frequencyMHz(period).toFixed(2)} MHz · duty {duty}%</p>
-      <Waveform traces={[{ id: "clk", name: "CLK", values: samples, active: true }]} cursor={cursor} onCursor={setCursor} />
-      {edgesOnly ? <p>Rising edges at samples {rises.join(", ") || "—"}. Falling edges at {falls.join(", ") || "—"}. {cursor !== null && rises.includes(cursor) ? "Cursor is on a rising edge." : "Move the cursor onto a transition."}</p> : null}
-    </Card>
-  );
-}
-
-function WindowLab({ kind }: { kind: "setup" | "hold" }) {
-  const { prefs } = usePrefs();
-  const edge = 20;
-  const limit = kind === "setup" ? 5 : 4;
-  const [change, setChange] = useState(kind === "setup" ? 12 : 22);
-  const violated = kind === "setup" ? setupViolated(change, edge, limit) : holdViolated(change, edge, limit);
-  const captured = capture(1, change, edge, kind === "setup" ? limit : 5, kind === "hold" ? limit : 3);
-  const clk = Array.from({ length: 40 }, (_, index) => (index % 20 < 10 ? 1 : 0));
-  const data = Array.from({ length: 40 }, (_, index) => (index < change ? 0 : 1));
-  return (
-    <Card title={kind === "setup" ? "Setup time" : "Hold time"}>
-      <label className="field">D changes at {change} ns<input aria-label="Data transition" type="range" min={0} max={39} value={change} onChange={(event) => setChange(Number(event.target.value))} /></label>
-      <p>Active edge at {edge} ns. {kind === "setup" ? `Setup window is ${edge - limit}–${edge} ns.` : `Hold window is ${edge}–${edge + limit} ns.`}</p>
-      <Waveform traces={[{ id: "clk", name: "CLK", values: clk }, { id: "d", name: "D", values: data, active: true }, { id: "q", name: "Q", values: Array.from({ length: 40 }, (_, index) => index < edge ? 0 : captured.value) }]} cursor={change} />
-      <p className={violated ? "expr" : "muted"}>{violated ? "Violation. Q is uncertain." : "Safe. Q captures 1."}</p>
-      {prefs.explain ? <ExplainBar what={captured.reason} why={kind === "setup" ? "The input must already be still when the edge arrives." : "The input must stay still just after the edge."} notice="The shaded window is the requirement. The slider moves only D." /> : null}
-    </Card>
-  );
-}
-
-function DelayLab() {
-  const [delay, setDelay] = useState(8);
-  const [inputAt, setInputAt] = useState(6);
-  const moved = delayedTransition(inputAt, delay);
-  const a = Array.from({ length: 40 }, (_, index) => (index >= inputAt ? 1 : 0));
-  const y = Array.from({ length: 40 }, (_, index) => (index >= moved.outputTime ? 1 : 0));
-  return (
-    <Card title="Propagation delay">
-      <label className="field">Gate delay {delay} ns<input aria-label="Delay" type="range" min={1} max={15} value={delay} onChange={(event) => setDelay(Number(event.target.value))} /></label>
-      <label className="field">Input changes at {inputAt} ns<input aria-label="Input time" type="range" min={0} max={24} value={inputAt} onChange={(event) => setInputAt(Number(event.target.value))} /></label>
-      <Waveform traces={[{ id: "a", name: "A", values: a }, { id: "y", name: "Y", values: y, active: true }]} />
-      <p>{moved.note} Output time {moved.outputTime} ns.</p>
-    </Card>
-  );
-}
-
-function MetaLab() {
-  const [change, setChange] = useState(19);
-  const violated = setupViolated(change, 20, 3) || holdViolated(change, 20, 2);
-  const note = metastableNote(violated);
-  return (
-    <Card title="Metastability, as a concept">
-      <label className="field">D transition {change}<input aria-label="Transition near the edge" type="range" min={10} max={28} value={change} onChange={(event) => setChange(Number(event.target.value))} /></label>
-      <ExplainBar what={note.what} why={note.why} notice={note.notice} />
-    </Card>
-  );
+function TimingPlot({tab,period,duty,phase,offset,compare,setDuty,change,setChange,requirement,cq,total,edgeView,rise,fall,selectedEdge,zoom,tick}:{tab:string;period:number;duty:number;phase:number;offset:number;compare:boolean;setDuty:(v:number)=>void;change:number;setChange:(v:number)=>void;requirement:number;cq:number;total:number;edgeView:string;rise:number;fall:number;selectedEdge:number;zoom:number;tick:number}){
+ const clock=tab==="clock",edge=tab==="edge",delay=tab==="delay",hold=tab==="hold";const start=hold?20:0,end=clock?320*zoom/50:hold?20+60*zoom/10:delay?52*zoom/5:110*zoom/10;const x=(t:number)=>75+(t-start)/(end-start)*860;const rows=clock?(compare?2:1):edge?2:delay?4:3;const top=clock?110:50,bottom=550;const rowHeight=(bottom-top)/rows;
+ const path=(fn:(t:number)=>number,row:number,smooth=false)=>{const high=top+row*rowHeight+35,low=top+(row+1)*rowHeight-(clock?70:25);let p="";for(let i=0;i<=1200;i++){const t=start+i/1200*(end-start);const y=low-fn(t)*(low-high);p+=`${i?"L":"M"}${x(t).toFixed(2)},${y.toFixed(2)} `}return <>{clock&&<path d={`${p}L${x(end)},${low}L${x(start)},${low}Z`} fill="currentColor" stroke="none" opacity=".08"/>}<path d={p} fill="none" strokeWidth={smooth?2.8:3} strokeLinejoin="round"/></>};
+ const square=(t:number,p:number,d=50,ph=0)=>((t+ph/360*p)%p+p)%p<p*d/100?1:0;
+ const color=["#32bbff",hold?"#24deed":"#b975ff",hold?"#b975ff":"#20dcf3","#b975ff"];
+ const labels=clock?["CLK",`CLK (φ + ${offset}°)`]:edge?["CLK_A","DATA"]:delay?["CLK","D","Q","OUT"]:["CLK","D","Q"];
+ return <svg className="tm-plot" viewBox="0 0 960 600" role="img" aria-label={`${tab} interactive timing waveforms`} onPointerDown={e=>{if(edge||delay)return;const rect=e.currentTarget.getBoundingClientRect();if(clock){setDuty(Math.max(5,Math.min(95,Math.round((start+((e.clientX-rect.left)/rect.width*960-75)/860*(end-start)-period*.5)/period*100))));e.currentTarget.setPointerCapture(e.pointerId);return;}setChange(Math.max(start,Math.min(end,Math.round(start+((e.clientX-rect.left)/rect.width*960-75)/860*(end-start)))));e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{if(e.buttons!==1||edge||delay)return;const rect=e.currentTarget.getBoundingClientRect();if(clock){setDuty(Math.max(5,Math.min(95,Math.round((start+((e.clientX-rect.left)/rect.width*960-75)/860*(end-start)-period*.5)/period*100))));return;}setChange(Math.max(start,Math.min(end,Math.round(start+((e.clientX-rect.left)/rect.width*960-75)/860*(end-start)))))}}>
+ <defs><pattern id="tm-grid-small" width="27" height="30" patternUnits="userSpaceOnUse"><path d="M27 0H0V30" stroke="#244055" fill="none" strokeWidth=".6" strokeDasharray="3 3"/></pattern><pattern id="tm-grid" width="135" height="120" patternUnits="userSpaceOnUse"><rect width="135" height="120" fill="url(#tm-grid-small)"/><path d="M135 0H0V120" stroke="#385066" strokeWidth="1" fill="none"/></pattern><filter id="tm-glow"><feGaussianBlur stdDeviation="2"/></filter></defs><rect x="75" y="30" width="860" height="520" fill="url(#tm-grid)" stroke="#385066"/>
+ {!clock&&!edge&&!delay&&<><rect x={x(hold?50:50-requirement)} y="40" width={requirement/(end-start)*860} height="510" fill={hold?"#1ce5ff":"#ffd23f"} opacity=".17"/><path d={`M${x(50)} 30V550`} stroke="white" strokeWidth="2" strokeDasharray="8 5"/><path d={`M${x(hold?50+requirement:50-requirement)} 40V550`} stroke={hold?"#20e1f6":"#ffd23f"} strokeDasharray="4 4"/><g fill={hold?"#8ff5ff":"#ffdc55"} fontSize="15" textAnchor="middle"><text x={x(hold?50+requirement/2:50-requirement/2)} y={hold?255:65}>{hold?"Hold":"Setup"} window</text><text x={x(hold?50+requirement/2:50-requirement/2)} y={hold?275:85}>{hold?50:50-requirement} – {hold?50+requirement:50} ns</text></g><g transform={`translate(${x(50)-32},18)`}><rect width="64" height="29" rx="4" fill="#0865ff"/><text x="32" y="20" fill="white" textAnchor="middle">50 ns</text></g></>}
+ {Array.from({length:rows},(_,r)=>{let fn:(t:number)=>number;if(clock)fn=t=>square(t+period*.4,period,duty,phase-(r?offset:0));else if(edge)fn=t=>{const v=((t+(r?0:1))%24+24)%24;const rt=rise/2,ft=fall/2;return Math.max(0,Math.min(1,v<12?(v/rt):(1-(v-12)/ft)))*.8+.1};else if(delay)fn=r===0?t=>square(t-5,15):r===1?t=>t>=5&&t<21?1:0:r===2?t=>t>=20+cq?1:0:t=>t<20+total?1:0;else fn=r===0?t=>square(t-50,20):r===1?t=>hold?(t<change?1:0):(t>=change?1:0):t=>t>=50+(hold?cq:4)?((hold?change-50-requirement:50-change-requirement)>=0?1:.5):0;return <g key={r} color={r?"#b975ff":"#00e4ff"} stroke={clock?(r?"#bc6bff":"#00e4ff"):color[r]}><g opacity=".28" filter="url(#tm-glow)">{path(fn,r,edge)}</g>{path(fn,r,edge)}<text x="14" y={top+r*rowHeight+rowHeight/2} stroke="none" fill={clock?(r?"#c58bff":"#9ef4ff"):color[r]} fontSize="18" fontWeight="600">{clock?`CH${r+1}`:labels[r]}</text>{clock&&<text x="12" y={top+r*rowHeight+rowHeight/2+25} stroke="none" fill="#c3d5ec" fontSize="12">{labels[r]}</text>}{!clock&&<><text x="43" y={top+r*rowHeight+40} stroke="none" fill="#bed1e5" fontSize="13">{edge?"5.0":hold?"1":"5.0 V"}</text><text x="43" y={top+(r+1)*rowHeight-20} stroke="none" fill="#bed1e5" fontSize="13">{hold||edge?"0":"0.0 V"}</text></>}</g>})}
+ {clock&&<g fontSize="15" fill="#cb7bf2" stroke="#cb7bf2"><path d={`M${x(period/2)} 87H${x(period*1.5)}M${x(period/2)} 81V95M${x(period*1.5)} 81V95`}/><text stroke="none" x={x(period)} y="76" textAnchor="middle">T = {period.toFixed(0)} ns</text><text stroke="none" fill="#00e4ff" x={x(period*.75)} y="115" textAnchor="middle">Tₕ = {(period*duty/100).toFixed(0)} ns</text></g>}
+ {clock&&<g><path d={`M${x(period*1.1)} 116V300`} stroke="#8cb7db" strokeDasharray="5 4"/><circle cx={x(period*1.1)} cy="220" r="9" fill="#0874ff" stroke="white" strokeWidth="2"/><circle cx={x(period*1.1)} cy="220" r="3" fill="white"/><rect x={x(period*1.1)+13} y="247" width="96" height="43" rx="5" fill="#101f31" stroke="#627d9c"/><text x={x(period*1.1)+22} y="264" fill="#d2e8ff" fontSize="12">Drag to adjust</text><text x={x(period*1.1)+22} y="281" fill="#d2e8ff" fontSize="12">duty cycle</text><g fill="#bdd0ea" fontSize="12">{[0,1].filter(r=>r===0||compare).map(r=><g key={r}><text x="35" y={145+r*220}>1.0 V</text><text x="35" y={225+r*220}>0.0 V</text><text x="30" y={290+r*220}>−1.0 V</text></g>)}</g></g>}{edge&&<><path d={`M${x(12+selectedEdge*20)} 30V550`} stroke="#4be7ff" strokeDasharray="4 3"/><rect x="420" y="165" width="255" height="210" rx="6" fill="#091829" stroke="#53e8ff"/><path d="M438 325C480 325 480 325 500 295S540 190 570 190H586" fill="none" stroke="#2ce7ff" strokeWidth="3"/><g stroke="#d9e7ff" strokeDasharray="5 3"><path d="M425 200H583M425 255H583M425 315H583M496 195V330M530 195V330"/></g><g fill="#e7efff" fontSize="14"><text x="586" y="205">90% (4.5 V)</text><text x="586" y="260">50% (2.5 V)</text><text x="586" y="320">10% (0.5 V)</text><text x="477" y="355">tᵣ = {rise}.0 ns</text></g>{Array.from({length:9},(_,i)=><text key={i} x={x(8+i*10)} y={i%2?175:155} fill={i%2?"#bb75ff":"#2ce7ff"} fontSize="29">{edgeView==="Both"||(i%2?edgeView==="Falling":edgeView==="Rising")?(i%2?"↓":"↑"):""}</text>)}</>}
+ {!clock&&!edge&&!delay&&(hold?change-50-requirement:50-change-requirement)<0&&<text x={x(70)} y="485" fill="#ffb966" fontSize="22">Q = X (uncertain)</text>}{!clock&&!edge&&!delay&&<><circle cx={x(change)} cy={hold?top+rowHeight+35:top+2*rowHeight-25} r="8" fill="#b571ef" stroke="white"/><rect x={x(change)-27} y={hold?80:top+rowHeight} width="56" height="28" rx="4" fill="#7549bd"/><text x={x(change)} y={hold?99:top+rowHeight+19} fill="white" textAnchor="middle">{change} ns</text></>}
+ {delay&&<><path d={`M${x(20)} 30V550M${x(20+total)} 30V550`} stroke="#3fdbef" strokeDasharray="8 5"/><g fill="#dceaff" fontSize="14"><text x={x(20)} y="57" textAnchor="middle">Rising edge (20 ns)</text><text x={x(20+cq/2)} y="360" textAnchor="middle">tCQ = {cq} ns</text><text x={x(20+total/2)} y="460" textAnchor="middle">Gate delay = {total-cq} ns</text></g></>}
+ {tick>0&&!clock&&<path d={`M${x(start+(tick*2)%(end-start))} 30V550`} stroke="#f4f8ff" opacity=".8" strokeDasharray="3 5"/>}<path d="M75 550H935" stroke="#91aac7"/>{Array.from({length:clock?7:hold?7:12},(_,i)=>{const t=clock?i*50*zoom/50:hold?20+i*10:delay?i*5:i*10;return t>end?null:<g key={i} fill="#c3d6ee" fontSize="13"><path d={`M${x(t)} 550v8`} stroke="#91aac7"/><text x={x(t)} y="577" textAnchor="middle">{t}{clock?" ns":""}</text></g>})}{!clock&&<text x="500" y="599" fill="#bfd2eb" textAnchor="middle" fontSize="15">Time (ns)</text>}</svg>
 }

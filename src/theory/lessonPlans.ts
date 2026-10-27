@@ -6,6 +6,7 @@ import { VLSI_TOPICS } from "./vlsiTopics";
 import { SYSTEM_TOPICS } from "./systemTopics";
 import { ADVANCED_TOPICS } from "./advancedTopics";
 import deviceExamples from "./deviceExamples.json";
+import microcontrollerLearning from "../data/microcontrollerLearning.json";
 import type { LessonDiagram, LessonTopic, TheoryArticle } from "./types";
 
 export const CHAPTER_FLOWS:Record<string,string>={
@@ -115,6 +116,14 @@ const deviceScenarios:DeviceSnapshot[]=deviceExamples;
 const snapshots=new Map<string,DeviceSnapshot>(deviceScenarios.map(d=>[d.route,d]));
 function metricText(metrics:Array<{label:string;value:string|number;unit:string}>){return metrics.slice(0,4).map(m=>`${m.label} = ${m.value}${m.unit?` ${m.unit}`:""}`).join("; ");}
 export function lessonPlan(a:TheoryArticle):LessonPlan {
+  const mcu = microcontrollerLearning.find(lesson => lesson.route === a.route);
+  if (mcu) return {
+    id: a.id, kind: "topic",
+    concepts: [["Mechanism", mcu.expected], ["Model equation", mcu.equation], ["Scope and assumptions", mcu.limitation]],
+    diagram: { title: a.title + ": simulated state and signal path", nodes: mcu.flow.map((label, index) => ({ label, detail: mcu.guide[index] ?? mcu.expected })), note: "The worked values below come from the same executable simulator used by this lab. Read its model limits before interpreting the measurements." },
+    examples: [{ title: "Reproduce the " + a.title + " reference experiment", steps: mcu.example }],
+    questions: mcu.questions, experiment: mcu.guide,
+  };
   const device=snapshots.get(a.route);
   if(device){
     const inputs=device.inputs.map(c=>`${c.label}=${c.value} ${c.unit}`.trim()).join(", ");

@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -123,10 +124,12 @@ export function TranslatePanel({ explain }: { explain: boolean }) {
   const page = calculatePageSize(offsetBits);
   const geometry = tlbGeometry(4, "full");
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!pathRef.current || reducedMotion()) return;
     gsap.fromTo(pathRef.current.querySelectorAll(".on"), { y: 4, opacity: 0.6 }, { y: 0, opacity: 1, duration: 0.28, stagger: 0.06 });
-  }, { dependencies: [stage, result?.status], scope: pathRef });
+  }, { dependencies: [stage, result?.status, motionEnabled], scope: pathRef , revertOnUpdate: true});
 
   useEffect(() => {
     if (running && stage >= 5) setRunning(false);
@@ -443,10 +446,12 @@ export function TlbPanel({ explain }: { explain: boolean }) {
   const parsed = parseHexAddress(text, 32);
   const flowRef = useRef<HTMLDivElement>(null);
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (!flowRef.current || reducedMotion() || !result) return;
     gsap.fromTo(flowRef.current.querySelectorAll(".hot"), { scale: 0.96 }, { scale: 1, duration: 0.3 });
-  }, { dependencies: [result?.status, result?.note], scope: flowRef });
+  }, { dependencies: [result?.status, result?.note, motionEnabled], scope: flowRef , revertOnUpdate: true});
 
   function applyGeometry(nextEntries: number, nextAssoc: TlbAssoc) {
     setEntries(nextEntries);

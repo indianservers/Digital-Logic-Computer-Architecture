@@ -3,7 +3,8 @@ import { MASTER_CONCEPTS } from "../data/master";
 import { ARCH_STUDIOS } from "../data/architecture";
 import { ACA_LABS, acaRoute } from "../data/acaLabs";
 import { VLSI_LABS, vlsiRoute } from "../data/vlsiLabs";
-import { LAB_META, labPath } from "../studios/microcontroller/labs/registry";
+import { CORE_LAB_ROADMAP, labPath } from "../studios/microcontroller/labs/registry";
+import microcontrollerLearning from "../data/microcontrollerLearning.json";
 import { PROJECT_LABS } from "../studios/microcontroller/projectData";
 import { DEVICES, devicePath } from "../studios/how-devices-work/catalogue";
 import { LABS as DEVICE_LABS } from "../studios/how-devices-work/labs/data";
@@ -81,7 +82,15 @@ for (const lab of VLSI_LABS.filter(l=>l.implemented)) {
   article.questions=[...(PREDICTS[lab.slug]?[PREDICTS[lab.slug]!]:[]),...(QUIZZES[lab.slug]??[])].map(q=>({question:q.prompt,answer:`${q.options[q.answer]}. ${q.explain}`}));
   article.details=[{title:"Understand the model before interpreting a result",body:MODEL_LIMITS.join(" ")}];
 }
-for (const lab of LAB_META) add("microcontroller","Microcontrollers & Embedded Systems",lab.title,labPath(lab),`Study ${lab.title.toLowerCase()} in the context of ${lab.section.toLowerCase()}. Read the underlying mechanism, predict the result, and compare it with the lab’s state and trace.`,[lab.section]);
+for (const lab of CORE_LAB_ROADMAP) {
+  const lesson = microcontrollerLearning.find(item => item.number === lab.n);
+  add("microcontroller", "Microcontrollers & Embedded Systems", lab.title, labPath(lab), lesson?.objective ?? `Study ${lab.title.toLowerCase()} in the context of ${lab.section.toLowerCase()}. Read the underlying mechanism, predict the result, and compare it with the lab’s state and trace.`, [lab.section], lesson?.guide, lesson ? [lesson.expected, lesson.equation] : undefined);
+  if (lesson) {
+    const article = articles.get(labPath(lab))!;
+    article.details = [{ title: "Model equation", body: lesson.equation }, { title: "Model limits", body: lesson.limitation }];
+    article.questions = lesson.questions;
+  }
+}
 for (const lab of PROJECT_LABS) add("microcontroller","Microcontrollers & Embedded Systems",lab.title,`/studios/microcontroller/project/${lab.slug}`,lab.objective,lab.controls.map(c=>c.label),lab.notes,lab.pins.map(([pin,role])=>`${pin}: ${role}`));
 for (const device of DEVICES) {
   const basic=DEVICE_LABS.find(l=>l.device.id===device.id);

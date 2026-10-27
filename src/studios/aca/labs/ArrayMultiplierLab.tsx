@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
@@ -78,11 +79,13 @@ export function ArrayMultiplierLab() {
     setPan({ x: 4, y: 4 });
   }, [aWidth, bWidth, viewMode, tab]);
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.fromTo("[data-am-new='1']", { opacity: 0.25 }, { opacity: 1, duration: 0.4, ease: "power1.out" });
     gsap.fromTo("[data-am-carry='1']", { strokeDashoffset: 16 }, { strokeDashoffset: 0, duration: 0.5, ease: "power1.out" });
-  }, { scope: boardRef, dependencies: [view?.cycle, tab, viewMode], revertOnUpdate: true });
+  }, { scope: boardRef, dependencies: [view?.cycle, tab, viewMode, motionEnabled], revertOnUpdate: true });
 
   function commitWidth(which: "a" | "b", next: (typeof MULTIPLIER_WIDTHS)[number]) {
     const current = which === "a" ? aValue : bValue;

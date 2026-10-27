@@ -44,6 +44,12 @@ export function transferValue(drivers: BusDriver[]): ReturnType<typeof driveBus>
   return driveBus(drivers);
 }
 
+export function arbitratedTransfer(mode: "daisy" | "central" | "distributed", masters: BusMaster[], lastGrant: number) {
+  const grant = grantBus(mode, masters, lastGrant);
+  const bus = transferValue(masters.map((master, index) => ({ name: master.name, enabled: grant?.index === index, value: (index + 1) * 0x11 })));
+  return { grant, bus };
+}
+
 export function syncEdge(high: boolean): { moved: boolean; explain: string } {
   return high
     ? { moved: true, explain: "The synchronous bus moves data on this clock edge." }

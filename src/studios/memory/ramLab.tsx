@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -75,11 +76,13 @@ export function RamLab() {
   const region = regionFor(address);
   const activeRegion = MAP_REGIONS.find((item) => item.id === regionId) ?? null;
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     const node = scope.current?.querySelector<HTMLElement>(`[data-flow="${steps[stage]?.part ?? "mar"}"]`);
     if (!node) return;
     gsap.fromTo(node, { scale: reducedMotion() ? 1 : 0.98 }, { scale: 1, duration: reducedMotion() ? 0 : 0.35, ease: "power2.out" });
-  }, { scope, dependencies: [stage, op], revertOnUpdate: true });
+  }, { scope, dependencies: [stage, op, motionEnabled], revertOnUpdate: true });
 
   useEffect(() => {
     if (!playing || stage < 0 || stage >= steps.length - 1) return;

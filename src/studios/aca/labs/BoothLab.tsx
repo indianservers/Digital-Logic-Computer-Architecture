@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
@@ -63,10 +64,12 @@ export function BoothLab() {
     setHoverCycle(null);
   }, [width, mValue, qValue, valid]);
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.fromTo("[data-booth-active='1']", { opacity: 0.45 }, { opacity: 1, duration: 0.35, ease: "power1.out" });
-  }, { scope: boardRef, dependencies: [view?.cycle, view?.step?.action], revertOnUpdate: true });
+  }, { scope: boardRef, dependencies: [view?.cycle, view?.step?.action, motionEnabled], revertOnUpdate: true });
 
   function commitWidth(next: (typeof BOOTH_WIDTHS)[number]) {
     if (valid) {

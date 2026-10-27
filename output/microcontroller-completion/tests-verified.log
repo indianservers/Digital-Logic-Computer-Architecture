@@ -1,0 +1,302 @@
+
+> digital-electronics-computing-lab@1.0.0 test
+> vitest run --maxWorkers=2 --testTimeout=20000
+
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/microcontroller/labs/core/mcu.test.ts (20 tests) 16778ms
+   ✓ MCU model > runs timer update interrupts at PSC/ARR rate  1053ms
+   ✓ MCU model > supports AVR register programming and timer ISR  672ms
+   ✓ MCU model > delivers every SysTick interrupt, including rates above 1 kHz  13234ms
+   ✓ MCU model > fires a 5 kHz TIM2 update interrupt at the exact rate  549ms
+ ✓ src/studios/microcontroller/labs/g3/stepper.test.ts (10 tests) 10268ms
+   ✓ lab 24 stepper > full-steps D8 - D11 at 12 RPM (409.6 steps/s) and the rotor keeps up  449ms
+   ✓ lab 24 stepper > finishes one revolution (2048 steps) in about 5 s, then holds  2387ms
+   ✓ lab 24 stepper > reverses when dir = -1 and half-steps 4096 per turn  2307ms
+   ✓ lab 24 stepper > recovers after a stall: the position error stays but the status clears  2442ms
+   ✓ lab 24 stepper > a wrong coil order or swapped wires only make it vibrate  454ms
+   ✓ lab 24 stepper > a 200-step motor turns 10.24x further for the same 2048-step move  1665ms
+ ✓ src/studios/microcontroller/labs/g4/input.test.ts (7 tests) 6820ms
+   ✓ lab 36 input models > scans at 1 kHz and reports one clean DOWN/UP per press with about 20 ms latency  798ms
+   ✓ lab 36 input models > without debounce one bouncy press is typed several times  684ms
+   ✓ lab 36 input models > no settle delay: the slow column rise reports the key below as well  748ms
+   ✓ lab 36 input models > floating columns and a row left low create phantom keys  1915ms
+   ✓ lab 36 input models > three keys on a rectangle ghost a fourth unless every key has a diode  411ms
+   ✓ lab 36 input models > decodes encoder detents and the push button; slow scans and swapped pins go wrong  2214ms
+ ✓ src/studios/microcontroller/labs/g3/uart.test.ts (10 tests) 6203ms
+   ✓ lab 29 UART > prints the banner, answers help / temp and drives the LED from typed commands  2293ms
+   ✓ lab 29 UART > a baud mismatch garbles the text with framing errors and commands fail  308ms
+   ✓ lab 29 UART > a parity mismatch shows up as framing errors on every frame whose parity bit is 0  415ms
+   ✓ lab 29 UART > straight-through wiring delivers nothing in either direction  619ms
+   ✓ lab 29 UART > an open RX wire keeps the output working but the ESP32 never hears the commands  610ms
+   ✓ lab 29 UART > EMI glitches corrupt a few characters deterministically  599ms
+   ✓ lab 29 UART > readStringUntil waits for the newline instead of returning a partial command  1022ms
+ ✓ src/studios/microcontroller/labs/g2/exti.test.ts (10 tests) 4529ms
+   ✓ lab 17 external interrupts > a bouncy press raises several EXTI0 IRQs but the ISR accepts one  462ms
+   ✓ lab 17 external interrupts > a floating input produces phantom interrupts; a noisy contact is filtered  3013ms
+ ✓ src/studios/microcontroller/labs/g4/baremetal.test.ts (4 tests) 3105ms
+   ✓ lab 38 bare-metal registers > reproduces each bug  2597ms
+ ✓ src/studios/how-devices-work/course.test.ts (280 tests) 42517ms
+   ✓ 5: eight tabs and no simulator mounted on initial Overview  440ms
+   ✓ 6: eight tabs and no simulator mounted on initial Overview  494ms
+   ✓ 7: eight tabs and no simulator mounted on initial Overview  409ms
+   ✓ 8: eight tabs and no simulator mounted on initial Overview  326ms
+   ✓ 9: eight tabs and no simulator mounted on initial Overview  382ms
+   ✓ 10: eight tabs and no simulator mounted on initial Overview  429ms
+   ✓ 11: eight tabs and no simulator mounted on initial Overview  319ms
+   ✓ 14: eight tabs and no simulator mounted on initial Overview  377ms
+   ✓ 15: eight tabs and no simulator mounted on initial Overview  466ms
+   ✓ 17: eight tabs and no simulator mounted on initial Overview  338ms
+   ✓ 19: eight tabs and no simulator mounted on initial Overview  643ms
+   ✓ 20: eight tabs and no simulator mounted on initial Overview  363ms
+   ✓ 21: eight tabs and no simulator mounted on initial Overview  509ms
+   ✓ 22: eight tabs and no simulator mounted on initial Overview  380ms
+   ✓ 23: eight tabs and no simulator mounted on initial Overview  527ms
+   ✓ 24: eight tabs and no simulator mounted on initial Overview  448ms
+   ✓ 25: eight tabs and no simulator mounted on initial Overview  405ms
+   ✓ 26: eight tabs and no simulator mounted on initial Overview  491ms
+   ✓ 27: eight tabs and no simulator mounted on initial Overview  447ms
+   ✓ 28: eight tabs and no simulator mounted on initial Overview  456ms
+   ✓ 29: eight tabs and no simulator mounted on initial Overview  495ms
+   ✓ 30: eight tabs and no simulator mounted on initial Overview  352ms
+   ✓ 33: eight tabs and no simulator mounted on initial Overview  450ms
+   ✓ 34: eight tabs and no simulator mounted on initial Overview  383ms
+   ✓ 35: eight tabs and no simulator mounted on initial Overview  360ms
+   ✓ 37: eight tabs and no simulator mounted on initial Overview  378ms
+   ✓ 38: eight tabs and no simulator mounted on initial Overview  350ms
+   ✓ 40: eight tabs and no simulator mounted on initial Overview  361ms
+   ✓ 41: eight tabs and no simulator mounted on initial Overview  396ms
+   ✓ 42: eight tabs and no simulator mounted on initial Overview  367ms
+   ✓ 43: eight tabs and no simulator mounted on initial Overview  423ms
+   ✓ 45: eight tabs and no simulator mounted on initial Overview  393ms
+   ✓ 46: eight tabs and no simulator mounted on initial Overview  374ms
+   ✓ 47: eight tabs and no simulator mounted on initial Overview  364ms
+   ✓ 48: eight tabs and no simulator mounted on initial Overview  333ms
+   ✓ 49: eight tabs and no simulator mounted on initial Overview  391ms
+   ✓ 53: eight tabs and no simulator mounted on initial Overview  302ms
+   ✓ 62: eight tabs and no simulator mounted on initial Overview  483ms
+   ✓ 68: eight tabs and no simulator mounted on initial Overview  353ms
+   ✓ 74: eight tabs and no simulator mounted on initial Overview  555ms
+   ✓ 75: eight tabs and no simulator mounted on initial Overview  340ms
+   ✓ 76: eight tabs and no simulator mounted on initial Overview  375ms
+   ✓ 79: eight tabs and no simulator mounted on initial Overview  406ms
+   ✓ 80: eight tabs and no simulator mounted on initial Overview  345ms
+   ✓ 82: eight tabs and no simulator mounted on initial Overview  943ms
+   ✓ 86: eight tabs and no simulator mounted on initial Overview  404ms
+   ✓ 88: eight tabs and no simulator mounted on initial Overview  338ms
+   ✓ 93: eight tabs and no simulator mounted on initial Overview  378ms
+   ✓ 94: eight tabs and no simulator mounted on initial Overview  350ms
+   ✓ 103: eight tabs and no simulator mounted on initial Overview  374ms
+   ✓ 108: eight tabs and no simulator mounted on initial Overview  350ms
+   ✓ 111: eight tabs and no simulator mounted on initial Overview  318ms
+   ✓ 114: eight tabs and no simulator mounted on initial Overview  398ms
+   ✓ 119: eight tabs and no simulator mounted on initial Overview  306ms
+   ✓ 121: eight tabs and no simulator mounted on initial Overview  319ms
+   ✓ 131: eight tabs and no simulator mounted on initial Overview  344ms
+   ✓ 137: eight tabs and no simulator mounted on initial Overview  501ms
+   ✓ 139: eight tabs and no simulator mounted on initial Overview  398ms
+ ✓ src/studios/microcontroller/labs/advanced/routes.test.ts (22 tests) 544ms
+ ✓ src/studios/how-devices-work/anatomy-inventory.test.ts (3 tests) 3591ms
+   ✓ Complete educational anatomy coverage > renders original and supporting cards for all 140 pages with reusable identities  3420ms
+ ✓ src/studios/microcontroller/labs/g2/timer.test.ts (6 tests) 2823ms
+   ✓ lab 19 timers and counters > PSC 7199 / ARR 4999 at 72 MHz overflows every 500 ms  337ms
+   ✓ lab 19 timers and counters > off-by-one PSC/ARR drifts: 7201 x 5001 ticks is 500.2 ms  329ms
+   ✓ lab 19 timers and counters > faults and buggy variants: no CEN, no clock, halved kernel clock, polling  1520ms
+ ✓ src/studios/microcontroller/labs/g1/clock.test.ts (5 tests) 1514ms
+   ✓ lab 10 clock system > brings the tree to 72 MHz and the HAL reports it  1351ms
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 4120ms
+ ✓ src/studios/microcontroller/labs/g2/irq.test.ts (8 tests) 2082ms
+   ✓ lab 16 interrupts > an uncleared UIF re-enters the ISR and starves main  1283ms
+ ✓ src/studios/microcontroller/labs/advanced/families.test.ts (16 tests) 1465ms
+   ✓ MCU family firmware simulations > 58–59: observes register-backed AVR and STM32 timer interrupts  475ms
+   ✓ MCU family firmware simulations > edited AVR register firmware changes the interrupt rate  699ms
+ ✓ src/studios/how-devices-work/part-images.test.ts (3 tests) 2125ms
+   ✓ Reusable anatomy images > provides a captioned local image for every registered part usage  367ms
+   ✓ Reusable anatomy images > renders an image for every original, supporting and educational build item on all 140 pages  1742ms
+ ✓ src/engines/builder/contest.audit.test.ts (62 tests) 979ms
+ ✓ src/engines/aca/phase10.test.ts (11 tests) 6118ms
+   ✓ performance counters > renders every advanced-architecture lab route  6101ms
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 5186ms
+   ✓ Phase G robotics and networking > 115: renders correct local hardware and native controls  571ms
+   ✓ Phase G robotics and networking > 116: renders correct local hardware and native controls  460ms
+   ✓ Phase G robotics and networking > 117: renders correct local hardware and native controls  318ms
+   ✓ Phase G robotics and networking > 118: renders correct local hardware and native controls  460ms
+   ✓ Phase G robotics and networking > 119: renders correct local hardware and native controls  402ms
+   ✓ Phase G robotics and networking > 121: renders correct local hardware and native controls  383ms
+   ✓ Phase G robotics and networking > 122: renders correct local hardware and native controls  859ms
+   ✓ Phase G robotics and networking > 123: renders correct local hardware and native controls  371ms
+   ✓ Phase G robotics and networking > 124: renders correct local hardware and native controls  471ms
+ ✓ src/engines/builder/contest.test.ts (32 tests) 3151ms
+   ✓ Contest accuracy and reproducibility > passes generated challenges against actual wired execution  899ms
+   ✓ Contest accuracy and reproducibility > compares taken, untaken and backwards branches with an independent PC model  349ms
+   ✓ Contest accuracy and reproducibility > verifies submission hashes and independently reproduces all claimed results  1133ms
+   ✓ Contest accuracy and reproducibility > runs all executable template samples with documented assertions  418ms
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 2204ms
+   ✓ household labs 135–140 > 135: renders own panels, controls and hardware  325ms
+   ✓ household labs 135–140 > 136: renders own panels, controls and hardware  317ms
+stdout | src/theory/lessonCoverage.test.ts > textbook editorial coverage > gives every lesson a diagram, worked solution, and explained questions
+{"articles":757,"mechanismTopics":583,"deviceScenarios":140,"foundational":34}
+
+ ✓ src/theory/lessonCoverage.test.ts (3 tests) 591ms
+   ✓ textbook editorial coverage > gives every lesson a diagram, worked solution, and explained questions  583ms
+ ✓ src/studios/sandbox/SandboxStudio.test.ts (10 tests) 928ms
+ ✓ src/studios/how-devices-work/advanced/systems.test.ts (42 tests) 2921ms
+   ✓ Phase C: recording, space, radar and imaging > 75: renders device-specific art, architecture and controls  394ms
+   ✓ Phase C: recording, space, radar and imaging > 82: renders device-specific art, architecture and controls  569ms
+ ✓ src/studios/how-devices-work/advanced/control.test.ts (43 tests) 773ms
+ ✓ src/studios/how-devices-work/advanced/marine.test.ts (44 tests) 758ms
+ ✓ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests) 1546ms
+   ✓ consumer learning models 125–134 > 132: renders its own layout and artwork  540ms
+ ✓ src/studios/how-devices-work/advanced/security.test.ts (42 tests) 1292ms
+   ✓ Phase D: optical, RF, identification and navigation > 86: renders its source hardware, functional diagram and inputs  329ms
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 709ms
+ ✓ src/seo/pageData.test.ts (3 tests) 1172ms
+   ✓ public learning content and AI-search metadata > provides model-based visible FAQ data for every registered lab and theory page  1166ms
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 2065ms
+   ✓ Phase B: device-specific aviation pages > 69: renders its hardware, architecture, controls and quiz  372ms
+ ✓ src/studios/microcontroller/labs/g4/i2c.test.ts (15 tests) 1282ms
+   ✓ lab 31 I2C > does not mistake the tail of a trimmed scan for a new, empty scan  664ms
+ ✓ src/engines/builder/engineering.test.ts (36 tests) 877ms
+   ✓ Engineering CPU projects > each executable template is structurally valid and runs its sample  308ms
+ ✓ src/theory/faqs.test.ts (3 tests) 403ms
+   ✓ expanded relevant lab FAQs > provides at least ten substantive unique answers for every lab  389ms
+ ✓ src/engines/builder/construction.test.ts (20 tests) 387ms
+ ✓ src/theory/deviceExamples.test.ts (1 test) 564ms
+   ✓ solved device scenarios > matches the actual engine for every baseline and changed-control example  562ms
+ ✓ src/studios/microcontroller/labs/g4/sensors.test.ts (13 tests) 500ms
+ ✓ src/studios/microcontroller/labs/g4/can.test.ts (13 tests) 708ms
+ ✓ src/theory/machineNotes.test.ts (2 tests) 694ms
+   ✓ text-only lesson retrieval and attribution > publishes genuine content and exact source links for every canonical lesson  692ms
+ ✓ src/studios/microcontroller/labs/g2/input.test.ts (6 tests) 785ms
+ ✓ src/studios/builder/projectStore.test.ts (6 tests) 387ms
+ ✓ src/studios/microcontroller/labs/g3/dcmotor.test.ts (8 tests) 388ms
+ ✓ src/studios/microcontroller/labs/g2/capture.test.ts (8 tests) 311ms
+ ✓ src/studios/microcontroller/labs/g3/comparator.test.ts (6 tests) 296ms
+ ✓ src/studios/microcontroller/labs/g4/display.test.ts (11 tests) 263ms
+ ✓ src/studios/microcontroller/labs/core/cinterp.test.ts (14 tests) 188ms
+ ✓ src/engines/builder/workspace.test.ts (10 tests) 282ms
+ ✓ src/studios/microcontroller/labs/g3/adc.test.ts (9 tests) 202ms
+ ✓ src/studios/microcontroller/labs/g4/exec.test.ts (7 tests) 177ms
+ ❯ src/studios/microcontroller/labs/advanced/models.test.ts (17 tests | 1 failed) 100ms
+   ✓ remaining Microcontroller simulation models > provides a bounded executable model for every system and instrument lab 29ms
+   ✓ remaining Microcontroller simulation models > 39: misses short pulses by polling and retains only one masked pending edge 2ms
+   ✓ remaining Microcontroller simulation models > 40: transfers ordered samples, exposes MINC overwrite, and reloads circular NDTR 2ms
+   ✓ remaining Microcontroller simulation models > 41: resets at the watchdog deadline and not at every display update 1ms
+   ✓ remaining Microcontroller simulation models > 42: preserves RTC wake, stops APB wake, and distinguishes standby reboot 8ms
+   ✓ remaining Microcontroller simulation models > 43: filters short dips, holds reset with hysteresis, and resumes after release 6ms
+   ✓ remaining Microcontroller simulation models > 44: produces nominal seconds, ppm drift, alarm, and backup-domain loss 5ms
+   ✓ remaining Microcontroller simulation models > 45: maintains output interlocks and latches demand until clearance 7ms
+   ✓ remaining Microcontroller simulation models > 46–47: completes nominal work, detects overload, and preempts a lower-priority job 5ms
+   ✓ remaining Microcontroller simulation models > 48: reproduces lost updates and repairs them using exclusive access 2ms
+   ✓ remaining Microcontroller simulation models > 49: bounds priority inversion by running the lock owner at inherited priority 1ms
+   ✓ remaining Microcontroller simulation models > 50: validates standard CRC32 and commits only a complete valid inactive bank 2ms
+   ✓ remaining Microcontroller simulation models > 51: executes actual compiled instructions, stops on a breakpoint, and returns 6 3ms
+   ✓ remaining Microcontroller simulation models > 52: decodes sampled UART, detects a bad stop bit, and exposes incomplete acquisition 1ms
+   ✓ remaining Microcontroller simulation models > 53: derives measurements from sampled RC output and detects clipping 3ms
+   ✓ remaining Microcontroller simulation models > 54: integrates physical workload charge and exposes clipped or bypassed measurements 2ms
+   × remaining Microcontroller simulation models > 52–53: acquisition results are independent of UI step size at low sample rates 20ms
+     → expected 50 to be close to 10, received difference is 40, but expected 5e-9
+ ✓ src/studios/microcontroller/labs/g3/spi.test.ts (13 tests) 230ms
+ ✓ src/seo/proxy.test.ts (2 tests) 191ms
+ ✓ src/studios/microcontroller/labs/g2/output.test.ts (8 tests) 269ms
+ ✓ src/seo/urls.test.ts (4 tests) 242ms
+ ✓ src/engines/digital/wallace.test.ts (8 tests) 133ms
+ ✓ src/studios/microcontroller/labs/g2/nest.test.ts (6 tests) 99ms
+ ✓ src/studios/microcontroller/labs/g4/usb.test.ts (16 tests) 100ms
+ ✓ src/engines/builder/scratchFlow.test.ts (4 tests) 90ms
+ ✓ src/studios/sandbox/sandboxModel.test.ts (8 tests) 48ms
+ ✓ src/studios/microcontroller/labs/g3/dac.test.ts (7 tests) 63ms
+ ✓ src/engines/part4.test.ts (8 tests) 86ms
+ ✓ src/studios/microcontroller/labs/g3/servo.test.ts (8 tests) 115ms
+ ✓ src/studios/microcontroller/labs/g3/pwm.test.ts (5 tests) 90ms
+ ✓ src/theory/focus.test.ts (4 tests) 151ms
+ ✓ src/components/circuit/engine.test.ts (10 tests) 164ms
+ ✓ src/studios/microcontroller/labs/advanced/learning.test.ts (2 tests) 48ms
+ ✓ src/studios/aca/labs/arrayMultiplierLab.test.ts (2 tests) 78ms
+ ✓ src/engines/digital/arrayMultiplier.test.ts (7 tests) 74ms
+ ✓ src/theory/catalogue.test.ts (5 tests) 67ms
+ ✓ src/engines/digital/booth.test.ts (6 tests) 68ms
+ ✓ src/studios/aca/labs/wallaceLab.test.ts (2 tests) 99ms
+ ✓ src/studios/microcontroller/labs/g2/mux.test.ts (7 tests) 83ms
+ ✓ src/studios/aca/labs/boothLab.test.ts (2 tests) 131ms
+ ✓ src/engines/aca/phase4.test.ts (14 tests) 146ms
+ ✓ src/studios/builder/BlockProgram.test.ts (2 tests) 50ms
+ ✓ src/studios/microcontroller/projectEngine.test.ts (31 tests) 33ms
+ ✓ src/studios/microcontroller/labs/g3/quant.test.ts (9 tests) 31ms
+ ✓ src/studios/aca/guide/guide.test.ts (2 tests) 24ms
+ ✓ src/studios/microcontroller/labs/g2/register.test.ts (5 tests) 35ms
+ ✓ src/engines/isaarch/mobile.test.ts (5 tests) 56ms
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 199ms
+ ✓ src/layout/StudioNavigation.test.ts (3 tests) 43ms
+ ✓ src/engines/part3.test.ts (20 tests) 57ms
+ ✓ src/studios/vlsi/phase6.test.ts (13 tests) 45ms
+ ✓ src/engines/aca/phase1.test.ts (11 tests) 36ms
+ ✓ src/data/search.test.ts (3 tests) 25ms
+ ✓ src/engines/aca/phase9.test.ts (14 tests) 25ms
+ ✓ src/studios/microcontroller/catalogue.test.ts (3 tests) 14ms
+ ✓ src/engines/phase3.test.ts (23 tests) 20ms
+ ✓ src/engines/architecture.test.ts (12 tests) 16ms
+ ✓ src/engines/phase4.test.ts (12 tests) 33ms
+ ✓ src/engines/aca/phase5.test.ts (13 tests) 27ms
+ ✓ src/studios/microcontroller/labs/g1/thumb.test.ts (6 tests) 26ms
+ ✓ src/engines/aca/phase2.test.ts (12 tests) 11ms
+ ✓ src/engines/phase5.test.ts (17 tests) 20ms
+ ✓ src/studios/vlsi/phase3.test.ts (18 tests) 36ms
+ ✓ src/engines/aca/phase6.test.ts (8 tests) 37ms
+ ✓ src/components/circuit/palette.test.ts (6 tests) 37ms
+ ✓ src/engines/aca/phase7.test.ts (10 tests) 25ms
+ ✓ src/engines/phase1.test.ts (15 tests) 25ms
+ ✓ src/engines/phase2.test.ts (8 tests) 28ms
+ ✓ src/studios/truth-tables/logic.test.ts (6 tests) 19ms
+ ✓ src/engines/isa/assemblyRun.test.ts (6 tests) 14ms
+ ✓ src/studios/microcontroller/labs/g1/memmap.test.ts (2 tests) 10ms
+ ✓ src/engines/aca/phase8.test.ts (7 tests) 15ms
+ ✓ src/studios/vlsi/phase4.test.ts (15 tests) 8ms
+ ✓ src/studios/fde/fdeModel.test.ts (3 tests) 8ms
+ ✓ src/engines/cache/studio.test.ts (6 tests) 10ms
+ ✓ src/engines/arch/hierarchyLab.test.ts (7 tests) 9ms
+ ✓ src/engines/arch/vmLab.test.ts (9 tests) 15ms
+ ✓ src/studios/vlsi/phase2.test.ts (13 tests) 12ms
+ ✓ src/engines/builder/canvasUx.test.ts (4 tests) 19ms
+ ✓ src/engines/boolean/regions.test.ts (4 tests) 10ms
+ ✓ src/engines/aca/phase3.test.ts (14 tests) 19ms
+ ✓ src/engines/memory/fundamentals.test.ts (10 tests) 15ms
+ ✓ src/engines/isa/addressLab.test.ts (8 tests) 12ms
+ ✓ src/engines/isa/rtlLab.test.ts (4 tests) 9ms
+ ✓ src/layout/experimentRecord.test.ts (3 tests) 6ms
+ ✓ src/studios/vlsi/phase5.test.ts (13 tests) 6ms
+ ✓ src/engines/isa/teach.test.ts (8 tests) 7ms
+ ✓ src/studios/io/ioModel.test.ts (5 tests) 6ms
+ ✓ src/design-system/labMotionPolicy.test.ts (6 tests) 5ms
+ ✓ src/layout/experimentContext.test.ts (2 tests) 7ms
+ ✓ src/engines/cpu/blocksLab.test.ts (5 tests) 5ms
+ ✓ src/components/circuit/selection.test.ts (6 tests) 5ms
+ ✓ src/engines/numbers/crc.test.ts (3 tests) 4ms
+ ✓ src/studios/how-devices-work/hardwareIdentity.test.ts (3 tests) 5ms
+ ✓ src/studios/vlsi/engine.test.ts (7 tests) 9ms
+ ✓ src/engines/arch/busarch.test.ts (2 tests) 7ms
+ ✓ src/studios/how-devices-work/accuracy.test.ts (3 tests) 3ms
+ ✓ src/components/circuit/interact.test.ts (5 tests) 5ms
+ ✓ src/engines/tabs.test.ts (1 test) 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/studios/microcontroller/labs/advanced/models.test.ts > remaining Microcontroller simulation models > 52–53: acquisition results are independent of UI step size at low sample rates
+AssertionError: expected 50 to be close to 10, received difference is 40, but expected 5e-9
+ ❯ src/studios/microcontroller/labs/advanced/models.test.ts:156:27
+    154|       let sliced = model.create(p);
+    155|       for (let i = 0; i < 100; i++) sliced = model.step(sliced, p, 0.1…
+    156|       expect(sliced.time).toBeCloseTo(whole.time, 8);
+       |                           ^
+    157|       expect(sliced.memory).toEqual(whole.memory);
+    158|       expect(sliced.samples).toEqual(whole.samples);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 130 passed (131)
+      Tests  1 failed | 2046 passed (2047)
+   Start at  01:56:54
+   Duration  161.43s (transform 25.48s, setup 0ms, collect 102.91s, tests 151.84s, environment 40ms, prepare 23.22s)
+

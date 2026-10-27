@@ -1,0 +1,1 @@
+const a={addressBits:8,memoryBytes:256,cacheBytes:32,blockBytes:4,associativity:1,replacement:"lru",writePolicy:"through",allocation:"allocate",seed:1};function l(e){const t=new Set;let s=0;for(const o of e)t.has(o)&&(s+=1),t.add(o);return e.length===0?0:s/e.length}export{a as L,l as t};

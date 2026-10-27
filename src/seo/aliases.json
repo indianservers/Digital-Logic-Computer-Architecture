@@ -1,0 +1,20 @@
+{
+  "/architecture/mobile/floorplan": "/architecture/mobile/overview",
+  "/architecture/mobile/cluster": "/architecture/mobile/cpu-cores",
+  "/architecture/mobile/cores": "/architecture/mobile/cpu-cores",
+  "/architecture/mobile/scheduler": "/architecture/mobile/cpu-cores",
+  "/architecture/mobile/camera": "/architecture/mobile/isp",
+  "/architecture/mobile/media": "/architecture/mobile/isp",
+  "/architecture/mobile/modem": "/architecture/mobile/connectivity",
+  "/architecture/mobile/power": "/architecture/mobile/power-thermal",
+  "/architecture/mobile/thermal": "/architecture/mobile/power-thermal",
+  "/architecture/desktop/overview": "/architecture/desktop/package",
+  "/architecture/desktop/threads": "/architecture/desktop/cores",
+  "/architecture/desktop/internals": "/architecture/desktop/cores",
+  "/architecture/desktop/interconnect": "/architecture/desktop/memory",
+  "/architecture/desktop/mc": "/architecture/desktop/memory",
+  "/architecture/desktop/ddr": "/architecture/desktop/memory",
+  "/architecture/desktop/igpu": "/architecture/desktop/pcie",
+  "/architecture/desktop/boost": "/architecture/desktop/boost-power",
+  "/architecture/desktop/workload": "/architecture/desktop/workloads"
+}

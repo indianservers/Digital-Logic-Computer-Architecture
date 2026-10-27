@@ -1,12 +1,12 @@
 import { portsOf, type CpuDesign } from "./model";
 import { flattenCircuit, type CircuitTest } from "./construction";
-import { evaluateGraph,stepMicroCycle } from "./sim";
+import { evaluateGraph,stepMicroCycle,loadProgram } from "./sim";
 import { engineeringOf } from "./project";
 export function signalNumber(design:CpuDesign,reference:string):number {
   const cut=reference.lastIndexOf(".");const n=design.nodes.find(n=>n.id===reference.slice(0,cut)||n.name===reference.slice(0,cut));if(!n)throw new Error(`Unknown component in ${reference}.`);const port=reference.slice(cut+1);const reg=n.behavior?.registers?.[port];if(reg!==undefined)return reg;const v=evaluateGraph(design).values.get(`${n.id}:${port}`);if(v===undefined)throw new Error(`Unknown signal ${reference}.`);return v;
 }
 export function resetCircuit(design:CpuDesign):CpuDesign {
-  const flat=flattenCircuit(design);const nodes=flat.design.nodes.map(n=>{if(n.behavior)return {...n,behavior:{...n.behavior,registers:Object.fromEntries(Object.entries(n.behavior.registers??{}).map(([key])=>[key,n.behavior!.initial?.[key]??0])),text:""},mem:n.behavior.write&&!n.behavior.device?n.mem.map(()=>0):n.mem};if(["const","imem"].includes(n.kind))return n;return {...n,value:0,values:n.values.map(()=>0),mem:["dmem","umem"].includes(n.kind)?n.mem.map(()=>0):n.mem};});return {...flat.restore(nodes),engineering:{...engineeringOf(design),cycle:0,construction:{...engineeringOf(design).construction,execution:engineeringOf(design).construction?.execution??"circuit",microPc:0}}};
+  const flat=flattenCircuit(design);const nodes=flat.design.nodes.map(n=>{if(n.behavior)return {...n,behavior:{...n.behavior,registers:Object.fromEntries(Object.entries(n.behavior.registers??{}).map(([key])=>[key,n.behavior!.initial?.[key]??0])),text:""},mem:n.behavior.write&&!n.behavior.device?n.mem.map(()=>0):n.mem};if(["const","imem"].includes(n.kind))return n;return {...n,value:0,values:n.values.map(()=>0),mem:["dmem","umem"].includes(n.kind)?n.mem.map(()=>0):n.mem};});const reset={...flat.restore(nodes),engineering:{...engineeringOf(design),cycle:0,construction:{...engineeringOf(design).construction,execution:engineeringOf(design).construction?.execution??"circuit",microPc:0}}};return !nodes.some(n=>n.kind==="imem")&&nodes.some(n=>n.kind==="umem")?loadProgram(reset).design:reset;
 }
 export function runCircuitTest(original:CpuDesign,test:CircuitTest){
   if(!Number.isInteger(test.cycles)||test.cycles<0||test.cycles>10000)throw new Error("Test cycles must be 0–10000.");let design=resetCircuit(structuredClone(original));const failures:string[]=[];

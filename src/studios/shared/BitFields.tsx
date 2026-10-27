@@ -44,7 +44,7 @@ export function IsaRegister({
   const hex = `0x${unsigned.toString(16).toUpperCase().padStart(8, "0")}`;
   const binary = unsigned.toString(2).padStart(32, "0");
   return (
-    <button type="button" className={selected ? "cpu-block on" : "cpu-block"} onClick={onSelect}>
+    <button type="button" className={selected ? "cpu-block on" : "cpu-block"} data-lab-value={value} onClick={onSelect}>
       <strong>{name}{number !== undefined ? ` · ${number}` : ""}{locked ? " · frozen" : ""}</strong>
       <small>Binary {binary}</small>
       <small>Hex {hex}</small>

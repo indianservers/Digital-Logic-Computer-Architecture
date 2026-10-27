@@ -2,6 +2,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import type { MdSwitch } from "@material/web/switch/switch.js";
 import type { LogicValue } from "../types/logic";
 import { Icon } from "./icons";
+import "../layout/studioExperience.css";
 
 export type SwitchTone = "primary" | "ok" | "danger" | "warn" | "neutral";
 
@@ -79,9 +80,16 @@ export function Theory({ title, children }: { title: string; children: ReactNode
 
 export function Tabs({ tabs, value, onChange }: { tabs: Array<{ id: string; label: string }>; value: string; onChange: (id: string) => void }) {
   return (
-    <div className="tabrow" role="tablist">
+    <div className="tabrow" role="tablist" onKeyDown={(event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key) || !tabs.length) return;
+      event.preventDefault();
+      const current = Math.max(0, tabs.findIndex((tab) => tab.id === value));
+      const index = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+      const next = tabs[index];
+      if (next) { onChange(next.id); event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]')[index]?.focus(); }
+    }}>
       {tabs.map((tab) => (
-        <button key={tab.id} role="tab" aria-selected={tab.id === value} className={tab.id === value ? "tab active" : "tab"} onClick={() => onChange(tab.id)}>
+        <button key={tab.id} type="button" role="tab" tabIndex={tab.id === value ? 0 : -1} aria-selected={tab.id === value} className={tab.id === value ? "tab active" : "tab"} onClick={() => onChange(tab.id)}>
           {tab.label}
         </button>
       ))}
@@ -111,14 +119,15 @@ export function Signal({ value }: { value: LogicValue | 0 | 1 }) {
 
 export function ExplainBar({ what, why, notice }: { what: string; why: string; notice: string }) {
   return (
-    <div className="callout" style={{ marginBottom: 12 }}>
-      <strong>What changed</strong>
-      <div>{what}</div>
+    <details className="callout studio-explain" style={{ marginBottom: 12 }}>
+      <summary><strong>What changed</strong><span>{what}</span></summary>
+      <div className="studio-explain-body">
       <strong style={{ marginTop: 6 }}>Why</strong>
       <div>{why}</div>
       <strong style={{ marginTop: 6 }}>Notice</strong>
       <div>{notice}</div>
-    </div>
+      </div>
+    </details>
   );
 }
 
@@ -131,15 +140,16 @@ export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed }
   onSpeed?: (speed: number) => void;
 }) {
   return (
-    <div className="row">
-      <Toggle on={playing} onChange={(next) => { if (next !== playing) onPlay(); }} label="Run" tone="ok" />
-      <Button onClick={onStep}><Icon name="step" size={14} />Step</Button>
+    <div className="row studio-sim-controls" role="group" aria-label="Simulation controls">
+      <Button variant="primary" onClick={onPlay} aria-label={playing ? "Pause simulation" : "Run simulation"}><Icon name={playing ? "pause" : "play"} size={14} />{playing ? "Pause" : "Run"}</Button>
+      <Button onClick={onStep} disabled={playing} title={playing ? "Pause the simulation to step" : "Advance one simulation step"}><Icon name="step" size={14} />Step</Button>
       <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button>
       {onSpeed ? (
         <label className="row tiny">Speed
-          <input aria-label="Simulation speed" type="range" min={0.5} max={4} step={0.5} value={speed ?? 1} onChange={(event) => onSpeed(parseNumberInput(event.target.value, speed ?? 1))} />
+          <input aria-label="Simulation speed" type="range" min={0.5} max={4} step={0.5} value={speed ?? 1} onChange={(event) => onSpeed(parseNumberInput(event.target.value, speed ?? 1))} /><output>{speed ?? 1}×</output>
         </label>
       ) : null}
+      <span className={`studio-sim-state ${playing ? "running" : ""}`} role="status">{playing ? "Running" : "Paused"}</span>
     </div>
   );
 }

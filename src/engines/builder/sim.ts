@@ -202,6 +202,13 @@ export function evaluateGraph(design: CpuDesign, controlOverrides?: Record<strin
 }
 
 export function loadProgram(design: CpuDesign): { design: CpuDesign; error: string | null } {
+  if(design.nodes.some(n=>n.circuit)){
+    try {
+      const flat=flattenCircuit(design);
+      const loaded=loadProgram(flat.design);
+      return loaded.error?{design,error:loaded.error}:{design:flat.restore(loaded.design.nodes),error:null};
+    }catch(e){return {design,error:e instanceof Error?e.message:String(e)};}
+  }
   const assembled = assemble(design.isa, design.program);
   if (!assembled.ok) return { design, error: assembled.errors.map((item) => `Line ${item.line}: ${item.message}`).join(" ") };
   const imem = findKind(design, "imem") ?? findKind(design, "umem");
@@ -369,8 +376,9 @@ function circuitCycle(design:CpuDesign,cycle:number):{design:CpuDesign;trace:Exe
     const captured=stepClock(low,1,0);let next=flat.restore(captured.nodes);
     const nextAddress=word?(word.condition&&readExpression(word.condition,read)?word.alternate??word.next:word.next):construction.microPc??0;
     next={...next,engineering:{...engineeringOf(next),cycle,construction:{...construction,microPc:nextAddress}}};
-    const view=evaluateGraph(next);const halted=!!word?.halt||next.nodes.some(n=>n.name.toUpperCase()==="HALT"&&view.values.get(`${n.id}:a`)===1||portsOf(n).some(p=>p.dir==="out"&&p.id==="halted"&&p.width===1&&view.values.get(`${n.id}:${p.id}`)===1));
-    return {design:next,trace:{cycle,pc:findKind(next,"pc")?.value??0,ir:findKind(next,"ir")?.value??0,mnemonic:word?.name??"CIRCUIT",opcode:0,aluA:0,aluB:0,aluY:0,flags:{z:0,n:0,c:0,v:0},controls:controlsOf("",next.isa),memOp:"Clocked circuit state",halt:halted,reason:`${word?.commit?"Instruction boundary · ":""}${word?.name??"Circuit"}: all enabled storage captured the same rising-edge snapshot${halted?" · HALT":""}.`}};
+    // Observe the executed graph, including storage and halt outputs inside modules.
+    const view=evaluateGraph(captured);const halted=!!word?.halt||captured.nodes.some(n=>n.name.toUpperCase()==="HALT"&&view.values.get(`${n.id}:a`)===1||portsOf(n).some(p=>p.dir==="out"&&p.id==="halted"&&p.width===1&&view.values.get(`${n.id}:${p.id}`)===1));
+    return {design:next,trace:{cycle,pc:findKind(captured,"pc")?.value??0,ir:findKind(captured,"ir")?.value??0,mnemonic:word?.name??"CIRCUIT",opcode:0,aluA:0,aluB:0,aluY:0,flags:{z:0,n:0,c:0,v:0},controls:controlsOf("",next.isa),memOp:"Clocked circuit state",halt:halted,reason:`${word?.commit?"Instruction boundary · ":""}${word?.name??"Circuit"}: all enabled storage captured the same rising-edge snapshot${halted?" · HALT":""}.`}};
   } catch(e){return faultTrace(design,cycle,e instanceof Error?e.message:String(e));}
 }
 function readExpression(source:string,read:(name:string)=>number){return expression(source,read)!==0;}

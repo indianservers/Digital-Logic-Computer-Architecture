@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { Icon } from "../../design-system/icons";
 import { Toggle } from "../../design-system/ui";
+import { useLabMotion } from "../../design-system/LabMotion";
 import { CIRCUIT_EXAMPLES } from "./examples";
 import { attachProbe, connect, deleteWires, disconnectNode, duplicateNodes, explainNode, insertOnWire, moveNodes, patchNode, portPosition, routeWire, signalOf, truthTable } from "./engine";
 import { canInsert, freeInputs, hitNode, hitPort, isTypingTarget, marqueeHits, nearestWire, pointerTravel, snapPoint, workspaceCursor, zoomAround, DRAG_THRESHOLD, type SnapStrength } from "./interact";
@@ -954,19 +955,20 @@ function download(circuit: CircuitSession) {
 }
 
 function ChargePulse({ d, live, reverse = false, speed, once = false }: { d: string; live: boolean; reverse?: boolean; speed: number; once?: boolean }) {
+  const {enabled:motionEnabled}=useLabMotion();
   const dot = useRef<SVGCircleElement>(null);
   const tail = useRef<SVGCircleElement>(null);
   useGSAP(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!live || reduce || !dot.current) return;
+    if (!live || reduce || !motionEnabled || !dot.current) return;
     const duration = Math.min(1.6, Math.max(0.35, 1.15 / Math.max(speed, 0.25)));
     const path = { path: d, alignOrigin: [0.5, 0.5] as [number, number], start: reverse ? 1 : 0, end: reverse ? 0 : 1 };
     gsap.to(dot.current, { motionPath: path, duration, repeat: once ? 0 : -1, ease: "none" });
     if (tail.current && !once) {
       gsap.to(tail.current, { motionPath: path, duration, repeat: -1, ease: "none", delay: duration * 0.45 });
     }
-  }, { dependencies: [d, live, reverse, speed, once], revertOnUpdate: true });
-  if (!live) return null;
+  }, { dependencies: [d, live, reverse, speed, once, motionEnabled], revertOnUpdate: true });
+  if (!live||!motionEnabled) return null;
   return (
     <g className="cwb-charge" pointerEvents="none">
       <circle ref={dot} r="3.1" fill="#fff" stroke="#b91c1c" strokeWidth="1.1" />
@@ -1073,6 +1075,7 @@ function activeStroke(stroke: string, mode: VizMode, hot: boolean): string {
 }
 
 function LedLamp({ x, y, width, height, on, unknown }: { x: number; y: number; width: number; height: number; on: boolean; unknown: boolean }) {
+  const {enabled:motionEnabled}=useLabMotion();
   const halo = useRef<SVGCircleElement>(null);
   const cx = x + width / 2;
   const cy = y + height / 2 - 2;
@@ -1082,10 +1085,10 @@ function LedLamp({ x, y, width, height, on, unknown }: { x: number; y: number; w
       opacity: on ? 0.9 : 0.08,
       scale: on ? 1.15 : 0.72,
       svgOrigin: `${cx} ${cy}`,
-      duration: on ? 0.28 : 0.45,
+      duration: motionEnabled?(on ? 0.28 : 0.45):0,
       ease: "power2.out",
     });
-  }, { dependencies: [on, cx, cy] });
+  }, { dependencies: [on, cx, cy, motionEnabled], revertOnUpdate:true });
   return (
     <g className={on ? "cwb-led on" : "cwb-led"}>
       <circle ref={halo} cx={cx} cy={cy} r={16} fill={unknown ? "#f59e0b" : "#fb7185"} opacity={0.08} filter="url(#cwb-glow)" />

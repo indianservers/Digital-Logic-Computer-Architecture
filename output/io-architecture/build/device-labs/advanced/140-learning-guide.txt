@@ -1,0 +1,12 @@
+DIGITAL MULTIMETER — HOW DEVICES WORK, LAB 140
+
+A meter protects and conditions the selected input, converts it with an ADC, and displays a reading. The rotary selector chooses a voltage divider, current shunt, or resistance test source.
+
+VOLTAGE: connect the voltage input in parallel. Input resistance loads the test circuit slightly.
+CURRENT: connect the current input in series. Choose the correct range and check its fuse. Never place a current input across a voltage source.
+RESISTANCE AND CONTINUITY: use an unpowered circuit. The meter applies a test source; continuity produces a tone below the modeled resistance threshold.
+
+TRY THE SIMULATION
+Change supply voltage, test resistance and source resistance. Compare the voltage and current functions. Open the current fuse, disconnect the probes, and lower the current range to see how validity and overload indications change. Reset restores the teaching circuit.
+
+This lab uses low-voltage virtual circuits. Physical instruments require the manufacturer's terminal assignments, measurement category and voltage ratings, intact probes, and specified fuses.

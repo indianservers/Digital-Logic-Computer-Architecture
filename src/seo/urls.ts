@@ -1,4 +1,5 @@
 import records from './routes.json';
+import aliases from './aliases.json';
 
 export const SEO_ROUTES = records;
 const byRoute = new Map(records.map(record => [record.route, record]));
@@ -21,6 +22,9 @@ export const SITE_PAGES:Record<string,{title:string;description:string}> = {
 export function internalUrl(input:string):string {
   const u=new URL(input,'https://logiclab.invalid');
   let path=u.pathname.replace(/\/+$/,'')||'/';
+  const aliasTheory=path.endsWith('/theory');
+  const alias=(aliases as Record<string,string>)[aliasTheory?path.slice(0,-7):path];
+  if(alias)path=alias+(aliasTheory?'/theory':'');
   if(path==='/textbook'){path='/';u.searchParams.set('view','theory');}
   else {
     const theory=path.endsWith('/theory');
@@ -67,6 +71,6 @@ export function metadataFor(input:string) {
   const record=byUrl.get(theory?publicPath.slice(0,-7):publicPath);
   const page=SITE_PAGES[publicPath];
   const title=page?.title??(record?`${record.title}${theory?' — Theory & Textbook':''} | LogicLab`:`${publicPath.split('/').filter(Boolean).at(-1)?.replace(/-/g,' ')??'Page'} | LogicLab`);
-  const description=page?.description??record?.description??'Explore interactive digital electronics and computer architecture lessons in LogicLab.';
+  const description=page?.description??(record?(theory?`Study ${record.title}: diagrams, step-by-step solved examples, explained practice questions, and links to the interactive lab.`:record.description):undefined)??'Explore interactive digital electronics and computer architecture lessons in LogicLab.';
   return {title,description,path:publicPath,theory,record,noindex:publicPath==='/notes'||(!page&&!record)};
 }

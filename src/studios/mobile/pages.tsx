@@ -381,56 +381,7 @@ export function ConnectivityPage() {
   );
 }
 
-const LOADS = [
-  { id: "Idle", cpu: 5, gpu: 2, npu: 0 },
-  { id: "Web", cpu: 35, gpu: 15, npu: 0 },
-  { id: "Gaming", cpu: 70, gpu: 90, npu: 5 },
-  { id: "Camera", cpu: 40, gpu: 20, npu: 30 },
-  { id: "Video", cpu: 25, gpu: 30, npu: 0 },
-  { id: "AI", cpu: 20, gpu: 5, npu: 80 },
-  { id: "Navigation", cpu: 30, gpu: 25, npu: 10 },
-  { id: "Mixed", cpu: 55, gpu: 40, npu: 25 },
-] as const;
-
-export function PowerPage() {
-  const [load, setLoad] = useState<(typeof LOADS)[number]["id"]>("Web");
-  const [limit, setLimit] = useState(85);
-  const [cool, setCool] = useState(40);
-  const [playing, setPlaying] = useState(false);
-  const [temp, setTemp] = useState(36);
-  const [history, setHistory] = useState<number[]>([36]);
-  const selected = LOADS.find((item) => item.id === load) ?? LOADS[1];
-  useEffect(() => {
-    if (!playing) return undefined;
-    const id = window.setInterval(() => {
-      setTemp((current) => {
-        const target = thermal(selected.cpu, selected.gpu, selected.npu, 32 - cool / 10).temp;
-        const next = current + Math.sign(target - current) * 0.8;
-        setHistory((rows) => [...rows.slice(-24), Math.round(next)]);
-        return next;
-      });
-    }, 400);
-    return () => window.clearInterval(id);
-  }, [playing, selected, cool]);
-  const hot = thermal(selected.cpu, selected.gpu, selected.npu, temp);
-  const throttled = temp >= limit;
-  const freq = throttled ? 0.7 : 1;
-  return (
-    <section className="rvx-card">
-      <p>Simplified educational thermal model.</p>
-      <div className="rvx-tabs">{LOADS.map((item) => <button key={item.id} type="button" className={load === item.id ? "on" : ""} onClick={() => setLoad(item.id)}>{item.id}</button>)}</div>
-      <div className="cmp-actions">
-        <button type="button" className="cmp-primary" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Run"}</button>
-        <button type="button" onClick={() => { setPlaying(false); setTemp(36); setHistory([36]); }}>Reset</button>
-      </div>
-      <label>Thermal limit {limit}<input aria-label="Thermal limit" type="range" min={60} max={100} value={limit} onChange={(event) => setLimit(Number(event.target.value))} /></label>
-      <label>Cooling {cool}<input aria-label="Cooling" type="range" min={0} max={100} value={cool} onChange={(event) => setCool(Number(event.target.value))} /></label>
-      <p>CPU frequency scale {freq.toFixed(2)} · GPU load {selected.gpu} · NPU load {selected.npu} · power index {Math.round((selected.cpu + selected.gpu + selected.npu) * freq)} · {Math.round(temp)}° · {throttled ? "throttling" : hot.migrate ? "migrating heavy threads" : "within budget"}</p>
-      <div className="mob-chart" aria-label="Temperature history">{history.map((value, index) => <i key={`${index}-${value}`} style={{ height: `${value}%` }} />)}</div>
-      <p className="cmp-hint">Domains: CPU, GPU, NPU, ISP, modem, memory, display. Idle domains are treated as power-gated. DVFS here scales frequency when the temperature crosses the limit.</p>
-    </section>
-  );
-}
+export { ThermalLab as PowerPage } from "./ThermalLab";
 
 const SCENES = [
   { id: "camera", name: "Launch Camera", blocks: ["Sensor", "ISP", "Memory", "Display"], cpu: 30, gpu: 15, npu: 10 },

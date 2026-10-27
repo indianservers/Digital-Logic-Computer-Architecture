@@ -2,7 +2,6 @@ export interface MicrocontrollerLab {
   number: number;
   title: string;
   section: string;
-  status: "planned";
 }
 
 const sections = [
@@ -30,7 +29,7 @@ const sections = [
 ] as const;
 
 export const MICROCONTROLLER_LABS: MicrocontrollerLab[] = sections.flatMap((section) =>
-  section.labs.map((title) => ({ number: 0, title, section: section.title, status: "planned" as const })),
+  section.labs.map((title) => ({ number: 0, title, section: section.title })),
 ).map((lab, index) => ({ ...lab, number: index + 1 }));
 
 export const MICROCONTROLLER_SECTIONS = sections.map((section) => section.title);

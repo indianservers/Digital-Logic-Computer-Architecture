@@ -1,3 +1,4 @@
+import { useLabMotion } from "../../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
@@ -75,13 +76,15 @@ export function WallaceLab() {
     setPan({ x: 4, y: 4 });
   }, [width, count, tree?.levels, detail, tab]);
 
+  const {enabled:motionEnabled}=useLabMotion();
   useGSAP(() => {
+    if(!motionEnabled)return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const active = view?.active?.id;
     if (!active) return;
     gsap.fromTo("[data-wt-active='1']", { opacity: 0.35 }, { opacity: 1, duration: 0.35, ease: "power1.out" });
     gsap.fromTo("[data-wt-carry='1']", { strokeDashoffset: 28 }, { strokeDashoffset: 0, duration: 0.45, ease: "power1.out" });
-  }, { scope: boardRef, dependencies: [view?.active?.id, play.cycle], revertOnUpdate: true });
+  }, { scope: boardRef, dependencies: [view?.active?.id, play.cycle, motionEnabled], revertOnUpdate: true });
 
   function commitWidth(next: (typeof WALLACE_WIDTHS)[number]) {
     if (valid) setDrafts(numbers.map((value) => formatOperand(Math.min(value, operandMax(next)), radix, next)));

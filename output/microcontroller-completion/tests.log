@@ -1,0 +1,518 @@
+
+> digital-electronics-computing-lab@1.0.0 test
+> vitest run
+
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/microcontroller/labs/g1/clock.test.ts (5 tests) 5308ms
+   ✓ lab 10 clock system > brings the tree to 72 MHz and the HAL reports it  4269ms
+   ✓ lab 10 clock system > HSI-only firmware runs the timer 9x slower  808ms
+ ✓ src/studios/microcontroller/labs/g2/timer.test.ts (6 tests) 8047ms
+   ✓ lab 19 timers and counters > PSC 7199 / ARR 4999 at 72 MHz overflows every 500 ms  760ms
+   ✓ lab 19 timers and counters > off-by-one PSC/ARR drifts: 7201 x 5001 ticks is 500.2 ms  617ms
+   ✓ lab 19 timers and counters > PSC is preloaded until the next update; ARR without ARPE is immediate  601ms
+   ✓ lab 19 timers and counters > compare CH1 interrupts once per period when CC1IE is set  1191ms
+   ✓ lab 19 timers and counters > faults and buggy variants: no CEN, no clock, halved kernel clock, polling  4694ms
+ ✓ src/studios/microcontroller/labs/g3/uart.test.ts (10 tests) 13389ms
+   ✓ lab 29 UART > prints the banner, answers help / temp and drives the LED from typed commands  3841ms
+   ✓ lab 29 UART > a baud mismatch garbles the text with framing errors and commands fail  599ms
+   ✓ lab 29 UART > a parity mismatch shows up as framing errors on every frame whose parity bit is 0  1992ms
+   ✓ lab 29 UART > straight-through wiring delivers nothing in either direction  1363ms
+   ✓ lab 29 UART > an open RX wire keeps the output working but the ESP32 never hears the commands  1105ms
+   ✓ lab 29 UART > EMI glitches corrupt a few characters deterministically  1947ms
+   ✓ lab 29 UART > the echo firmware returns each byte in upper case  831ms
+   ✓ lab 29 UART > readStringUntil waits for the newline instead of returning a partial command  1576ms
+ ❯ src/studios/microcontroller/labs/g4/baremetal.test.ts (4 tests | 1 failed) 11715ms
+   ✓ lab 38 bare-metal registers > compiles every variant and maps every workbench register  777ms
+   ✓ lab 38 bare-metal registers > blinks PA5 from TIM2 at 4 Hz updates and logs the bus  374ms
+   ✓ lab 38 bare-metal registers > applies workbench edits live, but not to a clock-gated peripheral  566ms
+   × lab 38 bare-metal registers > reproduces each bug 9996ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/microcontroller/labs/g2/exti.test.ts (10 tests | 1 failed) 12411ms
+   ✓ lab 17 external interrupts > a bouncy press raises several EXTI0 IRQs but the ISR accepts one  727ms
+   ✓ lab 17 external interrupts > without debounce every bounce counts  582ms
+   ✓ lab 17 external interrupts > falling-edge trigger fires on release, both edges on press and release  640ms
+   ✓ lab 17 external interrupts > EXTICR selects the port: PB0 drives EXTI0 and PA0 no longer does  353ms
+   ✓ lab 17 external interrupts > without the SYSCFG clock EXTICR stays 0: PA0 works by luck, PB0 never does  1046ms
+   ✓ lab 17 external interrupts > a masked line ignores edges 184ms
+   ✓ lab 17 external interrupts > forgetting to clear EXTI->PR re-enters the handler forever 94ms
+   × lab 17 external interrupts > a floating input produces phantom interrupts; a noisy contact is filtered 8235ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ lab 17 external interrupts > tap holds a switch for simulated time; codeConfig reads back what applyConfig wrote 297ms
+   ✓ lab 17 external interrupts > HAL callback version counts presses the same way 241ms
+ ❯ src/studios/how-devices-work/part-images.test.ts (3 tests | 1 failed) 10988ms
+   ✓ Reusable anatomy images > provides a captioned local image for every registered part usage  727ms
+   × Reusable anatomy images > renders an image for every original, supporting and educational build item on all 140 pages 10256ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ Reusable anatomy images > preserves the existing device-specific inertial navigation artwork 1ms
+ ✓ src/studios/microcontroller/labs/g2/irq.test.ts (8 tests) 4995ms
+   ✓ lab 16 interrupts > TIM2 update interrupts preempt main and are timed in cycles  1152ms
+   ✓ lab 16 interrupts > NVIC disable keeps the timer IRQ pending forever  465ms
+   ✓ lab 16 interrupts > an uncleared UIF re-enters the ISR and starves main  2766ms
+   ✓ lab 16 interrupts > a long ISR costs many more cycles  411ms
+ ❯ src/studios/microcontroller/labs/g3/stepper.test.ts (10 tests | 1 failed) 18377ms
+   ✓ lab 24 stepper > full-steps D8 - D11 at 12 RPM (409.6 steps/s) and the rotor keeps up  752ms
+   ✓ lab 24 stepper > finishes one revolution (2048 steps) in about 5 s, then holds  2387ms
+   ✓ lab 24 stepper > reverses when dir = -1 and half-steps 4096 per turn  4585ms
+   ✓ lab 24 stepper > misses steps when driven too fast  675ms
+   ✓ lab 24 stepper > a heavy load stalls single-coil stepping but two-coil keeps sync  855ms
+   × lab 24 stepper > recovers after a stall: the position error stays but the status clears 5397ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ lab 24 stepper > a wrong coil order or swapped wires only make it vibrate  860ms
+   ✓ lab 24 stepper > no driver supply means no torque 69ms
+   ✓ lab 24 stepper > a 200-step motor turns 10.24x further for the same 2048-step move  2792ms
+   ✓ lab 24 stepper > reads and rewrites rpm, dir and mode in the source 1ms
+ ❯ src/studios/microcontroller/labs/g4/input.test.ts (7 tests | 1 failed) 17379ms
+   ✓ lab 36 input models > decodes quadrature states and edits #define fields 46ms
+   ✓ lab 36 input models > scans at 1 kHz and reports one clean DOWN/UP per press with about 20 ms latency  2370ms
+   ✓ lab 36 input models > without debounce one bouncy press is typed several times  2110ms
+   ✓ lab 36 input models > no settle delay: the slow column rise reports the key below as well  2354ms
+   × lab 36 input models > floating columns and a row left low create phantom keys 6047ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ lab 36 input models > three keys on a rectangle ghost a fourth unless every key has a diode  648ms
+   ✓ lab 36 input models > decodes encoder detents and the push button; slow scans and swapped pins go wrong  3801ms
+ ✓ src/studios/microcontroller/labs/g4/i2c.test.ts (15 tests) 2153ms
+   ✓ lab 31 I2C > scans the bus, reads the TMP102, logs a boot and draws on the OLED  403ms
+   ✓ lab 31 I2C > does not mistake the tail of a trimmed scan for a new, empty scan  1376ms
+ ✓ src/studios/how-devices-work/advanced/consumer.test.ts (43 tests) 2712ms
+   ✓ consumer learning models 125–134 > 125: renders its own layout and artwork  436ms
+   ✓ consumer learning models 125–134 > 131: renders its own layout and artwork  318ms
+   ✓ consumer learning models 125–134 > 132: renders its own layout and artwork  373ms
+ ✓ src/studios/how-devices-work/advanced/household.test.ts (32 tests) 3263ms
+   ✓ household labs 135–140 > 135: renders own panels, controls and hardware  760ms
+   ✓ household labs 135–140 > 139: renders own panels, controls and hardware  415ms
+   ✓ household labs 135–140 > 140: renders own panels, controls and hardware  576ms
+ ❯ src/studios/how-devices-work/anatomy-inventory.test.ts (3 tests | 1 failed) 9650ms
+   ✓ Complete educational anatomy coverage > covers each catalogue device once, preserving every original inventory item 196ms
+   × Complete educational anatomy coverage > renders original and supporting cards for all 140 pages with reusable identities 9397ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ Complete educational anatomy coverage > keeps quantities and completion boundaries visible for inferred entries 49ms
+ ✓ src/engines/builder/contest.test.ts (32 tests) 3578ms
+   ✓ Contest accuracy and reproducibility > passes generated challenges against actual wired execution  721ms
+   ✓ Contest accuracy and reproducibility > verifies submission hashes and independently reproduces all claimed results  1706ms
+   ✓ Contest accuracy and reproducibility > runs all executable template samples with documented assertions  509ms
+ ✓ src/studios/how-devices-work/labs/labs.test.ts (176 tests) 17607ms
+   ✓ Device labs 1–10 > 1: Digital Thermometer renders real controls, artwork and learning content  761ms
+   ✓ Device labs 1–10 > 2: ECG Machine renders real controls, artwork and learning content  596ms
+   ✓ Device labs 1–10 > 5: Ultrasound Scanner renders real controls, artwork and learning content  871ms
+   ✓ Device labs 1–10 > 6: MRI Scanner renders real controls, artwork and learning content  341ms
+   ✓ Device labs 1–10 > 7: CT Scanner renders real controls, artwork and learning content  560ms
+   ✓ Device labs 1–10 > 8: TV Remote Control renders real controls, artwork and learning content  417ms
+   ✓ Device labs 11–20 > 12: Aircraft Autopilot renders real controls, artwork and learning content  357ms
+   ✓ Device labs 11–20 > 13: Surveillance Radar renders real controls, artwork and learning content  676ms
+   ✓ Device labs 11–20 > 16: Infrared Thermometer renders real controls, artwork and learning content  314ms
+   ✓ Device labs 21–30 > 21: Portable ECG renders real controls, artwork and learning content  374ms
+   ✓ Device labs 21–30 > 23: EEG Machine renders real controls, artwork and learning content  642ms
+   ✓ Device labs 21–30 > 24: EMG Machine renders real controls, artwork and learning content  397ms
+   ✓ Device labs 21–30 > 26: Fetal Monitor renders real controls, artwork and learning content  349ms
+   ✓ Device labs 21–30 > 30: Body Composition Analyzer renders real controls, artwork and learning content  471ms
+   ✓ Device labs 31–40 > 31: X-Ray Machine renders real controls, artwork and learning content  757ms
+   ✓ Device labs 31–40 > 39: Ventilator renders real controls, artwork and learning content  449ms
+   ✓ Device labs 41–54 > 53: Hearing Aid renders real controls, artwork and learning content  329ms
+ ✓ src/studios/how-devices-work/advanced/security.test.ts (42 tests) 2967ms
+   ✓ Phase D: optical, RF, identification and navigation > 85: renders its source hardware, functional diagram and inputs  632ms
+   ✓ Phase D: optical, RF, identification and navigation > 86: renders its source hardware, functional diagram and inputs  536ms
+ ✓ src/studios/how-devices-work/advanced/systems.test.ts (42 tests) 3740ms
+   ✓ Phase C: recording, space, radar and imaging > 81: renders device-specific art, architecture and controls  409ms
+   ✓ Phase C: recording, space, radar and imaging > 82: renders device-specific art, architecture and controls  1004ms
+   ✓ Phase C: recording, space, radar and imaging > 83: renders device-specific art, architecture and controls  703ms
+ ✓ src/studios/how-devices-work/advanced/control.test.ts (43 tests) 4024ms
+   ✓ Phase F radio, vessel and motor controls > 106: renders real hardware and usable native controls  460ms
+   ✓ Phase F radio, vessel and motor controls > 109: renders real hardware and usable native controls  328ms
+   ✓ Phase F radio, vessel and motor controls > 110: renders real hardware and usable native controls  346ms
+   ✓ Phase F radio, vessel and motor controls > 111: renders real hardware and usable native controls  736ms
+   ✓ Phase F radio, vessel and motor controls > 113: renders real hardware and usable native controls  666ms
+   ✓ Phase F radio, vessel and motor controls > 114: renders real hardware and usable native controls  397ms
+ ✓ src/studios/how-devices-work/advanced/aviation.test.ts (38 tests) 3687ms
+   ✓ Phase B: device-specific aviation pages > 65: renders its hardware, architecture, controls and quiz  424ms
+   ✓ Phase B: device-specific aviation pages > 68: renders its hardware, architecture, controls and quiz  369ms
+   ✓ Phase B: device-specific aviation pages > 69: renders its hardware, architecture, controls and quiz  512ms
+   ✓ Phase B: device-specific aviation pages > 71: renders its hardware, architecture, controls and quiz  408ms
+   ✓ Phase B: device-specific aviation pages > 72: renders its hardware, architecture, controls and quiz  555ms
+ ✓ src/studios/microcontroller/labs/g3/adc.test.ts (9 tests) 1597ms
+   ✓ lab 25 ADC > reads 1.65 V on PA0 as 2048 at 12 bit and converts back to 1.650 V  382ms
+   ✓ lab 25 ADC > averaging 16 samples reduces noise  358ms
+ ✓ src/studios/how-devices-work/advanced/marine.test.ts (44 tests) 5244ms
+   ✓ Phase E: access, acoustics and marine navigation > 95: renders its source hardware, functional diagram and inputs  345ms
+   ✓ Phase E: access, acoustics and marine navigation > 96: renders its source hardware, functional diagram and inputs  599ms
+   ✓ Phase E: access, acoustics and marine navigation > 97: renders its source hardware, functional diagram and inputs  453ms
+   ✓ Phase E: access, acoustics and marine navigation > 100: renders its source hardware, functional diagram and inputs  498ms
+   ✓ Phase E: access, acoustics and marine navigation > 101: renders its source hardware, functional diagram and inputs  588ms
+   ✓ Phase E: access, acoustics and marine navigation > 102: renders its source hardware, functional diagram and inputs  552ms
+   ✓ Phase E: access, acoustics and marine navigation > 103: renders its source hardware, functional diagram and inputs  816ms
+   ✓ Phase E: access, acoustics and marine navigation > 104: renders its source hardware, functional diagram and inputs  666ms
+ ✓ src/studios/how-devices-work/advanced/robotics.test.ts (43 tests) 5385ms
+   ✓ Phase G robotics and networking > 115: renders correct local hardware and native controls  307ms
+   ✓ Phase G robotics and networking > 117: renders correct local hardware and native controls  311ms
+   ✓ Phase G robotics and networking > 118: renders correct local hardware and native controls  701ms
+   ✓ Phase G robotics and networking > 120: renders correct local hardware and native controls  630ms
+   ✓ Phase G robotics and networking > 121: renders correct local hardware and native controls  309ms
+   ✓ Phase G robotics and networking > 122: renders correct local hardware and native controls  1296ms
+   ✓ Phase G robotics and networking > 122: every input has a finite applicable effect  372ms
+ ✓ src/studios/how-devices-work/advanced/advanced.test.ts (41 tests) 4538ms
+   ✓ Phase A: labs 55–64 > 56: renders real components and supplied hardware assets  315ms
+   ✓ Phase A: labs 55–64 > 57: renders real components and supplied hardware assets  470ms
+   ✓ Phase A: labs 55–64 > 59: renders real components and supplied hardware assets  382ms
+   ✓ Phase A: labs 55–64 > 61: renders real components and supplied hardware assets  1056ms
+   ✓ Phase A: labs 55–64 > 62: renders real components and supplied hardware assets  567ms
+ ✓ src/engines/builder/contest.audit.test.ts (62 tests) 5838ms
+   ✓ One-by-one contest enhancement audit (01–50) > 25. Challenge generation using declared ISA semantics  1331ms
+   ✓ One-by-one contest enhancement audit (01–50) > 32. Bounded microcycle execution with browser yielding  658ms
+   ✓ One-by-one contest enhancement audit (01–50) > 33. Cancellation and progress tracking  444ms
+   ✓ One-by-one contest enhancement audit (01–50) > 40. Executable-template regression runner  587ms
+   ✓ One-by-one contest enhancement audit (01–50) > 44. Judge package verification and independent rerun  464ms
+ ✓ src/engines/builder/engineering.test.ts (36 tests) 2051ms
+   ✓ Engineering CPU projects > each executable template is structurally valid and runs its sample  743ms
+   ✓ Constructed datapath execution > compares a randomized arithmetic program with an independent integer reference  663ms
+ ❯ src/studios/microcontroller/labs/core/mcu.test.ts (20 tests | 1 failed) 34443ms
+   ✓ MCU model > blinks PA5 via HAL at the rate set by HAL_Delay 238ms
+   ✓ MCU model > drives pins from register writes and reads IDR  826ms
+   ✓ MCU model > ignores GPIO writes when the port clock is off (strict mode) 45ms
+   ✓ MCU model > derives PWM frequency and duty from PSC/ARR/CCR 6ms
+   ✓ MCU model > fires EXTI callbacks on button edges 141ms
+   ✓ MCU model > re-enters an EXTI handler when the pending bit is not cleared 26ms
+   ✓ MCU model > runs timer update interrupts at PSC/ARR rate  3744ms
+   ✓ MCU model > converts analog voltages with the configured resolution 276ms
+   ✓ MCU model > transmits UART bytes with baud-accurate timing 284ms
+   ✓ MCU model > resets the MCU when the watchdog is not refreshed  698ms
+   ✓ MCU model > supports Arduino API on an ATmega328P 13ms
+   ✓ MCU model > supports AVR register programming and timer ISR  903ms
+   ✓ MCU model > supports 8051 sbit and timer interrupts 170ms
+   ✓ MCU model > supports PIC TRIS/LAT and the RB0 interrupt 5ms
+   ✓ MCU model > models STM32F103 CRL/BSRR/BRR GPIO with APB2 clock gating 272ms
+   × MCU model > delivers every SysTick interrupt, including rates above 1 kHz 25870ms
+     → Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ MCU model > fires a 5 kHz TIM2 update interrupt at the exact rate  564ms
+   ✓ MCU model > runs MSP430 GPIO code and resets when the watchdog is not held 38ms
+   ✓ MCU model > models F103 Flash unlock, page erase, halfword programming and persistence across reset  310ms
+   ✓ MCU model > raises a HardFault on writes to unmapped memory 3ms
+ ✓ src/studios/microcontroller/labs/g4/exec.test.ts (7 tests) 832ms
+   ✓ lab 37 Thumb execution with the STM32 register model > blinks PA5 every 100 ms of CPU time and counts loops  664ms
+ ✓ src/studios/microcontroller/labs/g2/input.test.ts (6 tests) 1505ms
+   ✓ lab 12 digital input / debounce > bouncing contacts make the naive firmware over-count  575ms
+   ✓ lab 12 digital input / debounce > timer debounce counts every press exactly once  352ms
+   ✓ lab 12 digital input / debounce > a debounce window shorter than the bounce lets double counts through  312ms
+ ✓ src/studios/microcontroller/labs/g4/sensors.test.ts (13 tests) 1399ms
+   ✓ lab 34 firmware > follows the environment: lag, range and the PIR hold time  576ms
+ ✓ src/studios/builder/projectStore.test.ts (6 tests) 610ms
+ ✓ src/studios/microcontroller/labs/g3/spi.test.ts (13 tests) 500ms
+ ✓ src/studios/microcontroller/labs/g4/can.test.ts (13 tests) 1886ms
+   ✓ lab 32 CAN bus > breaks an unterminated bus at 500 kbps but not at 125 kbps  421ms
+   ✓ lab 32 CAN bus > isolates a node with the wrong bitrate while the others keep talking  540ms
+ ✓ src/theory/faqs.test.ts (3 tests) 1199ms
+   ✓ expanded relevant lab FAQs > provides at least ten substantive unique answers for every lab  1179ms
+ ✓ src/theory/machineNotes.test.ts (2 tests) 1090ms
+   ✓ text-only lesson retrieval and attribution > publishes genuine content and exact source links for every canonical lesson  1086ms
+stdout | src/theory/lessonCoverage.test.ts > textbook editorial coverage > gives every lesson a diagram, worked solution, and explained questions
+{"articles":757,"mechanismTopics":583,"deviceScenarios":140,"foundational":34}
+
+ ✓ src/theory/lessonCoverage.test.ts (3 tests) 1495ms
+   ✓ textbook editorial coverage > gives every lesson a diagram, worked solution, and explained questions  1489ms
+ ✓ src/engines/builder/workspace.test.ts (10 tests) 1111ms
+   ✓ Workspace accuracy and recovery > checks every supported ALU operation at every supported width against independent arithmetic and flags  520ms
+ ✓ src/studios/microcontroller/labs/g2/capture.test.ts (8 tests) 1316ms
+   ✓ lab 20 input capture and output compare > captures both edges: 1.84 ms pulse is 18400 ticks, 244.1 Hz is 40967 ticks  344ms
+ ✓ src/theory/deviceExamples.test.ts (1 test) 1895ms
+   ✓ solved device scenarios > matches the actual engine for every baseline and changed-control example  1893ms
+ ✓ src/seo/pageData.test.ts (3 tests) 2445ms
+   ✓ public learning content and AI-search metadata > provides model-based visible FAQ data for every registered lab and theory page  2437ms
+ ✓ src/engines/builder/construction.test.ts (20 tests) 2904ms
+   ✓ CPU construction > runs an assembled user ISA through a hardwired CPU without the instruction executor  684ms
+   ✓ CPU construction > executes a concurrent pipeline with data hazards and drains HALT  653ms
+   ✓ CPU construction > flushes younger pipeline instructions on a taken branch  455ms
+   ✓ CPU construction > forwards the newest pipeline result and avoids RAW stalls when bypassing is enabled  513ms
+ ✓ src/engines/builder/scratchFlow.test.ts (4 tests) 396ms
+ ✓ src/engines/digital/wallace.test.ts (8 tests) 493ms
+ ✓ src/seo/urls.test.ts (4 tests) 576ms
+   ✓ SEO URL migration > gives every catalogue route a unique, reversible lab and textbook path  566ms
+ ✓ src/studios/microcontroller/labs/g3/comparator.test.ts (6 tests) 1213ms
+   ✓ lab 28 analog comparator > rising-edge mode interrupts once per cycle and toggles the LED at half the rate  334ms
+ ✓ src/engines/digital/arrayMultiplier.test.ts (7 tests) 258ms
+ ✓ src/studios/microcontroller/labs/g4/display.test.ts (11 tests) 1042ms
+ ✓ src/studios/microcontroller/labs/g3/dcmotor.test.ts (8 tests) 1769ms
+   ✓ lab 23 DC motor > duty scales speed and load slows it  644ms
+   ✓ lab 23 DC motor > instant reversal spikes the current past the L298N rating; braking first avoids it  345ms
+ ✓ src/studios/microcontroller/labs/core/cinterp.test.ts (14 tests) 794ms
+   ✓ C interpreter > applies priority inheritance on mutexes  689ms
+ ✓ src/studios/microcontroller/labs/g3/servo.test.ts (8 tests) 678ms
+ ✓ src/studios/microcontroller/labs/advanced/families.test.ts (11 tests) 2362ms
+   ✓ MCU family firmware simulations > 58: compiles and executes its family-specific firmware  359ms
+   ✓ MCU family firmware simulations > 56: uses classic 8051 machine-cycle timer reloads  474ms
+   ✓ MCU family firmware simulations > 58–59: observes register-backed AVR and STM32 timer interrupts  1449ms
+ ✓ src/studios/microcontroller/labs/g3/pwm.test.ts (5 tests) 363ms
+ ✓ src/studios/microcontroller/labs/g4/usb.test.ts (16 tests) 605ms
+ ✓ src/seo/proxy.test.ts (2 tests) 664ms
+   ✓ production canonical redirects > redirects every legacy lab and theory bookmark without loops  658ms
+ ✓ src/engines/digital/booth.test.ts (6 tests) 292ms
+ ✓ src/studios/microcontroller/labs/g2/mux.test.ts (7 tests) 155ms
+ ✓ src/engines/part4.test.ts (8 tests) 671ms
+   ✓ Build Your Own CPU > assembles LOADI/ADD/STORE and writes 12 to R3 and memory 20  616ms
+ ✓ src/studios/microcontroller/labs/g2/output.test.ts (8 tests) 903ms
+   ✓ lab 13 digital output > without a flyback diode Q1 dies and the relay sticks on  374ms
+ ✓ src/theory/catalogue.test.ts (5 tests) 159ms
+ ✓ src/engines/aca/phase4.test.ts (14 tests) 183ms
+ ✓ src/studios/microcontroller/labs/g2/nest.test.ts (6 tests) 402ms
+ ✓ src/studios/microcontroller/labs/g3/dac.test.ts (7 tests) 570ms
+ ✓ src/studios/builder/BlockProgram.test.ts (2 tests) 227ms
+ ✓ src/theory/focus.test.ts (4 tests) 312ms
+ ✓ src/studios/aca/guide/guide.test.ts (2 tests) 135ms
+ ✓ src/components/circuit/engine.test.ts (10 tests) 209ms
+ ✓ src/studios/microcontroller/labs/g3/quant.test.ts (9 tests) 129ms
+ ✓ src/studios/microcontroller/projectEngine.test.ts (31 tests) 64ms
+ ✓ src/studios/microcontroller/labs/g2/register.test.ts (5 tests) 47ms
+ ✓ src/engines/isaarch/mobile.test.ts (5 tests) 50ms
+ ✓ src/layout/StudioNavigation.test.ts (3 tests) 48ms
+ ✓ src/studios/microcontroller/labs/advanced/models.test.ts (16 tests) 129ms
+ ✓ src/studios/sandbox/sandboxModel.test.ts (7 tests) 166ms
+ ✓ src/engines/aca/phase1.test.ts (11 tests) 155ms
+ ✓ src/studios/aca/labs/boothLab.test.ts (2 tests) 229ms
+ ✓ src/studios/aca/labs/arrayMultiplierLab.test.ts (2 tests) 311ms
+   ✓ Combinational multiplier lab > renders the 4×4 example product, the array, and the previous lab link  305ms
+ ✓ src/studios/aca/labs/wallaceLab.test.ts (2 tests) 379ms
+   ✓ Wallace Tree lab navigation > renders the lab with the example sum and the final-adder control  361ms
+ ✓ src/studios/microcontroller/labs/g1/thumb.test.ts (6 tests) 30ms
+ ✓ src/data/search.test.ts (3 tests) 365ms
+   ✓ smart studio search > keeps the combinational multiplier distinct from shift-and-add  310ms
+ ✓ src/engines/aca/phase5.test.ts (13 tests) 134ms
+ ✓ src/engines/part3.test.ts (20 tests) 41ms
+ ✓ src/engines/phase4.test.ts (12 tests) 37ms
+ ✓ src/engines/phase3.test.ts (23 tests) 38ms
+ ✓ src/studios/vlsi/phase6.test.ts (13 tests) 41ms
+ ✓ src/engines/aca/phase9.test.ts (14 tests) 32ms
+ ✓ src/components/circuit/palette.test.ts (6 tests) 35ms
+ ✓ src/engines/phase2.test.ts (8 tests) 29ms
+ ✓ src/engines/aca/phase6.test.ts (8 tests) 32ms
+ ✓ src/engines/aca/phase7.test.ts (10 tests) 135ms
+ ✓ src/engines/aca/phase8.test.ts (7 tests) 20ms
+ ✓ src/engines/phase1.test.ts (15 tests) 29ms
+ ✓ src/engines/aca/phase10.test.ts (11 tests) 7129ms
+   ✓ performance counters > renders every advanced-architecture lab route  7115ms
+ ✓ src/engines/aca/phase2.test.ts (12 tests) 248ms
+ ✓ src/studios/microcontroller/labs/g1/memmap.test.ts (2 tests) 88ms
+ ✓ src/studios/truth-tables/logic.test.ts (6 tests) 23ms
+ ✓ src/engines/isa/assemblyRun.test.ts (6 tests) 25ms
+ ✓ src/engines/aca/phase3.test.ts (14 tests) 22ms
+ ✓ src/engines/cache/studio.test.ts (6 tests) 18ms
+ ✓ src/engines/arch/vmLab.test.ts (9 tests) 20ms
+ ✓ src/studios/fde/fdeModel.test.ts (3 tests) 19ms
+ ✓ src/engines/phase5.test.ts (17 tests) 30ms
+ ✓ src/engines/architecture.test.ts (12 tests) 31ms
+ ✓ src/studios/vlsi/phase4.test.ts (15 tests) 16ms
+ ✓ src/engines/memory/fundamentals.test.ts (10 tests) 16ms
+ ✓ src/studios/vlsi/phase2.test.ts (13 tests) 17ms
+ ✓ src/studios/vlsi/phase3.test.ts (18 tests) 29ms
+ ✓ src/components/circuit/selection.test.ts (6 tests) 11ms
+ ✓ src/engines/arch/hierarchyLab.test.ts (7 tests) 14ms
+ ✓ src/engines/isa/addressLab.test.ts (8 tests) 16ms
+ ✓ src/engines/isa/rtlLab.test.ts (4 tests) 14ms
+ ✓ src/engines/boolean/regions.test.ts (4 tests) 14ms
+ ✓ src/engines/tabs.test.ts (1 test) 4ms
+ ✓ src/engines/isa/teach.test.ts (8 tests) 14ms
+ ✓ src/studios/vlsi/phase5.test.ts (13 tests) 12ms
+ ✓ src/engines/builder/canvasUx.test.ts (4 tests) 15ms
+ ✓ src/design-system/labMotionPolicy.test.ts (6 tests) 10ms
+ ✓ src/studios/vlsi/engine.test.ts (7 tests) 13ms
+ ✓ src/studios/microcontroller/catalogue.test.ts (3 tests) 26ms
+ ✓ src/engines/cpu/blocksLab.test.ts (5 tests) 13ms
+ ✓ src/studios/io/ioModel.test.ts (5 tests) 14ms
+ ✓ src/layout/experimentRecord.test.ts (3 tests) 20ms
+ ✓ src/layout/experimentContext.test.ts (2 tests) 11ms
+ ✓ src/studios/how-devices-work/hardwareIdentity.test.ts (3 tests) 8ms
+ ✓ src/studios/how-devices-work/catalogue.test.ts (144 tests) 660ms
+ ✓ src/engines/arch/busarch.test.ts (2 tests) 8ms
+ ✓ src/engines/numbers/crc.test.ts (3 tests) 13ms
+ ✓ src/components/circuit/interact.test.ts (5 tests) 10ms
+ ✓ src/studios/how-devices-work/accuracy.test.ts (3 tests) 6ms
+ ✓ src/studios/how-devices-work/course.test.ts (280 tests) 55422ms
+   ✓ 1: eight tabs and no simulator mounted on initial Overview  408ms
+   ✓ 2: eight tabs and no simulator mounted on initial Overview  384ms
+   ✓ 6: eight tabs and no simulator mounted on initial Overview  610ms
+   ✓ 8: eight tabs and no simulator mounted on initial Overview  343ms
+   ✓ 10: eight tabs and no simulator mounted on initial Overview  808ms
+   ✓ 12: eight tabs and no simulator mounted on initial Overview  712ms
+   ✓ 13: eight tabs and no simulator mounted on initial Overview  550ms
+   ✓ 14: eight tabs and no simulator mounted on initial Overview  508ms
+   ✓ 15: eight tabs and no simulator mounted on initial Overview  313ms
+   ✓ 16: eight tabs and no simulator mounted on initial Overview  366ms
+   ✓ 17: eight tabs and no simulator mounted on initial Overview  574ms
+   ✓ 18: eight tabs and no simulator mounted on initial Overview  486ms
+   ✓ 19: eight tabs and no simulator mounted on initial Overview  590ms
+   ✓ 20: eight tabs and no simulator mounted on initial Overview  337ms
+   ✓ 24: eight tabs and no simulator mounted on initial Overview  319ms
+   ✓ 25: eight tabs and no simulator mounted on initial Overview  308ms
+   ✓ 27: eight tabs and no simulator mounted on initial Overview  486ms
+   ✓ 29: eight tabs and no simulator mounted on initial Overview  309ms
+   ✓ 31: eight tabs and no simulator mounted on initial Overview  334ms
+   ✓ 32: eight tabs and no simulator mounted on initial Overview  319ms
+   ✓ 37: eight tabs and no simulator mounted on initial Overview  374ms
+   ✓ 38: eight tabs and no simulator mounted on initial Overview  440ms
+   ✓ 39: eight tabs and no simulator mounted on initial Overview  743ms
+   ✓ 40: eight tabs and no simulator mounted on initial Overview  372ms
+   ✓ 41: eight tabs and no simulator mounted on initial Overview  324ms
+   ✓ 42: eight tabs and no simulator mounted on initial Overview  330ms
+   ✓ 43: eight tabs and no simulator mounted on initial Overview  334ms
+   ✓ 44: eight tabs and no simulator mounted on initial Overview  401ms
+   ✓ 45: eight tabs and no simulator mounted on initial Overview  431ms
+   ✓ 46: eight tabs and no simulator mounted on initial Overview  302ms
+   ✓ 48: eight tabs and no simulator mounted on initial Overview  381ms
+   ✓ 52: eight tabs and no simulator mounted on initial Overview  483ms
+   ✓ 54: eight tabs and no simulator mounted on initial Overview  411ms
+   ✓ 55: eight tabs and no simulator mounted on initial Overview  308ms
+   ✓ 57: eight tabs and no simulator mounted on initial Overview  328ms
+   ✓ 63: eight tabs and no simulator mounted on initial Overview  394ms
+   ✓ 64: eight tabs and no simulator mounted on initial Overview  343ms
+   ✓ 65: eight tabs and no simulator mounted on initial Overview  316ms
+   ✓ 68: eight tabs and no simulator mounted on initial Overview  354ms
+   ✓ 69: eight tabs and no simulator mounted on initial Overview  340ms
+   ✓ 70: eight tabs and no simulator mounted on initial Overview  676ms
+   ✓ 71: eight tabs and no simulator mounted on initial Overview  645ms
+   ✓ 72: eight tabs and no simulator mounted on initial Overview  529ms
+   ✓ 73: eight tabs and no simulator mounted on initial Overview  754ms
+   ✓ 74: eight tabs and no simulator mounted on initial Overview  392ms
+   ✓ 75: eight tabs and no simulator mounted on initial Overview  332ms
+   ✓ 81: eight tabs and no simulator mounted on initial Overview  385ms
+   ✓ 82: eight tabs and no simulator mounted on initial Overview  1130ms
+   ✓ 83: eight tabs and no simulator mounted on initial Overview  347ms
+   ✓ 84: eight tabs and no simulator mounted on initial Overview  334ms
+   ✓ 85: eight tabs and no simulator mounted on initial Overview  377ms
+   ✓ 86: eight tabs and no simulator mounted on initial Overview  943ms
+   ✓ 90: eight tabs and no simulator mounted on initial Overview  419ms
+   ✓ 94: eight tabs and no simulator mounted on initial Overview  325ms
+   ✓ 95: eight tabs and no simulator mounted on initial Overview  351ms
+   ✓ 99: eight tabs and no simulator mounted on initial Overview  330ms
+   ✓ 100: eight tabs and no simulator mounted on initial Overview  614ms
+   ✓ 103: eight tabs and no simulator mounted on initial Overview  309ms
+   ✓ 105: eight tabs and no simulator mounted on initial Overview  407ms
+   ✓ 106: eight tabs and no simulator mounted on initial Overview  606ms
+   ✓ 107: eight tabs and no simulator mounted on initial Overview  510ms
+   ✓ 108: eight tabs and no simulator mounted on initial Overview  325ms
+   ✓ 109: eight tabs and no simulator mounted on initial Overview  302ms
+   ✓ 110: eight tabs and no simulator mounted on initial Overview  384ms
+   ✓ 111: eight tabs and no simulator mounted on initial Overview  301ms
+   ✓ 112: eight tabs and no simulator mounted on initial Overview  356ms
+   ✓ 113: eight tabs and no simulator mounted on initial Overview  480ms
+   ✓ 114: eight tabs and no simulator mounted on initial Overview  434ms
+   ✓ 116: eight tabs and no simulator mounted on initial Overview  318ms
+   ✓ 118: eight tabs and no simulator mounted on initial Overview  357ms
+   ✓ 119: eight tabs and no simulator mounted on initial Overview  551ms
+   ✓ 120: eight tabs and no simulator mounted on initial Overview  388ms
+   ✓ 121: eight tabs and no simulator mounted on initial Overview  502ms
+   ✓ 122: eight tabs and no simulator mounted on initial Overview  807ms
+   ✓ 123: eight tabs and no simulator mounted on initial Overview  345ms
+   ✓ 128: eight tabs and no simulator mounted on initial Overview  353ms
+   ✓ 131: eight tabs and no simulator mounted on initial Overview  318ms
+   ✓ 132: eight tabs and no simulator mounted on initial Overview  347ms
+   ✓ 133: eight tabs and no simulator mounted on initial Overview  303ms
+   ✓ 135: eight tabs and no simulator mounted on initial Overview  329ms
+   ✓ 136: eight tabs and no simulator mounted on initial Overview  450ms
+   ✓ 137: eight tabs and no simulator mounted on initial Overview  525ms
+   ✓ 138: eight tabs and no simulator mounted on initial Overview  505ms
+   ✓ 139: eight tabs and no simulator mounted on initial Overview  466ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/studios/how-devices-work/anatomy-inventory.test.ts > Complete educational anatomy coverage > renders original and supporting cards for all 140 pages with reusable identities
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/how-devices-work/anatomy-inventory.test.ts:25:2
+     23|   }
+     24|  });
+     25|  it('renders original and supporting cards for all 140 pages with reus…
+       |  ^
+     26|   for(const lab of labs){
+     27|    const html=renderToStaticMarkup(createElement(PartsAnatomyCards,{la…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/studios/how-devices-work/part-images.test.ts > Reusable anatomy images > renders an image for every original, supporting and educational build item on all 140 pages
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/how-devices-work/part-images.test.ts:28:2
+     26|   }
+     27|  });
+     28|  it('renders an image for every original, supporting and educational b…
+       |  ^
+     29|   for(const lab of [...LABS,...ADVANCED_LABS]){
+     30|    const html=renderToStaticMarkup(createElement(PartsAnatomyCards,{la…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/studios/microcontroller/labs/core/mcu.test.ts > MCU model > delivers every SysTick interrupt, including rates above 1 kHz
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/microcontroller/labs/core/mcu.test.ts:164:3
+    162|   });
+    163| 
+    164|   it("delivers every SysTick interrupt, including rates above 1 kHz", …
+       |   ^
+    165|     const run = (load: number) => {
+    166|       const mcu = boot(`volatile uint32_t msTicks = 0;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/studios/microcontroller/labs/g2/exti.test.ts > lab 17 external interrupts > a floating input produces phantom interrupts; a noisy contact is filtered
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/microcontroller/labs/g2/exti.test.ts:80:3
+     78|   });
+     79| 
+     80|   it("a floating input produces phantom interrupts; a noisy contact is…
+       |   ^
+     81|     const fl = boot(DEMO, { floating: true });
+     82|     fl.run(3);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/studios/microcontroller/labs/g3/stepper.test.ts > lab 24 stepper > recovers after a stall: the position error stays but the status clears
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/microcontroller/labs/g3/stepper.test.ts:71:3
+     69|   });
+     70| 
+     71|   it("recovers after a stall: the position error stays but the status …
+       |   ^
+     72|     const { m, run } = boot(DEMO, { load: 2 });
+     73|     run(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/studios/microcontroller/labs/g4/baremetal.test.ts > lab 38 bare-metal registers > reproduces each bug
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/microcontroller/labs/g4/baremetal.test.ts:55:3
+     53|   });
+     54| 
+     55|   it("reproduces each bug", () => {
+       |   ^
+     56|     const clk = boot(BUG_TIMCLK);
+     57|     clk.run(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/studios/microcontroller/labs/g4/input.test.ts > lab 36 input models > floating columns and a row left low create phantom keys
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/studios/microcontroller/labs/g4/input.test.ts:70:3
+     68|   });
+     69| 
+     70|   it("floating columns and a row left low create phantom keys", () => {
+       |   ^
+     71|     const fl = boot(BUG_FLOAT);
+     72|     fl.run(1.5);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  7 failed | 121 passed (128)
+      Tests  7 failed | 1999 passed (2006)
+   Start at  01:37:39
+   Duration  85.20s (transform 146.40s, setup 0ms, collect 427.03s, tests 317.48s, environment 52ms, prepare 70.00s)
+

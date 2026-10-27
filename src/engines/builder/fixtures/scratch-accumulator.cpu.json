@@ -1,0 +1,649 @@
+{
+  "design": {
+    "breakpoints": [],
+    "engineering": {
+      "activeFile": "main",
+      "addressWidth": 16,
+      "construction": {
+        "execution": "circuit",
+        "microPc": 0
+      },
+      "control": [
+        {
+          "action": "fetch",
+          "id": "fetch",
+          "name": "Fetch",
+          "next": "decode",
+          "signals": {}
+        },
+        {
+          "action": "decode",
+          "id": "decode",
+          "name": "Decode",
+          "next": "execute",
+          "signals": {}
+        },
+        {
+          "action": "execute",
+          "id": "execute",
+          "name": "Execute",
+          "next": "memory",
+          "signals": {
+            "ALUSrc": "instruction"
+          }
+        },
+        {
+          "action": "memory",
+          "id": "memory",
+          "name": "Memory",
+          "next": "writeback",
+          "signals": {
+            "MemRead": "instruction",
+            "MemWrite": "instruction"
+          }
+        },
+        {
+          "action": "writeback",
+          "id": "writeback",
+          "name": "Writeback",
+          "next": "fetch",
+          "signals": {
+            "MemToReg": "instruction",
+            "RegWrite": "instruction"
+          }
+        }
+      ],
+      "cycle": 2,
+      "description": "A browser-local, logic-level CPU project",
+      "endianness": "little",
+      "executionLimit": 10000,
+      "favorites": [
+        "alu"
+      ],
+      "files": [
+        {
+          "id": "main",
+          "name": "main.asm",
+          "source": "LOADI R0, 5\nADDI 7\nHALT\n"
+        }
+      ],
+      "id": "cpu-local",
+      "mode": "single",
+      "presets": [],
+      "regions": [],
+      "routing": "curved",
+      "schema": 2,
+      "signalLabels": true,
+      "startState": "fetch",
+      "state": "fetch",
+      "subcircuits": [],
+      "unknown": "strict",
+      "watches": [],
+      "watchExpressions": [
+        "PC",
+        "R1",
+        "R3",
+        "MEM[20]"
+      ]
+    },
+    "isa": {
+      "dataWidth": 16,
+      "fieldsB": [
+        {
+          "lo": 12,
+          "name": "opcode",
+          "purpose": "opcode",
+          "width": 4
+        },
+        {
+          "lo": 9,
+          "name": "rs1",
+          "purpose": "rs1",
+          "width": 3
+        },
+        {
+          "lo": 6,
+          "name": "rs2",
+          "purpose": "rs2",
+          "width": 3
+        },
+        {
+          "lo": 0,
+          "name": "imm",
+          "purpose": "imm",
+          "width": 6
+        }
+      ],
+      "fieldsI": [
+        {
+          "lo": 12,
+          "name": "opcode",
+          "purpose": "opcode",
+          "width": 4
+        },
+        {
+          "lo": 9,
+          "name": "rd",
+          "purpose": "rd",
+          "width": 3
+        },
+        {
+          "lo": 0,
+          "name": "imm",
+          "purpose": "imm",
+          "width": 9
+        }
+      ],
+      "fieldsJ": [
+        {
+          "lo": 12,
+          "name": "opcode",
+          "purpose": "opcode",
+          "width": 4
+        },
+        {
+          "lo": 0,
+          "name": "imm",
+          "purpose": "imm",
+          "width": 12
+        }
+      ],
+      "fieldsR": [
+        {
+          "lo": 12,
+          "name": "opcode",
+          "purpose": "opcode",
+          "width": 4
+        },
+        {
+          "lo": 9,
+          "name": "rd",
+          "purpose": "rd",
+          "width": 3
+        },
+        {
+          "lo": 6,
+          "name": "rs1",
+          "purpose": "rs1",
+          "width": 3
+        },
+        {
+          "lo": 3,
+          "name": "rs2",
+          "purpose": "rs2",
+          "width": 3
+        },
+        {
+          "lo": 0,
+          "name": "funct",
+          "purpose": "funct",
+          "width": 3
+        }
+      ],
+      "instructions": [
+        {
+          "aluOp": "AND",
+          "aluSrc": "reg",
+          "format": "N",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "HALT",
+          "opcode": 0,
+          "operandA": "rd",
+          "operands": [],
+          "pc": "halt",
+          "regWrite": false
+        },
+        {
+          "aluOp": "ADD",
+          "aluSrc": "imm",
+          "format": "I",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "LOADI",
+          "opcode": 1,
+          "operandA": "zero",
+          "operands": [
+            "rd",
+            "imm"
+          ],
+          "pc": "inc",
+          "regWrite": true
+        },
+        {
+          "aluOp": "ADD",
+          "aluSrc": "imm",
+          "format": "I",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "ADDI",
+          "opcode": 2,
+          "operandA": "rs1",
+          "operands": [
+            "imm"
+          ],
+          "pc": "inc",
+          "regWrite": true
+        },
+        {
+          "aluOp": "SUB",
+          "aluSrc": "reg",
+          "format": "R",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "SUB",
+          "opcode": 3,
+          "operandA": "rs1",
+          "operands": [
+            "rd",
+            "rs1",
+            "rs2"
+          ],
+          "pc": "inc",
+          "regWrite": true
+        },
+        {
+          "aluOp": "AND",
+          "aluSrc": "reg",
+          "format": "R",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "AND",
+          "opcode": 4,
+          "operandA": "rs1",
+          "operands": [
+            "rd",
+            "rs1",
+            "rs2"
+          ],
+          "pc": "inc",
+          "regWrite": true
+        },
+        {
+          "aluOp": "OR",
+          "aluSrc": "reg",
+          "format": "R",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "OR",
+          "opcode": 5,
+          "operandA": "rs1",
+          "operands": [
+            "rd",
+            "rs1",
+            "rs2"
+          ],
+          "pc": "inc",
+          "regWrite": true
+        },
+        {
+          "aluOp": "ADD",
+          "aluSrc": "imm",
+          "format": "I",
+          "mem": "load",
+          "memToReg": true,
+          "mnemonic": "LOAD",
+          "opcode": 6,
+          "operandA": "zero",
+          "operands": [
+            "rd",
+            "imm"
+          ],
+          "pc": "inc",
+          "regWrite": true
+        },
+        {
+          "aluOp": "ADD",
+          "aluSrc": "imm",
+          "format": "I",
+          "mem": "store",
+          "memToReg": false,
+          "mnemonic": "STORE",
+          "opcode": 7,
+          "operandA": "zero",
+          "operands": [
+            "rd",
+            "imm"
+          ],
+          "pc": "inc",
+          "regWrite": false
+        },
+        {
+          "aluOp": "SUB",
+          "aluSrc": "reg",
+          "format": "B",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "BEQ",
+          "opcode": 8,
+          "operandA": "rs1",
+          "operands": [
+            "rs1",
+            "rs2",
+            "imm"
+          ],
+          "pc": "branchEq",
+          "regWrite": false
+        },
+        {
+          "aluOp": "ADD",
+          "aluSrc": "imm",
+          "format": "J",
+          "mem": "none",
+          "memToReg": false,
+          "mnemonic": "JUMP",
+          "opcode": 9,
+          "operandA": "rd",
+          "operands": [
+            "imm"
+          ],
+          "pc": "jump",
+          "regWrite": false
+        }
+      ],
+      "instrWidth": 16,
+      "name": "Custom-16",
+      "regs": 8
+    },
+    "modelVersion": 2,
+    "name": "QA scratch accumulator CPU",
+    "nextId": 16,
+    "nodes": [
+      {
+        "id": "n1",
+        "inputWidth": 8,
+        "kind": "pc",
+        "mem": [],
+        "name": "PC",
+        "note": "",
+        "op": "ADD",
+        "sel": 0,
+        "value": 2,
+        "values": [],
+        "we": false,
+        "width": 16,
+        "x": 35,
+        "y": 30
+      },
+      {
+        "id": "n2",
+        "inputWidth": 8,
+        "kind": "imem",
+        "mem": [
+          4101,
+          8199,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "name": "IMEM",
+        "note": "",
+        "op": "ADD",
+        "sel": 0,
+        "value": 0,
+        "values": [],
+        "we": false,
+        "width": 16,
+        "x": 290,
+        "y": 30
+      },
+      {
+        "id": "n3",
+        "inputWidth": 8,
+        "kind": "acc",
+        "mem": [],
+        "name": "ACC",
+        "note": "",
+        "op": "ADD",
+        "sel": 0,
+        "value": 12,
+        "values": [],
+        "we": false,
+        "width": 16,
+        "x": 545,
+        "y": 30
+      },
+      {
+        "id": "n4",
+        "inputWidth": 1,
+        "kind": "clock",
+        "mem": [],
+        "name": "CLOCK",
+        "note": "",
+        "op": "ADD",
+        "sel": 0,
+        "value": 1,
+        "values": [],
+        "we": false,
+        "width": 1,
+        "x": 35,
+        "y": 345
+      },
+      {
+        "behavior": {
+          "outputs": {
+            "halted": "(inst >> 12) == 0",
+            "nextpc": "pc + 1",
+            "result": "(inst >> 12) == 1 ? (inst & 511) : acc + (inst & 511)",
+            "run": "(inst >> 12) != 0",
+            "we": "((inst >> 12) == 1) || ((inst >> 12) == 2)"
+          },
+          "ports": [
+            {
+              "dir": "in",
+              "id": "inst",
+              "name": "INST",
+              "role": "data",
+              "width": 16
+            },
+            {
+              "dir": "in",
+              "id": "pc",
+              "name": "PC",
+              "role": "data",
+              "width": 16
+            },
+            {
+              "dir": "in",
+              "id": "acc",
+              "name": "ACC",
+              "role": "data",
+              "width": 16
+            },
+            {
+              "dir": "out",
+              "id": "nextpc",
+              "name": "NEXTPC",
+              "role": "data",
+              "width": 16
+            },
+            {
+              "dir": "out",
+              "id": "result",
+              "name": "RESULT",
+              "role": "data",
+              "width": 16
+            },
+            {
+              "dir": "out",
+              "id": "we",
+              "name": "WE",
+              "role": "control",
+              "width": 1
+            },
+            {
+              "dir": "out",
+              "id": "run",
+              "name": "RUN",
+              "role": "control",
+              "width": 1
+            },
+            {
+              "dir": "out",
+              "id": "halted",
+              "name": "HALTED",
+              "role": "control",
+              "width": 1
+            }
+          ],
+          "registers": {},
+          "text": ""
+        },
+        "id": "n5",
+        "kind": "buf",
+        "mem": [],
+        "name": "Combinational block",
+        "note": "",
+        "op": "ADD",
+        "sel": 0,
+        "value": 0,
+        "values": [],
+        "we": false,
+        "width": 16,
+        "x": 290,
+        "y": 345
+      }
+    ],
+    "overlay": "both",
+    "pan": {
+      "k": 1.408450704225352,
+      "x": -14.08450704225352,
+      "y": -7.04225352112676
+    },
+    "probes": [],
+    "program": "LOADI R0, 5\nADDI 7\nHALT\n",
+    "wires": [
+      {
+        "from": "n4",
+        "fromPort": "y",
+        "id": "w6",
+        "to": "n1",
+        "toPort": "clk"
+      },
+      {
+        "from": "n4",
+        "fromPort": "y",
+        "id": "w7",
+        "to": "n3",
+        "toPort": "clk"
+      },
+      {
+        "from": "n1",
+        "fromPort": "q",
+        "id": "w8",
+        "to": "n2",
+        "toPort": "addr"
+      },
+      {
+        "from": "n2",
+        "fromPort": "q",
+        "id": "w9",
+        "to": "n5",
+        "toPort": "inst"
+      },
+      {
+        "from": "n1",
+        "fromPort": "q",
+        "id": "w10",
+        "to": "n5",
+        "toPort": "pc"
+      },
+      {
+        "from": "n3",
+        "fromPort": "q",
+        "id": "w11",
+        "to": "n5",
+        "toPort": "acc"
+      },
+      {
+        "from": "n5",
+        "fromPort": "nextpc",
+        "id": "w12",
+        "to": "n1",
+        "toPort": "d"
+      },
+      {
+        "from": "n5",
+        "fromPort": "result",
+        "id": "w13",
+        "to": "n3",
+        "toPort": "d"
+      },
+      {
+        "from": "n5",
+        "fromPort": "we",
+        "id": "w14",
+        "to": "n3",
+        "toPort": "we"
+      },
+      {
+        "from": "n5",
+        "fromPort": "run",
+        "id": "w15",
+        "to": "n1",
+        "toPort": "we"
+      }
+    ]
+  },
+  "kind": "logiclab-cpu",
+  "version": 2
+}

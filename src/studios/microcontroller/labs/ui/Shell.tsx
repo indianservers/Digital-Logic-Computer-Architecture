@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import type { Lab, LabParams } from "../core/useLab";
-import { LAB_META, groupLabel, labByNumber, labPath, type LabMeta } from "../registry";
+import { CORE_LAB_GROUPS, LAB_META, groupLabel, labByNumber, labPath, type LabMeta } from "../registry";
 import { Icon, type IconName } from "./Icon";
 
 export interface ShellProps<P extends LabParams> {
@@ -111,7 +111,7 @@ export function LabShell<P extends LabParams>({ meta, lab, subtitle, components 
                 </Link>
               ))}
               <div className="mcl-side-groups">
-                {[1, 2, 3, 4, 5, 6].filter((g) => g !== meta.group).map((g) => { const first = labByNumber(g * 10 - 9)!; return <Link key={g} to={labPath(first)}>{groupLabel(g)}</Link>; })}
+                {CORE_LAB_GROUPS.filter((group) => group.id !== meta.group).map((group) => { const first = labByNumber(group.first); return first ? <Link key={group.id} to={labPath(first)}>{groupLabel(group.id)}</Link> : null; })}
               </div>
             </div>
           ) : null}

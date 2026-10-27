@@ -1,6 +1,7 @@
 import { useRef, type RefObject } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useLabMotion } from "../../../design-system/LabMotion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -20,12 +21,14 @@ export function useStepMotion(
   speed: number,
   build: (timeline: gsap.core.Timeline) => void,
 ) {
+  const {enabled}=useLabMotion();
   const timeline = useRef<gsap.core.Timeline | null>(null);
   useGSAP(() => {
     timeline.current?.kill();
     const next = gsap.timeline({ defaults: { ease: "power2.out", overwrite: "auto" } });
     timeline.current = next;
     build(next);
-  }, { scope, dependencies: [cycle, speed], revertOnUpdate: true });
+    if(!enabled)next.progress(1).pause();
+  }, { scope, dependencies: [cycle, speed, enabled], revertOnUpdate: true });
   return timeline;
 }

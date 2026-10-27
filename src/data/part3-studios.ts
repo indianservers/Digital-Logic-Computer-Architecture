@@ -1,4 +1,5 @@
 import type { ArchStudioDef, ConceptMap } from "./architecture";
+import routeAliases from "../seo/aliases.json";
 
 function lab(id: string, title: string, guide: string[], takeaways: string[], theory?: string) {
   return { id, title, guide, takeaways, theory };
@@ -115,7 +116,7 @@ export const PART3_STUDIOS: ArchStudioDef[] = [
       lab("isp", "ISP & Imaging", ["Select a pipeline stage.", "Move exposure, denoise, color, and sharpen.", "Compare before and after.", "Reset to the sensor image."], ["The ISP turns a raw sensor frame into a displayable image.", "Stages are ordered: demosaic, denoise, color, tone, sharpen.", "Sliders are educational filters, not a camera ISP.", "The frame still lands in memory."]),
       lab("memory", "Memory & Interconnect", ["Choose an engine and an access pattern.", "Step a request through the hierarchy.", "Watch hit, miss, and the NoC client.", "Remember latencies are relative."], ["Registers and L1 are private and fast.", "A shared cache sits in front of LPDDR.", "Sequential and streaming patterns reuse lines.", "Random and multi-engine traffic contend on the interconnect."]),
       lab("connectivity", "Modem & Connectivity", ["Pick 5G, LTE, or Wi-Fi.", "Move signal, load, and distance.", "Watch rate, latency, and modem power.", "Treat the result as an illustration."], ["The modem is antenna, RF, baseband, and a protocol stack.", "Wi-Fi, Bluetooth, GNSS, and NFC are separate radios in this sketch.", "Signal and load change the illustrative rate.", "Exact network speeds are not claimed."]),
-      lab("power-thermal", "Power, Thermal & DVFS", ["Choose a workload and press Run.", "Watch frequency, power, and temperature.", "Lower the thermal limit to see throttling.", "This is a simplified educational thermal model."], ["DVFS lowers frequency and voltage together in the teaching model.", "Idle domains can be power-gated.", "Crossing the thermal limit reduces frequency.", "Heavy CPU work can migrate toward E-cores when the package is hot."]),
+      lab("power-thermal", "Power, Thermal & DVFS", ["Predict which profile will run hotter.", "Run Gaming for 600 simulated seconds.", "Export the trace; lower thermal resistance and repeat.", "Compare peak junction temperature and throttle duration."], ["Thermal capacity delays temperature changes.", "Lower case-to-air resistance improves sustained cooling.", "Throttling reduces dynamic power; hysteresis prevents immediate recovery.", "Coefficients are generic teaching assumptions, not handset measurements."]),
       lab("integration", "System Integration", ["Pick a scenario.", "Run, pause, or step the timeline.", "See which blocks wake up.", "Read power and temperature contribution."], ["A photo wakes the ISP, memory, NPU, and storage.", "A game wakes CPU, GPU, memory, and display.", "A call adds the modem.", "The package power is the sum of the active clients."]),
     ],
   },
@@ -145,7 +146,7 @@ function cmap(studio: string, start: number, rows: Array<[string, string]>): Con
     title,
     studio,
     lab,
-    route: `/architecture/${studio}/${lab}`,
+    route: (routeAliases as Record<string,string>)[`/architecture/${studio}/${lab}`] ?? `/architecture/${studio}/${lab}`,
     interactive: true as const,
   }));
 }
