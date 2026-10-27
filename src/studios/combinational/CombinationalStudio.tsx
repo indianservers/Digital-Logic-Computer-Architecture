@@ -9,6 +9,7 @@ import { Toggle } from "../../design-system/ui";
 import { Link, useNavigate } from "react-router-dom";
 import { searchStudios } from "../../data/curriculum";
 import { Mark } from "../rtl/ui";
+import { useStudioTab } from "../../layout/useStudioTab";
 import "./combinational.css";
 
 const TABS = [
@@ -103,7 +104,7 @@ const OPS = [
 ];
 
 export function CombinationalStudio() {
-  const [tab, setTab] = useState("basic");
+  const [tab, setTab] = useStudioTab(TABS, "basic");
   const [pan, setPan] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
   useEffect(() => { const gate = circuit.doc.nodes.find(node => node.type === "and") ?? circuit.doc.nodes[0]; if (gate) circuit.setSelected([gate.id]); fitCanvas(); }, []);

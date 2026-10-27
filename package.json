@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node scripts/seo/build-pages.mjs && npm run seo:verify",
     "preview": "vite preview",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seo:routes": "node scripts/seo/generate-routes.mjs",
+    "prebuild": "npm run seo:routes",
+    "seo:verify": "node scripts/seo/verify-pages.mjs"
   },
   "dependencies": {
     "@fontsource/plus-jakarta-sans": "^5.2.5",

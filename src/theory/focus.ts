@@ -1,6 +1,8 @@
 import { CHAPTER_BY_ID } from "./chapters";
 import { THEORY_ARTICLES, normalizeRoute } from "./catalogue";
 import type { TheoryArticle } from "./types";
+import { topicFor } from "./lessonPlans";
+import { TOPIC_CHAPTERS } from "./topicChapters";
 
 /** Deliberate lesson mappings take precedence over automatic concept matching. */
 export const LAB_CHAPTERS:Record<string,string[]>={
@@ -53,6 +55,10 @@ const MEMORY_INTROS:Record<string,string>={
 function chaptersFor(a:TheoryArticle):string[]{
   const exact=LAB_CHAPTERS[normalizeRoute(a.route)];
   if(exact)return exact;
+  const topic=topicFor({...a,chapterIds:[]});
+  const mapped=topic?TOPIC_CHAPTERS[topic.id]:undefined;
+  if(mapped)return mapped;
+  if(a.studio==="vlsi")return a.chapterIds.filter(id=>["mos","cmos","physical","reliability","fabrication","test","memcells","timing","storage","fsm","boolean","routing","soc"].includes(id)).slice(0,2);
   const text=`${a.title} ${a.concepts.join(" ")}`.toLowerCase();
   const matches=a.chapterIds.filter(id=>{
     const c=CHAPTER_BY_ID.get(id);
@@ -60,10 +66,10 @@ function chaptersFor(a:TheoryArticle):string[]{
   });
   return matches.length?matches.slice(0,2):a.chapterIds.slice(0,1);
 }
-export function focusedArticle(source:TheoryArticle):TheoryArticle {
+export function focusedArticle(source:TheoryArticle,resolveDefault=true):TheoryArticle {
   let a=source;
   const defaultTab=DEFAULT_TAB[a.route];
-  if(defaultTab)a=THEORY_ARTICLES.find(item=>item.route===`${a.route}?tab=${defaultTab}`)??a;
+  if(defaultTab&&resolveDefault)a=THEORY_ARTICLES.find(item=>item.route===`${a.route}?tab=${defaultTab}`)??a;
   const chapterIds=chaptersFor(a).filter(id=>CHAPTER_BY_ID.has(id));
   const tab=new URLSearchParams(a.route.split("?")[1]??"").get("tab")??"";
   const introduction=a.studio==="memory"?(MEMORY_INTROS[tab]??a.introduction):a.introduction;

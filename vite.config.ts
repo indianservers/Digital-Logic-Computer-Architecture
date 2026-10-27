@@ -1,10 +1,12 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
+import { seoPlugin } from "./scripts/seo/plugin";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   plugins: [
     react(),
+    seoPlugin(),
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg"],

@@ -1,0 +1,8616 @@
+[
+  {
+    "route": "/studios/adders",
+    "title": "Adders & Arithmetic",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=alu",
+    "title": "ALU",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=cmp",
+    "title": "Comparator",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=half",
+    "title": "Half & Full",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=multi",
+    "title": "Multi-bit",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=mul",
+    "title": "Multiply / Divide",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=shift",
+    "title": "Shifter",
+    "kind": "topic",
+    "chapters": [
+      "signed"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/adders?tab=sub",
+    "title": "Subtraction",
+    "kind": "topic",
+    "chapters": [
+      "signed",
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/branch-predictor",
+    "title": "1-Bit & 2-Bit Branch Predictor",
+    "kind": "topic",
+    "chapters": [
+      "branch"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture",
+    "title": "Advanced Computer Architecture",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/atomic-operations",
+    "title": "Atomic Operations & Synchronization",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/booths-multiplier",
+    "title": "Booth's Multiplier",
+    "kind": "topic",
+    "chapters": [
+      "multipliers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/branch-target-buffer",
+    "title": "Branch Target Buffer Explorer",
+    "kind": "topic",
+    "chapters": [
+      "branch"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/coherence-traffic",
+    "title": "Cache-Coherence Traffic Analyzer",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/combinational-multipliers",
+    "title": "Combinational Multipliers",
+    "kind": "topic",
+    "chapters": [
+      "multipliers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/correlating-predictor",
+    "title": "Correlating Branch Predictor",
+    "kind": "topic",
+    "chapters": [
+      "branch"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/cpi-ipc",
+    "title": "CPI / IPC Bottleneck Analyzer",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/performance-counters",
+    "title": "CPU Performance Counter Laboratory",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/data-hazards",
+    "title": "Data Hazards & Instruction Scheduling",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/directory-coherence",
+    "title": "Directory-Based Cache Coherence",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/dram-controller",
+    "title": "DRAM Bank & Memory Controller Simulator",
+    "kind": "topic",
+    "chapters": [
+      "dram"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/scoreboard",
+    "title": "Dynamic Scheduling with Scoreboard",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/execution-ports",
+    "title": "Execution Port & Functional Unit Scheduler",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/false-sharing",
+    "title": "False Sharing Visualizer",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/prefetching",
+    "title": "Hardware Prefetcher Laboratory",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/issue-queue",
+    "title": "Instruction Window & Issue Queue",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/load-store-queue",
+    "title": "Load / Store Queue Simulator",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/memory-consistency",
+    "title": "Memory Consistency Model Explorer",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/memory-disambiguation",
+    "title": "Memory Disambiguation",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/moesi",
+    "title": "MOESI Coherence Simulator",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/mesi",
+    "title": "MSI & MESI Coherence Simulator",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/amdahl",
+    "title": "Multicore Scaling & Amdahl's Law",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/mshr",
+    "title": "Non-Blocking Cache & MSHR Lab",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/reorder-buffer",
+    "title": "Out-of-Order Execution & In-Order Commit",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/physical-register-file",
+    "title": "Physical Register File & Rename Map",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/roofline",
+    "title": "Roofline Analysis",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/register-renaming",
+    "title": "Scoreboarding with Register Renaming",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/snooping-vs-directory",
+    "title": "Snooping vs Directory Coherence",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/speculative-execution",
+    "title": "Speculative Execution & Recovery",
+    "kind": "topic",
+    "chapters": [
+      "branch",
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/superscalar",
+    "title": "Superscalar Pipeline Explorer",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/tomasulo",
+    "title": "Tomasulo Algorithm Simulator",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/tournament-predictor",
+    "title": "Tournament & Hybrid Predictor",
+    "kind": "topic",
+    "chapters": [
+      "branch"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/advanced-computer-architecture/wallace-tree-adder",
+    "title": "Wallace Tree Adder",
+    "kind": "topic",
+    "chapters": [
+      "multipliers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/dataflow",
+    "title": "Dataflow Strategies",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/infer",
+    "title": "Inference vs Training",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/array",
+    "title": "MAC Array",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/mac",
+    "title": "MAC Unit",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/matmul",
+    "title": "Matrix Multiplication",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/memory",
+    "title": "Memory Hierarchy",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/mixed",
+    "title": "Mixed Precision",
+    "kind": "topic",
+    "chapters": [
+      "floating",
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/accelerator/pipeline",
+    "title": "Neural Execution Pipeline",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/npu",
+    "title": "NPU Architecture",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/quant",
+    "title": "Quantization",
+    "kind": "topic",
+    "chapters": [
+      "floating"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/accelerator/systolic",
+    "title": "Systolic Array",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/alu",
+    "title": "ALU",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/alu?tab=alu",
+    "title": "ALU (Arithmetic)",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/alu?tab=control",
+    "title": "Control Signals",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/alu?tab=datapath",
+    "title": "Datapath Visualizer",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/alu?tab=opcodes",
+    "title": "Opcode Table",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/alu?tab=details",
+    "title": "Operation Details",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/assembler",
+    "title": "Assembler",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/soc",
+    "title": "Cores & SoC",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/datapath",
+    "title": "Datapath",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/exceptions",
+    "title": "Exceptions & Interrupts",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/arm/instruction-set",
+    "title": "Instruction Set",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/memory",
+    "title": "Memory & Load/Store",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/pipeline",
+    "title": "Pipeline & Hazards",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/practice",
+    "title": "Practice & Quiz",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/arm/registers",
+    "title": "Registers & Modes",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly",
+    "title": "Assembly Execution",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=decode",
+    "title": "Decode",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=execute",
+    "title": "Execute",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=fetch",
+    "title": "Fetch",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=memory",
+    "title": "Memory",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=run",
+    "title": "One machine, six views",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=overview",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/assembly?tab=trace",
+    "title": "Trace",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work#hdw-aviation",
+    "title": "Aviation & Aerospace",
+    "kind": "foundation",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/boolean-algebra",
+    "title": "Boolean Algebra",
+    "kind": "topic",
+    "chapters": [
+      "boolean"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/boolean-algebra?tab=laws",
+    "title": "Boolean Laws",
+    "kind": "topic",
+    "chapters": [
+      "boolean"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/boolean-algebra?tab=play",
+    "title": "Expression Lab",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/boolean-algebra?tab=terms",
+    "title": "Minterms & Maxterms",
+    "kind": "topic",
+    "chapters": [
+      "boolean"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/boolean-algebra?tab=simplify",
+    "title": "Simplification",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/boolean-algebra?tab=forms",
+    "title": "SOP / POS",
+    "kind": "topic",
+    "chapters": [
+      "boolean"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/assembler",
+    "title": "Assembler",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/library",
+    "title": "Component Library",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/contest",
+    "title": "Contest & Evidence",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/control",
+    "title": "Control Unit Designer",
+    "kind": "topic",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/builder",
+    "title": "CPU Builder",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/templates",
+    "title": "CPU Templates",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/isa",
+    "title": "Custom ISA Designer",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/datapath",
+    "title": "Datapath Designer",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/debug",
+    "title": "Execution Debugger",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/format",
+    "title": "Instruction Format Designer",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/memory",
+    "title": "Memory System",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/editor",
+    "title": "Program Editor",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/validate",
+    "title": "Validation",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/builder/wires",
+    "title": "Wire & Bus System",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus?tab=address",
+    "title": "Address",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus?tab=arbitrate",
+    "title": "Arbitration",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus?tab=bandwidth",
+    "title": "Bandwidth",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus",
+    "title": "Bus Architecture",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus?tab=control",
+    "title": "Control",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus?tab=data",
+    "title": "Data",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/bus?tab=timing",
+    "title": "Timing",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/cache",
+    "title": "Cache Memory",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/cache?tab=levels",
+    "title": "Hierarchy",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/cache?tab=locality",
+    "title": "Locality",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/cache?tab=policy",
+    "title": "Policies",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/cache?tab=sim",
+    "title": "Simulator",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=arithmetic",
+    "title": "Arithmetic",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=canvas",
+    "title": "Basic Gates",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=basic",
+    "title": "Basic Gates",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=combinational",
+    "title": "Combinational",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational",
+    "title": "Combinational Circuits",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=compare",
+    "title": "Comparators",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=custom",
+    "title": "Custom",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=codec",
+    "title": "Encoders / Decoders",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/combinational?tab=mux",
+    "title": "Multiplexers",
+    "kind": "topic",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/breaks",
+    "title": "Breakpoints",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/circuit",
+    "title": "Circuit Mode",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/library",
+    "title": "Component Library",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/cpu",
+    "title": "CPU Mode",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/datapath",
+    "title": "Datapath Mode",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/history",
+    "title": "Execution History",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/memory",
+    "title": "Memory Mode",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/multicore",
+    "title": "Multicore Mode",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/probes",
+    "title": "Probes & Waveforms",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/sandbox/templates",
+    "title": "Templates",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/control?tab=hardwired",
+    "title": "Hardwired",
+    "kind": "foundation",
+    "chapters": [
+      "hardwired-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/control?tab=hardwired",
+    "title": "Hardwired",
+    "kind": "foundation",
+    "chapters": [
+      "hardwired-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/control?tab=compare",
+    "title": "Horizontal / Vertical",
+    "kind": "foundation",
+    "chapters": [
+      "encoding-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/control?tab=micro",
+    "title": "Microprogram",
+    "kind": "foundation",
+    "chapters": [
+      "micro-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/counters?tab=async",
+    "title": "Asynchronous",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/counters?tab=bcd",
+    "title": "BCD",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=design",
+    "title": "Counter designer",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters",
+    "title": "Counters",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=decade",
+    "title": "Decade / BCD",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=down",
+    "title": "Down Counter",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=johnson",
+    "title": "Johnson",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/counters?tab=mod",
+    "title": "Mod-N",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=ring",
+    "title": "Ring",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/counters?tab=ripple",
+    "title": "Ripple counter",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=sync",
+    "title": "Synchronous",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/counters?tab=up",
+    "title": "Up Counter",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/counters?tab=updown",
+    "title": "Up/Down",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/cpu-blocks?tab=clock",
+    "title": "Clocking",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/cpu-blocks",
+    "title": "CPU Building Blocks",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/cpu-blocks?tab=datapath",
+    "title": "Datapath",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/cpu-blocks?tab=extend",
+    "title": "Extend / Shift",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/cpu-blocks?tab=bus",
+    "title": "Internal Bus",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/cpu-blocks?tab=overview",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/cpu-blocks?tab=registers",
+    "title": "Registers",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/pipeline?tab=control",
+    "title": "Control Signals",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline",
+    "title": "CPU Pipeline",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=datapath",
+    "title": "Datapath View",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=pipe",
+    "title": "Five-stage overlap",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=hazards",
+    "title": "Hazards & Stalls",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=performance",
+    "title": "Performance",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=regs",
+    "title": "Pipeline registers",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=registers",
+    "title": "Pipeline Registers",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=simulator",
+    "title": "Pipeline Simulator",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/pipeline?tab=metrics",
+    "title": "Throughput and speedup",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work#hdw-defence",
+    "title": "Defence & Security",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/timing?tab=clock",
+    "title": "Clock",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/timing",
+    "title": "Digital Timing",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/timing?tab=edge",
+    "title": "Edges",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/timing?tab=hold",
+    "title": "Hold",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/timing?tab=meta",
+    "title": "Metastability",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/timing?tab=delay",
+    "title": "Propagation",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/timing?tab=setup",
+    "title": "Setup",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/datapath",
+    "title": "16-bit Datapath",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/compare",
+    "title": "8-bit vs 16-bit",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/alu",
+    "title": "ALU & Flags",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/branch",
+    "title": "Branching",
+    "kind": "topic",
+    "chapters": [
+      "branch",
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/cpu16/debug",
+    "title": "Execution Debugger",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/formats",
+    "title": "Instruction Formats",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/isa",
+    "title": "Instruction Set",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/irq",
+    "title": "Interrupt Concept",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/cpu16/memory",
+    "title": "Memory & Addressing",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/call",
+    "title": "Procedure Call / Return",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/workspace",
+    "title": "Program Workspace",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/regs",
+    "title": "Register File",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu16/stack",
+    "title": "Stack",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/alu",
+    "title": "ALU",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/clock",
+    "title": "Clock-by-Clock Execution",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/control",
+    "title": "Control Signals",
+    "kind": "topic",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/arch",
+    "title": "CPU Architecture",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/fde",
+    "title": "Fetch–Decode–Execute",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/visual",
+    "title": "Full CPU Visualizer",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/encoding",
+    "title": "Instruction Encoding",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/isa",
+    "title": "Instruction Set",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/memory",
+    "title": "Memory",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/editor",
+    "title": "Program Editor",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/cpu8/registers",
+    "title": "Registers",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work#hdw-everyday",
+    "title": "Everyday Digital Technology",
+    "kind": "foundation",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/fde?tab=signals",
+    "title": "Control",
+    "kind": "topic",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fde?tab=cycle",
+    "title": "Cycle",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fde",
+    "title": "Fetch–Decode–Execute",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fde?tab=rtl",
+    "title": "Transfers",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=circuit",
+    "title": "D synthesis",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm",
+    "title": "Finite State Machines",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=studio",
+    "title": "FSM Studio",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=examples",
+    "title": "More examples",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=sequence",
+    "title": "Sequence Simulation",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=diagram",
+    "title": "State Diagram",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=encoding",
+    "title": "State encoding",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=minimize",
+    "title": "State Minimization",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/fsm?tab=table",
+    "title": "State Table",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/offload",
+    "title": "Accelerator Offload",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/interconnect",
+    "title": "Interconnect",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/roles",
+    "title": "Processor Roles",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/memory",
+    "title": "Shared Memory",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/sync",
+    "title": "Synchronization",
+    "kind": "topic",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/hetero/timeline",
+    "title": "System Timeline",
+    "kind": "topic",
+    "chapters": [
+      "soc",
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/hetero/router",
+    "title": "Task Router",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/unified",
+    "title": "Unified Memory",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/hetero/partition",
+    "title": "Workload Partitioning",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/ads-b-system",
+    "title": "ADS-B System",
+    "kind": "device",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/aed",
+    "title": "AED",
+    "kind": "device",
+    "chapters": [
+      "io"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/air-data-computer",
+    "title": "Air Data Computer",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/air-defence-radar",
+    "title": "Air-Defence Radar",
+    "kind": "device",
+    "chapters": [
+      "atomics",
+      "coherence"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/aircraft-autopilot",
+    "title": "Aircraft Autopilot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "sram-detail"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/aircraft-engine-monitoring-system",
+    "title": "Aircraft Engine Monitoring System",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/aircraft-flight-computer",
+    "title": "Aircraft Flight Computer",
+    "kind": "device",
+    "chapters": [
+      "gates",
+      "fsm"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/aircraft-transponder",
+    "title": "Aircraft Transponder",
+    "kind": "device",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/anesthesia-machine",
+    "title": "Anesthesia Machine",
+    "kind": "device",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/automated-chemistry-analyzer",
+    "title": "Automated Chemistry Analyzer",
+    "kind": "device",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/ais",
+    "title": "Automatic Identification System (AIS)",
+    "kind": "device",
+    "chapters": [
+      "routing",
+      "rtos"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/autonomous-mobile-robot",
+    "title": "Autonomous Mobile Robot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "priority"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/autonomous-underwater-vehicle-navigation",
+    "title": "Autonomous Underwater Vehicle Navigation",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/barcode-scanner",
+    "title": "Barcode Scanner",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/biometric-access-system",
+    "title": "Biometric Access System",
+    "kind": "device",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/biometric-fingerprint-scanner",
+    "title": "Biometric Fingerprint Scanner",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/bipap-machine",
+    "title": "BiPAP Machine",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "priority"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/blood-cell-analyzer",
+    "title": "Blood Cell Analyzer",
+    "kind": "device",
+    "chapters": [
+      "analog",
+      "cmos"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/bluetooth-headphones",
+    "title": "Bluetooth Headphones",
+    "kind": "device",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/body-composition-analyzer",
+    "title": "Body Composition Analyzer",
+    "kind": "device",
+    "chapters": [
+      "boolean"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/cctv-camera",
+    "title": "CCTV Camera",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/centrifuge",
+    "title": "Centrifuge",
+    "kind": "device",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/cockpit-voice-recorder",
+    "title": "Cockpit Voice Recorder",
+    "kind": "device",
+    "chapters": [
+      "memory",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/collaborative-robot",
+    "title": "Collaborative Robot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "timers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/cpap-machine",
+    "title": "CPAP Machine",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/ct-scanner",
+    "title": "CT Scanner",
+    "kind": "device",
+    "chapters": [
+      "analog",
+      "memory"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/defibrillator",
+    "title": "Defibrillator",
+    "kind": "device",
+    "chapters": [
+      "io",
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/depth-sounder",
+    "title": "Depth Sounder",
+    "kind": "device",
+    "chapters": [
+      "ranging",
+      "timing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/dialysis-machine",
+    "title": "Dialysis Machine",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/digital-blood-pressure-monitor",
+    "title": "Digital Blood Pressure Monitor",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/digital-camera",
+    "title": "Digital Camera",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/digital-door-lock",
+    "title": "Digital Door Lock",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/digital-engine-control",
+    "title": "Digital Engine Control",
+    "kind": "device",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/digital-microscope",
+    "title": "Digital Microscope",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/digital-multimeter",
+    "title": "Digital Multimeter",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/digital-radiography-detector",
+    "title": "Digital Radiography Detector",
+    "kind": "device",
+    "chapters": [
+      "numbers",
+      "memory"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/digital-stethoscope",
+    "title": "Digital Stethoscope",
+    "kind": "device",
+    "chapters": [
+      "signal",
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/digital-thermometer",
+    "title": "Digital Thermometer",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/digital-weighing-scale",
+    "title": "Digital Weighing Scale",
+    "kind": "device",
+    "chapters": [
+      "memcells",
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/doppler-ultrasound",
+    "title": "Doppler Ultrasound",
+    "kind": "device",
+    "chapters": [
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/drone-flight-controller",
+    "title": "Drone Flight Controller",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "sram-detail"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/dynamic-positioning-system",
+    "title": "Dynamic Positioning System",
+    "kind": "device",
+    "chapters": [
+      "boolean"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/ecg",
+    "title": "ECG Machine",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/eeg-machine",
+    "title": "EEG Machine",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/electronic-compass",
+    "title": "Electronic Compass",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/electronic-compass",
+    "title": "Electronic Compass",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/electronic-identification-system",
+    "title": "Electronic Identification System",
+    "kind": "device",
+    "chapters": [
+      "io",
+      "cpu"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/electronic-spirometer",
+    "title": "Electronic Spirometer",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/electrosurgical-unit",
+    "title": "Electrosurgical Unit",
+    "kind": "device",
+    "chapters": [
+      "cmos",
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/emg-machine",
+    "title": "EMG Machine",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/endoscope-camera-system",
+    "title": "Endoscope Camera System",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/engine-fadec-controller",
+    "title": "Engine FADEC Controller",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/epirb-emergency-beacon",
+    "title": "EPIRB Emergency Beacon",
+    "kind": "device",
+    "chapters": [
+      "fsm",
+      "isa"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/fetal-heart-monitor",
+    "title": "Fetal Heart Monitor",
+    "kind": "device",
+    "chapters": [
+      "fsm",
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/fetal-monitor",
+    "title": "Fetal Monitor",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/fish-finder",
+    "title": "Fish Finder",
+    "kind": "device",
+    "chapters": [
+      "ranging",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/flight-data-recorder",
+    "title": "Flight Data Recorder",
+    "kind": "device",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/fly-by-wire",
+    "title": "Fly-by-Wire System",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/glass-cockpit",
+    "title": "Glass Cockpit",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/glucometer",
+    "title": "Glucometer",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/gps-chartplotter",
+    "title": "GPS Chartplotter",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/gps-navigation-system",
+    "title": "GPS Navigation System",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/gps-receiver",
+    "title": "GPS Receiver",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/gps-receiver",
+    "title": "GPS Receiver",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/ground-surveillance-radar",
+    "title": "Ground Surveillance Radar",
+    "kind": "device",
+    "chapters": [
+      "ranging",
+      "timers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/hearing-aid",
+    "title": "Hearing Aid",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/heart-rate-monitor",
+    "title": "Heart Rate Monitor",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/holter-monitor",
+    "title": "Holter Monitor",
+    "kind": "device",
+    "chapters": [
+      "signal",
+      "io"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/icu-patient-monitor",
+    "title": "ICU Patient Monitor",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/iff-system",
+    "title": "IFF System",
+    "kind": "device",
+    "chapters": [
+      "fsm",
+      "isa"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/implantable-cardioverter-defibrillator",
+    "title": "Implantable Cardioverter Defibrillator",
+    "kind": "device",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/induction-cooktop",
+    "title": "Induction Cooktop",
+    "kind": "device",
+    "chapters": [
+      "cmos",
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/industrial-robot-controller",
+    "title": "Industrial Robot Controller",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "routing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/inertial-navigation-system",
+    "title": "Inertial Navigation System",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/inertial-navigation-system",
+    "title": "Inertial Navigation System",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/infrared-surveillance-camera",
+    "title": "Infrared Surveillance Camera",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/infrared-thermometer",
+    "title": "Infrared Thermometer",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/infusion-pump",
+    "title": "Infusion Pump",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/ir-camera",
+    "title": "IR Camera",
+    "kind": "device",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/laser-range-finder",
+    "title": "Laser Range Finder",
+    "kind": "device",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/lidar-mapping-robot",
+    "title": "LiDAR Mapping Robot",
+    "kind": "device",
+    "chapters": [
+      "floating",
+      "timing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/line-following-robot",
+    "title": "Line-Following Robot",
+    "kind": "device",
+    "chapters": [
+      "fsm",
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/machine-vision-system",
+    "title": "Machine-Vision System",
+    "kind": "device",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/mammography-system",
+    "title": "Mammography System",
+    "kind": "device",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/marine-autopilot",
+    "title": "Marine Autopilot",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/marine-radar",
+    "title": "Marine Radar",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/marine-vhf-radio",
+    "title": "Marine VHF Radio",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "fsm"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/medical-laser-system",
+    "title": "Medical Laser System",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "soc"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/microwave-oven-controller",
+    "title": "Microwave Oven Controller",
+    "kind": "device",
+    "chapters": [
+      "gpio",
+      "cmos"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/mobile-robot",
+    "title": "Mobile Robot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "priority"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/mri-scanner",
+    "title": "MRI Scanner",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/nfc-payment-system",
+    "title": "NFC Payment System",
+    "kind": "device",
+    "chapters": [
+      "io"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/night-vision-system",
+    "title": "Night-Vision System",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/pacemaker",
+    "title": "Pacemaker",
+    "kind": "device",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/passive-radar",
+    "title": "Passive Radar",
+    "kind": "device",
+    "chapters": [
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/pcr-machine",
+    "title": "PCR Machine",
+    "kind": "device",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/peak-flow-meter",
+    "title": "Peak Flow Meter",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/perimeter-intrusion-detection-system",
+    "title": "Perimeter Intrusion Detection System",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/pet-scanner",
+    "title": "PET Scanner",
+    "kind": "device",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/phased-array-radar",
+    "title": "Phased-Array Radar",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "timing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/portable-ecg",
+    "title": "Portable ECG",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "signal"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/primary-flight-display",
+    "title": "Primary Flight Display",
+    "kind": "device",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/pulse-oximeter",
+    "title": "Pulse Oximeter",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/qr-code-scanner",
+    "title": "QR Code Scanner",
+    "kind": "device",
+    "chapters": [
+      "codes",
+      "gray-detail"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/quadruped-robot",
+    "title": "Quadruped Robot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "sram-detail"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/radar-altimeter",
+    "title": "Radar Altimeter",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/radio-altimeter",
+    "title": "Radio Altimeter",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/rfid-access-card",
+    "title": "RFID Access Card",
+    "kind": "device",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/robotic-arm",
+    "title": "Robotic Arm",
+    "kind": "device",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/satellite-attitude-control-computer",
+    "title": "Satellite Attitude-Control Computer",
+    "kind": "device",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/satellite-communication-terminal",
+    "title": "Satellite Communication Terminal",
+    "kind": "device",
+    "chapters": [
+      "numbers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/satellite-communication-terminal",
+    "title": "Satellite Communication Terminal",
+    "kind": "device",
+    "chapters": [
+      "numbers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/secure-digital-radio",
+    "title": "Secure Digital Radio",
+    "kind": "device",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/self-balancing-robot",
+    "title": "Self-Balancing Robot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "priority"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/servo-motor-controller",
+    "title": "Servo Motor Controller",
+    "kind": "device",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/slam-navigation-system",
+    "title": "SLAM Navigation System",
+    "kind": "device",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/smart-energy-meter",
+    "title": "Smart Energy Meter",
+    "kind": "device",
+    "chapters": [
+      "analog",
+      "reliability"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/smartphone",
+    "title": "Smartphone",
+    "kind": "device",
+    "chapters": [
+      "dma",
+      "soc"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/smartwatch",
+    "title": "Smartwatch",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "builder"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/software-defined-radio",
+    "title": "Software Defined Radio",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/sonar",
+    "title": "SONAR",
+    "kind": "device",
+    "chapters": [
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/sonar-detection-system",
+    "title": "Sonar Detection System",
+    "kind": "device",
+    "chapters": [
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/spect-scanner",
+    "title": "SPECT Scanner",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/stepper-motor-controller",
+    "title": "Stepper Motor Controller",
+    "kind": "device",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/surveillance-radar",
+    "title": "Surveillance Radar",
+    "kind": "device",
+    "chapters": [
+      "ranging"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/syringe-pump",
+    "title": "Syringe Pump",
+    "kind": "device",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/television",
+    "title": "Television",
+    "kind": "device",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/tens-machine",
+    "title": "TENS Machine",
+    "kind": "device",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/thermal-imaging-camera",
+    "title": "Thermal Imaging Camera",
+    "kind": "device",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/traffic-collision-avoidance-system",
+    "title": "Traffic Collision Avoidance System",
+    "kind": "device",
+    "chapters": [
+      "pipeline",
+      "cmos"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/tv-remote",
+    "title": "TV Remote Control",
+    "kind": "device",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/ultrasound-scanner",
+    "title": "Ultrasound Scanner",
+    "kind": "device",
+    "chapters": [
+      "devices",
+      "memory"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/marine/underwater-rov-control-system",
+    "title": "Underwater ROV Control System",
+    "kind": "device",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/defence/unmanned-surveillance-vehicle-electronics",
+    "title": "Unmanned Surveillance Vehicle Electronics",
+    "kind": "device",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/ventilator",
+    "title": "Ventilator",
+    "kind": "device",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/robotics/warehouse-robot",
+    "title": "Warehouse Robot",
+    "kind": "device",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/washing-machine-controller",
+    "title": "Washing Machine Controller",
+    "kind": "device",
+    "chapters": [
+      "controlsystem",
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/aviation/weather-radar",
+    "title": "Weather Radar",
+    "kind": "device",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/everyday/wi-fi-router",
+    "title": "Wi-Fi Router",
+    "kind": "device",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work/medical/x-ray-machine",
+    "title": "X-Ray Machine",
+    "kind": "device",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 6,
+    "solvedSteps": 5,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work",
+    "title": "How Devices Work Studio",
+    "kind": "foundation",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/io?tab=devices",
+    "title": "Devices",
+    "kind": "topic",
+    "chapters": [
+      "io"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/io",
+    "title": "I/O Architecture",
+    "kind": "topic",
+    "chapters": [
+      "io"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/io?tab=isolated",
+    "title": "Isolated",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/io?tab=mapped",
+    "title": "Memory-mapped",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/io?tab=poll",
+    "title": "Programmed I/O",
+    "kind": "topic",
+    "chapters": [
+      "io"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=modes",
+    "title": "Addressing",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=anatomy",
+    "title": "Anatomy",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=catalog",
+    "title": "Categories",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=formats",
+    "title": "Formats",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa",
+    "title": "Instruction Set Architecture",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=basics",
+    "title": "ISA Basics",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=load",
+    "title": "Load / Store",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/isa?tab=style",
+    "title": "RISC / CISC",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/interrupts?tab=dma",
+    "title": "DMA",
+    "kind": "topic",
+    "chapters": [
+      "dma"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/interrupts?tab=exceptions",
+    "title": "Exceptions",
+    "kind": "topic",
+    "chapters": [
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/interrupts?tab=timeline",
+    "title": "Interrupt",
+    "kind": "topic",
+    "chapters": [
+      "interrupt"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/interrupts?tab=timeline",
+    "title": "Interrupt",
+    "kind": "topic",
+    "chapters": [
+      "interrupt"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/interrupts?tab=priority",
+    "title": "Priority",
+    "kind": "topic",
+    "chapters": [
+      "priority"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/interrupts?tab=vectors",
+    "title": "Vectors",
+    "kind": "topic",
+    "chapters": [
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/addressing",
+    "title": "Addressing",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/decode-complexity",
+    "title": "Decode Complexity Concept",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/ecosystem-roles",
+    "title": "Ecosystem Roles",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/instruction-encoding",
+    "title": "Instruction Encoding",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/instruction-length",
+    "title": "Instruction Length",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/memory-access",
+    "title": "Memory Access",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/register-models",
+    "title": "Register Models",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/same-task",
+    "title": "Same Task Comparison",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/compare/home",
+    "title": "Studio Home",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/kmap?tab=circuit",
+    "title": "Circuit Compare",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/kmap?tab=map",
+    "title": "K-Map",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/kmap",
+    "title": "K-Map Solver",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/kmap?tab=primes",
+    "title": "Prime Implicants",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/kmap?tab=qm",
+    "title": "Quine–McCluskey",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=tables",
+    "title": "Characteristic and excitation tables",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=dff",
+    "title": "D flip-flop",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=dlatch",
+    "title": "D latch",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=convert",
+    "title": "Flip-flop conversions",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=lab",
+    "title": "Interactive Lab",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=jk",
+    "title": "JK flip-flop",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops",
+    "title": "Latches & Flip-Flops",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=ms",
+    "title": "Master-slave",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=notes",
+    "title": "Notes",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=practice",
+    "title": "Practice",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=world",
+    "title": "Real-World",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=sr",
+    "title": "SR flip-flop",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=latches",
+    "title": "SR latches",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=t",
+    "title": "T flip-flop",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/flip-flops?tab=theory",
+    "title": "Theory & Concepts",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=build",
+    "title": "Build & Simulate",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=compare",
+    "title": "Comparison",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=fan",
+    "title": "fan",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=kmap",
+    "title": "Karnaugh Map",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates",
+    "title": "Logic Gates",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=min",
+    "title": "Minimization",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=notes",
+    "title": "Notes",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=practice",
+    "title": "Practice",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=tri",
+    "title": "tri",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=truth",
+    "title": "Truth Table",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/logic-gates?tab=universal",
+    "title": "universal",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work#hdw-marine",
+    "title": "Marine & Navigation",
+    "kind": "foundation",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/how-devices-work#hdw-medical",
+    "title": "Medical & Healthcare",
+    "kind": "foundation",
+    "chapters": [
+      "devices"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=addressing",
+    "title": "Addressing",
+    "kind": "foundation",
+    "chapters": [
+      "address-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=decode",
+    "title": "Decoder",
+    "kind": "foundation",
+    "chapters": [
+      "address-detail",
+      "routing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/memory?tab=dram",
+    "title": "DRAM",
+    "kind": "foundation",
+    "chapters": [
+      "dram-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=eeprom",
+    "title": "EEPROM",
+    "kind": "foundation",
+    "chapters": [
+      "eeprom-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=expand",
+    "title": "Expansion",
+    "kind": "foundation",
+    "chapters": [
+      "organization-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=flash",
+    "title": "Flash",
+    "kind": "foundation",
+    "chapters": [
+      "flash-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=banks",
+    "title": "Interleaving",
+    "kind": "foundation",
+    "chapters": [
+      "organization-detail",
+      "dram"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/memory?tab=array",
+    "title": "Memory Array",
+    "kind": "foundation",
+    "chapters": [
+      "ram-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=array",
+    "title": "Memory Array",
+    "kind": "foundation",
+    "chapters": [
+      "ram-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=organization",
+    "title": "Memory Organization",
+    "kind": "foundation",
+    "chapters": [
+      "organization-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=org",
+    "title": "Organization",
+    "kind": "foundation",
+    "chapters": [
+      "organization-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=types",
+    "title": "RAM / ROM",
+    "kind": "foundation",
+    "chapters": [
+      "rom-detail",
+      "eeprom-detail",
+      "flash-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/memory?tab=rom",
+    "title": "ROM",
+    "kind": "foundation",
+    "chapters": [
+      "rom-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=sram",
+    "title": "SRAM",
+    "kind": "foundation",
+    "chapters": [
+      "sram-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/memory?tab=cells",
+    "title": "SRAM / DRAM",
+    "kind": "foundation",
+    "chapters": [
+      "sram-detail",
+      "dram-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/memory?tab=timing",
+    "title": "Timing",
+    "kind": "foundation",
+    "chapters": [
+      "ram-detail",
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hierarchy?tab=access",
+    "title": "Access",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hierarchy?tab=cache",
+    "title": "Cache",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hierarchy?tab=pyramid",
+    "title": "Hierarchy",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hierarchy?tab=locality",
+    "title": "Locality",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hierarchy",
+    "title": "Memory Hierarchy",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller",
+    "title": "Microcontroller Studio",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/8-bit-vs-16-bit-vs-32-bit-mcus",
+    "title": "8-bit vs 16-bit vs 32-bit MCUs",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/8051-microcontroller-lab",
+    "title": "8051 Microcontroller Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/adc-lab",
+    "title": "ADC Lab",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/adc-resolution-and-quantization",
+    "title": "ADC Resolution & Quantization",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/analog-comparator",
+    "title": "Analog Comparator",
+    "kind": "topic",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/arduino-atmega328p-explorer",
+    "title": "Arduino / ATmega328P Explorer",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/automatic-street-light",
+    "title": "Automatic Street Light",
+    "kind": "topic",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/avr-microcontroller-lab",
+    "title": "AVR Microcontroller Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/bare-metal-programming-lab",
+    "title": "Bare-Metal Programming Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/bootloader-and-firmware-update",
+    "title": "Bootloader & Firmware Update",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/brown-out-and-reset-circuitry",
+    "title": "Brown-Out & Reset Circuitry",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/can-bus-fundamentals",
+    "title": "CAN Bus Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/clock-system",
+    "title": "Clock System",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/dac-lab",
+    "title": "DAC Lab",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/dc-motor-control",
+    "title": "DC Motor Control",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/dc-motor-speed-controller",
+    "title": "DC Motor Speed Controller",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/digital-input-lab",
+    "title": "Digital Input Lab",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/digital-output-lab",
+    "title": "Digital Output Lab",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/digital-thermometer",
+    "title": "Digital Thermometer",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/display-interfacing",
+    "title": "Display Interfacing",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/dma-lab",
+    "title": "DMA Lab",
+    "kind": "topic",
+    "chapters": [
+      "dma"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/embedded-c-execution-lab",
+    "title": "Embedded C Execution Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/esp32-lab",
+    "title": "ESP32 Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/external-interrupts",
+    "title": "External Interrupts",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/lab/finite-state-machines-on-mcu",
+    "title": "Finite-State Machines on MCU",
+    "kind": "topic",
+    "chapters": [
+      "fsm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/firmware-debugger",
+    "title": "Firmware Debugger",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/flash-sram-and-eeprom",
+    "title": "Flash, SRAM & EEPROM",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/gpio-fundamentals",
+    "title": "GPIO Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/gpio-register-programming",
+    "title": "GPIO Register Programming",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/harvard-vs-von-neumann-architecture",
+    "title": "Harvard vs Von Neumann Architecture",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/home-automation-controller",
+    "title": "Home Automation Controller",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/lab/i2c-communication",
+    "title": "I²C Communication",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/input-capture-and-output-compare",
+    "title": "Input Capture & Output Compare",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/inside-a-microcontroller",
+    "title": "Inside a Microcontroller",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/interrupt-priority-and-nested-interrupts",
+    "title": "Interrupt Priority & Nested Interrupts",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/lab/interrupts",
+    "title": "Interrupts",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/project/iot-sensor-node",
+    "title": "IoT Sensor Node",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/keypad-and-human-input",
+    "title": "Keypad & Human Input",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/line-following-robot",
+    "title": "Line-Following Robot Controller",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/lab/logic-analyzer",
+    "title": "Logic Analyzer",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/mcu-architecture-explorer",
+    "title": "MCU Architecture Explorer",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/memory-mapped-i-o",
+    "title": "Memory-Mapped I/O",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/microcontroller-fundamentals",
+    "title": "Microcontroller Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/build-your-own-mcu",
+    "title": "Mini Embedded System – Build Your Own MCU Project",
+    "kind": "topic",
+    "chapters": [
+      "builder"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/pic-microcontroller-lab",
+    "title": "PIC Microcontroller Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/pin-multiplexing-alternate-functions",
+    "title": "Pin Multiplexing / Alternate Functions",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/polling-vs-interrupts",
+    "title": "Polling vs Interrupts",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/lab/power-and-sleep-modes",
+    "title": "Power & Sleep Modes",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/power-analyzer",
+    "title": "Power Analyzer",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/program-counter-stack-and-stack-pointer",
+    "title": "Program Counter, Stack & Stack Pointer",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/pwm-generator",
+    "title": "PWM Generator",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/real-time-clock",
+    "title": "Real-Time Clock",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/registers-and-special-function-registers",
+    "title": "Registers & Special Function Registers",
+    "kind": "topic",
+    "chapters": [
+      "gpio"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/rtos-fundamentals",
+    "title": "RTOS Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/rtos-synchronization",
+    "title": "RTOS Synchronization",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/rtos-timing-and-priority-inversion",
+    "title": "RTOS Timing & Priority Inversion",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/sensor-interfacing-lab",
+    "title": "Sensor Interfacing Lab",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/servo-motor-control",
+    "title": "Servo Motor Control",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/servo-robotic-arm",
+    "title": "Servo-Based Robotic Arm",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/smart-irrigation-controller",
+    "title": "Smart Irrigation Controller",
+    "kind": "topic",
+    "chapters": [
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/spi-communication",
+    "title": "SPI Communication",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/stepper-motor-control",
+    "title": "Stepper Motor Control",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/stm32-arm-cortex-m-lab",
+    "title": "STM32 / ARM Cortex-M Lab",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/task-scheduler",
+    "title": "Task Scheduler",
+    "kind": "topic",
+    "chapters": [
+      "rtos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/timers-and-counters",
+    "title": "Timers & Counters",
+    "kind": "topic",
+    "chapters": [
+      "timers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/traffic-light-controller",
+    "title": "Traffic Light Controller",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/microcontroller/lab/uart-serial-communication",
+    "title": "UART / Serial Communication",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/ultrasonic-distance-meter",
+    "title": "Ultrasonic Distance Meter",
+    "kind": "topic",
+    "chapters": [
+      "ranging"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/usb-fundamentals",
+    "title": "USB Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/virtual-oscilloscope",
+    "title": "Virtual Oscilloscope",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/lab/watchdog-timer",
+    "title": "Watchdog Timer",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/microcontroller/project/weather-monitoring-station",
+    "title": "Weather Monitoring Station",
+    "kind": "topic",
+    "chapters": [
+      "analog"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/assembler",
+    "title": "Assembler",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/datapath",
+    "title": "Datapath",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/hazards",
+    "title": "Hazards & Forwarding",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/instruction-formats",
+    "title": "Instruction Formats",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/memory-io",
+    "title": "Memory & I/O",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/pipeline",
+    "title": "Pipeline",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/practice",
+    "title": "Practice & Quiz",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/register-file",
+    "title": "Register File",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mips/system-calls",
+    "title": "System Calls",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/boost",
+    "title": "boost",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/boost-power",
+    "title": "Boost & Power",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/cache",
+    "title": "Cache Hierarchy",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/cores",
+    "title": "Core Microarchitecture",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/package",
+    "title": "CPU Package",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/ddr",
+    "title": "ddr",
+    "kind": "topic",
+    "chapters": [
+      "dram"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/igpu",
+    "title": "igpu",
+    "kind": "topic",
+    "chapters": [
+      "simd"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/interconnect",
+    "title": "interconnect",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/internals",
+    "title": "internals",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/mc",
+    "title": "mc",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/memory",
+    "title": "Memory (DDR)",
+    "kind": "topic",
+    "chapters": [
+      "dram"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop",
+    "title": "Modern Desktop CPU Explorer",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/pcie",
+    "title": "PCIe & I/O",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/practice",
+    "title": "Practice & Quiz",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/home",
+    "title": "Studio Home",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/workloads",
+    "title": "System Workloads",
+    "kind": "topic",
+    "chapters": [
+      "soc",
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/desktop/thermal",
+    "title": "Thermal Management",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/desktop/threads",
+    "title": "threads",
+    "kind": "topic",
+    "chapters": [
+      "simd"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/camera",
+    "title": "camera",
+    "kind": "topic",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/cluster",
+    "title": "cluster",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/cores",
+    "title": "cores",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/cpu-cores",
+    "title": "CPU: P/E Cores",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/floorplan",
+    "title": "floorplan",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/gpu",
+    "title": "GPU Architecture",
+    "kind": "topic",
+    "chapters": [
+      "simd"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/isp",
+    "title": "ISP & Imaging",
+    "kind": "topic",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/media",
+    "title": "media",
+    "kind": "topic",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/memory",
+    "title": "Memory & Interconnect",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/modem",
+    "title": "modem",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/connectivity",
+    "title": "Modem & Connectivity",
+    "kind": "topic",
+    "chapters": [
+      "serial"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/npu",
+    "title": "NPU & AI Engine",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/power",
+    "title": "power",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/power-thermal",
+    "title": "Power, Thermal & DVFS",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/scheduler",
+    "title": "scheduler",
+    "kind": "topic",
+    "chapters": [
+      "soc",
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/mobile/home",
+    "title": "Studio Home",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/integration",
+    "title": "System Integration",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/mobile/thermal",
+    "title": "thermal",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/multicore?tab=directory",
+    "title": "Directory",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/multicore?tab=false",
+    "title": "False sharing",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/multicore?tab=shared",
+    "title": "Memory",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/multicore?tab=mesi",
+    "title": "MESI",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/multicore?tab=msi",
+    "title": "MSI",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/multicore",
+    "title": "Multicore & Coherence",
+    "kind": "topic",
+    "chapters": [
+      "coherence"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/routing?tab=dec",
+    "title": "Decoder",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/routing?tab=demux",
+    "title": "Demultiplexer (DEMUX)",
+    "kind": "topic",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/routing?tab=enc",
+    "title": "Encoder",
+    "kind": "topic",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/routing?tab=mux",
+    "title": "Multiplexer (MUX)",
+    "kind": "topic",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/routing",
+    "title": "MUX, DEMUX & Codecs",
+    "kind": "topic",
+    "chapters": [
+      "routing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/routing?tab=priority",
+    "title": "priority",
+    "kind": "topic",
+    "chapters": [
+      "interrupt",
+      "vectors"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/routing?tab=seg",
+    "title": "seg",
+    "kind": "topic",
+    "chapters": [
+      "embedded"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/number-systems?tab=math",
+    "title": "Binary Arithmetic",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic",
+      "signed"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/number-systems?tab=convert",
+    "title": "Convert & Visualize",
+    "kind": "foundation",
+    "chapters": [
+      "numbers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/number-systems?tab=codes",
+    "title": "Digital Codes",
+    "kind": "foundation",
+    "chapters": [
+      "gray-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/number-systems?tab=parity",
+    "title": "Error Detection",
+    "kind": "foundation",
+    "chapters": [
+      "parity-detail",
+      "crc-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/number-systems?tab=fixed",
+    "title": "Fixed Point",
+    "kind": "foundation",
+    "chapters": [
+      "fixed-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/number-systems?tab=hamming",
+    "title": "Hamming Code",
+    "kind": "foundation",
+    "chapters": [
+      "hamming-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 6,
+    "questions": 2
+  },
+  {
+    "route": "/studios/number-systems?tab=ieee",
+    "title": "IEEE-754",
+    "kind": "foundation",
+    "chapters": [
+      "ieee-detail"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 2
+  },
+  {
+    "route": "/studios/number-systems?tab=convert",
+    "title": "Convert & Visualize",
+    "kind": "foundation",
+    "chapters": [
+      "numbers"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/number-systems?tab=signed",
+    "title": "Signed Numbers",
+    "kind": "foundation",
+    "chapters": [
+      "signed"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 2
+  },
+  {
+    "route": "/studios/parallel?tab=flynn",
+    "title": "Flynn",
+    "kind": "topic",
+    "chapters": [
+      "simd"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/parallel?tab=ilp",
+    "title": "ILP",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/parallel",
+    "title": "Parallel Processing",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/parallel?tab=rename",
+    "title": "Rename",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/parallel?tab=rob",
+    "title": "ROB",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/parallel?tab=simd",
+    "title": "SIMD",
+    "kind": "topic",
+    "chapters": [
+      "simd"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/parallel?tab=smt",
+    "title": "SMT",
+    "kind": "topic",
+    "chapters": [
+      "simd"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hazards?tab=detect",
+    "title": "Hazards",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hazards",
+    "title": "Pipeline Hazards",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/hazards?tab=predict",
+    "title": "Prediction",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/rtl?tab=bus",
+    "title": "Bus",
+    "kind": "topic",
+    "chapters": [
+      "bus",
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/rtl?tab=word",
+    "title": "Control Word",
+    "kind": "topic",
+    "chapters": [
+      "control"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/rtl",
+    "title": "Register Transfer",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/rtl?tab=transfer",
+    "title": "Transfer",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=bi",
+    "title": "Bidirectional",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=johnson",
+    "title": "Johnson",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/registers?tab=parallel",
+    "title": "Parallel",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=pipo",
+    "title": "PIPO",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=piso",
+    "title": "PISO",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers",
+    "title": "Registers",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=ring",
+    "title": "Ring",
+    "kind": "topic",
+    "chapters": [
+      "fsm",
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/registers?tab=sipo",
+    "title": "SIPO",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=siso",
+    "title": "SISO",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/registers?tab=universal",
+    "title": "Universal",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/arith",
+    "title": "Arithmetic & Logic",
+    "kind": "topic",
+    "chapters": [
+      "arithmetic"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/assembler",
+    "title": "Assembler",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/branches",
+    "title": "Branches",
+    "kind": "topic",
+    "chapters": [
+      "branch",
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/riscv/encoding",
+    "title": "Encoding Explorer",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/hazards",
+    "title": "Hazards & Forwarding",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/immgen",
+    "title": "Immediate Generator",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/formats",
+    "title": "Instruction Formats",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/jal",
+    "title": "JAL / JALR",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/loadstore",
+    "title": "Loads & Stores",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/lui",
+    "title": "LUI / AUIPC",
+    "kind": "topic",
+    "chapters": [
+      "performance"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/multicycle",
+    "title": "Multi-Cycle Concept",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/pipeline",
+    "title": "Pipeline",
+    "kind": "topic",
+    "chapters": [
+      "pipeline"
+    ],
+    "diagramNodes": 5,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/program",
+    "title": "Program Execution",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/registers",
+    "title": "Register File",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/riscv/datapath",
+    "title": "Single-Cycle Datapath",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/how-devices-work#hdw-robotics",
+    "title": "Robotics & Automation",
+    "kind": "foundation",
+    "chapters": [
+      "devices",
+      "controlsystem"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 3,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/cluster",
+    "title": "CPU Cluster",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/dataflow",
+    "title": "Full SoC Dataflow",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/engines",
+    "title": "GPU / NPU / DSP",
+    "kind": "topic",
+    "chapters": [
+      "accelerator"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/io",
+    "title": "I/O & Peripherals",
+    "kind": "topic",
+    "chapters": [
+      "io"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/interconnect",
+    "title": "Interconnect",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/media",
+    "title": "Media / ISP",
+    "kind": "topic",
+    "chapters": [
+      "signal"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/memory",
+    "title": "Memory System",
+    "kind": "topic",
+    "chapters": [
+      "memory"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/noc",
+    "title": "Network-on-Chip",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/power",
+    "title": "Power & Clock Domains",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/soc/floorplan",
+    "title": "SoC Floorplan",
+    "kind": "topic",
+    "chapters": [
+      "soc"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=circuits",
+    "title": "Circuits",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=compare",
+    "title": "Compare",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=kmap",
+    "title": "Karnaugh Map",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=min",
+    "title": "Minimization",
+    "kind": "topic",
+    "chapters": [
+      "kmap"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=notes",
+    "title": "Notes",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=practice",
+    "title": "Practice",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=from-expr",
+    "title": "Truth Table",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables?tab=from-table",
+    "title": "Truth Table",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/truth-tables",
+    "title": "Truth Tables",
+    "kind": "topic",
+    "chapters": [
+      "gates"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vm?tab=table",
+    "title": "Page Table",
+    "kind": "topic",
+    "chapters": [
+      "vm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vm?tab=protect",
+    "title": "Protection",
+    "kind": "topic",
+    "chapters": [
+      "vm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vm?tab=tlb",
+    "title": "TLB",
+    "kind": "topic",
+    "chapters": [
+      "vm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vm?tab=translate",
+    "title": "Translate",
+    "kind": "topic",
+    "chapters": [
+      "vm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vm?tab=levels",
+    "title": "Two-level",
+    "kind": "topic",
+    "chapters": [
+      "vm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vm",
+    "title": "Virtual Memory",
+    "kind": "topic",
+    "chapters": [
+      "vm"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/packaging-3d",
+    "title": "2.5D / 3D IC Packaging",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/asic-flow",
+    "title": "ASIC Design Flow",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/atpg",
+    "title": "Automatic Test Pattern Generation",
+    "kind": "topic",
+    "chapters": [
+      "test"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/boolean-optimization",
+    "title": "Boolean Optimization",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/jtag",
+    "title": "Boundary Scan / JTAG",
+    "kind": "topic",
+    "chapters": [
+      "test"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/bist",
+    "title": "Built-In Self Test",
+    "kind": "topic",
+    "chapters": [
+      "test"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/cmp",
+    "title": "Chemical Mechanical Planarization",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/cross-section",
+    "title": "Chip Cross-Section Explorer",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/chiplet",
+    "title": "Chiplet Architecture",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/clock-distribution",
+    "title": "Clock Distribution",
+    "kind": "topic",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/vlsi/clock-gating",
+    "title": "Clock Gating",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/clock-tree",
+    "title": "Clock Tree Synthesis",
+    "kind": "topic",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/vlsi/clocking",
+    "title": "Clocking Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/cmos-fabrication",
+    "title": "CMOS Fabrication",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/cmos-inverter",
+    "title": "CMOS Inverter",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/inverter-layout",
+    "title": "CMOS Inverter Layout",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/layout-basics",
+    "title": "CMOS Layout Basics",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/cmos-nand",
+    "title": "CMOS NAND Gate",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/cmos-nor",
+    "title": "CMOS NOR Gate",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 6
+  },
+  {
+    "route": "/studios/vlsi/cmos-power",
+    "title": "CMOS Power Consumption",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/cmos-vtc",
+    "title": "CMOS Voltage Transfer Characteristic",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/combinational-timing",
+    "title": "Combinational Timing",
+    "kind": "topic",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/vlsi/complex-cmos",
+    "title": "Complex CMOS Gates",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/crosstalk",
+    "title": "Crosstalk",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/d-flip-flop",
+    "title": "D Flip-Flop",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/d-latch",
+    "title": "D Latch",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/drc",
+    "title": "Design Rule Checker",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 6
+  },
+  {
+    "route": "/studios/vlsi/scan-chain",
+    "title": "DFT / Scan Chain",
+    "kind": "topic",
+    "chapters": [
+      "test"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 6
+  },
+  {
+    "route": "/studios/vlsi/doping",
+    "title": "Doping & Ion Implantation",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/dram-1t1c",
+    "title": "DRAM 1T1C Cell",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/electromigration",
+    "title": "Electromigration",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/etching",
+    "title": "Etching",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/fanout-loading",
+    "title": "Fan-Out & Loading",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/finfet",
+    "title": "FinFET Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "mos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 6
+  },
+  {
+    "route": "/studios/vlsi/floorplanning",
+    "title": "Floorplanning",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/fpga-asic",
+    "title": "FPGA vs ASIC",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/fsm-synthesis",
+    "title": "FSM Synthesis",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/gaafet",
+    "title": "GAAFET / Nanosheet",
+    "kind": "topic",
+    "chapters": [
+      "mos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/interconnect-rc",
+    "title": "Interconnect RC Delay",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/ir-drop",
+    "title": "IR Drop",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/lvs",
+    "title": "Layout vs Schematic",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/logic-synthesis",
+    "title": "Logic Synthesis",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/logical-effort",
+    "title": "Logical Effort",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/memory-decoder",
+    "title": "Memory Decoder",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/metallization",
+    "title": "Metallization",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/metastability",
+    "title": "Metastability",
+    "kind": "topic",
+    "chapters": [
+      "timing"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/mos-capacitor",
+    "title": "MOS Capacitor",
+    "kind": "topic",
+    "chapters": [
+      "mos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/mosfet-fundamentals",
+    "title": "MOSFET Fundamentals",
+    "kind": "topic",
+    "chapters": [
+      "mos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 6
+  },
+  {
+    "route": "/studios/vlsi/mosfet-iv",
+    "title": "MOSFET I–V Characteristics",
+    "kind": "topic",
+    "chapters": [
+      "mos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/multi-vdd",
+    "title": "Multi-VDD Design",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/multi-vt",
+    "title": "Multi-Vt Design",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/nand-nor-layout",
+    "title": "NAND/NOR Layout",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/noc",
+    "title": "NoC Visualization",
+    "kind": "topic",
+    "chapters": [
+      "bus"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/oxidation",
+    "title": "Oxidation & Deposition",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/parasitic-extraction",
+    "title": "Parasitic Extraction",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/pass-transistor",
+    "title": "Pass Transistor Logic",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/photolithography",
+    "title": "Photolithography",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/placement",
+    "title": "Placement",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/placement-optimization",
+    "title": "Placement Optimization",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/power-gating",
+    "title": "Power Gating",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/power-planning",
+    "title": "Power Planning",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/ppa",
+    "title": "Power–Performance–Area Explorer",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/process-variation",
+    "title": "Process Variation",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/pvt-corners",
+    "title": "Process–Voltage–Temperature Corners",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/propagation-delay",
+    "title": "Propagation Delay",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/nonvolatile-cells",
+    "title": "ROM / EEPROM / Flash Cells",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/routing",
+    "title": "Routing",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/routing-congestion",
+    "title": "Routing Congestion",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/rtl-visualization",
+    "title": "RTL Visualization",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/rtl-gdsii",
+    "title": "RTL-to-GDSII Simulator",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/scan-test",
+    "title": "Scan Testing",
+    "kind": "topic",
+    "chapters": [
+      "test"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/schematic-to-layout",
+    "title": "Schematic-to-Layout Flow",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/sense-amplifier",
+    "title": "Sense Amplifier",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/setup-hold",
+    "title": "Setup & Hold Time",
+    "kind": "topic",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 8
+  },
+  {
+    "route": "/studios/vlsi/signal-integrity",
+    "title": "Signal Integrity",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/soc-floorplan",
+    "title": "SoC Floorplan Explorer",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/sr-latch",
+    "title": "SR Latch",
+    "kind": "topic",
+    "chapters": [
+      "storage"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/sram-array",
+    "title": "SRAM Array",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/sram-6t",
+    "title": "SRAM Cell — 6T",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 6
+  },
+  {
+    "route": "/studios/vlsi/sram-read",
+    "title": "SRAM Read Operation",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/sram-write",
+    "title": "SRAM Write Operation",
+    "kind": "topic",
+    "chapters": [
+      "memcells"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/standard-cell",
+    "title": "Standard Cell Explorer",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/cell-library",
+    "title": "Standard Cell Library",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/static-timing",
+    "title": "Static Timing Analysis",
+    "kind": "topic",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 7
+  },
+  {
+    "route": "/studios/vlsi/stick-diagram",
+    "title": "Stick Diagram Explorer",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/stuck-at",
+    "title": "Stuck-at Faults",
+    "kind": "topic",
+    "chapters": [
+      "test"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/technology-mapping",
+    "title": "Technology Mapping",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/technology-scaling",
+    "title": "Technology Scaling",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/thermal",
+    "title": "Thermal Analysis",
+    "kind": "topic",
+    "chapters": [
+      "reliability"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/timing-path",
+    "title": "Timing Path Explorer",
+    "kind": "topic",
+    "chapters": [
+      "timing",
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/studios/vlsi/transmission-gate",
+    "title": "Transmission Gates",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/tri-state",
+    "title": "Tri-State Logic",
+    "kind": "topic",
+    "chapters": [
+      "cmos"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi",
+    "title": "VLSI Studio",
+    "kind": "topic",
+    "chapters": [
+      "physical"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/wafer-die",
+    "title": "Wafer & Die Explorer",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/wells",
+    "title": "Well Formation",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/studios/vlsi/yield",
+    "title": "Yield Analysis",
+    "kind": "topic",
+    "chapters": [
+      "fabrication"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/addressing-modes",
+    "title": "Addressing Modes",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/assembler-disassembler",
+    "title": "Assembler & Disassembler",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/decode-datapath",
+    "title": "Decode & Datapath",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/instruction-encoding",
+    "title": "Instruction Encoding",
+    "kind": "topic",
+    "chapters": [
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/memory-cache",
+    "title": "Memory & Cache",
+    "kind": "topic",
+    "chapters": [
+      "cache"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/micro-operations",
+    "title": "Micro-operations (µOps)",
+    "kind": "topic",
+    "chapters": [
+      "ooo",
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/x86/out-of-order",
+    "title": "Out-of-Order Backend",
+    "kind": "topic",
+    "chapters": [
+      "ooo"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  },
+  {
+    "route": "/architecture/x86/overview",
+    "title": "overview",
+    "kind": "topic",
+    "chapters": [
+      "ooo",
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/x86",
+    "title": "Overview",
+    "kind": "topic",
+    "chapters": [
+      "ooo",
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/x86/practice",
+    "title": "Practice & Quiz",
+    "kind": "topic",
+    "chapters": [
+      "ooo",
+      "isa"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 4
+  },
+  {
+    "route": "/architecture/x86/registers-flags",
+    "title": "Registers & Flags",
+    "kind": "topic",
+    "chapters": [
+      "cpu"
+    ],
+    "diagramNodes": 4,
+    "solvedSteps": 4,
+    "questions": 3
+  }
+]

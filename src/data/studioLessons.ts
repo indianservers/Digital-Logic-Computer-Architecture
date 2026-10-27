@@ -275,14 +275,14 @@ export const FDE_LESSONS: Record<string, TabLesson> = {
     takeaways: ["CPI here is cycles divided by retired instructions.", "A branch may replace the PC during the memory cycle.", "Write-back is skipped when the instruction has no destination."],
   },
   signals: {
-    theory: { title: "Control signals per stage", body: "The same opcode produces different signals in IF versus WB. MemRead/MemWrite belong to MEM. RegWrite belongs to WB. Hardwired control is this table; microprogramming stores it." },
+    theory: { title: "Control signals per stage", body: "The same opcode produces different signals in IF versus WB. Instruction MemRead is active in IF. Data MemRead/MemWrite belong to MEM. RegWrite belongs to WB. Hardwired control is this table; microprogramming stores it." },
     guide: ["Step and read which signals are high.", "LOAD needs MemRead then later RegWrite.", "ADD never asserts MemWrite.", "Idle stages still exist; they just keep memory quiet."],
-    takeaways: ["Signals are stage-dependent.", "Mem* is for the memory cycle.", "RegWrite commits the destination."],
+    takeaways: ["Signals are stage-dependent.", "IF reads instruction memory; MEM handles data memory.", "RegWrite commits the destination."],
   },
   rtl: {
     theory: { title: "Register transfers", body: "Each cycle is an RTL assignment: IR ← Mem[PC], R[rd] ← ALU, and so on. The trace names those transfers. The control studio stores similar words in a control store." },
-    guide: ["Read the last trace line after each step.", "Match IR ← memory to IF.", "Match a register write to WB.", "CALL's MEM line stores the return address at Mem[R7]."],
-    takeaways: ["RTL is the assignment, not a drawing.", "The trace is this CPU's transfers.", "Same ISA as Assembly and CPU16."],
+    guide: ["Load the add program, then step a cycle.", "Read each transfer as an assignment.", "Watch instruction memory feed IR during fetch.", "Match the register write to WB."],
+    takeaways: ["RTL names the data movement in each cycle.", "Fetch reads instruction memory.", "Execute computes the result or address.", "Write-back commits a destination register."],
   },
 };
 

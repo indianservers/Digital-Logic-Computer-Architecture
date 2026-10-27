@@ -63,7 +63,7 @@ export function LabShell<P extends LabParams>({ meta, lab, subtitle, components 
   const bench = meta.variant === "bench";
   const simulating = lab.running && lab.status !== "halted";
 
-  useEffect(() => { document.title = `${meta.n}. ${meta.title} · Microcontroller Studio`; }, [meta]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement | null)?.tagName;

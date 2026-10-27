@@ -1,6 +1,6 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+const SeoRouter=lazy(()=>import("./seo/SeoRouter"));
 import { registerSW } from "virtual:pwa-register";
 import "@fontsource/plus-jakarta-sans/400.css";
 import "@fontsource/plus-jakarta-sans/500.css";
@@ -20,11 +20,11 @@ if (!root) throw new Error("Root element missing");
 createRoot(root).render(
   <StrictMode>
     <PrefsProvider>
-      <BrowserRouter>
+      <Suspense fallback={<div className="card">Loading LogicLab…</div>}><SeoRouter>
         <ErrorBoundary>
           <App />
         </ErrorBoundary>
-      </BrowserRouter>
+      </SeoRouter></Suspense>
     </PrefsProvider>
   </StrictMode>,
 );

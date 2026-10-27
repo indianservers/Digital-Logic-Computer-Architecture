@@ -24,3 +24,19 @@ export interface TheoryArticle {
   details?: Array<{title:string; body:string}>;
   questions?: Array<{question:string; answer:string}>;
 }
+
+export interface LessonDiagram {
+  title: string;
+  variant?: "hamming" | "kmap" | "pipeline";
+  nodes: Array<{ label: string; detail: string }>;
+  note: string;
+}
+export interface LessonTopic {
+  id: string;
+  match: RegExp;
+  concepts: Array<[string,string]>;
+  flow: string[];
+  example: string[];
+  question: string;
+  answer: string;
+}
