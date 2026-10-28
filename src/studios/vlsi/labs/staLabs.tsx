@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { VlsiGrid } from "../shell";
 import { Badge, Choice, Measure, Observe, PlayControls, Slider, useTicker } from "../widgets";
@@ -8,6 +9,8 @@ function ns(value: number): string {
 }
 
 export function CombinationalTimingLab() {
+  useSimulatorCapture("studios/vlsi/labs/staLabs.tsx:CombinationalTimingLab", () => ({ scale, net, fanout, vector, gate, playing, cursor }), "d41e3c69f3c3");
+
   const [scale, setScale] = useState(1);
   const [net, setNet] = useState(1);
   const [fanout, setFanout] = useState(1);
@@ -78,6 +81,8 @@ export function CombinationalTimingLab() {
 }
 
 export function StaticTimingLab() {
+  useSimulatorCapture("studios/vlsi/labs/staLabs.tsx:StaticTimingLab", () => ({ period, uncertainty, cell, net, analysis, view }), "d41e3c69f3c3");
+
   const [period, setPeriod] = useState(1);
   const [uncertainty, setUncertainty] = useState(0.05);
   const [cell, setCell] = useState(1);
@@ -165,6 +170,8 @@ export function StaticTimingLab() {
 }
 
 export function TimingPathLab() {
+  useSimulatorCapture("studios/vlsi/labs/staLabs.tsx:TimingPathLab", () => ({ kind, cell, net, period, selected, playing, step }), "d41e3c69f3c3");
+
   const [kind, setKind] = useState<PathKind>("setup");
   const [cell, setCell] = useState(1);
   const [net, setNet] = useState(1);

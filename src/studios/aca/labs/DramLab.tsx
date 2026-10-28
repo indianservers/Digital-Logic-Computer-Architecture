@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { DRAM_DEFAULTS, DRAM_PRESETS, DRAM_TIMING, compareSchedulers, runDram, type DramAccess, type DramConfig, type DramTiming } from "../../../engines/aca/dram";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -15,6 +16,8 @@ function commandColor(command: string) {
 }
 
 export function DramLab() {
+  useSimulatorCapture("studios/aca/labs/DramLab.tsx:DramLab", () => ({ presetId, accesses, channels, ranks, banks, rows, columns, policy, timing, selected, showTiming, showBuffer, highlightHits, auto, config, result, compared, play, guideFocus, setGuideFocus }), "f59044d22b20");
+
   const initial = DRAM_PRESETS[5];
   const [presetId, setPresetId] = useState(initial?.id ?? "ready");
   const [accesses, setAccesses] = useState<DramAccess[]>(initial?.accesses ?? []);

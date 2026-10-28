@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric } from "../../design-system/ui";
@@ -18,6 +19,8 @@ const TABS = [
 ];
 
 export function MulticoreStudio() {
+  useSimulatorCapture("studios/multicore/MulticoreStudio.tsx:MulticoreStudio", () => ({ tab, mesi, msi, bus, invalidations, directory, core, trace, msiBus, directoryInvalidations, lineBytes, secondAddress }), "005fd9e667f4");
+
   const [tab, setTab] = useStudioTab(TABS, "mesi");
   const [mesi, setMesi] = useState<MesiState[]>(["I", "I", "I", "I"]);
   const [msi, setMsi] = useState<MsiState[]>(["I", "I"]);

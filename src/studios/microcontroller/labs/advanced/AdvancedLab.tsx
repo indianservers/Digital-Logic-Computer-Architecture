@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { CORE_LAB_GROUPS, LAB_META, labByNumber, labPath, type LabMeta } from "../registry";
@@ -34,6 +35,8 @@ export function AdvancedNavigation({ meta }: { meta: LabMeta }) {
 }
 
 function Workbench({ meta, model }: { meta: LabMeta; model: Model }) {
+  useSimulatorCapture("studios/microcontroller/labs/advanced/AdvancedLab.tsx:Workbench", () => ({ initial, params, source, builtSource, simulation, state: state.current, paramRef: paramRef.current, running, speed, tab }), "f42657dd63f2");
+
   const [initial] = useState(() => savedSettings(meta, model));
   const [params, setParams] = useState(initial.params);
   const [source, setSource] = useState(initial.source);

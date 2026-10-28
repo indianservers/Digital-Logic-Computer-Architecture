@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Block, toNum } from "../core/cinterp";
 import type { Mcu } from "../core/mcu";
@@ -150,6 +151,8 @@ function Donut({ pct, color, label, sub }: { pct: number; color: string; label: 
 }
 
 export default function L08({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L08.tsx:L08", () => ({ lab, addrText, dataText, result, hwView, pulse, seen }), "c09c31994a50");
+
   const lab = useLab<P>({
     slug: meta.slug, code: DEMO, params: { tab: "flash", ee: "", boot: "flash", powerLoss: false, worn: false },
     rebuildOn: ["boot", "powerLoss", "worn"],

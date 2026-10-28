@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { cmosDelay, cmosInverter, cmosPower, deviceK, engineering, noiseMargins, voltageTransfer, type InverterBias } from "../engine";
 
@@ -8,6 +9,8 @@ import { InverterSchematic } from "../diagrams";
 import { Badge, Chart, Choice, ControlGroup, Measure, Observe, PlayControls, Slider, Theory, Wave, useTicker } from "../widgets";
 
 export function CmosInverterLab() {
+  useSimulatorCapture("studios/vlsi/labs/cmosLabs.tsx:CmosInverterLab", () => ({ vin, vdd, wn, wp, playing, trace }), "6423b6c3fadd");
+
   const [vin, setVin] = useState(0);
   const [vdd, setVdd] = useState(1.8);
   const [wn, setWn] = useState(1);
@@ -62,6 +65,8 @@ export function CmosInverterLab() {
 }
 
 export function CmosVtcLab() {
+  useSimulatorCapture("studios/vlsi/labs/cmosLabs.tsx:CmosVtcLab", () => ({ vdd, wn, wp, vtn, vtp, vin, curve, margins }), "6423b6c3fadd");
+
   const [vdd, setVdd] = useState(1.8);
   const [wn, setWn] = useState(1);
   const [wp, setWp] = useState(2.5);
@@ -137,6 +142,8 @@ export function CmosVtcLab() {
 }
 
 export function CmosPowerLab() {
+  useSimulatorCapture("studios/vlsi/labs/cmosLabs.tsx:CmosPowerLab", () => ({ vdd, frequency, alpha, load, temp, vth, width, showDyn, showShort, showLeak, trend }), "6423b6c3fadd");
+
   const [vdd, setVdd] = useState(1.2);
   const [frequency, setFrequency] = useState(200e6);
   const [alpha, setAlpha] = useState(0.2);
@@ -211,6 +218,8 @@ export function CmosPowerLab() {
 }
 
 export function PropagationDelayLab() {
+  useSimulatorCapture("studios/vlsi/labs/cmosLabs.tsx:PropagationDelayLab", () => ({ kind, slew, load, wn, wp, vdd, loadSweep, edge }), "6423b6c3fadd");
+
   const [kind, setKind] = useState<"rising" | "falling">("falling");
   const [slew, setSlew] = useState(50);
   const [load, setLoad] = useState(20);

@@ -1,9 +1,12 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import type { Lab } from "./data";
 import type { LabResult, Trace } from "./engine";
 import FrontEnd from "./FrontEnd";
 
 export function Waveform({trace}: {trace: Trace}) {
+  useSimulatorCapture("studios/how-devices-work/labs/visuals.tsx:Waveform", () => ({ cursor }), "3fba1f30cfeb");
+
  const [cursor,setCursor]=useState<number|null>(null);
  const min=Math.min(0,...trace.samples),max=Math.max(...trace.samples,min+.01),range=max-min;
  const xMax=trace.xSamples?Math.max(.01,...trace.xSamples):1;

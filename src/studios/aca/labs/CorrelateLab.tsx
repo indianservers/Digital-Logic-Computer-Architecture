@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { CORR_PRESETS, bitList, runCorrelate, tally, type BranchEvent } from "../../../engines/aca/correlate";
 import { twoName, type Two } from "../../../engines/aca/predictor";
@@ -12,6 +13,8 @@ function counterText(state: Two): string {
 }
 
 export function CorrelateLab() {
+  useSimulatorCapture("studios/aca/labs/CorrelateLab.tsx:CorrelateLab", () => ({ events, ghrBits, phtBits, localBits, initial, update, showGlobal, showLocal, showBimodal, details, highlight, result, play, guideFocus }), "63b17d849e00");
+
   const [events, setEvents] = useState<BranchEvent[]>(CORR_PRESETS[0]?.events ?? []);
   const [ghrBits, setGhrBits] = useState(4);
   const [phtBits, setPhtBits] = useState(4);

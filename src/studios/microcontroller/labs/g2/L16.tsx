@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -27,6 +28,8 @@ const PHASE_TEXT: Record<Phase, string> = {
 };
 
 export default function L16({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L16.tsx:L16", () => ({ lab, pick, seen }), "72996e40ca46");
+
   const lab = useLab<P16>({
     slug: meta.slug, code: DEMO, params: P16_DEFAULT, rebuildOn: ["nvicOff"],
     mcu: () => ({ ips: 120_000, clock: CORE_HZ }),

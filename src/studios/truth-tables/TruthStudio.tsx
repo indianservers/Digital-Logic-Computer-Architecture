@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -27,6 +28,8 @@ const NOTES_KEY = "logiclab.truth.notes.v1";
 const STARTER: FnState = { names: ["A", "B", "C"], output: "F", extras: [], cells: [0, 1, 1, 0, 1, 1, 0, 1] };
 
 export function TruthStudio() {
+  useSimulatorCapture("studios/truth-tables/TruthStudio.tsx:TruthStudio", () => ({ tab, fn, past: past.current, future: future.current, format, exprText, specText, inputError, nameError, groupMode, manual, picked, rows, hover, activeMask, groupError, density, sim, copied, grouped, visited, level, problem, answer, hintOn, stepOn, solutionOn, verdict, specFocus: specFocus.current, exprFocus: exprFocus.current, model, steps }), "8f9f9522862a");
+
   const [tab, setTab] = useStudioTab(TABS, "from-expr");
   const view = tab === "from-table" ? "from-expr" : tab;
   const [fn, setFn] = useState<FnState>(STARTER);

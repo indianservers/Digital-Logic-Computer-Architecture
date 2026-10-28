@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { CELL_LIBRARY, CELL_NAMES, sizeCell, type CellName, type Drive } from "../cellLibrary";
 import { FLOW_STAGES, flowSnapshot } from "../flowModel";
@@ -28,6 +29,8 @@ function Scatter({ points, xLabel, yLabel }: { points: Array<{ x: number; y: num
 }
 
 export function StandardCellLab() {
+  useSimulatorCapture("studios/vlsi/labs/cellLabs.tsx:StandardCellLab", () => ({ name, drive, load, view }), "1120708a4b61");
+
   const [name, setName] = useState<CellName>("NAND2");
   const [drive, setDrive] = useState<Drive>(1);
   const [load, setLoad] = useState(8);
@@ -138,6 +141,8 @@ type PlotMode = "delay-area" | "power-delay" | "area-drive" | "ppa";
 type Family = "all" | "combo" | "seq";
 
 export function CellLibraryLab() {
+  useSimulatorCapture("studios/vlsi/labs/cellLabs.tsx:CellLibraryLab", () => ({ family, drive, sort, plot, picked, rows }), "1120708a4b61");
+
   const [family, setFamily] = useState<Family>("all");
   const [drive, setDrive] = useState<"all" | "1" | "2" | "4">("all");
   const [sort, setSort] = useState<"area" | "delay" | "power" | "inputs">("delay");
@@ -237,6 +242,8 @@ export function CellLibraryLab() {
 }
 
 export function FlowLab() {
+  useSimulatorCapture("studios/vlsi/labs/cellLabs.tsx:FlowLab", () => ({ design, stage, util }), "1120708a4b61");
+
   const [design, setDesign] = useState<"adder" | "mux" | "counter">("mux");
   const [stage, setStage] = useState(0);
   const [util, setUtil] = useState(0.6);

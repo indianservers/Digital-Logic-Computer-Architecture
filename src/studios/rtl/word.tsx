@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { controlWord, RTL_PRESETS } from "../../engines/isa/rtlLab";
 import { Mark } from "./ui";
@@ -5,6 +6,8 @@ import { Mark } from "./ui";
 const REGS = [0, 5, 3, 0, 0, 0, 0, 0];
 
 export function WordPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/rtl/word.tsx:WordPanel", () => ({ line, focus, edge }), "3acd038caecf");
+
   const [line, setLine] = useState("R3 ← R1 + R2");
   const [focus, setFocus] = useState("reg-write");
   const [edge, setEdge] = useState(false);
@@ -88,4 +91,8 @@ function Row({ label, value, on, pick }: { label: string; value: string; on: boo
   );
 }
 
-function Copy({text}:{text:string}) { const [copied,setCopied]=useState(false); return <button className="rtx-copy" aria-label={`Copy ${text}`} onClick={()=>{navigator.clipboard.writeText(text).then(()=>setCopied(true))}}>{copied?"✓":"▢"}</button>; }
+function Copy({text}:{text:string}) {
+  useSimulatorCapture("studios/rtl/word.tsx:Copy", () => ({ copied }), "3acd038caecf");
+
+  useSimulatorCapture("studios/rtl/word.tsx:Copy", () => ({ copied }), "bb662ed5f8cd");
+ const [copied,setCopied]=useState(false); return <button className="rtx-copy" aria-label={`Copy ${text}`} onClick={()=>{navigator.clipboard.writeText(text).then(()=>setCopied(true))}}>{copied?"✓":"▢"}</button>; }

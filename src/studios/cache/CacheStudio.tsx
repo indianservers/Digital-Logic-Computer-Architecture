@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CACHE_LESSONS } from "../../data/studioLessons";
@@ -14,6 +15,8 @@ const TABS = [
 const ALIAS: Record<string, string> = { policies: "policy", hierarchy: "levels" };
 
 export function CacheStudio() {
+  useSimulatorCapture("studios/cache/CacheStudio.tsx:CacheStudio", () => ({ shared }), "16fa57261bd5");
+
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab");
   const mapped = raw ? ALIAS[raw] ?? raw : "sim";

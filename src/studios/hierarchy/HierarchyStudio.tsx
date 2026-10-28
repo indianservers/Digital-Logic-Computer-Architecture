@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -16,6 +17,8 @@ const TABS = [
 const ALIAS: Record<string, string> = { hierarchy: "pyramid" };
 
 export function HierarchyStudio() {
+  useSimulatorCapture("studios/hierarchy/HierarchyStudio.tsx:HierarchyStudio", () => ({ latencies }), "622490cb98e8");
+
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab");
   const aliased = raw ? ALIAS[raw] ?? raw : "pyramid";

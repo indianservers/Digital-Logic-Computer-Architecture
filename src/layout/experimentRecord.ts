@@ -1,7 +1,9 @@
+import { parseEvidence, type SimulatorEvidence } from "./experimentEvidence";
 export interface ExperimentRun {
   configuration: string;
   observation: string;
   capturedAt: string;
+  evidence?: SimulatorEvidence;
 }
 
 export interface ExperimentRecord {
@@ -35,7 +37,7 @@ export function parseExperiment(raw: string | null): ExperimentRecord {
       reviewed: Array.isArray(value.reviewed) ? value.reviewed.filter((step): step is string => typeof step === "string").slice(0, 40).map(boundedText) : [],
       runs: Array.isArray(value.runs) ? value.runs.filter((run): run is Record<string, unknown> => !!run && typeof run === "object")
         .filter((run) => typeof run.configuration === "string" && typeof run.observation === "string" && typeof run.capturedAt === "string")
-        .slice(-6).map((run) => ({ configuration: boundedText(run.configuration), observation: boundedText(run.observation), capturedAt: boundedText(run.capturedAt) })) : [],
+        .slice(-6).map((run) => ({ configuration: boundedText(run.configuration), observation: boundedText(run.observation), capturedAt: boundedText(run.capturedAt), ...(parseEvidence(run.evidence) ? { evidence: parseEvidence(run.evidence) } : {}) })) : [],
     };
   } catch { return emptyExperiment(); }
 }
@@ -49,7 +51,7 @@ export function experimentReport(title: string, route: string, record: Experimen
     "## Guided steps", ...steps.map((step) => `- [${record.reviewed.includes(step) ? "x" : " "}] ${step}`),
     "## Expected behavior", ...expected.map((item) => `- ${item}`),
     "## Observation", record.observation || "Not recorded", "## Comparison runs",
-    ...record.runs.flatMap((run, i) => [`### Run ${i + 1} · ${run.capturedAt}`, `Configuration: ${run.configuration}`, `Observation: ${run.observation}`]),
+    ...record.runs.flatMap((run, i) => [`### Run ${i + 1} · ${run.capturedAt}`, `Configuration: ${run.configuration}`, `Observation: ${run.observation}`, ...(run.evidence ? ["Simulator evidence (configuration, state and readouts):", "```json\n" + JSON.stringify(run.evidence, null, 2) + "\n```"] : [])]),
     "## Conclusion", record.conclusion || "Not recorded", "## Self-check", question || "Explain why the output follows from the configuration.", record.answer || "Not answered",
   ].join("\n\n");
 }

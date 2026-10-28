@@ -1,9 +1,12 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { clockGate, powerGate, suggestVt, voltageIsland, vtPath, type VtClass } from "../reliabilityModel";
 import { VlsiGrid } from "../shell";
 import { Badge, Choice, Measure, Observe, Slider, Wave } from "../widgets";
 
 export function PowerGatingLab() {
+  useSimulatorCapture("studios/vlsi/labs/lowPowerLabs.tsx:PowerGatingLab", () => ({ sleep, header, load, retention, slew }), "d0e65e4687b1");
+
   const [sleep, setSleep] = useState(false);
   const [header, setHeader] = useState(true);
   const [load, setLoad] = useState(4);
@@ -46,6 +49,8 @@ export function PowerGatingLab() {
 }
 
 export function ClockGatingLab() {
+  useSimulatorCapture("studios/vlsi/labs/lowPowerLabs.tsx:ClockGatingLab", () => ({ enabled, style, freq, activity, registers, enableAt }), "d0e65e4687b1");
+
   const [enabled, setEnabled] = useState(true);
   const [style, setStyle] = useState<"naive" | "icg">("icg");
   const [freq, setFreq] = useState(200);
@@ -84,6 +89,8 @@ export function ClockGatingLab() {
 const NAMES = ["INV", "NAND", "NOR", "BUF"];
 
 export function MultiVtLab() {
+  useSimulatorCapture("studios/vlsi/labs/lowPowerLabs.tsx:MultiVtLab", () => ({ cells, load, target }), "d0e65e4687b1");
+
   const [cells, setCells] = useState<VtClass[]>(["HVT", "SVT", "HVT", "HVT"]);
   const [load, setLoad] = useState(8);
   const [target, setTarget] = useState(70);
@@ -128,6 +135,8 @@ export function MultiVtLab() {
 }
 
 export function MultiVddLab() {
+  useSimulatorCapture("studios/vlsi/labs/lowPowerLabs.tsx:MultiVddLab", () => ({ vddA, vddB, aOn, bOn }), "d0e65e4687b1");
+
   const [vddA, setA] = useState(1);
   const [vddB, setB] = useState(0.7);
   const [aOn, setAOn] = useState(true);

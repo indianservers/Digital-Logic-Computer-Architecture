@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { VlsiGrid } from "../shell";
 import { Badge, Chart, Choice, Measure, Observe, PlayControls, Slider, Theory, Wave, useTicker } from "../widgets";
@@ -8,6 +9,8 @@ function ns(value: number): string {
 }
 
 export function SetupHoldLab() {
+  useSimulatorCapture("studios/vlsi/labs/clockLabs.tsx:SetupHoldLab", () => ({ change, tSetup, tHold, before }), "46c62f70c0ab");
+
   const edge = 20;
   const [change, setChange] = useState(12);
   const [tSetup, setTSetup] = useState(5);
@@ -69,6 +72,8 @@ export function SetupHoldLab() {
 }
 
 export function MetastabilityLab() {
+  useSimulatorCapture("studios/vlsi/labs/clockLabs.tsx:MetastabilityLab", () => ({ change, tSetup, tHold, tau, disturbance, playing, time, samples }), "46c62f70c0ab");
+
   const edge = 20;
   const [change, setChange] = useState(19);
   const [tSetup, setTSetup] = useState(3);
@@ -144,6 +149,8 @@ export function MetastabilityLab() {
 }
 
 export function ClockingLab() {
+  useSimulatorCapture("studios/vlsi/labs/clockLabs.tsx:ClockingLab", () => ({ period, duty, phase, rise, fall, skew, jitter, source, sinkLatency, mode }), "46c62f70c0ab");
+
   const [period, setPeriod] = useState(20);
   const [duty, setDuty] = useState(50);
   const [phase, setPhase] = useState(0);
@@ -245,6 +252,8 @@ export function ClockingLab() {
 }
 
 export function ClockTreeLab() {
+  useSimulatorCapture("studios/vlsi/labs/clockLabs.tsx:ClockTreeLab", () => ({ buffer, wire, asymmetry, count, target, style, playing, hop }), "46c62f70c0ab");
+
   const [buffer, setBuffer] = useState(0.12);
   const [wire, setWire] = useState(0.08);
   const [asymmetry, setAsymmetry] = useState(0.2);

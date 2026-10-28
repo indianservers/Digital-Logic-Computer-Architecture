@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { Card, ExplainBar, Segmented } from "../../design-system/ui";
@@ -56,6 +57,8 @@ const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { 
 };
 
 export function AdderStudio() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:AdderStudio", () => ({ tab }), "3c2f972ee98f");
+
   const [tab, setTab] = useStudioTab(TABS, "half");
   const [resetKey, setResetKey] = useState(0);
   const lesson = LESSONS[tab] ?? LESSONS.half!;
@@ -75,6 +78,8 @@ export function AdderStudio() {
 }
 
 function HalfFull() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:HalfFull", () => ({ a, b, cin, view }), "3c2f972ee98f");
+
   const { prefs } = usePrefs();
   const [a, setA] = useState(false);
   const [b, setB] = useState(false);
@@ -114,6 +119,8 @@ function HalfFull() {
 }
 
 function Multi() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:Multi", () => ({ width, a, b, style, step }), "3c2f972ee98f");
+
   const [width, setWidth] = useState(4);
   const [a, setA] = useState<Array<0 | 1>>([1, 1, 0, 1]);
   const [b, setB] = useState<Array<0 | 1>>([0, 1, 1, 0]);
@@ -168,6 +175,8 @@ function Multi() {
 }
 
 function SubLab() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:SubLab", () => ({ a, b, bin, mode, wordA, wordB }), "3c2f972ee98f");
+
   const [a, setA] = useState(true);
   const [b, setB] = useState(false);
   const [bin, setBin] = useState(false);
@@ -197,6 +206,8 @@ function SubLab() {
 }
 
 function CmpLab() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:CmpLab", () => ({ a, b }), "3c2f972ee98f");
+
   const [a, setA] = useState<Array<0 | 1>>([1, 0, 0, 1]);
   const [b, setB] = useState<Array<0 | 1>>([0, 1, 1, 1]);
   const result = compareMagnitude(a, b);
@@ -215,6 +226,8 @@ function CmpLab() {
 }
 
 function ShiftLab() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:ShiftLab", () => ({ bits, kind, amount }), "3c2f972ee98f");
+
   const [bits, setBits] = useState<Array<0 | 1>>([1, 0, 1, 1]);
   const [kind, setKind] = useState<ShiftKind>("logical-left");
   const [amount, setAmount] = useState(1);
@@ -231,6 +244,8 @@ function ShiftLab() {
 }
 
 function AluLab() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:AluLab", () => ({ width, op, a, b }), "3c2f972ee98f");
+
   const ops: AluOp[] = ["ADD", "SUB", "AND", "OR", "XOR", "NOT", "SHL", "SHR", "CMP", "INC", "DEC"];
   const [width, setWidth] = useState(4);
   const [op, setOp] = useState<AluOp>("ADD");
@@ -268,6 +283,8 @@ function Flag({ name, on, tip }: { name: string; on: boolean; tip: string }) {
 }
 
 function MulLab() {
+  useSimulatorCapture("studios/adders/AdderStudio.tsx:MulLab", () => ({ a, b, step, divA, divB }), "3c2f972ee98f");
+
   const [a, setA] = useState<Array<0 | 1>>([1, 0, 1, 1]);
   const [b, setB] = useState<Array<0 | 1>>([0, 1, 0, 1]);
   const [step, setStep] = useState(0);

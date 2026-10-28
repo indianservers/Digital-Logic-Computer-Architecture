@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -142,6 +143,8 @@ function Dial({ deg, status }: { deg: number; status: Step24["status"] }) {
 const STATUS_TONE: Record<Step24["status"], string> = { Stopped: "#16a34a", Running: "#1677ff", Holding: "#f59e0b", Stalled: "#dc2626", "No power": "#94a3b8" };
 
 export default function L24({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L24.tsx:L24", () => ({ lab, zoom, rot, moveN, pending, moveStart: moveStart.current, seen }), "883d3285d225");
+
   const lab = useLab<P24>({
     slug: meta.slug, code: DEMO, params: P24_DEFAULT,
     mcu: () => ({ family: "avr", clock: 16e6, ips: 1_000_000 }),

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { alu, type AluOp } from "../../engines/digital/arithmetic";
@@ -32,6 +33,8 @@ function machineOrBlank(source: string): Cpu8State {
 }
 
 export function Cpu8Studio() {
+  useSimulatorCapture("studios/cpu8/Cpu8Studio.tsx:Cpu8Studio", () => ({ source, cpu, history, cursor, aluOp, encOp, encImm, asmMsg, listing }), "1ccfa7453216");
+
   const { labId } = useParams();
   const lab = labId ?? "overview";
   const [source, setSource] = useState(SAMPLE);

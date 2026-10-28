@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { eepromWrite, formatHex, pageSpan, type EepromCell } from "../../engines/memory/fundamentals";
 import { Field, LabGuide } from "./guide";
@@ -6,6 +7,8 @@ const LENGTH = 256;
 const LIMIT = 8;
 
 export function EepromLab() {
+  useSimulatorCapture("studios/memory/eepromLab.tsx:EepromLab", () => ({ cells, address, data, pageSize, delay, busy, status, wear, note }), "1b3022359089");
+
   const [cells, setCells] = useState<EepromCell[]>(() => Array.from({ length: LENGTH }, () => ({ value: 0xff, cycles: 0 })));
   const [address, setAddress] = useState(0x1a);
   const [data, setData] = useState("5C");

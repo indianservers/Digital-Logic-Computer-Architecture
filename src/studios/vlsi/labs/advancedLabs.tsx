@@ -1,9 +1,13 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
+import { VlsiThree } from "../three/VlsiThree";
 import { useState } from "react";
 import { finfetMetrics, gaaMetrics, MATERIALS, planarMetrics, SCALE_NODES, scalingNode } from "../processModel";
 import { VlsiGrid } from "../shell";
 import { Badge, Choice, Measure, Observe, Slider } from "../widgets";
 
 export function FinfetLab() {
+  useSimulatorCapture("studios/vlsi/labs/advancedLabs.tsx:FinfetLab", () => ({ kind, height, width, fins, vgs, vds }), "17851c60ac75");
+
   const [kind, setKind] = useState<"planar" | "finfet">("finfet");
   const [height, setHeight] = useState(40);
   const [width, setWidth] = useState(8);
@@ -24,8 +28,7 @@ export function FinfetLab() {
           <Slider label="Drain voltage" value={vds} min={0} max={1} step={0.05} text={`${vds.toFixed(2)} V`} onChange={setVds} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 200" role="img" aria-label={kind === "finfet" ? "FinFET with a wrapped gate" : "Planar MOSFET"}>
+      stage={<VlsiThree enabled={kind === "finfet"} spec={{ kind: "fin", device: kind, height, width, count: fins, vgs, vds }}><svg className="vlsi-layout" viewBox="0 0 320 200" role="img" aria-label={kind === "finfet" ? "FinFET with a wrapped gate" : "Planar MOSFET"}>
           <rect x="20" y="150" width="280" height="30" fill={MATERIALS.silicon.color} />
           <text x="28" y="170" fill="#e2e8f0">Substrate</text>
           {kind === "planar" ? (
@@ -62,8 +65,7 @@ export function FinfetLab() {
             </>
           )}
           <text x="28" y="28" fill="#e2e8f0">{on ? "Channel on" : "Channel off"} · VDS {vds.toFixed(2)} V</text>
-        </svg>
-      }
+        </svg></VlsiThree>}
       readouts={
         <>
           <Measure label="Effective width" value={`${metrics.weff.toFixed(0)} nm`} />
@@ -78,6 +80,8 @@ export function FinfetLab() {
 }
 
 export function GaafetLab() {
+  useSimulatorCapture("studios/vlsi/labs/advancedLabs.tsx:GaafetLab", () => ({ view, sheets, width, thickness, spacing, vgs }), "17851c60ac75");
+
   const [view, setView] = useState<"section" | "perspective" | "exploded">("section");
   const [sheets, setSheets] = useState(3);
   const [width, setWidth] = useState(24);
@@ -99,8 +103,7 @@ export function GaafetLab() {
           <Slider label="Gate voltage" value={vgs} min={0} max={1} step={0.05} text={`${vgs.toFixed(2)} V`} onChange={setVgs} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 210" role="img" aria-label="Nanosheet gate-all-around transistor">
+      stage={<VlsiThree spec={{ kind: "gaa", count: sheets, width, thickness, spacing, vgs, view }}><svg className="vlsi-layout" viewBox="0 0 320 210" role="img" aria-label="Nanosheet gate-all-around transistor">
           {Array.from({ length: sheets }, (_, index) => {
             const pitch = Math.min(thickness + gap, 150 / sheets);
             const y = 32 + index * pitch;
@@ -115,8 +118,7 @@ export function GaafetLab() {
             );
           })}
           <text x="16" y="24" fill="#e2e8f0">Gate surrounds each sheet</text>
-        </svg>
-      }
+        </svg></VlsiThree>}
       readouts={
         <>
           <Measure label="Effective width" value={`${metrics.weff.toFixed(0)} nm`} />
@@ -131,6 +133,8 @@ export function GaafetLab() {
 }
 
 export function ScalingLab() {
+  useSimulatorCapture("studios/vlsi/labs/advancedLabs.tsx:ScalingLab", () => ({ index }), "17851c60ac75");
+
   const [index, setIndex] = useState(7);
   const node = scalingNode(SCALE_NODES[index]?.id ?? "16");
   const maxDensity = SCALE_NODES[SCALE_NODES.length - 1]?.density ?? 1;

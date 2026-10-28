@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { findDeps, parsePipe, type PipeOp } from "../../../engines/aca/hazards";
 import { RENAME_EXAMPLE, runRename } from "../../../engines/aca/rename";
@@ -29,6 +30,8 @@ function Timeline({ cells, cycles, shown, label }: { cells: Array<Array<string |
 }
 
 export function RenameLab() {
+  useSimulatorCapture("studios/aca/labs/RenameLab.tsx:RenameLab", () => ({ ops, enabled, showMap, selected, pool, result, deps, play, guideFocus }), "de5b41ef9f62");
+
   const [ops, setOps] = useState<PipeOp[]>(RENAME_EXAMPLE);
   const [enabled, setEnabled] = useState(true);
   const [showMap, setShowMap] = useState(true);

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { MSHR_DEFAULTS, MSHR_PRESETS, compareBlocking, runMshr, type MemAccess, type MshrConfig } from "../../../engines/aca/mshr";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -5,6 +6,8 @@ import { MshrPath } from "../animation/phase3Views";
 import { useGuideFocus } from "../guide/focus";
 
 export function MshrLab() {
+  useSimulatorCapture("studios/aca/labs/MshrLab.tsx:MshrLab", () => ({ presetId, accesses, warm, blocking, mshrs, hitUnder, missUnder, cacheBytes, blockBytes, latency, replacement, showCache, showMshr, showQueue, highlight, auto, config, result, compared, play, guideFocus, setGuideFocus }), "f0bbfd6fadf1");
+
   const initial = MSHR_PRESETS[1];
   const [presetId, setPresetId] = useState(initial?.id ?? "hum");
   const [accesses, setAccesses] = useState<MemAccess[]>(initial?.accesses ?? []);

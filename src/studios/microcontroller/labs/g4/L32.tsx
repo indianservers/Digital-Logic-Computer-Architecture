@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -244,6 +245,8 @@ interface Sticky { fw: unknown; lastId: number; tecPeak: number; termErrAt: numb
 const freshSticky = (fw: unknown): Sticky => ({ fw, lastId: 0, tecPeak: 0, termErrAt: -1, termFixed: false, remote: false, win: false, arbLost: false, collide: 0, ackErr: 0, injT: -1 });
 
 export default function L32({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L32.tsx:L32", () => ({ lab, sel, follow, pending, msg, seen, idDraft, frozen: frozen.current, sticky: sticky.current, listRef: listRef.current }), "78022261ceb4");
+
   const lab = useLab<P32>({ slug: meta.slug, code: DEMO, params: P32_DEFAULT, mcu: mcu32, world: world32 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;

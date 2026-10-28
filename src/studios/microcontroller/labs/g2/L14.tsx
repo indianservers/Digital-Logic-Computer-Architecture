@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -27,6 +28,8 @@ function cStatement(reg: RegName, n: number, k: number) {
 }
 
 export default function L14({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L14.tsx:L14", () => ({ lab, reg, pin, raw, seen }), "bc3bc60d94fb");
+
   const lab = useLab<P14>({
     slug: meta.slug, code: BSRR_DEMO, params: P14_DEFAULT, rebuildOn: ["clockOff"],
     mcu: () => ({ ips: 120_000, strictClock: true }),

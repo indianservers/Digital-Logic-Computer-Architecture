@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { LITMUS_TESTS, applyAction, enumerate, initialState, insertFence, legalActions, parseLitmus, type ConsState, type Litmus, type MemoryModel } from "../../../engines/aca/consistency";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -29,6 +30,8 @@ function finished(state: ConsState) {
 }
 
 export function ConsistencyLab() {
+  useSimulatorCapture("studios/aca/labs/ConsistencyLab.tsx:ConsistencyLab", () => ({ model, testId, afterStore0, afterLoad0, afterStore1, afterLoad1, showBuffers, showValues, animate, auto, source, custom, manual, manualState, built, litmus, result, compared, guideFocus, setGuideFocus, path, play }), "a8a23a30b5cf");
+
   const [model, setModel] = useState<MemoryModel>("tso");
   const [testId, setTestId] = useState(LITMUS_TESTS[0]?.id ?? "sb");
   const [afterStore0, setAfterStore0] = useState(false);

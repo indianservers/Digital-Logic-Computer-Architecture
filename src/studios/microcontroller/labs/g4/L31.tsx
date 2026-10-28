@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -302,6 +303,8 @@ interface Sticky { fw: unknown; lastId: number; scan: number[] | null; eeBusy: n
 const freshSticky = (fw: unknown): Sticky => ({ fw, lastId: 0, scan: null, eeBusy: 0, inj: 0, injT: -1, nack: 0, probeNack: 0 });
 
 export default function L31({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L31.tsx:L31", () => ({ lab, sel, page, follow, pending, msg, seen, frozen: frozen.current, sticky: sticky.current, listRef: listRef.current }), "cd624f2d1f4a");
+
   const lab = useLab<P31>({ slug: meta.slug, code: DEMO, params: P31_DEFAULT, mcu: mcu31, world: world31 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useSandbox } from "./sandboxState";
 import { hx } from "./sandboxModel";
 import {
@@ -13,6 +14,8 @@ import {
 } from "./SandboxUI";
 const STAGES = ["Fetch", "Decode", "Execute", "Memory", "Writeback"];
 export function CpuView() {
+  useSimulatorCapture("studios/sandbox/CpuViews.tsx:CpuView", () => ({ s }), "4344ccd6634b");
+
   const s = useSandbox(),
     cpu =
       s.page === "history" && s.historical
@@ -241,6 +244,8 @@ export function CpuView() {
   );
 }
 export function CpuDock() {
+  useSimulatorCapture("studios/sandbox/CpuViews.tsx:CpuDock", () => ({ s }), "4344ccd6634b");
+
   const s = useSandbox(),
     tab = s.bottom || "Program";
   return (
@@ -347,6 +352,8 @@ export function CpuDock() {
   );
 }
 export function CpuInspector() {
+  useSimulatorCapture("studios/sandbox/CpuViews.tsx:CpuInspector", () => ({ s }), "4344ccd6634b");
+
   const s = useSandbox(),
     c =
       s.page === "history" && s.historical
@@ -407,6 +414,8 @@ export function CpuInspector() {
   );
 }
 export function DatapathView() {
+  useSimulatorCapture("studios/sandbox/CpuViews.tsx:DatapathView", () => ({ s }), "4344ccd6634b");
+
   const s = useSandbox();
   return (
     <Surface
@@ -625,6 +634,8 @@ export function DatapathView() {
   );
 }
 export function DatapathDock() {
+  useSimulatorCapture("studios/sandbox/CpuViews.tsx:DatapathDock", () => ({ s }), "4344ccd6634b");
+
   const s = useSandbox();
   return (
     <div className="sb-datapath-dock">
@@ -742,6 +753,8 @@ export function DatapathDock() {
   );
 }
 export function DatapathInspector() {
+  useSimulatorCapture("studios/sandbox/CpuViews.tsx:DatapathInspector", () => ({ s }), "4344ccd6634b");
+
   const s = useSandbox();
   return (
     <>

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useSandbox } from "./sandboxState";
 import { bn, hx, LIBRARY, partPorts, TEMPLATE_LIST } from "./sandboxModel";
 import {
@@ -14,6 +15,8 @@ import {
   ValueBox,
 } from "./SandboxUI";
 export function LibraryView() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:LibraryView", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox();
   return (
     <div className="sb-library-main">
@@ -156,6 +159,8 @@ export function LibraryView() {
   );
 }
 export function LibraryInspector() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:LibraryInspector", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox();
   return (
     <>
@@ -253,6 +258,8 @@ export function LibraryInspector() {
   );
 }
 export function LibraryDock() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:LibraryDock", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox();
   return (
     <>
@@ -320,6 +327,8 @@ export function LibraryDock() {
   );
 }
 export function ProbesView() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:ProbesView", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox();
   return (
     <Surface
@@ -435,6 +444,8 @@ export function ProbesView() {
   );
 }
 export function WaveformDock() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:WaveformDock", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox(),
     samples = s.counterSamples,
     start = Math.max(0, samples.length - 14),
@@ -597,6 +608,8 @@ export function WaveformDock() {
   );
 }
 export function ProbesInspector() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:ProbesInspector", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox();
   return (
     <>
@@ -702,6 +715,8 @@ export function ProbesInspector() {
   );
 }
 export function CircuitInspector() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:CircuitInspector", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox(),
     p = s.selectedPart,
     bits = s.circuit.parts.some((p) => p.id === "Sum") ? 1 : 4,
@@ -867,6 +882,8 @@ export function CircuitInspector() {
   );
 }
 export function TemplateInspector() {
+  useSimulatorCapture("studios/sandbox/AnalysisViews.tsx:TemplateInspector", () => ({ s }), "86a172dc7120");
+
   const s = useSandbox(),
     t = TEMPLATE_LIST[s.templateIndex]!;
   return (

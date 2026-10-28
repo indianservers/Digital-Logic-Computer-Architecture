@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { useLab } from "../core/useLab";
 import { hx } from "../g1/thumb";
@@ -24,6 +25,8 @@ const NO_SEEN = { pa5: false, timer: false, blink: false, edit: false, ignored: 
 type Seen = typeof NO_SEEN;
 
 export default function L38({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L38.tsx:L38", () => ({ lab, pending, msg, seen, failSeen, editing, busRef: busRef.current }), "8c84711cd2ce");
+
   const lab = useLab<P38>({
     slug: meta.slug, code: DEMO, params: P38_DEFAULT, mcu: mcu37,
     setup: (m, _p, src) => setup38(m, src),

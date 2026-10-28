@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useState } from "react";
 import type { Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -101,6 +102,8 @@ function pinInfo(m: Mcu, n: number) {
 const noise = (t: number) => { const x = Math.sin(Math.floor(t * 900) * 12.9898) * 43758.5453; return x - Math.floor(x) > 0.5 ? 1 : 0; };
 
 export default function L11({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L11.tsx:L11", () => ({ lab, sel, seen }), "ee2a8b93b5f2");
+
   const lab = useLab<P>({
     slug: meta.slug, code: REG, params: { sw1: false, sw2: false, halted: false, clockOff: false, brokenWire: false },
     rebuildOn: ["clockOff"],

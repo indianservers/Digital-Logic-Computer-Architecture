@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -107,6 +108,8 @@ function paint(line: string) {
 }
 
 export function AssemblyStudio() {
+  useSimulatorCapture("studios/assembly/AssemblyStudio.tsx:AssemblyStudio", () => ({ root: root.current, autoCount: autoCount.current, source, loadedSource, cpu, rows, breaks, pausedAt, tick, error, autoFetch, built, motionEnabled }), "0d0f3900db02");
+
   const root = useRef<HTMLDivElement>(null);
   const autoCount = useRef(0);
   const [params, setParams] = useSearchParams();
@@ -482,6 +485,8 @@ function MemSnap({ cpu, hot, onEdit }: { cpu: CpuState; hot?: TraceRow; onEdit: 
 }
 
 function FetchPanel(props: Shared & { onStep: () => void; onAuto: () => void; auto: boolean; reset: () => void }) {
+  useSimulatorCapture("studios/assembly/AssemblyStudio.tsx:FetchPanel", () => ({ beat }), "0d0f3900db02");
+
   const [beat, setBeat] = useState(0);
   const fetched = props.cpu.stage !== "IF";
   const decoded = fetched ? (props.cpu.decoded ?? decode(props.cpu.ir)) : decode(props.cpu.imem[props.cpu.pc] ?? 0);
@@ -569,6 +574,8 @@ function FetchPanel(props: Shared & { onStep: () => void; onAuto: () => void; au
 }
 
 function DecodePanel(props: Shared & { onStep: () => void; reset: () => void }) {
+  useSimulatorCapture("studios/assembly/AssemblyStudio.tsx:DecodePanel", () => ({ pick, focus }), "0d0f3900db02");
+
   const listing = props.built.ok ? props.built.listing : [];
   const [pick, setPick] = useState<number | null>(null);
   const live = currentDecoded(props.cpu);
@@ -662,6 +669,8 @@ function DecodePanel(props: Shared & { onStep: () => void; reset: () => void }) 
 }
 
 function ExecutePanel(props: Shared & { onStep: () => void; onRun: () => void; reset: () => void }) {
+  useSimulatorCapture("studios/assembly/AssemblyStudio.tsx:ExecutePanel", () => ({ experiment, op, left, right }), "0d0f3900db02");
+
   const decoded = currentDecoded(props.cpu);
   const [experiment, setExperiment] = useState(false);
   const [op, setOp] = useState("ADD");
@@ -758,6 +767,8 @@ function ExecutePanel(props: Shared & { onStep: () => void; onRun: () => void; r
 }
 
 function MemoryPanel(props: Shared & { onStep: () => void; reset: () => void; commit: (next: CpuState, row?: TraceRow | null) => void }) {
+  useSimulatorCapture("studios/assembly/AssemblyStudio.tsx:MemoryPanel", () => ({ kind, reg, base, offset, note }), "0d0f3900db02");
+
   const [kind, setKind] = useState<"LOAD" | "STORE">("LOAD");
   const [reg, setReg] = useState(1);
   const [base, setBase] = useState(0);
@@ -887,6 +898,8 @@ function MemoryPanel(props: Shared & { onStep: () => void; reset: () => void; co
 }
 
 function TracePanel(props: Shared & { run: () => void; step: () => void; over: () => void; reset: () => void; onSample: (source: string) => void; clearTrace: () => void }) {
+  useSimulatorCapture("studios/assembly/AssemblyStudio.tsx:TracePanel", () => ({ reg, draft, breakLine }), "0d0f3900db02");
+
   const listing = props.built.ok ? props.built.listing : [];
   const line = listing.find((row) => row.address === (props.pausedAt ?? props.cpu.pc));
   const last = props.rows.at(-1);

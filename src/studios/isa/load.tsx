@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { executeTeach, loadStoreDemo, type TeachMachine } from "../../engines/isa/teach";
 import { Mark, RunBar, WhatChanged } from "./ui";
@@ -5,6 +6,8 @@ import { Mark, RunBar, WhatChanged } from "./ui";
 type Mode = "demo" | "lw" | "sw";
 
 export function LoadPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/load.tsx:LoadPanel", () => ({ base, mode, rd, rs, offset, phase, playing, outcome }), "ac9b2fddb989");
+
   const picture = loadStoreDemo();
   const [base, setBase] = useState<TeachMachine>(picture.before);
   const [mode, setMode] = useState<Mode>("demo");

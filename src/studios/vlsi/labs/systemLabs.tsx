@@ -1,3 +1,5 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
+import { VlsiThree } from "../three/VlsiThree";
 import { useMemo, useState } from "react";
 import { emptyFlow, GDS_STAGES, runThrough, type DesignId } from "../gdsFlow";
 import {
@@ -21,6 +23,8 @@ import { Badge, Choice, Measure, Observe, Slider } from "../widgets";
 const DESIGNS: DesignId[] = ["adder2", "adder4", "counter", "mux", "fsm", "alu"];
 
 export function AsicFlowLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:AsicFlowLab", () => ({ design, stage, flow }), "9d2b48cc2956");
+
   const [design, setDesign] = useState<DesignId>("adder4");
   const [stage, setStage] = useState(0);
   const flow = useMemo(() => runThrough(emptyFlow(design), GDS_STAGES[stage] ?? "rtl"), [design, stage]);
@@ -60,6 +64,8 @@ export function AsicFlowLab() {
 }
 
 export function FpgaAsicLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:FpgaAsicLab", () => ({ kind, width }), "9d2b48cc2956");
+
   const [kind, setKind] = useState<"adder" | "counter" | "alu">("adder");
   const [width, setWidth] = useState(4);
   const both = fabricCompare(kind, width);
@@ -100,6 +106,8 @@ export function FpgaAsicLab() {
 }
 
 export function SocFloorLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:SocFloorLab", () => ({ blocks, id }), "9d2b48cc2956");
+
   const [blocks, setBlocks] = useState<FloorBlock[]>(SOC_FLOOR);
   const [id, setId] = useState("gpu");
   const selected = blocks.find((block) => block.id === id) ?? blocks[0]!;
@@ -139,6 +147,8 @@ export function SocFloorLab() {
 }
 
 export function NocLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:NocLab", () => ({ sr, sc, dr, dc, size, injection, mode, second }), "9d2b48cc2956");
+
   const [sr, setSr] = useState(0);
   const [sc, setSc] = useState(0);
   const [dr, setDr] = useState(2);
@@ -190,6 +200,8 @@ export function NocLab() {
 }
 
 export function ChipletLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:ChipletLab", () => ({ traffic, bandwidth, latency, span }), "9d2b48cc2956");
+
   const [traffic, setTraffic] = useState(3);
   const [bandwidth, setBandwidth] = useState(4);
   const [latency, setLatency] = useState(2);
@@ -206,8 +218,7 @@ export function ChipletLab() {
           <Slider label="Die spacing" value={span} min={0.6} max={2.4} step={0.2} text={span.toFixed(1)} onChange={setSpan} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 400 160" role="img" aria-label="Chiplets on an interposer">
+      stage={<svg className="vlsi-layout" viewBox="0 0 400 160" role="img" aria-label="Chiplets on an interposer">
           <rect x="20" y="70" width="360" height="28" fill="#334155" />
           {["Compute", "I/O", "Memory", "Accel"].map((name, index) => (
             <g key={name}>
@@ -216,8 +227,7 @@ export function ChipletLab() {
             </g>
           ))}
           <text x="36" y="120" fill="#e2e8f0">Interposer</text>
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="Utilization" value={link.utilization.toFixed(2)} />
@@ -234,6 +244,8 @@ export function ChipletLab() {
 }
 
 export function PackageLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:PackageLab", () => ({ mode, dies, tsv, power }), "9d2b48cc2956");
+
   const [mode, setMode] = useState<"2.5d" | "3d">("2.5d");
   const [dies, setDies] = useState(3);
   const [tsv, setTsv] = useState(16);
@@ -249,8 +261,7 @@ export function PackageLab() {
           <Slider label="Power" value={power} min={1} max={12} step={0.5} text={power.toFixed(1)} onChange={setPower} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="2.5D or 3D package">
+      stage={<VlsiThree enabled={mode === "3d"} spec={{ kind: "package", mode, count: stack.count, tsv: stack.vertical, thermalRise: stack.thermalRise }}><svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="2.5D or 3D package">
           <rect x="30" y="130" width="260" height="18" fill="#44403c" />
           {mode === "2.5d" ? (
             <>
@@ -263,8 +274,7 @@ export function PackageLab() {
             <rect key={index} x="120" y={110 - index * 22} width="80" height="18" fill={index === stack.count - 1 ? "#fbbf24" : "#22d3ee"} />
           ))}
           <text x="30" y="28" fill="#e2e8f0">{mode === "2.5d" ? "Dies sit side by side on the interposer" : "Dies stack. TSVs are the vertical path"}</text>
-        </svg>
-      }
+        </svg></VlsiThree>}
       readouts={
         <>
           <Measure label="Link length" value={stack.linkLength.toFixed(2)} />
@@ -278,6 +288,8 @@ export function PackageLab() {
 }
 
 export function ThermalLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:ThermalLab", () => ({ powers, index, ambient, cooling, coolingName, resistance, activity }), "9d2b48cc2956");
+
   const [powers, setPowers] = useState([4, 6, 2, 1]);
   const [index, setIndex] = useState(0);
   const [ambient, setAmbient] = useState(25);
@@ -329,6 +341,8 @@ export function ThermalLab() {
 }
 
 export function PpaLab() {
+  useSimulatorCapture("studios/vlsi/labs/systemLabs.tsx:PpaLab", () => ({ input, preset, saved }), "9d2b48cc2956");
+
   const [input, setInput] = useState<PpaInput>(PPA_PRESETS.balanced);
   const [preset, setPreset] = useState<"custom" | "low" | "balanced" | "fast" | "small">("balanced");
   const [saved, setSaved] = useState<Array<{ name: string; result: ReturnType<typeof explorePpa> }>>([]);

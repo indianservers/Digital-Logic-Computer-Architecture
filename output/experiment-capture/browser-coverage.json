@@ -1,0 +1,327 @@
+[
+  {
+    "id": "numbers",
+    "sources": 10,
+    "controls": 3,
+    "unavailable": false
+  },
+  {
+    "id": "boolean",
+    "sources": 2,
+    "controls": 2,
+    "unavailable": false
+  },
+  {
+    "id": "gates",
+    "sources": 2,
+    "controls": 8,
+    "unavailable": false
+  },
+  {
+    "id": "truth",
+    "sources": 3,
+    "controls": 14,
+    "unavailable": false
+  },
+  {
+    "id": "kmap",
+    "sources": 1,
+    "controls": 1,
+    "unavailable": false
+  },
+  {
+    "id": "combo",
+    "sources": 1,
+    "controls": 14,
+    "unavailable": false
+  },
+  {
+    "id": "adders",
+    "sources": 2,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "mux",
+    "sources": 2,
+    "controls": 2,
+    "unavailable": false
+  },
+  {
+    "id": "alu",
+    "sources": 2,
+    "controls": 4,
+    "unavailable": false
+  },
+  {
+    "id": "timing",
+    "sources": 1,
+    "controls": 14,
+    "unavailable": false
+  },
+  {
+    "id": "latches",
+    "sources": 2,
+    "controls": 5,
+    "unavailable": false
+  },
+  {
+    "id": "registers",
+    "sources": 2,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "counters",
+    "sources": 2,
+    "controls": 2,
+    "unavailable": false
+  },
+  {
+    "id": "fsm",
+    "sources": 2,
+    "controls": 7,
+    "unavailable": false
+  },
+  {
+    "id": "memory",
+    "sources": 1,
+    "controls": 7,
+    "unavailable": false
+  },
+  {
+    "id": "cache",
+    "sources": 2,
+    "controls": 8,
+    "unavailable": false
+  },
+  {
+    "id": "hierarchy",
+    "sources": 5,
+    "controls": 5,
+    "unavailable": false
+  },
+  {
+    "id": "vm",
+    "sources": 5,
+    "controls": 3,
+    "unavailable": false
+  },
+  {
+    "id": "cpu-blocks",
+    "sources": 7,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "datapath",
+    "sources": 7,
+    "controls": 13,
+    "unavailable": false
+  },
+  {
+    "id": "isa",
+    "sources": 8,
+    "controls": 4,
+    "unavailable": false
+  },
+  {
+    "id": "addressing",
+    "sources": 8,
+    "controls": 5,
+    "unavailable": false
+  },
+  {
+    "id": "assembly",
+    "sources": 6,
+    "controls": 14,
+    "unavailable": false
+  },
+  {
+    "id": "fde",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "control",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "pipeline",
+    "route": "/studios/pipeline?tab=simulator",
+    "sources": 2,
+    "controls": 3,
+    "unavailable": false
+  },
+  {
+    "id": "hazards",
+    "route": "/studios/hazards?tab=detect",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "io",
+    "route": "/studios/io?tab=mapped",
+    "sources": 2,
+    "controls": 6,
+    "unavailable": false
+  },
+  {
+    "id": "interrupts",
+    "route": "/studios/interrupts?tab=timeline",
+    "sources": 1,
+    "controls": 2,
+    "unavailable": false
+  },
+  {
+    "id": "bus",
+    "route": "/studios/bus?tab=address",
+    "sources": 1,
+    "controls": 1,
+    "unavailable": false
+  },
+  {
+    "id": "parallel",
+    "route": "/studios/parallel?tab=flynn",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "multicore",
+    "route": "/studios/multicore?tab=mesi",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "aca",
+    "route": "/studios/advanced-computer-architecture/data-hazards",
+    "sources": 3,
+    "controls": 7,
+    "unavailable": false
+  },
+  {
+    "id": "accelerator",
+    "route": "/architecture/accelerator",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "hetero",
+    "route": "/architecture/hetero",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "soc",
+    "route": "/architecture/soc",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "cpu8",
+    "route": "/architecture/cpu8",
+    "sources": 1,
+    "controls": 1,
+    "unavailable": false
+  },
+  {
+    "id": "cpu16",
+    "route": "/architecture/cpu16",
+    "sources": 1,
+    "controls": 1,
+    "unavailable": false
+  },
+  {
+    "id": "mips",
+    "route": "/architecture/mips",
+    "sources": 2,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "riscv-lab",
+    "route": "/architecture/riscv",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "arm",
+    "route": "/architecture/arm",
+    "sources": 2,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "x86",
+    "route": "/architecture/x86",
+    "sources": 2,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "compare-isa",
+    "route": "/architecture/compare",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "mobile",
+    "route": "/architecture/mobile",
+    "sources": 1,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "builder",
+    "route": "/architecture/builder",
+    "sources": 1,
+    "controls": 2,
+    "unavailable": false
+  },
+  {
+    "id": "sandbox",
+    "route": "/architecture/sandbox",
+    "sources": 8,
+    "controls": 11,
+    "unavailable": false
+  },
+  {
+    "id": "vlsi",
+    "route": "/studios/vlsi/rtl-gdsii",
+    "sources": 1,
+    "controls": 11,
+    "unavailable": false
+  },
+  {
+    "id": "how-devices-work",
+    "route": "/studios/how-devices-work/medical/digital-thermometer",
+    "sources": 2,
+    "controls": 0,
+    "unavailable": false
+  },
+  {
+    "id": "desktop",
+    "route": "/architecture/desktop/boost-power",
+    "sources": 1,
+    "controls": 5,
+    "unavailable": false
+  },
+  {
+    "id": "microcontroller",
+    "route": "/studios/microcontroller/lab/microcontroller-fundamentals",
+    "sources": 2,
+    "controls": 5,
+    "unavailable": false
+  }
+]

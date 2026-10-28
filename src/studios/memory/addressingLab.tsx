@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { addressCount, bitsNeeded, formatHex, isAligned, rangeEnd, rangeSize, regionIssues, toBinary, type MapRegion } from "../../engines/memory/fundamentals";
 import { BitButton, Field, LabGuide } from "./guide";
@@ -9,6 +10,8 @@ const QUIZ = [
 ];
 
 export function AddressingLab() {
+  useSimulatorCapture("studios/memory/addressingLab.tsx:AddressingLab", () => ({ text, bits, align, startText, sizeText, word, regions, answers }), "9f0792b452b0");
+
   const [text, setText] = useState("2D");
   const [bits, setBits] = useState(8);
   const [align, setAlign] = useState(4);

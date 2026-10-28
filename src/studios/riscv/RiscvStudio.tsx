@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { archStudio } from "../../data/architecture";
@@ -23,6 +24,8 @@ function loaded(source: string): RvState {
 }
 
 export function RiscvStudio() {
+  useSimulatorCapture("studios/riscv/RiscvStudio.tsx:RiscvStudio", () => ({ sel, source, cpu, playing }), "edc7f522ab96");
+
   const lab = useParams().labId ?? "overview";
   const known = archStudio("riscv")?.labs.some((item) => item.id === lab) ?? false;
   const [sel, setSel] = useState(2);

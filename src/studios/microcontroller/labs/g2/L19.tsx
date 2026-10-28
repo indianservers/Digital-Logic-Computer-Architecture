@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -12,6 +13,8 @@ import {
 } from "./L19sim";
 
 function NumField({ label, value, max, onCommit, pending }: { label: string; value: number; max: number; onCommit: (v: number) => void; pending?: boolean }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L19.tsx:NumField", () => ({ draft }), "ba4ecd6079ec");
+
   const [draft, setDraft] = useState<string | null>(null);
   const commit = () => {
     if (draft === null) return;
@@ -29,6 +32,8 @@ function NumField({ label, value, max, onCommit, pending }: { label: string; val
 }
 
 export default function L19({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L19.tsx:L19", () => ({ lab, pending, seen, overrun }), "ba4ecd6079ec");
+
   const lab = useLab<P19>({
     slug: meta.slug, code: DEMO, params: P19_DEFAULT, rebuildOn: ["noClock", "halfClock"],
     mcu: () => ({ ips: 120_000, clock: CLK19, strictClock: true }),

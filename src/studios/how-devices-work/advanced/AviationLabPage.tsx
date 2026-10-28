@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import DeviceCourse from '../DeviceCourse';
 import {itemAt} from './parameters';
 import { useEffect,useMemo,useState,type ReactNode } from "react";
@@ -45,6 +46,8 @@ function AircraftScene({lab,result,time}:{lab:AdvancedLab;result:AdvancedResult;
  return <svg className="av-scene" viewBox="0 0 400 220" role="img" aria-label="Aircraft height above terrain and radio propagation"><rect width="400" height="220" fill="#e8f4ff"/><path d="M0 160L60 148L140 162L240 150L400 160V220H0Z" fill="#8bbb99"/><g transform={`translate(180 ${y})`}><path d="M0 -12l-8 16-40 12v6l42-8 6 17 6-17 42 8v-6L8 4Z" fill="#214d7c"/></g><path d={`M150 ${y+25}L120 155L185 ${y+25}`} fill="none" stroke="#158aff" strokeWidth="2"/><path d={`M275 ${y}V155M268 ${y}h14M268 155h14`} stroke="#214d7c"/><text x="282" y={y+(155-y)/2} fill="#103f6d" fontSize="15">{height.toFixed(0)} ft</text><text x="12" y="201" fill="#245578" fontSize="12">Round-trip delay: {(result.visual[1]!*1e6).toFixed(3)} µs</text></svg>;
 }
 function MiniQuiz({lab}:{lab:AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/advanced/AviationLabPage.tsx:MiniQuiz", () => ({ index, answers }), "9b444872ba63");
+
  const count=lab.number===65?5:3;
  const a=lab.architecture!,firstPart=lab.parts[0]!,role=lab.partFunctions?.[firstPart]??AVIATION_COMPONENT_FUNCTIONS[firstPart]!;
  const questionPool:[string,string,string,string][]=[lab.quiz,[`Which component has this role: ${role}`,firstPart,lab.parts[1]!,lab.parts[2]!],[`Which signal is an input to the ${lab.device.name}?`,a.inputs[0]!,a.outputs[0]!,a.processing.at(-1)!],["Which device receives the FADEC fuel-control command?","Fuel metering unit","GNSS receiver","Cabin light controller"],["Why does a dual-channel FADEC compare channel health?","To detect failures and support a healthy control path","To double the aircraft squawk","To replace all engine sensors"]];
@@ -53,6 +56,8 @@ function MiniQuiz({lab}:{lab:AdvancedLab}){
  return <Card id="quiz" title="Quick Quiz"><small>Question {index+1} / {count} · {answers.filter(a=>a===0).length} correct</small><p>{q[0]}</p>{q.slice(1).map((choice,i)=><button className={`av-answer ${answer===i?(i===0?"av-correct":"av-wrong"):""}`} key={choice} aria-pressed={answer===i} onClick={()=>setAnswers(old=>old.map((v,j)=>j===index?i:v))}>{String.fromCharCode(65+i)}. {choice}</button>)}{answer!==null&&<><p role="status">{answer===0?"Correct.":"Try again."}</p>{answer===0&&<details><summary>Explanation</summary><p>{index===0?lab.principle:index===1?role:`${a.inputs[0]} enters the acquisition and processing path.`}</p></details>}</>}<div className="av-buttons">{count>1&&<><button disabled={index===0} onClick={()=>setIndex(i=>i-1)}>Previous question</button><button disabled={answer!==0||index===count-1} onClick={()=>setIndex(i=>i+1)}>Next question</button></>}<button onClick={()=>{setAnswers(Array(count).fill(null));setIndex(0);}}>Retry quiz</button></div></Card>;
 }
 export default function AviationLabPage({lab}:{lab:AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/advanced/AviationLabPage.tsx:AviationLabPage", () => ({ values, mode, time, running, fault, view, part, step, overview, monitorTab, graphTab, records, playback, result }), "9b444872ba63");
+
  const [values,setValues]=useState(()=>initialAdvancedValues(lab)),[mode,setMode]=useState(lab.number===71?"Mode C":itemAt(lab.modes,0)!),[time,setTime]=useState(0),[running,setRunning]=useState(false),[fault,setFault]=useState(false),[view,setView]=useState("Internal"),[part,setPart]=useState(0),[step,setStep]=useState(0),[overview,setOverview]=useState(false),[monitorTab,setMonitorTab]=useState("N1 & N2"),[graphTab,setGraphTab]=useState("Flight Parameters"),[query,setQuery]=useState(""),[records,setRecords]=useState<{time:number;values:number[]}[]>([]),[playback,setPlayback]=useState(0);
  const result=useMemo(()=>simulateAdvanced(lab,values,mode,time,fault),[lab,values,mode,time,fault]);
  useEffect(()=>{if(!running)return;const timer=setInterval(()=>setTime(t=>t+.1),100);return()=>clearInterval(timer);},[running]);

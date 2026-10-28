@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { TOUR_PRESETS, chooserName, prefer, runTournament, type Chooser } from "../../../engines/aca/tournament";
 import { twoName } from "../../../engines/aca/predictor";
@@ -26,6 +27,8 @@ function seriesPath(flags: boolean[], width: number, height: number): string {
 }
 
 export function TournamentLab() {
+  useSimulatorCapture("studios/aca/labs/TournamentLab.tsx:TournamentLab", () => ({ text, localBits, ghrBits, phtBits, bimodalBits, chooser0, showLocal, showGlobal, showChooser, highlight, events, result, play, guideFocus }), "6acb4000c063");
+
   const [text, setText] = useState(() => (TOUR_PRESETS.find((item) => item.id === "mixed")?.events ?? []).map((item) => `${hex(item.pc)} ${item.taken ? "T" : "N"}`).join("\n"));
   const [localBits, setLocalBits] = useState(2);
   const [ghrBits, setGhrBits] = useState(4);

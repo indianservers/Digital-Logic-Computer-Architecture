@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { COMPLEX_GATES, cmosNand, cmosNor, complexCmos, type Bit } from "../engine";
 import { NetworkSchematic } from "../diagrams";
@@ -20,6 +21,8 @@ function activeRow(a: Bit, b: Bit): number {
 }
 
 export function CmosNandLab() {
+  useSimulatorCapture("studios/vlsi/labs/gateLabs.tsx:CmosNandLab", () => ({ a, b, vdd, view, trace }), "bc789e091d4c");
+
   const [a, setA] = useState<Bit>(0);
   const [b, setB] = useState<Bit>(0);
   const [vdd, setVdd] = useState(1.8);
@@ -78,6 +81,8 @@ export function CmosNandLab() {
 }
 
 export function CmosNorLab() {
+  useSimulatorCapture("studios/vlsi/labs/gateLabs.tsx:CmosNorLab", () => ({ a, b, vdd }), "bc789e091d4c");
+
   const [a, setA] = useState<Bit>(0);
   const [b, setB] = useState<Bit>(0);
   const [vdd, setVdd] = useState(1.8);
@@ -123,6 +128,8 @@ export function CmosNorLab() {
 }
 
 export function ComplexCmosLab() {
+  useSimulatorCapture("studios/vlsi/labs/gateLabs.tsx:ComplexCmosLab", () => ({ gate, custom, bits }), "bc789e091d4c");
+
   const [gate, setGate] = useState<(typeof COMPLEX_GATES)[number]["id"] | "custom">("aoi21");
   const [custom, setCustom] = useState<"aoi21" | "oai21">("aoi21");
   const id = gate === "custom" ? custom : gate;

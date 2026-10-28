@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { WORKSPACE_ENHANCEMENTS } from "./workspaceEnhancements";
 import { useMemo, useState } from "react";
 import { connect, portsOf, type CpuDesign } from "../../engines/builder/model";
@@ -12,6 +13,8 @@ import { Btn, Panel, Status, Tabs, downloadText } from "./studioUi";
 import "./workspace.css";
 
 export function WorkspaceTools({design,commit,replace,onLocate,trace,wave,onCondition,onMessage}:{design:CpuDesign;commit:(d:CpuDesign)=>void;replace:(d:CpuDesign)=>void;onLocate:(id:string)=>void;trace:ExecTrace|null;wave:WaveSample[];onCondition:(s:string)=>void;onMessage:(s:string)=>void}) {
+  useSimulatorCapture("studios/builder/WorkspaceTools.tsx:WorkspaceTools", () => ({ tab, source, target, versions, name, condition, note, golden, busy, signals, findings }), "7d99d62ab548");
+
  const [tab,setTab]=useState("Accuracy");const [query,setQuery]=useState("");const [source,setSource]=useState("");const [target,setTarget]=useState("");const [versions,setVersions]=useState(projectVersions);const [name,setName]=useState("");const [condition,setCondition]=useState("");const [note,setNote]=useState("");const [golden,setGolden]=useState("");const [busy,setBusy]=useState(false);
  const signals=useMemo(()=>tab==="Signals"?signalsOf(design):[],[design,tab]);const findings=useMemo(()=>contestEligibility(design),[design]);const config=engineeringOf(design);const listing=assemble(design.isa,design.program);
  const outputs=design.nodes.flatMap(n=>portsOf(n).filter(p=>p.dir==="out").map(p=>({key:`${n.id}:${p.id}`,n,p})));const inputs=design.nodes.flatMap(n=>portsOf(n).filter(p=>p.dir==="in").map(p=>({key:`${n.id}:${p.id}`,n,p})));

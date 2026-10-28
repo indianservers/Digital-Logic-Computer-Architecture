@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
@@ -95,6 +96,8 @@ export function MemoryStudio() {
 }
 
 function LegacyMemory() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:LegacyMemory", () => ({ tab }), "7be8f5f20281");
+
   const [tab, setTab] = useStudioTab(TABS, "array");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
@@ -145,6 +148,8 @@ function tracesFromMarks(marks: TimingMark[], length = 5): Array<{ id: string; n
 }
 
 function ArrayLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:ArrayLab", () => ({ size, memory, address, data, ce, oe, we, note, windowStart }), "7be8f5f20281");
+
   const [size, setSize] = useState(64);
   const [memory, setMemory] = useState<MemoryArray>(() => createMemory("ram", 64, 8));
   const [address, setAddress] = useState(0);
@@ -222,6 +227,8 @@ function ArrayLab() {
 }
 
 function TypesLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:TypesLab", () => ({ kind, memory, note }), "7be8f5f20281");
+
   const [kind, setKind] = useState<MemoryKind>("ram");
   const [memory, setMemory] = useState<MemoryArray>(() => createMemory("ram", 8, 8, 0x11));
   const [note, setNote] = useState("RAM accepts a write. ROM, PROM, and EPROM each refuse in a different way.");
@@ -275,6 +282,8 @@ function TypesLab() {
 }
 
 function CellLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:CellLab", () => ({ sram, dram, index }), "7be8f5f20281");
+
   const [sram, setSram] = useState<0 | 1>(1);
   const [dram, setDram] = useState<MemoryArray>(() => createMemory("dram", 8, 1, 1));
   const [index, setIndex] = useState(0);
@@ -332,6 +341,8 @@ function CellLab() {
 }
 
 function OrgLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:OrgLab", () => ({ words, width, addrPins, dataPins, address, ce, oe, we }), "7be8f5f20281");
+
   const [words, setWords] = useState(16);
   const [width, setWidth] = useState(8);
   const [addrPins, setAddrPins] = useState(10);
@@ -406,6 +417,8 @@ function OrgLab() {
 }
 
 function DecoderLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:DecoderLab", () => ({ width, select, enable, cpuAddr, map }), "7be8f5f20281");
+
   const [width, setWidth] = useState(3);
   const [select, setSelect] = useState<Array<0 | 1>>([0, 1, 0]);
   const [enable, setEnable] = useState(true);
@@ -498,6 +511,8 @@ function DecoderLab() {
 }
 
 function ExpandLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:ExpandLab", () => ({ nibbleChips, nibbleWidth, addrChips, probe }), "7be8f5f20281");
+
   const [nibbleChips, setNibbleChips] = useState(2);
   const [nibbleWidth, setNibbleWidth] = useState(4);
   const [addrChips, setAddrChips] = useState(2);
@@ -557,6 +572,8 @@ function ExpandLab() {
 }
 
 function BankLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:BankLab", () => ({ cursor, mode }), "7be8f5f20281");
+
   const [cursor, setCursor] = useState(0);
   const [mode, setMode] = useState<"low" | "high">("low");
   const space = 16;
@@ -615,6 +632,8 @@ function BankLab() {
 }
 
 function TimingLab() {
+  useSimulatorCapture("studios/memory/MemoryStudio.tsx:TimingLab", () => ({ cycle, cursor, memory, ce, oe, we, note }), "7be8f5f20281");
+
   const [cycle, setCycle] = useState<"read" | "write">("read");
   const [cursor, setCursor] = useState(0);
   const [memory, setMemory] = useState<MemoryArray>(() => createMemory("ram", 8, 8, 0x3c));

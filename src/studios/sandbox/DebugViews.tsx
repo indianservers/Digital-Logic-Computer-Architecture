@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useSandbox } from "./sandboxState";
 import { hx } from "./sandboxModel";
 import {
@@ -10,6 +11,8 @@ import {
   ValueBox,
 } from "./SandboxUI";
 export function DebugView() {
+  useSimulatorCapture("studios/sandbox/DebugViews.tsx:DebugView", () => ({ s }), "92c5298cec22");
+
   const s = useSandbox(),
     pending = s.cpu.memory[32] === undefined,
     value = s.cpu.registers[3]!;
@@ -169,6 +172,8 @@ export function DebugView() {
   );
 }
 export function DebugInspector() {
+  useSimulatorCapture("studios/sandbox/DebugViews.tsx:DebugInspector", () => ({ s }), "92c5298cec22");
+
   const s = useSandbox(),
     pending = s.cpu.memory[32] === undefined;
   return (
@@ -239,6 +244,8 @@ export function DebugInspector() {
   );
 }
 export function BreakpointList() {
+  useSimulatorCapture("studios/sandbox/DebugViews.tsx:BreakpointList", () => ({ s }), "92c5298cec22");
+
   const s = useSandbox();
   return (
     <div className="sb-break-list">
@@ -315,6 +322,8 @@ export function BreakpointList() {
   );
 }
 export function DebugDock() {
+  useSimulatorCapture("studios/sandbox/DebugViews.tsx:DebugDock", () => ({ s }), "92c5298cec22");
+
   const s = useSandbox(),
     pending = s.cpu.memory[32] === undefined;
   return (

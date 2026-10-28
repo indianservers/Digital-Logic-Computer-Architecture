@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
@@ -56,6 +57,8 @@ const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { 
 const GROUP_COLORS = ["#2F6FED", "#12B76A", "#D97706", "#E11D48", "#7C3AED", "#0891B2"];
 
 export function KmapStudio() {
+  useSimulatorCapture("studios/kmap/KmapStudio.tsx:KmapStudio", () => ({ tab, initial, count, cells, mode, hover }), "f774c8ff09f2");
+
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const [tab, setTab] = useStudioTab(TABS, "map");
@@ -197,6 +200,8 @@ function PrimeView({ implicants, names, hover, onHover }: { implicants: Implican
 }
 
 function QmView({ result }: { result: ReturnType<typeof quineMcCluskey> }) {
+  useSimulatorCapture("studios/kmap/KmapStudio.tsx:QmView", () => ({ binary }), "f774c8ff09f2");
+
  const terms=[...new Set(result.implicants.flatMap(i=>i.minterms))].sort((a,b)=>a-b);
  const [binary,setBinary]=useState(true);
  return <div className="grid"><Card title="Group by number of 1s" action={<button className="km-cover" onClick={()=>setBinary(!binary)}>Show {binary ? "decimal" : "binary"}</button>}><table className="data"><thead><tr><th># of 1s</th><th>Minterms (decimal)</th><th>Minterms ({binary ? "binary" : "decimal"})</th></tr></thead><tbody>{terms.map(m=><tr key={m}><td>{m.toString(2).replaceAll("0", "").length}</td><td><span className="km-cover">m{m}</span></td><td className="mono">{binary ? m.toString(2).padStart(result.variables.length,"0") : m}</td></tr>)}</tbody></table></Card>{result.stages.filter(stage=>stage.title.startsWith("Combine")).map(stage=><Card key={stage.title} title={stage.title}><table className="data"><thead><tr><th>Pair</th><th>Combined term</th><th>Minterms covered</th></tr></thead><tbody>{stage.rows.map((row,i)=>{const parts=row.split("  covers ");return <tr key={i}><td>{i+1}</td><td><span className="km-yes mono">{parts[0]}</span></td><td>{parts[1]}</td></tr>})}</tbody></table></Card>)}<Card title="Prime implicant chart"><table className="data"><thead><tr><th>Prime implicant</th>{terms.map(m=><th key={m}>{m}</th>)}</tr></thead><tbody>{result.implicants.map(im=><tr key={im.mask}><td className="mono">{im.mask}</td>{terms.map(m=><td key={m} style={{color:im.minterms.includes(m)?"#0668ff":"#dce4ef"}}>●</td>)}</tr>)}</tbody></table></Card><Card title="Selected cover"><span className="km-cover">{result.expression}</span></Card></div>;

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import type { Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -238,6 +239,8 @@ const NO_SEEN = { protocol: false, mode: false, sensor: false, timing: false, re
 const doneKey = (slug: string) => `mcu.lab.done.${slug}`;
 
 export default function L30({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L30.tsx:L30", () => ({ lab, ltab, sel, frozen: frozen.current, adv, follow, pending, msg, done, tableRef: tableRef.current, seen }), "dda370ccd290");
+
   const lab = useLab<P30>({ slug: meta.slug, code: DEMO, params: P30_DEFAULT, mcu: mcu30, world: world30 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;

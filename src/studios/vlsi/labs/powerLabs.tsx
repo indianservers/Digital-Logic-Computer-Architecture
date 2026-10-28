@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import {
   educationalIrDrop,
@@ -18,6 +19,8 @@ function heat(voltage: number, vdd: number): string {
 }
 
 export function IrDropLab() {
+  useSimulatorCapture("studios/vlsi/labs/powerLabs.tsx:IrDropLab", () => ({ vdd, width, pitch, sheet, current, straps }), "b40f100f9434");
+
   const [vdd, setVdd] = useState(1);
   const [width, setWidth] = useState(2);
   const [pitch, setPitch] = useState(12);
@@ -71,6 +74,8 @@ export function IrDropLab() {
 }
 
 export function ElectromigrationLab() {
+  useSimulatorCapture("studios/vlsi/labs/powerLabs.tsx:ElectromigrationLab", () => ({ current, width, thickness, temp, metal }), "b40f100f9434");
+
   const [current, setCurrent] = useState(0.5);
   const [width, setWidth] = useState(1.6);
   const [thickness, setThickness] = useState(0.4);
@@ -111,6 +116,8 @@ export function ElectromigrationLab() {
 }
 
 export function SignalIntegrityLab() {
+  useSimulatorCapture("studios/vlsi/labs/powerLabs.tsx:SignalIntegrityLab", () => ({ driver, impedance, load, coupling, edge, termination }), "b40f100f9434");
+
   const [driver, setDriver] = useState<"weak" | "strong">("strong");
   const [impedance, setZ] = useState(50);
   const [load, setLoad] = useState(20);
@@ -150,6 +157,8 @@ export function SignalIntegrityLab() {
 const CORNERS: Corner[] = ["SS", "TT", "FF", "SF", "FS"];
 
 export function PvtLab() {
+  useSimulatorCapture("studios/vlsi/labs/powerLabs.tsx:PvtLab", () => ({ corner, vdd, temp, load, rows }), "b40f100f9434");
+
   const [corner, setCorner] = useState<Corner>("TT");
   const [vdd, setVdd] = useState(1);
   const [temp, setTemp] = useState(27);
@@ -190,6 +199,8 @@ export function PvtLab() {
 }
 
 export function VariationLab() {
+  useSimulatorCapture("studios/vlsi/labs/powerLabs.tsx:VariationLab", () => ({ samples, sigma, seed, target }), "b40f100f9434");
+
   const [samples, setSamples] = useState(48);
   const [sigma, setSigma] = useState(0.08);
   const [seed, setSeed] = useState(7);

@@ -1,9 +1,12 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { initialThermal, stepThermal, THERMAL_DEFAULTS, type ThermalParameters, type ThermalProfile, type ThermalState } from "../../engines/isaarch/mobile";
 import "./thermalLab.css";
 
 const LOADS = [{ name: "Idle", cpu: 0, gpu: 0, npu: 0 }, { name: "Web browsing", cpu: 35, gpu: 15, npu: 0 }, { name: "Gaming", cpu: 70, gpu: 90, npu: 5 }, { name: "Camera + AI", cpu: 40, gpu: 20, npu: 70 }, { name: "Compute stress", cpu: 100, gpu: 100, npu: 100 }];
 export function ThermalLab() {
+  useSimulatorCapture("studios/mobile/ThermalLab.tsx:ThermalLab", () => ({ parameters, load, profile, running, samples }), "c29d389f683e");
+
   const [parameters, setParameters] = useState<ThermalParameters>(THERMAL_DEFAULTS);
   const [load, setLoad] = useState(2);
   const [profile, setProfile] = useState<ThermalProfile>("sustained");

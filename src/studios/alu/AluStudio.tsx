@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon, type IconName } from "../../design-system/icons";
@@ -112,6 +113,8 @@ function formulas(op: Op, width: number): string[] {
 }
 
 export function AluStudio() {
+  useSimulatorCapture("studios/alu/AluStudio.tsx:AluStudio", () => ({ op, width, a, b, cin, format, animate, guide, answer, hint, flags }), "4470930cba8e");
+
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab") ?? "alu";
   const page: Page = PAGES.some((item) => item.id === raw) ? raw as Page : "alu";
@@ -397,6 +400,8 @@ function OpcodeTable({ a, b, cin, width, active, onPick }: { a: number; b: numbe
 function Datapath({ a, b, result, hex, code, cin, op, width, animate, onAnimate }: {
   a: number; b: number; result: string; hex: string; code: string; cin: number; op: string; width: number; animate: boolean; onAnimate: (value: boolean) => void;
 }) {
+  useSimulatorCapture("studios/alu/AluStudio.tsx:Datapath", () => ({ pan, drag: drag.current }), "4470930cba8e");
+
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; px: number; py: number } | null>(null);
   return (

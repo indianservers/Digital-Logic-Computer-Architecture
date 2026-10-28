@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import {
   RTL_EXAMPLES,
@@ -17,6 +18,8 @@ import { VlsiGrid } from "../shell";
 import { Badge, Choice, Measure, Observe } from "../widgets";
 
 export function RtlLab() {
+  useSimulatorCapture("studios/vlsi/labs/synthLabs.tsx:RtlLab", () => ({ exampleId, line, block, custom }), "09b5f0c96f9f");
+
   const [exampleId, setExampleId] = useState(RTL_EXAMPLES[0]?.id ?? "assign");
   const [line, setLine] = useState(1);
   const [block, setBlock] = useState("logic");
@@ -78,6 +81,8 @@ export function RtlLab() {
 }
 
 export function SynthesisLab() {
+  useSimulatorCapture("studios/vlsi/labs/synthLabs.tsx:SynthesisLab", () => ({ demo, design }), "09b5f0c96f9f");
+
   const demo = useMemo(() => synthesisDemo(), []);
   const [design, setDesign] = useState<"adder" | "mux" | "counter">("adder");
   const before = designGates(design);
@@ -133,6 +138,8 @@ export function SynthesisLab() {
 }
 
 export function MappingLab() {
+  useSimulatorCapture("studios/vlsi/labs/synthLabs.tsx:MappingLab", () => ({ target, gates }), "09b5f0c96f9f");
+
   const [target, setTarget] = useState<MapTarget>("balanced");
   const gates = useMemo(() => [
     { id: "and1", op: "and" as const, inputs: ["a", "b"], output: "ab" },
@@ -191,6 +198,8 @@ export function MappingLab() {
 const EXPRESSIONS = ["!!a", "a & 1", "(a & b) | (a & !b)", "a | (a & b)"];
 
 export function BooleanOptLab() {
+  useSimulatorCapture("studios/vlsi/labs/synthLabs.tsx:BooleanOptLab", () => ({ expression }), "09b5f0c96f9f");
+
   const [expression, setExpression] = useState(EXPRESSIONS[0] ?? "!!a");
   const result = optimizeBoolean(expression);
   return (
@@ -232,6 +241,8 @@ export function BooleanOptLab() {
 }
 
 export function FsmSynthLab() {
+  useSimulatorCapture("studios/vlsi/labs/synthLabs.tsx:FsmSynthLab", () => ({ encoding }), "09b5f0c96f9f");
+
   const [encoding, setEncoding] = useState<FsmEncode>("binary");
   const hardware = fsmHardware(encoding);
   return (

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
@@ -11,6 +12,8 @@ function Slider({label,value,onChange,min=0,max=100,unit="ns",color=""}:{label:s
 function Rows({items}:{items:[string,string][]}){return <div className="tm-rows">{items.map(([a,b])=><div key={a}><span>{a}</span><strong>{b}</strong></div>)}</div>}
 function Circuit({delay=false}:{delay?:boolean}){return <svg className="tm-circuit" viewBox={delay?"0 0 900 190":"0 0 260 150"}><g fill="none" stroke={delay?"#b8cbef":"#172645"} strokeWidth="2"><path d={delay?"M30 65H185M285 65H400M450 65H600M675 65H850":"M25 50H85M165 50H220M25 105H85"}/><rect x={delay?185:85} y={delay?35:22} width={delay?100:80} height={delay?95:100}/><path d={delay?"M185 98l14 9-14 9M400 40l50 25-50 25zM600 40h35a25 25 0 010 50h-35z":"M85 95l12 10-12 10"}/></g><g fill={delay?"#e1eaff":"#132040"} fontSize="16"><text x={delay?8:4} y="54">D</text><text x={delay?197:93} y="54">D</text><text x={delay?260:147} y="54">Q</text><text x={delay?853:225} y="54">{delay?"OUT":"Q"}</text><text x="5" y="115">CLK</text>{delay&&<><text x="330" y="30">tCQ</text><text x="410" y="125">Inverter</text><text x="605" y="125">AND Gate</text><text x="460" y="170">Logic delay</text></>}</g>{delay&&<path d="M285 66H400M450 66H600M675 66H840" fill="none" stroke="#b079ff" strokeWidth="4"/>}</svg>}
 export function TimingStudio(){
+  useSimulatorCapture("studios/timing/TimingStudio.tsx:TimingStudio", () => ({ tab, frequency, duty, phase, offset, compare, change, setup, hold, cq, logic, wire, rise, fall, playing, tick, speed, zoom, edgeView, answer, edge }), "192573ef79da");
+
  const [tab,setTab]=useStudioTab(tabs,"clock");const index=tabs.findIndex(t=>t.id===tab);
  const [frequency,setFrequency]=useState(10),[duty,setDuty]=useState(50),[phase,setPhase]=useState(0),[offset,setOffset]=useState(45),[compare,setCompare]=useState(true);
  const [change,setChange]=useState(35),[setup,setSetup]=useState(10),[hold,setHold]=useState(8),[cq,setCq]=useState(4),[logic,setLogic]=useState(8),[wire,setWire]=useState(0),[rise,setRise]=useState(2),[fall,setFall]=useState(3);

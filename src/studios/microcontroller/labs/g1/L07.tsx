@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef } from "react";
 import type { Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -136,6 +137,8 @@ function CallFlow({ cpu }: { cpu: ThumbCpu }) {
 }
 
 export default function L07({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L07.tsx:L07", () => ({ lab, listRef: listRef.current, logRef: logRef.current, done: done.current }), "9618d55917f6");
+
   const lab = useLab<P>({
     slug: meta.slug, code: DEFAULT, params: { rate: 2, corruptLr: false, skipPop: false, tinyStack: false, view: "top" },
     mcu: { part: "F401" },

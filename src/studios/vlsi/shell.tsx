@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
 import { VLSI_CATEGORIES, VLSI_HOME, implementedVlsiLabs, vlsiNeighbors, vlsiRoute, type VlsiLabMeta } from "../../data/vlsiLabs";
 import { CATEGORY_COLOR, MODEL_LIMITS, PRESETS, labMatches, type Preset } from "./content";
-import { downloadPng, largestSvg } from "./exporting";
+import { downloadBlob, downloadPng, largestSvg } from "./exporting";
 import { LabCheck, PathBar, PredictCard, RelatedLinks, pathRoute } from "./learning";
 import { LabRuntime, RuntimeContext, RuntimeStateContext, type RuntimeState, type Snapshot } from "./runtime";
 import { labStatus, useUserPresets, useVlsiProgress, useVlsiTheme, visitLab } from "./store";
@@ -241,6 +241,11 @@ export function VlsiFrame({ lab, children }: { lab: VlsiLabMeta; children: React
   };
 
   const exportImage = () => {
+    const canvas = rootRef.current?.querySelector<HTMLCanvasElement>("canvas[data-vlsi-three]");
+    if (canvas) {
+      canvas.toBlob((blob) => { if (blob) { downloadBlob(blob, `vlsi-${lab.slug}.png`); say("Image saved."); } else say("Image export failed. Try the 2D diagram view."); }, "image/png");
+      return;
+    }
     const svg = largestSvg(rootRef.current?.querySelector(".vlsi-stage") ?? rootRef.current);
     if (!svg) {
       say("This lab has no diagram to export.");

@@ -1,8 +1,11 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { CATEGORIES, type CategoryId, type IsaFamily } from "../../engines/isa/teach";
 import { CodeBlock, Mark, RunBar } from "./ui";
 
 export function CategoriesPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/categories.tsx:CategoriesPanel", () => ({ id, family, left, right, shown }), "f649ee9e6b19");
+
   const [id, setId] = useState<CategoryId>("arithmetic");
   const [family, setFamily] = useState<IsaFamily>("riscv");
   const [left, setLeft] = useState(10);

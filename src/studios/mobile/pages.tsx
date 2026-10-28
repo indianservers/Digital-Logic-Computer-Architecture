@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { MOBILE_WORKS, thermal } from "../../engines/isaarch/mobile";
@@ -15,6 +16,8 @@ const DIE = [
 ] as const;
 
 export function HomePage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:HomePage", () => ({ tip }), "5ad2fe4c005c");
+
   const [tip, setTip] = useState("Click a block on the package.");
   return (
     <section className="mob-hero">
@@ -61,6 +64,8 @@ const PATHS: Record<string, string[]> = {
 };
 
 export function OverviewPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:OverviewPage", () => ({ id }), "5ad2fe4c005c");
+
   const [id, setId] = useState<(typeof BLOCKS)[number]["id"]>("ISP");
   const block = BLOCKS.find((item) => item.id === id) ?? BLOCKS[0];
   const path = PATHS[id] ?? ["Block", "NoC", "Memory"];
@@ -97,6 +102,8 @@ const JOBS = [
 ] as const;
 
 export function CpuPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:CpuPage", () => ({ job, pOn, eOn, bias, intensity }), "5ad2fe4c005c");
+
   const [job, setJob] = useState<(typeof JOBS)[number]["id"]>("web");
   const [pOn, setPOn] = useState(true);
   const [eOn, setEOn] = useState(true);
@@ -138,6 +145,8 @@ export function CpuPage() {
 }
 
 export function GpuPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:GpuPage", () => ({ canvas: canvas.current, playing, resolution, complexity, wire, stats }), "5ad2fe4c005c");
+
   const canvas = useRef<HTMLCanvasElement>(null);
   const [playing, setPlaying] = useState(true);
   const [resolution, setResolution] = useState(1);
@@ -219,6 +228,8 @@ function classify(data: Uint8ClampedArray): Array<{ label: string; score: number
 }
 
 export function NpuPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:NpuPage", () => ({ canvas: canvas.current, kind, preds, ms, stage }), "5ad2fe4c005c");
+
   const canvas = useRef<HTMLCanvasElement>(null);
   const [kind, setKind] = useState("image");
   const [preds, setPreds] = useState<Array<{ label: string; score: number }>>([]);
@@ -275,6 +286,8 @@ export function NpuPage() {
 }
 
 export function IspPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:IspPage", () => ({ before: before.current, after: after.current, stage, exposure, denoise, sat, contrast, sharp }), "5ad2fe4c005c");
+
   const before = useRef<HTMLCanvasElement>(null);
   const after = useRef<HTMLCanvasElement>(null);
   const [stage, setStage] = useState(3);
@@ -332,6 +345,8 @@ export function IspPage() {
 }
 
 export function MemoryPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:MemoryPage", () => ({ engine, pattern, step }), "5ad2fe4c005c");
+
   const [engine, setEngine] = useState("CPU");
   const [pattern, setPattern] = useState("sequential");
   const [step, setStep] = useState(0);
@@ -355,6 +370,8 @@ export function MemoryPage() {
 }
 
 export function ConnectivityPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:ConnectivityPage", () => ({ net, signal, load, distance }), "5ad2fe4c005c");
+
   const [net, setNet] = useState<"5G" | "LTE" | "Wi-Fi">("5G");
   const [signal, setSignal] = useState(70);
   const [load, setLoad] = useState(30);
@@ -396,6 +413,8 @@ const SCENES = [
 ] as const;
 
 export function IntegrationPage() {
+  useSimulatorCapture("studios/mobile/pages.tsx:IntegrationPage", () => ({ scene, step, playing }), "5ad2fe4c005c");
+
   const { prefs } = usePrefs();
   const [scene, setScene] = useState<(typeof SCENES)[number]["id"]>("hdr");
   const [step, setStep] = useState(0);

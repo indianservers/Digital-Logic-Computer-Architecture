@@ -1,0 +1,5652 @@
+[
+  {
+    "source": "studios/aca/labs/AmdahlLab.tsx:AmdahlLab",
+    "version": "065f024cc5aa",
+    "fields": [
+      "input",
+      "preset",
+      "showIdeal",
+      "showWork",
+      "auto",
+      "play",
+      "guideFocus",
+      "setGuideFocus",
+      "active",
+      "point",
+      "series"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/ArrayMultiplierLab.tsx:ArrayMultiplierLab",
+    "version": "04962310a85a",
+    "fields": [
+      "guideFocus",
+      "setGuideFocus",
+      "aWidth",
+      "bWidth",
+      "radix",
+      "drafts",
+      "viewMode",
+      "tab",
+      "selectedId",
+      "hoverId",
+      "zoom",
+      "pan",
+      "boardRef: boardRef.current",
+      "drag: drag.current",
+      "net",
+      "play",
+      "highlight",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/BoothLab.tsx:BoothLab",
+    "version": "87e45e0fc07b",
+    "fields": [
+      "guideFocus",
+      "setGuideFocus",
+      "width",
+      "radix",
+      "drafts",
+      "showValues",
+      "tab",
+      "hoverId",
+      "hoverCycle",
+      "note",
+      "boardRef: boardRef.current",
+      "trace",
+      "play",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/BtbLab.tsx:BtbLab",
+    "version": "909a88f44b5b",
+    "fields": [
+      "presetId",
+      "ways",
+      "policy",
+      "enabled",
+      "details",
+      "lookupText",
+      "config",
+      "shots",
+      "warm",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/ConsistencyLab.tsx:ConsistencyLab",
+    "version": "a8a23a30b5cf",
+    "fields": [
+      "model",
+      "testId",
+      "afterStore0",
+      "afterLoad0",
+      "afterStore1",
+      "afterLoad1",
+      "showBuffers",
+      "showValues",
+      "animate",
+      "auto",
+      "source",
+      "custom",
+      "manual",
+      "manualState",
+      "built",
+      "litmus",
+      "result",
+      "compared",
+      "guideFocus",
+      "setGuideFocus",
+      "path",
+      "play"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/CorrelateLab.tsx:CorrelateLab",
+    "version": "63b17d849e00",
+    "fields": [
+      "events",
+      "ghrBits",
+      "phtBits",
+      "localBits",
+      "initial",
+      "update",
+      "showGlobal",
+      "showLocal",
+      "showBimodal",
+      "details",
+      "highlight",
+      "result",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/CounterLab.tsx:CounterLab",
+    "version": "9aed2337684a",
+    "fields": [
+      "profile",
+      "saved",
+      "compare",
+      "play",
+      "current",
+      "previous",
+      "slice",
+      "guideFocus",
+      "setGuideFocus",
+      "full",
+      "cores",
+      "report",
+      "history"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/CpiLab.tsx:CpiLab",
+    "version": "bdc16ffa125a",
+    "fields": [
+      "rates",
+      "preset",
+      "memoryCut",
+      "branchCut",
+      "play",
+      "baseCycles",
+      "before",
+      "after",
+      "curve",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/DirectoryLab.tsx:DirectoryLab",
+    "version": "24a608cad777",
+    "fields": [
+      "cores",
+      "presetId",
+      "requests",
+      "seed",
+      "actor",
+      "operation",
+      "address",
+      "written",
+      "messagesOn",
+      "animate",
+      "highlight",
+      "auto",
+      "selected",
+      "result",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/DisambigLab.tsx:DisambigLab",
+    "version": "6acf7a47dba8",
+    "fields": [
+      "presetId",
+      "policy",
+      "threshold",
+      "bypassOn",
+      "unknownIndependent",
+      "forwardOn",
+      "enabled",
+      "showAddress",
+      "showReplay",
+      "showStalls",
+      "auto",
+      "editing",
+      "draft",
+      "ops",
+      "result",
+      "compared",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/DramLab.tsx:DramLab",
+    "version": "f59044d22b20",
+    "fields": [
+      "presetId",
+      "accesses",
+      "channels",
+      "ranks",
+      "banks",
+      "rows",
+      "columns",
+      "policy",
+      "timing",
+      "selected",
+      "showTiming",
+      "showBuffer",
+      "highlightHits",
+      "auto",
+      "config",
+      "result",
+      "compared",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/FalseShareLab.tsx:FalseShareLab",
+    "version": "dfd71898e649",
+    "fields": [
+      "presetId",
+      "variables",
+      "extra",
+      "lineBytes",
+      "padding",
+      "rounds",
+      "mode",
+      "showAddr",
+      "showInv",
+      "showState",
+      "auto",
+      "ops",
+      "result",
+      "compared",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/HazardLab.tsx:StudioTop",
+    "version": "2408a8e28b4c",
+    "fields": [
+      "hits"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/HazardLab.tsx:LabChrome",
+    "version": "2408a8e28b4c",
+    "fields": [
+      "section",
+      "picked",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/HazardLab.tsx:DataHazardsLab",
+    "version": "2408a8e28b4c",
+    "fields": [
+      "ops",
+      "base",
+      "forwarding",
+      "stallsOn",
+      "showDeps",
+      "highlight",
+      "kind",
+      "editing",
+      "selected",
+      "hover",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/IssueQueueLab.tsx:IssueQueueLab",
+    "version": "82f822d05cce",
+    "fields": [
+      "presetId",
+      "windowSize",
+      "issueWidth",
+      "units",
+      "readiness",
+      "selectedOn",
+      "arrows",
+      "selected",
+      "config",
+      "result",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/LsqLab.tsx:LsqLab",
+    "version": "f7d989b709f7",
+    "fields": [
+      "presetId",
+      "forwardOn",
+      "matchOn",
+      "partialOn",
+      "showForward",
+      "orderOn",
+      "detectOn",
+      "showEvents",
+      "auto",
+      "selected",
+      "lqSize",
+      "sqSize",
+      "delay",
+      "policy",
+      "program",
+      "custom",
+      "parsed",
+      "result",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/MesiLab.tsx:MesiLab",
+    "version": "835de4769ee2",
+    "fields": [
+      "protocol",
+      "cores",
+      "presetId",
+      "accesses",
+      "seed",
+      "actor",
+      "operation",
+      "line",
+      "written",
+      "traffic",
+      "highlight",
+      "auto",
+      "result",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/MoesiLab.tsx:MoesiLab",
+    "version": "5f3501ff1206",
+    "fields": [
+      "presetId",
+      "accesses",
+      "seed",
+      "actor",
+      "operation",
+      "address",
+      "written",
+      "picked",
+      "arrows",
+      "highlight",
+      "auto",
+      "result",
+      "compared",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/MshrLab.tsx:MshrLab",
+    "version": "f0bbfd6fadf1",
+    "fields": [
+      "presetId",
+      "accesses",
+      "warm",
+      "blocking",
+      "mshrs",
+      "hitUnder",
+      "missUnder",
+      "cacheBytes",
+      "blockBytes",
+      "latency",
+      "replacement",
+      "showCache",
+      "showMshr",
+      "showQueue",
+      "highlight",
+      "auto",
+      "config",
+      "result",
+      "compared",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/OooLab.tsx:OooLab",
+    "version": "1643a2fe946d",
+    "fields": [
+      "fault",
+      "faultAt",
+      "robSize",
+      "issueWidth",
+      "commitWidth",
+      "alus",
+      "muls",
+      "mems",
+      "program",
+      "showPipe",
+      "selected",
+      "parsed",
+      "shots",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/PortLab.tsx:PortLab",
+    "version": "ae76a0515bc5",
+    "fields": [
+      "presetId",
+      "policy",
+      "scheduling",
+      "showHeat",
+      "highlight",
+      "auto",
+      "ports",
+      "program",
+      "custom",
+      "parsed",
+      "result",
+      "play",
+      "focusPort",
+      "focusClass",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/PredictorLab.tsx:PredictorLab",
+    "version": "94c205d357fa",
+    "fields": [
+      "text",
+      "bit0",
+      "two0",
+      "highlightMiss",
+      "trace",
+      "rows",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/PrefetchLab.tsx:PrefetchLab",
+    "version": "15badbe16e93",
+    "fields": [
+      "kind",
+      "presetId",
+      "addresses",
+      "degree",
+      "confidence",
+      "distance",
+      "queueSize",
+      "filterPollution",
+      "showPrefetch",
+      "showCache",
+      "highlight",
+      "showPollution",
+      "auto",
+      "custom",
+      "options",
+      "compared",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/PrfLab.tsx:PrfLab",
+    "version": "dff197316af4",
+    "fields": [
+      "presetId",
+      "valuesOn",
+      "ratOn",
+      "freeOn",
+      "depsOn",
+      "auto",
+      "physCount",
+      "program",
+      "custom",
+      "parsed",
+      "result",
+      "play",
+      "archFocus",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/RenameLab.tsx:RenameLab",
+    "version": "de5b41ef9f62",
+    "fields": [
+      "ops",
+      "enabled",
+      "showMap",
+      "selected",
+      "pool",
+      "result",
+      "deps",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/RooflineLab.tsx:RooflineLab",
+    "version": "6c8139b76bb2",
+    "fields": [
+      "machine",
+      "preset",
+      "flops",
+      "bytes",
+      "observedText",
+      "blocking",
+      "locality",
+      "play",
+      "base",
+      "tuned",
+      "result",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/ScoreboardLab.tsx:ScoreboardLab",
+    "version": "fb4d9b9aa1e4",
+    "fields": [
+      "ops",
+      "hazards",
+      "structural",
+      "aluSlots",
+      "mulLatency",
+      "tuned",
+      "shots",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/SnoopLab.tsx:SnoopLab",
+    "version": "0ad5bd7e2411",
+    "fields": [
+      "presetId",
+      "cores",
+      "requests",
+      "seed",
+      "showSnoop",
+      "showDirectory",
+      "messagesOn",
+      "animate",
+      "highlight",
+      "auto",
+      "actor",
+      "operation",
+      "address",
+      "written",
+      "result",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/SpeculateLab.tsx:SpeculateLab",
+    "version": "7fab838fe301",
+    "fields": [
+      "presetId",
+      "mode",
+      "initial",
+      "predictOn",
+      "bubbles",
+      "highlight",
+      "showRegs",
+      "autoReset",
+      "selected",
+      "program",
+      "custom",
+      "resolveAfter",
+      "windowSize",
+      "parsed",
+      "result",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/SuperscalarLab.tsx:SuperscalarLab",
+    "version": "43d23f0e748e",
+    "fields": [
+      "presetId",
+      "widths",
+      "bubbles",
+      "lanesOn",
+      "ids",
+      "autoReset",
+      "selected",
+      "wide",
+      "scalar",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/SyncLab.tsx:SyncLab",
+    "version": "fb55d4597cb8",
+    "fields": [
+      "presetId",
+      "kind",
+      "threads",
+      "cs",
+      "think",
+      "rounds",
+      "showLock",
+      "showThreads",
+      "highlight",
+      "auto",
+      "config",
+      "result",
+      "locks",
+      "counters",
+      "sweep",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/TomasuloLab.tsx:TomasuloLab",
+    "version": "8217d3e0f8ad",
+    "fields": [
+      "presetId",
+      "lines",
+      "addStations",
+      "mulLatency",
+      "shape",
+      "ops",
+      "full",
+      "play",
+      "guideFocus",
+      "view",
+      "showTags",
+      "showCdb"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/TournamentLab.tsx:TournamentLab",
+    "version": "6acb4000c063",
+    "fields": [
+      "text",
+      "localBits",
+      "ghrBits",
+      "phtBits",
+      "bimodalBits",
+      "chooser0",
+      "showLocal",
+      "showGlobal",
+      "showChooser",
+      "highlight",
+      "events",
+      "result",
+      "play",
+      "guideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/TrafficLab.tsx:TrafficLab",
+    "version": "71426a6b7c6d",
+    "fields": [
+      "protocol",
+      "presetId",
+      "accesses",
+      "seed",
+      "cores",
+      "layout",
+      "writeAllocate",
+      "silent",
+      "showAddr",
+      "messagesOn",
+      "highlight",
+      "logOn",
+      "auto",
+      "filterCore",
+      "filterKind",
+      "actor",
+      "operation",
+      "address",
+      "options",
+      "limited",
+      "report",
+      "states",
+      "play",
+      "guideFocus",
+      "setGuideFocus"
+    ]
+  },
+  {
+    "source": "studios/aca/labs/WallaceLab.tsx:WallaceLab",
+    "version": "34f008838b0f",
+    "fields": [
+      "guideFocus",
+      "setGuideFocus",
+      "width",
+      "count",
+      "radix",
+      "drafts",
+      "finalAdder",
+      "detail",
+      "showValues",
+      "tab",
+      "selectedId",
+      "hoverId",
+      "hoverStage",
+      "zoom",
+      "pan",
+      "boardRef: boardRef.current",
+      "drag: drag.current",
+      "tree",
+      "play",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/accelerator/AcceleratorStudio.tsx:AcceleratorStudio",
+    "version": "e54dae7d5db7",
+    "fields": [
+      "a",
+      "b",
+      "acc",
+      "macLog",
+      "grid",
+      "cell",
+      "playing",
+      "speed",
+      "aText",
+      "bText",
+      "mode",
+      "mmStep",
+      "sysCycle",
+      "flow",
+      "reuse",
+      "tensorText",
+      "compute",
+      "accum",
+      "train",
+      "npu",
+      "net",
+      "matrix"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:AdderStudio",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:HalfFull",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "a",
+      "b",
+      "cin",
+      "view"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:Multi",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "width",
+      "a",
+      "b",
+      "style",
+      "step"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:SubLab",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "a",
+      "b",
+      "bin",
+      "mode",
+      "wordA",
+      "wordB"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:CmpLab",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "a",
+      "b"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:ShiftLab",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "bits",
+      "kind",
+      "amount"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:AluLab",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "width",
+      "op",
+      "a",
+      "b"
+    ]
+  },
+  {
+    "source": "studios/adders/AdderStudio.tsx:MulLab",
+    "version": "3c2f972ee98f",
+    "fields": [
+      "a",
+      "b",
+      "step",
+      "divA",
+      "divB"
+    ]
+  },
+  {
+    "source": "studios/alu/AluStudio.tsx:AluStudio",
+    "version": "4470930cba8e",
+    "fields": [
+      "op",
+      "width",
+      "a",
+      "b",
+      "cin",
+      "format",
+      "animate",
+      "guide",
+      "answer",
+      "hint",
+      "flags"
+    ]
+  },
+  {
+    "source": "studios/alu/AluStudio.tsx:Datapath",
+    "version": "4470930cba8e",
+    "fields": [
+      "pan",
+      "drag: drag.current"
+    ]
+  },
+  {
+    "source": "studios/arm/ArmStudio.tsx:ArmStudio",
+    "version": "472eca4dae85",
+    "fields": [
+      "cpu",
+      "source",
+      "sel",
+      "status"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:OverviewPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "step"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:RegisterPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "wide"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:EncodingPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "family",
+      "rd",
+      "rn",
+      "rm",
+      "imm",
+      "asm",
+      "note",
+      "lanes"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:AssemblerPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "built"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:DatapathPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "stage"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:PipelinePage",
+    "version": "de3f295e144c",
+    "fields": [
+      "text",
+      "forward",
+      "cursor",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:MemoryPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "base",
+      "offset",
+      "mode",
+      "value",
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:ExceptionPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "kind"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:SocPage",
+    "version": "de3f295e144c",
+    "fields": [
+      "load",
+      "sel"
+    ]
+  },
+  {
+    "source": "studios/arm/pages.tsx:PracticePage",
+    "version": "de3f295e144c",
+    "fields": [
+      "topic",
+      "index",
+      "picked",
+      "score",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/assembly/AssemblyStudio.tsx:AssemblyStudio",
+    "version": "0d0f3900db02",
+    "fields": [
+      "root: root.current",
+      "autoCount: autoCount.current",
+      "source",
+      "loadedSource",
+      "cpu",
+      "rows",
+      "breaks",
+      "pausedAt",
+      "tick",
+      "error",
+      "autoFetch",
+      "built",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/assembly/AssemblyStudio.tsx:FetchPanel",
+    "version": "0d0f3900db02",
+    "fields": [
+      "beat"
+    ]
+  },
+  {
+    "source": "studios/assembly/AssemblyStudio.tsx:DecodePanel",
+    "version": "0d0f3900db02",
+    "fields": [
+      "pick",
+      "focus"
+    ]
+  },
+  {
+    "source": "studios/assembly/AssemblyStudio.tsx:ExecutePanel",
+    "version": "0d0f3900db02",
+    "fields": [
+      "experiment",
+      "op",
+      "left",
+      "right"
+    ]
+  },
+  {
+    "source": "studios/assembly/AssemblyStudio.tsx:MemoryPanel",
+    "version": "0d0f3900db02",
+    "fields": [
+      "kind",
+      "reg",
+      "base",
+      "offset",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/assembly/AssemblyStudio.tsx:TracePanel",
+    "version": "0d0f3900db02",
+    "fields": [
+      "reg",
+      "draft",
+      "breakLine"
+    ]
+  },
+  {
+    "source": "studios/boolean-algebra/BooleanStudio.tsx:BooleanStudio",
+    "version": "e1839df1e181",
+    "fields": [
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/boolean-algebra/BooleanStudio.tsx:PlayLab",
+    "version": "e1839df1e181",
+    "fields": [
+      "expr",
+      "other",
+      "assign"
+    ]
+  },
+  {
+    "source": "studios/boolean-algebra/BooleanStudio.tsx:LawsLab",
+    "version": "e1839df1e181",
+    "fields": [
+      "bits",
+      "selected"
+    ]
+  },
+  {
+    "source": "studios/boolean-algebra/BooleanStudio.tsx:SimplifyLab",
+    "version": "e1839df1e181",
+    "fields": [
+      "expr"
+    ]
+  },
+  {
+    "source": "studios/boolean-algebra/BooleanStudio.tsx:FormsLab",
+    "version": "e1839df1e181",
+    "fields": [
+      "count",
+      "outputs"
+    ]
+  },
+  {
+    "source": "studios/boolean-algebra/BooleanStudio.tsx:TermsLab",
+    "version": "e1839df1e181",
+    "fields": [
+      "count",
+      "picked",
+      "outputs"
+    ]
+  },
+  {
+    "source": "studios/builder/BlockProgram.tsx:BlockProgram",
+    "version": "fccbb6b74b31",
+    "fields": [
+      "blocks",
+      "category"
+    ]
+  },
+  {
+    "source": "studios/builder/BuilderStudio.tsx:BuilderStudio",
+    "version": "5ea3c0a40be1",
+    "fields": [
+      "localProjects",
+      "design",
+      "storageStatus",
+      "conflict",
+      "projectEpoch",
+      "past",
+      "future",
+      "selected",
+      "error",
+      "trace",
+      "history",
+      "cursor",
+      "wave",
+      "running",
+      "speed",
+      "clock",
+      "savedMsg",
+      "workspaceMode",
+      "search",
+      "templatePicker",
+      "focus",
+      "panels",
+      "compact",
+      "commands",
+      "commandQuery",
+      "selectedWire",
+      "bends",
+      "condition",
+      "conditionRef: conditionRef.current",
+      "recent",
+      "paletteFilter",
+      "resetPolicy",
+      "paletteWidth",
+      "inspectorWidth",
+      "mode",
+      "quietLabels",
+      "traceSelection",
+      "paletteCollapsed",
+      "inspectorCollapsed",
+      "context",
+      "attention",
+      "arrangement",
+      "blockEditor",
+      "canvasPanelRef: canvasPanelRef.current",
+      "canvasFullscreen",
+      "issues",
+      "view",
+      "palettePorts",
+      "designRef: designRef.current",
+      "traceRef: traceRef.current"
+    ]
+  },
+  {
+    "source": "studios/builder/CanvasTools.tsx:CanvasTools",
+    "version": "04298a640c76",
+    "fields": [
+      "drawer",
+      "partSearch",
+      "bookmarkName",
+      "bookmarks",
+      "anchor"
+    ]
+  },
+  {
+    "source": "studios/builder/ComponentWorkbench.tsx:ComponentWorkbench",
+    "version": "ff2d17b3ed4b",
+    "fields": [
+      "inputs",
+      "edge",
+      "rows",
+      "error"
+    ]
+  },
+  {
+    "source": "studios/builder/ConstructionWorkbench.tsx:ConstructionWorkbench",
+    "version": "0cd756045013",
+    "fields": [
+      "tab",
+      "preset",
+      "width",
+      "count",
+      "latency",
+      "name",
+      "message",
+      "micro",
+      "tests",
+      "results",
+      "signal",
+      "cursor",
+      "netName",
+      "source",
+      "target",
+      "busy",
+      "versions",
+      "milestone",
+      "routeId",
+      "routeFrom",
+      "routeTo",
+      "blockText",
+      "memory",
+      "dialog: dialog.current",
+      "values",
+      "logical"
+    ]
+  },
+  {
+    "source": "studios/builder/ConstructionWorkbench.tsx:ModuleEditor",
+    "version": "0cd756045013",
+    "fields": [
+      "module",
+      "selected",
+      "pan",
+      "kind",
+      "portNode",
+      "port",
+      "portName",
+      "error",
+      "nested"
+    ]
+  },
+  {
+    "source": "studios/builder/ContestLab.tsx:ContestLab",
+    "version": "c4fb9e0fef3c",
+    "fields": [
+      "tab",
+      "selected",
+      "resultIndex",
+      "report",
+      "message",
+      "busy",
+      "progress",
+      "assertionText",
+      "judge",
+      "judgeResult",
+      "templateResults",
+      "printing",
+      "judgeTests",
+      "judgeReplay",
+      "cancel: cancel.current",
+      "alive: alive.current",
+      "context: context.current"
+    ]
+  },
+  {
+    "source": "studios/builder/ControlMemoryLabs.tsx:ControlLab",
+    "version": "31318bf7f705",
+    "fields": [
+      "tab",
+      "selected"
+    ]
+  },
+  {
+    "source": "studios/builder/ControlMemoryLabs.tsx:MemoryLab",
+    "version": "31318bf7f705",
+    "fields": [
+      "tab",
+      "regionId",
+      "address",
+      "data",
+      "operation",
+      "view",
+      "accesses",
+      "message"
+    ]
+  },
+  {
+    "source": "studios/builder/DebugValidationTemplates.tsx:DebugLab",
+    "version": "cb4493dc9ad2",
+    "fields": [
+      "format",
+      "address",
+      "watch",
+      "historyIndex"
+    ]
+  },
+  {
+    "source": "studios/builder/DebugValidationTemplates.tsx:ValidationLab",
+    "version": "cb4493dc9ad2",
+    "fields": [
+      "filter",
+      "category",
+      "selected",
+      "ran"
+    ]
+  },
+  {
+    "source": "studios/builder/DebugValidationTemplates.tsx:TemplatesLab",
+    "version": "cb4493dc9ad2",
+    "fields": [
+      "filter",
+      "selected",
+      "compared"
+    ]
+  },
+  {
+    "source": "studios/builder/GraphLab.tsx:GraphLab",
+    "version": "2282fc3aaf8e",
+    "fields": [
+      "tab",
+      "tracePath",
+      "wireId"
+    ]
+  },
+  {
+    "source": "studios/builder/IsaLabs.tsx:IsaLab",
+    "version": "08c747b1bff5",
+    "fields": [
+      "index",
+      "tab",
+      "category"
+    ]
+  },
+  {
+    "source": "studios/builder/IsaLabs.tsx:FormatLab",
+    "version": "08c747b1bff5",
+    "fields": [
+      "tab",
+      "format",
+      "selected",
+      "preview"
+    ]
+  },
+  {
+    "source": "studios/builder/LibraryLab.tsx:LibraryLab",
+    "version": "10697d3878c9",
+    "fields": [
+      "group",
+      "kind",
+      "tab",
+      "width",
+      "inputWidth",
+      "sort",
+      "list",
+      "op"
+    ]
+  },
+  {
+    "source": "studios/builder/ProgramLabs.tsx:ProgramLab",
+    "version": "9a6734c539d2",
+    "fields": [
+      "fileName",
+      "tab",
+      "showBlocks",
+      "autocomplete",
+      "editor: editor.current"
+    ]
+  },
+  {
+    "source": "studios/builder/ProgramLabs.tsx:AssemblerLab",
+    "version": "9a6734c539d2",
+    "fields": [
+      "tab",
+      "index",
+      "outputTab",
+      "roundtrip"
+    ]
+  },
+  {
+    "source": "studios/builder/ScoringRules.tsx:ScoringRules",
+    "version": "027227537065",
+    "fields": [
+      "rules",
+      "message",
+      "requiredText"
+    ]
+  },
+  {
+    "source": "studios/builder/WorkspaceTools.tsx:WorkspaceTools",
+    "version": "7d99d62ab548",
+    "fields": [
+      "tab",
+      "source",
+      "target",
+      "versions",
+      "name",
+      "condition",
+      "note",
+      "golden",
+      "busy",
+      "signals",
+      "findings"
+    ]
+  },
+  {
+    "source": "studios/bus/BusStudio.tsx:BusStudio",
+    "version": "8a201ceb7a6f",
+    "fields": [
+      "tab",
+      "addressWidth",
+      "dataWidth",
+      "frequency",
+      "efficiency",
+      "mode",
+      "clockHigh",
+      "request",
+      "ack",
+      "lastGrant",
+      "history",
+      "controls",
+      "masters"
+    ]
+  },
+  {
+    "source": "studios/cache/cachePanels.tsx:SimulatorTab",
+    "version": "a17de2abeb52",
+    "fields": [
+      "config",
+      "assoc",
+      "text",
+      "cursor",
+      "playing",
+      "speed",
+      "stage",
+      "scope: scope.current",
+      "parsed",
+      "played",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/cache/cachePanels.tsx:LocalityTab",
+    "version": "a17de2abeb52",
+    "fields": [
+      "pattern",
+      "count",
+      "working",
+      "block",
+      "cache",
+      "stride",
+      "cursor",
+      "playing",
+      "speed",
+      "blank",
+      "entries",
+      "config",
+      "traced"
+    ]
+  },
+  {
+    "source": "studios/cache/cachePanels.tsx:PoliciesTab",
+    "version": "a17de2abeb52",
+    "fields": [
+      "config",
+      "pattern",
+      "text",
+      "cursor",
+      "card",
+      "other",
+      "entries",
+      "left",
+      "right"
+    ]
+  },
+  {
+    "source": "studios/cache/cachePanels.tsx:HierarchyTab",
+    "version": "a17de2abeb52",
+    "fields": [
+      "depth",
+      "l1",
+      "l2",
+      "l3",
+      "addressText",
+      "op",
+      "picked",
+      "ran",
+      "step",
+      "batch"
+    ]
+  },
+  {
+    "source": "studios/cache/CacheStudio.tsx:CacheStudio",
+    "version": "16fa57261bd5",
+    "fields": [
+      "shared"
+    ]
+  },
+  {
+    "source": "studios/combinational/CanvasLab.tsx:CanvasLab",
+    "version": "906b4ec4f2e3",
+    "fields": [
+      "doc",
+      "past",
+      "future",
+      "selected",
+      "clock",
+      "prevClock",
+      "draft",
+      "pan",
+      "error",
+      "projects",
+      "name",
+      "held",
+      "view"
+    ]
+  },
+  {
+    "source": "studios/combinational/CombinationalStudio.tsx:CombinationalStudio",
+    "version": "15b81f623d13",
+    "fields": [
+      "tab",
+      "pan",
+      "shellRef: shellRef.current",
+      "circuit",
+      "more",
+      "analysis",
+      "step",
+      "hint",
+      "verdict",
+      "saved",
+      "propsHost",
+      "table"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:HomePage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "intro"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:OverviewPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "dim",
+      "line"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:RegisterPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "tab",
+      "width",
+      "rv",
+      "arm",
+      "armW",
+      "family",
+      "slice",
+      "quiz"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:EncodingPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "which",
+      "kind",
+      "field"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:LengthPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "windowBytes",
+      "mode"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:MemoryPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "op",
+      "base",
+      "offset",
+      "value",
+      "phase"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:AddressingPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "rvBase",
+      "rvImm",
+      "armBase",
+      "armImm",
+      "base",
+      "index",
+      "scale",
+      "disp"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:SameTaskPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "text",
+      "values",
+      "state",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:DecodePage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "step",
+      "playing",
+      "speed",
+      "factor"
+    ]
+  },
+  {
+    "source": "studios/compare/pages.tsx:EcosystemPage",
+    "version": "77f283cf3db0",
+    "fields": [
+      "domain"
+    ]
+  },
+  {
+    "source": "studios/control/ControlStudio.tsx:ControlStudio",
+    "version": "c2c36ac4bff1",
+    "fields": [
+      "tab",
+      "mnemonic",
+      "addr",
+      "opcode",
+      "running",
+      "guideOpen"
+    ]
+  },
+  {
+    "source": "studios/counters/CounterStudio.tsx:CounterStudio",
+    "version": "d15c1d06d409",
+    "fields": [
+      "nonce",
+      "allConcepts"
+    ]
+  },
+  {
+    "source": "studios/counters/CounterStudio.tsx:Simulator",
+    "version": "d15c1d06d409",
+    "fields": [
+      "width",
+      "modulus",
+      "direction",
+      "clockMode",
+      "speed",
+      "playing",
+      "panel",
+      "bits",
+      "history",
+      "note",
+      "stepRef: stepRef.current"
+    ]
+  },
+  {
+    "source": "studios/counters/CounterStudio.tsx:DesignPanel",
+    "version": "d15c1d06d409",
+    "fields": [
+      "text",
+      "kind"
+    ]
+  },
+  {
+    "source": "studios/cpu/cpuPanels.tsx:OverviewPanel",
+    "version": "4aa3297bf3ce",
+    "fields": [
+      "selected",
+      "pulse",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/cpu/cpuPanels.tsx:RegisterPanel",
+    "version": "4aa3297bf3ce",
+    "fields": [
+      "index",
+      "radix",
+      "draft",
+      "error",
+      "portA",
+      "portB"
+    ]
+  },
+  {
+    "source": "studios/cpu/cpuPanels.tsx:DatapathPanel",
+    "version": "4aa3297bf3ce",
+    "fields": [
+      "srcA",
+      "srcB",
+      "op",
+      "dest",
+      "stage",
+      "wrote",
+      "preview"
+    ]
+  },
+  {
+    "source": "studios/cpu/cpuPanels.tsx:BusPanel",
+    "version": "4aa3297bf3ce",
+    "fields": [
+      "source",
+      "dest",
+      "reg",
+      "second",
+      "log",
+      "status",
+      "shown"
+    ]
+  },
+  {
+    "source": "studios/cpu/cpuPanels.tsx:ExtendPanel",
+    "version": "4aa3297bf3ce",
+    "fields": [
+      "text",
+      "inputWidth",
+      "outputWidth",
+      "amount",
+      "op",
+      "computed"
+    ]
+  },
+  {
+    "source": "studios/cpu/cpuPanels.tsx:ClockPanel",
+    "version": "4aa3297bf3ce",
+    "fields": [
+      "machine",
+      "data",
+      "rows",
+      "running"
+    ]
+  },
+  {
+    "source": "studios/cpu/CpuStudio.tsx:CpuStudio",
+    "version": "c843cef9a9c5",
+    "fields": [
+      "cpu"
+    ]
+  },
+  {
+    "source": "studios/cpu16/Cpu16Studio.tsx:Cpu16Studio",
+    "version": "f5e133f7a703",
+    "fields": [
+      "source",
+      "cpu",
+      "msg",
+      "irq",
+      "pushSel"
+    ]
+  },
+  {
+    "source": "studios/cpu8/Cpu8Studio.tsx:Cpu8Studio",
+    "version": "1ccfa7453216",
+    "fields": [
+      "source",
+      "cpu",
+      "history",
+      "cursor",
+      "aluOp",
+      "encOp",
+      "encImm",
+      "asmMsg",
+      "listing"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:PackagePage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "view",
+      "block",
+      "layer"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:CoresPage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "mode",
+      "job",
+      "count"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:CachePage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "level",
+      "pattern",
+      "fit",
+      "ran",
+      "step"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:MemoryPage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "tab",
+      "kind",
+      "channels",
+      "rate"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:PciePage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "gen",
+      "gpu",
+      "ssd",
+      "nic",
+      "other"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:BoostPage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "job",
+      "load",
+      "limit",
+      "turbo",
+      "span",
+      "policy",
+      "pTrace"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:ThermalPage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "cooler",
+      "ambient",
+      "fan",
+      "work",
+      "limit",
+      "playing",
+      "temp",
+      "history"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:WorkloadPage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "id",
+      "playing",
+      "tick"
+    ]
+  },
+  {
+    "source": "studios/desktop/pages.tsx:PracticePage",
+    "version": "6fa06fa7304b",
+    "fields": [
+      "mode",
+      "index",
+      "picked",
+      "show",
+      "score",
+      "seen",
+      "card",
+      "flipped"
+    ]
+  },
+  {
+    "source": "studios/fde/FdeStudio.tsx:FdeStudio",
+    "version": "ea3477bc77db",
+    "fields": [
+      "tab",
+      "cpu",
+      "preview",
+      "instruction"
+    ]
+  },
+  {
+    "source": "studios/flip-flops/FlipFlopStudio.tsx:Lab",
+    "version": "9a84fdae98d3",
+    "fields": [
+      "s",
+      "r",
+      "d",
+      "j",
+      "k",
+      "t",
+      "en",
+      "edge",
+      "clock",
+      "q",
+      "master",
+      "slave",
+      "samples",
+      "cursor",
+      "playing",
+      "speed",
+      "heldWithoutClock",
+      "captured",
+      "toggled",
+      "live"
+    ]
+  },
+  {
+    "source": "studios/flip-flops/FlipFlopStudio.tsx:Guide",
+    "version": "9a84fdae98d3",
+    "fields": [
+      "hint"
+    ]
+  },
+  {
+    "source": "studios/flip-flops/FlipFlopStudio.tsx:TheoryPanel",
+    "version": "9a84fdae98d3",
+    "fields": [
+      "kind",
+      "q",
+      "next"
+    ]
+  },
+  {
+    "source": "studios/fsm/FsmStudio.tsx:FsmStudio",
+    "version": "61d3564bdb8b",
+    "fields": [
+      "machine",
+      "selected",
+      "current",
+      "stream",
+      "index",
+      "playing",
+      "speed",
+      "showSeq",
+      "highlight",
+      "alphabet",
+      "zoom",
+      "encoding",
+      "hint",
+      "history",
+      "encoded"
+    ]
+  },
+  {
+    "source": "studios/fsm/FsmStudio.tsx:CircuitPage",
+    "version": "61d3564bdb8b",
+    "fields": [
+      "circuit"
+    ]
+  },
+  {
+    "source": "studios/fsm/FsmStudio.tsx:Diagram",
+    "version": "61d3564bdb8b",
+    "fields": [
+      "drag",
+      "edge"
+    ]
+  },
+  {
+    "source": "studios/fsm/FsmStudio.tsx:MinPage",
+    "version": "61d3564bdb8b",
+    "fields": [
+      "result"
+    ]
+  },
+  {
+    "source": "studios/hazards/HazardStudio.tsx:HazardStudio",
+    "version": "e41fb31f1d95",
+    "fields": [
+      "tab",
+      "preset",
+      "policy",
+      "forwarding",
+      "unified",
+      "pipe"
+    ]
+  },
+  {
+    "source": "studios/hetero/HeteroStudio.tsx:HeteroStudio",
+    "version": "3c80f25aa053",
+    "fields": [
+      "focus",
+      "manual",
+      "camera",
+      "payload",
+      "accel",
+      "model",
+      "traffic",
+      "sync",
+      "queues",
+      "camQueues"
+    ]
+  },
+  {
+    "source": "studios/hierarchy/hierarchyPanels.tsx:HierarchyPanel",
+    "version": "519f5812314c",
+    "fields": [
+      "drafts",
+      "error",
+      "story"
+    ]
+  },
+  {
+    "source": "studios/hierarchy/hierarchyPanels.tsx:AccessPanel",
+    "version": "519f5812314c",
+    "fields": [
+      "text",
+      "operation",
+      "memory",
+      "result",
+      "cursor",
+      "running",
+      "showLatency",
+      "rates",
+      "error",
+      "flowRef: flowRef.current",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/hierarchy/hierarchyPanels.tsx:LocalityPanel",
+    "version": "519f5812314c",
+    "fields": [
+      "kind",
+      "start",
+      "stride",
+      "count",
+      "block",
+      "trace",
+      "cursor",
+      "running",
+      "report"
+    ]
+  },
+  {
+    "source": "studios/hierarchy/hierarchyPanels.tsx:CachePanel",
+    "version": "519f5812314c",
+    "fields": [
+      "blockBytes",
+      "lines",
+      "assoc",
+      "policy",
+      "sequence",
+      "radix",
+      "cache",
+      "history",
+      "error",
+      "visualRef: visualRef.current",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/hierarchy/HierarchyStudio.tsx:HierarchyStudio",
+    "version": "622490cb98e8",
+    "fields": [
+      "latencies"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/AdvancedLabPage.tsx:Quiz",
+    "version": "46c1bf04f169",
+    "fields": [
+      "answers",
+      "questionIndex"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/AdvancedLabPage.tsx:AdvancedFirstBatchPage",
+    "version": "46c1bf04f169",
+    "fields": [
+      "values",
+      "mode",
+      "running",
+      "time",
+      "fault",
+      "step",
+      "selected",
+      "view",
+      "walkthrough",
+      "mapZoom",
+      "waypoint",
+      "waypointError",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/AviationLabPage.tsx:MiniQuiz",
+    "version": "9b444872ba63",
+    "fields": [
+      "index",
+      "answers"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/AviationLabPage.tsx:AviationLabPage",
+    "version": "9b444872ba63",
+    "fields": [
+      "values",
+      "mode",
+      "time",
+      "running",
+      "fault",
+      "view",
+      "part",
+      "step",
+      "overview",
+      "monitorTab",
+      "graphTab",
+      "records",
+      "playback",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/ConsumerLabPage.tsx:QRScanner",
+    "version": "604cae8b2254",
+    "fields": [
+      "src",
+      "decoded",
+      "busy",
+      "message",
+      "generation: generation.current",
+      "canvas: canvas.current",
+      "objectURL: objectURL.current"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/ConsumerLabPage.tsx:ConsumerLabPage",
+    "version": "604cae8b2254",
+    "fields": [
+      "p",
+      "mode",
+      "time",
+      "running",
+      "fault",
+      "tab",
+      "events",
+      "pin",
+      "step",
+      "audioPlaying",
+      "audio: audio.current",
+      "audioGain: audioGain.current",
+      "audioTone: audioTone.current",
+      "audioNoise: audioNoise.current",
+      "unlockAt: unlockAt.current",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/ControlLabPage.tsx:ControlLabPage",
+    "version": "f23c90bc5dcc",
+    "fields": [
+      "p",
+      "mode",
+      "time",
+      "running",
+      "fault",
+      "tab",
+      "step",
+      "lights",
+      "grip",
+      "camera",
+      "view",
+      "showSensors",
+      "showPosition",
+      "showMotors",
+      "ptt",
+      "audio",
+      "waypoints",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/FDRPanels.tsx:FDRChart",
+    "version": "a9b5fb6b2bf3",
+    "fields": [
+      "shown"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/HouseholdLabPage.tsx:HouseholdLabPage",
+    "version": "555d4bc69fde",
+    "fields": [
+      "p",
+      "mode",
+      "time",
+      "running",
+      "fault",
+      "tab",
+      "field",
+      "geometry",
+      "events",
+      "step",
+      "energy",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/MarineLabPage.tsx:MarineLabPage",
+    "version": "669e47b78f21",
+    "fields": [
+      "p",
+      "mode",
+      "time",
+      "running",
+      "fault",
+      "tab",
+      "step",
+      "watch",
+      "vector",
+      "selected",
+      "waypoints",
+      "events",
+      "vessel",
+      "mmsi",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/RoboticsLabPage.tsx:RoboticsLabPage",
+    "version": "ac4679ff27c7",
+    "fields": [
+      "p",
+      "mode",
+      "time",
+      "running",
+      "fault",
+      "tab",
+      "step",
+      "front",
+      "mapping",
+      "contacts",
+      "processing",
+      "auto",
+      "ssid",
+      "events",
+      "waypoints",
+      "tool",
+      "replaying",
+      "armView",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/SecurityLabPage.tsx:SecurePacket",
+    "version": "13a01e76e001",
+    "fields": [
+      "message",
+      "packet",
+      "output",
+      "busy",
+      "status",
+      "generation: generation.current"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/SecurityLabPage.tsx:SecurityLabPage",
+    "version": "13a01e76e001",
+    "fields": [
+      "p",
+      "mode",
+      "running",
+      "time",
+      "fault",
+      "tab",
+      "part",
+      "step",
+      "watch",
+      "view",
+      "events",
+      "resetVersion",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/SystemsLabPage.tsx:CvrAudio",
+    "version": "7f3895e113e8",
+    "fields": [
+      "context: context.current",
+      "channel",
+      "playing",
+      "timer: timer.current"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/SystemsLabPage.tsx:Quiz",
+    "version": "7f3895e113e8",
+    "fields": [
+      "answers"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/advanced/SystemsLabPage.tsx:SystemsLabPage",
+    "version": "7f3895e113e8",
+    "fields": [
+      "p",
+      "mode",
+      "running",
+      "time",
+      "fault",
+      "tab",
+      "part",
+      "step",
+      "overview",
+      "display",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/DeviceCourse.tsx:DeviceCourse",
+    "version": "02f67a265f0e",
+    "fields": [
+      "active",
+      "visited",
+      "inside",
+      "root: root.current",
+      "tabs: tabs.current"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/DeviceExamples.tsx:DeviceExamples",
+    "version": "0f8d45c4c426",
+    "fields": [
+      "examples"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/GeneratedPartsPanel.tsx:GeneratedPartsPanel",
+    "version": "f81150779321",
+    "fields": [
+      "selected"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/HardwareIdentityPanel.tsx:HardwareIdentityPanel",
+    "version": "3fdd9b883b33",
+    "fields": [
+      "pin"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/HowDevicesWorkStudio.tsx:CategorySection",
+    "version": "78694a8d69fc",
+    "fields": [
+      "expanded"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/labs/AudioPreview.tsx:AudioPreview",
+    "version": "de5a9cb92232",
+    "fields": [
+      "active: active.current",
+      "playing",
+      "message"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/labs/LabPage.tsx:Quiz",
+    "version": "58f317665dc9",
+    "fields": [
+      "answers"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/labs/LabPage.tsx:LabPage",
+    "version": "58f317665dc9",
+    "fields": [
+      "values",
+      "mode",
+      "running",
+      "time",
+      "fault",
+      "action",
+      "view",
+      "part",
+      "step",
+      "digital",
+      "saved",
+      "walkthrough",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/how-devices-work/labs/visuals.tsx:Waveform",
+    "version": "3fba1f30cfeb",
+    "fields": [
+      "cursor"
+    ]
+  },
+  {
+    "source": "studios/interrupts/InterruptStudio.tsx:InterruptStudio",
+    "version": "f7b73d35bd9a",
+    "fields": [
+      "tab",
+      "devices",
+      "vectors",
+      "step",
+      "running",
+      "speed"
+    ]
+  },
+  {
+    "source": "studios/interrupts/InterruptStudio.tsx:VectorsPanel",
+    "version": "f7b73d35bd9a",
+    "fields": [
+      "irq",
+      "draft",
+      "message",
+      "error"
+    ]
+  },
+  {
+    "source": "studios/interrupts/InterruptStudio.tsx:DmaPanel",
+    "version": "f7b73d35bd9a",
+    "fields": [
+      "source",
+      "destination",
+      "count",
+      "speed",
+      "running",
+      "error",
+      "activeSource",
+      "activeDestination",
+      "dma"
+    ]
+  },
+  {
+    "source": "studios/interrupts/InterruptStudio.tsx:ExceptionsPanel",
+    "version": "f7b73d35bd9a",
+    "fields": [
+      "kind",
+      "triggered"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:IoStudio",
+    "version": "8939271442ed",
+    "fields": [
+      "raw",
+      "search"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:MmioLab",
+    "version": "8939271442ed",
+    "fields": [
+      "address",
+      "data",
+      "operation",
+      "value",
+      "direction",
+      "readback",
+      "ram",
+      "stage",
+      "running",
+      "speed",
+      "zoom",
+      "message"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:PortLab",
+    "version": "8939271442ed",
+    "fields": [
+      "port",
+      "byte",
+      "instruction",
+      "terminal",
+      "buffer",
+      "cycle",
+      "running",
+      "speed",
+      "zoom",
+      "al",
+      "trace"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:PollingLab",
+    "version": "8939271442ed",
+    "fields": [
+      "latency",
+      "interval",
+      "byte",
+      "injected",
+      "cycle",
+      "running",
+      "speed",
+      "zoom"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:InterruptLab",
+    "version": "8939271442ed",
+    "fields": [
+      "stage",
+      "masked",
+      "pending",
+      "priority",
+      "eventInterval",
+      "running",
+      "speed",
+      "zoom",
+      "view",
+      "codeView",
+      "log"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:DmaLab",
+    "version": "8939271442ed",
+    "fields": [
+      "source",
+      "dest",
+      "length",
+      "burst",
+      "cursor",
+      "memory",
+      "running",
+      "speed",
+      "zoom",
+      "started"
+    ]
+  },
+  {
+    "source": "studios/io/IoStudio.tsx:BusLab",
+    "version": "8939271442ed",
+    "fields": [
+      "bus",
+      "mode",
+      "wait",
+      "running",
+      "speed",
+      "zoom",
+      "history"
+    ]
+  },
+  {
+    "source": "studios/isa/addressing.tsx:AddressingPanel",
+    "version": "ae765f7f7b6b",
+    "fields": [
+      "root: root.current",
+      "states",
+      "stage",
+      "pulse",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/isa/anatomy.tsx:AnatomyPanel",
+    "version": "bc077f2b50ab",
+    "fields": [
+      "op",
+      "rd",
+      "rs1",
+      "rs2",
+      "imm",
+      "field",
+      "pulse"
+    ]
+  },
+  {
+    "source": "studios/isa/basics.tsx:BasicsPanel",
+    "version": "86dc7588b9b5",
+    "fields": [
+      "root: root.current",
+      "op",
+      "regs",
+      "mem",
+      "layer",
+      "family",
+      "tip",
+      "pulse",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/isa/categories.tsx:CategoriesPanel",
+    "version": "f649ee9e6b19",
+    "fields": [
+      "id",
+      "family",
+      "left",
+      "right",
+      "shown"
+    ]
+  },
+  {
+    "source": "studios/isa/formats.tsx:FormatsPanel",
+    "version": "84dae51f0c1d",
+    "fields": [
+      "format",
+      "variant",
+      "rd",
+      "rs1",
+      "rs2",
+      "imm",
+      "hover"
+    ]
+  },
+  {
+    "source": "studios/isa/IsaStudio.tsx:IsaStudio",
+    "version": "5dfb9af99190",
+    "fields": [
+      "root: root.current"
+    ]
+  },
+  {
+    "source": "studios/isa/load.tsx:LoadPanel",
+    "version": "ac9b2fddb989",
+    "fields": [
+      "base",
+      "mode",
+      "rd",
+      "rs",
+      "offset",
+      "phase",
+      "playing",
+      "outcome"
+    ]
+  },
+  {
+    "source": "studios/isa/style.tsx:StylePanel",
+    "version": "e8173ddbcacd",
+    "fields": [
+      "id",
+      "step",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/kmap/KmapStudio.tsx:KmapStudio",
+    "version": "f774c8ff09f2",
+    "fields": [
+      "tab",
+      "initial",
+      "count",
+      "cells",
+      "mode",
+      "hover"
+    ]
+  },
+  {
+    "source": "studios/kmap/KmapStudio.tsx:QmView",
+    "version": "f774c8ff09f2",
+    "fields": [
+      "binary"
+    ]
+  },
+  {
+    "source": "studios/logic-gates/LogicGatesBoard.tsx:LogicGatesBoard",
+    "version": "3c698634f8a4",
+    "fields": [
+      "circuit",
+      "hint",
+      "seen",
+      "table"
+    ]
+  },
+  {
+    "source": "studios/logic-gates/LogicGatesStudio.tsx:LogicGatesStudio",
+    "version": "0b28bf81ee49",
+    "fields": [
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/memory/addressingLab.tsx:AddressingLab",
+    "version": "9f0792b452b0",
+    "fields": [
+      "text",
+      "bits",
+      "align",
+      "startText",
+      "sizeText",
+      "word",
+      "regions",
+      "answers"
+    ]
+  },
+  {
+    "source": "studios/memory/dramLab.tsx:DramLab",
+    "version": "1501ff9a0776",
+    "fields": [
+      "kind",
+      "op",
+      "stored",
+      "charge",
+      "leakage",
+      "interval",
+      "since",
+      "running",
+      "stage",
+      "row",
+      "column",
+      "sram"
+    ]
+  },
+  {
+    "source": "studios/memory/eepromLab.tsx:EepromLab",
+    "version": "1b3022359089",
+    "fields": [
+      "cells",
+      "address",
+      "data",
+      "pageSize",
+      "delay",
+      "busy",
+      "status",
+      "wear",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/memory/flashLab.tsx:FlashLab",
+    "version": "189285695b2c",
+    "fields": [
+      "cells",
+      "counts",
+      "block",
+      "page",
+      "byte",
+      "data",
+      "kind",
+      "cellType",
+      "leveling",
+      "plain",
+      "rotated",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:LegacyMemory",
+    "version": "7be8f5f20281",
+    "fields": [
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:ArrayLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "size",
+      "memory",
+      "address",
+      "data",
+      "ce",
+      "oe",
+      "we",
+      "note",
+      "windowStart"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:TypesLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "kind",
+      "memory",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:CellLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "sram",
+      "dram",
+      "index"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:OrgLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "words",
+      "width",
+      "addrPins",
+      "dataPins",
+      "address",
+      "ce",
+      "oe",
+      "we"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:DecoderLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "width",
+      "select",
+      "enable",
+      "cpuAddr",
+      "map"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:ExpandLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "nibbleChips",
+      "nibbleWidth",
+      "addrChips",
+      "probe"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:BankLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "cursor",
+      "mode"
+    ]
+  },
+  {
+    "source": "studios/memory/MemoryStudio.tsx:TimingLab",
+    "version": "7be8f5f20281",
+    "fields": [
+      "cycle",
+      "cursor",
+      "memory",
+      "ce",
+      "oe",
+      "we",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/memory/organizationLab.tsx:OrganizationLab",
+    "version": "3df494c0b250",
+    "fields": [
+      "chipIndex",
+      "targetIndex",
+      "addrPins",
+      "dataPins",
+      "select",
+      "mode",
+      "cursor",
+      "playing",
+      "banks"
+    ]
+  },
+  {
+    "source": "studios/memory/ramLab.tsx:RamLab",
+    "version": "9f779017d9e1",
+    "fields": [
+      "addressBits",
+      "dataBits",
+      "latency",
+      "preload",
+      "custom",
+      "cells",
+      "address",
+      "addressText",
+      "dataText",
+      "addrError",
+      "dataError",
+      "view",
+      "endian",
+      "op",
+      "stage",
+      "playing",
+      "speed",
+      "regionId",
+      "log",
+      "tick",
+      "runId",
+      "finished: finished.current",
+      "scope: scope.current",
+      "cellsRef: cellsRef.current",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/memory/romLab.tsx:RomLab",
+    "version": "8bebfd082312",
+    "fields": [
+      "depth",
+      "design",
+      "burned",
+      "address",
+      "variant",
+      "editing",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/memory/sramLab.tsx:SramLab",
+    "version": "8c6e5becefb4",
+    "fields": [
+      "mode",
+      "cell",
+      "rows",
+      "address",
+      "bits",
+      "speed",
+      "note",
+      "labels"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/advanced/AdvancedLab.tsx:Workbench",
+    "version": "f42657dd63f2",
+    "fields": [
+      "initial",
+      "params",
+      "source",
+      "builtSource",
+      "simulation",
+      "state: state.current",
+      "paramRef: paramRef.current",
+      "running",
+      "speed",
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/advanced/FamilyLab.tsx:FamilyWorkbench",
+    "version": "beaa1f978483",
+    "fields": [
+      "lab"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/core/useLab.ts:useLab",
+    "version": "fef08ccdc17d",
+    "fields": [
+      "cfgRef: cfgRef.current",
+      "initial",
+      "code",
+      "compiledCode",
+      "paramsRef: paramsRef.current",
+      "diagnostics",
+      "running",
+      "speed",
+      "frame",
+      "breakpoints",
+      "realtimeRef: realtimeRef.current",
+      "mcuRef: mcuRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L01.tsx:L01",
+    "version": "a32cb115d043",
+    "fields": [
+      "lab",
+      "b1",
+      "view3d",
+      "snap",
+      "hwTab",
+      "area"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L02.tsx:L02",
+    "version": "c295a6ba4656",
+    "fields": [
+      "lab",
+      "sel",
+      "visited",
+      "flow",
+      "memTab",
+      "regsSeen",
+      "port",
+      "half",
+      "prevRegs: prevRegs.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L03.tsx:L03",
+    "version": "6a25e7ff50f4",
+    "fields": [
+      "lab",
+      "mode",
+      "hl",
+      "stepIdx",
+      "pinTab",
+      "pin",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L04.tsx:L04",
+    "version": "cd63a63d8b29",
+    "fields": [
+      "lab",
+      "trace",
+      "sh",
+      "sv"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L05.tsx:L05",
+    "version": "ea0139ccec22",
+    "fields": [
+      "lab",
+      "view",
+      "specView",
+      "autoScroll",
+      "clearedAt",
+      "pendingRun",
+      "monitor: monitor.current",
+      "ran"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L06.tsx:L06",
+    "version": "fb0fc47b2342",
+    "fields": [
+      "lab",
+      "sel",
+      "draft",
+      "editing",
+      "tab",
+      "fmt",
+      "page",
+      "msg",
+      "snapshot",
+      "wrote",
+      "prev: prev.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L07.tsx:L07",
+    "version": "9618d55917f6",
+    "fields": [
+      "lab",
+      "listRef: listRef.current",
+      "logRef: logRef.current",
+      "done: done.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L08.tsx:L08",
+    "version": "c09c31994a50",
+    "fields": [
+      "lab",
+      "addrText",
+      "dataText",
+      "result",
+      "hwView",
+      "pulse",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L09.tsx:L09",
+    "version": "08d21ebd30a4",
+    "fields": [
+      "lab",
+      "sel",
+      "selReg",
+      "edit",
+      "auto",
+      "frozen",
+      "filter",
+      "clearedAt",
+      "dbgMsg",
+      "adcHist: adcHist.current",
+      "digits: digits.current",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g1/L10.tsx:L10",
+    "version": "9f043a807e4f",
+    "fields": [
+      "lab",
+      "sel",
+      "sig",
+      "autoLat",
+      "pending",
+      "seen",
+      "samples: samples.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L11.tsx:L11",
+    "version": "ee2a8b93b5f2",
+    "fields": [
+      "lab",
+      "sel",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L12.tsx:L12",
+    "version": "bbc73bc8c365",
+    "fields": [
+      "lab",
+      "zoom",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L13.tsx:L13",
+    "version": "daeec1f7d8d8",
+    "fields": [
+      "lab",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L14.tsx:L14",
+    "version": "bc3bc60d94fb",
+    "fields": [
+      "lab",
+      "reg",
+      "pin",
+      "raw",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L15.tsx:L15",
+    "version": "b0c5ef254959",
+    "fields": [
+      "lab",
+      "sel",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L16.tsx:L16",
+    "version": "72996e40ca46",
+    "fields": [
+      "lab",
+      "pick",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L17.tsx:L17",
+    "version": "11d56a3357a7",
+    "fields": [
+      "lab",
+      "zoom",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L18.tsx:L18",
+    "version": "f64b027c3dcf",
+    "fields": [
+      "lab",
+      "cursor",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L19.tsx:NumField",
+    "version": "ba4ecd6079ec",
+    "fields": [
+      "draft"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L19.tsx:L19",
+    "version": "ba4ecd6079ec",
+    "fields": [
+      "lab",
+      "pending",
+      "seen",
+      "overrun"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g2/L20.tsx:L20",
+    "version": "01555a32c34d",
+    "fields": [
+      "lab",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L21.tsx:L21",
+    "version": "70cc5e600089",
+    "fields": [
+      "lab",
+      "tab",
+      "info",
+      "pending"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L22.tsx:L22",
+    "version": "307c22ff5ae8",
+    "fields": [
+      "lab",
+      "view",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L23.tsx:L23",
+    "version": "aa414764e6cc",
+    "fields": [
+      "lab",
+      "view",
+      "pending",
+      "asked",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L24.tsx:L24",
+    "version": "883d3285d225",
+    "fields": [
+      "lab",
+      "zoom",
+      "rot",
+      "moveN",
+      "pending",
+      "moveStart: moveStart.current",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L25.tsx:L25",
+    "version": "552ba6990028",
+    "fields": [
+      "lab",
+      "tab",
+      "auto",
+      "frozen",
+      "pending",
+      "mism: mism.current",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L26.tsx:Compare",
+    "version": "eab758274931",
+    "fields": [
+      "box: box.current",
+      "PW"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L26.tsx:L26",
+    "version": "eab758274931",
+    "fields": [
+      "lab",
+      "tab",
+      "autoScroll",
+      "pending",
+      "serial: serial.current",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L27.tsx:L27",
+    "version": "0d878fb8912d",
+    "fields": [
+      "lab",
+      "gtab",
+      "ltab",
+      "quiz",
+      "pending",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L28.tsx:L28",
+    "version": "257661691be1",
+    "fields": [
+      "lab",
+      "tab",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L29.tsx:L29",
+    "version": "4c2e63fcebf3",
+    "fields": [
+      "lab",
+      "ltab",
+      "sel",
+      "input",
+      "hist",
+      "hi",
+      "auto",
+      "pending",
+      "msg",
+      "conRef: conRef.current",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/L30.tsx:L30",
+    "version": "dda370ccd290",
+    "fields": [
+      "lab",
+      "ltab",
+      "sel",
+      "frozen: frozen.current",
+      "adv",
+      "follow",
+      "pending",
+      "msg",
+      "done",
+      "tableRef: tableRef.current",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g3/NumIn.tsx:NumIn",
+    "version": "1f239ff89d00",
+    "fields": [
+      "draft"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L31.tsx:L31",
+    "version": "cd624f2d1f4a",
+    "fields": [
+      "lab",
+      "sel",
+      "page",
+      "follow",
+      "pending",
+      "msg",
+      "seen",
+      "frozen: frozen.current",
+      "sticky: sticky.current",
+      "listRef: listRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L32.tsx:L32",
+    "version": "78022261ceb4",
+    "fields": [
+      "lab",
+      "sel",
+      "follow",
+      "pending",
+      "msg",
+      "seen",
+      "idDraft",
+      "frozen: frozen.current",
+      "sticky: sticky.current",
+      "listRef: listRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L33.tsx:L33",
+    "version": "af2c9c9b651e",
+    "fields": [
+      "lab",
+      "sel",
+      "pkSel",
+      "follow",
+      "pending",
+      "msg",
+      "seen",
+      "failSeen",
+      "draft",
+      "text",
+      "frozen: frozen.current",
+      "listRef: listRef.current",
+      "termRef: termRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L34.tsx:L34",
+    "version": "8e43e8fd87a2",
+    "fields": [
+      "lab",
+      "pending",
+      "msg",
+      "seen",
+      "failSeen",
+      "chans",
+      "follow",
+      "listRef: listRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L35.tsx:LcdCanvas",
+    "version": "08a05323d618",
+    "fields": [
+      "ref: ref.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L35.tsx:OledCanvas",
+    "version": "08a05323d618",
+    "fields": [
+      "ref: ref.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L35.tsx:TftCanvas",
+    "version": "08a05323d618",
+    "fields": [
+      "ref: ref.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L35.tsx:OledDiff",
+    "version": "08a05323d618",
+    "fields": [
+      "ref: ref.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L35.tsx:L35",
+    "version": "08a05323d618",
+    "fields": [
+      "lab",
+      "pending",
+      "msg",
+      "seen",
+      "failSeen",
+      "page",
+      "listRef: listRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L36.tsx:L36",
+    "version": "0fe7113fcb64",
+    "fields": [
+      "lab",
+      "pending",
+      "msg",
+      "seen",
+      "failSeen",
+      "evRef: evRef.current",
+      "drag: drag.current",
+      "knobRef: knobRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L37.tsx:L37",
+    "version": "d541d0619ff8",
+    "fields": [
+      "lab",
+      "pending",
+      "msg",
+      "seen",
+      "failSeen",
+      "memEdit",
+      "traceRef: traceRef.current",
+      "listRef: listRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/labs/g4/L38.tsx:L38",
+    "version": "8c84711cd2ce",
+    "fields": [
+      "lab",
+      "pending",
+      "msg",
+      "seen",
+      "failSeen",
+      "editing",
+      "busRef: busRef.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/MicrocontrollerProjectLab.tsx:CodeEditor",
+    "version": "50e181f565f7",
+    "fields": [
+      "highlight: highlight.current",
+      "lineNumbers: lineNumbers.current"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/MicrocontrollerProjectLab.tsx:ProjectLab",
+    "version": "50e181f565f7",
+    "fields": [
+      "saved: saved.current",
+      "code",
+      "state"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/MicrocontrollerStudio.tsx:MicrocontrollerStudio",
+    "version": "e421d6273347",
+    "fields": [
+      "availability"
+    ]
+  },
+  {
+    "source": "studios/microcontroller/ProjectThreeScene.tsx:ProjectThreeScene",
+    "version": "5cab39f97a88",
+    "fields": [
+      "host: host.current",
+      "enabled",
+      "latest: latest.current",
+      "requestDraw: requestDraw.current",
+      "changeView: changeView.current",
+      "view",
+      "failed"
+    ]
+  },
+  {
+    "source": "studios/mips/MipsStudio.tsx:MipsStudio",
+    "version": "4d6aff1cf153",
+    "fields": [
+      "source",
+      "cpu",
+      "sel",
+      "status"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:OverviewPage",
+    "version": "170ad403381c",
+    "fields": [
+      "tab",
+      "step",
+      "built"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:FormatsPage",
+    "version": "170ad403381c",
+    "fields": [
+      "tab",
+      "rs",
+      "rt",
+      "rd",
+      "shamt",
+      "funct",
+      "imm",
+      "target",
+      "field",
+      "asm",
+      "hexIn",
+      "note",
+      "parsed"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:RegisterPage",
+    "version": "170ad403381c",
+    "fields": [
+      "editing"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:AssemblerPage",
+    "version": "170ad403381c",
+    "fields": [
+      "built"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:DatapathPage",
+    "version": "170ad403381c",
+    "fields": [
+      "stage"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:PipelinePage",
+    "version": "170ad403381c",
+    "fields": [
+      "text",
+      "cursor",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:HazardsPage",
+    "version": "170ad403381c",
+    "fields": [
+      "text",
+      "forward"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:MemoryPage",
+    "version": "170ad403381c",
+    "fields": [
+      "tab",
+      "base",
+      "offset"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:SyscallPage",
+    "version": "170ad403381c",
+    "fields": [
+      "service",
+      "arg",
+      "text"
+    ]
+  },
+  {
+    "source": "studios/mips/pages.tsx:PracticePage",
+    "version": "170ad403381c",
+    "fields": [
+      "topic",
+      "index",
+      "picked",
+      "score",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:HomePage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "tip"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:OverviewPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "id"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:CpuPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "job",
+      "pOn",
+      "eOn",
+      "bias",
+      "intensity"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:GpuPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "canvas: canvas.current",
+      "playing",
+      "resolution",
+      "complexity",
+      "wire",
+      "stats"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:NpuPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "canvas: canvas.current",
+      "kind",
+      "preds",
+      "ms",
+      "stage"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:IspPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "before: before.current",
+      "after: after.current",
+      "stage",
+      "exposure",
+      "denoise",
+      "sat",
+      "contrast",
+      "sharp"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:MemoryPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "engine",
+      "pattern",
+      "step"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:ConnectivityPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "net",
+      "signal",
+      "load",
+      "distance"
+    ]
+  },
+  {
+    "source": "studios/mobile/pages.tsx:IntegrationPage",
+    "version": "5ad2fe4c005c",
+    "fields": [
+      "scene",
+      "step",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/mobile/ThermalLab.tsx:ThermalLab",
+    "version": "c29d389f683e",
+    "fields": [
+      "parameters",
+      "load",
+      "profile",
+      "running",
+      "samples"
+    ]
+  },
+  {
+    "source": "studios/multicore/MulticoreStudio.tsx:MulticoreStudio",
+    "version": "005fd9e667f4",
+    "fields": [
+      "tab",
+      "mesi",
+      "msi",
+      "bus",
+      "invalidations",
+      "directory",
+      "core",
+      "trace",
+      "msiBus",
+      "directoryInvalidations",
+      "lineBytes",
+      "secondAddress"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:Copy",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "copied"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:ConvertLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "value",
+      "base",
+      "draft",
+      "width"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:MathLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "a",
+      "b",
+      "width",
+      "op",
+      "show"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:SignedLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "value",
+      "width"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:FixedLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "intBits",
+      "fracBits",
+      "signed",
+      "text"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:IeeeLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "width",
+      "text",
+      "bits"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:CodesLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "mode",
+      "decimal",
+      "character"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:ParityLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "data",
+      "odd",
+      "flips",
+      "bytes",
+      "crcData",
+      "poly"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberLabs.tsx:HammingLab",
+    "version": "0282dd8de7e5",
+    "fields": [
+      "data",
+      "flips",
+      "binary",
+      "position"
+    ]
+  },
+  {
+    "source": "studios/number-systems/NumberSystemsStudio.tsx:NumberSystemsStudio",
+    "version": "d14a5825424d",
+    "fields": [
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/parallel/ParallelStudio.tsx:ParallelStudio",
+    "version": "2870053e4a2f",
+    "fields": [
+      "tab",
+      "width",
+      "rob",
+      "predicted"
+    ]
+  },
+  {
+    "source": "studios/pipeline/PipelineStudio.tsx:PipelineStudio",
+    "version": "f1af6afb0aa9",
+    "fields": [
+      "programId",
+      "hazard",
+      "speed",
+      "playing",
+      "cursor",
+      "stallsOn",
+      "forwardOn",
+      "highlight",
+      "concepts",
+      "frames",
+      "tick: tick.current"
+    ]
+  },
+  {
+    "source": "studios/pipeline/PipelineStudio.tsx:StageRow",
+    "version": "f1af6afb0aa9",
+    "fields": [
+      "pan",
+      "drag: drag.current"
+    ]
+  },
+  {
+    "source": "studios/registers/RegisterStudio.tsx:RegisterStudio",
+    "version": "2846d968a9aa",
+    "fields": [
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/registers/RegisterStudio.tsx:RegisterLab",
+    "version": "2846d968a9aa",
+    "fields": [
+      "width",
+      "q",
+      "parallel",
+      "serial",
+      "dir",
+      "op",
+      "trace",
+      "playing",
+      "speed"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:RegisterPage",
+    "version": "4747b288057c",
+    "fields": [
+      "draft"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:FormatPage",
+    "version": "4747b288057c",
+    "fields": [
+      "format",
+      "asm",
+      "hex",
+      "field",
+      "tab"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:AssemblerPage",
+    "version": "4747b288057c",
+    "fields": [
+      "pane",
+      "radix"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:AluPage",
+    "version": "4747b288057c",
+    "fields": [
+      "rs1",
+      "rs2",
+      "op"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:MemoryPage",
+    "version": "4747b288057c",
+    "fields": [
+      "base",
+      "offset",
+      "rd",
+      "store",
+      "before",
+      "after"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:ControlBoard",
+    "version": "4747b288057c",
+    "fields": [
+      "op",
+      "a",
+      "b",
+      "pc",
+      "imm",
+      "rs1",
+      "link",
+      "upper"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:ImmBoard",
+    "version": "4747b288057c",
+    "fields": [
+      "format",
+      "hex"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:PipeBoard",
+    "version": "4747b288057c",
+    "fields": [
+      "forward",
+      "tick",
+      "playing",
+      "stage",
+      "text",
+      "rows"
+    ]
+  },
+  {
+    "source": "studios/riscv/pages.tsx:ProgramPage",
+    "version": "4747b288057c",
+    "fields": [
+      "radix"
+    ]
+  },
+  {
+    "source": "studios/riscv/RiscvStudio.tsx:RiscvStudio",
+    "version": "edc7f522ab96",
+    "fields": [
+      "sel",
+      "source",
+      "cpu",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/routing/RoutingStudio.tsx:RoutingStudio",
+    "version": "1604df95a1bb",
+    "fields": [
+      "circuit",
+      "booted: booted.current",
+      "playing",
+      "speed",
+      "showTable",
+      "showExpr",
+      "showGates",
+      "labels",
+      "guide",
+      "app",
+      "note",
+      "tick",
+      "monitor"
+    ]
+  },
+  {
+    "source": "studios/routing/RoutingStudio.tsx:Schematic",
+    "version": "1604df95a1bb",
+    "fields": [
+      "pan",
+      "zoom",
+      "drag: drag.current"
+    ]
+  },
+  {
+    "source": "studios/rtl/bus.tsx:BusPanel",
+    "version": "9d8286f380cb",
+    "fields": [
+      "regs",
+      "source",
+      "second",
+      "dest",
+      "hover",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/rtl/transfer.tsx:TransferPanel",
+    "version": "63f9f98c0537",
+    "fields": [
+      "root: root.current",
+      "line",
+      "regs",
+      "stage",
+      "committed",
+      "story",
+      "pulse",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/rtl/word.tsx:WordPanel",
+    "version": "3acd038caecf",
+    "fields": [
+      "line",
+      "focus",
+      "edge"
+    ]
+  },
+  {
+    "source": "studios/rtl/word.tsx:Copy",
+    "version": "3acd038caecf",
+    "fields": [
+      "copied"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:LibraryView",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:LibraryInspector",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:LibraryDock",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:ProbesView",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:WaveformDock",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:ProbesInspector",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:CircuitInspector",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/AnalysisViews.tsx:TemplateInspector",
+    "version": "86a172dc7120",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CircuitViews.tsx:CircuitView",
+    "version": "1eedafb65f8b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CircuitViews.tsx:CircuitDock",
+    "version": "1eedafb65f8b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CircuitViews.tsx:TemplateView",
+    "version": "1eedafb65f8b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CircuitViews.tsx:TemplateDock",
+    "version": "1eedafb65f8b",
+    "fields": [
+      "auto",
+      "frozen",
+      "format",
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CpuViews.tsx:CpuView",
+    "version": "4344ccd6634b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CpuViews.tsx:CpuDock",
+    "version": "4344ccd6634b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CpuViews.tsx:CpuInspector",
+    "version": "4344ccd6634b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CpuViews.tsx:DatapathView",
+    "version": "4344ccd6634b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CpuViews.tsx:DatapathDock",
+    "version": "4344ccd6634b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/CpuViews.tsx:DatapathInspector",
+    "version": "4344ccd6634b",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/DebugViews.tsx:DebugView",
+    "version": "92c5298cec22",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/DebugViews.tsx:DebugInspector",
+    "version": "92c5298cec22",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/DebugViews.tsx:BreakpointList",
+    "version": "92c5298cec22",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/DebugViews.tsx:DebugDock",
+    "version": "92c5298cec22",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/HistoryViews.tsx:HistoryView",
+    "version": "26c5de7519bd",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/HistoryViews.tsx:TimeMachineDock",
+    "version": "26c5de7519bd",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/HistoryViews.tsx:TimeMachineInspector",
+    "version": "26c5de7519bd",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/MemoryViews.tsx:MemoryView",
+    "version": "6024cddbe71a",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/MemoryViews.tsx:MemoryDock",
+    "version": "6024cddbe71a",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/MemoryViews.tsx:MulticoreView",
+    "version": "6024cddbe71a",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/MemoryViews.tsx:MulticoreDock",
+    "version": "6024cddbe71a",
+    "fields": [
+      "filter",
+      "autoScroll",
+      "frozenCount",
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/MemoryViews.tsx:MemoryInspector",
+    "version": "6024cddbe71a",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/MemoryViews.tsx:MulticoreInspector",
+    "version": "6024cddbe71a",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/sandbox/SandboxStudio.tsx:SandboxStudio",
+    "version": "70bd7c960ff5",
+    "fields": [
+      "state"
+    ]
+  },
+  {
+    "source": "studios/sandbox/SandboxStudio.tsx:Workbench",
+    "version": "70bd7c960ff5",
+    "fields": [
+      "s",
+      "settings"
+    ]
+  },
+  {
+    "source": "studios/sandbox/SandboxStudio.tsx:Palette",
+    "version": "70bd7c960ff5",
+    "fields": [
+      "s",
+      "groups"
+    ]
+  },
+  {
+    "source": "studios/sandbox/SandboxUI.tsx:Surface",
+    "version": "915ca6b5aed3",
+    "fields": [
+      "s",
+      "svgRef: svgRef.current"
+    ]
+  },
+  {
+    "source": "studios/sandbox/SandboxUI.tsx:CanvasToolbar",
+    "version": "915ca6b5aed3",
+    "fields": [
+      "s"
+    ]
+  },
+  {
+    "source": "studios/soc/SocStudio.tsx:SocStudio",
+    "version": "c0e6ad9cddb8",
+    "fields": [
+      "block",
+      "flow",
+      "step",
+      "src",
+      "dst",
+      "extra",
+      "cache",
+      "hit",
+      "client",
+      "addr",
+      "domain",
+      "power",
+      "path"
+    ]
+  },
+  {
+    "source": "studios/timing/TimingStudio.tsx:TimingStudio",
+    "version": "192573ef79da",
+    "fields": [
+      "tab",
+      "frequency",
+      "duty",
+      "phase",
+      "offset",
+      "compare",
+      "change",
+      "setup",
+      "hold",
+      "cq",
+      "logic",
+      "wire",
+      "rise",
+      "fall",
+      "playing",
+      "tick",
+      "speed",
+      "zoom",
+      "edgeView",
+      "answer",
+      "edge"
+    ]
+  },
+  {
+    "source": "studios/truth-tables/KMapBoard.tsx:KMapBoard",
+    "version": "3c4332884f1b",
+    "fields": [
+      "drag",
+      "dragRef: dragRef.current"
+    ]
+  },
+  {
+    "source": "studios/truth-tables/TruthGrid.tsx:TruthGrid",
+    "version": "646984d091d9",
+    "fields": [
+      "focus: focus.current",
+      "fromKeys: fromKeys.current"
+    ]
+  },
+  {
+    "source": "studios/truth-tables/TruthStudio.tsx:TruthStudio",
+    "version": "8f9f9522862a",
+    "fields": [
+      "tab",
+      "fn",
+      "past: past.current",
+      "future: future.current",
+      "format",
+      "exprText",
+      "specText",
+      "inputError",
+      "nameError",
+      "groupMode",
+      "manual",
+      "picked",
+      "rows",
+      "hover",
+      "activeMask",
+      "groupError",
+      "density",
+      "sim",
+      "copied",
+      "grouped",
+      "visited",
+      "level",
+      "problem",
+      "answer",
+      "hintOn",
+      "stepOn",
+      "solutionOn",
+      "verdict",
+      "specFocus: specFocus.current",
+      "exprFocus: exprFocus.current",
+      "model",
+      "steps"
+    ]
+  },
+  {
+    "source": "studios/vlsi/home.tsx:LabCard",
+    "version": "ad18f9b4b566",
+    "fields": [
+      "preview",
+      "timer: timer.current"
+    ]
+  },
+  {
+    "source": "studios/vlsi/home.tsx:VlsiHome",
+    "version": "ad18f9b4b566",
+    "fields": [
+      "progress",
+      "theme",
+      "canPreview",
+      "reducedMotion",
+      "searchRef: searchRef.current",
+      "category",
+      "difficulty",
+      "duration",
+      "statusFilter"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/advancedLabs.tsx:FinfetLab",
+    "version": "17851c60ac75",
+    "fields": [
+      "kind",
+      "height",
+      "width",
+      "fins",
+      "vgs",
+      "vds"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/advancedLabs.tsx:GaafetLab",
+    "version": "17851c60ac75",
+    "fields": [
+      "view",
+      "sheets",
+      "width",
+      "thickness",
+      "spacing",
+      "vgs"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/advancedLabs.tsx:ScalingLab",
+    "version": "17851c60ac75",
+    "fields": [
+      "index"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cellLabs.tsx:StandardCellLab",
+    "version": "1120708a4b61",
+    "fields": [
+      "name",
+      "drive",
+      "load",
+      "view"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cellLabs.tsx:CellLibraryLab",
+    "version": "1120708a4b61",
+    "fields": [
+      "family",
+      "drive",
+      "sort",
+      "plot",
+      "picked",
+      "rows"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cellLabs.tsx:FlowLab",
+    "version": "1120708a4b61",
+    "fields": [
+      "design",
+      "stage",
+      "util"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/clockLabs.tsx:SetupHoldLab",
+    "version": "46c62f70c0ab",
+    "fields": [
+      "change",
+      "tSetup",
+      "tHold",
+      "before"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/clockLabs.tsx:MetastabilityLab",
+    "version": "46c62f70c0ab",
+    "fields": [
+      "change",
+      "tSetup",
+      "tHold",
+      "tau",
+      "disturbance",
+      "playing",
+      "time",
+      "samples"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/clockLabs.tsx:ClockingLab",
+    "version": "46c62f70c0ab",
+    "fields": [
+      "period",
+      "duty",
+      "phase",
+      "rise",
+      "fall",
+      "skew",
+      "jitter",
+      "source",
+      "sinkLatency",
+      "mode"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/clockLabs.tsx:ClockTreeLab",
+    "version": "46c62f70c0ab",
+    "fields": [
+      "buffer",
+      "wire",
+      "asymmetry",
+      "count",
+      "target",
+      "style",
+      "playing",
+      "hop"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cmosLabs.tsx:CmosInverterLab",
+    "version": "6423b6c3fadd",
+    "fields": [
+      "vin",
+      "vdd",
+      "wn",
+      "wp",
+      "playing",
+      "trace"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cmosLabs.tsx:CmosVtcLab",
+    "version": "6423b6c3fadd",
+    "fields": [
+      "vdd",
+      "wn",
+      "wp",
+      "vtn",
+      "vtp",
+      "vin",
+      "curve",
+      "margins"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cmosLabs.tsx:CmosPowerLab",
+    "version": "6423b6c3fadd",
+    "fields": [
+      "vdd",
+      "frequency",
+      "alpha",
+      "load",
+      "temp",
+      "vth",
+      "width",
+      "showDyn",
+      "showShort",
+      "showLeak",
+      "trend"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/cmosLabs.tsx:PropagationDelayLab",
+    "version": "6423b6c3fadd",
+    "fields": [
+      "kind",
+      "slew",
+      "load",
+      "wn",
+      "wp",
+      "vdd",
+      "loadSweep",
+      "edge"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/deviceLabs.tsx:MosfetFundamentalsLab",
+    "version": "ed774d7840b9",
+    "fields": [
+      "polarity",
+      "mode",
+      "vgs",
+      "vds",
+      "vth0",
+      "vsb",
+      "temp",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/deviceLabs.tsx:MosfetIvLab",
+    "version": "ed774d7840b9",
+    "fields": [
+      "polarity",
+      "plot",
+      "start",
+      "stop",
+      "step",
+      "vdsMax",
+      "vth0",
+      "width",
+      "opVgs",
+      "opVds",
+      "gates",
+      "family",
+      "transfer"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/deviceLabs.tsx:MosCapacitorLab",
+    "version": "ed774d7840b9",
+    "fields": [
+      "vg",
+      "body",
+      "tox",
+      "doping",
+      "temp",
+      "curve"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/dftLabs.tsx:ScanChainLab",
+    "version": "c69d379a7c1c",
+    "fields": [
+      "mode",
+      "cells",
+      "inputs",
+      "scanIn",
+      "enabled",
+      "scanOut",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/dftLabs.tsx:ScanTestLab",
+    "version": "c69d379a7c1c",
+    "fields": [
+      "cells",
+      "fault",
+      "seen",
+      "expected"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/dftLabs.tsx:AtpgLab",
+    "version": "c69d379a7c1c",
+    "fields": [
+      "net",
+      "stuck",
+      "vector"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/dftLabs.tsx:StuckLab",
+    "version": "c69d379a7c1c",
+    "fields": [
+      "net",
+      "stuck",
+      "mask"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/dftLabs.tsx:JtagLab",
+    "version": "c69d379a7c1c",
+    "fields": [
+      "machine",
+      "tms",
+      "tdi"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/dftLabs.tsx:BistLab",
+    "version": "c69d379a7c1c",
+    "fields": [
+      "seed",
+      "cycles",
+      "fault",
+      "step"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:FabricationLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "step",
+      "playing",
+      "hide"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:LithographyLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "stage",
+      "kind",
+      "dose",
+      "offset",
+      "feature"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:ImplantLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "dopant",
+      "dose",
+      "energy",
+      "anneal"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:WellLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "well",
+      "depth",
+      "dose",
+      "device",
+      "region"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:OxidationLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "method",
+      "material",
+      "time",
+      "temp"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:EtchLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "mode",
+      "time",
+      "rate",
+      "opening",
+      "selectivity"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/fabLabs.tsx:CmpLab",
+    "version": "f02e80919cd1",
+    "fields": [
+      "time",
+      "rate",
+      "selectivity",
+      "roughness"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/gateLabs.tsx:CmosNandLab",
+    "version": "bc789e091d4c",
+    "fields": [
+      "a",
+      "b",
+      "vdd",
+      "view",
+      "trace"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/gateLabs.tsx:CmosNorLab",
+    "version": "bc789e091d4c",
+    "fields": [
+      "a",
+      "b",
+      "vdd"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/gateLabs.tsx:ComplexCmosLab",
+    "version": "bc789e091d4c",
+    "fields": [
+      "gate",
+      "custom",
+      "bits"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/gdsLab.tsx:RtlGdsLab",
+    "version": "af47a3c9cb20",
+    "fields": [
+      "state",
+      "focus",
+      "layers"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/layoutLabs.tsx:LayoutBasicsLab",
+    "version": "30024b433ac8",
+    "fields": [
+      "hidden",
+      "selected",
+      "ask"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/layoutLabs.tsx:StickDiagramLab",
+    "version": "30024b433ac8",
+    "fields": [
+      "selected",
+      "cell"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/layoutLabs.tsx:InverterLayoutLab",
+    "version": "30024b433ac8",
+    "fields": [
+      "nudge",
+      "history",
+      "rects"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/layoutLabs.tsx:NandNorLayoutLab",
+    "version": "30024b433ac8",
+    "fields": [
+      "gate",
+      "shared"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/layoutLabs.tsx:DrcLab",
+    "version": "30024b433ac8",
+    "fields": [
+      "polyWidth",
+      "metalGap",
+      "enclosure",
+      "ran",
+      "focus"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/lowPowerLabs.tsx:PowerGatingLab",
+    "version": "d0e65e4687b1",
+    "fields": [
+      "sleep",
+      "header",
+      "load",
+      "retention",
+      "slew"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/lowPowerLabs.tsx:ClockGatingLab",
+    "version": "d0e65e4687b1",
+    "fields": [
+      "enabled",
+      "style",
+      "freq",
+      "activity",
+      "registers",
+      "enableAt"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/lowPowerLabs.tsx:MultiVtLab",
+    "version": "d0e65e4687b1",
+    "fields": [
+      "cells",
+      "load",
+      "target"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/lowPowerLabs.tsx:MultiVddLab",
+    "version": "d0e65e4687b1",
+    "fields": [
+      "vddA",
+      "vddB",
+      "aOn",
+      "bOn"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:Sram6tLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "stored",
+      "mode",
+      "strength",
+      "cell",
+      "pulse"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:SramArrayLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "address"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:SramReadLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "stored",
+      "cap",
+      "senseAt"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:SramWriteLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "stored",
+      "value",
+      "strength",
+      "cell",
+      "pulse"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:SenseAmpLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "delta",
+      "offset",
+      "noise"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:DramCellLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "charge",
+      "stored",
+      "leak",
+      "op"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:MemoryDecoderLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "address",
+      "rows"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/memoryLabs.tsx:NonvolatileLab",
+    "version": "30bc8abe0b98",
+    "fields": [
+      "kind",
+      "cell"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/passLabs.tsx:TransmissionGateLab",
+    "version": "3084be618c04",
+    "fields": [
+      "enabled",
+      "direction",
+      "source",
+      "vdd",
+      "playing",
+      "held",
+      "trace"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/passLabs.tsx:PassTransistorLab",
+    "version": "3084be618c04",
+    "fields": [
+      "kind",
+      "vin",
+      "gate",
+      "vth",
+      "vdd"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/passLabs.tsx:TriStateLab",
+    "version": "3084be618c04",
+    "fields": [
+      "dataA",
+      "enA",
+      "dataB",
+      "enB"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:FloorplanLab",
+    "version": "053c45451be8",
+    "fields": [
+      "dieW",
+      "dieH",
+      "coreUtil",
+      "macros",
+      "selected",
+      "drag",
+      "chip"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:PowerPlanLab",
+    "version": "053c45451be8",
+    "fields": [
+      "strapWidth",
+      "pitch",
+      "straps",
+      "voltage",
+      "current",
+      "chip"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:PlacementLab",
+    "version": "053c45451be8",
+    "fields": [
+      "count",
+      "util",
+      "mode",
+      "seed",
+      "lock",
+      "current",
+      "previous"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:PlacementOptLab",
+    "version": "053c45451be8",
+    "fields": [
+      "target",
+      "start",
+      "state",
+      "moves"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:RoutingLab",
+    "version": "053c45451be8",
+    "fields": [
+      "mode",
+      "layers",
+      "viaCost",
+      "penalty",
+      "blocked"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:CongestionLab",
+    "version": "053c45451be8",
+    "fields": [
+      "density",
+      "layers",
+      "tracks",
+      "blocked",
+      "pick"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/physicalLabs.tsx:ClockTreeSynthLab",
+    "version": "053c45451be8",
+    "fields": [
+      "style",
+      "mode",
+      "sinks",
+      "which"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/powerLabs.tsx:IrDropLab",
+    "version": "b40f100f9434",
+    "fields": [
+      "vdd",
+      "width",
+      "pitch",
+      "sheet",
+      "current",
+      "straps"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/powerLabs.tsx:ElectromigrationLab",
+    "version": "b40f100f9434",
+    "fields": [
+      "current",
+      "width",
+      "thickness",
+      "temp",
+      "metal"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/powerLabs.tsx:SignalIntegrityLab",
+    "version": "b40f100f9434",
+    "fields": [
+      "driver",
+      "impedance",
+      "load",
+      "coupling",
+      "edge",
+      "termination"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/powerLabs.tsx:PvtLab",
+    "version": "b40f100f9434",
+    "fields": [
+      "corner",
+      "vdd",
+      "temp",
+      "load",
+      "rows"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/powerLabs.tsx:VariationLab",
+    "version": "b40f100f9434",
+    "fields": [
+      "samples",
+      "sigma",
+      "seed",
+      "target"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/seqLabs.tsx:SrLatchLab",
+    "version": "8f130d4c5be3",
+    "fields": [
+      "s",
+      "r",
+      "q"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/seqLabs.tsx:DLatchLab",
+    "version": "8f130d4c5be3",
+    "fields": [
+      "d",
+      "en",
+      "q"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/seqLabs.tsx:DFlipFlopLab",
+    "version": "8f130d4c5be3",
+    "fields": [
+      "view",
+      "d",
+      "edge",
+      "reset",
+      "clock",
+      "q",
+      "master",
+      "slave",
+      "trace",
+      "note"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/stackLabs.tsx:MetallizationLab",
+    "version": "f089c124d94f",
+    "fields": [
+      "layers",
+      "width",
+      "vias",
+      "net",
+      "shown"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/stackLabs.tsx:CrossSectionLab",
+    "version": "f089c124d94f",
+    "fields": [
+      "level",
+      "selected"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/stackLabs.tsx:WaferLab",
+    "version": "f089c124d94f",
+    "fields": [
+      "diameter",
+      "dieW",
+      "dieH",
+      "edge",
+      "density",
+      "seed",
+      "picked",
+      "map"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/stackLabs.tsx:YieldLab",
+    "version": "f089c124d94f",
+    "fields": [
+      "area",
+      "density",
+      "diameter",
+      "model",
+      "map"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/staLabs.tsx:CombinationalTimingLab",
+    "version": "d41e3c69f3c3",
+    "fields": [
+      "scale",
+      "net",
+      "fanout",
+      "vector",
+      "gate",
+      "playing",
+      "cursor"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/staLabs.tsx:StaticTimingLab",
+    "version": "d41e3c69f3c3",
+    "fields": [
+      "period",
+      "uncertainty",
+      "cell",
+      "net",
+      "analysis",
+      "view"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/staLabs.tsx:TimingPathLab",
+    "version": "d41e3c69f3c3",
+    "fields": [
+      "kind",
+      "cell",
+      "net",
+      "period",
+      "selected",
+      "playing",
+      "step"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/synthLabs.tsx:RtlLab",
+    "version": "09b5f0c96f9f",
+    "fields": [
+      "exampleId",
+      "line",
+      "block",
+      "custom"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/synthLabs.tsx:SynthesisLab",
+    "version": "09b5f0c96f9f",
+    "fields": [
+      "demo",
+      "design"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/synthLabs.tsx:MappingLab",
+    "version": "09b5f0c96f9f",
+    "fields": [
+      "target",
+      "gates"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/synthLabs.tsx:BooleanOptLab",
+    "version": "09b5f0c96f9f",
+    "fields": [
+      "expression"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/synthLabs.tsx:FsmSynthLab",
+    "version": "09b5f0c96f9f",
+    "fields": [
+      "encoding"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:AsicFlowLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "design",
+      "stage",
+      "flow"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:FpgaAsicLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "kind",
+      "width"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:SocFloorLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "blocks",
+      "id"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:NocLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "sr",
+      "sc",
+      "dr",
+      "dc",
+      "size",
+      "injection",
+      "mode",
+      "second"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:ChipletLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "traffic",
+      "bandwidth",
+      "latency",
+      "span"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:PackageLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "mode",
+      "dies",
+      "tsv",
+      "power"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:ThermalLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "powers",
+      "index",
+      "ambient",
+      "cooling",
+      "coolingName",
+      "resistance",
+      "activity"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/systemLabs.tsx:PpaLab",
+    "version": "9d2b48cc2956",
+    "fields": [
+      "input",
+      "preset",
+      "saved"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/verifyLabs.tsx:LvsLab",
+    "version": "87077c801f77",
+    "fields": [
+      "cell",
+      "fault",
+      "pick",
+      "extracted",
+      "result"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/verifyLabs.tsx:ExtractionLab",
+    "version": "87077c801f77",
+    "fields": [
+      "rPerSquare",
+      "cPerArea",
+      "coupling",
+      "length",
+      "width",
+      "net",
+      "rects",
+      "nets",
+      "baseline"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/wireLabs.tsx:LogicalEffortLab",
+    "version": "650c77325221",
+    "fields": [
+      "load",
+      "stages",
+      "gate",
+      "cin",
+      "branch",
+      "curve"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/wireLabs.tsx:FanoutLab",
+    "version": "650c77325221",
+    "fields": [
+      "loads",
+      "cap",
+      "driver",
+      "slew",
+      "vdd",
+      "style"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/wireLabs.tsx:InterconnectLab",
+    "version": "650c77325221",
+    "fields": [
+      "length",
+      "width",
+      "layer",
+      "rPer",
+      "cPer",
+      "load",
+      "driverR",
+      "segments"
+    ]
+  },
+  {
+    "source": "studios/vlsi/labs/wireLabs.tsx:CrosstalkLab",
+    "version": "650c77325221",
+    "fields": [
+      "spacing",
+      "length",
+      "edge",
+      "victim",
+      "rising",
+      "same",
+      "mitigation"
+    ]
+  },
+  {
+    "source": "studios/vlsi/three/VlsiThree.tsx:VlsiThree",
+    "version": "878a45cc5558",
+    "fields": [
+      "diagram",
+      "unavailable",
+      "model"
+    ]
+  },
+  {
+    "source": "studios/vlsi/three/VlsiThreeViewer.tsx:VlsiThreeViewer",
+    "version": "ccd4b0e27fa4",
+    "fields": [
+      "host: host.current",
+      "enabled",
+      "motion",
+      "cameraView",
+      "live: live.current",
+      "update: update.current",
+      "cameraChange: cameraChange.current"
+    ]
+  },
+  {
+    "source": "studios/vm/vmPanels.tsx:TranslatePanel",
+    "version": "b744fa2e429c",
+    "fields": [
+      "text",
+      "offsetBits",
+      "access",
+      "tlb",
+      "result",
+      "stage",
+      "running",
+      "speed",
+      "log",
+      "pickedFrame",
+      "pathRef: pathRef.current",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/vm/vmPanels.tsx:PageTablePanel",
+    "version": "b744fa2e429c",
+    "fields": [
+      "address",
+      "pages",
+      "frames",
+      "pageBytes",
+      "seed",
+      "table",
+      "selected",
+      "stage",
+      "running",
+      "faultNote"
+    ]
+  },
+  {
+    "source": "studios/vm/vmPanels.tsx:TlbPanel",
+    "version": "b744fa2e429c",
+    "fields": [
+      "text",
+      "entries",
+      "assoc",
+      "policy",
+      "asid",
+      "tlbCycles",
+      "walkCycles",
+      "seed",
+      "tlb",
+      "result",
+      "trace",
+      "flowRef: flowRef.current",
+      "motionEnabled"
+    ]
+  },
+  {
+    "source": "studios/vm/vmPanels.tsx:TwoLevelPanel",
+    "version": "b744fa2e429c",
+    "fields": [
+      "dirBits",
+      "tableBits",
+      "offsetBits",
+      "text",
+      "machine",
+      "stage",
+      "running",
+      "fraction",
+      "seed"
+    ]
+  },
+  {
+    "source": "studios/vm/vmPanels.tsx:ProtectPanel",
+    "version": "b744fa2e429c",
+    "fields": [
+      "text",
+      "access",
+      "privilege",
+      "log"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:OverviewPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "step"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:RegisterPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "sel",
+      "wide",
+      "op",
+      "left",
+      "right"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:EncodingPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "dest",
+      "base",
+      "index",
+      "scale",
+      "disp",
+      "field"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:AddressingPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "base",
+      "index",
+      "scale",
+      "disp",
+      "form"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:AssemblerPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "built",
+      "hexIn"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:DatapathPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "stage",
+      "playing"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:MicroPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "kind",
+      "cursor"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:OooPage",
+    "version": "92f919cf4026",
+    "fields": [
+      "phase"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:CachePage",
+    "version": "92f919cf4026",
+    "fields": [
+      "addr",
+      "warm",
+      "offset"
+    ]
+  },
+  {
+    "source": "studios/x86/pages.tsx:PracticePage",
+    "version": "92f919cf4026",
+    "fields": [
+      "topic",
+      "index",
+      "picked",
+      "score",
+      "seen"
+    ]
+  },
+  {
+    "source": "studios/x86/X86Studio.tsx:X86Studio",
+    "version": "7944a4fdfa6e",
+    "fields": [
+      "cpu",
+      "source",
+      "status"
+    ]
+  }
+]

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { PalettePanel, SandboxPanel, SettingsPanel, TimingPanel, TruthPanel } from "../../components/circuit/CircuitPanels";
@@ -35,6 +36,8 @@ export function LogicGatesBoard({
   notes: string;
   onNotes: (value: string) => void;
 }) {
+  useSimulatorCapture("studios/logic-gates/LogicGatesBoard.tsx:LogicGatesBoard", () => ({ circuit, hint, seen, table }), "3c698634f8a4");
+
   const circuit = useCircuit();
   const [menu, setMenu] = useState(false);
   const [hint, setHint] = useState("");

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SUM_STEPS, blankSum, runSum, stepSum, type SumSim } from "../../engines/isaarch/compare";
@@ -31,6 +32,8 @@ function Chip({ name, tone }: { name: string; tone: string }) {
 }
 
 export function HomePage() {
+  useSimulatorCapture("studios/compare/pages.tsx:HomePage", () => ({ intro }), "77f283cf3db0");
+
   const [intro, setIntro] = useState(0);
   const lines = [
     "RISC-V is an open, modular base with optional extensions.",
@@ -104,6 +107,8 @@ const DIMENSIONS = [
 ] as const;
 
 export function OverviewPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:OverviewPage", () => ({ dim, line }), "77f283cf3db0");
+
   const [dim, setDim] = useState<(typeof DIMENSIONS)[number]["id"]>("philosophy");
   const [line, setLine] = useState(0);
   const selected = DIMENSIONS.find((item) => item.id === dim) ?? DIMENSIONS[0];
@@ -185,6 +190,8 @@ const X86_FAMILIES = [
 ];
 
 export function RegisterPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:RegisterPage", () => ({ tab, width, rv, arm, armW, family, slice, quiz }), "77f283cf3db0");
+
   const { earn } = usePrefs();
   const [tab, setTab] = useState<"view" | "compare" | "quiz">("view");
   const [width, setWidth] = useState<"default" | "32" | "64">("default");
@@ -396,6 +403,8 @@ const ENCODINGS: Record<string, { rv: Field[]; arm: Field[]; x86: Field[]; rvAsm
 };
 
 export function EncodingPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:EncodingPage", () => ({ which, kind, field }), "77f283cf3db0");
+
   const [which, setWhich] = useState("addrr");
   const [kind, setKind] = useState<Kind | "">("");
   const [field, setField] = useState("");
@@ -465,6 +474,8 @@ const STREAMS = {
 } as const;
 
 export function LengthPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:LengthPage", () => ({ windowBytes, mode }), "77f283cf3db0");
+
   const [windowBytes, setWindow] = useState<8 | 16 | 32>(16);
   const [mode, setMode] = useState<keyof typeof STREAMS>("simple");
   const stream = STREAMS[mode];
@@ -518,6 +529,8 @@ export function LengthPage() {
 }
 
 export function MemoryPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:MemoryPage", () => ({ op, base, offset, value, phase }), "77f283cf3db0");
+
   const [op, setOp] = useState<"load" | "store" | "rmw">("load");
   const [base, setBase] = useState(0x1000);
   const [offset, setOffset] = useState(0);
@@ -571,6 +584,8 @@ const SCENARIOS = {
 } as const;
 
 export function AddressingPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:AddressingPage", () => ({ rvBase, rvImm, armBase, armImm, base, index, scale, disp }), "77f283cf3db0");
+
   const [rvBase, setRvBase] = useState(0x1000);
   const [rvImm, setRvImm] = useState(32);
   const [armBase, setArmBase] = useState(0x2000);
@@ -633,6 +648,8 @@ function lineFor(step: number): number {
 }
 
 export function SameTaskPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:SameTaskPage", () => ({ text, values, state, playing }), "77f283cf3db0");
+
   const [text, setText] = useState("1, 2, 3, 4, 5");
   const values = useMemo(() => text.split(",").map((item) => Number(item.trim())).filter((item) => Number.isFinite(item)).slice(0, 8), [text]);
   const [state, setState] = useState<SumSim>(() => blankSum([1, 2, 3, 4, 5]));
@@ -690,6 +707,8 @@ const FACTORS = [
 ] as const;
 
 export function DecodePage() {
+  useSimulatorCapture("studios/compare/pages.tsx:DecodePage", () => ({ step, playing, speed, factor }), "77f283cf3db0");
+
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
@@ -741,6 +760,8 @@ const DOMAINS = [
 ] as const;
 
 export function EcosystemPage() {
+  useSimulatorCapture("studios/compare/pages.tsx:EcosystemPage", () => ({ domain }), "77f283cf3db0");
+
   const [domain, setDomain] = useState<(typeof DOMAINS)[number]["id"]>("mobile");
   const selected = DOMAINS.find((item) => item.id === domain) ?? DOMAINS[0];
   return (

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState, type ReactNode } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -107,6 +108,8 @@ type NTab = "overview" | "threshold" | "irq" | "try";
 const NO_SEEN = { switching: false, duty: false, chatter: false, fixed: false, variant: false, fault: false };
 
 export default function L28({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L28.tsx:L28", () => ({ lab, tab, seen }), "257661691be1");
+
   const lab = useLab<P28>({
     slug: meta.slug, code: DEMO, params: P28_DEFAULT,
     mcu: () => ({ family: "avr" }),

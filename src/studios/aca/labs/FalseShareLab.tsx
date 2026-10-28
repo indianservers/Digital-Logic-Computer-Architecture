@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { SHARE_BASE, SHARE_PRESETS, lineId, repeatOps, runFalseShare, shareReduction, type ShareVar } from "../../../engines/aca/falseSharing";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -7,6 +8,8 @@ import { useGuideFocus } from "../guide/focus";
 const COLORS = ["#dbeafe", "#dcfce7", "#fef3c7", "#f3e8ff"];
 
 export function FalseShareLab() {
+  useSimulatorCapture("studios/aca/labs/FalseShareLab.tsx:FalseShareLab", () => ({ presetId, variables, extra, lineBytes, padding, rounds, mode, showAddr, showInv, showState, auto, ops, result, compared, play, guideFocus, setGuideFocus }), "dfd71898e649");
+
   const initial = SHARE_PRESETS[1];
   const [presetId, setPresetId] = useState(initial?.id ?? "same");
   const [variables, setVariables] = useState<ShareVar[]>(initial?.variables ?? []);

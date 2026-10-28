@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -15,6 +16,8 @@ const mA = (a: number) => `${(a * 1000).toFixed(a < 0.01 ? 2 : 1)} mA`;
 type Level = "ok" | "warn" | "bad" | "idle";
 
 export default function L13({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L13.tsx:L13", () => ({ lab, seen }), "daeec1f7d8d8");
+
   const lab = useLab<P13>({ slug: meta.slug, code: PATTERN, params: P13_DEFAULT, mcu: () => ({ ips: 120_000 }), world: world13 });
   const { mcu, params } = lab;
   const s = load13(mcu);

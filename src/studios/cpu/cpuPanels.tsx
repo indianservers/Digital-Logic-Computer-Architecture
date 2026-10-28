@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -51,6 +52,8 @@ function Explain({ explain, what, why, notice }: { explain: boolean; what: strin
 }
 
 export function OverviewPanel({ explain, cpu, onReset }: { explain: boolean; cpu: BlockCpu; onReset: () => void }) {
+  useSimulatorCapture("studios/cpu/cpuPanels.tsx:OverviewPanel", () => ({ selected, pulse, motionEnabled }), "4aa3297bf3ce");
+
   const [selected, setSelected] = useState("PC");
   const [pulse, setPulse] = useState(0);
   const copy = BLOCK_COPY[selected] ?? BLOCK_COPY.PC;
@@ -99,6 +102,8 @@ export function OverviewPanel({ explain, cpu, onReset }: { explain: boolean; cpu
 }
 
 export function RegisterPanel({ explain, cpu, onCpu }: { explain: boolean; cpu: BlockCpu; onCpu: (cpu: BlockCpu) => void }) {
+  useSimulatorCapture("studios/cpu/cpuPanels.tsx:RegisterPanel", () => ({ index, radix, draft, error, portA, portB }), "4aa3297bf3ce");
+
   const [index, setIndex] = useState(0);
   const [radix, setRadix] = useState<"hex" | "dec" | "bin">("hex");
   const [draft, setDraft] = useState("0x00000000");
@@ -190,6 +195,8 @@ export function RegisterPanel({ explain, cpu, onCpu }: { explain: boolean; cpu: 
 }
 
 export function DatapathPanel({ explain, cpu, onCpu }: { explain: boolean; cpu: BlockCpu; onCpu: (cpu: BlockCpu) => void }) {
+  useSimulatorCapture("studios/cpu/cpuPanels.tsx:DatapathPanel", () => ({ srcA, srcB, op, dest, stage, wrote, preview }), "4aa3297bf3ce");
+
   const [srcA, setSrcA] = useState(1);
   const [srcB, setSrcB] = useState(2);
   const [op, setOp] = useState<AluOp>("add");
@@ -245,6 +252,8 @@ export function DatapathPanel({ explain, cpu, onCpu }: { explain: boolean; cpu: 
 const BUS_UNITS = ["PC", "IR", "MAR", "MDR", "Registers", "ALU"] as const;
 
 export function BusPanel({ explain, cpu, onCpu }: { explain: boolean; cpu: BlockCpu; onCpu: (cpu: BlockCpu) => void }) {
+  useSimulatorCapture("studios/cpu/cpuPanels.tsx:BusPanel", () => ({ source, dest, reg, second, log, status, shown }), "4aa3297bf3ce");
+
   const [source, setSource] = useState("Registers");
   const [dest, setDest] = useState("MDR");
   const [reg, setReg] = useState(3);
@@ -305,6 +314,8 @@ export function BusPanel({ explain, cpu, onCpu }: { explain: boolean; cpu: Block
 }
 
 export function ExtendPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/cpu/cpuPanels.tsx:ExtendPanel", () => ({ text, inputWidth, outputWidth, amount, op, computed }), "4aa3297bf3ce");
+
   const [text, setText] = useState("1010");
   const [inputWidth, setInputWidth] = useState(4);
   const [outputWidth, setOutputWidth] = useState(8);
@@ -352,6 +363,8 @@ export function ExtendPanel({ explain }: { explain: boolean }) {
 }
 
 export function ClockPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/cpu/cpuPanels.tsx:ClockPanel", () => ({ machine, data, rows, running }), "4aa3297bf3ce");
+
   const [machine, setMachine] = useState<ClockMachine>(freshClock);
   const [data, setData] = useState(5);
   const [rows, setRows] = useState<string[]>([]);

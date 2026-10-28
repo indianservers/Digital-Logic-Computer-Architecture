@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { GENERATED_DEVICE_ART } from './generated-assets';
 import { useEffect, useState, lazy, Suspense, type CSSProperties } from "react";
 import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
@@ -43,6 +44,8 @@ function CategoryNavigator() {
 }
 
 function CategorySection({ category }: { category: Category }) {
+  useSimulatorCapture("studios/how-devices-work/HowDevicesWorkStudio.tsx:CategorySection", () => ({ expanded }), "78694a8d69fc");
+
   const [expanded, setExpanded] = useState(false);
   const devices = DEVICES.filter(device => device.categories.includes(category.id));
   // Include imaging and monitoring equipment in the first curated medical selection.

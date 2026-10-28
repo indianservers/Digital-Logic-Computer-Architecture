@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import {useMemo} from 'react';
 import {initialValues,type Lab} from './labs/data';
 import {simulate} from './labs/engine';
@@ -12,6 +13,8 @@ import {simulateConsumer} from './advanced/consumer-engine';
 import {simulateHousehold} from './advanced/household-engine';
 
 export default function DeviceExamples({lab}:{lab:Lab|AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/DeviceExamples.tsx:DeviceExamples", () => ({ examples }), "0f8d45c4c426");
+
  const examples=useMemo(()=>{
   const modes=lab.modes.slice(0,5);
   if(lab.number<=54){const l=lab as Lab,p=initialValues(l);return modes.map(mode=>({mode,p,result:simulate(l,p,mode,false,5,'')}));}

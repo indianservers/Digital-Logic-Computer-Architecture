@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { decayCharge, senseDram } from "../../../engines/memory/fundamentals";
 import { decodeMemory, dramCycle, nonvolatileView, senseAmplifier, sram6t, sramReadWave, sramWrite } from "../memoryModel";
@@ -5,6 +6,8 @@ import { VlsiGrid } from "../shell";
 import { Badge, Choice, Measure, Observe, Slider, Wave } from "../widgets";
 
 export function Sram6tLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:Sram6tLab", () => ({ stored, mode, strength, cell, pulse }), "30bc8abe0b98");
+
   const [stored, setStored] = useState<0 | 1>(1);
   const [mode, setMode] = useState<"hold" | "read" | "write0" | "write1">("hold");
   const [strength, setStrength] = useState(1.2);
@@ -56,6 +59,8 @@ export function Sram6tLab() {
 }
 
 export function SramArrayLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:SramArrayLab", () => ({ address }), "30bc8abe0b98");
+
   const [address, setAddress] = useState(19);
   const decoded = decodeMemory(address, 8, 8);
   return (
@@ -84,6 +89,8 @@ export function SramArrayLab() {
 }
 
 export function SramReadLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:SramReadLab", () => ({ stored, cap, senseAt }), "30bc8abe0b98");
+
   const [stored, setStored] = useState<0 | 1>(1);
   const [cap, setCap] = useState(20);
   const [senseAt, setSense] = useState(8);
@@ -117,6 +124,8 @@ export function SramReadLab() {
 }
 
 export function SramWriteLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:SramWriteLab", () => ({ stored, value, strength, cell, pulse }), "30bc8abe0b98");
+
   const [stored, setStored] = useState<0 | 1>(0);
   const [value, setValue] = useState<0 | 1>(1);
   const [strength, setStrength] = useState(1.4);
@@ -152,6 +161,8 @@ export function SramWriteLab() {
 }
 
 export function SenseAmpLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:SenseAmpLab", () => ({ delta, offset, noise }), "30bc8abe0b98");
+
   const [delta, setDelta] = useState(40);
   const [offset, setOffset] = useState(5);
   const [noise, setNoise] = useState(8);
@@ -188,6 +199,8 @@ export function SenseAmpLab() {
 }
 
 export function DramCellLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:DramCellLab", () => ({ charge, stored, leak, op }), "30bc8abe0b98");
+
   const [charge, setCharge] = useState(100);
   const [stored, setStored] = useState<0 | 1>(1);
   const [leak, setLeak] = useState(8);
@@ -225,6 +238,8 @@ export function DramCellLab() {
 }
 
 export function MemoryDecoderLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:MemoryDecoderLab", () => ({ address, rows }), "30bc8abe0b98");
+
   const [address, setAddress] = useState(21);
   const [rows, setRows] = useState(8);
   const cols = 8;
@@ -260,6 +275,8 @@ export function MemoryDecoderLab() {
 }
 
 export function NonvolatileLab() {
+  useSimulatorCapture("studios/vlsi/labs/memoryLabs.tsx:NonvolatileLab", () => ({ kind, cell }), "30bc8abe0b98");
+
   const [kind, setKind] = useState<"rom" | "eeprom" | "nor" | "nand">("rom");
   const [cell, setCell] = useState<"slc" | "mlc" | "tlc" | "qlc">("slc");
   const view = nonvolatileView(kind, cell);

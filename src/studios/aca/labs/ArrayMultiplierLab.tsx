@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useLabMotion } from "../../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { Link } from "react-router-dom";
@@ -27,6 +28,8 @@ type TabId = (typeof TABS)[number]["id"];
 type ViewMode = "schematic" | "partial" | "signals" | "compact";
 
 export function ArrayMultiplierLab() {
+  useSimulatorCapture("studios/aca/labs/ArrayMultiplierLab.tsx:ArrayMultiplierLab", () => ({ guideFocus, setGuideFocus, aWidth, bWidth, radix, drafts, viewMode, tab, selectedId, hoverId, zoom, pan, boardRef: boardRef.current, drag: drag.current, net, play, highlight, motionEnabled }), "04962310a85a");
+
   const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const [aWidth, setAWidth] = useState<(typeof MULTIPLIER_WIDTHS)[number]>(4);
   const [bWidth, setBWidth] = useState<(typeof MULTIPLIER_WIDTHS)[number]>(4);

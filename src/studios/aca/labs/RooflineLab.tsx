@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { MACHINE_DEFAULTS, ROOF_PRESETS, analyzeWorkload, applyOptimizations, ridgePoint, type Machine, type Workload } from "../../../engines/aca/roofline";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -26,6 +27,8 @@ function yOf(perf: number) {
 }
 
 export function RooflineLab() {
+  useSimulatorCapture("studios/aca/labs/RooflineLab.tsx:RooflineLab", () => ({ machine, preset, flops, bytes, observedText, blocking, locality, play, base, tuned, result, guideFocus, setGuideFocus }), "6c8139b76bb2");
+
   const [machine, setMachine] = useState<Machine>(MACHINE_DEFAULTS);
   const [preset, setPreset] = useState("gemm");
   const [flops, setFlops] = useState(2.15e9);

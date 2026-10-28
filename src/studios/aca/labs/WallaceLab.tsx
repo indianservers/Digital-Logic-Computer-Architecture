@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useLabMotion } from "../../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { Link } from "react-router-dom";
@@ -28,6 +29,8 @@ type Detail = "all" | "current" | "compact";
 const INITIAL_VALUES = [25, 13, 7, 9];
 
 export function WallaceLab() {
+  useSimulatorCapture("studios/aca/labs/WallaceLab.tsx:WallaceLab", () => ({ guideFocus, setGuideFocus, width, count, radix, drafts, finalAdder, detail, showValues, tab, selectedId, hoverId, hoverStage, zoom, pan, boardRef: boardRef.current, drag: drag.current, tree, play, motionEnabled }), "34f008838b0f");
+
   const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const [width, setWidth] = useState<(typeof WALLACE_WIDTHS)[number]>(8);
   const [count, setCount] = useState(4);

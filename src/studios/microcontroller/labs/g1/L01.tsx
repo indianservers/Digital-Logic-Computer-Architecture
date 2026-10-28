@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useState } from "react";
 import type { Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -110,6 +111,8 @@ const AREAS: Array<{ id: string; label: string; icon: IconName; color: string; p
 ];
 
 export default function L01({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L01.tsx:L01", () => ({ lab, b1, view3d, snap, hwTab, area }), "a32cb115d043");
+
   const lab = useLab<P>({
     slug: meta.slug, code: HAL, params: { clockMHz: 84, linuxLoad: 25 },
     mcu: (p) => ({ clock: p.clockMHz * 1e6, cube: { gpio: [{ pin: "PA5", mode: "out" }, { pin: "PC13", mode: "in", pull: "up" }] } }),

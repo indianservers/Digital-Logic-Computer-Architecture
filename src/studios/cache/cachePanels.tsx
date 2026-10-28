@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
@@ -43,6 +44,8 @@ function baseConfig(patch: Partial<CacheConfig> = {}): CacheConfig {
 }
 
 export function SimulatorTab({ explain, guide, takeaways }: { explain: boolean; guide: string[]; takeaways: string[] }) {
+  useSimulatorCapture("studios/cache/cachePanels.tsx:SimulatorTab", () => ({ config, assoc, text, cursor, playing, speed, stage, scope: scope.current, parsed, played, motionEnabled }), "a17de2abeb52");
+
   const [config, setConfig] = useState<CacheConfig>(() => baseConfig());
   const [assoc, setAssoc] = useState("2");
   const [text, setText] = useState(formatTrace(SIM_EXAMPLE));
@@ -327,6 +330,8 @@ function Guide({ guide, takeaways, stats, memoryReads = 0 }: { guide: string[]; 
 }
 
 export function LocalityTab({ explain, guide, takeaways }: { explain: boolean; guide: string[]; takeaways: string[] }) {
+  useSimulatorCapture("studios/cache/cachePanels.tsx:LocalityTab", () => ({ pattern, count, working, block, cache, stride, cursor, playing, speed, blank, entries, config, traced }), "a17de2abeb52");
+
   const [pattern, setPattern] = useState("sequential");
   const [count, setCount] = useState(128);
   const [working, setWorking] = useState(32);
@@ -508,6 +513,8 @@ function buildLocality(pattern: string, count: number, working: number, stride: 
 }
 
 export function PoliciesTab({ explain, guide, takeaways }: { explain: boolean; guide: string[]; takeaways: string[] }) {
+  useSimulatorCapture("studios/cache/cachePanels.tsx:PoliciesTab", () => ({ config, pattern, text, cursor, card, other, entries, left, right }), "a17de2abeb52");
+
   const [config, setConfig] = useState<CacheConfig>(() => baseConfig({ cacheBytes: 16384, blockBytes: 64, associativity: 2 }));
   const [pattern, setPattern] = useState("custom");
   const [text, setText] = useState("0x00000000 R\n0x00000040 R\n0x00000080 W\n0x00000000 R\n0x000000C0 R\n0x00000100 W");
@@ -666,6 +673,8 @@ const LEVELS = [
 ];
 
 export function HierarchyTab({ explain, guide, takeaways }: { explain: boolean; guide: string[]; takeaways: string[] }) {
+  useSimulatorCapture("studios/cache/cachePanels.tsx:HierarchyTab", () => ({ depth, l1, l2, l3, addressText, op, picked, ran, step, batch }), "a17de2abeb52");
+
   const [depth, setDepth] = useState(3);
   const [l1, setL1] = useState(95);
   const [l2, setL2] = useState(90);

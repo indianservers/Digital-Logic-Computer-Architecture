@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented, Toggle } from "../../design-system/ui";
@@ -20,6 +21,8 @@ const TABS = [
 ];
 
 export function HazardStudio() {
+  useSimulatorCapture("studios/hazards/HazardStudio.tsx:HazardStudio", () => ({ tab, preset, policy, forwarding, unified, pipe }), "e41fb31f1d95");
+
   const [tab, setTab] = useStudioTab(TABS, "detect");
   const [preset, setPreset] = useState("RAW");
   const [policy, setPolicy] = useState<Policy>("not-taken");

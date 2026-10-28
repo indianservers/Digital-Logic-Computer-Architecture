@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -32,6 +33,8 @@ const FAMILIES = [
 ];
 
 export function BasicsPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/basics.tsx:BasicsPanel", () => ({ root: root.current, op, regs, mem, layer, family, tip, pulse, motionEnabled }), "86dc7588b9b5");
+
   const root = useRef<HTMLDivElement>(null);
   const start = freshMachine();
   const [op, setOp] = useState<TeachOp>("ADD");

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useLabMotion } from "../../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -31,6 +32,8 @@ const RULES: Array<{ q0: BoothBit; qMinus1: BoothBit; action: BoothAction }> = [
 ];
 
 export function BoothLab() {
+  useSimulatorCapture("studios/aca/labs/BoothLab.tsx:BoothLab", () => ({ guideFocus, setGuideFocus, width, radix, drafts, showValues, tab, hoverId, hoverCycle, note, boardRef: boardRef.current, trace, play, motionEnabled }), "87e45e0fc07b");
+
   const { id: guideFocus, setId: setGuideFocus } = useGuideFocus();
   const [width, setWidth] = useState<(typeof BOOTH_WIDTHS)[number]>(4);
   const [radix, setRadix] = useState<BoothRadix>("signed");

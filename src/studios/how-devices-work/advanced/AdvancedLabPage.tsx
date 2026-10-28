@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import GeneratedPartView from '../GeneratedPartView';
 import { GENERATED_DEVICE_ART, GENERATED_PART_ART } from '../generated-assets';
 import DeviceCourse from '../DeviceCourse';
@@ -89,6 +90,8 @@ function ChemistryFluidics({values,result}:{values:Record<string,number>;result:
 }
 
 function Quiz({lab}:{lab:AdvancedLab}) {
+  useSimulatorCapture("studios/how-devices-work/advanced/AdvancedLabPage.tsx:Quiz", () => ({ answers, questionIndex }), "46c1bf04f169");
+
   const [answers,setAnswers]=useState<Record<number,number>>({}),[questionIndex,setQuestionIndex]=useState(0);
   const questions=[{q:lab.quiz[0],options:lab.quiz.slice(1),correct:0,why:lab.principle},{q:`What follows “${lab.steps[1]?.[0]}”?`,options:[lab.steps[2]?.[0]??"Process input",lab.steps.at(-1)![0],lab.steps[0]![0]],correct:0,why:lab.steps[2]?.[1]??lab.principle},{q:"What should happen when a required input fails?",options:["Flag the affected output as invalid","Keep a valid result without warning","Ignore all validity checks"],correct:0,why:lab.safety[0]!}];
   const shownQuestions=questions;
@@ -96,6 +99,8 @@ function Quiz({lab}:{lab:AdvancedLab}) {
 }
 
 function AdvancedFirstBatchPage({lab}:{lab:AdvancedLab}) {
+  useSimulatorCapture("studios/how-devices-work/advanced/AdvancedLabPage.tsx:AdvancedFirstBatchPage", () => ({ values, mode, running, time, fault, step, selected, view, walkthrough, mapZoom, waypoint, waypointError, result }), "46c1bf04f169");
+
   const [values,setValues]=useState(()=>initialAdvancedValues(lab)),[mode,setMode]=useState(itemAt(lab.modes,0)!),[running,setRunning]=useState(false),[time,setTime]=useState(0),[fault,setFault]=useState(false),[step,setStep]=useState(0),[selected,setSelected]=useState(0),[view,setView]=useState("Internal"),[query,setQuery]=useState(""),[menu,setMenu]=useState(false),[walkthrough,setWalkthrough]=useState(false),[mapZoom,setMapZoom]=useState(1),[waypoint,setWaypoint]=useState("37.7213, -122.2216"),[waypointError,setWaypointError]=useState("");
   useEffect(()=>{if(!running)return;const timer=setInterval(()=>setTime(t=>lab.family==="centrifuge"?Math.min(12,t+.1):t+.1),100);return()=>clearInterval(timer);},[running,lab.family]);
   const result=useMemo(()=>simulateAdvanced(lab,values,mode,time,fault),[lab,values,mode,time,fault]);

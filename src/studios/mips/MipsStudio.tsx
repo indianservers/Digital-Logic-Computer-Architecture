@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { archStudio } from "../../data/architecture";
@@ -24,6 +25,8 @@ addi $t0, $t0, 1
 bne $t0, $t1, loop`;
 
 export function MipsStudio() {
+  useSimulatorCapture("studios/mips/MipsStudio.tsx:MipsStudio", () => ({ source, cpu, sel, status }), "4d6aff1cf153");
+
   const raw = useParams().labId ?? "overview";
   const lab = ALIAS[raw] ?? raw;
   const known = new Set(archStudio("mips")?.labs.map((item) => item.id));

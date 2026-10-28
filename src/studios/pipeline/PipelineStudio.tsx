@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -86,6 +87,8 @@ function labelFor(text: string, lines: string[]): string {
 }
 
 export function PipelineStudio() {
+  useSimulatorCapture("studios/pipeline/PipelineStudio.tsx:PipelineStudio", () => ({ programId, hazard, speed, playing, cursor, stallsOn, forwardOn, highlight, concepts, frames, tick: tick.current }), "f1af6afb0aa9");
+
   const [params, setParams] = useSearchParams();
   const page = pageOf(params.get("tab"));
   const [programId, setProgramId] = useState(PROGRAMS[0]?.id ?? "sample1");
@@ -245,6 +248,8 @@ function ToggleChip({ on, label, onChange }: { on: boolean; label: string; onCha
 }
 
 function StageRow({ frame, lines, highlight, forwardOn, canvas }: { frame: PipeState; lines: string[]; highlight: boolean; forwardOn: boolean; canvas: boolean }) {
+  useSimulatorCapture("studios/pipeline/PipelineStudio.tsx:StageRow", () => ({ pan, drag: drag.current }), "f1af6afb0aa9");
+
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; px: number; py: number } | null>(null);
   return (

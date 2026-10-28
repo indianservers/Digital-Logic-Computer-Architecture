@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { engineering } from "../engine";
 import { VlsiGrid } from "../shell";
@@ -5,6 +6,8 @@ import { Badge, Chart, Choice, Measure, Observe, Slider, Wave } from "../widgets
 import { crosstalk, delayVersusStages, fanoutLoad, logicalEffort, sizingDelay, wireElmore } from "../timingModel";
 
 export function LogicalEffortLab() {
+  useSimulatorCapture("studios/vlsi/labs/wireLabs.tsx:LogicalEffortLab", () => ({ load, stages, gate, cin, branch, curve }), "650c77325221");
+
   const [load, setLoad] = useState(8);
   const [stages, setStages] = useState(3);
   const [gate, setGate] = useState<"inv" | "nand2" | "nor2">("nand2");
@@ -75,6 +78,8 @@ export function LogicalEffortLab() {
 }
 
 export function FanoutLab() {
+  useSimulatorCapture("studios/vlsi/labs/wireLabs.tsx:FanoutLab", () => ({ loads, cap, driver, slew, vdd, style }), "650c77325221");
+
   const [loads, setLoads] = useState(4);
   const [cap, setCap] = useState(8);
   const [driver, setDriver] = useState(1);
@@ -144,6 +149,8 @@ export function FanoutLab() {
 }
 
 export function InterconnectLab() {
+  useSimulatorCapture("studios/vlsi/labs/wireLabs.tsx:InterconnectLab", () => ({ length, width, layer, rPer, cPer, load, driverR, segments }), "650c77325221");
+
   const [length, setLength] = useState(80);
   const [width, setWidth] = useState(0.2);
   const [layer, setLayer] = useState<"m1" | "m2" | "m3">("m2");
@@ -228,6 +235,8 @@ export function InterconnectLab() {
 }
 
 export function CrosstalkLab() {
+  useSimulatorCapture("studios/vlsi/labs/wireLabs.tsx:CrosstalkLab", () => ({ spacing, length, edge, victim, rising, same, mitigation }), "650c77325221");
+
   const [spacing, setSpacing] = useState(0.2);
   const [length, setLength] = useState(40);
   const [edge, setEdge] = useState(20);

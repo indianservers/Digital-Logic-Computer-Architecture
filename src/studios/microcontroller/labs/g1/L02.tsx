@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useRef, useState } from "react";
 import { activity, sampleActivity } from "../core/activity";
 import type { Mcu } from "../core/mcu";
@@ -145,6 +146,8 @@ function Spark({ edges, t1, span = 2, w = 90, h = 16, initial = 0 }: { edges: Ar
 }
 
 export default function L02({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L02.tsx:L02", () => ({ lab, sel, visited, flow, memTab, regsSeen, port, half, prevRegs: prevRegs.current }), "c295a6ba4656");
+
   const lab = useLab<P>({
     slug: meta.slug, code: REGS, params: { hseFail: false, gpioGate: false },
     mcu: { part: "F103", strictClock: true },

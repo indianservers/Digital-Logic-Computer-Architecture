@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { MATERIALS, STACK_PARTS, murphyYield, poissonYield, viaConnects, waferMap } from "../processModel";
 import { VlsiGrid } from "../shell";
@@ -6,6 +7,8 @@ import { Badge, Chart, Choice, Measure, Observe, Slider } from "../widgets";
 const LEVELS = ["device", "cell", "stack", "full"] as const;
 
 export function MetallizationLab() {
+  useSimulatorCapture("studios/vlsi/labs/stackLabs.tsx:MetallizationLab", () => ({ layers, width, vias, net, shown }), "f089c124d94f");
+
   const [layers, setLayers] = useState(4);
   const [width, setWidth] = useState(18);
   const [vias, setVias] = useState(3);
@@ -25,8 +28,7 @@ export function MetallizationLab() {
           <Slider label="Selected net" value={net} min={0} max={2} step={1} text={`Net ${net}`} onChange={setNet} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 210" role="img" aria-label="Metal and via stack">
+      stage={<svg className="vlsi-layout" viewBox="0 0 320 210" role="img" aria-label="Metal and via stack">
           {Array.from({ length: drawn }, (_, index) => {
             const y = 170 - index * 28;
             const span = width + index * 10;
@@ -41,8 +43,7 @@ export function MetallizationLab() {
               </g>
             );
           })}
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="M1–M2" value={connected ? "Via connects them" : "Open between M1 and M2"} />
@@ -55,6 +56,8 @@ export function MetallizationLab() {
 }
 
 export function CrossSectionLab() {
+  useSimulatorCapture("studios/vlsi/labs/stackLabs.tsx:CrossSectionLab", () => ({ level, selected }), "f089c124d94f");
+
   const [level, setLevel] = useState<(typeof LEVELS)[number]>("full");
   const [selected, setSelected] = useState("channel");
   const rank = { device: 0, cell: 1, stack: 2, full: 3 } as const;
@@ -65,8 +68,7 @@ export function CrossSectionLab() {
       controls={
         <Choice label="Zoom" value={level} options={LEVELS.map((item) => ({ id: item, label: item === "stack" ? "Interconnect" : item === "full" ? "Full section" : item === "device" ? "Device" : "Cell" }))} onChange={setLevel} />
       }
-      stage={
-        <>
+      stage={<>
           <div className="vlsi-path-row">
             {visible.map((item) => (
               <button key={item.id} type="button" className={item.id === part.id ? "on" : ""} onClick={() => setSelected(item.id)}>{item.name}</button>
@@ -77,8 +79,7 @@ export function CrossSectionLab() {
               <rect key={item.id} x="40" y={item.y} width="200" height="16" fill={MATERIALS[item.material].color} stroke={item.id === part.id ? "#22d3ee" : "#0f172a"} onClick={() => setSelected(item.id)} />
             ))}
           </svg>
-        </>
-      }
+        </>}
       readouts={
         <>
           <Measure label="Name" value={part.name} />
@@ -94,6 +95,8 @@ export function CrossSectionLab() {
 }
 
 export function WaferLab() {
+  useSimulatorCapture("studios/vlsi/labs/stackLabs.tsx:WaferLab", () => ({ diameter, dieW, dieH, edge, density, seed, picked, map }), "f089c124d94f");
+
   const [diameter, setDiameter] = useState(30);
   const [dieW, setDieW] = useState(4);
   const [dieH, setDieH] = useState(4);
@@ -115,14 +118,12 @@ export function WaferLab() {
           <Slider label="Seed" value={seed} min={1} max={40} step={1} text={`${seed}`} onChange={setSeed} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 220 220" role="img" aria-label="Wafer with dies and defects">
+      stage={<svg className="vlsi-layout" viewBox="0 0 220 220" role="img" aria-label="Wafer with dies and defects">
           <circle cx="110" cy="110" r="96" fill="#334155" stroke="#94a3b8" />
           {map.dies.map((item, index) => (
             <rect key={`${item.col}-${item.row}`} x={110 + item.x * 4 - 4} y={110 + item.y * 4 - 4} width="7" height="7" fill={item.kind === "good" ? "#34d399" : item.kind === "failed" ? "#fb7185" : "#64748b"} stroke={index === picked ? "#f8fafc" : "none"} onClick={() => setPicked(index)} />
           ))}
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="Gross dies" value={`${map.gross}`} />
@@ -139,6 +140,8 @@ export function WaferLab() {
 }
 
 export function YieldLab() {
+  useSimulatorCapture("studios/vlsi/labs/stackLabs.tsx:YieldLab", () => ({ area, density, diameter, model, map }), "f089c124d94f");
+
   const [area, setArea] = useState(2);
   const [density, setDensity] = useState(0.08);
   const [diameter, setDiameter] = useState(30);
@@ -164,8 +167,7 @@ export function YieldLab() {
           <Slider label="Wafer diameter" value={diameter} min={20} max={40} step={2} text={`${diameter}`} onChange={setDiameter} />
         </>
       }
-      stage={
-        <div className="vlsi-split">
+      stage={<div className="vlsi-split">
           <svg className="vlsi-layout" viewBox="0 0 220 220" role="img" aria-label="Wafer map for the current yield settings">
             <circle cx="110" cy="110" r="96" fill="#334155" stroke="#94a3b8" />
             {map.dies.map((item) => {
@@ -178,8 +180,7 @@ export function YieldLab() {
             <Chart series={[{ name: "Area", color: "#22d3ee", points: areaSeries }]} xMax={8} yMax={100} xLabel="Die area" yLabel="Yield %" ariaLabel="Yield versus die area" />
             <Chart series={[{ name: "Defects", color: "#fb7185", points: defectSeries }]} xMax={0.36} yMax={100} xLabel="Defect density" yLabel="Yield %" ariaLabel="Yield versus defect density" />
           </div>
-        </div>
-      }
+        </div>}
       readouts={
         <>
           <Measure label="Model yield" value={`${(analytical * 100).toFixed(1)} %`} />

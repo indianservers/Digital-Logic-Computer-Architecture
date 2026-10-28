@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { DIR_LINES, DIR_PRESETS, runDirectory, scalingSeries, validHolders, type DirRequest, type DirState } from "../../../engines/aca/directory";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -8,6 +9,8 @@ const CORE_COLOR = ["#f3e8ff", "#dbeafe", "#dcfce7", "#fef9c3", "#ffe4e6", "#e0f
 const STATE_NAME: Record<DirState, string> = { U: "Uncached", S: "Shared", M: "Modified" };
 
 export function DirectoryLab() {
+  useSimulatorCapture("studios/aca/labs/DirectoryLab.tsx:DirectoryLab", () => ({ cores, presetId, requests, seed, actor, operation, address, written, messagesOn, animate, highlight, auto, selected, result, play, guideFocus, setGuideFocus }), "24a608cad777");
+
   const initial = DIR_PRESETS[2];
   const [cores, setCores] = useState(initial?.cores ?? 4);
   const [presetId, setPresetId] = useState(initial?.id ?? "writer");

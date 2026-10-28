@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -41,6 +42,8 @@ const PROMPTS = [
 ];
 
 export function RamLab() {
+  useSimulatorCapture("studios/memory/ramLab.tsx:RamLab", () => ({ addressBits, dataBits, latency, preload, custom, cells, address, addressText, dataText, addrError, dataError, view, endian, op, stage, playing, speed, regionId, log, tick, runId, finished: finished.current, scope: scope.current, cellsRef: cellsRef.current, motionEnabled }), "9f779017d9e1");
+
   const [addressBits, setAddressBits] = useState(6);
   const [dataBits, setDataBits] = useState(8);
   const [latency, setLatency] = useState(1);

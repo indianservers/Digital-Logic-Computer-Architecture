@@ -1,0 +1,16 @@
+
+> digital-electronics-computing-lab@1.0.0 test
+> vitest run src/layout/experimentEvidence.test.ts src/layout/experimentRecord.test.ts src/engines/accel/matrixValidation.test.ts --maxWorkers=2
+
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/engines/accel/matrixValidation.test.ts (7 tests) 5ms
+ ✓ src/layout/experimentEvidence.test.ts (4 tests) 6ms
+ ✓ src/layout/experimentRecord.test.ts (3 tests) 4ms
+
+ Test Files  3 passed (3)
+      Tests  14 passed (14)
+   Start at  12:18:19
+   Duration  564ms (transform 94ms, setup 0ms, collect 230ms, tests 15ms, environment 0ms, prepare 271ms)
+

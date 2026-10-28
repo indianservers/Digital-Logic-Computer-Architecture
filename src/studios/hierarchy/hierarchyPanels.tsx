@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -73,6 +74,8 @@ function hex(value: number): string {
 }
 
 export function HierarchyPanel({ explain, latencies, onLatencies }: { explain: boolean; latencies: Latencies; onLatencies: (next: Latencies) => void }) {
+  useSimulatorCapture("studios/hierarchy/hierarchyPanels.tsx:HierarchyPanel", () => ({ drafts, error, story }), "519f5812314c");
+
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [error, setError] = useState("");
   const [story, setStory] = useState({ changed: "You can edit the latency of each level.", why: "This shows how access time grows as the request moves down the hierarchy.", notice: "The CPU checks registers, then L1, L2, RAM, and finally storage. Each value is a teaching parameter." });
@@ -143,6 +146,8 @@ export function HierarchyPanel({ explain, latencies, onLatencies }: { explain: b
 const FLOW = ["CPU", "Registers", "L1", "L2", "RAM", "Storage", "CPU return"];
 
 export function AccessPanel({ explain, latencies }: { explain: boolean; latencies: Latencies }) {
+  useSimulatorCapture("studios/hierarchy/hierarchyPanels.tsx:AccessPanel", () => ({ text, operation, memory, result, cursor, running, showLatency, rates, error, flowRef: flowRef.current, motionEnabled }), "519f5812314c");
+
   const [text, setText] = useState("0x1A3F");
   const [operation, setOperation] = useState<"read" | "write">("read");
   const [memory, setMemory] = useState<LevelMemory>(freshLevelMemory);
@@ -271,6 +276,8 @@ const PATTERNS: Array<{ id: PatternKind; label: string }> = [
 ];
 
 export function LocalityPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/hierarchy/hierarchyPanels.tsx:LocalityPanel", () => ({ kind, start, stride, count, block, trace, cursor, running, report }), "519f5812314c");
+
   const [kind, setKind] = useState<PatternKind>("sequential");
   const [start, setStart] = useState(16);
   const [stride, setStride] = useState(1);
@@ -369,6 +376,8 @@ export function LocalityPanel({ explain }: { explain: boolean }) {
 }
 
 export function CachePanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/hierarchy/hierarchyPanels.tsx:CachePanel", () => ({ blockBytes, lines, assoc, policy, sequence, radix, cache, history, error, visualRef: visualRef.current, motionEnabled }), "519f5812314c");
+
   const [blockBytes, setBlockBytes] = useState(16);
   const [lines, setLines] = useState(4);
   const [assoc, setAssoc] = useState<"1" | "2" | "4" | "full">("1");

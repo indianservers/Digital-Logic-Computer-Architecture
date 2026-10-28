@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Segmented, Toggle } from "../../design-system/ui";
@@ -21,6 +22,8 @@ const TABS = [
 ];
 
 export function RegisterStudio() {
+  useSimulatorCapture("studios/registers/RegisterStudio.tsx:RegisterStudio", () => ({ tab }), "2846d968a9aa");
+
   const [tab, setTab] = useStudioTab(TABS, "parallel");
   const [resetKey, setResetKey] = useState(0);
   const lesson = lessonOf(REGISTER_LESSONS, tab, "parallel");
@@ -32,6 +35,8 @@ export function RegisterStudio() {
 }
 
 function RegisterLab({ mode }: { mode: string }) {
+  useSimulatorCapture("studios/registers/RegisterStudio.tsx:RegisterLab", () => ({ width, q, parallel, serial, dir, op, trace, playing, speed }), "2846d968a9aa");
+
   const { prefs } = usePrefs();
   const [width, setWidth] = useState(4);
   const [q, setQ] = useState<Array<0 | 1>>([1, 0, 1, 1]);

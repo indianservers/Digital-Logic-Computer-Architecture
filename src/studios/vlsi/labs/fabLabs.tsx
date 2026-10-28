@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import {
   FAB_STEPS,
@@ -32,6 +33,8 @@ function CrossSection({ layers, label }: { layers: ProcessLayer[]; label: string
 }
 
 export function FabricationLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:FabricationLab", () => ({ step, playing, hide }), "f02e80919cd1");
+
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [hide, setHide] = useState<MaterialId | "none">("none");
@@ -65,6 +68,8 @@ export function FabricationLab() {
 }
 
 export function LithographyLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:LithographyLab", () => ({ stage, kind, dose, offset, feature }), "f02e80919cd1");
+
   const stages = ["Coat", "Soft bake", "Align", "Expose", "Develop", "Transfer"] as const;
   const [stage, setStage] = useState(4);
   const [kind, setKind] = useState<"positive" | "negative">("positive");
@@ -85,8 +90,7 @@ export function LithographyLab() {
           <Slider label="Feature size" value={feature} min={12} max={48} step={2} text={`${feature} nm`} onChange={setFeature} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Mask, exposure, and developed resist">
+      stage={<svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Mask, exposure, and developed resist">
           <rect x="20" y="130" width="280" height="22" fill={MATERIALS.silicon.color} />
           {stage >= 5 ? <rect x="20" y="118" width="280" height="12" fill={MATERIALS.oxide.color} /> : null}
           {stage < 4 ? <rect x={24 + offset * 0.4} y="96" width="270" height="22" fill={MATERIALS.resist.color} opacity={stage === 1 ? 0.7 : 1} /> : null}
@@ -103,8 +107,7 @@ export function LithographyLab() {
             clear && dose >= 0.35 ? <line key={`light-${index}`} x1={42 + index * 46} y1="52" x2={42 + index * 46 + offset * 0.4} y2="96" stroke="#fef08a" strokeWidth="2" /> : null
           )) : null}
           <text x="24" y="24" fill="#e2e8f0">{name}</text>
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="Stage" value={name} />
@@ -120,6 +123,8 @@ export function LithographyLab() {
 }
 
 export function ImplantLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:ImplantLab", () => ({ dopant, dose, energy, anneal }), "f02e80919cd1");
+
   const [dopant, setDopant] = useState<"n" | "p">("n");
   const [dose, setDose] = useState(1);
   const [energy, setEnergy] = useState(40);
@@ -136,8 +141,7 @@ export function ImplantLab() {
           <Slider label="Anneal" value={anneal} min={0} max={1} step={0.05} text={anneal.toFixed(2)} onChange={setAnneal} />
         </>
       }
-      stage={
-        <div className="vlsi-split">
+      stage={<div className="vlsi-split">
           <svg className="vlsi-layout" viewBox="0 0 160 200" role="img" aria-label="Ions entering silicon">
             <rect x="16" y="70" width="120" height="100" fill={MATERIALS.silicon.color} />
             {Array.from({ length: 6 }, (_, index) => (
@@ -147,8 +151,7 @@ export function ImplantLab() {
             ))}
           </svg>
           <Chart series={[{ name: dopant, color: dopant === "n" ? "#38bdf8" : "#f9a8d4", points: profile.points.map((point) => ({ x: point.depth, y: point.concentration })) }]} xMax={profile.points[profile.points.length - 1]?.depth ?? 1} yMax={peak} xLabel="Depth" yLabel="Conc." ariaLabel="Dopant concentration versus depth" />
-        </div>
-      }
+        </div>}
       readouts={
         <>
           <Measure label="Projected range" value={`${profile.depth.toFixed(2)} µm`} />
@@ -162,6 +165,8 @@ export function ImplantLab() {
 }
 
 export function WellLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:WellLab", () => ({ well, depth, dose, device, region }), "f02e80919cd1");
+
   const [well, setWell] = useState<"n" | "p" | "twin">("n");
   const [depth, setDepth] = useState(1);
   const [dose, setDose] = useState(1);
@@ -179,15 +184,13 @@ export function WellLab() {
           <Choice label="Place in" value={region} options={[{ id: "well", label: "Well" }, { id: "substrate", label: "Substrate" }]} onChange={setRegion} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Well cross-section">
+      stage={<svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Well cross-section">
           <rect x="20" y="70" width="280" height="80" fill={MATERIALS.silicon.color} />
           {well !== "p" ? <rect x="160" y={150 - depth * 30} width="120" height={depth * 30} fill={MATERIALS.nwell.color} opacity={0.45 + dose * 0.2} /> : null}
           {well !== "n" ? <rect x="40" y={150 - depth * 30} width="110" height={depth * 30} fill={MATERIALS.pwell.color} opacity={0.45 + dose * 0.2} /> : null}
           <rect x={region === "substrate" ? (well === "p" ? 200 : 60) : well === "p" || (well === "twin" && device === "nmos") ? 70 : 190} y="48" width="36" height="22" fill={device === "pmos" ? MATERIALS.pdiff.color : MATERIALS.ndiff.color} />
           <text x="28" y="28" fill="#e2e8f0">{fit.note}</text>
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Badge tone={fit.ok ? "on" : "bad"}>{fit.ok ? "Legal placement" : "Wrong well"}</Badge>
@@ -200,12 +203,14 @@ export function WellLab() {
 }
 
 export function OxidationLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:OxidationLab", () => ({ method, material, time, temp }), "f02e80919cd1");
+
   const [method, setMethod] = useState<"oxidation" | "cvd" | "pvd">("oxidation");
   const [material, setMaterial] = useState<"oxide" | "nitride" | "poly" | "metal">("oxide");
   const [time, setTime] = useState(6);
   const [temp, setTemp] = useState(900);
   const film = filmGrowth(method, time, temp);
-  const color = material === "oxide" ? MATERIALS.oxide.color : material === "nitride" ? MATERIALS.nitride.color : material === "poly" ? MATERIALS.poly.color : MATERIALS.metal.color;
+  const color = method === "oxidation" || material === "oxide" ? MATERIALS.oxide.color : material === "nitride" ? MATERIALS.nitride.color : material === "poly" ? MATERIALS.poly.color : MATERIALS.metal.color;
   const grown = Math.min(70, film.thickness * 40);
   return (
     <VlsiGrid
@@ -217,13 +222,11 @@ export function OxidationLab() {
           <Slider label="Temperature" value={temp} min={400} max={1100} step={50} text={`${temp} °C`} onChange={setTemp} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Film growth on silicon">
+      stage={<svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Film growth on silicon">
           <rect x="40" y={120 + (method === "oxidation" ? film.consumed * 12 : 0)} width="240" height="40" fill={MATERIALS.silicon.color} />
           <rect x="40" y={120 - grown} width="240" height={grown} fill={color} />
           <text x="40" y="28" fill="#e2e8f0">{method === "oxidation" ? "Oxide consumes silicon" : "Film added on top"}</text>
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="Thickness" value={`${film.thickness.toFixed(2)} µm`} />
@@ -237,6 +240,8 @@ export function OxidationLab() {
 }
 
 export function EtchLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:EtchLab", () => ({ mode, time, rate, opening, selectivity }), "f02e80919cd1");
+
   const [mode, setMode] = useState<"isotropic" | "anisotropic">("anisotropic");
   const [time, setTime] = useState(2);
   const [rate, setRate] = useState(0.35);
@@ -256,14 +261,12 @@ export function EtchLab() {
           <Slider label="Selectivity" value={selectivity} min={0.3} max={1.4} step={0.1} text={selectivity.toFixed(1)} onChange={setSelectivity} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Etch profile under a mask">
+      stage={<svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="Etch profile under a mask">
           <rect x="40" y="50" width="240" height="90" fill={MATERIALS.oxide.color} />
           <rect x="70" y="30" width="70" height="20" fill={MATERIALS.resist.color} />
           <rect x={150 + opening * 0.2} y="30" width="70" height="20" fill={MATERIALS.resist.color} />
           <path d={`M${140 - side} 50 L${140 + opening * 0.15} 50 L${140 + opening * 0.15 + side} ${50 + depth} L${140 - side - side} ${50 + depth} Z`} fill="#0f172a" />
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="Vertical etch" value={etch.vertical.toFixed(2)} />
@@ -277,6 +280,8 @@ export function EtchLab() {
 }
 
 export function CmpLab() {
+  useSimulatorCapture("studios/vlsi/labs/fabLabs.tsx:CmpLab", () => ({ time, rate, selectivity, roughness }), "f02e80919cd1");
+
   const [time, setTime] = useState(1.2);
   const [rate, setRate] = useState(0.45);
   const [selectivity, setSelectivity] = useState(1);
@@ -294,15 +299,13 @@ export function CmpLab() {
           <Slider label="Starting topography" value={roughness} min={0.3} max={1.6} step={0.1} text={roughness.toFixed(1)} onChange={setRoughness} />
         </>
       }
-      stage={
-        <svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="CMP before and after height">
+      stage={<svg className="vlsi-layout" viewBox="0 0 320 180" role="img" aria-label="CMP before and after height">
           <path d={line(surface.before)} fill="none" stroke="#94a3b8" strokeWidth="3" />
           <path d={line(surface.after)} fill="none" stroke="#22d3ee" strokeWidth="3" />
           <rect x="30" y="132" width="250" height="10" fill="#78716c" />
           <text x="30" y="28" fill="#94a3b8">Before</text>
           <text x="100" y="28" fill="#22d3ee">After</text>
-        </svg>
-      }
+        </svg>}
       readouts={
         <>
           <Measure label="Height variation" value={surface.variation.toFixed(2)} />

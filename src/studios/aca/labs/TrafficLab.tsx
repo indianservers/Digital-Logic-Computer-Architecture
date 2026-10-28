@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { SHARE_PRESETS, repeatOps } from "../../../engines/aca/falseSharing";
 import { analyzeBus, analyzeDirectory, analyzeLayout, filterTraffic, type TrafficCategory, type TrafficRow } from "../../../engines/aca/traffic";
@@ -29,6 +30,8 @@ function tally(rows: TrafficRow[]) {
 }
 
 export function TrafficLab() {
+  useSimulatorCapture("studios/aca/labs/TrafficLab.tsx:TrafficLab", () => ({ protocol, presetId, accesses, seed, cores, layout, writeAllocate, silent, showAddr, messagesOn, highlight, logOn, auto, filterCore, filterKind, actor, operation, address, options, limited, report, states, play, guideFocus, setGuideFocus }), "71426a6b7c6d");
+
   const [protocol, setProtocol] = useState<Protocol | "directory">("mesi");
   const [presetId, setPresetId] = useState("producer");
   const [accesses, setAccesses] = useState<Access[]>([

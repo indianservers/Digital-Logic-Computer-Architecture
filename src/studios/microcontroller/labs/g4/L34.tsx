@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -413,6 +414,8 @@ const NO_SEEN = { all: false, frame: false, dist: false, pir: false, neg: false,
 type Seen = typeof NO_SEEN;
 
 export default function L34({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L34.tsx:L34", () => ({ lab, pending, msg, seen, failSeen, chans, follow, listRef: listRef.current }), "8e43e8fd87a2");
+
   const lab = useLab<P34>({ slug: meta.slug, code: DEMO, params: P34_DEFAULT, mcu: mcu34, world: world34 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;

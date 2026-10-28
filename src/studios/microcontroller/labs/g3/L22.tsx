@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { Mcu } from "../core/mcu";
@@ -124,6 +125,8 @@ function PulseTrace({ sv }: { sv: Servo22 }) {
 }
 
 export default function L22({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L22.tsx:L22", () => ({ lab, view, pending, seen }), "307c22ff5ae8");
+
   const lab = useLab<P22>({
     slug: meta.slug, code: DEMO, params: P22_DEFAULT,
     mcu: () => ({ ips: 120_000 }),

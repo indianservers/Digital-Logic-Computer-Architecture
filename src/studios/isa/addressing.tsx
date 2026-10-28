@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -69,6 +70,8 @@ function bank(): Record<AddrMode, AddrState> {
 }
 
 export function AddressingPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/addressing.tsx:AddressingPanel", () => ({ root: root.current, states, stage, pulse, motionEnabled }), "ae765f7f7b6b");
+
   const root = useRef<HTMLDivElement>(null);
   const [params, setParams] = useSearchParams();
   const mode = parseAddrMode(params.get("mode"));

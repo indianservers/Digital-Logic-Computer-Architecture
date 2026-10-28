@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useLayoutEffect, useState, type RefObject } from "react";
 import { PALETTE, GATE_PALETTE, portsOf, type CpuDesign, type NodeKind } from "../../engines/builder/model";
 import { componentContract } from "./../../engines/builder/componentContract";
@@ -19,6 +20,8 @@ type Props={design:CpuDesign;previous?:CpuDesign;trace:ExecTrace|null;running:bo
   context:{id:string;x:number;y:number}|null;closeContext:()=>void;setView:(pan:CpuDesign["pan"])=>void;preview:boolean;acceptArrange:()=>void;cancelArrange:()=>void;
 };
 export function CanvasTools(p:Props){
+  useSimulatorCapture("studios/builder/CanvasTools.tsx:CanvasTools", () => ({ drawer, partSearch, bookmarkName, bookmarks, anchor }), "04298a640c76");
+
   const {design}=p;const [drawer,setDrawer]=useState("");const [query,setQuery]=useState("");const [partSearch,setPartSearch]=useState("");
   const [bookmarkName,setBookmarkName]=useState("");
   const [bookmarks,setBookmarks]=usePreference<{name:string;pan:CpuDesign["pan"];project:string}[]>("bookmarks",[]);

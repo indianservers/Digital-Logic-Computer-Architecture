@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { DRAM_READ, applySram, decayCharge, restoreCharge, senseDram, type DramOp, type SramCell } from "../../engines/memory/fundamentals";
 import { Field, LabGuide } from "./guide";
@@ -10,6 +11,8 @@ const PRESETS = {
 } as const;
 
 export function DramLab() {
+  useSimulatorCapture("studios/memory/dramLab.tsx:DramLab", () => ({ kind, op, stored, charge, leakage, interval, since, running, stage, row, column, sram }), "1501ff9a0776");
+
   const [kind, setKind] = useState<"dram" | "sram">("dram");
   const [op, setOp] = useState<DramOp>("hold");
   const [stored, setStored] = useState<0 | 1>(1);

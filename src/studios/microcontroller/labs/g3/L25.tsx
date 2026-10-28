@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -109,6 +110,8 @@ function Plot({ a, axis, vref }: { a: Adc25; axis: number; vref: number }) {
 type Tab = "notes" | "regs" | "tasks";
 
 export default function L25({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L25.tsx:L25", () => ({ lab, tab, auto, frozen, pending, mism: mism.current, seen }), "552ba6990028");
+
   const lab = useLab<P25>({
     slug: meta.slug, code: DEMO, params: P25_DEFAULT,
     mcu: () => ({ part: "F401", clock: 84e6, ips: 400_000 }),

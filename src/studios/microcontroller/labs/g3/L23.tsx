@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -221,6 +222,8 @@ function Scope({ s }: { s: Motor23 }) {
 }
 
 export default function L23({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L23.tsx:L23", () => ({ lab, view, pending, asked, seen }), "aa414764e6cc");
+
   const lab = useLab<P23>({
     slug: meta.slug, code: DEMO, params: P23_DEFAULT,
     mcu: () => ({ part: "F103", clock: CLK23, ips: 120_000 }),

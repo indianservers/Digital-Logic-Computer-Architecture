@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useCircuit, type CircuitSession } from "../../components/circuit/useCircuit";
@@ -197,6 +198,8 @@ function ledBit(circuit: CircuitSession, label: string): Bit {
 }
 
 export function RoutingStudio() {
+  useSimulatorCapture("studios/routing/RoutingStudio.tsx:RoutingStudio", () => ({ circuit, booted: booted.current, playing, speed, showTable, showExpr, showGates, labels, guide, app, note, tick, monitor }), "1604df95a1bb");
+
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab") ?? "mux";
   const page: Page = raw === "demux" ? "demux" : raw === "enc" || raw === "priority" ? "enc" : raw === "dec" || raw === "seg" || raw === "code" ? "dec" : "mux";
@@ -364,6 +367,8 @@ function portBit(circuit: CircuitSession, label: string, port: string): Bit {
 }
 
 function Schematic({ page, circuit, labels, onToggle }: { page: Page; circuit: CircuitSession; labels: boolean; onToggle: (label: string, on: boolean) => void }) {
+  useSimulatorCapture("studios/routing/RoutingStudio.tsx:Schematic", () => ({ pan, zoom, drag: drag.current }), "1604df95a1bb");
+
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const drag = useRef<{ x: number; y: number; px: number; py: number } | null>(null);

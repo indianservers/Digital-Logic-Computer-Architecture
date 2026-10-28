@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { archStudio } from "../../data/architecture";
@@ -32,6 +33,8 @@ mov rdi, rax
 ret`;
 
 export function X86Studio() {
+  useSimulatorCapture("studios/x86/X86Studio.tsx:X86Studio", () => ({ cpu, source, status }), "7944a4fdfa6e");
+
   const raw = useParams().labId ?? "overview";
   const lab = ALIAS[raw] ?? raw;
   const known = new Set(archStudio("x86")?.labs.map((item) => item.id));

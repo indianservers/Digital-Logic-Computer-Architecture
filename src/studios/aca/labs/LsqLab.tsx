@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { LSQ_PRESETS, MEM_IMAGE, MEM_REGS, parseLsqProgram, runLsq, type LsqShot, type MemPolicy } from "../../../engines/aca/lsq";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -20,6 +21,8 @@ function averageLatency(shot: LsqShot) {
 }
 
 export function LsqLab() {
+  useSimulatorCapture("studios/aca/labs/LsqLab.tsx:LsqLab", () => ({ presetId, forwardOn, matchOn, partialOn, showForward, orderOn, detectOn, showEvents, auto, selected, lqSize, sqSize, delay, policy, program, custom, parsed, result, play, guideFocus, setGuideFocus }), "f7d989b709f7");
+
   const [presetId, setPresetId] = useState(LSQ_PRESETS[2]?.id ?? "forward");
   const [forwardOn, setForwardOn] = useState(true);
   const [matchOn, setMatchOn] = useState(true);

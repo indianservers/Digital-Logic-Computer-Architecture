@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { twoName, type Two } from "../../../engines/aca/predictor";
 import { SPEC_PRESETS, parseSpecProgram, runSpeculation, type PredictorMode } from "../../../engines/aca/speculate";
@@ -9,6 +10,8 @@ const pcOf = (index: number) => `0x${(0x00400000 + index * 4).toString(16).padSt
 const hex = (value: number) => `0x${(value >>> 0).toString(16).padStart(8, "0")}`;
 
 export function SpeculateLab() {
+  useSimulatorCapture("studios/aca/labs/SpeculateLab.tsx:SpeculateLab", () => ({ presetId, mode, initial, predictOn, bubbles, highlight, showRegs, autoReset, selected, program, custom, resolveAfter, windowSize, parsed, result, play, guideFocus }), "7fab838fe301");
+
   const [presetId, setPresetId] = useState(SPEC_PRESETS[0]?.id ?? "wrong");
   const [mode, setMode] = useState<PredictorMode>("two");
   const [initial, setInitial] = useState<Two>(1);

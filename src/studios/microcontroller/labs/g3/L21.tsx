@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -70,6 +71,8 @@ function Waveform({ c, other, otherLabel }: { c: Chan21; other?: Chan21; otherLa
 }
 
 export default function L21({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L21.tsx:L21", () => ({ lab, tab, info, pending }), "70cc5e600089");
+
   const lab = useLab<P21>({
     slug: meta.slug, code: DEMO, params: P21_DEFAULT, rebuildOn: ["halfClock"],
     mcu: () => ({ part: "F103", clock: CLK21, ips: 120_000 }),

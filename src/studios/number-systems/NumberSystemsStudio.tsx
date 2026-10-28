@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { NumbersChrome } from "./NumbersChrome";
@@ -154,6 +155,8 @@ const LESSONS: Record<string, {
     }
 };
 export function NumberSystemsStudio() {
+  useSimulatorCapture("studios/number-systems/NumberSystemsStudio.tsx:NumberSystemsStudio", () => ({ tab }), "d14a5825424d");
+
     const [tab, setTab] = useStudioTab(TABS, "convert");
     const [resetKey, setResetKey] = useState(0);
     const lesson = LESSONS[tab] ?? LESSONS.convert!;

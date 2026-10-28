@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type ReactElement } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -40,6 +41,8 @@ function LabCard({ lab, status, canPreview, renderPreview }: {
   canPreview: boolean;
   renderPreview: (slug: string) => ReactElement | null;
 }) {
+  useSimulatorCapture("studios/vlsi/home.tsx:LabCard", () => ({ preview, timer: timer.current }), "ad18f9b4b566");
+
   const [preview, setPreview] = useState(false);
   const timer = useRef(0);
   useEffect(() => () => window.clearTimeout(timer.current), []);
@@ -85,6 +88,8 @@ function categoryProgress(progress: VlsiProgress, category: VlsiCategory) {
 }
 
 export function VlsiHome({ renderPreview }: { renderPreview: (slug: string) => ReactElement | null }) {
+  useSimulatorCapture("studios/vlsi/home.tsx:VlsiHome", () => ({ progress, theme, canPreview, reducedMotion, searchRef: searchRef.current, category, difficulty, duration, statusFilter }), "ad18f9b4b566");
+
   const location = useLocation();
   const progress = useVlsiProgress();
   const [theme, toggleTheme] = useVlsiTheme();

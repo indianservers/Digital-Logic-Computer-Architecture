@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useSandbox } from "./sandboxState";
 import { bn, evaluateCircuit, partPorts, type Part } from "./sandboxModel";
@@ -24,6 +25,8 @@ function portPosition(part: Part, port: string, out = false) {
   };
 }
 export function CircuitView() {
+  useSimulatorCapture("studios/sandbox/CircuitViews.tsx:CircuitView", () => ({ s }), "1eedafb65f8b");
+
   const s = useSandbox();
   function source(id: string, port: string) {
     if (/^[AB]\d$/.test(id)) {
@@ -355,6 +358,8 @@ export function CircuitView() {
   );
 }
 export function CircuitDock() {
+  useSimulatorCapture("studios/sandbox/CircuitViews.tsx:CircuitDock", () => ({ s }), "1eedafb65f8b");
+
   const s = useSandbox(),
     bits = s.circuit.parts.some((p) => p.id === "Sum") ? 1 : 4,
     mask = (1 << bits) - 1,
@@ -516,6 +521,8 @@ export function CircuitDock() {
   );
 }
 export function TemplateView() {
+  useSimulatorCapture("studios/sandbox/CircuitViews.tsx:TemplateView", () => ({ s }), "1eedafb65f8b");
+
   const s = useSandbox();
   const xor = s.templateA ^ s.templateB,
     sum = xor ^ s.templateCin,
@@ -624,6 +631,8 @@ function TemplateGate({
   );
 }
 export function TemplateDock() {
+  useSimulatorCapture("studios/sandbox/CircuitViews.tsx:TemplateDock", () => ({ auto, frozen, format, s }), "1eedafb65f8b");
+
   const [auto, setAuto] = useState(true),
     [frozen, setFrozen] = useState(6),
     [format, setFormat] = useState("Binary");

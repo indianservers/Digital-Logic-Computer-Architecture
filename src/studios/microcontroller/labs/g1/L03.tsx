@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { activity, sampleActivity } from "../core/activity";
 import { useLab } from "../core/useLab";
@@ -81,6 +82,8 @@ function perBlock(path: string): "gpio" | "timers" | "adc" | "serial" | "nvic" |
 }
 
 export default function L03({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L03.tsx:L03", () => ({ lab, mode, hl, stepIdx, pinTab, pin, seen }), "6a25e7ff50f4");
+
   const lab = useLab<P>({
     slug: meta.slug, code: SYSTICK, params: { clockMHz: 72 },
     mcu: (p) => ({ part: "F103", clock: p.clockMHz * 1e6 }),

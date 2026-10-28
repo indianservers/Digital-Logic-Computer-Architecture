@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { ComponentIcon } from "./ComponentIcon";
 import { ComponentWorkbench } from "./ComponentWorkbench";
 import { componentContract } from "../../engines/builder/componentContract";
@@ -7,6 +8,8 @@ import { engineeringOf, instantiateSubcircuit } from "../../engines/builder/proj
 import { Btn, Field, Panel, PinDiagram, Status, Tabs, nodeLabel, ALU_OPS } from "./studioUi";
 import type { LabProps } from "./labTypes";
 export function LibraryLab({ design, commit, onNavigate }: LabProps) {
+  useSimulatorCapture("studios/builder/LibraryLab.tsx:LibraryLab", () => ({ group, kind, tab, width, inputWidth, sort, list, op }), "10697d3878c9");
+
   const [group,setGroup] = useState("All"); const [query,setQuery] = useState(""); const [kind,setKind] = useState<NodeKind>("alu"); const [tab,setTab] = useState("Overview"); const [width,setWidth] = useState<Width>(design.isa.dataWidth); const [inputWidth,setInputWidth] = useState<Width>(8); const [sort,setSort] = useState("Category"); const [list,setList] = useState(false); const [op,setOp] = useState<typeof ALU_OPS[number]>("ADD");
   const config = engineeringOf(design); const preview = {...addNode(emptyDesign(),kind,0,0,width).nodes[0]!,inputWidth:["cu","decoder"].includes(kind)?design.isa.dataWidth:Math.min(inputWidth,width) as Width}; const entry = PALETTE.find(p => p.kind === kind)!;
   const order:NodeKind[] = ["pc","gpr","regfile","alu","cmp","shifter","imem","dmem","mux","join","bus","split","decoder","cu","clock","const","num","probe","acc","led","hex","ir","mar","mdr","sext","inc","flags","sp","umem","buf","bin"];

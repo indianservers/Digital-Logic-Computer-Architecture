@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
@@ -19,6 +20,8 @@ function BitStrip({values,labels,purple=false}:{values:string[];labels?:string[]
 function WireDiagram({signals,opcode,mnemonic}:{signals:Record<string,string>;opcode:string;mnemonic:string}) {return <div className="cux-wiring"><div className="cux-instruction"><small>Instruction<br/>(opcode)</small><b>{opcode}</b><span>({mnemonic})</span></div><span className="cux-arrow">⟶</span><div className="cux-decoder"><Chip/><strong>Opcode<br/>Decoder</strong></div><svg className="cux-fan" viewBox="0 0 80 190" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cux-arrow-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#176bff"/></marker></defs>{Object.keys(signals).map((_,i)=><path key={i} d={`M0 ${95+(i-2)*6}H22Q35 ${95+(i-2)*6} 35 ${20+i*37}H76`} fill="none" stroke="#176bff" strokeWidth="1.7" markerEnd="url(#cux-arrow-head)"/>)}</svg><div className="cux-signal-list"><h4>Control signals</h4>{Object.entries(signals).map(([key,value])=><div key={key}><span>{key}</span><b className={value==="1"?"high":value==="0"?"low":"operation"}>{value}</b></div>)}</div></div>;}
 
 export function ControlStudio() {
+  useSimulatorCapture("studios/control/ControlStudio.tsx:ControlStudio", () => ({ tab, mnemonic, addr, opcode, running, guideOpen }), "c2c36ac4bff1");
+
   const [tab,setTab]=useStudioTab(TABS,"hardwired");
   const [mnemonic,setMnemonic]=useState("ADD");
   const [addr,setAddr]=useState(0);

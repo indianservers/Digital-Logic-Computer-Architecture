@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -18,6 +19,8 @@ const TABS = [
 const ALIAS: Record<string, string> = { clocking: "clock" };
 
 export function CpuStudio() {
+  useSimulatorCapture("studios/cpu/CpuStudio.tsx:CpuStudio", () => ({ cpu }), "c843cef9a9c5");
+
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab");
   const aliased = raw ? ALIAS[raw] ?? raw : "overview";

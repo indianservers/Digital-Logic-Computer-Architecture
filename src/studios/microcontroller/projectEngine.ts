@@ -1,3 +1,4 @@
+import { projectTrack } from "./projectTrack";
 import type { ProjectDef, ProjectId } from "./projectData";
 import { compileFirmware, executeFirmware, type FirmwareProgram } from "./firmware";
 import { enhancementDefaults } from "./projectEnhancements";
@@ -235,9 +236,9 @@ export function advanceRuntime(def: ProjectDef, previous: Runtime, dt: number): 
     const phase = previousPhase + (left + right) / 510 * dt * .9;
     m.visualPhase = phase; m.lap = Math.floor(phase / (Math.PI * 2));
     const theta = phase % (Math.PI * 2);
-    const visual = track === "Oval" ? { x: .5 + .36 * Math.cos(theta), y: .5 + .29 * Math.sin(theta), dx: -.36 * Math.sin(theta), dy: .29 * Math.cos(theta) }
-      : track === "S curve" ? { x: .5 + .3 * Math.sin(theta), y: .16 + .68 * theta / (Math.PI * 2), dx: .3 * Math.cos(theta), dy: .68 / (Math.PI * 2) }
-      : { x: .5 + .37 * Math.sin(theta), y: .49 - .31 * Math.sin(2 * theta), dx: .37 * Math.cos(theta), dy: -.62 * Math.cos(2 * theta) };
+    const visual = projectTrack(track, theta);
+    m.leftWheelAngle = number(m.leftWheelAngle) + left / 255 * dt * 12;
+    m.rightWheelAngle = number(m.rightWheelAngle) + right / 255 * dt * 12;
     Object.assign(m, { x, y, heading, integral, lastError: error });
     o.x = round(x, 3); o.y = round(y, 3); o.heading = round(heading, 2); o.trackX = round(visual.x, 3); o.trackY = round(visual.y, 3); o.trackHeading = round(Math.atan2(visual.dx, -visual.dy) * 180 / Math.PI, 1); o.error = round(error, 3); o.leftPWM = Math.round(left); o.rightPWM = Math.round(right); o.lap = number(m.lap); o.lost = Math.abs(error) > .23 * number(i.lineContrast) / 100;
     o.sensors = [x < desired - .035, Math.abs(x - desired) <= .055, x > desired + .035].map((v) => v ? 1 : 0).join(" "); g.PB0 = left > 0; g.PB1 = right > 0;
@@ -246,6 +247,7 @@ export function advanceRuntime(def: ProjectDef, previous: Runtime, dt: number): 
     const duty = called("analogWrite") ? clamp(argument(p, "analogWrite", 1, 0), 0, 100) : 0;
     const target = duty / 100 * number(i.voltage) / 12 * 5000 * (1 - number(i.load) / 140); const fault = number(i.load) > 90 && duty > 85;
     const desired = fault ? 0 : target; const tau = Math.max(.15, number(i.acceleration)); const rpm = number(m.rpm) + (desired - number(m.rpm)) * (dt ? Math.min(1, dt / tau) : 0);
+    m.shaftAngle = number(m.shaftAngle) + (number(m.rpm) + rpm) / 2 / 60 * Math.PI * 2 * dt * (i.direction === "Reverse" ? -1 : 1);
     m.rpm = rpm; o.rpm = Math.round(rpm); o.target = Math.round(target); o.current = round(duty / 100 * (.15 + number(i.load) / 100 * 1.3), 2); o.fault = fault; o.averageVoltage = round(number(i.voltage) * duty / 100); o.duty = duty; o.frequency = Math.max(1, constant(p, "PWM_FREQUENCY", 1000)); o.direction = i.direction; g.PA8 = duty > 0 && !fault; g.PB0 = i.direction === "Forward"; g.PB1 = i.direction === "Reverse";
   }
   if (def.id === "arm") {

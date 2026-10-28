@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import {lazy,Suspense,Children,cloneElement,createContext,isValidElement,useContext,useEffect,useRef,useState,type ReactElement,type ReactNode,type MouseEvent} from 'react';
 import {LABS,labPath,type Lab} from './labs/data';
 import {ADVANCED_LABS,advancedPath} from './advanced/data';
@@ -83,6 +84,8 @@ function inventory(children:ReactNode,principle:string):Item[]{
 }
 
 export default function DeviceCourse({lab,children,onTabChange}:{lab:Lab|AdvancedLab;children:ReactNode;onTabChange?:(tab:Tab)=>void}){
+  useSimulatorCapture("studios/how-devices-work/DeviceCourse.tsx:DeviceCourse", () => ({ active, visited, inside, root: root.current, tabs: tabs.current }), "02f67a265f0e");
+
  const audit=useContext(CourseAuditContext);
  const [active,setActive]=useState<Tab>('overview'),[visited,setVisited]=useState<Set<Tab>>(()=>new Set(['overview'])),[inside,setInside]=useState<'physical'|'anatomy'>('physical');
  const root=useRef<HTMLDivElement>(null),tabs=useRef<(HTMLButtonElement|null)[]>([]);

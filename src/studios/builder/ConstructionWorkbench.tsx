@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { createPortal } from "react-dom";
 import { useEffect,useMemo,useRef,useState } from "react";
 import { addNode,connect,deleteNodes,duplicateNodes,emptyDesign,moveNode,patchNode,portsOf,type ArchNode,type CpuDesign,type NodeKind,type Width } from "../../engines/builder/model";
@@ -16,6 +17,8 @@ import { MicrocodeForm } from "./MicrocodeForm";
 
 type Props={design:CpuDesign;commit:(d:CpuDesign)=>void;replace:(d:CpuDesign)=>void;selected:string[];select:(ids:string[])=>void;wave:WaveSample[];editor:string;onEditor:(id:string)=>void;};
 export function ConstructionWorkbench(p:Props){
+  useSimulatorCapture("studios/builder/ConstructionWorkbench.tsx:ConstructionWorkbench", () => ({ tab, preset, width, count, latency, name, message, micro, tests, results, signal, cursor, netName, source, target, busy, versions, milestone, routeId, routeFrom, routeTo, blockText, memory, dialog: dialog.current, values, logical }), "0cd756045013");
+
  const {design,commit}=p;const config=engineeringOf(design);const construction=config.construction??{execution:"legacy" as const};
  const [tab,setTab]=useState("Blocks");const [preset,setPreset]=useState<string>("Register");const [width,setWidth]=useState<Width>(16);const [count,setCount]=useState(8);const [latency,setLatency]=useState(2);const [name,setName]=useState("My module");const [message,setMessage]=useState("");const [micro,setMicro]=useState("");const [tests,setTests]=useState("");const [results,setResults]=useState<ReturnType<typeof runCircuitTest>[]>([]);const [signal,setSignal]=useState("");const [cursor,setCursor]=useState(0);const [netName,setNetName]=useState("data_bus");const [source,setSource]=useState("");const [target,setTarget]=useState("");const [busy,setBusy]=useState(false);const [versions,setVersions]=useState(projectVersions);const [milestone,setMilestone]=useState("");const [routeId,setRouteId]=useState("");const [routeFrom,setRouteFrom]=useState("");const [routeTo,setRouteTo]=useState("");
  const node=design.nodes.find(n=>n.id===p.editor);const [blockText,setBlockText]=useState("");const [memory,setMemory]=useState("");
@@ -49,6 +52,8 @@ function BehaviorForm({value,onChange}:{value:string;onChange:(v:string)=>void})
 }
 
 function ModuleEditor({node,root,save}:{node:ArchNode;root:CpuDesign;save:(c:CircuitModule)=>void}){
+  useSimulatorCapture("studios/builder/ConstructionWorkbench.tsx:ModuleEditor", () => ({ module, selected, pan, kind, portNode, port, portName, error, nested }), "0cd756045013");
+
  const [module,setModule]=useState<CircuitModule>(structuredClone(node.circuit!));const [selected,setSelected]=useState<string[]>([]);const [pan,setPan]=useState({x:0,y:0,k:1});const [kind,setKind]=useState<NodeKind>("gpr");const [portNode,setPortNode]=useState("");const [port,setPort]=useState("");const [portName,setPortName]=useState("");const [error,setError]=useState("");const [nested,setNested]=useState("");
  const d:CpuDesign={...emptyDesign(module.name),nodes:module.nodes,wires:module.wires,nextId:Math.max(1,...module.nodes.map(n=>Number(n.id.replace(/^n/,""))+1).filter(Number.isFinite)),pan,engineering:{...engineeringOf(root),construction:{execution:"circuit"},signalLabels:false}};
  const update=(next:CpuDesign)=>setModule(m=>({...m,nodes:next.nodes,wires:next.wires}));

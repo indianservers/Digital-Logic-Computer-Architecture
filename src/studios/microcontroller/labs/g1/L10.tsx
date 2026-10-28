@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import type { Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -68,6 +69,8 @@ function Wave({ x, y, w, color }: { x: number; y: number; w: number; color: stri
 }
 
 export default function L10({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L10.tsx:L10", () => ({ lab, sel, sig, autoLat, pending, seen, samples: samples.current }), "9f043a807e4f");
+
   const lab = useLab<P>({
     slug: meta.slug, code: DEMO, params: { hseFail: false, wrongXtal: false },
     rebuildOn: ["wrongXtal"],

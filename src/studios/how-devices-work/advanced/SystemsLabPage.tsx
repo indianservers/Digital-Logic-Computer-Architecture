@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import DeviceCourse from '../DeviceCourse';
 import { InfraredArchitecture, InfraredFlow } from "./InfraredPanels";
 import {parameterValue,itemAt} from './parameters';
@@ -57,13 +58,19 @@ function Imaging({lab,p,mode,result}:{lab:AdvancedLab;p:Record<string,number>;mo
  if(lab.number===83){const bright=itemAt(result.visual, 0),snr=itemAt(result.visual, 1);return <svg viewBox="0 0 400 255" role="img" aria-label="Synthetic image intensifier view"><rect width="400" height="255" fill="#031409"/><g opacity={bright}><path d="M0 200L60 155L130 170L190 110L270 140L350 115L400 135V255H0Z" fill="#38a54d"/><path d="M140 110L200 65L260 110V205H140Z" fill="#6bb96d"/><rect x="185" y="145" width="30" height="60" fill="#164b22"/><circle cx="315" cy="160" r="13" fill="#a3e196"/><path d="M310 175v45m0-25-18 16m18-16 18 16" stroke="#a3e196" strokeWidth="9"/></g>{Array.from({length:350},(_,i)=><circle key={i} cx={(i*173)%400} cy={(i*83)%240} r=".8" fill="#a6eea2" opacity={Math.max(.03,.35/Math.max(1,snr))}/>)}<text x="10" y="24" fill="#a5e6a5">{mode} · synthetic phosphor image</text><text x="10" y="245" fill="#a5e6a5">Brightness {(bright*100).toFixed(0)}% · Photon SNR {snr.toFixed(1)}</text></svg>;}
  return <div className="sy-ir-scene"><img src={art(84,"scene")} alt="Garage scene reference" style={{filter:`brightness(${result.valid?itemAt(result.visual,0):0}) ${mode==="Day"?"":"grayscale(1)"}`}}/><svg viewBox="0 0 400 240" aria-label="Illustrative sensor noise overlay">{Array.from({length:200},(_,i)=><circle key={i} cx={(i*173)%400} cy={(i*83)%240} r="1" fill="white" opacity={(1-parameterValue(p, 'noise')/110)/Math.max(1,itemAt(result.visual, 1))}/>)}<text x="10" y="22" fill="#aff0bb">Reflected near-IR · {mode}</text></svg></div>;
 }
-function CvrAudio({level,disabled}:{level:number;disabled:boolean}){const context=useRef<AudioContext|null>(null),[channel,setChannel]=useState(0),[playing,setPlaying]=useState(false),timer=useRef<ReturnType<typeof setTimeout>|null>(null);
+function CvrAudio({level,disabled}:{level:number;disabled:boolean}){
+  useSimulatorCapture("studios/how-devices-work/advanced/SystemsLabPage.tsx:CvrAudio", () => ({ context: context.current, channel, playing, timer: timer.current }), "7f3895e113e8");
+
+  useSimulatorCapture("studios/how-devices-work/advanced/SystemsLabPage.tsx:CvrAudio", () => ({ context: context.current, channel, playing, timer: timer.current }), "d68cb9dfcdce");
+const context=useRef<AudioContext|null>(null),[channel,setChannel]=useState(0),[playing,setPlaying]=useState(false),timer=useRef<ReturnType<typeof setTimeout>|null>(null);
  useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current);void context.current?.close();},[]);
  const play=async()=>{if(playing){void context.current?.close();context.current=null;setPlaying(false);if(timer.current)clearTimeout(timer.current);return;}const ctx=new AudioContext();context.current=ctx;await ctx.resume();const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.type="sine";oscillator.frequency.value=220+channel*110;gain.gain.setValueAtTime(0,ctx.currentTime);gain.gain.linearRampToValueAtTime(level/100*.08,ctx.currentTime+.1);gain.gain.setValueAtTime(level/100*.08,ctx.currentTime+1.8);gain.gain.linearRampToValueAtTime(0,ctx.currentTime+2);oscillator.connect(gain).connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+2);setPlaying(true);timer.current=setTimeout(()=>{void ctx.close();context.current=null;setPlaying(false);},2100);};
  useEffect(()=>{if(disabled&&context.current){void context.current.close();context.current=null;setPlaying(false);}},[disabled]);
  return <div className="sy-audio"><label>Playback channel<select value={channel} onChange={e=>setChannel(+e.target.value)}>{["Pilot","Copilot","Intercom","Cockpit area"].map((x,i)=><option key={x} value={i}>{x}</option>)}</select></label><button disabled={disabled} onClick={()=>void play()}>{playing?"Stop audio":"Play synthetic audio"}</button><small>Two-second tone; no live audio capture.</small></div>;
 }
 export function Quiz({lab}:{lab:AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/advanced/SystemsLabPage.tsx:Quiz", () => ({ answers }), "7f3895e113e8");
+
  const [answers,setAnswers]=useState<Record<number,number>>({});
  const part=lab.parts[0]!,role=lab.partFunctions?.[part]??componentRole(part,lab);
  const questions=[{q:lab.quiz[0],options:lab.quiz.slice(1),why:lab.principle},{q:`Which component has this function: ${role}`,options:[part,lab.parts[1]!,lab.parts[2]!],why:role},{q:`What follows “${lab.steps[0]![0]}” in ${lab.device.name}?`,options:[lab.steps[1]![0],lab.steps.at(-1)![0],lab.steps[0]![0]],why:lab.steps[1]![1]}];
@@ -71,6 +78,8 @@ export function Quiz({lab}:{lab:AdvancedLab}){
 }
 
 export default function SystemsLabPage({lab}:{lab:AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/advanced/SystemsLabPage.tsx:SystemsLabPage", () => ({ p, mode, running, time, fault, tab, part, step, overview, display, result }), "7f3895e113e8");
+
  const [p,setP]=useState(()=>initialAdvancedValues(lab)),[mode,setMode]=useState(itemAt(lab.modes,0)),[running,setRunning]=useState(false),[time,setTime]=useState(0),[fault,setFault]=useState(false),[tab,setTab]=useState(lab.number===83?"External":"Internal"),[part,setPart]=useState(0),[step,setStep]=useState(0),[overview,setOverview]=useState(false),[display,setDisplay]=useState("PPI");
  useEffect(()=>{if(!running)return;const id=setInterval(()=>setTime(t=>Math.min(120,t+.1)),100);return()=>clearInterval(id);},[running]);
  useEffect(()=>{if(!overview)return;const id=setInterval(()=>setStep(s=>(s+1)%lab.steps.length),1100);return()=>clearInterval(id);},[overview,lab.steps.length]);

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import DeviceCourse from '../DeviceCourse';
 import { MarineCompassArchitecture } from "./MarineCompassPanels";
 import { AutopilotArchitecture, AutopilotScene } from "./AutopilotPanels";
@@ -75,6 +76,8 @@ function Chart({result,lab,time,mode,waypoints,onWaypoint,selected,onSelect}:{re
 function Heading({result,vector}:{result:AdvancedResult;vector:boolean}){const heading=result.valid?itemAt(result.visual,0):0;return <svg viewBox="0 0 300 255" role="img" aria-label="Tilt-compensated marine heading indicator"><circle cx="140" cy="120" r="105" fill="#202b35" stroke="#8ba4b7" strokeWidth="8"/>{Array.from({length:36},(_,i)=>{const a=(i*10-heading)*Math.PI/180;return <g key={i}><path d={`M${140+Math.sin(a)*93} ${120-Math.cos(a)*93}l${Math.sin(a)*7} ${-Math.cos(a)*7}`} stroke="white"/>{i%3===0&&<text x={140+Math.sin(a)*78} y={124-Math.cos(a)*78} textAnchor="middle" fill="white" fontSize="12">{i===0?"N":i*10}</text>}</g>})}<path d="M140 24L147 37L133 37Z" fill="#60d487"/><text x="140" y="125" textAnchor="middle" fill="white" fontSize="27">{result.valid?heading.toFixed(1)+"°":"—"}</text><text x="140" y="149" textAnchor="middle" fill="#d0e6f2" fontSize="12">Magnetic heading</text>{vector&&<path d={`M140 120l${itemAt(result.visual, 1)*1.5} ${-result.visual[2]!*1.5}`} stroke="#ffca60" strokeWidth="3"/>}<text x="140" y="248" textAnchor="middle" fontSize="12">Calibration and tilt affect the measured field</text></svg>;}
 function nmeaHeading(heading:number){const body=`HCHDG,${heading.toFixed(1)},,,,`;return `$${body}*${Array.from(body).reduce((v,c)=>v^c.charCodeAt(0),0).toString(16).toUpperCase().padStart(2,"0")}`;}
 export default function MarineLabPage({lab}:{lab:AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/advanced/MarineLabPage.tsx:MarineLabPage", () => ({ p, mode, time, running, fault, tab, step, watch, vector, selected, waypoints, events, vessel, mmsi, result }), "669e47b78f21");
+
  const [p,setP]=useState(()=>initialAdvancedValues(lab)),[mode,setMode]=useState(itemAt(lab.modes,0)),[time,setTime]=useState(0),[running,setRunning]=useState(false),[fault,setFault]=useState(false),[tab,setTab]=useState("Internal"),[step,setStep]=useState(0),[watch,setWatch]=useState(false),[vector,setVector]=useState(false),[selected,setSelected]=useState(0),[waypoints,setWaypoints]=useState<Waypoint[]>([{x:110,y:155},{x:215,y:100},{x:270,y:40}]),[events,setEvents]=useState<string[]>([]),[vessel,setVessel]=useState("LAB VESSEL"),[mmsi,setMmsi]=useState("563999001");
  useEffect(()=>{if(!running)return;const id=setInterval(()=>setTime(t=>Math.min(120,t+.1)),100);return()=>clearInterval(id);},[running]);
  useEffect(()=>{if(time>=120)setRunning(false);},[time]);

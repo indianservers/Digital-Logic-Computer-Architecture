@@ -131,7 +131,8 @@ export function ExplainBar({ what, why, notice }: { what: string; why: string; n
   );
 }
 
-export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed }: {
+export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed, disabled = false }: {
+  disabled?: boolean;
   playing: boolean;
   onPlay: () => void;
   onStep: () => void;
@@ -141,8 +142,8 @@ export function SimControls({ playing, onPlay, onStep, onReset, speed, onSpeed }
 }) {
   return (
     <div className="row studio-sim-controls" role="group" aria-label="Simulation controls">
-      <Button variant="primary" onClick={onPlay} aria-label={playing ? "Pause simulation" : "Run simulation"}><Icon name={playing ? "pause" : "play"} size={14} />{playing ? "Pause" : "Run"}</Button>
-      <Button onClick={onStep} disabled={playing} title={playing ? "Pause the simulation to step" : "Advance one simulation step"}><Icon name="step" size={14} />Step</Button>
+      <Button variant="primary" onClick={onPlay} disabled={disabled} aria-label={playing ? "Pause simulation" : "Run simulation"}><Icon name={playing ? "pause" : "play"} size={14} />{playing ? "Pause" : "Run"}</Button>
+      <Button onClick={onStep} disabled={playing || disabled} title={playing ? "Pause the simulation to step" : "Advance one simulation step"}><Icon name="step" size={14} />Step</Button>
       <Button onClick={onReset}><Icon name="reset" size={14} />Reset</Button>
       {onSpeed ? (
         <label className="row tiny">Speed

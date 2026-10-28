@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useLab } from "../core/useLab";
 import type { Mcu, UartFrame } from "../core/mcu";
@@ -165,6 +166,8 @@ const NO_SEEN = { frame: false, config: false, talk: false, wave: false, cmd: fa
 const QUICK = ["help", "temp", "led on", "led off", "echo Hello Microcontroller Studio!"];
 
 export default function L29({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L29.tsx:L29", () => ({ lab, ltab, sel, input, hist, hi, auto, pending, msg, conRef: conRef.current, seen }), "4c2e63fcebf3");
+
   const lab = useLab<P29>({ slug: meta.slug, code: DEMO, params: P29_DEFAULT, mcu: () => ({ family: "esp32", ips: 400_000 }), world: world29 });
   const { mcu, params } = lab;
   const fw = mcu.fw;

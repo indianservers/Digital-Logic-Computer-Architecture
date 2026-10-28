@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented, Toggle } from "../../design-system/ui";
@@ -22,6 +23,8 @@ const TABS = [
 ];
 
 export function ParallelStudio() {
+  useSimulatorCapture("studios/parallel/ParallelStudio.tsx:ParallelStudio", () => ({ tab, width, rob, predicted }), "2870053e4a2f");
+
   const [tab, setTab] = useStudioTab(TABS, "flynn");
   const [width, setWidth] = useState("2");
   const [rob, setRob] = useState<RobEntry[]>(OPS.map((op) => ({ text: op.text, status: "wait" })));

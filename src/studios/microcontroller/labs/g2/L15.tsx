@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -20,6 +21,8 @@ function parse(v: string): { mode: number; af?: number } {
 }
 
 export default function L15({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L15.tsx:L15", () => ({ lab, sel, pending, seen }), "b0c5ef254959");
+
   const lab = useLab<P15>({
     slug: meta.slug, code: DEMO, params: P15_DEFAULT, rebuildOn: ["spiGated"],
     mcu: () => ({ ips: 120_000, strictClock: true }),

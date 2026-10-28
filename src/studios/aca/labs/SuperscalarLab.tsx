@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { SUPER_PRESETS, runSuper, type SuperWidths } from "../../../engines/aca/superscalar";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -16,6 +17,8 @@ function line(values: number[], width: number, height: number, max: number) {
 }
 
 export function SuperscalarLab() {
+  useSimulatorCapture("studios/aca/labs/SuperscalarLab.tsx:SuperscalarLab", () => ({ presetId, widths, bubbles, lanesOn, ids, autoReset, selected, wide, scalar, play, guideFocus, setGuideFocus }), "43d23f0e748e");
+
   const [presetId, setPresetId] = useState(SUPER_PRESETS[2]?.id ?? "mixed");
   const [widths, setWidths] = useState<SuperWidths>(SUPER_PRESETS[2]?.widths ?? { fetch: 4, decode: 4, dispatch: 4, execute: 4, retire: 4 });
   const [bubbles, setBubbles] = useState(true);

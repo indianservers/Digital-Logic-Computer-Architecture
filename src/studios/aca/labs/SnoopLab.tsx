@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { FABRIC_PRESETS, compareFabric, type FabricRequest } from "../../../engines/aca/snoopCompare";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -7,6 +8,8 @@ import { useGuideFocus } from "../guide/focus";
 const COLORS = ["#dbeafe", "#dcfce7", "#fef3c7", "#f3e8ff", "#ffe4e6", "#e0f2fe", "#fef9c7", "#ede9fe"];
 
 export function SnoopLab() {
+  useSimulatorCapture("studios/aca/labs/SnoopLab.tsx:SnoopLab", () => ({ presetId, cores, requests, seed, showSnoop, showDirectory, messagesOn, animate, highlight, auto, actor, operation, address, written, result, play, guideFocus, setGuideFocus }), "0ad5bd7e2411");
+
   const initial = FABRIC_PRESETS[2];
   const [presetId, setPresetId] = useState(initial?.id ?? "writer");
   const [cores, setCores] = useState(initial?.cores ?? 8);

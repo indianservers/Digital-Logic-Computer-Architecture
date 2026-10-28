@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { MOS_MODEL_NOTE, bodyEffect, deviceK, engineering, idVdsFamily, idVgsCurve, mosCapacitor, mosfet, regionLabel, thresholdAtTemperature, type Polarity } from "../engine";
 import { BandSketch, CapSection, MosSection } from "../diagrams";
@@ -6,6 +7,8 @@ import { Badge, Chart, Choice, Measure, Observe, PlayControls, Slider, Theory, u
 const COLORS = ["#22d3ee", "#38bdf8", "#a3e635", "#facc15", "#fb923c", "#f472b6", "#c084fc"];
 
 export function MosfetFundamentalsLab() {
+  useSimulatorCapture("studios/vlsi/labs/deviceLabs.tsx:MosfetFundamentalsLab", () => ({ polarity, mode, vgs, vds, vth0, vsb, temp, playing }), "ed774d7840b9");
+
   const [polarity, setPolarity] = useState<Polarity>("nmos");
   const [mode, setMode] = useState<"structure" | "channel" | "regions" | "current" | "bands">("channel");
   const [vgs, setVgs] = useState(1.2);
@@ -72,6 +75,8 @@ export function MosfetFundamentalsLab() {
 }
 
 export function MosfetIvLab() {
+  useSimulatorCapture("studios/vlsi/labs/deviceLabs.tsx:MosfetIvLab", () => ({ polarity, plot, start, stop, step, vdsMax, vth0, width, opVgs, opVds, gates, family, transfer }), "ed774d7840b9");
+
   const [polarity, setPolarity] = useState<Polarity>("nmos");
   const [plot, setPlot] = useState<"output" | "transfer">("output");
   const [start, setStart] = useState(0.5);
@@ -109,6 +114,7 @@ export function MosfetIvLab() {
         <Theory title="What the curves are"><p>{MOS_MODEL_NOTE} Click a plot to move the operating point. k = k′ W/L = {engineering(k, "A/V²")}.</p></Theory>
       </aside>
       <section className="vlsi-stage">
+
         {plot === "output" ? (
           <Chart
             ariaLabel="Drain current versus drain voltage"
@@ -158,6 +164,8 @@ export function MosfetIvLab() {
 }
 
 export function MosCapacitorLab() {
+  useSimulatorCapture("studios/vlsi/labs/deviceLabs.tsx:MosCapacitorLab", () => ({ vg, body, tox, doping, temp, curve }), "ed774d7840b9");
+
   const [vg, setVg] = useState(0.2);
   const [body, setBody] = useState<"p" | "n">("p");
   const [tox, setTox] = useState(4);

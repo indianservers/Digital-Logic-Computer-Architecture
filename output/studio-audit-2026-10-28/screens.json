@@ -1,0 +1,647 @@
+[
+  {
+    "id": "numbers",
+    "title": "Number Systems",
+    "path": "/studios/number-systems",
+    "headings": [
+      "\t\t\t99 heading Number Systems & Data Representation, Value: 1",
+      "\t\t\t\t120 heading Convert between decimal, binary, octal, and hexadecimal, Value: 2",
+      "\t\t\t\t124 heading What changed, Value: 3",
+      "\t\t\t\t128 heading Why, Value: 3",
+      "\t\t\t\t132 heading Notice, Value: 3",
+      "\t\t\t\t\t\t138 heading Live number converter, Value: 2",
+      "\t\t\t\t\t\t173 heading Place-value visualizer, Value: 2"
+    ]
+  },
+  {
+    "id": "boolean",
+    "title": "Boolean Algebra",
+    "path": "/studios/boolean-algebra",
+    "headings": [
+      "\t\t\t\t95 heading Boolean Algebra, Value: 1",
+      "\t\t\t\t\t126 heading Expression builder, Value: 3",
+      "\t\t\t\t\t156 heading Variable inputs, Value: 3",
+      "\t\t\t\t\t163 heading Venn diagram, Value: 3",
+      "\t\t\t\t\t168 heading Gate tree, Value: 3",
+      "\t\t\t\t\t172 heading Karnaugh map, Value: 3",
+      "\t\t\t\t\t209 heading Boolean cube, Value: 3"
+    ]
+  },
+  {
+    "id": "gates",
+    "title": "Logic Gates",
+    "path": "/studios/logic-gates",
+    "headings": [
+      "\t\t\t\t\t93 heading Logic Gates Studio, Value: 1",
+      "\t\t\t\t\t108 heading 1 Components, Value: 3",
+      "\t\t\t\t\t263 heading 2 Circuit Sandbox, Value: 3",
+      "\t\t\t\t\t\t483 image A → U1 = 0. Drag either end to rewire.",
+      "\t\t\t\t\t\t484 image B → U1 = 1. Drag either end to rewire.",
+      "\t\t\t\t\t\t485 image B → U2 = 1. Drag either end to rewire.",
+      "\t\t\t\t\t\t486 image C → U2 = 0. Drag either end to rewire."
+    ]
+  },
+  {
+    "id": "truth",
+    "title": "Truth Tables",
+    "path": "/studios/truth-tables",
+    "headings": [
+      "\t\t\t\t\t93 heading Truth Tables & Logic Minimization, Value: 1",
+      "\t\t\t\t\t111 heading Truth Table Editor, Value: 3",
+      "\t\t\t\t\t287 heading Karnaugh Map, Value: 3",
+      "\t\t\t\t\t342 heading Prime Implicants, Value: 3",
+      "\t\t\t\t\t411 heading Minimized Expression, Value: 3",
+      "\t\t\t\t\t415 heading Step by Step, Value: 3",
+      "\t\t\t\t\t441 heading Explore Truth Tables, Value: 2"
+    ]
+  },
+  {
+    "id": "kmap",
+    "title": "K-Map Solver",
+    "path": "/studios/kmap",
+    "headings": [
+      "\t\t\t\t98 heading K-Map & Logic Simplification, Value: 1",
+      "\t\t\t\t133 heading K-map (4 variables)　ⓘ, Value: 3",
+      "\t\t\t\t245 heading Groups, Value: 3",
+      "\t\t\t\t\t258 heading Studio Guide ⌃, Value: 3",
+      "\t\t\t\t\t272 heading Key Takeaways ⌃, Value: 3",
+      "\t\t\t\t288 heading Explore K-Map Solver, Value: 2",
+      "\t\t\t\t\t292 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "combo",
+    "title": "Combinational Circuits",
+    "path": "/studios/combinational",
+    "headings": [
+      "\t\t\t\t98 heading Combinational Circuit Design, Value: 1",
+      "\t\t\t\t111 heading Components, Value: 2",
+      "\t\t\t\t138 heading Circuit Canvas, Value: 2",
+      "\t\t\t\t\t\t327 image A → AND = 1. Drag either end to rewire.",
+      "\t\t\t\t\t\t328 image B → AND = 0. Drag either end to rewire.",
+      "\t\t\t\t\t\t329 image AND → OR = 0. Drag either end to rewire.",
+      "\t\t\t\t\t\t330 image C → OR = 0. Drag either end to rewire."
+    ]
+  },
+  {
+    "id": "adders",
+    "title": "Adders & Arithmetic",
+    "path": "/studios/adders",
+    "headings": [
+      "\t\t\t\t95 heading Adders, Subtractors & Arithmetic, Value: 1",
+      "\t\t\t\t\t124 heading Half adder, Value: 3",
+      "\t\t\t\t\t130 image Half adder gates",
+      "\t\t\t\t\t139 heading Full adder, Value: 3",
+      "\t\t\t\t\t150 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t162 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t174 heading Explore Adders & Arithmetic, Value: 2"
+    ]
+  },
+  {
+    "id": "mux",
+    "title": "MUX, DEMUX & Codecs",
+    "path": "/studios/routing",
+    "headings": [
+      "\t\t\t\t\t96 heading MUX, DEMUX, Encoder & Decoder, Value: 1",
+      "\t\t\t\t\t129 heading MUX Configuration, Value: 3",
+      "\t\t\t\t\t166 heading Circuit Visualizer, Value: 3",
+      "\t\t\t\t\t183 heading Output Monitor, Value: 3",
+      "\t\t\t\t\t187 heading Logic Expression, Value: 3",
+      "\t\t\t\t\t191 heading Gate-Level Implementation, Value: 3",
+      "\t\t\t\t\t195 heading Truth Table (4:1 MUX), Value: 3"
+    ]
+  },
+  {
+    "id": "alu",
+    "title": "ALU",
+    "path": "/studios/alu",
+    "headings": [
+      "\t\t\t\t\t96 heading ALU & Arithmetic Hardware, Value: 1",
+      "\t\t\t\t\t107 heading ALU Configuration, Value: 3",
+      "\t\t\t\t\t134 heading ALU Datapath Visualizer, Value: 3",
+      "\t\t\t\t\t156 heading Opcode / Operation Table, Value: 3",
+      "\t\t\t\t\t242 heading Result Output, Value: 3",
+      "\t\t\t\t\t246 heading Status Flags, Value: 3",
+      "\t\t\t\t\t250 heading Control Bits Visualization, Value: 3"
+    ]
+  },
+  {
+    "id": "timing",
+    "title": "Digital Timing",
+    "path": "/studios/timing",
+    "headings": [
+      "\t\t\t83 heading Clock Lab, Value: 1",
+      "\t\t\t\t\t95 heading Signal Controls, Value: 3",
+      "\t\t\t\t\t130 heading ◎ Guided Challenge, Value: 3",
+      "\t\t\t\t\t132 heading Set the duty cycle to 25%., Value: 4",
+      "\t\t\t\t\t136 heading Live Measurements (CH1), Value: 4",
+      "\t\t\t\t169 heading Explore Digital Timing, Value: 2",
+      "\t\t\t\t\t173 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "latches",
+    "title": "Latches & Flip-Flops",
+    "path": "/studios/flip-flops",
+    "headings": [
+      "\t\t\t\t\t96 heading Latches & Flip-Flops, Value: 1",
+      "\t\t\t\t\t112 heading Interactive Circuit — SR Latch (NOR), Value: 3",
+      "\t\t\t\t\t144 heading Truth Table — SR Latch (NOR), Value: 3",
+      "\t\t\t\t\t203 heading Timing Diagram, Value: 3",
+      "\t\t\t\t\t212 heading State Transition Table, Value: 3",
+      "\t\t\t\t\t316 heading Characteristic Equation, Value: 3"
+    ]
+  },
+  {
+    "id": "registers",
+    "title": "Registers",
+    "path": "/studios/registers",
+    "headings": [
+      "\t\t\t\t95 heading Registers & Shift Registers, Value: 1",
+      "\t\t\t\t\t126 heading 4-bit parallel, Value: 3",
+      "\t\t\t\t\t166 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t178 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t190 heading Explore Registers, Value: 2",
+      "\t\t\t\t\t\t194 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "counters",
+    "title": "Counters",
+    "path": "/studios/counters",
+    "headings": [
+      "\t\t\t\t\t97 heading Counters 12 concepts, Value: 1",
+      "\t\t\t\t\t113 heading 4-Bit Counter Simulator, Value: 3",
+      "\t\t\t\t\t152 heading Key Concepts (12), Value: 3",
+      "\t\t\t\t\t173 heading Interactive Labs (6), Value: 3",
+      "\t\t\t\t\t202 heading Real-World Applications, Value: 3",
+      "\t\t\t\t\t224 heading Practice Challenge, Value: 3"
+    ]
+  },
+  {
+    "id": "fsm",
+    "title": "Finite State Machines",
+    "path": "/studios/fsm",
+    "headings": [
+      "\t\t\t\t\t96 heading Finite State Machines 17 concepts, Value: 1",
+      "\t\t\t\t\t109 heading State Diagram, Value: 3",
+      "\t\t\t\t\t119 heading State Editor, Value: 3",
+      "\t\t\t\t\t134 heading Input Alphabet, Value: 3",
+      "\t\t\t\t\t141 heading Output Display, Value: 3",
+      "\t\t\t\t\t145 heading Simulation Controls, Value: 3"
+    ]
+  },
+  {
+    "id": "memory",
+    "title": "Memory Fundamentals",
+    "path": "/studios/memory",
+    "headings": [
+      "\t\t\t\t\t\t108 heading CPU, Value: 3",
+      "\t\t\t\t\t\t180 heading Memory Array (8 × 8), Value: 3",
+      "\t\t\t\t\t\t250 heading Memory Details, Value: 3",
+      "\t\t\t\t\t\t254 heading Memory Map, Value: 3",
+      "\t\t\t\t\t\t281 heading Read Cycle, Value: 3",
+      "\t\t\t\t\t\t309 heading Operation Log, Value: 3"
+    ]
+  },
+  {
+    "id": "cache",
+    "title": "Cache Memory",
+    "path": "/studios/cache",
+    "headings": [
+      "\t\t\t\t\t96 heading Cache Memory, Value: 1",
+      "\t\t\t\t\t107 heading Configuration, Value: 2",
+      "\t\t\t\t\t154 heading Access trace, Value: 2",
+      "\t\t\t\t\t165 heading Controls, Value: 2",
+      "\t\t\t\t\t179 heading Memory Access Flow, Value: 2",
+      "\t\t\t\t\t191 heading Address Breakdown, Value: 2"
+    ]
+  },
+  {
+    "id": "hierarchy",
+    "title": "Memory Hierarchy",
+    "path": "/studios/hierarchy",
+    "headings": [
+      "\t\t\t\t\t95 heading Memory Hierarchy, Value: 1",
+      "\t\t\t\t\t107 heading The memory pyramid, Value: 2",
+      "\t\t\t\t\t113 heading Memory Hierarchy Diagram, Value: 2",
+      "\t\t\t\t\t137 heading Edit Latencies teaching parameters, Value: 2",
+      "\t\t\t\t\t175 heading Studio Guide, Value: 2",
+      "\t\t\t\t\t194 heading Key Takeaways, Value: 2"
+    ]
+  },
+  {
+    "id": "vm",
+    "title": "Virtual Memory",
+    "path": "/studios/vm",
+    "headings": [
+      "\t\t\t\t\t102 heading Virtual Address Translation, Value: 1",
+      "\t\t\t\t\t106 heading Virtual Address, Value: 2",
+      "\t\t\t\t\t131 heading Translation Path, Value: 2",
+      "\t\t\t\t\t161 heading Translation Result, Value: 2",
+      "\t\t\t\t\t192 heading Physical Memory (Frames), Value: 2",
+      "\t\t\t\t\t229 heading Access Log, Value: 2"
+    ]
+  },
+  {
+    "id": "cpu-blocks",
+    "title": "CPU Building Blocks",
+    "path": "/studios/cpu-blocks",
+    "headings": [
+      "\t\t\t\t\t95 heading CPU Building Blocks, Value: 1",
+      "\t\t\t\t\t109 heading CPU blocks, Value: 2",
+      "\t\t\t\t\t119 heading CPU core, Value: 2",
+      "\t\t\t\t\t146 heading PC · Program Counter, Value: 2",
+      "\t\t\t\t\t164 heading Studio Guide, Value: 2",
+      "\t\t\t\t\t179 heading Key Takeaways, Value: 2"
+    ]
+  },
+  {
+    "id": "datapath",
+    "title": "Register Transfer",
+    "path": "/studios/rtl",
+    "headings": [
+      "\t\t\t\t\t\t96 heading Register Transfer, Value: 1",
+      "\t\t\t\t\t105 heading Register Transfer Language (RTL), Value: 2",
+      "\t\t\t\t\t114 heading Micro-operation sequence, Value: 3",
+      "\t\t\t\t\t129 heading Try it yourself, Value: 2",
+      "\t\t\t\t\t165 heading Register file 8 registers • R0 – R7, Value: 2",
+      "\t\t\t\t\t213 heading Execution result, Value: 2"
+    ]
+  },
+  {
+    "id": "isa",
+    "title": "Instruction Set Architecture",
+    "path": "/studios/isa",
+    "headings": [
+      "\t\t\t\t\t96 heading Instruction Set Architecture, Value: 1",
+      "\t\t\t\t\t\t116 heading The instruction set is the contract., Value: 2",
+      "\t\t\t\t\t\t123 heading How it fits together, Value: 2",
+      "\t\t\t\t\t\t138 heading Try an instruction, Value: 2",
+      "\t\t\t\t\t\t167 heading  What it means, Value: 3",
+      "\t\t\t\t\t\t171 heading Registers (example values), Value: 3"
+    ]
+  },
+  {
+    "id": "addressing",
+    "title": "Addressing Modes",
+    "path": "/studios/isa?tab=modes",
+    "headings": [
+      "\t\t\t\t\t96 heading Instruction Set Architecture, Value: 1",
+      "\t\t\t\t\t\t134 heading Immediate Addressing, Value: 2",
+      "\t\t\t\t\t\t140 heading Assembly Instruction, Value: 3",
+      "\t\t\t\t\t\t144 heading Instruction Format (I-type), Value: 3",
+      "\t\t\t\t\t\t148 heading How it works, Value: 3",
+      "\t\t\t\t\t\t162 heading Registers, Value: 3"
+    ]
+  },
+  {
+    "id": "assembly",
+    "title": "Assembly Execution",
+    "path": "/studios/assembly",
+    "headings": [
+      "\t\t\t\t\t96 heading Assembly Execution Virtual Lab Studio, Value: 1",
+      "\t\t\t\t\t113 heading Execution cycle, Value: 2",
+      "\t\t\t\t\t117 heading Program, Value: 2",
+      "\t\t\t\t\t141 heading CPU state, Value: 2",
+      "\t\t\t\t\t159 heading Register file, Value: 2",
+      "\t\t\t\t\t178 heading Memory snapshot, Value: 2"
+    ]
+  },
+  {
+    "id": "fde",
+    "title": "Fetch–Decode–Execute",
+    "path": "/studios/fde",
+    "headings": [
+      "\t\t\t\t106 heading Fetch–Decode–Execute, Value: 1",
+      "\t\t\t\t\t121 heading 5-Stage Pipeline (Multi-cycle FDE), Value: 2",
+      "\t\t\t\t\t126 heading Fetch, Value: 3",
+      "\t\t\t\t\t132 heading Decode, Value: 3",
+      "\t\t\t\t\t138 heading Execute, Value: 3",
+      "\t\t\t\t\t144 heading Memory, Value: 3"
+    ]
+  },
+  {
+    "id": "control",
+    "title": "Control Unit",
+    "path": "/studios/control",
+    "headings": [
+      "\t\t\t\t\t96 heading Control Unit, Value: 1",
+      "\t\t\t\t\t\t107 heading Hardwired control, Value: 2",
+      "\t\t\t\t\t\t113 heading What changed?, Value: 3",
+      "\t\t\t\t\t\t118 heading Why?, Value: 3",
+      "\t\t\t\t\t\t123 heading Notice, Value: 3",
+      "\t\t\t\t\t\t127 heading Opcode to signals, Value: 2"
+    ]
+  },
+  {
+    "id": "pipeline",
+    "title": "CPU Pipeline",
+    "path": "/studios/pipeline",
+    "headings": [
+      "\t\t\t\t\t97 heading CPU Pipelining 13 concepts, Value: 1",
+      "\t\t\t\t\t110 heading Interactive Pipeline Simulator, Value: 3",
+      "\t\t\t\t\t157 heading Pipeline Registers, Value: 3",
+      "\t\t\t\t\t168 heading Instruction Pipeline Timeline, Value: 3",
+      "\t\t\t\t\t237 heading Performance Comparison, Value: 3"
+    ]
+  },
+  {
+    "id": "hazards",
+    "title": "Pipeline Hazards",
+    "path": "/studios/hazards",
+    "headings": [
+      "\t\t\t\t95 heading Pipeline Hazards, Value: 1",
+      "\t\t\t\t\t139 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t151 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t163 heading Explore Pipeline Hazards, Value: 2",
+      "\t\t\t\t\t\t167 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "io",
+    "title": "I/O Architecture",
+    "path": "/studios/io",
+    "headings": [
+      "\t\t\t90 heading Memory-Mapped I/O, Value: 1",
+      "\t\t\t\t94 heading Bus Access Controls, Value: 3",
+      "\t\t\t\t108 heading Address Map (16-bit), Value: 3",
+      "\t\t\t\t155 heading GPIO DATA Register (0x8000), Value: 4",
+      "\t\t\t\t183 heading GPIO Output LEDs (from DATA register), Value: 4"
+    ]
+  },
+  {
+    "id": "interrupts",
+    "title": "Interrupts & DMA",
+    "path": "/studios/interrupts",
+    "headings": [
+      "\t\t\t\t\t101 heading Interrupts & DMA, Value: 1",
+      "\t\t\t\t\t\t114 heading Interrupt timeline, Value: 2",
+      "\t\t\t\t\t\t117 heading Run user instruction, Value: 4",
+      "\t\t\t\t\t\t123 heading Interrupt request arrives, Value: 4",
+      "\t\t\t\t\t\t129 heading Save PC (PC = 12), Value: 4"
+    ]
+  },
+  {
+    "id": "bus",
+    "title": "Bus Architecture",
+    "path": "/studios/bus",
+    "headings": [
+      "\t\t\t\t95 heading Bus Architecture, Value: 1",
+      "\t\t\t\t\t123 heading Address bus, Value: 3",
+      "\t\t\t\t\t\t130 heading Practical challenge, Value: 3",
+      "\t\t\t\t\t135 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t147 heading Key Takeaways, Value: 3"
+    ]
+  },
+  {
+    "id": "parallel",
+    "title": "Parallel Processing",
+    "path": "/studios/parallel",
+    "headings": [
+      "\t\t\t\t95 heading Parallel Processing, Value: 1",
+      "\t\t\t\t\t126 heading SISD, Value: 3",
+      "\t\t\t\t\t130 heading SIMD, Value: 3",
+      "\t\t\t\t\t134 heading MISD, Value: 3",
+      "\t\t\t\t\t138 heading MIMD, Value: 3"
+    ]
+  },
+  {
+    "id": "multicore",
+    "title": "Multicore & Coherence",
+    "path": "/studios/multicore",
+    "headings": [
+      "\t\t\t\t95 heading Multicore & Coherence, Value: 1",
+      "\t\t\t\t\t143 heading Line state, Value: 3",
+      "\t\t\t\t\t\t152 heading Practical challenge, Value: 3",
+      "\t\t\t\t\t157 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t169 heading Key Takeaways, Value: 3"
+    ]
+  },
+  {
+    "id": "aca",
+    "title": "Advanced Computer Architecture",
+    "path": "/studios/advanced-computer-architecture",
+    "headings": [
+      "\t\t\t\t100 image Advanced Computer Architecture",
+      "\t\t\t\t101 heading Advanced Computer Architecture, Value: 1",
+      "\t\t\t\t\t106 image Instruction-Level Parallelism",
+      "\t\t\t\t\t107 heading Instruction-Level Parallelism, Value: 2, ID: aca-ilp",
+      "\t\t\t\t\t118 image Branch Prediction & Speculation"
+    ]
+  },
+  {
+    "id": "accelerator",
+    "title": "AI Accelerator / TPU / NPU",
+    "path": "/architecture/accelerator",
+    "headings": [
+      "\t\t\t\t111 heading AI Accelerator / TPU / NPU, Value: 1",
+      "\t\t\t\t\t145 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t155 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t166 heading Explore Overview, Value: 2",
+      "\t\t\t\t\t\t170 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "hetero",
+    "title": "Heterogeneous Computing",
+    "path": "/architecture/hetero",
+    "headings": [
+      "\t\t\t\t109 heading Heterogeneous Computing, Value: 1",
+      "\t\t\t\t\t141 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t149 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t160 heading Explore Overview, Value: 2",
+      "\t\t\t\t\t\t164 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "soc",
+    "title": "SoC Architecture Explorer",
+    "path": "/architecture/soc",
+    "headings": [
+      "\t\t\t\t110 heading SoC Architecture Explorer, Value: 1",
+      "\t\t\t\t\t143 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t151 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t162 heading Explore Overview, Value: 2",
+      "\t\t\t\t\t\t166 heading What you will learn, Value: 3"
+    ]
+  },
+  {
+    "id": "cpu8",
+    "title": "Educational 8-bit CPU",
+    "path": "/architecture/cpu8",
+    "headings": [
+      "\t\t\t\t111 heading Educational 8-bit CPU, Value: 1",
+      "\t\t\t\t\t145 heading Implemented teaching ISA, Value: 3",
+      "\t\t\t\t\t148 heading 8-bit CPU, Value: 3",
+      "\t\t\t\t\t202 heading Program, Value: 3",
+      "\t\t\t\t\t208 heading Studio Guide, Value: 3"
+    ]
+  },
+  {
+    "id": "cpu16",
+    "title": "Educational 16-bit CPU",
+    "path": "/architecture/cpu16",
+    "headings": [
+      "\t\t\t\t113 heading Educational 16-bit CPU, Value: 1",
+      "\t\t\t\t\t149 heading LogicLab-16, Value: 3",
+      "\t\t\t\t\t158 heading Workspace, Value: 3",
+      "\t\t\t\t\t234 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t242 heading Key Takeaways, Value: 3"
+    ]
+  },
+  {
+    "id": "mips",
+    "title": "MIPS Architecture Explorer",
+    "path": "/architecture/mips",
+    "headings": [
+      "\t\t\t\t\t95 heading MIPS Architecture Explorer, Value: 2",
+      "\t\t\t\t\t108 heading MIPS Architecture Explorer, Value: 1",
+      "\t\t\t\t\t116 heading MIPS Processor Datapath (Single-Cycle View), Value: 3",
+      "\t\t\t\t\t125 heading Quick facts, Value: 3",
+      "\t\t\t\t\t141 heading What to click, Value: 3"
+    ]
+  },
+  {
+    "id": "riscv-lab",
+    "title": "RISC-V Processor Lab",
+    "path": "/architecture/riscv",
+    "headings": [
+      "\t\t\t\t\t95 heading RISC-V Processor Lab, Value: 2",
+      "\t\t\t\t\t114 heading RISC-V Processor Lab, Value: 1",
+      "\t\t\t\t\t120 heading Build understanding, one block at a time., Value: 3",
+      "\t\t\t\t\t128 heading Explore the Lab Topics, Value: 3",
+      "\t\t\t\t\t147 heading RV32I Workspace Preview, Value: 3"
+    ]
+  },
+  {
+    "id": "arm",
+    "title": "ARM Architecture Explorer",
+    "path": "/architecture/arm",
+    "headings": [
+      "\t\t\t\t\t95 heading ARM Architecture Explorer, Value: 2",
+      "\t\t\t\t\t108 heading ARM ARM Architecture Explorer, Value: 1",
+      "\t\t\t\t\t114 heading AArch64 Processor Overview, Value: 3",
+      "\t\t\t\t\t128 heading What stays special in AArch64, Value: 3",
+      "\t\t\t\t\t132 heading Explore the Labs, Value: 3",
+      "\t\t\t\t\t144 heading Concept notes, Value: 3"
+    ]
+  },
+  {
+    "id": "x86",
+    "title": "x86 Architecture Explorer",
+    "path": "/architecture/x86",
+    "headings": [
+      "\t\t\t\t\t95 heading x86 Architecture Explorer, Value: 2",
+      "\t\t\t\t\t108 heading x86 x86 Architecture Explorer, Value: 1",
+      "\t\t\t\t\t112 heading Modern x86 Processor Overview, Value: 3",
+      "\t\t\t\t\t122 heading Explore the Labs, Value: 3",
+      "\t\t\t\t\t134 heading Notes for this lab, Value: 3",
+      "\t\t\t\t\t138 heading Concept notes, Value: 3"
+    ]
+  },
+  {
+    "id": "compare-isa",
+    "title": "ISA Comparison Explorer",
+    "path": "/architecture/compare",
+    "headings": [
+      "\t\t\t\t\t107 heading ISA Comparison Explorer, Value: 1",
+      "\t\t\t\t\t116 heading Three ISAs. One Exploration., Value: 2",
+      "\t\t\t\t\t164 heading Featured Labs, Value: 3",
+      "\t\t\t\t\t172 heading More Labs, Value: 3",
+      "\t\t\t\t\t180 heading Concept notes, Value: 3",
+      "\t\t\t\t\t\t188 heading Studio Guide, Value: 3"
+    ]
+  },
+  {
+    "id": "mobile",
+    "title": "Modern Mobile SoC Explorer",
+    "path": "/architecture/mobile",
+    "headings": [
+      "\t\t\t\t\t107 heading Modern Mobile SoC Explorer, Value: 1",
+      "\t\t\t\t\t116 heading One package. Many engines., Value: 2",
+      "\t\t\t\t\t131 heading Concept notes, Value: 3",
+      "\t\t\t\t\t\t139 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t150 heading Key Takeaways, Value: 3",
+      "\t\t\t\t\t157 heading Need Help?, Value: 3"
+    ]
+  },
+  {
+    "id": "desktop",
+    "title": "Modern Desktop CPU Explorer",
+    "path": "/architecture/desktop",
+    "headings": [
+      "\t\t\t\t\t107 heading Modern Desktop CPU Explorer, Value: 1",
+      "\t\t\t\t\t125 heading Featured Labs, Value: 2",
+      "\t\t\t\t\t130 heading More Labs, Value: 2",
+      "\t\t\t\t\t139 heading Concept notes, Value: 3",
+      "\t\t\t\t\t\t147 heading Studio Guide, Value: 3",
+      "\t\t\t\t\t158 heading Key Takeaways, Value: 3"
+    ]
+  },
+  {
+    "id": "builder",
+    "title": "Build Your Own CPU",
+    "path": "/architecture/builder",
+    "headings": [
+      "\t\t\t\t\t118 heading Build Your Own CPU, Value: 1",
+      "\t\t\t\t\t120 heading Design • Simulate • Assemble • Run • Learn, Value: 2",
+      "\t\t\t\t124 image Glowing CPU with Design, Simulate, Learn and Innovate tiles",
+      "\t\t\t\t\t144 heading ♧   Studio Guide, Value: 3",
+      "\t\t\t\t\t154 heading ♧   Key Takeaways, Value: 3",
+      "\t\t\t\t169 heading Explore Overview, Value: 2"
+    ]
+  },
+  {
+    "id": "sandbox",
+    "title": "Computer Architecture Sandbox",
+    "path": "/architecture/sandbox",
+    "headings": [
+      "\t\t\t\t102 heading Components, Value: 2",
+      "\t\t\t\t226 heading Full Adder (FA1) Delete selected component, Value: 2",
+      "\t\t\t\t229 heading Properties, Value: 3",
+      "\t\t\t\t240 heading Ports, Value: 3",
+      "\t\t\t\t268 heading ◎　Challenge, Value: 3",
+      "\t\t\t\t272 heading Test Vector, Value: 3"
+    ]
+  },
+  {
+    "id": "vlsi",
+    "title": "VLSI Studio",
+    "path": "/studios/vlsi",
+    "headings": [
+      "\t\t\t\t\t91 heading From transistor physics to silicon implementation, Value: 1",
+      "\t\t\t\t\t97 heading The whole flow, Value: 2, ID: vlsi-flow-title",
+      "\t\t\t\t\t167 heading Learning paths, Value: 2, ID: vlsi-paths-title",
+      "\t\t\t\t\t\t171 heading Transistor to inverter, Value: 3",
+      "\t\t\t\t\t\t184 heading Gates and storage, Value: 3",
+      "\t\t\t\t\t\t197 heading Timing closure, Value: 3"
+    ]
+  },
+  {
+    "id": "microcontroller",
+    "title": "Microcontroller Studio",
+    "path": "/studios/microcontroller",
+    "headings": [
+      "\t\t\t\t\t91 heading Build an understanding. Then build a system., Value: 1",
+      "\t\t\t\t\t117 heading Choose an experiment, Value: 2, ID: mcu-browser-title",
+      "\t\t\t\t\t\t128 heading Foundations & Architecture 10, Value: 2",
+      "\t\t\t\t\t\t142 heading GPIO & Interrupts 8, Value: 2",
+      "\t\t\t\t\t\t154 heading Timers, Motion & Analog 10, Value: 2",
+      "\t\t\t\t\t\t168 heading Communication & Interfacing 8, Value: 2"
+    ]
+  },
+  {
+    "id": "how-devices-work",
+    "title": "How Devices Work Studio",
+    "path": "/studios/how-devices-work",
+    "headings": [
+      "\t\t\t\t\t94 heading How Devices Work, Value: 1",
+      "\t\t\t\t\t101 image MRI scanner, flight instruments, ECG monitor, robotic arm and contactless payment equipment",
+      "\t\t\t\t\t123 heading One device. A whole world inside., Value: 2",
+      "\t\t\t\t\t\t131 heading Medical & Healthcare 49, Value: 2",
+      "\t\t\t\t\t\t148 heading Aviation & Aerospace 21, Value: 2",
+      "\t\t\t\t\t\t165 heading Defence & Security 21, Value: 2"
+    ]
+  }
+]

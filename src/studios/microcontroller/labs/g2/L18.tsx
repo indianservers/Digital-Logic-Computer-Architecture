@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState, type MouseEvent } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -15,6 +16,8 @@ const STATUS_CLS: Record<Status, string> = { Active: "act", Preempted: "pre", Pe
 const X0 = 110, X1 = 640;
 
 export default function L18({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L18.tsx:L18", () => ({ lab, cursor, pending, seen }), "f64b027c3dcf");
+
   const lab = useLab<P18>({
     slug: meta.slug, code: DEMO, params: P18_DEFAULT, rebuildOn: ["extiOff"],
     mcu: () => ({ ips: 120_000, clock: CORE_HZ }),

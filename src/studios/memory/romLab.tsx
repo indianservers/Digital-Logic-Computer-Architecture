@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { formatHex, preloadCells, romRead, romRejectWrite, toBinary, type RomVariant } from "../../engines/memory/fundamentals";
 import { Field, LabGuide } from "./guide";
@@ -10,6 +11,8 @@ const VARIANTS: Record<RomVariant, { title: string; program: string; erase: stri
 };
 
 export function RomLab() {
+  useSimulatorCapture("studios/memory/romLab.tsx:RomLab", () => ({ depth, design, burned, address, variant, editing, note }), "8bebfd082312");
+
   const [depth, setDepth] = useState(16);
   const [design, setDesign] = useState<number[]>(() => preloadCells("program", 64, 8));
   const [burned, setBurned] = useState<number[] | null>(() => preloadCells("program", 16, 8));

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useSandbox } from "./sandboxState";
 import { cacheDecode, hx, RAM_BYTES, readHex } from "./sandboxModel";
@@ -11,6 +12,8 @@ import {
   SIcon,
 } from "./SandboxUI";
 export function MemoryView() {
+  useSimulatorCapture("studios/sandbox/MemoryViews.tsx:MemoryView", () => ({ s }), "6024cddbe71a");
+
   const s = useSandbox(),
     address = s.currentAddress,
     d = cacheDecode(address, s.cacheLines, s.blockSize),
@@ -189,6 +192,8 @@ export function MemoryView() {
   );
 }
 export function MemoryDock() {
+  useSimulatorCapture("studios/sandbox/MemoryViews.tsx:MemoryDock", () => ({ s }), "6024cddbe71a");
+
   const s = useSandbox();
   return (
     <div className="sb-memory-dock">
@@ -279,6 +284,8 @@ export function MemoryDock() {
   );
 }
 export function MulticoreView() {
+  useSimulatorCapture("studios/sandbox/MemoryViews.tsx:MulticoreView", () => ({ s }), "6024cddbe71a");
+
   const s = useSandbox();
   return (
     <Surface
@@ -437,6 +444,8 @@ export function MulticoreView() {
   );
 }
 export function MulticoreDock() {
+  useSimulatorCapture("studios/sandbox/MemoryViews.tsx:MulticoreDock", () => ({ filter, autoScroll, frozenCount, s }), "6024cddbe71a");
+
   const [filter, setFilter] = useState("All Events"),
     [autoScroll, setAutoScroll] = useState(true),
     [frozenCount, setFrozenCount] = useState(0);
@@ -540,6 +549,8 @@ export function MulticoreDock() {
   );
 }
 export function MemoryInspector() {
+  useSimulatorCapture("studios/sandbox/MemoryViews.tsx:MemoryInspector", () => ({ s }), "6024cddbe71a");
+
   const s = useSandbox(),
     d = cacheDecode(s.currentAddress, s.cacheLines, s.blockSize),
     line = s.cache[d.index],
@@ -713,6 +724,8 @@ export function MemoryInspector() {
   );
 }
 export function MulticoreInspector() {
+  useSimulatorCapture("studios/sandbox/MemoryViews.tsx:MulticoreInspector", () => ({ s }), "6024cddbe71a");
+
   const s = useSandbox(),
     source = s.mesi.source,
     other = 1 - source;

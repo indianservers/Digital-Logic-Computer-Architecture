@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
@@ -341,6 +342,8 @@ function ChallengeSteps({
   );
 }
 export function IoStudio() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:IoStudio", () => ({ raw, search }), "8939271442ed");
+
   const [raw, setTab] = useStudioTab([...TABS, { id: "devices" }], "mapped");
   const tab = raw === "devices" ? "mapped" : raw;
   const [search, setSearch] = useState("");
@@ -454,6 +457,8 @@ export function IoStudio() {
   );
 }
 function MmioLab() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:MmioLab", () => ({ address, data, operation, value, direction, readback, ram, stage, running, speed, zoom, message }), "8939271442ed");
+
   const [address, setAddress] = useState("0x8000"),
     [data, setData] = useState("0xA5"),
     [operation, setOperation] = useState("write"),
@@ -846,6 +851,8 @@ function MmioLab() {
   );
 }
 function PortLab() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:PortLab", () => ({ port, byte, instruction, terminal, buffer, cycle, running, speed, zoom, al, trace }), "8939271442ed");
+
   const [port, setPort] = useState("0x20"),
     [byte, setByte] = useState("0x41"),
     [instruction, setInstruction] = useState("OUT"),
@@ -1348,6 +1355,8 @@ function Code({ lines, active = -1 }: { lines: string[]; active?: number }) {
   );
 }
 function PollingLab() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:PollingLab", () => ({ latency, interval, byte, injected, cycle, running, speed, zoom }), "8939271442ed");
+
   const [latency, setLatency] = useState(12),
     [interval, setIntervalValue] = useState(2),
     [byte, setByte] = useState("0x4B"),
@@ -1677,6 +1686,8 @@ const IRQ_MESSAGES = [
   "IRET: resuming at PC 0x1040",
 ];
 function InterruptLab() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:InterruptLab", () => ({ stage, masked, pending, priority, eventInterval, running, speed, zoom, view, codeView, log }), "8939271442ed");
+
   const [stage, setStage] = useState(3),
     [masked, setMasked] = useState(false),
     [pending, setPending] = useState(false),
@@ -2184,6 +2195,8 @@ function InterruptLab() {
   );
 }
 function DmaLab() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:DmaLab", () => ({ source, dest, length, burst, cursor, memory, running, speed, zoom, started }), "8939271442ed");
+
   const [source, setSource] = useState("Storage Device FIFO"),
     [dest, setDest] = useState("0x2000"),
     [length, setLength] = useState(16),
@@ -2614,6 +2627,8 @@ const INITIAL_BUS: BusState = {
   cycle: 12,
 };
 function BusLab() {
+  useSimulatorCapture("studios/io/IoStudio.tsx:BusLab", () => ({ bus, mode, wait, running, speed, zoom, history }), "8939271442ed");
+
   const [bus, setBus] = useState<BusState>(INITIAL_BUS),
     [mode, setMode] = useState<"round" | "fixed">("round"),
     [wait, setWait] = useState(2),

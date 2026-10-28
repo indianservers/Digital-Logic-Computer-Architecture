@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { PREFETCH_DEFAULTS, PREFETCH_PRESETS, comparePrefetchers, type PrefetcherKind } from "../../../engines/aca/prefetch";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -12,6 +13,8 @@ const KINDS: Array<{ id: PrefetcherKind; label: string }> = [
 ];
 
 export function PrefetchLab() {
+  useSimulatorCapture("studios/aca/labs/PrefetchLab.tsx:PrefetchLab", () => ({ kind, presetId, addresses, degree, confidence, distance, queueSize, filterPollution, showPrefetch, showCache, highlight, showPollution, auto, custom, options, compared, play, guideFocus, setGuideFocus }), "15badbe16e93");
+
   const initial = PREFETCH_PRESETS[0];
   const [kind, setKind] = useState<PrefetcherKind>(initial?.kind ?? "next");
   const [presetId, setPresetId] = useState(initial?.id ?? "sequential");

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { CELL_STATES, chooseWearBlock, eraseBlockCells, flashProgramAllowed, formatHex, type FlashCell, type FlashKind } from "../../engines/memory/fundamentals";
 import { Field, LabGuide } from "./guide";
@@ -7,6 +8,8 @@ const PAGES = 8;
 const PAGE = 16;
 
 export function FlashLab() {
+  useSimulatorCapture("studios/memory/flashLab.tsx:FlashLab", () => ({ cells, counts, block, page, byte, data, kind, cellType, leveling, plain, rotated, note }), "189285695b2c");
+
   const [cells, setCells] = useState<number[]>(() => Array.from({ length: BLOCKS * PAGES * PAGE }, () => 0xff));
   const [counts, setCounts] = useState<number[]>(() => Array.from({ length: BLOCKS }, () => 0));
   const [block, setBlock] = useState(0);

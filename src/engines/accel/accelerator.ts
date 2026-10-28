@@ -1,5 +1,28 @@
 export type Matrix = number[][];
 
+export function parseMatrix(text: string): Matrix {
+  if (!text.trim()) throw new Error("Enter a non-empty matrix.");
+  const matrix = text.trim().split(/\r?\n/).map(row => {
+    if (!row.trim() || /^\s*,|,\s*$|,\s*,/.test(row)) throw new Error("Every matrix entry must contain a number.");
+    return row.trim().split(/[,\s]+/).map(Number);
+  });
+  validateMatrix(matrix);
+  return matrix;
+}
+
+export function validateMatrix(matrix: Matrix): void {
+  const columns = matrix[0]?.length ?? 0;
+  if (!matrix.length || !columns) throw new Error("Matrices must have at least one row and column.");
+  if (matrix.length > 32 || columns > 32) throw new Error("Use at most 32 rows and 32 columns.");
+  if (matrix.some(row => row.length !== columns)) throw new Error("Every row must have the same number of columns.");
+  if (matrix.some(row => row.some(value => !Number.isFinite(value)))) throw new Error("Matrix entries must be finite numbers.");
+}
+
+export function validateMatMul(a: Matrix, b: Matrix): void {
+  validateMatrix(a); validateMatrix(b);
+  if (a[0]!.length !== b.length) throw new Error(`Cannot multiply ${a.length}×${a[0]!.length} by ${b.length}×${b[0]!.length}: A columns must equal B rows.`);
+}
+
 export function mac(a: number, b: number, acc: number): number {
   return a * b + acc;
 }
@@ -26,6 +49,7 @@ export function cloneMatrix(matrix: Matrix): Matrix {
 }
 
 export function matMul(a: Matrix, b: Matrix): Matrix {
+  validateMatMul(a, b);
   const rows = a.length;
   const inner = a[0]?.length ?? 0;
   const cols = b[0]?.length ?? 0;
@@ -55,6 +79,7 @@ export interface MatMulStep {
 }
 
 export function matMulScalarSteps(a: Matrix, b: Matrix): { result: Matrix; steps: MatMulStep[] } {
+  validateMatMul(a, b);
   const rows = a.length;
   const inner = a[0]?.length ?? 0;
   const cols = b[0]?.length ?? 0;
@@ -80,6 +105,7 @@ export function matMulScalarSteps(a: Matrix, b: Matrix): { result: Matrix; steps
 }
 
 export function matMulVectorSteps(a: Matrix, b: Matrix): { result: Matrix; steps: MatMulStep[] } {
+  validateMatMul(a, b);
   const rows = a.length;
   const inner = a[0]?.length ?? 0;
   const cols = b[0]?.length ?? 0;
@@ -105,6 +131,7 @@ export function matMulVectorSteps(a: Matrix, b: Matrix): { result: Matrix; steps
 }
 
 export function matMulSystolicSteps(a: Matrix, b: Matrix): { result: Matrix; steps: MatMulStep[] } {
+  validateMatMul(a, b);
   const rows = a.length;
   const inner = a[0]?.length ?? 0;
   const cols = b[0]?.length ?? 0;
@@ -137,21 +164,23 @@ export interface SystolicCell {
 }
 
 export function systolicCells(a: Matrix, b: Matrix, cycle: number): { cells: SystolicCell[][]; result: Matrix; complete: boolean } {
+  validateMatMul(a, b);
   const n = a.length;
-  const result = zeroMatrix(n, n);
+  const inner = a[0]!.length, columns = b[0]!.length;
+  const result = zeroMatrix(n, columns);
   const cells: SystolicCell[][] = Array.from({ length: n }, (_, i) =>
-    Array.from({ length: n }, (__, j) => ({ i, j, a: null, b: null, c: 0, product: null })),
+    Array.from({ length: columns }, (__, j) => ({ i, j, a: null, b: null, c: 0, product: null })),
   );
-  const lastUseful = 3 * n - 2;
+  const lastUseful = n + inner + columns - 2;
   const maxCycle = Math.max(0, cycle);
-  for (let t = 0; t <= maxCycle; t += 1) {
+  for (let t = 0; t <= Math.min(maxCycle, lastUseful); t += 1) {
     for (let i = 0; i < n; i += 1) {
-      for (let j = 0; j < n; j += 1) {
+      for (let j = 0; j < columns; j += 1) {
         const k = t - i - j;
         const cell = cells[i]?.[j];
         const row = result[i];
         if (!cell || !row) continue;
-        if (k >= 0 && k < n) {
+        if (k >= 0 && k < inner) {
           const av = a[i]?.[k] ?? 0;
           const bv = b[k]?.[j] ?? 0;
           const product = av * bv;

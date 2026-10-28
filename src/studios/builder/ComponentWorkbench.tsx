@@ -1,8 +1,11 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { addNode, emptyDesign, portsOf, type IsaSpec, type ArchNode, type NodeKind, type Width } from "../../engines/builder/model";
 import { componentContract, componentSample } from "../../engines/builder/componentContract";
 import { Btn, Field, Status, downloadText } from "./studioUi";
 export function ComponentWorkbench({kind,width,op,inputWidth,isa}:{kind:NodeKind;width:Width;op:ArchNode["op"];inputWidth:Width;isa:IsaSpec}) {
+  useSimulatorCapture("studios/builder/ComponentWorkbench.tsx:ComponentWorkbench", () => ({ inputs, edge, rows, error }), "ff2d17b3ed4b");
+
  const [inputs,setInputs]=useState<Record<string,string>>({});const [edge,setEdge]=useState(false);const [rows,setRows]=useState<{a:number;b:number;outputs:string}[]>([]);const [error,setError]=useState("");const contract=componentContract(kind);const preview={...addNode(emptyDesign(),kind,0,0,width).nodes[0]!,inputWidth};const pins=portsOf(preview).filter(p=>p.dir==="in"&&p.id!=="op"&&p.role!=="clock");
  let sample:ReturnType<typeof componentSample>|undefined;let failure="";try{sample=componentSample(kind,width,op,inputWidth,inputs,edge,isa);}catch(e){failure=e instanceof Error?e.message:"Invalid input.";}
  const display=(bits:string,role:string)=>/^[01]+$/.test(bits)?`${parseInt(bits,2)} / ${role!=="data"?(bits.length===1?"logic bit":"control code"):"signed "+(parseInt(bits,2)>=2**(bits.length-1)?parseInt(bits,2)-2**bits.length:parseInt(bits,2))} / 0x${parseInt(bits,2).toString(16).toUpperCase()}`:"X/Z exposed";

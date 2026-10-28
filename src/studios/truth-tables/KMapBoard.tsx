@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useRef, useState } from "react";
 import { cellMinterm, describeImplicant, headerBits, kmapLayout } from "../../engines/kmap/map";
 import { maskToMinterms } from "../../engines/kmap/quine";
@@ -30,6 +31,8 @@ export function KMapBoard({
   onCreate: (indexes: number[]) => void;
   groupError: string;
 }) {
+  useSimulatorCapture("studios/truth-tables/KMapBoard.tsx:KMapBoard", () => ({ drag, dragRef: dragRef.current }), "3c4332884f1b");
+
   const layout = kmapLayout(names.length);
   const [drag, setDrag] = useState<number[] | null>(null);
   const dragRef = useRef<number[] | null>(null);

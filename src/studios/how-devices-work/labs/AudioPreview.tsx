@@ -1,6 +1,9 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import type { Lab } from "./data";
 export default function AudioPreview({lab,values,mode,fault}:{lab:Lab;values:Record<string,number>;mode:string;fault:boolean}) {
+  useSimulatorCapture("studios/how-devices-work/labs/AudioPreview.tsx:AudioPreview", () => ({ active: active.current, playing, message }), "de5a9cb92232");
+
  const active=useRef<AudioContext|null>(null),[playing,setPlaying]=useState(false),[message,setMessage]=useState("");
  useEffect(()=>()=>{void active.current?.close();},[]);
  useEffect(()=>{void active.current?.close();active.current=null;setPlaying(false);},[values,mode,fault]);

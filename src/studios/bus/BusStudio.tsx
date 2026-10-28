@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useStudioTab } from "../../layout/useStudioTab";
 import { Button, Card, ExplainBar, Metric, Segmented, Toggle, parseNumberInput } from "../../design-system/ui";
@@ -18,6 +19,8 @@ const TABS = [
 ];
 
 export function BusStudio() {
+  useSimulatorCapture("studios/bus/BusStudio.tsx:BusStudio", () => ({ tab, addressWidth, dataWidth, frequency, efficiency, mode, clockHigh, request, ack, lastGrant, history, controls, masters }), "8a201ceb7a6f");
+
   const [tab, setTab] = useStudioTab(TABS, "address");
   const [addressWidth, setAddressWidth] = useState(16);
   const [dataWidth, setDataWidth] = useState("32");

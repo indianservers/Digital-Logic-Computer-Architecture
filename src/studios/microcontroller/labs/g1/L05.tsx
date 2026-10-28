@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import type { Family } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -109,6 +110,8 @@ function Gauge({ ratio, max, color, label }: { ratio: number; max: number; color
 const stamp = (t: number) => { const ms = Math.floor(t * 1000); const m = Math.floor(ms / 60000), s = Math.floor(ms / 1000) % 60; return `[${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}.${String(ms % 1000).padStart(3, "0")}]`; };
 
 export default function L05({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L05.tsx:L05", () => ({ lab, view, specView, autoScroll, clearedAt, pendingRun, monitor: monitor.current, ran }), "ea0139ccec22");
+
   const lab = useLab<P>({
     slug: meta.slug, code: AVR,
     params: { avrMHz: 16, mspMHz: 16, armMHz: 84, bench: "dhrystone", useCase: "IoT Sensor Node", priority: "Lowest Power", req: "Wireless Communication", rec: "" },

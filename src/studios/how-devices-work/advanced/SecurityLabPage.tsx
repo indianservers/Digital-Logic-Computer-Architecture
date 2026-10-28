@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import DeviceCourse from '../DeviceCourse';
 import { PerimeterArchitecture, PerimeterFlow } from "./PerimeterPanels";
 import { GroundSatcomArchitecture, GroundSatcomSignal } from "./GroundSatcomPanels";
@@ -20,6 +21,8 @@ import { Waveform } from "../labs/visuals";
 import "./security.css";
 const art=(n:number,role:string)=>`/device-labs/advanced/${String(n).padStart(3,"0")}-${role}.webp?v=3`;
 function SecurePacket({mode,fault}:{mode:string;fault:boolean}){
+  useSimulatorCapture("studios/how-devices-work/advanced/SecurityLabPage.tsx:SecurePacket", () => ({ message, packet, output, busy, status, generation: generation.current }), "13a01e76e001");
+
  const [message,setMessage]=useState("Synthetic radio message: channel clear."),[packet,setPacket]=useState(""),[output,setOutput]=useState(""),[busy,setBusy]=useState(false),[status,setStatus]=useState("Ready for local encryption");
  const generation=useRef(0);
  useEffect(()=>{generation.current++;setPacket("");setOutput("");setBusy(false);setStatus("Ready for local encryption");return()=>{generation.current++;};},[mode,fault]);
@@ -68,6 +71,8 @@ function EventScene({lab,result}:{lab:AdvancedLab;result:AdvancedResult}){
  const alarm=result.valid&&itemAt(result.visual, lab.number===89?0:1)>0;return <div className={`se-event-scene ${alarm?"active":""}`}><img src={art(lab.number,lab.number===89?"device":"scene")} alt={lab.number===89?"RFID reader reference":"Perimeter installation reference"}/><span>{lab.number===89?(alarm?"✓ Virtual access granted":"⊘ Virtual access denied"):(alarm?"● Virtual alarm active":"○ Monitoring")}</span></div>;
 }
 export default function SecurityLabPage({lab}:{lab:AdvancedLab}){
+  useSimulatorCapture("studios/how-devices-work/advanced/SecurityLabPage.tsx:SecurityLabPage", () => ({ p, mode, running, time, fault, tab, part, step, watch, view, events, resetVersion, result }), "13a01e76e001");
+
  const [p,setP]=useState(()=>initialAdvancedValues(lab)),[mode,setMode]=useState(itemAt(lab.modes,0)),[running,setRunning]=useState(false),[time,setTime]=useState(0),[fault,setFault]=useState(false),[tab,setTab]=useState("Internal"),[part,setPart]=useState(0),[step,setStep]=useState(0),[watch,setWatch]=useState(false),[view,setView]=useState(lab.number===91?"Sky View":lab.number===90?"3D View":"Spectrum"),[events,setEvents]=useState<string[]>([]),[resetVersion,setResetVersion]=useState(0);
  useEffect(()=>{if(!running)return;const id=setInterval(()=>setTime(t=>Math.min(120,t+.1)),100);return()=>clearInterval(id);},[running]);
  useEffect(()=>{if(time>=120)setRunning(false);},[time]);

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -13,6 +14,8 @@ import { bench12, debounceOf, INTEGRATOR, NAIVE, P12_DEFAULT, TIMER, world12, ty
 const noise = (t: number) => { const x = Math.sin(Math.floor(t * 4000) * 12.9898) * 43758.5453; return x - Math.floor(x) > 0.5 ? 1 : 0; };
 
 export default function L12({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L12.tsx:L12", () => ({ lab, zoom, pending, seen }), "bbc73bc8c365");
+
   const lab = useLab<P12>({ slug: meta.slug, code: TIMER, params: P12_DEFAULT, mcu: () => ({ ips: 120_000 }), world: world12 });
   const { mcu, params, compiledCode } = lab;
   const b = bench12(mcu);

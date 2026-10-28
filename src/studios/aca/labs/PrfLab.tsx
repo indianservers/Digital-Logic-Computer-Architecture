@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { ARCH, INITIAL_VALUES, PRF_PRESETS, abiName, parsePrfProgram, runPrf, type PrfShot } from "../../../engines/aca/prf";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -19,6 +20,8 @@ function stepOf(phase: PrfShot["phase"]) {
 }
 
 export function PrfLab() {
+  useSimulatorCapture("studios/aca/labs/PrfLab.tsx:PrfLab", () => ({ presetId, valuesOn, ratOn, freeOn, depsOn, auto, physCount, program, custom, parsed, result, play, archFocus, guideFocus, setGuideFocus }), "dff197316af4");
+
   const [presetId, setPresetId] = useState(PRF_PRESETS[0]?.id ?? "mixed");
   const [valuesOn, setValuesOn] = useState(true);
   const [ratOn, setRatOn] = useState(true);

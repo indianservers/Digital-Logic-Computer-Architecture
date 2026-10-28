@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -27,6 +28,8 @@ function Field({ label, value, min, max, step, onCommit, scale, children }: { la
 }
 
 function Compare({ p, w, rows }: { p: P26; w: Window26; rows: number[] }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L26.tsx:Compare", () => ({ box: box.current, PW }), "eab758274931");
+
   const box = useRef<SVGSVGElement>(null);
   const [PW, setPW] = useState(640);
   useEffect(() => {
@@ -95,6 +98,8 @@ function Compare({ p, w, rows }: { p: P26; w: Window26; rows: number[] }) {
 }
 
 export default function L26({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L26.tsx:L26", () => ({ lab, tab, autoScroll, pending, serial: serial.current, seen }), "eab758274931");
+
   const lab = useLab<P26>({ slug: meta.slug, code: DEMO, params: P26_DEFAULT, mcu: mcu26, world: world26 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { CORE_COUNTS, SCALE_DEFAULTS, SCALE_PRESETS, scaleAt, scaleSeries, theoreticalLimit, type ScaleInput } from "../../../engines/aca/scaling";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -10,6 +11,8 @@ function num(value: number, digits = 2) {
 }
 
 export function AmdahlLab() {
+  useSimulatorCapture("studios/aca/labs/AmdahlLab.tsx:AmdahlLab", () => ({ input, preset, showIdeal, showWork, auto, play, guideFocus, setGuideFocus, active, point, series }), "065f024cc5aa");
+
   const [input, setInput] = useState<ScaleInput>(SCALE_DEFAULTS);
   const [preset, setPreset] = useState("strong");
   const [showIdeal, setShowIdeal] = useState(true);

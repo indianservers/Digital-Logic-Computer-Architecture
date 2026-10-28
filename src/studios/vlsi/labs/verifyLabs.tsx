@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { inverterTemplate, type LayerId, type LayoutRect } from "../layoutModel";
 import { VlsiGrid } from "../shell";
@@ -59,6 +60,8 @@ function scaleMetals(rects: LayoutRect[], length: number, width: number): Layout
 }
 
 export function LvsLab() {
+  useSimulatorCapture("studios/vlsi/labs/verifyLabs.tsx:LvsLab", () => ({ cell, fault, pick, extracted, result }), "87077c801f77");
+
   const [cell, setCell] = useState<"inverter" | "nand">("inverter");
   const [fault, setFault] = useState<LvsFault>("none");
   const [pick, setPick] = useState<string | null>(null);
@@ -155,6 +158,8 @@ export function LvsLab() {
 }
 
 export function ExtractionLab() {
+  useSimulatorCapture("studios/vlsi/labs/verifyLabs.tsx:ExtractionLab", () => ({ rPerSquare, cPerArea, coupling, length, width, net, rects, nets, baseline }), "87077c801f77");
+
   const [rPerSquare, setR] = useState(0.08);
   const [cPerArea, setC] = useState(0.02);
   const [coupling, setCoupling] = useState(true);

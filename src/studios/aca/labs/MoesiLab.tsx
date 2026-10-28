@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { MOESI_PRESETS, STATE_TEXT, compareProtocols, runCoherence, type Access, type LineState } from "../../../engines/aca/coherenceLab";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -8,6 +9,8 @@ const CORE_COLOR = ["#dbeafe", "#dcfce7", "#ffedd5", "#f3e8ff"];
 const STATES: LineState[] = ["M", "O", "E", "S", "I"];
 
 export function MoesiLab() {
+  useSimulatorCapture("studios/aca/labs/MoesiLab.tsx:MoesiLab", () => ({ presetId, accesses, seed, actor, operation, address, written, picked, arrows, highlight, auto, result, compared, play, guideFocus, setGuideFocus }), "5f3501ff1206");
+
   const [presetId, setPresetId] = useState(MOESI_PRESETS[1]?.id ?? "owned");
   const [accesses, setAccesses] = useState<Access[]>(MOESI_PRESETS[1]?.accesses ?? []);
   const [seed, setSeed] = useState<Record<number, number>>(MOESI_PRESETS[1]?.seed ?? { 0x1000: 10 });

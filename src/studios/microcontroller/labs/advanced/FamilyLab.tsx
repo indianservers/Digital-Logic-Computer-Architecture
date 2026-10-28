@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -31,6 +32,8 @@ export default function FamilyLab({ meta }: { meta: LabMeta }) {
   return profile ? <FamilyWorkbench key={meta.slug} meta={meta} profile={profile} /> : <p>Family profile missing.</p>;
 }
 function FamilyWorkbench({ meta, profile }: { meta: LabMeta; profile: FamilyProfile }) {
+  useSimulatorCapture("studios/microcontroller/labs/advanced/FamilyLab.tsx:FamilyWorkbench", () => ({ lab }), "beaa1f978483");
+
   const lab = useLab<FamilyParams>({
     slug: meta.slug, code: profile.code, params: { voltage: profile.voltage / 2, pressed: false, heldReset: false, clockMHz: profile.clock / 1e6 },
     mcu: (p) => familyOptions(profile, p.clockMHz), autoRun: false, rebuildOn: ["clockMHz"],

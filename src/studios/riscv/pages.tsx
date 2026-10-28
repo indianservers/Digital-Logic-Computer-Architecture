@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { toBin32, toHex32 } from "../../engines/isaarch/bits";
@@ -182,6 +183,8 @@ function HeroPath() {
 }
 
 export function RegisterPage({ api }: { api: RvApi }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:RegisterPage", () => ({ draft }), "4747b288057c");
+
   const value = api.cpu.regs[api.sel] ?? 0;
   const [draft, setDraft] = useState(String(signed32(value)));
   return (
@@ -262,6 +265,8 @@ export function RegisterPage({ api }: { api: RvApi }) {
 const FORMAT_ORDER: RvFormat[] = ["R", "I", "S", "B", "U", "J"];
 
 export function FormatPage({ api, encoding }: { api: RvApi; encoding?: boolean }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:FormatPage", () => ({ format, asm, hex, field, tab }), "4747b288057c");
+
   const [format, setFormat] = useState<RvFormat>(encoding ? "R" : "R");
   const [asm, setAsm] = useState("add x5, x6, x7");
   const [hex, setHex] = useState("0x007302b3");
@@ -366,6 +371,8 @@ function ImmMoves({ format, word }: { format: RvFormat; word: number }) {
 }
 
 export function AssemblerPage({ api }: { api: RvApi }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:AssemblerPage", () => ({ pane, radix }), "4747b288057c");
+
   const built = assemble(api.source);
   const [pane, setPane] = useState<"code" | "dis" | "mem" | "regs">("code");
   const [radix, setRadix] = useState<"hex" | "bin">("hex");
@@ -453,6 +460,8 @@ export function AssemblerPage({ api }: { api: RvApi }) {
 const ALU_OPS = ["add", "sub", "and", "or", "xor", "slt", "sll", "srl", "sra"] as const;
 
 export function AluPage() {
+  useSimulatorCapture("studios/riscv/pages.tsx:AluPage", () => ({ rs1, rs2, op }), "4747b288057c");
+
   const [rs1, setRs1] = useState(0xf);
   const [rs2, setRs2] = useState(5);
   const [op, setOp] = useState<(typeof ALU_OPS)[number]>("add");
@@ -545,6 +554,8 @@ function alu(op: string, rs1: number, rs2: number): number {
 }
 
 export function MemoryPage({ api }: { api: RvApi }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:MemoryPage", () => ({ base, offset, rd, store, before, after }), "4747b288057c");
+
   const [base, setBase] = useState(2);
   const [offset, setOffset] = useState(4);
   const [rd, setRd] = useState(1);
@@ -637,6 +648,8 @@ export function LuiPage() {
 }
 
 function ControlBoard({ focus }: { focus: "branches" | "jal" | "lui" }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:ControlBoard", () => ({ op, a, b, pc, imm, rs1, link, upper }), "4747b288057c");
+
   const [op, setOp] = useState("beq");
   const [a, setA] = useState(10);
   const [b, setB] = useState(10);
@@ -706,6 +719,8 @@ export function DatapathPage({ api }: { api: RvApi }) {
 }
 
 function ImmBoard({ focus, api }: { focus: "imm" | "path"; api?: RvApi }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:ImmBoard", () => ({ format, hex }), "4747b288057c");
+
   const [format, setFormat] = useState<RvFormat>("I");
   const [hex, setHex] = useState(toHex32(sampleWord("I")));
   const word = parseHexWord(hex) ?? 0;
@@ -760,6 +775,8 @@ export function PipePage({ hazards }: { hazards?: boolean }) {
 }
 
 function PipeBoard({ focus, api }: { focus: "multi" | "pipe" | "hazard"; api?: RvApi }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:PipeBoard", () => ({ forward, tick, playing, stage, text, rows }), "4747b288057c");
+
   const [forward, setForward] = useState(true);
   const [tick, setTick] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -861,6 +878,8 @@ function schedulePipe(lines: string[], forwarding: boolean): Array<{ text: strin
 }
 
 export function ProgramPage({ api }: { api: RvApi }) {
+  useSimulatorCapture("studios/riscv/pages.tsx:ProgramPage", () => ({ radix }), "4747b288057c");
+
   const [radix, setRadix] = useState<"hex" | "dec">("hex");
   const lines = api.source.split("\n");
   const built = assemble(api.source);

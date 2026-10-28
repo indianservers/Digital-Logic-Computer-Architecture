@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { Mcu } from "../core/mcu";
@@ -142,6 +143,8 @@ const QUIZ = [
 const NO_SEEN = { dc: false, waves: 0, rate: false, samples: false, custom: false, fault: false };
 
 export default function L27({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g3/L27.tsx:L27", () => ({ lab, gtab, ltab, quiz, pending, seen }), "0d878fb8912d");
+
   const lab = useLab<P27>({
     slug: meta.slug, code: DEMO, params: P27_DEFAULT,
     mcu: () => ({ part: "F401", clock: 84e6, ips: 3_000_000 }),

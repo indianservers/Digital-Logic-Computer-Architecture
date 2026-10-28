@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -19,6 +20,8 @@ const ISR_NAMES = new Set(["EXTI0_IRQHandler", "HAL_GPIO_EXTI_Callback"]);
 const noise = (t: number) => { const x = Math.sin(Math.floor(t * 4000) * 12.9898) * 43758.5453; return x - Math.floor(x) > 0.5 ? 1 : 0; };
 
 export default function L17({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L17.tsx:L17", () => ({ lab, zoom, pending, seen }), "11d56a3357a7");
+
   const lab = useLab<P17>({
     slug: meta.slug, code: DEMO, params: P17_DEFAULT, rebuildOn: ["syscfgOff"],
     mcu: () => ({ ips: 120_000, clock: CORE_HZ, strictClock: true }),

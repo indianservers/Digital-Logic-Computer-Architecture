@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { IQ_PRESETS, runIssue, type IqConfig, type IqOp, type IqShot } from "../../../engines/aca/issueQueue";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -19,6 +20,8 @@ function layout(ops: IqOp[], edges: Array<{ from: number; to: number }>) {
 }
 
 export function IssueQueueLab() {
+  useSimulatorCapture("studios/aca/labs/IssueQueueLab.tsx:IssueQueueLab", () => ({ presetId, windowSize, issueWidth, units, readiness, selectedOn, arrows, selected, config, result, play, guideFocus, setGuideFocus }), "82f822d05cce");
+
   const [presetId, setPresetId] = useState(IQ_PRESETS[0]?.id ?? "mixed");
   const [windowSize, setWindowSize] = useState(8);
   const [issueWidth, setIssueWidth] = useState(2);

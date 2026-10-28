@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useMemo } from "react";
 import type { Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -252,6 +253,8 @@ function Timeline({ s, cursor, title, window: win }: { s: Schedule; cursor: numb
 const RATES = [1, 2, 4, 8, 16];
 
 export default function L04({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L04.tsx:L04", () => ({ lab, trace, sh, sv }), "cd63a63d8b29");
+
   const lab = useLab<P>({
     slug: meta.slug, code: DEMO, params: { rate: 4, wait: 0, dma: false, mode: "both" },
     mcu: { part: "F103" },

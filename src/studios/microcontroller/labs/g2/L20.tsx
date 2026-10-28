@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -14,6 +15,8 @@ import {
 const EDGE_LABEL: Record<Edge20, string> = { rising: "Rising", falling: "Falling", both: "Rising + Falling", off: "—" };
 
 export default function L20({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g2/L20.tsx:L20", () => ({ lab, pending, seen }), "01555a32c34d");
+
   const lab = useLab<P20>({
     slug: meta.slug, code: DEMO, params: P20_DEFAULT, rebuildOn: ["noClock"],
     mcu: () => ({ ips: 120_000, clock: CLK20, strictClock: true }),

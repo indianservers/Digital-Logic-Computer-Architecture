@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -70,6 +71,8 @@ ret`,
 } as const;
 
 export function OverviewPage() {
+  useSimulatorCapture("studios/x86/pages.tsx:OverviewPage", () => ({ step }), "92f919cf4026");
+
   const [step, setStep] = useState(0);
   const notes = [
     "Fetch brings a window of variable-length bytes. The length is not known until decode.",
@@ -116,6 +119,8 @@ export function OverviewPage() {
 const ALIAS = ["EAX / AX / AL", "EBX / BX / BL", "ECX / CX / CL", "EDX / DX / DL", "ESI / SI / SIL", "EDI / DI / DIL", "EBP / BP / BPL", "ESP / SP / SPL", "R8D / R8W / R8B", "R9D / R9W / R9B", "R10D / R10W / R10B", "R11D / R11W / R11B", "R12D / R12W / R12B", "R13D / R13W / R13B", "R14D / R14W / R14B", "R15D / R15W / R15B"];
 
 export function RegisterPage({ api }: { api: X86Api }) {
+  useSimulatorCapture("studios/x86/pages.tsx:RegisterPage", () => ({ sel, wide, op, left, right }), "92f919cf4026");
+
   const [sel, setSel] = useState(0);
   const [wide, setWide] = useState(true);
   const [op, setOp] = useState("ADD");
@@ -187,6 +192,8 @@ export function RegisterPage({ api }: { api: X86Api }) {
 }
 
 export function EncodingPage() {
+  useSimulatorCapture("studios/x86/pages.tsx:EncodingPage", () => ({ dest, base, index, scale, disp, field }), "92f919cf4026");
+
   const [dest, setDest] = useState(0);
   const [base, setBase] = useState(1);
   const [index, setIndex] = useState(2);
@@ -243,6 +250,8 @@ const FORMS = [
 ];
 
 export function AddressingPage() {
+  useSimulatorCapture("studios/x86/pages.tsx:AddressingPage", () => ({ base, index, scale, disp, form }), "92f919cf4026");
+
   const [base, setBase] = useState(0x1000);
   const [index, setIndex] = useState(0x20);
   const [scale, setScale] = useState(4);
@@ -297,6 +306,8 @@ export function AddressingPage() {
 }
 
 export function AssemblerPage({ api }: { api: X86Api }) {
+  useSimulatorCapture("studios/x86/pages.tsx:AssemblerPage", () => ({ built, hexIn }), "92f919cf4026");
+
   const built = useMemo(() => assembleX86(api.source), [api.source]);
   const insns: AsmInsn[] = built.ok ? built.insns : [];
   const [hexIn, setHexIn] = useState("48 89 D8");
@@ -366,6 +377,8 @@ export function AssemblerPage({ api }: { api: X86Api }) {
 const STAGES = ["Fetch Bytes", "Length Decode", "Instruction Decode", "Operand Read", "Execute", "Retire"];
 
 export function DatapathPage() {
+  useSimulatorCapture("studios/x86/pages.tsx:DatapathPage", () => ({ stage, playing }), "92f919cf4026");
+
   const [stage, setStage] = useState(0);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
@@ -409,6 +422,8 @@ export function DatapathPage() {
 }
 
 export function MicroPage() {
+  useSimulatorCapture("studios/x86/pages.tsx:MicroPage", () => ({ kind, cursor }), "92f919cf4026");
+
   const [kind, setKind] = useState("add");
   const [cursor, setCursor] = useState(0);
   const cracked = crackUops(kind);
@@ -469,6 +484,8 @@ const RS = [
 ];
 
 export function OooPage() {
+  useSimulatorCapture("studios/x86/pages.tsx:OooPage", () => ({ phase }), "92f919cf4026");
+
   const [phase, setPhase] = useState(0);
   const names = ["Rename", "Allocate ROB", "Dispatch", "Schedule", "Execute", "Retire"];
   return (
@@ -513,6 +530,8 @@ export function OooPage() {
 }
 
 export function CachePage() {
+  useSimulatorCapture("studios/x86/pages.tsx:CachePage", () => ({ addr, warm, offset }), "92f919cf4026");
+
   const [addr, setAddr] = useState("0x00007FFF12345678");
   const [warm, setWarm] = useState(false);
   const [offset, setOffset] = useState(0x18);
@@ -585,6 +604,8 @@ const QUIZ = [
 ];
 
 export function PracticePage() {
+  useSimulatorCapture("studios/x86/pages.tsx:PracticePage", () => ({ topic, index, picked, score, seen }), "92f919cf4026");
+
   const [topic, setTopic] = useState("Mixed");
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);

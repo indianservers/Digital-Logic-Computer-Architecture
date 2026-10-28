@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { LATENCY, PIPELINED, POLICY_LABEL, PORT_PRESETS, PORTS, parsePortProgram, runPorts, type PortClass, type PortDef, type SchedPolicy } from "../../../engines/aca/ports";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -19,6 +20,8 @@ function supports(table: PortDef[], port: number, kinds: PortClass[]) {
 }
 
 export function PortLab() {
+  useSimulatorCapture("studios/aca/labs/PortLab.tsx:PortLab", () => ({ presetId, policy, scheduling, showHeat, highlight, auto, ports, program, custom, parsed, result, play, focusPort, focusClass, guideFocus, setGuideFocus }), "ae76a0515bc5");
+
   const [presetId, setPresetId] = useState(PORT_PRESETS[4]?.id ?? "contend");
   const [policy, setPolicy] = useState<SchedPolicy>("least");
   const [scheduling, setScheduling] = useState(true);

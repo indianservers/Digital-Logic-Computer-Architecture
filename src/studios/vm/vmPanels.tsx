@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -107,6 +108,8 @@ function freshTranslateTlb(): LabTlbEntry[] {
 }
 
 export function TranslatePanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/vm/vmPanels.tsx:TranslatePanel", () => ({ text, offsetBits, access, tlb, result, stage, running, speed, log, pickedFrame, pathRef: pathRef.current, motionEnabled }), "b744fa2e429c");
+
   const [text, setText] = useState("0x6783");
   const [offsetBits, setOffsetBits] = useState(8);
   const [access, setAccess] = useState<AccessKind>("read");
@@ -259,6 +262,8 @@ export function TranslatePanel({ explain }: { explain: boolean }) {
 }
 
 export function PageTablePanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/vm/vmPanels.tsx:PageTablePanel", () => ({ address, pages, frames, pageBytes, seed, table, selected, stage, running, faultNote }), "b744fa2e429c");
+
   const [address, setAddress] = useState(103);
   const [pages, setPages] = useState(8);
   const [frames, setFrames] = useState(4);
@@ -431,6 +436,8 @@ function seedTlb(entries: number, assoc: TlbAssoc): LabTlbEntry[] {
 }
 
 export function TlbPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/vm/vmPanels.tsx:TlbPanel", () => ({ text, entries, assoc, policy, asid, tlbCycles, walkCycles, seed, tlb, result, trace, flowRef: flowRef.current, motionEnabled }), "b744fa2e429c");
+
   const [text, setText] = useState("0x0040A3F8");
   const [entries, setEntries] = useState(8);
   const [assoc, setAssoc] = useState<TlbAssoc>("2");
@@ -638,6 +645,8 @@ export function TlbPanel({ explain }: { explain: boolean }) {
 }
 
 export function TwoLevelPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/vm/vmPanels.tsx:TwoLevelPanel", () => ({ dirBits, tableBits, offsetBits, text, machine, stage, running, fraction, seed }), "b744fa2e429c");
+
   const [dirBits, setDirBits] = useState(10);
   const [tableBits, setTableBits] = useState(10);
   const [offsetBits, setOffsetBits] = useState(12);
@@ -783,6 +792,8 @@ const PRESETS: Array<{ label: string; address: string; access: AccessKind; privi
 ];
 
 export function ProtectPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/vm/vmPanels.tsx:ProtectPanel", () => ({ text, access, privilege, log }), "b744fa2e429c");
+
   const [text, setText] = useState("0x00418000");
   const [access, setAccess] = useState<AccessKind>("read");
   const [privilege, setPrivilege] = useState<Privilege>("user");

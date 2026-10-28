@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { encodeRvTeach, type RvTeachFormat } from "../../engines/isa/teach";
 import { Mark } from "./ui";
@@ -15,6 +16,8 @@ const TONE: Record<string, string> = {
 };
 
 export function FormatsPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/formats.tsx:FormatsPanel", () => ({ format, variant, rd, rs1, rs2, imm, hover }), "84dae51f0c1d");
+
   const [format, setFormat] = useState<RvTeachFormat>("R");
   const [variant, setVariant] = useState<"add" | "sub">("add");
   const [rd, setRd] = useState(1);

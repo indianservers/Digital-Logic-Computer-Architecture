@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { SCORE_EXAMPLE, parseScore, runScoreboard, type ScoreOp } from "../../../engines/aca/scoreboard";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -12,6 +13,8 @@ const PRESETS: Array<{ id: string; label: string; ops: ScoreOp[] }> = [
 ];
 
 export function ScoreboardLab() {
+  useSimulatorCapture("studios/aca/labs/ScoreboardLab.tsx:ScoreboardLab", () => ({ ops, hazards, structural, aluSlots, mulLatency, tuned, shots, play, guideFocus }), "fb4d9b9aa1e4");
+
   const [ops, setOps] = useState(SCORE_EXAMPLE);
   const [hazards, setHazards] = useState(true);
   const [structural, setStructural] = useState(true);

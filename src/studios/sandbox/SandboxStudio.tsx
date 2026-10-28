@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { SandboxContext, useSandboxState, useSandbox } from "./sandboxState";
@@ -53,6 +54,8 @@ import {
 } from "./HistoryViews";
 import "./sandbox.css";
 export function SandboxStudio() {
+  useSimulatorCapture("studios/sandbox/SandboxStudio.tsx:SandboxStudio", () => ({ state }), "70bd7c960ff5");
+
   const { labId } = useParams();
   const page = PAGES.some((p) => p.id === labId)
     ? (labId as SandboxPage)
@@ -65,6 +68,8 @@ export function SandboxStudio() {
   );
 }
 function Workbench() {
+  useSimulatorCapture("studios/sandbox/SandboxStudio.tsx:Workbench", () => ({ s, settings }), "70bd7c960ff5");
+
   const s = useSandbox();
   const [settings, setSettings] = useState(false);
   const views = {
@@ -294,6 +299,8 @@ function Workbench() {
   );
 }
 function Palette() {
+  useSimulatorCapture("studios/sandbox/SandboxStudio.tsx:Palette", () => ({ s, groups }), "70bd7c960ff5");
+
   const s = useSandbox();
   const [groups, setGroups] = useState<string[]>([]);
   const isCpu = ["cpu", "breaks", "history", "datapath"].includes(s.page);

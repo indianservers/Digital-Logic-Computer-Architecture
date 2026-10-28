@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -10,6 +11,8 @@ import { Button, Card, Metric, Segmented } from "../../design-system/ui";
 const UNITS: Processor[] = ["CPU", "GPU", "NPU", "DSP"];
 
 export function HeteroStudio() {
+  useSimulatorCapture("studios/hetero/HeteroStudio.tsx:HeteroStudio", () => ({ focus, manual, camera, payload, accel, model, traffic, sync, queues, camQueues }), "3c80f25aa053");
+
   const { labId } = useParams();
   const lab = labId ?? "overview";
   const [focus, setFocus] = useState<Processor>("CPU");

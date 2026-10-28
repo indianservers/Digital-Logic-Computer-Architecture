@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { COUNTER_PRESETS, derive, evidence, interval, perCore, sampleAt, toCsv, totalsFor, type CounterProfile, type DerivedCounters } from "../../../engines/aca/counters";
 import { LabChrome, Transport, usePlayback } from "./HazardLab";
@@ -18,6 +19,8 @@ interface SavedRun {
 }
 
 export function CounterLab() {
+  useSimulatorCapture("studios/aca/labs/CounterLab.tsx:CounterLab", () => ({ profile, saved, compare, play, current, previous, slice, guideFocus, setGuideFocus, full, cores, report, history }), "9aed2337684a");
+
   const [profile, setProfile] = useState<CounterProfile>(COUNTER_PRESETS[7] ?? COUNTER_PRESETS[0]!);
   const [saved, setSaved] = useState<SavedRun[]>([]);
   const [compare, setCompare] = useState(0);

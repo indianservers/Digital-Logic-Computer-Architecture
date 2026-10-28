@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button, Segmented, Toggle } from "../../design-system/ui";
@@ -68,6 +69,8 @@ function demoMachine(): FsmMachine {
 }
 
 export function FsmStudio() {
+  useSimulatorCapture("studios/fsm/FsmStudio.tsx:FsmStudio", () => ({ machine, selected, current, stream, index, playing, speed, showSeq, highlight, alphabet, zoom, encoding, hint, history, encoded }), "61d3564bdb8b");
+
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab") ?? "studio";
   const page: Page = PAGES.some((item) => item.id === raw) ? raw as Page : LEGACY[raw] ?? "studio";
@@ -473,6 +476,8 @@ function EncodingPage({ machine, kind, onKind }: { machine: FsmMachine; kind: En
 }
 
 function CircuitPage({ machine }: { machine: FsmMachine }) {
+  useSimulatorCapture("studios/fsm/FsmStudio.tsx:CircuitPage", () => ({ circuit }), "61d3564bdb8b");
+
   const circuit = useMemo(() => synthesizeD(machine), [machine]);
   return (
     <section className="lgx-card">
@@ -491,6 +496,8 @@ function Diagram({ machine, current, selected, zoom, onSelect, onMove }: {
   onSelect: (id: string) => void;
   onMove: (id: string, x: number, y: number) => void;
 }) {
+  useSimulatorCapture("studios/fsm/FsmStudio.tsx:Diagram", () => ({ drag, edge }), "61d3564bdb8b");
+
   const [drag, setDrag] = useState<{ id: string; dx: number; dy: number } | null>(null);
   const [edge, setEdge] = useState<string | null>(null);
   return (
@@ -585,6 +592,8 @@ function retarget(machine: FsmMachine, from: string, symbol: string, to: string)
 }
 
 function MinPage({ machine, onUse }: { machine: FsmMachine; onUse: (machine: FsmMachine) => void }) {
+  useSimulatorCapture("studios/fsm/FsmStudio.tsx:MinPage", () => ({ result }), "61d3564bdb8b");
+
   const result = useMemo(() => minimizeMachine(machine), [machine]);
   return (
     <section className="lgx-card">

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { VlsiGrid } from "../shell";
 import { Badge, Choice, Measure, Observe, Slider } from "../widgets";
@@ -72,6 +73,8 @@ function LayerToggles({ hidden, onToggle }: { hidden: LayerId[]; onToggle: (laye
 }
 
 export function LayoutBasicsLab() {
+  useSimulatorCapture("studios/vlsi/labs/layoutLabs.tsx:LayoutBasicsLab", () => ({ hidden, selected, ask }), "30024b433ac8");
+
   const rects = inverterTemplate();
   const [hidden, setHidden] = useState<LayerId[]>([]);
   const [selected, setSelected] = useState<string | null>("poly");
@@ -140,6 +143,8 @@ const STICK = [
 ];
 
 export function StickDiagramLab() {
+  useSimulatorCapture("studios/vlsi/labs/layoutLabs.tsx:StickDiagramLab", () => ({ selected, cell }), "30024b433ac8");
+
   const [selected, setSelected] = useState("poly");
   const [cell, setCell] = useState<"inv" | "nand">("inv");
   const item = STICK.find((entry) => entry.id === selected) ?? STICK[0]!;
@@ -214,6 +219,8 @@ export function StickDiagramLab() {
 }
 
 export function InverterLayoutLab() {
+  useSimulatorCapture("studios/vlsi/labs/layoutLabs.tsx:InverterLayoutLab", () => ({ nudge, history, rects }), "30024b433ac8");
+
   const [nudge, setNudge] = useState(0);
   const [history, setHistory] = useState<number[]>([0]);
   const step = history[history.length - 1] ?? 0;
@@ -279,6 +286,8 @@ export function InverterLayoutLab() {
 }
 
 export function NandNorLayoutLab() {
+  useSimulatorCapture("studios/vlsi/labs/layoutLabs.tsx:NandNorLayoutLab", () => ({ gate, shared }), "30024b433ac8");
+
   const [gate, setGate] = useState<"nand" | "nor">("nand");
   const [shared, setShared] = useState(true);
   const rects = cmosGateLayout(gate, shared);
@@ -332,6 +341,8 @@ export function NandNorLayoutLab() {
 }
 
 export function DrcLab() {
+  useSimulatorCapture("studios/vlsi/labs/layoutLabs.tsx:DrcLab", () => ({ polyWidth, metalGap, enclosure, ran, focus }), "30024b433ac8");
+
   const [polyWidth, setPolyWidth] = useState(1);
   const [metalGap, setMetalGap] = useState(1);
   const [enclosure, setEnclosure] = useState(0);

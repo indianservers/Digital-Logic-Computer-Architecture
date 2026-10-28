@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import type { IsaSpec } from "../../engines/builder/model";
 import { assemble } from "../../engines/builder/isa";
@@ -7,6 +8,8 @@ export function compileBlocks(blocks: Block[]): string {
   return blocks.flatMap(b => Array.from({ length: Math.max(1, Math.min(64, b.repeat)) }, (_,index) => `${index === 0 && b.label ? b.label + ": " : ""}${b.raw ?? b.mnemonic}${b.args.length ? " " + b.args.join(", ") : ""}`)).join("\n") + "\n";
 }
 export function BlockProgram({ isa, program, onApply }: { isa: IsaSpec; program: string; onApply: (program: string) => void }) {
+  useSimulatorCapture("studios/builder/BlockProgram.tsx:BlockProgram", () => ({ blocks, category }), "fccbb6b74b31");
+
   const [blocks, setBlocks] = useState<Block[]>(() => program.split("\n").map(line => line.replace(/;.*$/," ").trim()).filter(Boolean).map((line,id) => {
     const match=/^([A-Za-z_]\w*):\s*(.*)$/.exec(line);const label=match?.[1];const rest=match?.[2]??line;const [mnemonic="",...args]=rest.split(/\s+/);const known=isa.instructions.some(i=>i.mnemonic===mnemonic.toUpperCase());return {id,mnemonic:known?mnemonic.toUpperCase():"",args:known?args.join(" ").split(",").map(a=>a.trim()).filter(Boolean):[],repeat:1,label,raw:known?undefined:rest};
   }));

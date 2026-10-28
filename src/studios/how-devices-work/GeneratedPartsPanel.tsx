@@ -1,9 +1,12 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import {useState} from 'react';
 import {GENERATED_PART_ART} from './generated-assets';
 import GeneratedPartView from './GeneratedPartView';
 import {partImage} from './part-images';
 
 export default function GeneratedPartsPanel({number,parts,deviceId}:{number:number;parts:string[];deviceId:string}){
+  useSimulatorCapture("studios/how-devices-work/GeneratedPartsPanel.tsx:GeneratedPartsPanel", () => ({ selected }), "f81150779321");
+
  const available=parts.filter(part=>GENERATED_PART_ART[number]?.[part]||partImage(deviceId,part));
  const [selected,setSelected]=useState(available[0]??'');
  if(!available.length)return null;

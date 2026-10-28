@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import {
   bistRun,
@@ -24,6 +25,8 @@ function bitsText(bits: Bit[]): string {
 }
 
 export function ScanChainLab() {
+  useSimulatorCapture("studios/vlsi/labs/dftLabs.tsx:ScanChainLab", () => ({ mode, cells, inputs, scanIn, enabled, scanOut, playing }), "c69d379a7c1c");
+
   const [mode, setMode] = useState<"functional" | "shift">("shift");
   const [cells, setCells] = useState<Bit[]>([0, 1, 0, 1]);
   const [inputs, setInputs] = useState<Bit[]>([1, 0, 1, 0]);
@@ -91,6 +94,8 @@ export function ScanChainLab() {
 }
 
 export function ScanTestLab() {
+  useSimulatorCapture("studios/vlsi/labs/dftLabs.tsx:ScanTestLab", () => ({ cells, fault, seen, expected }), "c69d379a7c1c");
+
   const [cells, setCells] = useState<Bit[]>([0, 0, 0]);
   const [fault, setFault] = useState(false);
   const [seen, setSeen] = useState<Bit[]>([]);
@@ -151,6 +156,8 @@ export function ScanTestLab() {
 }
 
 export function AtpgLab() {
+  useSimulatorCapture("studios/vlsi/labs/dftLabs.tsx:AtpgLab", () => ({ net, stuck, vector }), "c69d379a7c1c");
+
   const [net, setNet] = useState<StuckFault["net"]>("n1");
   const [stuck, setStuck] = useState<Bit>(0);
   const [vector, setVector] = useState<Record<string, Bit> | null>(null);
@@ -190,6 +197,8 @@ export function AtpgLab() {
 }
 
 export function StuckLab() {
+  useSimulatorCapture("studios/vlsi/labs/dftLabs.tsx:StuckLab", () => ({ net, stuck, mask }), "c69d379a7c1c");
+
   const [net, setNet] = useState<StuckFault["net"]>("n1");
   const [stuck, setStuck] = useState<Bit>(0);
   const [mask, setMask] = useState(0b011);
@@ -231,6 +240,8 @@ export function StuckLab() {
 }
 
 export function JtagLab() {
+  useSimulatorCapture("studios/vlsi/labs/dftLabs.tsx:JtagLab", () => ({ machine, tms, tdi }), "c69d379a7c1c");
+
   const [machine, setMachine] = useState<TapMachine>(freshTap());
   const [tms, setTms] = useState<Bit>(0);
   const [tdi, setTdi] = useState<Bit>(1);
@@ -272,6 +283,8 @@ export function JtagLab() {
 }
 
 export function BistLab() {
+  useSimulatorCapture("studios/vlsi/labs/dftLabs.tsx:BistLab", () => ({ seed, cycles, fault, step }), "c69d379a7c1c");
+
   const [seed, setSeed] = useState(9);
   const [cycles, setCycles] = useState(8);
   const [fault, setFault] = useState(false);

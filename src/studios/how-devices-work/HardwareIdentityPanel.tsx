@@ -1,8 +1,11 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import type { PartImage } from "./part-images";
 import { hardwareIdentity, picturedIdentity } from "./hardwareIdentity";
 
 export function HardwareIdentityPanel({ art }: { art?: PartImage }) {
+  useSimulatorCapture("studios/how-devices-work/HardwareIdentityPanel.tsx:HardwareIdentityPanel", () => ({ pin }), "3fdd9b883b33");
+
   const identity = hardwareIdentity(art);
   const [pin, setPin] = useState(0);
   return <div className="hardware-identity-panel">

@@ -1,8 +1,11 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { applySram, formatHex, toBinary, type SramMode } from "../../engines/memory/fundamentals";
 import { Field, LabGuide } from "./guide";
 
 export function SramLab() {
+  useSimulatorCapture("studios/memory/sramLab.tsx:SramLab", () => ({ mode, cell, rows, address, bits, speed, note, labels }), "8c6e5becefb4");
+
   const [mode, setMode] = useState<SramMode>("hold");
   const [cell, setCell] = useState(() => applySram({ q: 1, wl: 0, bl: 1, blb: 0, mode: "hold", stable: true }, "hold"));
   const [rows, setRows] = useState(8);

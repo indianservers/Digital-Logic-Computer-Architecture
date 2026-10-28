@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useRef } from "react";
 import type { FnState } from "./logic";
 
@@ -20,6 +21,8 @@ export function TruthGrid({
   onToggleRow: (index: number, extend: boolean) => void;
   onFocusRow: (index: number) => void;
 }) {
+  useSimulatorCapture("studios/truth-tables/TruthGrid.tsx:TruthGrid", () => ({ focus: focus.current, fromKeys: fromKeys.current }), "646984d091d9");
+
   const focus = useRef<HTMLButtonElement | null>(null);
   const fromKeys = useRef(false);
   const width = state.names.length;

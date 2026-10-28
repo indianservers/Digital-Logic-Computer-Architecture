@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button, Card, ExplainBar, Segmented, Signal, Toggle } from "../../design-system/ui";
@@ -123,6 +124,8 @@ export function FlipFlopStudio() {
 }
 
 function Lab({ device, onDevice, onPractice }: { device: Device; onDevice: (next: Device) => void; onPractice: () => void }) {
+  useSimulatorCapture("studios/flip-flops/FlipFlopStudio.tsx:Lab", () => ({ s, r, d, j, k, t, en, edge, clock, q, master, slave, samples, cursor, playing, speed, heldWithoutClock, captured, toggled, live }), "9a84fdae98d3");
+
   const { prefs } = usePrefs();
   const [s, setS] = useState(true);
   const [r, setR] = useState(false);
@@ -565,6 +568,8 @@ function Output({ name, value }: { name: string; value: Level }) {
 }
 
 function Guide({ device, captured, held, toggled, jkReady, onPractice, onTryD }: { device: Device; captured: boolean; held: boolean; toggled: boolean; jkReady: boolean; onPractice: () => void; onTryD: () => void }) {
+  useSimulatorCapture("studios/flip-flops/FlipFlopStudio.tsx:Guide", () => ({ hint }), "9a84fdae98d3");
+
   const [hint, setHint] = useState("");
   const dReady = held && captured;
   const jkDone = device === "jk" && jkReady && toggled;
@@ -597,6 +602,8 @@ function Guide({ device, captured, held, toggled, jkReady, onPractice, onTryD }:
 }
 
 function TheoryPanel({ device, onDevice }: { device: Device; onDevice: (next: Device) => void }) {
+  useSimulatorCapture("studios/flip-flops/FlipFlopStudio.tsx:TheoryPanel", () => ({ kind, q, next }), "9a84fdae98d3");
+
   const lessonKey = device === "sr" ? "latches" : device === "d" ? "dff" : device === "dlatch" ? "dlatch" : device === "ms" ? "ms" : device;
   const lesson = FLIPFLOP_LESSONS[lessonKey] ?? FLIPFLOP_LESSONS.latches;
   const [kind, setKind] = useState<"SR" | "D" | "JK" | "T">("SR");

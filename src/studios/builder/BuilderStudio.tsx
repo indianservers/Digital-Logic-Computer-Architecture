@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Card, parseNumberInput } from "../../design-system/ui";
@@ -47,6 +48,8 @@ function groupPalette() {
 }
 
 export function BuilderStudio() {
+  useSimulatorCapture("studios/builder/BuilderStudio.tsx:BuilderStudio", () => ({ localProjects, design, storageStatus, conflict, projectEpoch, past, future, selected, error, trace, history, cursor, wave, running, speed, clock, savedMsg, workspaceMode, search, templatePicker, focus, panels, compact, commands, commandQuery, selectedWire, bends, condition, conditionRef: conditionRef.current, recent, paletteFilter, resetPolicy, paletteWidth, inspectorWidth, mode, quietLabels, traceSelection, paletteCollapsed, inspectorCollapsed, context, attention, arrangement, blockEditor, canvasPanelRef: canvasPanelRef.current, canvasFullscreen, issues, view, palettePorts, designRef: designRef.current, traceRef: traceRef.current }), "5ea3c0a40be1");
+
   const { labId } = useParams();
   const navigate = useNavigate();
   const [localProjects, setLocalProjects] = useState<{id:string;name:string;data:string}[] | null>(null);

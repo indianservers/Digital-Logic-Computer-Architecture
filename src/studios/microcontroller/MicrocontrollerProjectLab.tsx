@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PROJECT_LABS, projectBySlug, type Control, type ProjectDef, type ProjectId } from "./projectData";
 import { advanceRuntime, compileProjectCode, createRuntime, updateInput, type Runtime, type Value } from "./projectEngine";
 import { PhotorealScene } from "./PhotorealScene";
+import { isThreeProject } from "./projectSceneState";
 import { ProjectReadout } from "./ProjectReadout";
 import { PROJECT_ENHANCEMENTS } from "./projectEnhancements";
 import "./projectLab.css";
 
+const ProjectThreeScene = lazy(() => import("./ProjectThreeScene"));
 const storageKey = (slug: string) => `digital-electronics.mcu.project.${slug}`;
 const show = (value: unknown) => typeof value === "boolean" ? value ? "ON" : "OFF" : String(value ?? "—");
 const num = (value: unknown) => typeof value === "number" ? value : 0;
@@ -61,6 +64,8 @@ function load(def: ProjectDef): { code: string; runtime: Runtime } {
 }
 
 function CodeEditor({ code, setCode, diagnostics, onRun, onResetCode, def, state }: { code: string; setCode: (code: string) => void; diagnostics: Runtime["diagnostics"]; onRun: () => void; onResetCode: () => void; def: ProjectDef; state: Runtime }) {
+  useSimulatorCapture("studios/microcontroller/MicrocontrollerProjectLab.tsx:CodeEditor", () => ({ highlight: highlight.current, lineNumbers: lineNumbers.current }), "50e181f565f7");
+
   const lines = code.split("\n");
   const highlight = useRef<HTMLPreElement>(null);
   const lineNumbers = useRef<HTMLDivElement>(null);
@@ -155,6 +160,8 @@ function LabActions({ def, state, change, changeMemory }: { def: ProjectDef; sta
 }
 
 function ProjectLab({ def }: { def: ProjectDef }) {
+  useSimulatorCapture("studios/microcontroller/MicrocontrollerProjectLab.tsx:ProjectLab", () => ({ saved: saved.current, code, state }), "50e181f565f7");
+
   const saved = useRef<{ code: string; runtime: Runtime } | null>(null);
   if (!saved.current) saved.current = load(def);
   const [code, setCode] = useState(saved.current.code);
@@ -182,7 +189,7 @@ function ProjectLab({ def }: { def: ProjectDef }) {
   return <div className={`mcu-project-shell mcu-lab-${def.id}`}><aside className="mcu-project-nav"><Link className="mcu-project-brand" to="/studios/microcontroller">▣ <span>Microcontroller Studio</span></Link><Link to="/studios/microcontroller">← Studio map</Link><h2>Project Labs 61–72</h2>{PROJECT_LABS.map((lab) => <Link key={lab.id} className={def.id === lab.id ? "active" : ""} to={`/studios/microcontroller/project/${lab.slug}`}><span>{lab.number}</span>{lab.title}</Link>)}</aside>
     <div className="mcu-project-content"><header className="mcu-project-head"><div><nav aria-label="Breadcrumb"><Link to="/studios/microcontroller">Microcontroller Studio</Link> › Project Labs › {def.number}. {def.title}</nav><h1>{def.number}. {def.title}</h1><p>{def.objective}</p></div><div className="mcu-main-actions"><button type="button" className="mcu-primary" onClick={run}>▶ Run code</button><button type="button" onClick={() => setState((previous) => ({ ...previous, running: !previous.running }))}>{state.running ? "Ⅱ Pause" : "▶ Resume"}</button><button type="button" onClick={() => setState((previous) => { let next = previous; for (let tick = 0; tick < 5; tick++) { next = advanceRuntime(def, next, .1); if (def.id === "builder" && next.inputs.debugBreak) break; } return next; })}>Step</button><button type="button" onClick={reset}>↺ Reset</button><button type="button" onClick={save}>▣ Save</button></div></header>
       {notice ? <div className="mcu-notice" role="status">{notice}</div> : null}
-      <div className="mcu-project-grid"><section className="mcu-panel mcu-simulation"><div className="mcu-panel-head"><h2>{def.id === "builder" ? "Project builder" : "Simulation"}</h2><span className={state.running ? "mcu-live" : ""}>{state.running ? "● Real-time" : "● Paused"}</span></div><PhotorealScene id={def.id} state={state} /><div className="mcu-scene-footer"><span>Simulation time {state.time.toFixed(1)} s</span><span>{show(state.outputs.warning || (state.outputs.fault ? "Fault" : state.outputs.lost ? "Line lost" : "System ready"))}</span></div></section>
+      <div className="mcu-project-grid"><section className="mcu-panel mcu-simulation"><div className="mcu-panel-head"><h2>{def.id === "builder" ? "Project builder" : "Simulation"}</h2><span className={state.running ? "mcu-live" : ""}>{state.running ? "● Real-time" : "● Paused"}</span></div>{isThreeProject(def.id) ? <Suspense fallback={<PhotorealScene id={def.id} state={state} />}><ProjectThreeScene id={def.id} state={state} /></Suspense> : <PhotorealScene id={def.id} state={state} />}<div className="mcu-scene-footer"><span>Simulation time {state.time.toFixed(1)} s</span><span>{show(state.outputs.warning || (state.outputs.fault ? "Fault" : state.outputs.lost ? "Line lost" : "System ready"))}</span></div></section>
         {def.id === "builder" ? <BuilderPanel state={state} changeMemory={changeMemory} /> : null}
         <section className="mcu-panel mcu-status"><div className="mcu-panel-head"><h2>{def.id === "motor" ? "Motor dashboard" : def.id === "weather" || def.id === "iot" ? "Live sensor readings" : def.id === "traffic" ? "State machine" : def.id === "thermometer" ? "Temperature display" : def.id === "irrigation" ? "Soil moisture & zones" : def.id === "robot" ? "Sensor states & motors" : "Live status"}</h2><span>{state.running ? "Updating" : "Ready"}</span></div><ProjectReadout id={def.id} state={state} /></section>
         <section className="mcu-panel mcu-controls"><div className="mcu-panel-head"><h2>Experiment controls</h2><span>Change inputs</span></div>{def.controls.map((control) => <ControlField key={control.key} control={control} value={state.inputs[control.key]} onChange={(value) => change(control.key, value)} />)}<LabActions def={def} state={state} change={change} changeMemory={changeMemory} /></section>

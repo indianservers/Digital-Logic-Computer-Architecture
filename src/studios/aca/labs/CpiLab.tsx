@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { CPI_PRESETS, CPI_RATES, analyzeCpi, applyWhatIf, cyclesFromRates, speedup, type StallRates, type WhatIf } from "../../../engines/aca/cpi";
 import { LabChrome, Transport, usePlayback } from "./HazardLab";
@@ -28,6 +29,8 @@ function num(value: number, digits = 2) {
 }
 
 export function CpiLab() {
+  useSimulatorCapture("studios/aca/labs/CpiLab.tsx:CpiLab", () => ({ rates, preset, memoryCut, branchCut, play, baseCycles, before, after, curve, guideFocus, setGuideFocus }), "bdc16ffa125a");
+
   const [rates, setRates] = useState<StallRates>(CPI_RATES);
   const [preset, setPreset] = useState("balanced");
   const [memoryCut, setMemoryCut] = useState(0);

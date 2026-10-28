@@ -1,22 +1,21 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   ACCEL_LEVELS, NPU_BLOCKS, NPU_FLOW, NET_STAGES, dataflow, mac, macRepeat, matMulScalarSteps,
   matMulSystolicSteps, matMulVectorSteps, mixedPrecision, quantizeTensor, reuseTraffic, systolicCells, type DataflowKind,
-  type NumericFormat, type Matrix,
+  parseMatrix, type NumericFormat, type Matrix,
 } from "../../engines/accel/accelerator";
 import { ArchitectureFrame, ArchitectureLanding } from "../../layout/ArchitectureFrame";
 import { Button, Card, Metric, Segmented, SimControls, Toggle, parseNumberInput } from "../../design-system/ui";
-
-function parseMatrix(text: string): Matrix {
-  return text.trim().split(/\n/).map((row) => row.trim().split(/[,\s]+/).filter(Boolean).map(Number));
-}
 
 function matrixText(matrix: Matrix): string {
   return matrix.map((row) => row.join(" ")).join("\n");
 }
 
 export function AcceleratorStudio() {
+  useSimulatorCapture("studios/accelerator/AcceleratorStudio.tsx:AcceleratorStudio", () => ({ a, b, acc, macLog, grid, cell, playing, speed, aText, bText, mode, mmStep, sysCycle, flow, reuse, tensorText, compute, accum, train, npu, net, matrix }), "e54dae7d5db7");
+
   const { labId } = useParams();
   const lab = labId ?? "overview";
   const [a, setA] = useState(3);
@@ -53,19 +52,18 @@ export function AcceleratorStudio() {
     return () => window.clearInterval(id);
   }, [playing, speed, lab, grid]);
 
-  const A = parseMatrix(aText);
-  const B = parseMatrix(bText);
-  const mm = useMemo(() => {
+  const matrix = useMemo(() => {
     try {
-      if (mode === "vector") return matMulVectorSteps(A, B);
-      if (mode === "systolic") return matMulSystolicSteps(A, B);
-      return matMulScalarSteps(A, B);
-    } catch {
-      return { result: [[0]], steps: [] };
+      const A = parseMatrix(aText), B = parseMatrix(bText);
+      const mm = mode === "vector" ? matMulVectorSteps(A, B) : mode === "systolic" ? matMulSystolicSteps(A, B) : matMulScalarSteps(A, B);
+      return { mm, sys: systolicCells(A, B, sysCycle), error: "" };
+    } catch (error) {
+      return { mm: null, sys: null, error: error instanceof Error ? error.message : "Invalid matrices." };
     }
-  }, [A, B, mode]);
-  const visible = mm.steps.slice(0, Math.max(0, mmStep));
-  const sys = systolicCells(A.length === B.length ? A : [[1, 2], [3, 4]], A.length === B.length ? B : [[5, 6], [7, 8]], sysCycle);
+  }, [aText, bText, mode, sysCycle]);
+  const mm = matrix.mm, sys = matrix.sys;
+  const visible = mm?.steps.slice(0, Math.max(0, mmStep)) ?? [];
+  useEffect(() => { if (matrix.error && (lab === "matmul" || lab === "systolic")) setPlaying(false); }, [matrix.error, lab]);
   const values = tensorText.split(/[,\s]+/).filter(Boolean).map(Number).filter((item) => Number.isFinite(item));
   const formats: NumericFormat[] = ["fp32", "fp16", "bf16", "int8"];
 
@@ -105,6 +103,7 @@ export function AcceleratorStudio() {
       {lab === "array" ? (
         <Card title={`${grid} × ${grid} MAC array`} action={<Segmented options={["2", "4", "8"]} value={String(grid)} onChange={(value) => { setGrid(Number(value)); setCell(0); }} />}>
           <SimControls playing={playing} onPlay={() => setPlaying((value) => !value)} onStep={() => setCell((value) => (value + 1) % (grid * grid))} onReset={() => setCell(0)} speed={speed} onSpeed={setSpeed} />
+          {matrix.error && <p role="alert">{matrix.error}</p>}
           <div className="pe-grid" style={{ gridTemplateColumns: `repeat(${grid}, minmax(0, 1fr))` }}>
             {Array.from({ length: grid * grid }, (_, index) => (
               <div key={index} className={index === cell % (grid * grid) ? "pe-cell on" : "pe-cell"}>MAC {index}</div>
@@ -118,14 +117,14 @@ export function AcceleratorStudio() {
         <div className="grid cards-2">
           <Card title="A × B = C">
             <div className="grid cards-2">
-              <label className="field">Matrix A<textarea className="asm" value={aText} onChange={(event) => { setAText(event.target.value); setMmStep(0); }} /></label>
-              <label className="field">Matrix B<textarea className="asm" value={bText} onChange={(event) => { setBText(event.target.value); setMmStep(0); }} /></label>
+              <label className="field">Matrix A<textarea className="asm" value={aText} onChange={(event) => { setAText(event.target.value); setMmStep(0); setSysCycle(0); setPlaying(false); }} /></label>
+              <label className="field">Matrix B<textarea className="asm" value={bText} onChange={(event) => { setBText(event.target.value); setMmStep(0); setSysCycle(0); setPlaying(false); }} /></label>
             </div>
             <Segmented options={["scalar", "vector", "systolic"]} value={mode} onChange={(value) => { setMode(value as typeof mode); setMmStep(0); }} />
-            <SimControls playing={playing} onPlay={() => setPlaying((value) => !value)} onStep={() => setMmStep((value) => value + 1)} onReset={() => setMmStep(0)} speed={speed} onSpeed={setSpeed} />
+            <SimControls disabled={!!matrix.error} playing={playing} onPlay={() => setPlaying((value) => !value)} onStep={() => setMmStep((value) => value + 1)} onReset={() => setMmStep(0)} speed={speed} onSpeed={setSpeed} />
           </Card>
           <Card title="Partial sums">
-            <pre className="mono">{matrixText(mm.result)}</pre>
+            {matrix.error ? <p role="alert">{matrix.error}</p> : <pre className="mono">{matrixText(mm!.result)}</pre>}
             <table className="data"><thead><tr><th>Cycle</th><th>i,j,k</th><th>a×b</th><th>acc</th></tr></thead>
               <tbody>{visible.slice(-8).map((step) => <tr key={`${step.cycle}-${step.i}-${step.j}-${step.k}`}><td>{step.cycle}</td><td>{step.i},{step.j},{step.k}</td><td>{step.product}</td><td>{step.acc}</td></tr>)}</tbody>
             </table>
@@ -136,9 +135,10 @@ export function AcceleratorStudio() {
 
       {lab === "systolic" ? (
         <Card title={`Systolic array · cycle ${sysCycle}`} action={<Button onClick={() => { setAText("1 2\n3 4"); setBText("5 6\n7 8"); setSysCycle(0); }}>2×2 preset</Button>}>
-          <SimControls playing={playing} onPlay={() => setPlaying((value) => !value)} onStep={() => setSysCycle((value) => value + 1)} onReset={() => setSysCycle(0)} speed={speed} onSpeed={setSpeed} />
-          <div className="pe-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-            {sys.cells.flat().map((pe) => (
+          <SimControls disabled={!!matrix.error} playing={playing} onPlay={() => setPlaying((value) => !value)} onStep={() => setSysCycle((value) => value + 1)} onReset={() => setSysCycle(0)} speed={speed} onSpeed={setSpeed} />
+          {matrix.error && <p role="alert">{matrix.error}</p>}
+          <div className="pe-grid" style={{ gridTemplateColumns: `repeat(${sys?.cells[0]?.length ?? 1}, minmax(0, 1fr))` }}>
+            {sys?.cells.flat().map((pe) => (
               <div key={`${pe.i}-${pe.j}`} className={pe.product !== null ? "pe-cell on" : "pe-cell"}>
                 PE[{pe.i},{pe.j}]
                 <small>A {pe.a ?? "—"} · W {pe.b ?? "—"}</small>
@@ -146,7 +146,7 @@ export function AcceleratorStudio() {
               </div>
             ))}
           </div>
-          <p className="tiny">Weights and activations meet on a diagonal wave. Partial sums live in each PE. Complete: {sys.complete ? "yes" : "not yet"}.</p>
+          <p className="tiny">Weights and activations meet on a diagonal wave. Partial sums live in each PE. Complete: {sys?.complete ? "yes" : "not yet"}.</p>
         </Card>
       ) : null}
 

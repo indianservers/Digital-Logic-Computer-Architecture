@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -13,6 +14,8 @@ function cell(r: number, c: number): string {
 }
 
 export function SocStudio() {
+  useSimulatorCapture("studios/soc/SocStudio.tsx:SocStudio", () => ({ block, flow, step, src, dst, extra, cache, hit, client, addr, domain, power, path }), "c0e6ad9cddb8");
+
   const { labId } = useParams();
   const lab = labId ?? "overview";
   const [block, setBlock] = useState("cpu");

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { assemble } from "../../engines/isa/assembler";
@@ -42,6 +43,8 @@ function cpuFrom(source: string): CpuState | { error: string } {
 }
 
 export function Cpu16Studio() {
+  useSimulatorCapture("studios/cpu16/Cpu16Studio.tsx:Cpu16Studio", () => ({ source, cpu, msg, irq, pushSel }), "f5e133f7a703");
+
   const { labId } = useParams();
   const lab = labId ?? "overview";
   const [source, setSource] = useState(SAMPLE);

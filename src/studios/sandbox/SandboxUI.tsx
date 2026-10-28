@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useId, useRef, type ReactNode } from "react";
 import { useSandbox } from "./sandboxState";
 import { partPorts, type PartKind } from "./sandboxModel";
@@ -74,6 +75,8 @@ export function Surface({
   className?: string;
   toolbar?: boolean;
 }) {
+  useSimulatorCapture("studios/sandbox/SandboxUI.tsx:Surface", () => ({ s, svgRef: svgRef.current }), "915ca6b5aed3");
+
   const s = useSandbox();
   const svgRef = useRef<SVGSVGElement>(null);
   return (
@@ -188,6 +191,8 @@ export function Surface({
   );
 }
 export function CanvasToolbar() {
+  useSimulatorCapture("studios/sandbox/SandboxUI.tsx:CanvasToolbar", () => ({ s }), "915ca6b5aed3");
+
   const s = useSandbox();
   return (
     <div className="sb-canvas-toolbar">

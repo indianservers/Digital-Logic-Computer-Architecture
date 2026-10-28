@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -66,6 +67,8 @@ function valueOf(bits: Array<0 | 1>): number {
 }
 
 export function CounterStudio() {
+  useSimulatorCapture("studios/counters/CounterStudio.tsx:CounterStudio", () => ({ nonce, allConcepts }), "d15c1d06d409");
+
   const [params, setParams] = useSearchParams();
   const mode = modeOf(params.get("tab"));
   const [nonce, setNonce] = useState(0);
@@ -137,6 +140,8 @@ export function CounterStudio() {
 }
 
 function Simulator({ mode, onMode }: { mode: Exclude<Mode, "design">; onMode: (mode: Mode) => void }) {
+  useSimulatorCapture("studios/counters/CounterStudio.tsx:Simulator", () => ({ width, modulus, direction, clockMode, speed, playing, panel, bits, history, note, stepRef: stepRef.current }), "d15c1d06d409");
+
   const shift = mode === "ring" || mode === "johnson";
   const [width, setWidth] = useState(4);
   const [modulus, setModulus] = useState(mode === "bcd" || mode === "mod" ? 10 : 16);
@@ -363,6 +368,8 @@ function StateTable({ mode, width, mod, dir, current, bits }: { mode: Mode; widt
 }
 
 function DesignPanel() {
+  useSimulatorCapture("studios/counters/CounterStudio.tsx:DesignPanel", () => ({ text, kind }), "d15c1d06d409");
+
   const [text, setText] = useState("0,1,2,3,4,5");
   const [kind, setKind] = useState<"D" | "JK">("D");
   const sequence = text.split(",").map((part) => Number(part.trim())).filter((value) => Number.isInteger(value) && value >= 0);

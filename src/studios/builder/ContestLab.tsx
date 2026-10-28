@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { ScoringRules } from "./ScoringRules";
 import { printableContestHtml } from "../../engines/builder/contestPrint";
 import { ContestPrintReport } from "./ContestPrintReport";
@@ -13,6 +14,8 @@ import type { LabProps } from "./labTypes";
 import "./contest.css";
 
 export function ContestLab({design,commit,onNavigate,onRun}:LabProps) {
+  useSimulatorCapture("studios/builder/ContestLab.tsx:ContestLab", () => ({ tab, selected, resultIndex, report, message, busy, progress, assertionText, judge, judgeResult, templateResults, printing, judgeTests, judgeReplay, cancel: cancel.current, alive: alive.current, context: context.current }), "c4fb9e0fef3c");
+
  const engineering=engineeringOf(design);const config=engineering.contest??defaultContest();const [tab,setTab]=useState("Challenges");const [selected,setSelected]=useState(0);const [resultIndex,setResultIndex]=useState(0);const [report,setReport]=useState<ContestReport|null>(null);const [message,setMessage]=useState("");const [busy,setBusy]=useState(false);const [progress,setProgress]=useState("");const [assertionText,setAssertionText]=useState("");const [judge,setJudge]=useState<Submission|null>(null);const [judgeResult,setJudgeResult]=useState("");const [templateResults,setTemplateResults]=useState<{name:string;result:ContestResult}[]>([]);const [printing,setPrinting]=useState(false);const [judgeTests,setJudgeTests]=useState<ContestTest[]|null>(null);const [judgeReplay,setJudgeReplay]=useState<ContestReport|null>(null);const cancel=useRef(false);const alive=useRef(true);const context=useRef("");
  useEffect(()=>{alive.current=true;return ()=>{alive.current=false;cancel.current=true;};},[]);
  useEffect(()=>{const before=()=>{if(report)flushSync(()=>setPrinting(true));};const after=()=>setPrinting(false);window.addEventListener("beforeprint",before);window.addEventListener("afterprint",after);return()=>{window.removeEventListener("beforeprint",before);window.removeEventListener("afterprint",after);};},[report]);

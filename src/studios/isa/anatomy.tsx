@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { anatomyBinary, anatomyFields, encodeAnatomy, TEACH_OPS, type TeachOp } from "../../engines/isa/teach";
 import { Mark, RunBar } from "./ui";
@@ -5,6 +6,8 @@ import { Mark, RunBar } from "./ui";
 const TONE: Record<string, string> = { opcode: "op", rd: "rd", rs1: "rs", imm: "im" };
 
 export function AnatomyPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/anatomy.tsx:AnatomyPanel", () => ({ op, rd, rs1, rs2, imm, field, pulse }), "bc077f2b50ab");
+
   const [op, setOp] = useState<TeachOp>("ADD");
   const [rd, setRd] = useState(1);
   const [rs1, setRs1] = useState(2);

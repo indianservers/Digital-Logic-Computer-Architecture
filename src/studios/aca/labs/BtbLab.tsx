@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { BTB_PRESETS, BTB_SEED, btbGeometry, lookupEntry, runBtb, type BtbPolicy } from "../../../engines/aca/btb";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -7,6 +8,8 @@ import { useGuideFocus } from "../guide/focus";
 const hex = (value: number) => `0x${value.toString(16).toUpperCase().padStart(4, "0")}`;
 
 export function BtbLab() {
+  useSimulatorCapture("studios/aca/labs/BtbLab.tsx:BtbLab", () => ({ presetId, ways, policy, enabled, details, lookupText, config, shots, warm, play, guideFocus }), "909a88f44b5b");
+
   const [presetId, setPresetId] = useState(BTB_PRESETS[0]?.id ?? "hot");
   const [ways, setWays] = useState(1);
   const [policy, setPolicy] = useState<BtbPolicy>("lru");

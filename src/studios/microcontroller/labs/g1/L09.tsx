@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useRef, useState } from "react";
 import type { BusAccess, Mcu } from "../core/mcu";
 import { useLab } from "../core/useLab";
@@ -183,6 +184,8 @@ function SevenSeg({ x, y, bits, h = 64 }: { x: number; y: number; bits: number; 
 }
 
 export default function L09({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L09.tsx:L09", () => ({ lab, sel, selReg, edit, auto, frozen, filter, clearedAt, dbgMsg, adcHist: adcHist.current, digits: digits.current, seen }), "08d21ebd30a4");
+
   const lab = useLab<P>({
     slug: meta.slug, code: DEMO, params: { sw: 0, pot: 0.5, noClock: false, floating: false, openLed: false },
     rebuildOn: ["noClock", "floating"],

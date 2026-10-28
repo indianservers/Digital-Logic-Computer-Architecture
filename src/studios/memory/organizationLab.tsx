@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { capacityFromPins, chipNotation, depthChips, formatBytes, formatHex, interleaveBank, toBinary, totalChips, widthChips } from "../../engines/memory/fundamentals";
 import { Field, LabGuide } from "./guide";
@@ -16,6 +17,8 @@ const TARGETS = [
 ];
 
 export function OrganizationLab() {
+  useSimulatorCapture("studios/memory/organizationLab.tsx:OrganizationLab", () => ({ chipIndex, targetIndex, addrPins, dataPins, select, mode, cursor, playing, banks }), "3df494c0b250");
+
   const [chipIndex, setChipIndex] = useState(1);
   const [targetIndex, setTargetIndex] = useState(0);
   const [addrPins, setAddrPins] = useState(10);

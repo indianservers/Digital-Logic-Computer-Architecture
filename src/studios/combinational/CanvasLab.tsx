@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "../../design-system/ui";
 import { addNode, connect, deleteNodes, deleteWire, duplicateNodes, emptyDoc, evaluate, moveNode, portsOf, signalText, TEMPLATES, type CanvasType, type CircuitDoc, type CircuitNode } from "../../engines/digital/circuit";
@@ -46,6 +47,8 @@ function portPoint(node: CircuitNode, portId: string, dir: "in" | "out"): { x: n
 }
 
 export function CanvasLab() {
+  useSimulatorCapture("studios/combinational/CanvasLab.tsx:CanvasLab", () => ({ doc, past, future, selected, clock, prevClock, draft, pan, error, projects, name, held, view }), "906b4ec4f2e3");
+
   const [doc, setDoc] = useState<CircuitDoc>(() => TEMPLATES[0]?.build() ?? emptyDoc());
   const [past, setPast] = useState<CircuitDoc[]>([]);
   const [future, setFuture] = useState<CircuitDoc[]>([]);

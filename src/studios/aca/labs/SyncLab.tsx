@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { SYNC_PRESETS, compareCounters, compareLocks, runSync, waitByWidth, type SyncConfig, type SyncKind } from "../../../engines/aca/sync";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -21,6 +22,8 @@ function phaseColor(phase: string) {
 }
 
 export function SyncLab() {
+  useSimulatorCapture("studios/aca/labs/SyncLab.tsx:SyncLab", () => ({ presetId, kind, threads, cs, think, rounds, showLock, showThreads, highlight, auto, config, result, locks, counters, sweep, play, guideFocus, setGuideFocus }), "fb55d4597cb8");
+
   const initial = SYNC_PRESETS[0];
   const [presetId, setPresetId] = useState(initial?.id ?? "tas-2");
   const [kind, setKind] = useState<SyncKind>(initial?.kind ?? "tas");

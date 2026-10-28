@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import type { PointerEvent } from "react";
 import {
@@ -31,6 +32,8 @@ function useChip(macros: Macro[], dieW: number, dieH: number, coreUtil: number) 
 }
 
 export function FloorplanLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:FloorplanLab", () => ({ dieW, dieH, coreUtil, macros, selected, drag, chip }), "053c45451be8");
+
   const [dieW, setDieW] = useState(120);
   const [dieH, setDieH] = useState(96);
   const [coreUtil, setCore] = useState(0.72);
@@ -106,6 +109,8 @@ export function FloorplanLab() {
 }
 
 export function PowerPlanLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:PowerPlanLab", () => ({ strapWidth, pitch, straps, voltage, current, chip }), "053c45451be8");
+
   const [strapWidth, setWidth] = useState(3);
   const [pitch, setPitch] = useState(18);
   const [straps, setStraps] = useState(4);
@@ -161,6 +166,8 @@ export function PowerPlanLab() {
 }
 
 export function PlacementLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:PlacementLab", () => ({ count, util, mode, seed, lock, current, previous }), "053c45451be8");
+
   const [count, setCount] = useState(24);
   const [util, setUtil] = useState(0.7);
   const [mode, setMode] = useState<"greedy" | "timing" | "congestion">("greedy");
@@ -228,6 +235,8 @@ function CellCanvas({ cells }: { cells: PlacementResult }) {
 }
 
 export function PlacementOptLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:PlacementOptLab", () => ({ target, start, state, moves }), "053c45451be8");
+
   const [target, setTarget] = useState<OptTarget>("wire");
   const [start] = useState<PlaceState>(() => scrambledPlacement(12));
   const [state, setState] = useState<PlaceState>(start);
@@ -292,6 +301,8 @@ function OptCanvas({ state, moves }: { state: PlaceState; moves: CellMove[] }) {
 }
 
 export function RoutingLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:RoutingLab", () => ({ mode, layers, viaCost, penalty, blocked }), "053c45451be8");
+
   const [mode, setMode] = useState<"global" | "detailed">("detailed");
   const [layers, setLayers] = useState(3);
   const [viaCost, setVia] = useState(1);
@@ -346,6 +357,8 @@ export function RoutingLab() {
 }
 
 export function CongestionLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:CongestionLab", () => ({ density, layers, tracks, blocked, pick }), "053c45451be8");
+
   const [density, setDensity] = useState(0.8);
   const [layers, setLayers] = useState(2);
   const [tracks, setTracks] = useState(2);
@@ -408,6 +421,8 @@ export function CongestionLab() {
 const ROOT = { x: 12, y: 48 };
 
 export function ClockTreeSynthLab() {
+  useSimulatorCapture("studios/vlsi/labs/physicalLabs.tsx:ClockTreeSynthLab", () => ({ style, mode, sinks, which }), "053c45451be8");
+
   const [style, setStyle] = useState<"binary" | "cluster" | "h-tree">("h-tree");
   const [mode, setMode] = useState<"before" | "after">("after");
   const [sinks, setSinks] = useState<ClockSink[]>([

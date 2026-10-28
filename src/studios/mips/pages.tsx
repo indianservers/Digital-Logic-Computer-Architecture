@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useId, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Theory } from "../../design-system/ui";
@@ -140,6 +141,8 @@ function SingleCycleView({ onPick }: { onPick?: (id: string) => void }) {
 }
 
 export function OverviewPage({ api }: { api: MipsApi }) {
+  useSimulatorCapture("studios/mips/pages.tsx:OverviewPage", () => ({ tab, step, built }), "170ad403381c");
+
   const [tab, setTab] = useState<"asm" | "hex" | "out">("asm");
   const [step, setStep] = useState(0);
   const go = useNavigate();
@@ -219,6 +222,8 @@ const FIELD_HELP: Record<string, string> = {
 };
 
 export function FormatsPage() {
+  useSimulatorCapture("studios/mips/pages.tsx:FormatsPage", () => ({ tab, rs, rt, rd, shamt, funct, imm, target, field, asm, hexIn, note, parsed }), "170ad403381c");
+
   const [tab, setTab] = useState<"R" | "I" | "J" | "compare" | "play">("R");
   const [rs, setRs] = useState(9);
   const [rt, setRt] = useState(10);
@@ -310,6 +315,8 @@ export function FormatsPage() {
 const ROLES: Record<number, string> = { 0: "zero", 1: "at", 2: "temp", 3: "temp", 4: "arg", 5: "arg", 6: "arg", 7: "arg", 8: "temp", 9: "temp", 10: "temp", 11: "temp", 12: "temp", 13: "temp", 14: "temp", 15: "temp", 16: "saved", 17: "saved", 18: "saved", 19: "saved", 20: "saved", 21: "saved", 22: "saved", 23: "saved", 24: "temp", 25: "temp", 26: "saved", 27: "saved", 28: "gp", 29: "sp", 30: "saved", 31: "ra" };
 
 export function RegisterPage({ api }: { api: MipsApi }) {
+  useSimulatorCapture("studios/mips/pages.tsx:RegisterPage", () => ({ editing }), "170ad403381c");
+
   const value = api.cpu.regs[api.sel] ?? 0;
   const [editing, setEditing] = useState(false);
   return (
@@ -352,6 +359,8 @@ export function RegisterPage({ api }: { api: MipsApi }) {
 }
 
 export function AssemblerPage({ api }: { api: MipsApi }) {
+  useSimulatorCapture("studios/mips/pages.tsx:AssemblerPage", () => ({ built }), "170ad403381c");
+
   const built = useMemo(() => assembleMips(api.source), [api.source]);
   const run = (limit: number) => {
     const loaded = loadMips(api.source);
@@ -396,6 +405,8 @@ const DP_OPS = [
 ];
 
 export function DatapathPage({ api }: { api: MipsApi }) {
+  useSimulatorCapture("studios/mips/pages.tsx:DatapathPage", () => ({ stage }), "170ad403381c");
+
   const [stage, setStage] = useState(0);
   const decoded = api.cpu.decoded ?? decodeMips(DP_OPS[0]?.word ?? 0);
   const controls = mipsControls(decoded.mnemonic);
@@ -478,6 +489,8 @@ export function DatapathPage({ api }: { api: MipsApi }) {
 }
 
 export function PipelinePage() {
+  useSimulatorCapture("studios/mips/pages.tsx:PipelinePage", () => ({ text, cursor, playing }), "170ad403381c");
+
   const [text, setText] = useState("add $t0, $t1, $t2\nsub $t3, $t0, $t1\naddi $t4, $t3, 1");
   const [cursor, setCursor] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -517,6 +530,8 @@ function PipeRun({ playing, cycles, setCursor }: { playing: boolean; cycles: num
 }
 
 export function HazardsPage() {
+  useSimulatorCapture("studios/mips/pages.tsx:HazardsPage", () => ({ text, forward }), "170ad403381c");
+
   const [text, setText] = useState("add $t0, $t1, $t2\nsub $t3, $t0, $t4\nlw $t0, 0($t1)\nadd $t2, $t0, $t3");
   const [forward, setForward] = useState(true);
   const lines = text.split("\n").map((line) => line.trim()).filter(Boolean);
@@ -542,6 +557,8 @@ export function HazardsPage() {
 }
 
 export function MemoryPage({ api }: { api: MipsApi }) {
+  useSimulatorCapture("studios/mips/pages.tsx:MemoryPage", () => ({ tab, base, offset }), "170ad403381c");
+
   const [tab, setTab] = useState<"data" | "text" | "stack" | "io">("data");
   const [base, setBase] = useState(0);
   const [offset, setOffset] = useState(0);
@@ -578,6 +595,8 @@ const CALLS = [
 ];
 
 export function SyscallPage({ api }: { api: MipsApi }) {
+  useSimulatorCapture("studios/mips/pages.tsx:SyscallPage", () => ({ service, arg, text }), "170ad403381c");
+
   const [service, setService] = useState(1);
   const [arg, setArg] = useState(42);
   const [text, setText] = useState("Hello");
@@ -687,6 +706,8 @@ const QUIZ = [
 ];
 
 export function PracticePage() {
+  useSimulatorCapture("studios/mips/pages.tsx:PracticePage", () => ({ topic, index, picked, score, seen }), "170ad403381c");
+
   const [topic, setTopic] = useState("All");
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);

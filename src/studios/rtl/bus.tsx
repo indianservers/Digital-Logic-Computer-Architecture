@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { applyBusWrite, busValue, mask16 } from "../../engines/isa/rtlLab";
 import { Mark } from "./ui";
@@ -5,6 +6,8 @@ import { Mark } from "./ui";
 const FRESH = [0, 12, 25, 0, 0, 0, 0, 0];
 
 export function BusPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/rtl/bus.tsx:BusPanel", () => ({ regs, source, second, dest, hover, note }), "9d8286f380cb");
+
   const [regs, setRegs] = useState(FRESH);
   const [source, setSource] = useState(1);
   const [second, setSecond] = useState<number | null>(null);

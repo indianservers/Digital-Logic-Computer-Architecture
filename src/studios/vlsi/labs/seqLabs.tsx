@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { dMasterSlave, flipFlopD, latchD, latchSr, type Bit } from "../engine";
 import type { Edge, Level } from "../../../engines/digital/sequential";
@@ -8,6 +9,8 @@ function levelText(value: Level): string {
 }
 
 export function SrLatchLab() {
+  useSimulatorCapture("studios/vlsi/labs/seqLabs.tsx:SrLatchLab", () => ({ s, r, q }), "8f130d4c5be3");
+
   const [s, setS] = useState<Bit>(0);
   const [r, setR] = useState<Bit>(0);
   const [q, setQ] = useState<Level>(0);
@@ -60,6 +63,8 @@ export function SrLatchLab() {
 }
 
 export function DLatchLab() {
+  useSimulatorCapture("studios/vlsi/labs/seqLabs.tsx:DLatchLab", () => ({ d, en, q }), "8f130d4c5be3");
+
   const [d, setD] = useState<Bit>(0);
   const [en, setEn] = useState<Bit>(0);
   const [q, setQ] = useState<Level>(0);
@@ -99,6 +104,8 @@ export function DLatchLab() {
 }
 
 export function DFlipFlopLab() {
+  useSimulatorCapture("studios/vlsi/labs/seqLabs.tsx:DFlipFlopLab", () => ({ view, d, edge, reset, clock, q, master, slave, trace, note }), "8f130d4c5be3");
+
   const [view, setView] = useState<"edge" | "master" | "wave" | "device">("edge");
   const [d, setD] = useState<Bit>(1);
   const [edge, setEdge] = useState<Edge>("rise");

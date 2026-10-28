@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { cellColor, emptyFlow, GDS_STAGES, invalidateDownstream, runStage, runThrough, type DesignId, type GdsStage, type GdsState } from "../gdsFlow";
 import { VlsiGrid } from "../shell";
@@ -6,6 +7,8 @@ import { Badge, Choice, Measure, Observe, Slider } from "../widgets";
 const DESIGNS: DesignId[] = ["adder2", "adder4", "counter", "mux", "fsm", "alu"];
 
 export function RtlGdsLab() {
+  useSimulatorCapture("studios/vlsi/labs/gdsLab.tsx:RtlGdsLab", () => ({ state, focus, layers }), "af47a3c9cb20");
+
   const [state, setState] = useState<GdsState>(() => emptyFlow("adder4"));
   const [focus, setFocus] = useState<GdsStage>("rtl");
   const [layers, setLayers] = useState({ cells: true, metal: true, clock: true, power: true, vias: true });

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { archStudio } from "../../data/architecture";
@@ -20,6 +21,8 @@ done:
 RET`;
 
 export function ArmStudio() {
+  useSimulatorCapture("studios/arm/ArmStudio.tsx:ArmStudio", () => ({ cpu, source, sel, status }), "472eca4dae85");
+
   const raw = useParams().labId ?? "overview";
   const lab = ALIAS[raw] ?? raw;
   const known = new Set(archStudio("arm")?.labs.map((item) => item.id));

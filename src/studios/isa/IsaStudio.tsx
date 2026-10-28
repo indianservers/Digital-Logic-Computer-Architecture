@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
@@ -102,6 +103,8 @@ const PAGE: Record<string, { subtitle: string; guide: string[]; takeaways: strin
 };
 
 export function IsaStudio() {
+  useSimulatorCapture("studios/isa/IsaStudio.tsx:IsaStudio", () => ({ root: root.current }), "5dfb9af99190");
+
   const root = useRef<HTMLDivElement>(null);
   const [params, setParams] = useSearchParams();
   const raw = params.get("tab");

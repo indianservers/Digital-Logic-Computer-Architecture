@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { useLab } from "../core/useLab";
 import { hx, type Ins } from "../g1/thumb";
@@ -26,6 +27,8 @@ const NO_SEEN = { run: false, bp: false, step: false, ins: false, edit: false, f
 type Seen = typeof NO_SEEN;
 
 export default function L37({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L37.tsx:L37", () => ({ lab, pending, msg, seen, failSeen, memEdit, traceRef: traceRef.current, listRef: listRef.current }), "d541d0619ff8");
+
   const lab = useLab<P37>({
     slug: meta.slug, code: DEMO, params: P37_DEFAULT, mcu: mcu37,
     setup: (m, _p, src) => setup37(m, src),

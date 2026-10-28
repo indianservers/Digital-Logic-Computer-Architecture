@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import GeneratedPartView from '../GeneratedPartView';
 import { GENERATED_DEVICE_ART, GENERATED_PART_ART } from '../generated-assets';
 import {ADVANCED_LABS,advancedPath} from '../advanced/data';
@@ -16,6 +17,8 @@ import "./lab.css";
 const SECTIONS=[["overview","Overview"],["anatomy","Device Anatomy"],["signal","Signal Flow"],["simulation","Simulation"],["working","How It Works"],["applications","Applications"],["quiz","Quiz"]];
 function Panel({id,title,children,className=""}:{id?:string;title:string;children:ReactNode;className?:string}) {return <section id={id} className={`dl-panel ${className}`}><h2><span aria-hidden="true">◈</span>{title}</h2>{children}</section>;}
 function Quiz({lab}:{lab:Lab}) {
+  useSimulatorCapture("studios/how-devices-work/labs/LabPage.tsx:Quiz", () => ({ answers }), "58f317665dc9");
+
  const [answers,setAnswers]=useState<Record<number,number>>({});
  const concept=CONCEPTS[lab.engine];
  const questions=[{q:`Which input stage does ${lab.device.name} use?`,options:[lab.sensor,"An unrelated storage device","Only an output display"],correct:0,why:`${lab.sensor} provides the initial measurement or input. The processor operates on that signal.`},{q:`What follows ${lab.device.signalFlow[1]} in this signal path?`,options:[lab.device.signalFlow.at(-1)!,lab.device.signalFlow[2]!,lab.device.signalFlow[0]!],correct:1,why:`The chain proceeds from ${lab.device.signalFlow[1]} to ${lab.device.signalFlow[2]}. ${stepDescription(lab,lab.device.signalFlow[2]!,2)}`},{q:`What should happen when ${lab.fault.toLowerCase()} is detected?`,options:["Treat missing data as a normal reading","Ignore the fault and retain a valid status","Flag the fault and invalidate affected output"],correct:2,why:"A required stage has failed. Its dependent reading or output must be marked invalid and the fault made visible."}];
@@ -24,6 +27,8 @@ function Quiz({lab}:{lab:Lab}) {
 }
 
 export default function LabPage({lab}:{lab:Lab}) {
+  useSimulatorCapture("studios/how-devices-work/labs/LabPage.tsx:LabPage", () => ({ values, mode, running, time, fault, action, view, part, step, digital, saved, walkthrough, result }), "58f317665dc9");
+
  const [values,setValues]=useState(()=>initialValues(lab)),[mode,setMode]=useState(lab.modes[0]!),[running,setRunning]=useState(false),[time,setTime]=useState(0),[fault,setFault]=useState(false),[action,setAction]=useState(""),[view,setView]=useState("Internal"),[part,setPart]=useState(0),[step,setStep]=useState(0),[digital,setDigital]=useState(false),[menu,setMenu]=useState(false),[query,setQuery]=useState(""),[saved,setSaved]=useState(false);
  useEffect(()=>{try {setSaved(localStorage.getItem(`hdw-bookmark-${lab.device.id}`)==="1");}catch{/* Storage may be unavailable. */}},[lab.device.id]);
  useEffect(()=>{if(!running)return;const timer=window.setInterval(()=>setTime(t=>t+.1),100);return()=>window.clearInterval(timer);},[running]);

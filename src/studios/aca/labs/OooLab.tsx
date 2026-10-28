@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { OOO_EXAMPLE, parseOooProgram, runOoo } from "../../../engines/aca/ooo";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -25,6 +26,8 @@ const FLOW = [
 ];
 
 export function OooLab() {
+  useSimulatorCapture("studios/aca/labs/OooLab.tsx:OooLab", () => ({ fault, faultAt, robSize, issueWidth, commitWidth, alus, muls, mems, program, showPipe, selected, parsed, shots, play, guideFocus }), "1643a2fe946d");
+
   const [fault, setFault] = useState(false);
   const [faultAt, setFaultAt] = useState(1);
   const [robSize, setRobSize] = useState(16);

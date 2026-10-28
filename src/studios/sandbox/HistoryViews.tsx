@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useSandbox } from "./sandboxState";
 import { hx } from "./sandboxModel";
 import {
@@ -11,6 +12,8 @@ import {
   ValueBox,
 } from "./SandboxUI";
 export function HistoryView() {
+  useSimulatorCapture("studios/sandbox/HistoryViews.tsx:HistoryView", () => ({ s }), "26c5de7519bd");
+
   const s = useSandbox(),
     h = s.historical ? s.history[s.historyIndex]!.cpu : s.cpu,
     r = h.registers;
@@ -154,6 +157,8 @@ export function HistoryView() {
   );
 }
 export function TimeMachineDock() {
+  useSimulatorCapture("studios/sandbox/HistoryViews.tsx:TimeMachineDock", () => ({ s }), "26c5de7519bd");
+
   const s = useSandbox(),
     h = s.history[s.historyIndex]!;
   return (
@@ -260,6 +265,8 @@ export function TimeMachineDock() {
   );
 }
 export function TimeMachineInspector() {
+  useSimulatorCapture("studios/sandbox/HistoryViews.tsx:TimeMachineInspector", () => ({ s }), "26c5de7519bd");
+
   const s = useSandbox(),
     h = s.historical ? s.history[s.historyIndex]! : s.history.at(-1)!,
     prev = s.history[Math.max(0, s.historyIndex - 1)]!;

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { TOMA_PRESETS, TOMA_SHAPE, parseTomasulo, snapshotTomasulo, runTomasulo, type TomaShape } from "../../../engines/aca/tomasulo";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -5,6 +6,8 @@ import { CdbBroadcast } from "../animation/motionViews";
 import { useGuideFocus } from "../guide/focus";
 
 export function TomasuloLab() {
+  useSimulatorCapture("studios/aca/labs/TomasuloLab.tsx:TomasuloLab", () => ({ presetId, lines, addStations, mulLatency, shape, ops, full, play, guideFocus, view, showTags, showCdb }), "8217d3e0f8ad");
+
   const [presetId, setPresetId] = useState(TOMA_PRESETS[0]?.id ?? "mixed");
   const preset = TOMA_PRESETS.find((item) => item.id === presetId) ?? TOMA_PRESETS[0];
   const [lines, setLines] = useState((preset?.ops ?? []).map((op) => op.text).join("\n"));

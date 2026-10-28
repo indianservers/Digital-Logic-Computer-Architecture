@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Theory } from "../../design-system/ui";
@@ -78,6 +79,8 @@ const LABS = [
 ];
 
 export function OverviewPage({ api }: { api: ArmApi }) {
+  useSimulatorCapture("studios/arm/pages.tsx:OverviewPage", () => ({ step }), "de3f295e144c");
+
   const [step, setStep] = useState(0);
   const current = FLOW[step] ?? FLOW[0];
   const x1 = api.cpu.x[1] ?? 0n;
@@ -123,6 +126,8 @@ export function OverviewPage({ api }: { api: ArmApi }) {
 }
 
 export function RegisterPage({ api }: { api: ArmApi }) {
+  useSimulatorCapture("studios/arm/pages.tsx:RegisterPage", () => ({ wide }), "de3f295e144c");
+
   const [wide, setWide] = useState(true);
   const value = api.sel < 31 ? (api.cpu.x[api.sel] ?? 0n) : api.sel === 31 ? api.cpu.sp : 0n;
   const shown = wide ? value : (value & 0xffffffffn);
@@ -192,6 +197,8 @@ function fieldBits(word: number, hi: number, lo: number): string {
 }
 
 export function EncodingPage() {
+  useSimulatorCapture("studios/arm/pages.tsx:EncodingPage", () => ({ family, rd, rn, rm, imm, asm, note, lanes }), "de3f295e144c");
+
   const [family, setFamily] = useState<"add" | "ldr" | "b" | "simd">("add");
   const [rd, setRd] = useState(2);
   const [rn, setRn] = useState(0);
@@ -277,6 +284,8 @@ export function EncodingPage() {
 }
 
 export function AssemblerPage({ api }: { api: ArmApi }) {
+  useSimulatorCapture("studios/arm/pages.tsx:AssemblerPage", () => ({ built }), "de3f295e144c");
+
   const built = useMemo(() => assembleA64(api.source), [api.source]);
   const run = (limit: number) => {
     const loaded = loadA64(api.source);
@@ -340,6 +349,8 @@ export function AssemblerPage({ api }: { api: ArmApi }) {
 }
 
 export function DatapathPage({ api }: { api: ArmApi }) {
+  useSimulatorCapture("studios/arm/pages.tsx:DatapathPage", () => ({ stage }), "de3f295e144c");
+
   const [stage, setStage] = useState(0);
   const decoded = api.cpu.decoded ?? decodeA64(encodeAddReg(0, 1, 2));
   const xn = api.cpu.x[decoded.rn] ?? 0n;
@@ -400,6 +411,8 @@ export function DatapathPage({ api }: { api: ArmApi }) {
 }
 
 export function PipelinePage() {
+  useSimulatorCapture("studios/arm/pages.tsx:PipelinePage", () => ({ text, forward, cursor, playing }), "de3f295e144c");
+
   const [text, setText] = useState("ADD X0, X1, X2\nSUB X3, X0, X4\nLDR X5, [X3]\nADD X6, X5, X7\nB.NE target");
   const [forward, setForward] = useState(true);
   const [cursor, setCursor] = useState(0);
@@ -485,6 +498,8 @@ export function PipelinePage() {
 }
 
 export function MemoryPage({ api }: { api: ArmApi }) {
+  useSimulatorCapture("studios/arm/pages.tsx:MemoryPage", () => ({ base, offset, mode, value, tab }), "de3f295e144c");
+
   const [base, setBase] = useState(0);
   const [offset, setOffset] = useState(0);
   const [mode, setMode] = useState<"unsigned" | "pre" | "post">("unsigned");
@@ -586,6 +601,8 @@ const EL_CARDS = [
 ];
 
 export function ExceptionPage({ api }: { api: ArmApi }) {
+  useSimulatorCapture("studios/arm/pages.tsx:ExceptionPage", () => ({ kind }), "de3f295e144c");
+
   const [kind, setKind] = useState<"Synchronous" | "IRQ" | "FIQ" | "SError">("Synchronous");
   const fire = (name: typeof kind, imm: number) => {
     setKind(name);
@@ -663,6 +680,8 @@ const SOC = [
 ];
 
 export function SocPage() {
+  useSimulatorCapture("studios/arm/pages.tsx:SocPage", () => ({ load, sel }), "de3f295e144c");
+
   const [load, setLoad] = useState<Record<string, number>>({ "Performance cores": 40, "Efficiency cores": 20, GPU: 10, NPU: 0 });
   const [sel, setSel] = useState("Performance cores");
   const temp = 35 + Object.values(load).reduce((sum, item) => sum + item, 0) / 12;
@@ -735,6 +754,8 @@ const QUIZ = [
 ];
 
 export function PracticePage() {
+  useSimulatorCapture("studios/arm/pages.tsx:PracticePage", () => ({ topic, index, picked, score, seen }), "de3f295e144c");
+
   const [topic, setTopic] = useState("Mixed");
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);

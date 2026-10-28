@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -29,6 +30,8 @@ const NO_SEEN = { clean: false, bounce: false, enc: false, btn: false, ghost: fa
 type Seen = typeof NO_SEEN;
 
 export default function L36({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L36.tsx:L36", () => ({ lab, pending, msg, seen, failSeen, evRef: evRef.current, drag: drag.current, knobRef: knobRef.current }), "0fe7113fcb64");
+
   const lab = useLab<P36>({ slug: meta.slug, code: DEMO, params: P36_DEFAULT, mcu: mcu36, world: world36 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;

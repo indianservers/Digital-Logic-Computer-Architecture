@@ -1,0 +1,18 @@
+
+> digital-electronics-computing-lab@1.0.0 test
+> vitest run src/layout/experimentEvidence.test.ts src/layout/experimentRecord.test.ts src/layout/StudioNavigation.test.ts src/studios/fde/fdeModel.test.ts src/engines/accel/matrixValidation.test.ts --maxWorkers=2
+
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/studios/fde/fdeModel.test.ts (3 tests) 11ms
+ ✓ src/layout/StudioNavigation.test.ts (3 tests) 24ms
+ ✓ src/layout/experimentEvidence.test.ts (4 tests) 7ms
+ ✓ src/engines/accel/matrixValidation.test.ts (7 tests) 10ms
+ ✓ src/layout/experimentRecord.test.ts (3 tests) 5ms
+
+ Test Files  5 passed (5)
+      Tests  20 passed (20)
+   Start at  12:20:21
+   Duration  1.84s (transform 567ms, setup 0ms, collect 1.38s, tests 57ms, environment 1ms, prepare 627ms)
+

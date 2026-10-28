@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { LINE_ADDRESSES, MSI_PRESETS, runCoherence, type Access, type LineState, type Protocol } from "../../../engines/aca/coherenceLab";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -8,6 +9,8 @@ const CORE_COLOR = ["#dbeafe", "#dcfce7", "#ffedd5", "#f3e8ff"];
 const NODES: Record<Protocol, LineState[]> = { msi: ["M", "S", "I"], mesi: ["M", "E", "S", "I"], moesi: ["M", "O", "E", "S", "I"] };
 
 export function MesiLab() {
+  useSimulatorCapture("studios/aca/labs/MesiLab.tsx:MesiLab", () => ({ protocol, cores, presetId, accesses, seed, actor, operation, line, written, traffic, highlight, auto, result, play, guideFocus, setGuideFocus }), "835de4769ee2");
+
   const [protocol, setProtocol] = useState<Protocol>("mesi");
   const [cores, setCores] = useState(4);
   const [presetId, setPresetId] = useState(MSI_PRESETS[2]?.id ?? "producer");

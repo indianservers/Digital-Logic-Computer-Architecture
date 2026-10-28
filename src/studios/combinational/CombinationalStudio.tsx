@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CircuitCanvas, Glyph } from "../../components/circuit/CircuitPanels";
 import { muxChallengeBoard, patchNode, serialize, signalOf, starterAbPlusC, truthTable } from "../../components/circuit/engine";
@@ -104,6 +105,8 @@ const OPS = [
 ];
 
 export function CombinationalStudio() {
+  useSimulatorCapture("studios/combinational/CombinationalStudio.tsx:CombinationalStudio", () => ({ tab, pan, shellRef: shellRef.current, circuit, more, analysis, step, hint, verdict, saved, propsHost, table }), "15b81f623d13");
+
   const [tab, setTab] = useStudioTab(TABS, "basic");
   const [pan, setPan] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);

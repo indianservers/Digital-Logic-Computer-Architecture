@@ -1,3 +1,4 @@
+import { SimulatorCaptureScope } from "../../layout/SimulatorCapture";
 import { useSearchParams } from "react-router-dom";
 import { AddressingLab } from "./addressingLab";
 import { DramLab } from "./dramLab";
@@ -49,14 +50,14 @@ export function MemoryFundamentals() {
           <button key={item.id} type="button" role="tab" id={`memory-tab-${item.id}`} aria-selected={chip === item.id} aria-controls={`memory-panel-${item.id}`} className={chip === item.id ? "on" : ""} onClick={() => select(item.id)}>{item.label}</button>
         ))}
       </div>
-      <div role="tabpanel" id="memory-panel-array" aria-labelledby="memory-tab-array" hidden={chip !== "array"} inert={chip !== "array"}><RamLab /></div>
-      <div role="tabpanel" id="memory-panel-sram" aria-labelledby="memory-tab-sram" hidden={chip !== "sram"} inert={chip !== "sram"}><SramLab /></div>
-      <div role="tabpanel" id="memory-panel-dram" aria-labelledby="memory-tab-dram" hidden={chip !== "dram"} inert={chip !== "dram"}><DramLab /></div>
-      <div role="tabpanel" id="memory-panel-rom" aria-labelledby="memory-tab-rom" hidden={chip !== "rom"} inert={chip !== "rom"}><RomLab /></div>
-      <div role="tabpanel" id="memory-panel-eeprom" aria-labelledby="memory-tab-eeprom" hidden={chip !== "eeprom"} inert={chip !== "eeprom"}><EepromLab /></div>
-      <div role="tabpanel" id="memory-panel-flash" aria-labelledby="memory-tab-flash" hidden={chip !== "flash"} inert={chip !== "flash"}><FlashLab /></div>
-      <div role="tabpanel" id="memory-panel-addressing" aria-labelledby="memory-tab-addressing" hidden={chip !== "addressing"} inert={chip !== "addressing"}><AddressingLab /></div>
-      <div role="tabpanel" id="memory-panel-organization" aria-labelledby="memory-tab-organization" hidden={chip !== "organization"} inert={chip !== "organization"}><OrganizationLab /></div>
+      <div role="tabpanel" id="memory-panel-array" aria-labelledby="memory-tab-array" hidden={chip !== "array"} inert={chip !== "array"}><SimulatorCaptureScope active={chip === "array"}><RamLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-sram" aria-labelledby="memory-tab-sram" hidden={chip !== "sram"} inert={chip !== "sram"}><SimulatorCaptureScope active={chip === "sram"}><SramLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-dram" aria-labelledby="memory-tab-dram" hidden={chip !== "dram"} inert={chip !== "dram"}><SimulatorCaptureScope active={chip === "dram"}><DramLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-rom" aria-labelledby="memory-tab-rom" hidden={chip !== "rom"} inert={chip !== "rom"}><SimulatorCaptureScope active={chip === "rom"}><RomLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-eeprom" aria-labelledby="memory-tab-eeprom" hidden={chip !== "eeprom"} inert={chip !== "eeprom"}><SimulatorCaptureScope active={chip === "eeprom"}><EepromLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-flash" aria-labelledby="memory-tab-flash" hidden={chip !== "flash"} inert={chip !== "flash"}><SimulatorCaptureScope active={chip === "flash"}><FlashLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-addressing" aria-labelledby="memory-tab-addressing" hidden={chip !== "addressing"} inert={chip !== "addressing"}><SimulatorCaptureScope active={chip === "addressing"}><AddressingLab /></SimulatorCaptureScope></div>
+      <div role="tabpanel" id="memory-panel-organization" aria-labelledby="memory-tab-organization" hidden={chip !== "organization"} inert={chip !== "organization"}><SimulatorCaptureScope active={chip === "organization"}><OrganizationLab /></SimulatorCaptureScope></div>
     </div>
   );
 }

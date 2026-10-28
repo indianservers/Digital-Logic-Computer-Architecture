@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { boost, packagePower } from "../../engines/isaarch/desktop";
@@ -77,6 +78,8 @@ const LAYERS = [
 ] as const;
 
 export function PackagePage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:PackagePage", () => ({ view, block, layer }), "6fa06fa7304b");
+
   const [view, setView] = useState<"blocks" | "die" | "package">("blocks");
   const [block, setBlock] = useState<(typeof BLOCKS)[number]["id"]>("p");
   const [layer, setLayer] = useState<(typeof LAYERS)[number]["id"]>("die");
@@ -165,6 +168,8 @@ function CorePipe({ kind }: { kind: "p" | "e" }) {
 const JOBS = ["Gaming", "Compilation", "Web", "Background", "Media", "Productivity"] as const;
 
 export function CoresPage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:CoresPage", () => ({ mode, job, count }), "6fa06fa7304b");
+
   const [mode, setMode] = useState<"p" | "e" | "both">("p");
   const [job, setJob] = useState<(typeof JOBS)[number]>("Compilation");
   const [count, setCount] = useState(4);
@@ -210,6 +215,8 @@ const LEVELS = [
 ] as const;
 
 export function CachePage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:CachePage", () => ({ level, pattern, fit, ran, step }), "6fa06fa7304b");
+
   const [level, setLevel] = useState<"L1" | "L2" | "L3" | "All">("All");
   const [pattern, setPattern] = useState("sequential");
   const [fit, setFit] = useState<"L1" | "L2" | "L3" | "DDR">("L2");
@@ -266,6 +273,8 @@ export function CachePage() {
 }
 
 export function MemoryPage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:MemoryPage", () => ({ tab, kind, channels, rate }), "6fa06fa7304b");
+
   const [tab, setTab] = useState<"overview" | "controller" | "timing" | "bandwidth">("overview");
   const [kind, setKind] = useState<"DDR4" | "DDR5">("DDR5");
   const [channels, setChannels] = useState<1 | 2>(2);
@@ -312,6 +321,8 @@ export function MemoryPage() {
 const LANE_GB: Record<string, number> = { "3.0": 1, "4.0": 2, "5.0": 4 };
 
 export function PciePage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:PciePage", () => ({ gen, gpu, ssd, nic, other }), "6fa06fa7304b");
+
   const [gen, setGen] = useState<keyof typeof LANE_GB>("5.0");
   const [gpu, setGpu] = useState(16);
   const [ssd, setSsd] = useState(4);
@@ -359,6 +370,8 @@ function line(values: number[], max: number) {
 }
 
 export function BoostPage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:BoostPage", () => ({ job, load, limit, turbo, span, policy, pTrace }), "6fa06fa7304b");
+
   const [job, setJob] = useState<(typeof BOOST_JOBS)[number]>("Gaming");
   const [load, setLoad] = useState(75);
   const [limit, setLimit] = useState(70);
@@ -426,6 +439,8 @@ const COOLERS = [
 const THERMAL_JOBS = ["Idle", "Web browsing", "Gaming", "Cinebench (all cores)", "Compile"] as const;
 
 export function ThermalPage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:ThermalPage", () => ({ cooler, ambient, fan, work, limit, playing, temp, history }), "6fa06fa7304b");
+
   const [cooler, setCooler] = useState<(typeof COOLERS)[number]["id"]>("tower");
   const [ambient, setAmbient] = useState(25);
   const [fan, setFan] = useState(55);
@@ -511,6 +526,8 @@ function Gauge({ label, value, color }: { label: string; value: number; color: s
 }
 
 export function WorkloadPage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:WorkloadPage", () => ({ id, playing, tick }), "6fa06fa7304b");
+
   const [id, setId] = useState<(typeof LOADS)[number]["id"]>("game");
   const [playing, setPlaying] = useState(false);
   const [tick, setTick] = useState(0);
@@ -578,6 +595,8 @@ const QUIZ = [
 const TOPICS = ["CPU Package", "Cores", "Caches", "Memory (DDR)", "PCIe & I/O", "Boost & Power", "Thermal", "System Workloads"];
 
 export function PracticePage() {
+  useSimulatorCapture("studios/desktop/pages.tsx:PracticePage", () => ({ mode, index, picked, show, score, seen, card, flipped }), "6fa06fa7304b");
+
   const [mode, setMode] = useState<"quiz" | "cards" | "summary">("quiz");
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);

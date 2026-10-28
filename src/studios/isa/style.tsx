@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useEffect, useState } from "react";
 import { COMPARE_EXAMPLES } from "../../engines/isa/teach";
 import { Mark, RunBar } from "./ui";
@@ -11,6 +12,8 @@ const ROWS = [
 ];
 
 export function StylePanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/isa/style.tsx:StylePanel", () => ({ id, step, playing }), "e8173ddbcacd");
+
   const [id, setId] = useState(COMPARE_EXAMPLES[0]?.id ?? "add-mem");
   const [step, setStep] = useState(-1);
   const [playing, setPlaying] = useState(false);

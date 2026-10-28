@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import {useState} from 'react';
 
 const sources=['Air data computer','Inertial sensors','FADEC engine data','Flight controls','FMS / autopilot','Other aircraft systems'];
@@ -6,6 +7,8 @@ export function FDRArchitecture(){return <svg viewBox="0 0 520 280" role="img" a
 
 const fields=[{name:'Altitude',unit:'ft',min:0,max:40000,color:'#1687fa'},{name:'Airspeed',unit:'kt',min:0,max:450,color:'#deb72d'},{name:'Pitch',unit:'°',min:-15,max:20,color:'#22b885'},{name:'Bank',unit:'°',min:-60,max:60,color:'#af42e8'},{name:'Engine N1',unit:'%',min:0,max:100,color:'#ed832f'},{name:'EGT',unit:'°C',min:0,max:1000,color:'#dc5798'},{name:'Fuel flow',unit:'pph',min:0,max:10000,color:'#389eae'}];
 export function FDRChart({records,frame}:{records:{time:number;values:number[]}[];frame:number}){
+  useSimulatorCapture("studios/how-devices-work/advanced/FDRPanels.tsx:FDRChart", () => ({ shown }), "a9b5fb6b2bf3");
+
  const [shown,setShown]=useState(fields.map(()=>true)),last=records.at(-1)?.time??1,current=records[Math.min(frame,records.length-1)];
  return <div className="av-fdr-chart"><div>{fields.map((f,i)=><label key={f.name} style={{color:f.color}}><input type="checkbox" checked={shown[i]} onChange={e=>setShown(old=>old.map((v,j)=>j===i?e.target.checked:v))}/>{f.name} ({f.unit})</label>)}</div><svg viewBox="0 0 440 220" role="img" aria-label="Recorded flight parameters normalized to explicit engineering ranges; selected frame cursor"><rect width="440" height="220" rx="5" fill="#06192a"/>{[0,1,2,3,4].map(i=><g key={i}><path d={`M35 ${20+i*40}H425M${35+i*97.5} 20V180`} stroke="#294d68" fill="none"/><text x="30" y={24+i*40} textAnchor="end" fill="#b9d6ec" fontSize="14">{100-i*25}%</text><text x={35+i*97.5} y="197" textAnchor="middle" fill="#b9d6ec" fontSize="14">{(i*last/4).toFixed(1)}</text></g>)}{fields.map((f,i)=>shown[i]&&<polyline key={f.name} points={records.map(r=>`${35+r.time/Math.max(.1,last)*390},${180-Math.max(0,Math.min(1,((r.values[i]??f.min)-f.min)/(f.max-f.min)))*160}`).join(' ')} fill="none" stroke={f.color} strokeWidth="2"/>)}{current&&<path d={`M${35+current.time/Math.max(.1,last)*390} 20V180`} stroke="white" strokeDasharray="4 3"/>}<text x="230" y="215" textAnchor="middle" fill="#b9d6ec" fontSize="14">Recorded time (s) · normalized parameter range</text></svg><details><summary>Chart scales</summary>{fields.map(f=><p key={f.name}>{f.name}: {f.min}–{f.max} {f.unit} maps to 0–100%.</p>)}</details></div>;
 }

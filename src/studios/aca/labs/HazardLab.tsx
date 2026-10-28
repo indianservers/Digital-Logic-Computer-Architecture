@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ACA_HOME, ACA_LABS } from "../../../data/acaLabs";
@@ -49,6 +50,8 @@ const SLOGANS: Record<string, string> = {
 };
 
 export function StudioTop() {
+  useSimulatorCapture("studios/aca/labs/HazardLab.tsx:StudioTop", () => ({ hits }), "2408a8e28b4c");
+
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const hits = useMemo(() => {
@@ -84,6 +87,8 @@ export function StudioTop() {
 }
 
 export function LabChrome({ lab, title, kicker, subtitle, badge, hint, reading, children }: { lab: string; title: string; kicker: string; subtitle: string; badge: string; hint?: string; reading?: string; children: ReactNode }) {
+  useSimulatorCapture("studios/aca/labs/HazardLab.tsx:LabChrome", () => ({ section, picked, setGuideFocus }), "2408a8e28b4c");
+
   const guide = LAB_GUIDES[lab];
   const index = ACA_LABS.findIndex((item) => item.id === lab);
   const [section, setSection] = useState<Section>("Simulation");
@@ -236,6 +241,8 @@ const HAZARD_PRESETS = [
 ];
 
 export function DataHazardsLab() {
+  useSimulatorCapture("studios/aca/labs/HazardLab.tsx:DataHazardsLab", () => ({ ops, base, forwarding, stallsOn, showDeps, highlight, kind, editing, selected, hover, play, guideFocus }), "2408a8e28b4c");
+
   const [ops, setOps] = useState(HAZARD_EXAMPLE);
   const [base, setBase] = useState(HAZARD_EXAMPLE);
   const [forwarding, setForwarding] = useState(true);

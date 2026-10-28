@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { Diagnostic } from "./cinterp";
 import { Mcu, type McuOptions } from "./mcu";
@@ -62,6 +63,8 @@ export interface Lab<P extends LabParams> {
 }
 
 export function useLab<P extends LabParams>(cfg: LabConfig<P>): Lab<P> {
+  useSimulatorCapture("studios/microcontroller/labs/core/useLab.ts:useLab", () => ({ cfgRef: cfgRef.current, initial, code, compiledCode, paramsRef: paramsRef.current, diagnostics, running, speed, frame, breakpoints, realtimeRef: realtimeRef.current, mcuRef: mcuRef.current }), "fef08ccdc17d");
+
   const cfgRef = useRef(cfg);
   cfgRef.current = cfg;
   const initial = useMemo(() => readSaved<P>(cfg.slug), [cfg.slug]);

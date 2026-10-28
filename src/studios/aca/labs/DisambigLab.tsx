@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { DISAMBIG_PRESETS, MEM_IMAGE, MEM_REGS, comparePolicies, runLsq, type LsqOp, type MemPolicy } from "../../../engines/aca/lsq";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -34,6 +35,8 @@ function points(values: number[]) {
 }
 
 export function DisambigLab() {
+  useSimulatorCapture("studios/aca/labs/DisambigLab.tsx:DisambigLab", () => ({ presetId, policy, threshold, bypassOn, unknownIndependent, forwardOn, enabled, showAddress, showReplay, showStalls, auto, editing, draft, ops, result, compared, play, guideFocus, setGuideFocus }), "6acf7a47dba8");
+
   const [presetId, setPresetId] = useState(DISAMBIG_PRESETS[6]?.id ?? "train");
   const [policy, setPolicy] = useState<MemPolicy>("storeSet");
   const [threshold, setThreshold] = useState(2);

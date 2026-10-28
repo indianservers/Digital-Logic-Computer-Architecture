@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { PALETTE, addNode, deleteNodes, duplicateNodes, moveNode, patchNode, portsOf, connect, deleteWire, type NodeKind, type Width } from "../../engines/builder/model";
 import { evaluateGraph } from "../../engines/builder/sim";
@@ -8,6 +9,8 @@ import { ArchCanvas } from "../shared/ArchCanvas";
 import { ALU_OPS, Btn, ChipIcon, Field, MiniSchematic, Panel, PinDiagram, Status, Tabs, hex, nodeLabel, downloadText } from "./studioUi";
 import type { LabProps } from "./labTypes";
 export function GraphLab(p:LabProps & { wires?:boolean }) {
+  useSimulatorCapture("studios/builder/GraphLab.tsx:GraphLab", () => ({ tab, tracePath, wireId }), "2282fc3aaf8e");
+
   const {design,commit,selected,onSelect} = p; const config = engineeringOf(design); const [tab,setTab] = useState("Blocks"); const [tracePath,setTracePath] = useState(false); const [wireId,setWireId] = useState(""); const [query,setQuery] = useState(""); const node = design.nodes.find(n => n.id === selected[0]); const wire = design.wires.find(w => w.id === wireId); const view = evaluateGraph(design); const logic = evaluateLogicGraph(design); const findings = engineeringFindings(design).filter(i => i.category === "Connections");
   const kinds:NodeKind[] = p.wires ? ["bus","split","join","buf","probe","const","mux"] : ["pc","regfile","imem","dmem","alu","mux","sext","inc","cmp","ir","cu","clock"];
   function add(kind:NodeKind) { commit(addNode(design,kind,30+(design.nodes.length%4)*220,40+Math.floor(design.nodes.length/4)*220)); }

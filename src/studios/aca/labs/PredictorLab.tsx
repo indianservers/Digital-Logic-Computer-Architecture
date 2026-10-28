@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useMemo, useState } from "react";
 import { PREDICT_PRESETS, accuracy, parseTrace, runTrace, twoName, type Bit, type Two } from "../../../engines/aca/predictor";
 import { LabChrome, Toggle, Transport, usePlayback } from "./HazardLab";
@@ -5,6 +6,8 @@ import { PredictorMachine, SmoothNumber } from "../animation/motionViews";
 import { useGuideFocus } from "../guide/focus";
 
 export function PredictorLab() {
+  useSimulatorCapture("studios/aca/labs/PredictorLab.tsx:PredictorLab", () => ({ text, bit0, two0, highlightMiss, trace, rows, play, guideFocus }), "94c205d357fa");
+
   const [text, setText] = useState("T T T T N\nT T T T N\nT T T T N\nT T T T N");
   const [bit0, setBit0] = useState<Bit>(1);
   const [two0, setTwo0] = useState<Two>(3);

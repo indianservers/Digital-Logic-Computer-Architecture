@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useLabMotion } from "../../design-system/LabMotion";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -10,6 +11,8 @@ import { Mark } from "./ui";
 const FRESH = [0, 5, 3, 0, 0, 0, 0, 0];
 
 export function TransferPanel({ explain }: { explain: boolean }) {
+  useSimulatorCapture("studios/rtl/transfer.tsx:TransferPanel", () => ({ root: root.current, line, regs, stage, committed, story, pulse, motionEnabled }), "63f9f98c0537");
+
   const root = useRef<HTMLDivElement>(null);
   const [line, setLine] = useState("R3 ← R1 + R2");
   const [regs, setRegs] = useState(FRESH);

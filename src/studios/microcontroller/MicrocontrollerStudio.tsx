@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MICROCONTROLLER_SECTIONS } from "../../data/microcontrollerLabs";
@@ -10,6 +11,8 @@ import "./directory.css";
 type Availability = "all" | "open" | "planned";
 
 export function MicrocontrollerStudio() {
+  useSimulatorCapture("studios/microcontroller/MicrocontrollerStudio.tsx:MicrocontrollerStudio", () => ({ availability }), "e421d6273347");
+
   const [query, setQuery] = useState("");
   const [availability, setAvailability] = useState<Availability>("open");
   const normalized = query.trim().toLowerCase();

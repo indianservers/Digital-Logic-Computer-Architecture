@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -74,6 +75,8 @@ type P = { pot: number };
 type Fmt = "hex" | "dec";
 
 export default function L06({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g1/L06.tsx:L06", () => ({ lab, sel, draft, editing, tab, fmt, page, msg, snapshot, wrote, prev: prev.current }), "fb0fc47b2342");
+
   const lab = useLab<P>({ slug: meta.slug, code: GPIO, params: { pot: 2.1 }, world: (m, _dt, p) => m.setAnalog(4, p.pot) });
   const { mcu, params } = lab;
   const [sel, setSel] = useState("GPIOA.ODR");

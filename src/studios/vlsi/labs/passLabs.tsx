@@ -1,8 +1,11 @@
+import { useSimulatorCapture } from "../../../layout/SimulatorCapture";
 import { useState } from "react";
 import { engineering, passTransistor, sharedWire, transmissionGate, triStateOutput, type Bit } from "../engine";
 import { Badge, BitPair, Choice, Measure, Observe, PlayControls, Slider, Theory, Wave, useTicker } from "../widgets";
 
 export function TransmissionGateLab() {
+  useSimulatorCapture("studios/vlsi/labs/passLabs.tsx:TransmissionGateLab", () => ({ enabled, direction, source, vdd, playing, held, trace }), "3084be618c04");
+
   const [enabled, setEnabled] = useState<Bit>(1);
   const [direction, setDirection] = useState<"ab" | "ba">("ab");
   const [source, setSource] = useState(1.2);
@@ -69,6 +72,8 @@ export function TransmissionGateLab() {
 }
 
 export function PassTransistorLab() {
+  useSimulatorCapture("studios/vlsi/labs/passLabs.tsx:PassTransistorLab", () => ({ kind, vin, gate, vth, vdd }), "3084be618c04");
+
   const [kind, setKind] = useState<"nmos" | "pmos" | "tg">("nmos");
   const [vin, setVin] = useState(1.8);
   const [gate, setGate] = useState(1.8);
@@ -118,6 +123,8 @@ export function PassTransistorLab() {
 }
 
 export function TriStateLab() {
+  useSimulatorCapture("studios/vlsi/labs/passLabs.tsx:TriStateLab", () => ({ dataA, enA, dataB, enB }), "3084be618c04");
+
   const [dataA, setDataA] = useState<Bit>(1);
   const [enA, setEnA] = useState<Bit>(1);
   const [dataB, setDataB] = useState<Bit>(0);

@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useStudioTab } from "../../layout/useStudioTab";
@@ -64,6 +65,8 @@ const LESSONS: Record<string, { guide: string[]; takeaways: string[]; theory: { 
 };
 
 export function BooleanStudio() {
+  useSimulatorCapture("studios/boolean-algebra/BooleanStudio.tsx:BooleanStudio", () => ({ tab }), "e1839df1e181");
+
   const [tab, setTab] = useStudioTab(TABS, "play");
   const [resetKey, setResetKey] = useState(0);
   const { prefs } = usePrefs();
@@ -112,6 +115,8 @@ const BUILDER_KEYS = [
 const PRESETS = ["(A & B) | !C", "A & B", "A | B", "(A | B)'", "A + A B", "AB + BC + CA", "A XOR B"];
 
 function PlayLab() {
+  useSimulatorCapture("studios/boolean-algebra/BooleanStudio.tsx:PlayLab", () => ({ expr, other, assign }), "e1839df1e181");
+
   const [params] = useSearchParams();
   const expr = useExpression(params.get("expr") || "(A & B) | !C");
   const other = useExpression("A·(B + C')");
@@ -513,6 +518,8 @@ function MintermChart({ table, active }: { table: ReturnType<typeof generateTrut
 }
 
 function LawsLab() {
+  useSimulatorCapture("studios/boolean-algebra/BooleanStudio.tsx:LawsLab", () => ({ bits, selected }), "e1839df1e181");
+
   const [bits, setBits] = useState<Record<string, 0 | 1>>({ A: 1, B: 0, C: 1 });
   const [selected, setSelected] = useState("demorgan");
   const law = BOOLEAN_LAWS.find((item) => item.id === selected) ?? BOOLEAN_LAWS[0]!;
@@ -598,6 +605,8 @@ function safeEval(expression: string, bits: Record<string, 0 | 1>): string {
 const SIMPLIFY_PRESETS = ["A + A B", "A + 0", "(A · B)'", "A · A", "A · (B + C)", "A + A'"];
 
 function SimplifyLab() {
+  useSimulatorCapture("studios/boolean-algebra/BooleanStudio.tsx:SimplifyLab", () => ({ expr }), "e1839df1e181");
+
   const expr = useExpression("A + A B");
   const { earn } = usePrefs();
   const steps = expr.parsed.ok ? algebraicSimplify(expr.parsed.ast) : null;
@@ -673,6 +682,8 @@ function quineFromAst(ast: AstNode): string {
 }
 
 function FormsLab() {
+  useSimulatorCapture("studios/boolean-algebra/BooleanStudio.tsx:FormsLab", () => ({ count, outputs }), "e1839df1e181");
+
   const [count, setCount] = useState(3);
   const names = "ABCDEF".slice(0, count).split("");
   const [outputs, setOutputs] = useState<Array<0 | 1 | "X">>(Array.from({ length: 16 }, (_, i) => (i % 2 === 1 ? 1 : 0)));
@@ -740,6 +751,8 @@ function FormsLab() {
 }
 
 function TermsLab() {
+  useSimulatorCapture("studios/boolean-algebra/BooleanStudio.tsx:TermsLab", () => ({ count, picked, outputs }), "e1839df1e181");
+
   const [count, setCount] = useState(3);
   const [picked, setPicked] = useState(5);
   const [outputs, setOutputs] = useState<Array<0 | 1>>([0, 1, 1, 0, 1, 0, 1, 1]);

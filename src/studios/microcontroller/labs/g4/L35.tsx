@@ -1,3 +1,4 @@
+import { useSimulatorCapture } from "../../../../layout/SimulatorCapture";
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { useLab } from "../core/useLab";
 import type { LabMeta } from "../registry";
@@ -57,6 +58,8 @@ function SegView({ f, on, now, p }: { f: Front; on: boolean; now: number; p: P35
 
 const LW = 16 * 24 + 8, LH = 2 * 34 + 10;
 function LcdCanvas({ rows, mode, contrast }: { rows: number[][]; mode: "off" | "boxes" | "text"; contrast: number }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L35.tsx:LcdCanvas", () => ({ ref: ref.current }), "08a05323d618");
+
   const ref = useRef<HTMLCanvasElement>(null);
   const key = `${mode}:${contrast}:${rows.map((r) => r.join(",")).join("|")}`;
   useEffect(() => {
@@ -80,6 +83,8 @@ function LcdCanvas({ rows, mode, contrast }: { rows: number[][]; mode: "off" | "
 }
 
 function OledCanvas({ buf, ver, show, contrast }: { buf: Uint8Array; ver: number; show: boolean; contrast: number }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L35.tsx:OledCanvas", () => ({ ref: ref.current }), "08a05323d618");
+
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const c = ref.current?.getContext("2d");
@@ -97,6 +102,8 @@ function OledCanvas({ buf, ver, show, contrast }: { buf: Uint8Array; ver: number
 }
 
 function TftCanvas({ gram, ver, mode, backlight }: { gram: Uint16Array; ver: number; mode: "off" | "white" | "gram"; backlight: number }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L35.tsx:TftCanvas", () => ({ ref: ref.current }), "08a05323d618");
+
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const c = ref.current?.getContext("2d");
@@ -116,6 +123,8 @@ function TftCanvas({ gram, ver, mode, backlight }: { gram: Uint16Array; ver: num
 /* ---------------- framebuffer previews ---------------- */
 
 function OledDiff({ o, ver, page }: { o: Front["oled"]; ver: number; page: number }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L35.tsx:OledDiff", () => ({ ref: ref.current }), "08a05323d618");
+
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const c = ref.current?.getContext("2d");
@@ -159,6 +168,8 @@ const NO_SEEN = { all: false, spi: false, neck: false, flicker: false, fix: fals
 type Seen = typeof NO_SEEN;
 
 export default function L35({ meta }: { meta: LabMeta }) {
+  useSimulatorCapture("studios/microcontroller/labs/g4/L35.tsx:L35", () => ({ lab, pending, msg, seen, failSeen, page, listRef: listRef.current }), "08a05323d618");
+
   const lab = useLab<P35>({ slug: meta.slug, code: DEMO, params: P35_DEFAULT, mcu: mcu35, world: world35 });
   const { mcu, params: p } = lab;
   const fw = mcu.fw;
