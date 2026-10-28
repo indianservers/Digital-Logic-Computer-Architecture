@@ -15,6 +15,7 @@ export function evidenceValue(value: unknown, budget = { remaining: 18000, trunc
   if (--budget.remaining < 0 || depth > 9) { budget.truncated = true; return "[truncated]"; }
   if (value == null) return null;
   if (typeof value === "number") return Number.isFinite(value) ? value : String(value);
+  if (typeof value === "bigint") return value.toString();
   if (typeof value === "boolean") return value;
   if (typeof value === "string") { if (value.length > 16000) budget.truncated = true; return value.slice(0, 16000); }
   if (typeof value !== "object") return "[unsupported]";

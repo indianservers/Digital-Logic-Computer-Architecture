@@ -137,7 +137,7 @@ export function encodeBl(wordOffset: number): number {
   return (0x94000000 | (wordOffset & 0x03ffffff)) >>> 0;
 }
 
-export interface A64Decoded { mnemonic: string; word: number; rd: number; rn: number; rm: number; imm: number; sets: boolean; text: string }
+export interface A64Decoded { width?: 32 | 64; immediate?: boolean; mode?: "offset" | "pre" | "post"; condition?: number; mnemonic: string; word: number; rd: number; rn: number; rm: number; imm: number; sets: boolean; text: string }
 
 export function decodeA64(word: number): A64Decoded {
   const w = word >>> 0;
@@ -145,19 +145,40 @@ export function decodeA64(word: number): A64Decoded {
   const rn = (w >>> 5) & 31;
   const rm = (w >>> 16) & 31;
   const sets = ((w >>> 29) & 1) === 1;
-  const dataOp = (w & 0xffe0fc00) >>> 0;
+  const width = w >>> 31 ? 64 : 32;
+  const prefix = width === 64 ? "X" : "W";
+  const dataOp = ((w | 0x80000000) & 0xffe0fc00) >>> 0;
   if (dataOp === 0x8b000000 || dataOp === 0xab000000 || dataOp === 0xcb000000 || dataOp === 0xeb000000) {
     const sub = (w & 0x40000000) !== 0;
     const mnemonic = sub ? (sets ? "SUBS" : "SUB") : (sets ? "ADDS" : "ADD");
-    return { mnemonic, word: w, rd, rn, rm, imm: 0, sets, text: `${mnemonic} X${rd}, X${rn}, X${rm}` };
+    return { mnemonic, width, word: w, rd, rn, rm, imm: 0, sets, text: `${mnemonic} ${prefix}${rd}, ${prefix}${rn}, ${prefix}${rm}` };
   }
+  if (((w & 0x1f800000) >>> 0) === 0x11000000 && !(w & 0x00400000)) {
+    const sub = !!(w & 0x40000000), imm = (w >>> 10) & 0xfff;
+    const mnemonic = sub ? (sets ? "SUBS" : "SUB") : (sets ? "ADDS" : "ADD");
+    return { mnemonic, width, immediate: true, word: w, rd, rn, rm: 0, imm, sets, text: `${mnemonic} ${rd === 31 && !sets ? "SP" : prefix + rd}, ${rn === 31 ? "SP" : prefix + rn}, #${imm}` };
+  }
+  if (((w & 0x7fe00000) >>> 0) === 0x52800000) {
+    const imm = (w >>> 5) & 0xffff;
+    return { mnemonic: "MOV", width, word: w, rd, rn: 31, rm: 31, imm, sets: false, text: `MOV ${prefix}${rd}, #${imm}` };
+  }
+  if (((w & 0xff200c00) >>> 0) === 0xf8000c00 || ((w & 0xff200c00) >>> 0) === 0xf8000400) {
+    const load = !!(w & 0x00400000), mode = (w & 0xc00) === 0xc00 ? "pre" : "post";
+    const imm = ((w >>> 12) & 0x1ff) << 23 >> 23, mnemonic = load ? "LDR" : "STR", base = rn === 31 ? "SP" : `X${rn}`;
+    return { mnemonic, mode, word: w, rd, rn, rm: 0, imm, sets: false, text: `${mnemonic} X${rd}, ${mode === "pre" ? `[${base}, #${imm}]!` : `[${base}], #${imm}`}` };
+  }
+  if (((w & 0xff000010) >>> 0) === 0x54000000) {
+    const condition = w & 15, imm = ((w >>> 5) & 0x7ffff) << 13 >> 13;
+    return { mnemonic: "B.cond", condition, word: w, rd: 0, rn: 0, rm: 0, imm, sets: false, text: `B.${A64_CONDITIONS[condition]} ${imm}` };
+  }
+  if (w === 0xd69f03e0) return { mnemonic: "ERET", word: w, rd: 0, rn: 0, rm: 0, imm: 0, sets: false, text: "ERET" };
   if (((w & 0xffc00000) >>> 0) === 0xf9400000) {
     const imm = ((w >>> 10) & 0xfff) * 8;
-    return { mnemonic: "LDR", word: w, rd, rn, rm: 0, imm, sets: false, text: `LDR X${rd}, [X${rn}, #${imm}]` };
+    return { mnemonic: "LDR", word: w, rd, rn, rm: 0, imm, sets: false, text: `LDR ${rd === 31 ? "XZR" : `X${rd}`}, [${rn === 31 ? "SP" : `X${rn}`}, #${imm}]` };
   }
   if (((w & 0xffc00000) >>> 0) === 0xf9000000) {
     const imm = ((w >>> 10) & 0xfff) * 8;
-    return { mnemonic: "STR", word: w, rd, rn, rm: 0, imm, sets: false, text: `STR X${rd}, [X${rn}, #${imm}]` };
+    return { mnemonic: "STR", word: w, rd, rn, rm: 0, imm, sets: false, text: `STR ${rd === 31 ? "XZR" : `X${rd}`}, [${rn === 31 ? "SP" : `X${rn}`}, #${imm}]` };
   }
   if (((w & 0xfc000000) >>> 0) === 0x14000000) {
     let off = w & 0x03ffffff;
@@ -171,7 +192,7 @@ export function decodeA64(word: number): A64Decoded {
   }
   if (w === 0xd65f03c0) return { mnemonic: "RET", word: w, rd: 0, rn: 30, rm: 0, imm: 0, sets: false, text: "RET" };
   if (w === 0xd503201f) return { mnemonic: "NOP", word: w, rd: 0, rn: 0, rm: 0, imm: 0, sets: false, text: "NOP" };
-  if ((w & 0xffe0001f) === 0xd4000001) return { mnemonic: "SVC", word: w, rd: 0, rn: 0, rm: 0, imm: (w >>> 5) & 0xffff, sets: false, text: `SVC #${(w >>> 5) & 0xffff}` };
+  if (((w & 0xffe0001f) >>> 0) === 0xd4000001) return { mnemonic: "SVC", word: w, rd: 0, rn: 0, rm: 0, imm: (w >>> 5) & 0xffff, sets: false, text: `SVC #${(w >>> 5) & 0xffff}` };
   return { mnemonic: "unknown", word: w, rd, rn, rm, imm: 0, sets: false, text: "unknown" };
 }
 
@@ -193,85 +214,73 @@ export interface A64Cpu {
   ir: number;
   trace: string[];
   decoded: A64Decoded | null;
+  exception?: { kind: A64ExceptionKind; from: number; vector: number; returnPc: number };
 }
 
 export function blankA64(): A64Cpu {
   return {
-    x: Array.from({ length: 31 }, () => 0n), sp: 0x400n, pc: 0, flags: { n: 0, z: 1, c: 0, v: 0 }, mem: new Uint8Array(512),
-    el: 0, elr: 0, spsr: 0, esr: 0, vbar: 0x200, console: [], halted: false, cycles: 0, retired: 0, ir: 0, trace: [], decoded: null,
+    x: Array.from({ length: 31 }, () => 0n), sp: 0x400n, pc: 0, flags: { n: 0, z: 1, c: 0, v: 0 }, mem: new Uint8Array(4096),
+    el: 0, elr: 0, spsr: 0, esr: 0, vbar: 0x800, console: [], halted: false, cycles: 0, retired: 0, ir: 0, trace: [], decoded: null,
   };
 }
 
-function regOf(token: string): number | null {
-  const text = token.toLowerCase().replace(/,$/, "");
-  if (text === "sp") return 31;
-  if (text === "lr") return 30;
-  if (text === "fp") return 29;
-  if (text === "xzr" || text === "wzr") return 32;
-  const match = text.match(/^[xw](\d+)$/);
-  if (!match) return null;
-  const index = Number(match[1]);
-  return index >= 0 && index <= 30 ? index : null;
+export const A64_CONDITIONS = ["EQ", "NE", "CS", "CC", "MI", "PL", "VS", "VC", "HI", "LS", "GE", "LT", "GT", "LE", "AL", "NV"];
+export function a64Condition(condition: number, f: A64Cpu["flags"]): boolean {
+  return [f.z === 1, f.z === 0, f.c === 1, f.c === 0, f.n === 1, f.n === 0, f.v === 1, f.v === 0, f.c === 1 && f.z === 0, f.c === 0 || f.z === 1, f.n === f.v, f.n !== f.v, f.z === 0 && f.n === f.v, f.z === 1 || f.n !== f.v, true, true][condition] ?? false;
 }
-
 export function assembleA64(source: string): { ok: true; words: number[]; listing: string[] } | { ok: false; errors: string[] } {
-  const labels: Record<string, number> = {};
-  const lines: string[] = [];
-  source.split(/\r?\n/).forEach((raw) => {
-    const text = (raw.split("//")[0] ?? "").trim();
-    if (!text) return;
-    const labeled = text.match(/^([A-Za-z_]\w*):(?:\s*(.*))?$/);
-    if (labeled) {
-      labels[(labeled[1] ?? "").toLowerCase()] = lines.length * 4;
-      if ((labeled[2] ?? "").trim()) lines.push((labeled[2] ?? "").trim());
-      return;
-    }
-    lines.push(text);
+  const labels = new Map<string, number>(), lines: { text: string; line: number }[] = [], errors: string[] = [];
+  source.split(/\r?\n/).forEach((raw, i) => {
+    let text = (raw.split("//")[0] ?? "").trim();
+    const label = text.match(/^([A-Za-z_]\w*):/);
+    if (label) { const key = label[1]!.toLowerCase(); if (labels.has(key)) errors.push(`Line ${i + 1}: duplicate label ${key}`); labels.set(key, lines.length * 4); text = text.slice(label[0].length).trim(); }
+    if (text) lines.push({ text, line: i + 1 });
   });
   const words: number[] = [];
-  const listing: string[] = [];
-  const errors: string[] = [];
-  lines.forEach((text, index) => {
-    const parts = text.split(/[\s,]+/).filter(Boolean);
-    const op = (parts[0] ?? "").toUpperCase();
-    const pc = index * 4;
-    const labelAt = (token: string) => labels[token.toLowerCase()];
-    let word = 0;
-    if (op === "ADD" || op === "ADDS" || op === "SUB" || op === "SUBS" || op === "CMP") {
-      const rd = op === "CMP" ? 31 : regOf(parts[1] ?? "");
-      const rn = regOf(parts[op === "CMP" ? 1 : 2] ?? "");
-      const src = parts[op === "CMP" ? 2 : 3] ?? "";
-      const rm = src.startsWith("#") ? -1 : regOf(src);
-      if (rd === null || rn === null || (rm === null && !src.startsWith("#"))) { errors.push(`Line ${index + 1}: ${text}`); return; }
-      const sets = op.endsWith("S") || op === "CMP";
-      word = op.startsWith("SUB") || op === "CMP" ? encodeSubReg(rd === 32 || rd === 31 ? 31 : rd, rn === 32 ? 31 : rn, rm === null || rm < 0 ? 31 : rm, sets) : encodeAddReg(rd === 32 ? 31 : rd, rn === 32 ? 31 : rn, rm === null || rm < 0 ? 31 : rm, sets);
-    } else if (op === "LDR" || op === "STR") {
-      const rt = regOf(parts[1] ?? "");
-      const mem = text.match(/\[(X\d+|SP)\s*,\s*#(-?\d+)\]/i);
-      if (rt === null || !mem) { errors.push(`Line ${index + 1}: use LDR Xt, [Xn, #imm]`); return; }
-      const rn = regOf(mem[1] ?? "");
-      if (rn === null) { errors.push(`Line ${index + 1}: bad base`); return; }
-      word = op === "LDR" ? encodeLdr(rt, rn, Number(mem[2])) : encodeStr(rt, rn, Number(mem[2]));
-    } else if (op === "B" || op === "BL") {
-      const target = parts[1] ?? "";
-      const found = labelAt(target);
-      const off = found === undefined ? Number(target) : (found - pc) >> 2;
-      if (!Number.isFinite(off)) { errors.push(`Line ${index + 1}: bad branch`); return; }
-      word = op === "B" ? encodeB(off) : encodeBl(off);
-    } else if (op === "RET") word = 0xd65f03c0;
-    else if (op === "NOP") word = 0xd503201f;
-    else if (op === "SVC") word = (0xd4000001 | ((Number(parts[1]?.replace("#", "")) || 0) << 5)) >>> 0;
-    else if (op === "MOV") {
-      const rd = regOf(parts[1] ?? "");
-      const imm = Number((parts[2] ?? "").replace("#", ""));
-      if (rd === null || !Number.isFinite(imm)) { errors.push(`Line ${index + 1}: MOV`); return; }
-      word = encodeAddReg(rd, 31, 31);
-    } else { errors.push(`Line ${index + 1}: unsupported ${op}`); return; }
-    words.push(word);
-    listing.push(decodeA64(word).text);
+  const reg = (text: string, allowSP = false): number => {
+    if (/^(XZR|WZR)$/i.test(text)) return 31;
+    if (allowSP && /^SP$/i.test(text)) return 31;
+    if (!/^[XW](?:[0-9]|[12][0-9]|30)$/i.test(text)) throw Error("use X0–X30, W0–W30, or a legal SP/zero-register operand");
+    return Number(text.slice(1));
+  };
+  const integer = (text: string, min: number, max: number) => { const v = Number(text.replace(/^#/, "")); if (!text || !Number.isInteger(v) || v < min || v > max) throw Error(`immediate must be an integer in ${min}…${max}`); return v; };
+  lines.forEach(({ text, line }, index) => {
+    try {
+      const match = text.match(/^(\S+)(?:\s+(.*))?$/)!, op = match[1]!.toUpperCase(), args = (match[2] ?? "").split(/\s*,\s*/).filter(Boolean);
+      let word: number;
+      const count = (n: number) => { if (args.length !== n) throw Error(`expected ${n} operands`); };
+      if (["ADD", "ADDS", "SUB", "SUBS", "CMP"].includes(op)) {
+        const cmp = op === "CMP", sets = cmp || op.endsWith("S"), sub = cmp || op.startsWith("SUB");
+        count(cmp ? 2 : 3);
+        const dest = cmp ? (/^W/i.test(args[0]!) ? "WZR" : "XZR") : args[0]!, left = args[cmp ? 0 : 1]!, right = args[cmp ? 1 : 2]!;
+        const immediate = right.startsWith("#"), rd = reg(dest, immediate && !sets), rn = reg(left, immediate);
+        const width = /^W/i.test(left) ? 32 : 64;
+        if ((!/^SP$/i.test(dest) && /^W/i.test(dest) !== (width === 32)) || (!immediate && /^W/i.test(right) !== (width === 32))) throw Error("register widths must match");
+        if (immediate) { if (/ZR$/i.test(left) || (!sets && /ZR$/i.test(dest))) throw Error("encoding 31 means SP in this immediate form"); word = (0x11000000 | (width === 64 ? 0x80000000 : 0) | (sub ? 0x40000000 : 0) | (sets ? 0x20000000 : 0) | (integer(right, 0, 4095) << 10) | (rn << 5) | rd) >>> 0; }
+        else word = ((sub ? encodeSubReg(rd, rn, reg(right), sets) : encodeAddReg(rd, rn, reg(right), sets)) & (width === 32 ? 0x7fffffff : 0xffffffff)) >>> 0;
+      } else if (op === "LDR" || op === "STR") {
+        const m = text.match(/^(?:LDR|STR)\s+(X(?:[0-9]|[12][0-9]|30)|XZR)\s*,\s*\[(X(?:[0-9]|[12][0-9]|30)|SP)(?:\s*,\s*#(-?(?:0x[0-9a-f]+|\d+)))?\](!)?(?:\s*,\s*#(-?(?:0x[0-9a-f]+|\d+)))?$/i);
+        if (!m || (m[5] && (m[3] || m[4]))) throw Error("use LDR/STR Xt, [Xn|SP, #offset], [Xn, #offset]!, or [Xn], #offset");
+        const rt = reg(m[1]!), rn = reg(m[2]!, true), mode = m[5] ? "post" : m[4] ? "pre" : "offset", offset = integer(m[5] ?? m[3] ?? "0", mode === "offset" ? 0 : -256, mode === "offset" ? 32760 : 255);
+        if (mode === "offset") { if (offset % 8) throw Error("unsigned 64-bit offset must be a multiple of 8"); word = op === "LDR" ? encodeLdr(rt, rn, offset) : encodeStr(rt, rn, offset); }
+        else { if (rt === rn && rn !== 31) throw Error("writeback base must differ from transfer register"); word = (0xf8000000 | (op === "LDR" ? 0x400000 : 0) | ((offset & 511) << 12) | (mode === "pre" ? 0xc00 : 0x400) | (rn << 5) | rt) >>> 0; }
+      } else if (op === "MOV") {
+        count(2); const rd = reg(args[0]!), imm = integer(args[1]!, 0, 65535);
+        if (!args[1]!.startsWith("#")) throw Error("this MOV subset accepts #0…#65535");
+        word = (0x52800000 | (/^X/i.test(args[0]!) ? 0x80000000 : 0) | (imm << 5) | rd) >>> 0;
+      } else if (op === "B" || op === "BL" || op.startsWith("B.")) {
+        count(1); const target = args[0]!, address = labels.get(target.toLowerCase());
+        const off = address === undefined ? integer(target, -33554432, 33554431) : (address - index * 4) / 4;
+        if (op.startsWith("B.")) { const condition = A64_CONDITIONS.indexOf(op.slice(2)); if (condition < 0 || off < -262144 || off > 262143) throw Error("invalid branch condition or offset"); word = (0x54000000 | ((off & 0x7ffff) << 5) | condition) >>> 0; }
+        else word = op === "B" ? encodeB(off) : encodeBl(off);
+      } else if (op === "SVC") { count(1); word = (0xd4000001 | (integer(args[0]!, 0, 65535) << 5)) >>> 0; }
+      else if (["RET", "NOP", "ERET"].includes(op)) { count(0); word = op === "RET" ? 0xd65f03c0 : op === "ERET" ? 0xd69f03e0 : 0xd503201f; }
+      else throw Error(`unsupported ${op}`);
+      words.push(word);
+    } catch (error) { errors.push(`Line ${line}: ${(error as Error).message}`); }
   });
-  if (errors.length) return { ok: false, errors };
-  return { ok: true, words, listing };
+  if (lines.length * 4 > 0x800) errors.push("Program exceeds the 2 KiB user-code region.");
+  return errors.length ? { ok: false, errors } : { ok: true, words, listing: words.map(w => decodeA64(w).text) };
 }
 
 function read64(mem: Uint8Array, addr: number): bigint | string {
@@ -297,39 +306,46 @@ export function stepA64(cpu: A64Cpu): A64Cpu {
   const next: A64Cpu = { ...cpu, x: cpu.x.slice(), mem: cpu.mem.slice(), flags: { ...cpu.flags }, console: cpu.console.slice(), trace: cpu.trace.slice() };
   next.cycles += 1;
   const word = read32(next.mem, next.pc);
-  if (typeof word !== "number" || word === 0) { next.halted = true; next.trace.push("Stop."); return next; }
+  if (typeof word !== "number" || word === 0) { next.halted = true; next.decoded = null; next.ir = 0; next.trace.push("Stop: empty instruction slot or invalid PC."); return next; }
   const decoded = decodeA64(word);
   next.ir = word;
   next.decoded = decoded;
   if (decoded.mnemonic === "unknown") { next.halted = true; next.trace.push("Unsupported opcode."); return next; }
-  const rn = gpr(next, decoded.rn);
-  const rm = gpr(next, decoded.rm);
+  const width = decoded.width ?? 64;
+  const rn = BigInt.asUintN(width, (decoded.immediate || ["LDR", "STR"].includes(decoded.mnemonic)) && decoded.rn === 31 ? next.sp : gpr(next, decoded.rn));
+  const rm = decoded.immediate ? BigInt(decoded.imm) : BigInt.asUintN(width, gpr(next, decoded.rm));
   let pc = next.pc + 4;
   if (decoded.mnemonic === "ADD" || decoded.mnemonic === "ADDS" || decoded.mnemonic === "SUB" || decoded.mnemonic === "SUBS") {
     const sub = decoded.mnemonic.startsWith("SUB");
-    const result = sub ? (rn - rm) & MASK64 : (rn + rm) & MASK64;
+    const result = BigInt.asUintN(width, sub ? rn - rm : rn + rm);
     if (decoded.rd < 31) next.x[decoded.rd] = result;
+    else if (decoded.immediate && !decoded.sets) next.sp = result;
     if (decoded.sets) {
-      const signed = BigInt.asIntN(64, result);
-      next.flags = { n: signed < 0n ? 1 : 0, z: result === 0n ? 1 : 0, c: sub ? (rn >= rm ? 1 : 0) : (result < rn ? 1 : 0), v: 0 };
+      const sign = 1n << BigInt(width - 1);
+      const overflow = sub ? ((rn ^ rm) & (rn ^ result) & sign) !== 0n : ((~(rn ^ rm)) & (rn ^ result) & sign) !== 0n;
+      next.flags = { n: (result & sign) ? 1 : 0, z: result === 0n ? 1 : 0, c: sub ? (rn >= rm ? 1 : 0) : (rn + rm >= (1n << BigInt(width)) ? 1 : 0), v: overflow ? 1 : 0 };
     }
   } else if (decoded.mnemonic === "LDR") {
-    const loaded = read64(next.mem, Number(rn) + decoded.imm);
+    const loaded = read64(next.mem, Number(rn + BigInt(decoded.mode === "post" ? 0 : decoded.imm)));
     if (typeof loaded !== "bigint") { next.halted = true; next.trace.push(loaded); return next; }
     if (decoded.rd < 31) next.x[decoded.rd] = loaded;
+    if (decoded.mode) { if (decoded.rn === 31) next.sp = BigInt.asUintN(64, rn + BigInt(decoded.imm)); else next.x[decoded.rn] = BigInt.asUintN(64, rn + BigInt(decoded.imm)); }
   } else if (decoded.mnemonic === "STR") {
-    const fault = write64(next.mem, Number(rn) + decoded.imm, gpr(next, decoded.rd));
+    const fault = write64(next.mem, Number(rn + BigInt(decoded.mode === "post" ? 0 : decoded.imm)), gpr(next, decoded.rd));
     if (fault) { next.halted = true; next.trace.push(fault); return next; }
+    if (decoded.mode) { if (decoded.rn === 31) next.sp = BigInt.asUintN(64, rn + BigInt(decoded.imm)); else next.x[decoded.rn] = BigInt.asUintN(64, rn + BigInt(decoded.imm)); }
+  } else if (decoded.mnemonic === "MOV") { if (decoded.rd < 31) next.x[decoded.rd] = BigInt(decoded.imm);
+  } else if (decoded.mnemonic === "B.cond") { if (a64Condition(decoded.condition!, next.flags)) pc = next.pc + decoded.imm * 4;
   } else if (decoded.mnemonic === "B") pc = next.pc + decoded.imm * 4;
   else if (decoded.mnemonic === "BL") { next.x[30] = BigInt(next.pc + 4); pc = next.pc + decoded.imm * 4; }
   else if (decoded.mnemonic === "RET") pc = Number(next.x[30] ?? 0n);
   else if (decoded.mnemonic === "SVC") {
-    next.el = 1;
-    next.elr = next.pc + 4;
-    next.spsr = next.el;
-    next.esr = decoded.imm;
-    pc = next.vbar;
-    next.console.push(`SVC #${decoded.imm} entered EL1`);
+    const entered = enterA64Exception(next, "SVC", decoded.imm, next.pc + 4);
+    if (entered.halted) return entered;
+    return { ...entered, retired: next.retired + 1, trace: [...entered.trace, decoded.text] };
+  } else if (decoded.mnemonic === "ERET") {
+    const returned = eret(next);
+    return returned.halted ? returned : { ...returned, retired: next.retired + 1 };
   }
   next.pc = pc;
   next.retired += 1;
@@ -381,10 +397,20 @@ export function armPipe(lines: string[], forwarding: boolean): { cycles: number;
   return { cycles, stalls, notes, grid };
 }
 
-export function triggerSvc(cpu: A64Cpu, imm = 0): A64Cpu {
-  return { ...cpu, el: 1, elr: cpu.pc, spsr: cpu.el, esr: imm, pc: cpu.vbar, trace: [...cpu.trace, `SVC from EL${cpu.el}`] };
+export type A64ExceptionKind = "SVC" | "IRQ" | "FIQ" | "SError";
+export function enterA64Exception(cpu: A64Cpu, kind: A64ExceptionKind, imm = 0, returnPc = cpu.pc): A64Cpu {
+  if (cpu.el > 1 || cpu.exception) return { ...cpu, halted: true, trace: [...cpu.trace, "This subset supports one EL0/EL1 exception at a time; reset before entering another."] };
+  const offsets = { SVC: 0, IRQ: 0x80, FIQ: 0x100, SError: 0x180 };
+  const vector = cpu.vbar + (cpu.el === 0 ? 0x400 : 0x200) + offsets[kind];
+  const f = cpu.flags;
+  const spsr = ((f.n << 31) | (f.z << 30) | (f.c << 29) | (f.v << 28) | (cpu.el === 1 ? 5 : 0)) >>> 0;
+  return { ...cpu, el: 1, elr: returnPc, spsr, esr: kind === "SVC" ? ((0x15 << 26) | (1 << 25) | (imm & 0xffff)) >>> 0 : cpu.esr,
+    pc: vector, halted: false, exception: { kind, from: cpu.el, vector, returnPc }, trace: [...cpu.trace, `${kind}: EL${cpu.el} → EL1, PC=0x${vector.toString(16)}, ELR=0x${returnPc.toString(16)}`] };
 }
-
+export function triggerSvc(cpu: A64Cpu, imm = 0): A64Cpu { return enterA64Exception(cpu, "SVC", imm, cpu.pc + 4); }
 export function eret(cpu: A64Cpu): A64Cpu {
-  return { ...cpu, el: (cpu.spsr & 3) as 0 | 1 | 2 | 3, pc: cpu.elr, trace: [...cpu.trace, "ERET"] };
+  if (cpu.el !== 1 || !cpu.exception) return { ...cpu, halted: true, trace: [...cpu.trace, "ERET requires an active EL1 exception in this subset."] };
+  const mode = cpu.spsr & 15;
+  if (mode !== 0 && mode !== 5) return { ...cpu, halted: true, trace: [...cpu.trace, "Unsupported saved mode."] };
+  return { ...cpu, el: mode === 0 ? 0 : 1, pc: cpu.elr, exception: undefined, flags: { n: (cpu.spsr >>> 31) as 0 | 1, z: ((cpu.spsr >>> 30) & 1) as 0 | 1, c: ((cpu.spsr >>> 29) & 1) as 0 | 1, v: ((cpu.spsr >>> 28) & 1) as 0 | 1 }, trace: [...cpu.trace, "ERET: restore NZCV, exception level, and PC"] };
 }

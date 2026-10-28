@@ -66,8 +66,8 @@ export function OverviewPanel({ explain, cpu, onReset }: { explain: boolean; cpu
   }, {dependencies:[pulse, selected, motionEnabled],revertOnUpdate:true});
   return (
     <div>
-      <section className="cpx-intro"><h2>CPU blocks</h2><p>PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch–decode–execute loop will use. This studio does not run a program; it lets you inspect each box.</p></section>
-      <Explain explain={explain} what={`${selected} selected. ${copy?.purpose ?? ""}`} why="Each box stores or transforms one kind of value. Control only chooses the route." notice="Nothing here fetches or decodes an instruction stream." />
+      <section className="cpx-intro"><h2>CPU blocks</h2><p>PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch–decode–execute loop will use. Inspect each box here, then open Execute a program to run the connected 16-bit datapath.</p></section>
+      <Explain explain={explain} what={`${selected} selected. ${copy?.purpose ?? ""}`} why="Each box stores or transforms one kind of value. Control only chooses the route." notice="This overview inspects blocks; Execute a program connects them to fetch, decode, and execute instructions." />
       <div className="cpx-split">
         <section className="cpx-card">
           <header className="cpx-card-head"><h2>CPU core</h2><button type="button" onClick={onReset}>Reset values</button></header>

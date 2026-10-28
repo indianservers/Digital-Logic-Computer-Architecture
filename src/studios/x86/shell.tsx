@@ -1,3 +1,4 @@
+import "../shared/executionWorkbench.css";
 import type { ReactNode } from "react";
 import { ConceptNotes } from "../conceptNotes";
 import { NavLink } from "react-router-dom";
@@ -43,7 +44,7 @@ export function X86Shell({ lab, children }: { lab: string; children: ReactNode }
   const head = HEADS[lab] ?? HEADS.overview;
   if (!studio || !current || !head) return null;
   return (
-    <div className="rvx x86s">
+    <div className={"rvx x86s " + (lab === "assembler-disassembler" ? "x86-execution" : "")}>
       <nav className="rvx-nav" aria-label="x86 Architecture Explorer">
         <h2>x86 Architecture Explorer</h2>
         {studio.labs.map((item) => {
@@ -60,10 +61,11 @@ export function X86Shell({ lab, children }: { lab: string; children: ReactNode }
         <header className="rvx-head">
           <div className="rvx-mark" aria-hidden="true"><Glyph id={lab} /></div>
           <div>
-            <h1><span className={`x86-badge ${lab}`}>x86</span> {head.title}</h1>
+            <h1><span aria-hidden="true" className={`x86-badge ${lab}`}>64</span> {head.title}</h1>
             <p>{head.sub}</p>
           </div>
         </header>
+        <p className="xw-scope"><strong>{["assembler-disassembler", "registers-flags"].includes(lab) ? "Executable ISA subset" : lab === "instruction-encoding" || lab === "addressing-modes" ? "Encoding & address calculator" : "Architecture concept model"}</strong> · {lab === "assembler-disassembler" ? "Registers and flags execute real subset semantics. RET stops the teaching program; RIP is shown as an instruction index. Timing is not a processor benchmark." : "Conceptual µOps, cache latencies and backend schedules are separate from architectural execution."}</p>
         {children}
         <ConceptNotes studio="x86" lab={lab} />
       </div>

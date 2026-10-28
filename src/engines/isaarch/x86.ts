@@ -21,12 +21,12 @@ export const X86_EXAMPLES: X86Example[] = [
   },
   {
     id: "mov-sib",
-    asm: "mov eax, [rbx+rcx*4+8]",
+    asm: "mov rax, [rbx+rcx*4+8]",
     bytes: [0x48, 0x8b, 0x44, 0x8b, 0x08],
     fields: [
       { name: "Prefix", bytes: "48", note: "REX.W — 64-bit operand size" },
       { name: "Opcode", bytes: "8B", note: "MOV r64, r/m64" },
-      { name: "ModRM", bytes: "44", note: "mod=01 (disp8), reg=EAX, r/m=SIB" },
+      { name: "ModRM", bytes: "44", note: "mod=01 (disp8), reg=RAX, r/m=SIB" },
       { name: "SIB", bytes: "8B", note: "scale=4, index=RCX, base=RBX" },
       { name: "Displacement", bytes: "08", note: "+8" },
     ],
@@ -55,7 +55,7 @@ export function parseExample(id: string): X86Example | undefined {
 export function microOps(id: string): string[] {
   if (id === "add-reg") return ["ADD EAX, EBX"];
   if (id === "add-mem") return ["LOAD t, [RAX]", "ADD t, EBX", "STORE [RAX], t"];
-  if (id === "mov-sib") return ["LEA t, [RBX+RCX*4+8]", "LOAD EAX, [t]"];
+  if (id === "mov-sib") return ["LEA t, [RBX+RCX*4+8]", "LOAD RAX, [t]"];
   return ["(implementation-defined)"];
 }
 
@@ -167,7 +167,7 @@ export function applyAlu(op: string, left: bigint, right: bigint, width: 8 | 16 
   else if (name === "SHR") flags.cf = (a & 1n) !== 0n ? 1 : 0;
   else if (name === "ADD") { flags.cf = wide > mask ? 1 : 0; flags.of = ((a ^ result) & (b ^ result) & sign) !== 0n ? 1 : 0; }
   else if (name === "SUB" || name === "CMP") { flags.cf = b > a ? 1 : 0; flags.of = ((a ^ b) & (a ^ result) & sign) !== 0n ? 1 : 0; }
-  else if (name === "INC" || name === "DEC") flags.of = ((a ^ result) & sign) !== 0n && ((name === "INC" ? a : result) & sign) !== 0n ? 1 : 0;
+  else if (name === "INC" || name === "DEC") flags.of = (name === "INC" ? result === sign : a === sign) ? 1 : 0;
   flags.af = Number((a ^ b ^ result) & 0x10n) !== 0 ? 1 : 0;
   return { result: name === "CMP" ? a : result, flags };
 }
@@ -177,9 +177,9 @@ const REG: Record<string, number> = { rax: 0, rbx: 1, rcx: 2, rdx: 3, rsi: 4, rd
 
 export function regOf(token: string): { index: number; width: 32 | 64 } | null {
   const name = token.toLowerCase();
-  const index = REG[name];
+  const index = REG[name] ?? (/^r(?:[89]|1[0-5])d$/.test(name) ? REG[name.slice(0, -1)] : undefined);
   if (index === undefined) return null;
-  return { index, width: name.startsWith("e") || name === "esi" || name === "edi" || name === "ebp" || name === "esp" ? 32 : 64 };
+  return { index, width: name.startsWith("e") || name === "esi" || name === "edi" || name === "ebp" || name === "esp" || /^r(?:[89]|1[0-5])d$/.test(name) ? 32 : 64 };
 }
 
 export interface EncodedField { name: string; byte: string; bits: string; note: string }
@@ -209,59 +209,84 @@ export function encodeMovMem(dest: number, base: number, index: number, scale: n
   };
 }
 
-export interface AsmInsn { text: string; bytes: number[]; op: string; a: number; b: number; imm: number; target: number; width: 32 | 64 }
+export interface AsmInsn { text: string; bytes: number[]; op: string; a: number; b: number; imm: number; target: number; width: 32 | 64; immediate?: boolean }
 
 export function assembleX86(source: string): { ok: true; insns: AsmInsn[] } | { ok: false; errors: string[] } {
-  const labels: Record<string, number> = {};
-  const lines: string[] = [];
-  source.split(/\r?\n/).forEach((raw) => {
-    const text = (raw.split(";")[0] ?? "").trim();
-    if (!text || text.startsWith(".") || text.startsWith("section") || text.startsWith("global")) return;
+  const labels: Record<string, number> = Object.create(null), lines: Array<{ text: string; line: number }> = [], errors: string[] = [];
+  source.split(/\r?\n/).forEach((raw, line) => {
+    let text = (raw.split(";")[0] ?? "").trim();
+    if (!text) return;
     const labeled = text.match(/^([A-Za-z_]\w*):\s*(.*)$/);
-    if (labeled) { labels[(labeled[1] ?? "").toLowerCase()] = lines.length; if ((labeled[2] ?? "").trim()) lines.push((labeled[2] ?? "").trim()); return; }
-    lines.push(text);
-  });
-  const errors: string[] = [];
-  const insns: AsmInsn[] = [];
-  lines.forEach((text, index) => {
-    const parts = text.split(/[\s,]+/).filter(Boolean);
-    const op = (parts[0] ?? "").toLowerCase();
-    const dst = regOf(parts[1] ?? "");
-    const src = regOf(parts[2] ?? "");
-    const imm = Number((parts[2] ?? parts[1] ?? "0").replace("#", ""));
-    const item: AsmInsn = { text, bytes: [], op, a: dst?.index ?? 0, b: src?.index ?? 0, imm: Number.isFinite(imm) ? imm : 0, target: labels[(parts[1] ?? "").toLowerCase()] ?? -1, width: dst?.width ?? 64 };
-    const code = (index: number) => (INTEL[index] ?? index) & 7;
-    if (op === "ret") item.bytes = [0xc3];
-    else if (op === "xor" && dst && src) item.bytes = [0x48, 0x31, 0xc0 | (code(src.index) << 3) | code(dst.index)];
-    else if (op === "add" && dst && src) item.bytes = [0x48, 0x01, 0xc0 | (code(src.index) << 3) | code(dst.index)];
-    else if (op === "cmp" && dst && src) item.bytes = [0x48, 0x39, 0xc0 | (code(src.index) << 3) | code(dst.index)];
-    else if (op === "inc" && dst) item.bytes = [0x48, 0xff, 0xc0 | code(dst.index)];
-    else if (op === "mov" && dst && parts[2]?.match(/^-?\d/)) item.bytes = dst.width === 32 ? [0xb8 + code(dst.index), item.imm & 0xff, 0, 0, 0] : [0x48, 0xc7, 0xc0 | code(dst.index), item.imm & 0xff, 0, 0, 0];
-    else if (op === "mov" && dst && src) item.bytes = [0x48, 0x89, 0xc0 | (code(src.index) << 3) | code(dst.index)];
-    else if ((op === "jle" || op === "jmp") && item.target >= 0) item.bytes = [op === "jle" ? 0x7e : 0xeb, 0];
-    else errors.push(`Line ${index + 1}: unsupported ${text}`);
-    insns.push(item);
-  });
-  insns.forEach((insn, index) => {
-    if (insn.op === "jle" || insn.op === "jmp") {
-      const from = insns.slice(0, index + 1).reduce((sum, item) => sum + item.bytes.length, 0);
-      const to = insns.slice(0, insn.target).reduce((sum, item) => sum + item.bytes.length, 0);
-      insn.bytes[1] = (to - from) & 0xff;
+    if (labeled) {
+      const name = labeled[1]!.toLowerCase();
+      if (name in labels) errors.push("Line " + (line + 1) + ": duplicate label " + name);
+      labels[name] = lines.length; text = labeled[2]!.trim();
     }
+    if (text) lines.push({ text, line: line + 1 });
+  });
+  if (!lines.length) errors.push("Enter at least one supported instruction.");
+  if (lines.length > 512) return { ok: false, errors: [...errors, "Use at most 512 instructions."] };
+  const insns: AsmInsn[] = [];
+  const code = (index: number) => INTEL[index] ?? index;
+  const le32 = (value: number) => Array.from({ length: 4 }, (_, i) => (value >>> (i * 8)) & 255);
+  for (const { text, line } of lines) {
+    const match = text.match(/^(\w+)(?:\s+(.*))?$/), op = match?.[1]?.toLowerCase() ?? "";
+    const operands = match?.[2]?.split(",").map(v => v.trim()) ?? [];
+    const dst = regOf(operands[0] ?? ""), src = regOf(operands[1] ?? "");
+    const token = operands[1] ?? "", numeric = /^-?(?:0x[0-9a-f]+|\d+)$/i.test(token);
+    const imm = numeric ? (token.startsWith("-0x") ? -Number(token.slice(1)) : Number(token)) : 0;
+    const item: AsmInsn = { text, op, bytes: [], a: dst?.index ?? 0, b: src?.index ?? 0, imm, target: -1, width: dst?.width ?? 64, immediate: numeric };
+    const fail = (message: string) => errors.push("Line " + line + ": " + message);
+    if (op === "ret" && operands.length === 0) item.bytes = [0xc3];
+    else if ((op === "jmp" || op === "jle") && operands.length === 1 && operands[0]!.toLowerCase() in labels) {
+      item.target = labels[operands[0]!.toLowerCase()] ?? -1; item.bytes = [op === "jmp" ? 0xeb : 0x7e, 0];
+    } else if (dst && op === "inc" && operands.length === 1) {
+      const rex = (dst.width === 64 ? 0x48 : 0x40) | (code(dst.index) > 7 ? 1 : 0);
+      item.bytes = [...(rex !== 0x40 ? [rex] : []), 0xff, 0xc0 | (code(dst.index) & 7)];
+    } else if (dst && src && operands.length === 2 && ["mov", "xor", "add", "cmp"].includes(op)) {
+      if (dst.width !== src.width) fail("Operand widths must match.");
+      const rex = (dst.width === 64 ? 0x48 : 0x40) | (code(src.index) > 7 ? 4 : 0) | (code(dst.index) > 7 ? 1 : 0);
+      const opcode = { mov: 0x89, xor: 0x31, add: 0x01, cmp: 0x39 }[op]!;
+      item.bytes = [...(rex !== 0x40 ? [rex] : []), opcode, 0xc0 | ((code(src.index) & 7) << 3) | (code(dst.index) & 7)];
+    } else if (op === "mov" && dst && numeric && operands.length === 2) {
+      if (!Number.isSafeInteger(imm) || imm < -2147483648 || imm > (dst.width === 32 ? 4294967295 : 2147483647)) fail("Immediate is outside this form's 32-bit range.");
+      const extension = code(dst.index) > 7 ? 1 : 0;
+      item.bytes = dst.width === 32 ? [...(extension ? [0x41] : []), 0xb8 + (code(dst.index) & 7), ...le32(imm)] : [0x48 | extension, 0xc7, 0xc0 | (code(dst.index) & 7), ...le32(imm)];
+    } else fail("Unsupported instruction or operands: " + text);
+    insns.push(item);
+  }
+  insns.forEach((insn, index) => {
+    if (insn.op !== "jmp" && insn.op !== "jle") return;
+    const from = insns.slice(0, index + 1).reduce((n, i) => n + i.bytes.length, 0);
+    const to = insns.slice(0, insn.target).reduce((n, i) => n + i.bytes.length, 0);
+    const displacement = to - from;
+    if (displacement < -128 || displacement > 127) errors.push("Instruction " + (index + 1) + ": branch exceeds the supported signed disp8 range.");
+    insn.bytes[1] = displacement & 255;
   });
   return errors.length ? { ok: false, errors } : { ok: true, insns };
 }
 
 export function disassembleBytes(text: string): string {
-  const bytes = text.trim().split(/\s+/).map((item) => Number.parseInt(item, 16));
-  if (bytes.some((item) => !Number.isFinite(item))) return "Enter hex bytes such as 48 89 D8.";
-  if (bytes[0] === 0xc3) return "ret";
-  const named = ["RAX", "RCX", "RDX", "RBX", "RSP", "RBP", "RSI", "RDI"];
-  if (bytes[0] === 0x48 && bytes[1] === 0x89) return `mov ${named[bytes[2]! & 7]}, ${named[(bytes[2]! >> 3) & 7]}`;
-  if (bytes[0] === 0x48 && bytes[1] === 0x31) return `xor ${named[bytes[2]! & 7]}, ${named[(bytes[2]! >> 3) & 7]}`;
-  if (bytes[0] === 0x48 && bytes[1] === 0x01) return `add ${named[bytes[2]! & 7]}, ${named[(bytes[2]! >> 3) & 7]}`;
-  if (bytes.length >= 5 && bytes[0]! >= 0xb8 && bytes[0]! <= 0xbf) return `mov ${["eax", "ebx", "ecx", "edx", "esi", "edi", "ebp", "esp"][bytes[0]! - 0xb8]}, ${bytes[1]}`;
-  return "This teaching disassembler knows the studio's MOV, ADD, XOR, and RET forms.";
+  const tokens = text.trim().split(/\s+/);
+  if (!tokens.length || tokens.some(t => !/^[0-9a-f]{2}$/i.test(t))) return "Enter complete hex bytes, such as 48 89 D8.";
+  const bytes = tokens.map(t => Number.parseInt(t, 16));
+  if (bytes.length === 1 && bytes[0] === 0xc3) return "ret";
+  if (bytes.length === 2 && [0x7e, 0xeb].includes(bytes[0]!)) return (bytes[0] === 0xeb ? "jmp" : "jle") + " rel " + ((bytes[1]! << 24) >> 24);
+  let at = 0, rex = 0;
+  if (bytes[0]! >= 0x40 && bytes[0]! <= 0x4f) rex = bytes[at++]!;
+  const opcode = bytes[at++]!, modrm = bytes[at], width = (rex & 8) ? 64 : 32;
+  const r64 = ["rax", "rcx", "rdx", "rbx", "rsp", "rbp", "rsi", "rdi", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"];
+  const r32 = ["eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi", "r8d", "r9d", "r10d", "r11d", "r12d", "r13d", "r14d", "r15d"];
+  const names = width === 64 ? r64 : r32;
+  const imm32 = (pos: number) => (bytes[pos]! | (bytes[pos+1]! << 8) | (bytes[pos+2]! << 16) | (bytes[pos+3]! << 24));
+  if (opcode >= 0xb8 && opcode <= 0xbf && width === 32 && bytes.length === at + 4) return "mov " + r32[opcode - 0xb8 + ((rex & 1) ? 8 : 0)] + ", " + (imm32(at) >>> 0);
+  if (modrm !== undefined && (modrm & 0xc0) === 0xc0) {
+    const dst = (modrm & 7) + ((rex & 1) ? 8 : 0), src = ((modrm >> 3) & 7) + ((rex & 4) ? 8 : 0);
+    if ([0x89, 0x31, 0x01, 0x39].includes(opcode) && bytes.length === at + 1) return ({ 137:"mov", 49:"xor", 1:"add", 57:"cmp" }[opcode] ?? "") + " " + names[dst] + ", " + names[src];
+    if (opcode === 0xff && ((modrm >> 3) & 7) === 0 && bytes.length === at + 1) return "inc " + names[dst];
+    if (opcode === 0xc7 && ((modrm >> 3) & 7) === 0 && bytes.length === at + 5) return "mov " + names[dst] + ", " + imm32(at + 1);
+  }
+  return "Unsupported or incomplete instruction in this teaching decoder.";
 }
 
 export function stepX86(cpu: X86Cpu, insns: AsmInsn[]): X86Cpu {
@@ -274,28 +299,27 @@ export function stepX86(cpu: X86Cpu, insns: AsmInsn[]): X86Cpu {
   const a = next.gpr[insn.a] ?? 0n;
   const b = next.gpr[insn.b] ?? 0n;
   if (insn.op === "ret") { next.halted = true; next.trace.push("ret"); }
-  else if (insn.op === "mov" && insn.bytes[0] !== 0x48) next.gpr[insn.a] = BigInt(insn.imm >>> 0);
-  else if (insn.op === "mov" && insn.bytes[1] === 0x89) next.gpr[insn.a] = b;
-  else if (insn.op === "mov") next.gpr[insn.a] = BigInt(insn.imm);
+  else if (insn.op === "mov") next.gpr[insn.a] = writeSlice(a, insn.width, insn.immediate ? BigInt(insn.imm) : b);
   else if (insn.op === "xor" || insn.op === "add") {
-    const alu = applyAlu(insn.op, a, b, 64);
+    const alu = applyAlu(insn.op, a, b, insn.width);
     next.gpr[insn.a] = alu.result;
     next.flags = { ...next.flags, ...alu.flags, tf: next.flags.tf, if: next.flags.if, df: next.flags.df };
   } else if (insn.op === "inc") {
     const carry = next.flags.cf;
-    const alu = applyAlu("INC", a, 0n, 64);
+    const alu = applyAlu("INC", a, 0n, insn.width);
     next.gpr[insn.a] = alu.result;
-    next.flags = { ...alu.flags, cf: carry };
+    next.flags = { ...next.flags, ...alu.flags, cf: carry, tf: next.flags.tf, if: next.flags.if, df: next.flags.df };
   } else if (insn.op === "cmp") {
-    const alu = applyAlu("CMP", a, b, 64);
+    const alu = applyAlu("CMP", a, b, insn.width);
     next.flags = { ...next.flags, ...alu.flags, tf: next.flags.tf, if: next.flags.if, df: next.flags.df };
-  } else if (insn.op === "jle") {
-    const taken = next.flags.zf === 1 || next.flags.sf !== next.flags.of;
+  } else if (insn.op === "jmp" || insn.op === "jle") {
+    const taken = insn.op === "jmp" || next.flags.zf === 1 || next.flags.sf !== next.flags.of;
     next.rip = taken ? insn.target : next.rip + 1;
     next.retired += 1;
     next.trace.push(insn.text);
     return next;
   }
+  if (insn.width === 32 && ["mov", "add", "xor", "inc"].includes(insn.op)) next.gpr[insn.a] = writeSlice(a, 32, next.gpr[insn.a] ?? 0n);
   next.rip += 1;
   next.retired += 1;
   next.trace.push(insn.text);

@@ -134,8 +134,8 @@ const NOTES: Record<string, Array<[string, string]>> = {
     ["Scaled versus unscaled", "An unscaled immediate is base + offset. A scaled register offset is base + (index << scale). They are different addressing forms, even when the numeric result matches."],
   ],
   "arm:exceptions": [
-    ["One synchronous exception", "From EL0, a supervisor call sets a cause, takes the vector, saves the faulting PC in ELR and PSTATE in SPSR, and enters a higher EL. ERET restores both. The handler is not a branch that forgets the saved state."],
-    ["Exception, interrupt, and optional levels", "An exception is synchronous with an instruction. An interrupt is asynchronous. EL2 and EL3 are roles. A chip may omit them."],
+    ["One synchronous exception", "From EL0, a supervisor call sets a cause, takes the vector, saves the following instruction address in ELR and PSTATE in SPSR, and enters a higher EL. ERET restores both. The handler is not a branch that forgets the saved state."],
+    ["Exception, interrupt, and optional levels", "Exceptions include synchronous traps and asynchronous interrupts. SVC is synchronous; IRQ and FIQ can arrive between instructions. EL2 and EL3 are roles. A chip may omit them."],
   ],
   "arm:soc": [
     ["Agents on one interconnect", "CPU, GPU, and a display or DMA device share memory. A coherent read sees a CPU store. A device DMA is visible to the CPU only after the path this lab calls the interconnect. This is a sketch, not a vendor SoC."],
@@ -295,15 +295,15 @@ const NOTES: Record<string, Array<[string, string]>> = {
   ],
   "desktop:boost-power": [
     ["Burst, then settle", "A short burst can sit higher. A sustained load, or a low power limit, settles lower. This is not a vendor turbo algorithm."],
-    ["All-core is below single-core", "P-core and E-core traces are separate. Many active cores share the power limit, so all-core frequency is below the single-core peak."],
+    ["A shared package budget", "The experiment models homogeneous cores. More active cores and integrated GPU activity share a package power cap; memory stalls also change activity and power."],
   ],
   "desktop:thermal": [
     ["The heat path", "Die, thermal interface, heatsink, air. Equilibrium rises with workload and ambient temperature. It falls with fan speed and a stronger cooler."],
-    ["Four states from the temperature", "Normal, Warm, Near limit, and Throttling come from the simulated temperature against the limit. At the limit, frequency is cut. The label is not fixed in advance."],
+    ["A soft thermal controller", "Frequency begins falling five degrees below the configured target. The RC model integrates temperature; the target is not a hard temperature clamp."],
   ],
   "desktop:workloads": [
-    ["Why each preset looks like that", "Gaming is GPU-heavy. Compilation is CPU-heavy. Content creation uses CPU, memory, and storage together. Idle stays near the floor."],
-    ["Consequences, labelled illustrative", "Frequency, cache activity, memory bandwidth, package power, and temperature follow the preset. They are illustrations, not a benchmark."],
+    ["Presets are inputs", "Single-thread, rendering, CPU plus integrated GPU, memory streaming, and idle set different demands. Their outcomes are computed by the shared model."],
+    ["Compare equal durations", "Save a baseline, change one input, reset the run, and advance to the same elapsed time. Compare integrated energy and modeled completed work; these are not vendor benchmark scores."],
   ],
   "desktop:practice": [
     ["Keep the arithmetic", "Bandwidth, a lane sum over 16, burst versus sustained, and shared versus private cache are the reasoning questions."],

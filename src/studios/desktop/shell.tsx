@@ -24,9 +24,9 @@ const HEADS: Record<string, { title: string; sub: string; quote: string }> = {
   cache: { title: "Cache Hierarchy Explorer", sub: "Understand how multi-level caches reduce memory latency and improve performance.", quote: "Caches make memory feel much faster than main memory." },
   memory: { title: "Memory System (DDR)", sub: "Explore the DDR memory controller, channels, and memory subsystem.", quote: "Fast memory feeds the CPU, but caches keep it busy." },
   pcie: { title: "PCIe & I/O Subsystem", sub: "Explore PCIe lanes, devices, and the I/O subsystem.", quote: "PCIe enables the modern PC ecosystem of high-performance devices." },
-  "boost-power": { title: "CPU Boost & Power Management", sub: "See how a desktop CPU adjusts frequency from workload, power limits, and thermal headroom. Simplified educational boost model.", quote: "Performance, power, and thermals are always connected." },
-  thermal: { title: "Thermal Management", sub: "Explore how the CPU manages temperature with cooling solutions and thermal throttling.", quote: "Thermal headroom enables higher sustained performance." },
-  workloads: { title: "Real-World Workload Analysis", sub: "See how different workloads use CPU resources, memory, and I/O in a desktop system.", quote: "Modern desktops are built for diverse work across CPU, GPU, and I/O." },
+  "boost-power": { title: "CPU Boost & Power Management", sub: "Run a coupled workload, package power, and cooling experiment with measurable energy and throughput.", quote: "Performance, power, and thermals are always connected." },
+  thermal: { title: "Thermal Management", sub: "Measure RC cooling, fan response, and thermal frequency reduction in the shared package experiment.", quote: "Thermal headroom enables higher sustained performance." },
+  workloads: { title: "Real-World Workload Analysis", sub: "Compare core demand, SMT, memory bandwidth, and integrated GPU activity using the shared package model.", quote: "Modern desktops are built for diverse work across CPU, GPU, and I/O." },
   practice: { title: "Practice & Quiz", sub: "Test your understanding of modern desktop CPU concepts.", quote: "Practice today, build tomorrow." },
 };
 

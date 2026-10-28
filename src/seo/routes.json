@@ -523,7 +523,7 @@
     "route": "/architecture/arm/exceptions",
     "url": "/architecture/arm/exceptions",
     "title": "Exceptions & Interrupts | ARM Architecture Explorer",
-    "description": "EL0 is unprivileged user mode. EL1 is typically the OS kernel. EL2 supports virtualization. EL3 supports the secure monitor. ELR and SPSR capture return…",
+    "description": "SVC saves the address following the call. Asynchronous injection saves the current PC. SPSR preserves modeled NZCV and return mode. Different event types…",
     "id": "architecture/arm/exceptions",
     "studio": "ARM Architecture Explorer"
   },
@@ -539,7 +539,7 @@
     "route": "/architecture/arm/memory",
     "url": "/architecture/arm/memory",
     "title": "Memory & Load/Store | ARM Architecture Explorer",
-    "description": "Memory is byte-addressed. AArch64 supports scaled offsets. Pre-index can update the base register. SP stays 16-byte aligned by the ABI. LDR and STR…",
+    "description": "Eight little-endian bytes reconstruct a 64-bit value. Unsigned offsets leave the base unchanged. Pre/post-index accesses use different effective…",
     "id": "architecture/arm/memory",
     "studio": "ARM Architecture Explorer"
   },
@@ -579,7 +579,7 @@
     "route": "/architecture/arm/registers",
     "url": "/architecture/arm/registers",
     "title": "Registers & Modes | ARM Architecture Explorer",
-    "description": "X0–X30 are general-purpose registers. W0–W30 are the low 32 bits of X. X30 is commonly LR. SP and PC have special roles. PSTATE carries NZCV. EL0–EL3…",
+    "description": "N is the result sign bit; Z means zero. C represents unsigned carry or no borrow. V represents signed overflow. Plain ADD leaves NZCV unchanged. W writes…",
     "id": "architecture/arm/registers",
     "studio": "ARM Architecture Explorer"
   },
@@ -1208,6 +1208,14 @@
     "studio": "CPU Building Blocks"
   },
   {
+    "route": "/studios/cpu-blocks?tab=execute",
+    "url": "/studios/cpu-blocks/connected-cpu-execution",
+    "title": "Connected CPU execution | CPU Building Blocks",
+    "description": "The LogicLab-16 engine connects PC, IR, MAR, MDR, ALU, registers and memory through IF, ID, EX, MEM and WB. Each stage uses one teaching cycle;…",
+    "id": "studios/cpu-blocks/execute",
+    "studio": "CPU Building Blocks"
+  },
+  {
     "route": "/studios/cpu-blocks",
     "url": "/studios/cpu-blocks",
     "title": "CPU Building Blocks",
@@ -1243,7 +1251,7 @@
     "route": "/studios/cpu-blocks?tab=overview",
     "url": "/studios/cpu-blocks/overview",
     "title": "Overview | CPU Building Blocks",
-    "description": "PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch-decode-execute loop will use. This studio does not run a program;…",
+    "description": "PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch-decode-execute loop will use. Inspect each box, then open Execute…",
     "id": "studios/cpu-blocks/overview",
     "studio": "CPU Building Blocks"
   },
@@ -4251,7 +4259,7 @@
     "route": "/architecture/desktop/boost-power",
     "url": "/architecture/desktop/boost-power",
     "title": "Boost & Power | Modern Desktop CPU Explorer",
-    "description": "This is a simplified educational boost model. A short burst can sit higher than a sustained load. A low power limit or a hot package cuts the boost. It is…",
+    "description": "Power, cooling, and workload views share one running experiment. Package power includes CPU, integrated GPU, uncore, and leakage. Energy integrates…",
     "id": "architecture/desktop/boost-power",
     "studio": "Modern Desktop CPU Explorer"
   },
@@ -4320,19 +4328,19 @@
     "studio": "Modern Desktop CPU Explorer"
   },
   {
-    "route": "/architecture/desktop/workloads",
-    "url": "/architecture/desktop/workloads",
-    "title": "System Workloads | Modern Desktop CPU Explorer",
-    "description": "Gaming leans on the GPU. Compilation leans on the CPU. Content creation uses CPU, memory, and storage together. Idle keeps the package near its floor.",
-    "id": "architecture/desktop/workloads",
-    "studio": "Modern Desktop CPU Explorer"
-  },
-  {
     "route": "/architecture/desktop/thermal",
     "url": "/architecture/desktop/thermal",
     "title": "Thermal Management | Modern Desktop CPU Explorer",
-    "description": "Heat moves from the die through the interface into the cooler. A stronger cooler reaches a lower balance temperature. At the limit, frequency is cut in…",
+    "description": "A coupled RC model integrates heat flow over time. Lower effective resistance improves sustained cooling. A soft thermal controller reduces frequency near…",
     "id": "architecture/desktop/thermal",
+    "studio": "Modern Desktop CPU Explorer"
+  },
+  {
+    "route": "/architecture/desktop/workloads",
+    "url": "/architecture/desktop/workloads",
+    "title": "Workload Analysis | Modern Desktop CPU Explorer",
+    "description": "Runnable threads share physical core resources. Memory bandwidth can cap throughput before compute resources do. The integrated GPU shares the package…",
+    "id": "architecture/desktop/workloads",
     "studio": "Modern Desktop CPU Explorer"
   },
   {
@@ -5915,7 +5923,7 @@
     "route": "/architecture/x86/assembler-disassembler",
     "url": "/architecture/x86/assembler-disassembler",
     "title": "Assembler & Disassembler | x86 Architecture Explorer",
-    "description": "Assembly maps to variable-length byte sequences. Labels resolve to relative targets. Disassembly recovers instruction boundaries from bytes. Stepping…",
+    "description": "Assembly maps to variable-length byte sequences. Labels resolve to relative targets. Disassembly recovers instruction boundaries from bytes. The…",
     "id": "architecture/x86/assembler-disassembler",
     "studio": "x86 Architecture Explorer"
   },

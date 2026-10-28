@@ -1,9 +1,10 @@
+import { ExecutionLab } from "./ExecutionLab";
 import { useSimulatorCapture } from "../../layout/SimulatorCapture";
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { archStudio } from "../../data/architecture";
 import { blankX86, type X86Cpu } from "../../engines/isaarch/x86";
-import { AddressingPage, AssemblerPage, CachePage, DatapathPage, EncodingPage, MicroPage, OooPage, OverviewPage, PracticePage, RegisterPage } from "./pages";
+import { AddressingPage, CachePage, DatapathPage, EncodingPage, MicroPage, OooPage, OverviewPage, PracticePage, RegisterPage } from "./pages";
 import { X86Shell } from "./shell";
 
 const ALIAS: Record<string, string> = {
@@ -49,7 +50,7 @@ export function X86Studio() {
       {lab === "registers-flags" && <RegisterPage api={api} />}
       {lab === "instruction-encoding" && <EncodingPage />}
       {lab === "addressing-modes" && <AddressingPage />}
-      {lab === "assembler-disassembler" && <AssemblerPage api={api} />}
+      {lab === "assembler-disassembler" && <ExecutionLab api={api} />}
       {lab === "decode-datapath" && <DatapathPage />}
       {lab === "micro-operations" && <MicroPage />}
       {lab === "out-of-order" && <OooPage />}

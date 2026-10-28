@@ -198,10 +198,15 @@ export const CACHE_LESSONS: Record<string, TabLesson> = {
 };
 
 export const CPU_LESSONS: Record<string, TabLesson> = {
+  execute: {
+    theory: { title: "Connected CPU execution", body: "The LogicLab-16 engine connects PC, IR, MAR, MDR, ALU, registers and memory through IF, ID, EX, MEM and WB. Each stage uses one teaching cycle; instructions do not overlap." },
+    guide: ["Load Add & store.", "Step cycle through fetch and decode; inspect IR and controls.", "Step instruction until R3 becomes 7.", "Inspect STORE during MEM; memory[16] becomes 7.", "Reach HALT and capture the result in the notebook."],
+    takeaways: ["This executable path uses 16-bit words and word addresses.", "A store writes memory without register write-back.", "Manual block edits require reloading the executable model."],
+  },
   overview: {
-    theory: { title: "CPU blocks", body: "PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch-decode-execute loop will use. This studio does not run a program; it lets you inspect each box." },
-    guide: ["Click a block. The inspector names what it holds.", "Follow the arrows between PC, IR, MAR, and MDR.", "Open Registers to change a value the later tabs will see.", "Decode happens in the Fetch-Decode-Execute studio, not here."],
-    takeaways: ["The PC holds the next instruction address.", "MAR points at memory. MDR carries the word.", "The IR holds the instruction word. Nothing here decodes an opcode yet."],
+    theory: { title: "CPU blocks", body: "PC, IR, MAR, MDR, the register file, ALU, and control are named boxes that a later fetch-decode-execute loop will use. Inspect each box, then open Execute a program to run a connected LogicLab-16 datapath." },
+    guide: ["Click a block. The inspector names what it holds.", "Follow the arrows between PC, IR, MAR, and MDR.", "Open Registers to change a value the later tabs will see.", "Open Execute a program to inspect automatic decode and control."],
+    takeaways: ["The PC holds the next instruction address.", "MAR points at memory. MDR carries the word.", "The IR holds the instruction word; the executable lab decodes it into controls."],
   },
   registers: {
     theory: { title: "PC, IR, and the file", body: "The program counter is the instruction address. The IR holds the word after a fetch. The register file is a small RAM with two read ports and one write port, written on a clock enable." },

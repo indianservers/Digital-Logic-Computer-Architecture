@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Theory } from "../../design-system/ui";
 import {
-  armPipe, assembleA64, blankA64, decodeA64, encodeAddReg, encodeB, encodeBl, encodeLdr, encodeStr, eret, loadA64, neonAdd, stepA64, triggerSvc, writeWn, writeXn, xName,
+  armPipe, assembleA64, blankA64, decodeA64, encodeAddReg, encodeB, encodeBl, encodeLdr, encodeStr, loadA64, neonAdd, stepA64, writeXn, xName,
   type A64Cpu,
 } from "../../engines/isaarch/arm";
 
@@ -131,6 +131,8 @@ export function RegisterPage({ api }: { api: ArmApi }) {
   const [wide, setWide] = useState(true);
   const value = api.sel < 31 ? (api.cpu.x[api.sel] ?? 0n) : api.sel === 31 ? api.cpu.sp : 0n;
   const shown = wide ? value : (value & 0xffffffffn);
+  const [draft, setDraft] = useState(hex64(shown));
+  useEffect(() => setDraft(hex64(shown)), [shown, api.sel]);
   return (
     <>
       <section className="rvx-card">
@@ -159,12 +161,17 @@ export function RegisterPage({ api }: { api: ArmApi }) {
           <div><span>EL context</span><b>EL{api.cpu.el}</b></div>
         </div>
         <label>Value
-          <input aria-label="Register value" type="number" value={Number(shown & 0xffffffffn)} onChange={(event) => {
-            const next = Number(event.target.value) || 0;
-            if (api.sel === 31) api.setCpu({ ...api.cpu, sp: BigInt(next >>> 0) });
-            else api.setCpu({ ...api.cpu, x: wide ? writeXn(api.cpu.x, api.sel, BigInt(next)) : writeWn(api.cpu.x, api.sel, next) });
-          }} />
+          <input aria-label="Register value" value={draft} onChange={event => setDraft(event.target.value)} />
         </label>
+        <button type="button" onClick={() => {
+          try {
+            const bits = BigInt.asUintN(wide ? 64 : 32, BigInt(draft));
+            if (api.sel === 31) api.setCpu({ ...api.cpu, sp: bits });
+            else api.setCpu({ ...api.cpu, x: writeXn(api.cpu.x, api.sel, bits) });
+            api.setStatus("Register value applied without Number precision loss.");
+          } catch { api.setStatus("Enter a decimal or hexadecimal integer."); }
+        }}>Apply register value</button>
+        <p role="status">{api.status}</p>
         <p>{abiOf(api.sel).note}</p>
         <div className="arm-pills">
           {([[0, "X0–X7 args"], [8, "X8 result"], [9, "X9–X15 temps"], [18, "X18 platform"], [19, "X19–X28 saved"], [29, "X29 FP"], [30, "X30 LR"], [31, "SP"]] as const).map(([index, label]) => (
@@ -185,7 +192,7 @@ export function RegisterPage({ api }: { api: ArmApi }) {
         ["C", "Carry from an unsigned add, or the inverse borrow from a subtract. B.HI uses C and Z."],
         ["V", "Signed overflow. B.GT needs Z clear and N equal to V."],
         ["EL0", "Unprivileged applications. They use SVC to ask the kernel for a service."],
-        ["EL1–EL3", "EL1 is the usual kernel. EL2 hosts a hypervisor. EL3 hosts the secure monitor. Changing the button here only selects the view."],
+        ["EL1–EL3", "EL1 is the usual kernel. EL2 hosts a hypervisor. EL3 hosts the secure monitor. The buttons set the simulated EL context; executable exception experiments cover EL0 and EL1."],
       ]} />
     </>
   );
@@ -287,10 +294,17 @@ export function AssemblerPage({ api }: { api: ArmApi }) {
   useSimulatorCapture("studios/arm/pages.tsx:AssemblerPage", () => ({ built }), "de3f295e144c");
 
   const built = useMemo(() => assembleA64(api.source), [api.source]);
-  const run = (limit: number) => {
+  const [loadedSource, setLoadedSource] = useState<string | null>(null);
+  const prepare = () => {
     const loaded = loadA64(api.source);
-    if ("ok" in loaded) { api.setStatus(loaded.error); return; }
-    let cpu = loaded;
+    if ("ok" in loaded) { api.setStatus(loaded.error); return null; }
+    loaded.x = api.cpu.x.slice(); loaded.sp = api.cpu.sp; loaded.flags = { ...api.cpu.flags };
+    setLoadedSource(api.source);
+    return loaded;
+  };
+  const run = (limit: number) => {
+    let cpu = loadedSource === api.source ? api.cpu : prepare();
+    if (!cpu) return;
     for (let i = 0; i < limit && !cpu.halted; i += 1) cpu = stepA64(cpu);
     api.setCpu(cpu);
     api.setStatus(cpu.halted ? "Halted." : "Stepped.");
@@ -305,10 +319,10 @@ export function AssemblerPage({ api }: { api: ArmApi }) {
         <button type="button" onClick={() => api.setSource("ADD X0, X1, X2\nB skip\nADD X5, X5, X5\nskip:\nRET\n")}>Branch skip</button>
         <button type="button" onClick={load}>Load</button>
         <button type="button" onClick={save}>Save</button>
-        <button type="button" onClick={() => api.setStatus(built.ok ? "Assembled successfully." : built.errors.join(" "))}>Assemble</button>
+        <button type="button" onClick={() => { const cpu = prepare(); if (cpu) { api.setCpu(cpu); api.setStatus("Assembled and loaded at PC 0."); } }}>Assemble</button>
         <button type="button" className="rvx-btn" onClick={() => run(80)}>Run</button>
         <button type="button" onClick={() => run(1)}>Step</button>
-        <button type="button" onClick={() => { api.setCpu(blankA64()); api.setStatus("Reset."); }}>Reset</button>
+        <button type="button" onClick={() => { api.setCpu(blankA64()); setLoadedSource(null); api.setStatus("Reset."); }}>Reset</button>
       </div>
       <div className="arm-asm">
         <div className="rvx-editor">
@@ -337,9 +351,9 @@ export function AssemblerPage({ api }: { api: ArmApi }) {
         </div>
       </section>
       <Notes title="What this assembler really does" items={[
-        ["Accepted mnemonics", "ADD, ADDS, SUB, SUBS, CMP, LDR, STR, B, BL, RET, NOP, SVC, and MOV. Anything else is reported on the line that failed."],
+        ["Accepted mnemonics", "ADD, ADDS, SUB, SUBS, CMP, LDR, STR, B, BL, RET, NOP, SVC, ERET, MOV, and B.cond. Arithmetic supports X and W operands and unshifted 12-bit immediates. Anything else is reported on the line that failed."],
         ["Labels", "A label such as skip: is an address, not an instruction. B and BL turn it into a word offset."],
-        ["MOV", "MOV Xd, #imm is accepted, but this teaching encoder emits ADD Xd, XZR, XZR and does not apply the immediate."],
+        ["MOV", "MOV Xd/Wd, #0…#65535 emits MOVZ and executes the immediate. Unsupported values are rejected."],
         ["Little-endian words", "Each assembled word is stored little-endian. The listing shows the address, the hex word, and the decoded text."],
         ["NZCV", "Run the Flags example. ADDS updates the flags from X1+X2. CMP X0, X0 then sets Z because a value compared with itself is zero."],
         ["BL and RET", "The call example writes the return address into X30 and RET jumps there. The ADD after B skip should stay unexecuted."],
@@ -492,177 +506,6 @@ export function PipelinePage() {
         ["MEM", "Loads and stores use this stage. An ALU result can be forwarded from EX, but a loaded value does not exist until MEM finishes."],
         ["WB", "Write-back updates the destination register. Without forwarding, the next instruction must wait until this stage."],
         ["This sequence", "SUB needs X0 from ADD, which forwarding can supply. ADD X6 needs X5 from LDR, which still costs one stall. B.NE may flush the two younger instructions."],
-      ]} />
-    </>
-  );
-}
-
-export function MemoryPage({ api }: { api: ArmApi }) {
-  useSimulatorCapture("studios/arm/pages.tsx:MemoryPage", () => ({ base, offset, mode, value, tab }), "de3f295e144c");
-
-  const [base, setBase] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [mode, setMode] = useState<"unsigned" | "pre" | "post">("unsigned");
-  const [value, setValue] = useState(7);
-  const address = mode === "post" ? base : base + offset;
-  const aligned = address % 8 === 0 && address >= 0 && address + 7 < api.cpu.mem.length;
-  const applyBase = () => (mode === "unsigned" ? base : base + offset);
-  const load = () => {
-    if (!aligned) { api.setStatus("64-bit access must be 8-byte aligned."); return; }
-    let word = 0n;
-    for (let i = 0; i < 8; i += 1) word |= BigInt(api.cpu.mem[address + i] ?? 0) << BigInt(8 * i);
-    api.setCpu({ ...api.cpu, x: writeXn(api.cpu.x, 0, word), sp: BigInt(applyBase()) });
-    if (mode !== "unsigned") setBase(applyBase());
-    api.setStatus(`LDR X0 got ${word.toString()} from ${address}.`);
-  };
-  const store = () => {
-    if (!aligned) { api.setStatus("64-bit access must be 8-byte aligned."); return; }
-    const mem = api.cpu.mem.slice();
-    let bits = BigInt(value);
-    for (let i = 0; i < 8; i += 1) mem[address + i] = Number((bits >> BigInt(8 * i)) & 0xffn);
-    api.setCpu({ ...api.cpu, mem });
-    if (mode !== "unsigned") setBase(applyBase());
-    api.setStatus(`STR stored ${value} at ${address}.`);
-  };
-  const [tab, setTab] = useState<"view" | "modes" | "stack">("view");
-  const words = [0, 8, 16, 24, 32, 40, 48, 56].map((addr) => {
-    let word = 0;
-    for (let i = 0; i < 8; i += 1) word |= (api.cpu.mem[addr + i] ?? 0) << (8 * i);
-    return word >>> 0;
-  });
-  return (
-    <>
-      <section className="rvx-card">
-        <h3>Load / Store Explorer</h3>
-        <div className="rvx-tabs">
-          <button type="button" className={tab === "view" ? "on" : ""} onClick={() => setTab("view")}>Memory View</button>
-          <button type="button" className={tab === "modes" ? "on" : ""} onClick={() => setTab("modes")}>Addressing Modes</button>
-          <button type="button" className={tab === "stack" ? "on" : ""} onClick={() => setTab("stack")}>Stack</button>
-        </div>
-        {tab === "stack" ? <p>AArch64 SP stays 16-byte aligned by the ABI. This model’s SP is {hex64(api.cpu.sp)}. A push pair would subtract 16 before the store.</p> : (
-          <div className="rvx-grid2">
-            <div>
-              <h3>Memory (64-bit words)</h3>
-              <div className="arm-mem">{words.map((word, index) => <span key={index}><b>0x{(index * 8).toString(16)}</b> 0x{word.toString(16).padStart(4, "0")}</span>)}</div>
-            </div>
-            <div>
-              <h3>Addressing playground</h3>
-              <p>LDR X0, [X{base}, #{offset}] · {mode}</p>
-              <div className="rvx-cols">
-                <label>Base <input aria-label="base" type="number" value={base} onChange={(event) => setBase(Number(event.target.value) || 0)} /></label>
-                <label>Offset <input aria-label="offset" type="number" value={offset} onChange={(event) => setOffset(Number(event.target.value) || 0)} /></label>
-                <label>Value <input aria-label="stored value" type="number" value={value} onChange={(event) => setValue(Number(event.target.value) || 0)} /></label>
-              </div>
-              <p className="arm-hex">EA = 0x{address.toString(16)} · {aligned ? "aligned" : "not 8-byte aligned"} · next base {applyBase()}</p>
-              <div className="rvx-tabs">
-                <button type="button" className="rvx-btn" onClick={load}>Execute LDR</button>
-                <button type="button" onClick={store}>Try STR</button>
-              </div>
-              <p>{api.status}</p>
-            </div>
-          </div>
-        )}
-      </section>
-      <section className="rvx-card">
-        <h3>Addressing modes</h3>
-        <div className="arm-labs">
-          {([["unsigned", "Unsigned offset", "[Xn, #imm]"], ["pre", "Pre-index", "[Xn, #imm]!"], ["post", "Post-index", "[Xn], #imm"]] as const).map(([id, title, form]) => (
-            <button key={id} type="button" className={`arm-lab ${mode === id ? "on" : ""}`} onClick={() => setMode(id)}><strong>{title}</strong><span>{form}</span></button>
-          ))}
-          <div className="arm-lab"><strong>Register offset</strong><span>[Xn, Xm]</span></div>
-          <div className="arm-lab"><strong>Stack</strong><span>SP aligned to 16B</span></div>
-        </div>
-      </section>
-      <Notes title={mode === "pre" ? "Pre-index" : mode === "post" ? "Post-index" : "Unsigned offset"} items={mode === "pre" ? [
-        ["Syntax", "LDR Xt, [Xn, #imm]! updates Xn first, then uses the new value as the address."],
-        ["When it is used", "Walking a pointer forward before the access, including some stack pops that adjust SP first."],
-        ["This playground", `The access uses ${address}. The base becomes ${applyBase()} as part of the same instruction.`],
-        ["Alignment", "A 64-bit access in this model must be a multiple of 8. A byte LDRB would not have that rule."],
-      ] : mode === "post" ? [
-        ["Syntax", "LDR Xt, [Xn], #imm uses the old Xn, then adds the offset afterwards."],
-        ["When it is used", "A push-style store can write through SP and only then move SP."],
-        ["This playground", `The access uses the old base ${address}. Afterwards the base becomes ${applyBase()}.`],
-        ["Little-endian", "The least significant byte of the stored value lands at the lowest address."],
-      ] : [
-        ["Syntax", "LDR Xt, [Xn, #imm] adds the offset for the address and leaves Xn unchanged."],
-        ["Scaled form", "In the real 64-bit encoding the immediate is a word count times 8. This playground takes a raw byte offset."],
-        ["Effective address", `EA is 0x${address.toString(16)}. ${aligned ? "That address is 8-byte aligned." : "That address is not 8-byte aligned, so LDR and STR will refuse it."}`],
-        ["Stack", `AAPCS64 keeps SP 16-byte aligned. This session’s SP is ${hex64(api.cpu.sp)}. A paired push subtracts 16 before the stores.`],
-      ]} />
-    </>
-  );
-}
-
-const EL_CARDS = [
-  ["EL3", "Secure Monitor", "el3"],
-  ["EL2", "Hypervisor", "el2"],
-  ["EL1", "OS kernel", "el1"],
-  ["EL0", "Applications", "el0"],
-];
-
-export function ExceptionPage({ api }: { api: ArmApi }) {
-  useSimulatorCapture("studios/arm/pages.tsx:ExceptionPage", () => ({ kind }), "de3f295e144c");
-
-  const [kind, setKind] = useState<"Synchronous" | "IRQ" | "FIQ" | "SError">("Synchronous");
-  const fire = (name: typeof kind, imm: number) => {
-    setKind(name);
-    api.setCpu(triggerSvc(api.cpu, imm));
-    api.setStatus(`${name} from EL${api.cpu.el} saved PC ${api.cpu.pc} in ELR_EL1.`);
-  };
-  return (
-    <>
-      <section className="rvx-card">
-        <h3>Exception-Level Explorer</h3>
-        <div className="arm-els">
-          {EL_CARDS.map(([name, role, tone], index) => (
-            <button key={name} type="button" className={`${tone} ${api.cpu.el === index ? "on" : ""}`} onClick={() => api.setCpu({ ...api.cpu, el: index as 0 | 1 | 2 | 3 })}>
-              <b>{name}</b><span>{role}</span>
-            </button>
-          ))}
-        </div>
-        <div className="rvx-grid2">
-          <div>
-            <h3>Exception entry flow</h3>
-            <ol className="arm-steps">
-              <li>Event — {kind} from EL{api.cpu.el}</li>
-              <li>Save state — ELR_EL1 = {api.cpu.elr}</li>
-              <li>Save PSTATE — SPSR_EL1 = {api.cpu.spsr}</li>
-              <li>Vector — PC = VBAR + offset ({api.cpu.vbar})</li>
-              <li>Handler — execute at EL1</li>
-              <li>ERET — restore and return</li>
-            </ol>
-          </div>
-          <div>
-            <h3>Live exception state</h3>
-            <p>Current EL <b>EL{api.cpu.el}</b></p>
-            <p>ELR_EL1 <b>0x{api.cpu.elr.toString(16)}</b></p>
-            <p>SPSR_EL1 <b>0x{api.cpu.spsr.toString(16)}</b></p>
-            <p>VBAR_EL1 <b>0x{api.cpu.vbar.toString(16)}</b></p>
-            <p>ESR_EL1 <b>0x{api.cpu.esr.toString(16)}</b></p>
-            <div className="rvx-tabs">
-              <button type="button" className="rvx-btn" onClick={() => fire("Synchronous", 0x15)}>Trigger SVC</button>
-              <button type="button" onClick={() => api.setCpu(eret(api.cpu))}>ERET</button>
-            </div>
-            <p>{api.status}</p>
-          </div>
-        </div>
-      </section>
-      <section className="rvx-card">
-        <h3>Exception types</h3>
-        <div className="arm-els">
-          <button type="button" className={kind === "Synchronous" ? "on" : ""} onClick={() => fire("Synchronous", 0x15)}><b>Synchronous</b><span>SVC, abort, trap</span></button>
-          <button type="button" className={kind === "IRQ" ? "on" : ""} onClick={() => fire("IRQ", 1)}><b>IRQ</b><span>normal interrupt</span></button>
-          <button type="button" className={kind === "FIQ" ? "on" : ""} onClick={() => fire("FIQ", 2)}><b>FIQ</b><span>fast interrupt</span></button>
-          <button type="button" className={kind === "SError" ? "on" : ""} onClick={() => fire("SError", 3)}><b>SError</b><span>system error</span></button>
-        </div>
-      </section>
-      <Notes title="Where the handler lives" items={[
-        ["VBAR_EL1", `The vector base is 0x${api.cpu.vbar.toString(16)}. The CPU adds a fixed offset for the exception type and the source level.`],
-        ["Synchronous", "SVC, undefined instructions, and data aborts are synchronous. Software caused them at a known instruction."],
-        ["IRQ and FIQ", "IRQ is the ordinary interrupt. FIQ is the fast interrupt. Both can arrive between instructions."],
-        ["SError", "A system error is asynchronous and often reports a fault from the memory system."],
-        ["ELR and SPSR", `ELR_EL1 holds 0x${api.cpu.elr.toString(16)}, the address to resume. SPSR_EL1 holds the level that was current, EL${api.cpu.spsr & 3}.`],
-        ["ERET", "ERET copies ELR back to the PC and restores the exception level saved in SPSR. It is the return from the handler, not a branch in the program."],
       ]} />
     </>
   );

@@ -18,13 +18,13 @@ const GLYPH: Record<string, ReactNode> = {
 
 const HEADS: Record<string, { title: string; sub: string; note: string; quote: string }> = {
   overview: { title: "ARM Architecture Explorer", sub: "AArch64-oriented interactive studio for registers, encodings, the datapath, pipeline hazards, memory, exceptions, and a teaching SoC.", note: "64-bit\nLoad/store\nException levels", quote: "See it. Change it. Understand it." },
-  registers: { title: "Registers & Modes", sub: "Explore AArch64 X/W registers, special registers, ABI roles, and privilege context.", note: "Wn write\nzero-extends", quote: "See it. Change it. Understand it." },
+  registers: { title: "Registers & Modes", sub: "Execute carry, overflow, borrow, and conditional branches; inspect exact X/W register values.", note: "Wn write\nzero-extends", quote: "See it. Change it. Understand it." },
   "instruction-set": { title: "Instruction Set & Encoding", sub: "Decode A64 fixed-width instructions, fields, immediates, and control flow.", note: "32-bit\nfixed length", quote: "See it. Change it. Understand it." },
   assembler: { title: "AArch64 Assembler", sub: "Write, assemble, run, and inspect real A64 code with live machine state.", note: "Assemble\nStep\nRun", quote: "See it. Change it. Understand it." },
   datapath: { title: "AArch64 Datapath", sub: "Trace A64 instructions through fetch, decode, execute, memory, and write-back.", note: "One instruction\none route", quote: "See it. Change it. Understand it." },
   pipeline: { title: "Pipeline & Hazards", sub: "Explore IF, ID, EX, MEM, WB overlap, dependencies, forwarding, and stalls.", note: "Forward\nor stall", quote: "See it. Change it. Understand it." },
-  memory: { title: "Memory & Load/Store", sub: "Explore AArch64 addressing modes, LDR/STR, stack, and alignment.", note: "Base + offset", quote: "See it. Change it. Understand it." },
-  exceptions: { title: "Exceptions & Interrupts", sub: "Understand EL0–EL3, vector entry, saved state, and exception return.", note: "Save state\nthen handle", quote: "See it. Change it. Understand it." },
+  memory: { title: "Memory & Load/Store", sub: "Execute 64-bit LDR/STR, pre/post-index writeback, and stack-frame experiments with byte-level evidence.", note: "Base + offset", quote: "See it. Change it. Understand it." },
+  exceptions: { title: "Exceptions & Interrupts", sub: "Execute EL0/EL1 exception entry, vector handlers, and ERET with saved-state evidence.", note: "Save state\nthen handle", quote: "See it. Change it. Understand it." },
   soc: { title: "Cores & SoC", sub: "Explore ARM core clusters, cache hierarchy, interconnect, accelerators, and power.", note: "Not a named chip", quote: "See it. Change it. Understand it." },
   practice: { title: "Practice & Quiz", sub: "Test registers, instructions, memory, pipeline, and exception-level concepts.", note: "Answer\nthen explain", quote: "See it. Change it. Understand it." },
 };
@@ -43,9 +43,9 @@ export function ArmShell({ lab, children }: { lab: string; children: ReactNode }
   const head = HEADS[lab] ?? HEADS.overview;
   if (!studio || !current || !head) return null;
   return (
-    <div className="rvx">
+    <div className="rvx arm-studio">
       <nav className="rvx-nav" aria-label="ARM Architecture Explorer">
-        <h2>ARM Architecture Explorer</h2>
+        <p className="cmp-nav-kicker">AArch64 labs</p>
         {studio.labs.map((item) => {
           const to = item.id === "overview" ? studio.path : `${studio.path}/${item.id}`;
           return (
@@ -60,7 +60,7 @@ export function ArmShell({ lab, children }: { lab: string; children: ReactNode }
         <header className="rvx-head">
           <div className="rvx-mark" aria-hidden="true"><Glyph id={lab} /></div>
           <div>
-            <h1><span className={`arm-badge ${lab}`}>ARM</span> {head.title}</h1>
+            <h1><span className={`arm-badge ${lab}`} aria-hidden="true">A64</span> {head.title}</h1>
             <p>{head.sub}</p>
           </div>
           <div className="rvx-note">{head.note.split("\n").map((line) => <span key={line}>{line}<br /></span>)}</div>

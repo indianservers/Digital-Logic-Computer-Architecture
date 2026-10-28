@@ -3,6 +3,9 @@ import { SimulatorRegistry } from "./SimulatorCapture";
 import { compareEvidence, evidenceValue, parseEvidence } from "./experimentEvidence";
 import { emptyExperiment, experimentReport, parseExperiment } from "./experimentRecord";
 describe("live simulator evidence", () => {
+  it("preserves 64-bit register precision as decimal strings", () => {
+    expect(evidenceValue({ rax: 0xffffffffffffffffn })).toEqual({ rax: "18446744073709551615" });
+  });
   it("captures detached state, mutable registers, traces and versions without advancing the engine", () => {
     const registry = new SimulatorRegistry(), engine = { time: 0, registers: new Map([["PC", 3]]), memory: new Uint8Array([1, 2]), trace: [{ output: 7 }] };
     const remove = registry.register("cpu", { name: "CPU", version: "abc123", read: () => engine });

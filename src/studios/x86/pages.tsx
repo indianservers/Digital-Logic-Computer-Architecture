@@ -299,7 +299,7 @@ export function AddressingPage() {
         ["Stack local", "Locals are often [RBP−offset] or [RSP+offset]. The displacement is negative for the classic frame-pointer form."],
         ["RIP-relative", "Long mode can encode [RIP+disp32]. The address is the next instruction’s RIP plus a 32-bit displacement. Position-independent code uses this constantly."],
         ["LEA versus MOV", "LEA writes the effective address into a register. MOV from the same brackets reads memory at that address. Same math, different operation."],
-        ["What this page does not model", "Segment bases are mostly zero in long mode. This calculator shows the offset math only."],
+        ["What this page does not model", "This calculator wraps offsets to 32 bits and uses JavaScript number inputs. It does not model full 64-bit linear addressing, segmentation, canonical-address checks or page translation."],
       ]} />
     </>
   );

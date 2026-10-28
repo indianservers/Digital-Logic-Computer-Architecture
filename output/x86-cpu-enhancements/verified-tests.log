@@ -1,0 +1,16 @@
+
+> digital-electronics-computing-lab@1.0.0 test
+> vitest run src/engines/isaarch/x86Execution.test.ts src/studios/cpu/ProgramLab.test.ts src/layout/experimentEvidence.test.ts --maxWorkers=2
+
+
+ RUN  v3.2.7 C:/Indian Servers/Digital Logic Architecture
+
+ ✓ src/engines/isaarch/x86Execution.test.ts (4 tests) 7ms
+ ✓ src/studios/cpu/ProgramLab.test.ts (2 tests) 8ms
+ ✓ src/layout/experimentEvidence.test.ts (5 tests) 7ms
+
+ Test Files  3 passed (3)
+      Tests  11 passed (11)
+   Start at  16:53:21
+   Duration  829ms (transform 211ms, setup 0ms, collect 515ms, tests 21ms, environment 0ms, prepare 273ms)
+

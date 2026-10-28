@@ -3,12 +3,15 @@ import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Icon } from "../../design-system/icons";
 import { CPU_LESSONS, lessonOf } from "../../data/studioLessons";
+import { ProgramLab } from "./ProgramLab";
+import { SimulatorCaptureScope } from "../../layout/SimulatorCapture";
 import { freshCpu, type BlockCpu } from "../../engines/cpu/blocksLab";
 import { usePrefs } from "../../store/prefs";
 import { BusPanel, ClockPanel, DatapathPanel, ExtendPanel, OverviewPanel, RegisterPanel } from "./cpuPanels";
 
 const TABS = [
   { id: "overview", label: "Overview" },
+  { id: "execute", label: "Execute a program" },
   { id: "registers", label: "Registers" },
   { id: "datapath", label: "Datapath" },
   { id: "bus", label: "Internal Bus" },
@@ -27,6 +30,8 @@ export function CpuStudio() {
   const tab = TABS.some((item) => item.id === aliased) ? aliased : "overview";
   const { prefs, update } = usePrefs();
   const [cpu, setCpu] = useState<BlockCpu>(freshCpu);
+  const [manualRevision, setManualRevision] = useState(0);
+  const editCpu = (next: BlockCpu) => { setCpu(next); setManualRevision(n => n + 1); };
   const lesson = lessonOf(CPU_LESSONS, tab, "overview");
 
   function setTab(id: string) {
@@ -36,11 +41,11 @@ export function CpuStudio() {
   }
 
   return (
-    <div className="cpx">
+    <div className={"cpx " + (tab === "execute" ? "cpx-program" : "")}>
       <header className="cpx-head">
         <div>
           <h1><Icon name="project" size={18} /> CPU Building Blocks</h1>
-          <p>Inspect the pieces that a later instruction cycle will use. This lab does not fetch or execute a program.</p>
+          <p>Inspect individual blocks, then connect them in a live fetch–decode–execute experiment.</p>
         </div>
         <div className="cpx-head-actions">
           <label className="cpx-switch">Explain
@@ -56,12 +61,13 @@ export function CpuStudio() {
       </div>
       <div className="cpx-grid">
         <div className="cpx-main">
-          <div hidden={tab !== "overview"} inert={tab !== "overview" ? true : undefined}><OverviewPanel explain={prefs.explain} cpu={cpu} onReset={() => setCpu(freshCpu())} /></div>
-          <div hidden={tab !== "registers"} inert={tab !== "registers" ? true : undefined}><RegisterPanel explain={prefs.explain} cpu={cpu} onCpu={setCpu} /></div>
-          <div hidden={tab !== "datapath"} inert={tab !== "datapath" ? true : undefined}><DatapathPanel explain={prefs.explain} cpu={cpu} onCpu={setCpu} /></div>
-          <div hidden={tab !== "bus"} inert={tab !== "bus" ? true : undefined}><BusPanel explain={prefs.explain} cpu={cpu} onCpu={setCpu} /></div>
-          <div hidden={tab !== "extend"} inert={tab !== "extend" ? true : undefined}><ExtendPanel explain={prefs.explain} /></div>
-          <div hidden={tab !== "clock"} inert={tab !== "clock" ? true : undefined}><ClockPanel explain={prefs.explain} /></div>
+          <div hidden={tab !== "overview"} inert={tab !== "overview" ? true : undefined}><SimulatorCaptureScope active={tab === "overview"}><OverviewPanel explain={prefs.explain} cpu={cpu} onReset={() => editCpu(freshCpu())} /></SimulatorCaptureScope></div>
+          <div hidden={tab !== "execute"} inert={tab !== "execute"}><SimulatorCaptureScope active={tab === "execute"}><ProgramLab onCpu={setCpu} manualRevision={manualRevision} /></SimulatorCaptureScope></div>
+          <div hidden={tab !== "registers"} inert={tab !== "registers" ? true : undefined}><SimulatorCaptureScope active={tab === "registers"}><RegisterPanel explain={prefs.explain} cpu={cpu} onCpu={editCpu} /></SimulatorCaptureScope></div>
+          <div hidden={tab !== "datapath"} inert={tab !== "datapath" ? true : undefined}><SimulatorCaptureScope active={tab === "datapath"}><DatapathPanel explain={prefs.explain} cpu={cpu} onCpu={editCpu} /></SimulatorCaptureScope></div>
+          <div hidden={tab !== "bus"} inert={tab !== "bus" ? true : undefined}><SimulatorCaptureScope active={tab === "bus"}><BusPanel explain={prefs.explain} cpu={cpu} onCpu={editCpu} /></SimulatorCaptureScope></div>
+          <div hidden={tab !== "extend"} inert={tab !== "extend" ? true : undefined}><SimulatorCaptureScope active={tab === "extend"}><ExtendPanel explain={prefs.explain} /></SimulatorCaptureScope></div>
+          <div hidden={tab !== "clock"} inert={tab !== "clock" ? true : undefined}><SimulatorCaptureScope active={tab === "clock"}><ClockPanel explain={prefs.explain} /></SimulatorCaptureScope></div>
         </div>
         <aside className="cpx-side">
           <section>

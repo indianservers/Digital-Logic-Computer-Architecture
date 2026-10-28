@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { archStudio } from "../../data/architecture";
 import { blankA64, type A64Cpu } from "../../engines/isaarch/arm";
+import { ArmExperiment } from "./ArmExperiment";
 import { ArmShell } from "./shell";
-import { AssemblerPage, DatapathPage, EncodingPage, ExceptionPage, MemoryPage, OverviewPage, PipelinePage, PracticePage, RegisterPage, SocPage } from "./pages";
+import { AssemblerPage, DatapathPage, EncodingPage, OverviewPage, PipelinePage, PracticePage, RegisterPage, SocPage } from "./pages";
 
 const ALIAS: Record<string, string> = {
   loadstore: "memory", arith: "instruction-set", branches: "datapath", calls: "assembler", stack: "memory", flags: "registers", aarch64: "instruction-set", neon: "instruction-set",
@@ -21,7 +22,7 @@ done:
 RET`;
 
 export function ArmStudio() {
-  useSimulatorCapture("studios/arm/ArmStudio.tsx:ArmStudio", () => ({ cpu, source, sel, status }), "472eca4dae85");
+  useSimulatorCapture("studios/arm/ArmStudio.tsx:ArmStudio", () => ({ cpu: { ...cpu, mem: Array.from({ length: Math.ceil(cpu.mem.length / 256) }, (_, i) => ({ address: i * 256, bytes: Array.from(cpu.mem.slice(i * 256, (i + 1) * 256)) })) }, assemblerSource: source, sel, status }), "a64-experiments-2");
 
   const raw = useParams().labId ?? "overview";
   const lab = ALIAS[raw] ?? raw;
@@ -40,13 +41,13 @@ export function ArmStudio() {
   return (
     <ArmShell lab={lab}>
       {lab === "overview" && <OverviewPage api={api} />}
-      {lab === "registers" && <RegisterPage api={api} />}
+      {lab === "registers" && <><ArmExperiment key="flags" api={api} view="flags" /><RegisterPage api={api} /></>}
       {lab === "instruction-set" && <EncodingPage />}
       {lab === "assembler" && <AssemblerPage api={api} />}
       {lab === "datapath" && <DatapathPage api={api} />}
       {lab === "pipeline" && <PipelinePage />}
-      {lab === "memory" && <MemoryPage api={api} />}
-      {lab === "exceptions" && <ExceptionPage api={api} />}
+      {lab === "memory" && <ArmExperiment key="memory" api={api} view="memory" />}
+      {lab === "exceptions" && <ArmExperiment key="exceptions" api={api} view="exceptions" />}
       {lab === "soc" && <SocPage />}
       {lab === "practice" && <PracticePage />}
     </ArmShell>
