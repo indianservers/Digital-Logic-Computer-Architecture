@@ -10,7 +10,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "seo:routes": "node scripts/seo/generate-routes.mjs",
-    "prebuild": "npm run seo:routes",
+    "prebuild": "npm run seo:routes && npm run seo:proxy",
+    "seo:proxy": "node scripts/seo/build-proxy.mjs && node --test scripts/seo/proxy-runtime.test.mjs",
     "seo:verify": "node scripts/seo/verify-pages.mjs && node --test scripts/seo/resolve.test.mjs"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-import { next } from '@vercel/functions';
+import { next } from '@vercel/functions/middleware';
 import { publicUrl } from './urls';
 
 /** Runs before filesystem routing, including on legacy URLs with query parameters. */
