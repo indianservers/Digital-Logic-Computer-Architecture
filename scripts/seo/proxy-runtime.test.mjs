@@ -5,6 +5,8 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const config = JSON.parse(await readFile('vercel.json', 'utf8'));
+// Vercel accepts .js, .ts, and .py entrypoints, but rejects .mjs even in ESM projects.
+assert.match(config.proxy.entrypoint, /\.(?:js|ts|py)$/);
 // Import the exact deployment entrypoint in plain Node, with no Vite/TS loader.
 const { default: proxy } = await import(pathToFileURL(resolve(config.proxy.entrypoint)));
 const origin = 'https://digital.aimersociety.com';

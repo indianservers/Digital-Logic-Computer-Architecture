@@ -9,7 +9,7 @@
     {"source":"/:path*/theory.md","headers":[{"key":"Content-Type","value":"text/markdown; charset=utf-8"},{"key":"X-Content-Type-Options","value":"nosniff"}]}
   ],
   "proxy": {
-    "entrypoint": "routing/seo-proxy.mjs",
+    "entrypoint": "routing/seo-proxy.js",
     "matcher": ["/", "/studios/:path*", "/architecture/:path*", "/encyclopedia", "/textbook/:path*"]
   },
   "functions": {
