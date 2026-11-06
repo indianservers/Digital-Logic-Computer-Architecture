@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "include": [
+    "/",
+    "/studios",
+    "/studios/*",
+    "/architecture/*",
+    "/encyclopedia",
+    "/textbook",
+    "/textbook/*"
+  ],
+  "exclude": []
+}
